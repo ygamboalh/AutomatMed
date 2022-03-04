@@ -28,7 +28,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
                     EmpresaId = x.EmpresaId,
                     NombreEmpresa = x.NombreEmpresa
                 }).ToList();
-               
+
 
                 return Response<List<EmpresaDto>>.Ok("Ok", query);
             }
