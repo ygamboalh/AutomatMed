@@ -5,7 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System;
 using TacticaReparaciones.Servicios.Caracteristicas.Servicios;
 using TacticaReparaciones.Servicios.Infraestructura;
 
@@ -23,9 +22,17 @@ namespace TacticaReparaciones.Servicios
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var serverVersion = new MySqlServerVersion(new Version(8, 0, 27));
 
-            services.AddDbContext<TacticaReparacionesDbContext>(options => options.UseMySql(Configuration.GetConnectionString("TacticaBD"), ServerVersion.AutoDetect(Configuration.GetConnectionString("TacticaBD"))));
+            services.AddDbContext<TacticaDbContext>(options => options.UseMySql(Configuration.GetConnectionString("TacticaBD"),
+                                                                                ServerVersion.AutoDetect(Configuration.GetConnectionString("TacticaBD"))
+                                                                                )
+            );
+
+            services.AddDbContext<TacticaReparacionesDbContext>(options => options.UseMySql(Configuration.GetConnectionString("TacticaReparacionesBD"),
+                                                                              ServerVersion.AutoDetect(Configuration.GetConnectionString("TacticaReparacionesBD"))
+                                                                              )
+          );
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -33,6 +40,7 @@ namespace TacticaReparaciones.Servicios
             });
 
             services.AddTransient<EmpresaService, EmpresaService>();
+            services.AddTransient<EstadoService, EstadoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

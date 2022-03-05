@@ -10,9 +10,9 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
 {
     public class EmpresaService
     {
-        private readonly TacticaReparacionesDbContext _tacticaDbContext;
+        private readonly TacticaDbContext _tacticaDbContext;
 
-        public EmpresaService(TacticaReparacionesDbContext tacticaDbContext)
+        public EmpresaService(TacticaDbContext tacticaDbContext)
         {
             _tacticaDbContext = tacticaDbContext;
         }
@@ -22,11 +22,28 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
             try
             {
                 var empresas = _tacticaDbContext.Empresas.ToList();
+                var contactos = _tacticaDbContext.Contactos.ToList();
+                var correosElectronicos = _tacticaDbContext.CorreosElectronicos.ToList();
 
-                var query = empresas.Select(x => new EmpresaDto
+                var query = empresas.AsQueryable().Select(x => new EmpresaDto
                 {
                     EmpresaId = x.EmpresaId,
-                    NombreEmpresa = x.NombreEmpresa
+                    NombreEmpresa = x.NombreEmpresa,
+                    Contactos = contactos.Where(z => z.EmpresaId.Equals(x.EmpresaId))
+                                         .Select(y => new ContactoDto
+                                         {
+                                             Cargo = y.Cargo,
+                                             Nombre = y.Nombre,
+                                             EmpresaId = y.EmpresaId,
+                                             ContactoId = y.ContactoId,
+                                             CorreosElectronicos = correosElectronicos.Where(p => p.ContactoId.Equals(y.ContactoId))
+                                                                                      .Select(z => new CorreoElectronicoDto
+                                                                                      {
+                                                                                          ContactoId = z.ContactoId,
+                                                                                          Direccion = z.Direccion,
+                                                                                          RegistroId = z.RegistroId
+                                                                                      }).ToList()
+                                         }).ToList()
                 }).ToList();
 
 

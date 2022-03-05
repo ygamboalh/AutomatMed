@@ -11,11 +11,12 @@ namespace TacticaReparaciones.Servicios.Infraestructura
 
         }
 
-        public DbSet<Empresa> Empresas { get; set; }
+        public DbSet<Estado> Estados { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new EmpresaMap());
+
+            modelBuilder.ApplyConfiguration(new EstadoMap());
         }
     }
 }

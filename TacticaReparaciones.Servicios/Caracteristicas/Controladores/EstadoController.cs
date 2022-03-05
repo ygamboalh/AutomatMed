@@ -4,21 +4,21 @@ using TacticaReparaciones.Servicios.Caracteristicas.Servicios;
 
 namespace TacticaReparaciones.Servicios.Caracteristicas.Controladores
 {
-    [Route("empresas")]
+    [Route("estados")]
     [ApiController]
-    public class EmpresaController : ControllerBase
+    public class EstadoController : ControllerBase
     {
-        private readonly EmpresaService _empresaService;
+        private readonly EstadoService _estadoService;
 
-        public EmpresaController(EmpresaService empresaService)
+        public EstadoController(EstadoService estadoService)
         {
-            _empresaService = empresaService;
+            _estadoService = estadoService;
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            var result = _empresaService.ObtenerEmpresas();
+            var result = _estadoService.ObtenerEstados();
 
             if (result.Type != TypeResponse.Ok)
                 return BadRequest(result.Message);
