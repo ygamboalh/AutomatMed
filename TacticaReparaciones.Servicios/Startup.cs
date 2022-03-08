@@ -41,6 +41,8 @@ namespace TacticaReparaciones.Servicios
 
             services.AddTransient<EmpresaService, EmpresaService>();
             services.AddTransient<EstadoService, EstadoService>();
+            services.AddTransient<TipoTrabajoService, TipoTrabajoService>();
+            services.AddTransient<IngresoService, IngresoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
