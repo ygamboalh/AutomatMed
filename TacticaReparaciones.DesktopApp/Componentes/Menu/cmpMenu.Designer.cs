@@ -34,13 +34,16 @@ namespace TacticaReparaciones.DesktopApp.Componentes.Menu
             this.pnlExpandirMenu = new System.Windows.Forms.Panel();
             this.btnExpandirMenu = new FontAwesome.Sharp.IconButton();
             this.cmdIngresos = new FontAwesome.Sharp.IconButton();
-            this.pnlMenuExpandido = new System.Windows.Forms.Panel();
-            this.pnlMenuContraido = new System.Windows.Forms.Panel();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.cmdIngresosSimple = new FontAwesome.Sharp.IconButton();
+            this.navigationMenus = new DevExpress.XtraBars.Navigation.NavigationFrame();
+            this.pageMenuExtendido = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.pageMenuContraido = new DevExpress.XtraBars.Navigation.NavigationPage();
             this.pnlLogo.SuspendLayout();
             this.pnlExpandirMenu.SuspendLayout();
-            this.pnlMenuExpandido.SuspendLayout();
-            this.pnlMenuContraido.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.navigationMenus)).BeginInit();
+            this.navigationMenus.SuspendLayout();
+            this.pageMenuExtendido.SuspendLayout();
+            this.pageMenuContraido.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmpLogo1
@@ -57,9 +60,9 @@ namespace TacticaReparaciones.DesktopApp.Componentes.Menu
             // 
             this.pnlLogo.Controls.Add(this.cmpLogo1);
             this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlLogo.Location = new System.Drawing.Point(0, 40);
+            this.pnlLogo.Location = new System.Drawing.Point(0, 34);
             this.pnlLogo.Name = "pnlLogo";
-            this.pnlLogo.Size = new System.Drawing.Size(36, 206);
+            this.pnlLogo.Size = new System.Drawing.Size(320, 206);
             this.pnlLogo.TabIndex = 1;
             // 
             // pnlExpandirMenu
@@ -68,7 +71,7 @@ namespace TacticaReparaciones.DesktopApp.Componentes.Menu
             this.pnlExpandirMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlExpandirMenu.Location = new System.Drawing.Point(0, 0);
             this.pnlExpandirMenu.Name = "pnlExpandirMenu";
-            this.pnlExpandirMenu.Size = new System.Drawing.Size(36, 40);
+            this.pnlExpandirMenu.Size = new System.Drawing.Size(320, 34);
             this.pnlExpandirMenu.TabIndex = 2;
             // 
             // btnExpandirMenu
@@ -82,8 +85,10 @@ namespace TacticaReparaciones.DesktopApp.Componentes.Menu
             this.btnExpandirMenu.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnExpandirMenu.IconSize = 25;
             this.btnExpandirMenu.Location = new System.Drawing.Point(0, 0);
+            this.btnExpandirMenu.MaximumSize = new System.Drawing.Size(36, 0);
+            this.btnExpandirMenu.MinimumSize = new System.Drawing.Size(36, 0);
             this.btnExpandirMenu.Name = "btnExpandirMenu";
-            this.btnExpandirMenu.Size = new System.Drawing.Size(36, 40);
+            this.btnExpandirMenu.Size = new System.Drawing.Size(36, 34);
             this.btnExpandirMenu.TabIndex = 2;
             this.btnExpandirMenu.UseVisualStyleBackColor = false;
             this.btnExpandirMenu.Click += new System.EventHandler(this.btnExpandirMenu_Click);
@@ -101,65 +106,79 @@ namespace TacticaReparaciones.DesktopApp.Componentes.Menu
             this.cmdIngresos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdIngresos.Location = new System.Drawing.Point(0, 0);
             this.cmdIngresos.Name = "cmdIngresos";
-            this.cmdIngresos.Size = new System.Drawing.Size(36, 31);
+            this.cmdIngresos.Size = new System.Drawing.Size(320, 31);
             this.cmdIngresos.TabIndex = 3;
             this.cmdIngresos.Text = "Ingresos";
             this.cmdIngresos.UseVisualStyleBackColor = false;
             this.cmdIngresos.Click += new System.EventHandler(this.cmdIngresos_Click);
             // 
-            // pnlMenuExpandido
+            // cmdIngresosSimple
             // 
-            this.pnlMenuExpandido.Controls.Add(this.cmdIngresos);
-            this.pnlMenuExpandido.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlMenuExpandido.Location = new System.Drawing.Point(0, 246);
-            this.pnlMenuExpandido.Name = "pnlMenuExpandido";
-            this.pnlMenuExpandido.Size = new System.Drawing.Size(36, 40);
-            this.pnlMenuExpandido.TabIndex = 4;
+            this.cmdIngresosSimple.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.cmdIngresosSimple.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cmdIngresosSimple.FlatAppearance.BorderSize = 0;
+            this.cmdIngresosSimple.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmdIngresosSimple.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            this.cmdIngresosSimple.IconColor = System.Drawing.Color.Black;
+            this.cmdIngresosSimple.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.cmdIngresosSimple.IconSize = 25;
+            this.cmdIngresosSimple.Location = new System.Drawing.Point(0, 0);
+            this.cmdIngresosSimple.Name = "cmdIngresosSimple";
+            this.cmdIngresosSimple.Size = new System.Drawing.Size(320, 31);
+            this.cmdIngresosSimple.TabIndex = 3;
+            this.cmdIngresosSimple.UseVisualStyleBackColor = false;
+            this.cmdIngresosSimple.Click += new System.EventHandler(this.cmdIngresos_Click);
             // 
-            // pnlMenuContraido
+            // navigationMenus
             // 
-            this.pnlMenuContraido.Controls.Add(this.iconButton1);
-            this.pnlMenuContraido.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlMenuContraido.Location = new System.Drawing.Point(0, 286);
-            this.pnlMenuContraido.Name = "pnlMenuContraido";
-            this.pnlMenuContraido.Size = new System.Drawing.Size(36, 40);
-            this.pnlMenuContraido.TabIndex = 5;
-            this.pnlMenuContraido.Visible = false;
+            this.navigationMenus.Controls.Add(this.pageMenuExtendido);
+            this.navigationMenus.Controls.Add(this.pageMenuContraido);
+            this.navigationMenus.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.navigationMenus.Location = new System.Drawing.Point(0, 240);
+            this.navigationMenus.Name = "navigationMenus";
+            this.navigationMenus.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
+            this.pageMenuExtendido,
+            this.pageMenuContraido});
+            this.navigationMenus.SelectedPage = this.pageMenuExtendido;
+            this.navigationMenus.Size = new System.Drawing.Size(320, 280);
+            this.navigationMenus.TabIndex = 6;
+            this.navigationMenus.Text = "navigationFrame1";
+            this.navigationMenus.TransitionAnimationProperties.FrameCount = 500;
+            this.navigationMenus.TransitionAnimationProperties.FrameInterval = 500;
+            this.navigationMenus.TransitionType = DevExpress.Utils.Animation.Transitions.Fade;
             // 
-            // iconButton1
+            // pageMenuExtendido
             // 
-            this.iconButton1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.iconButton1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton1.FlatAppearance.BorderSize = 0;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Plus;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 25;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(0, 0);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(36, 31);
-            this.iconButton1.TabIndex = 3;
-            this.iconButton1.UseVisualStyleBackColor = false;
+            this.pageMenuExtendido.Caption = "pageMenuExtendido";
+            this.pageMenuExtendido.Controls.Add(this.cmdIngresos);
+            this.pageMenuExtendido.Name = "pageMenuExtendido";
+            this.pageMenuExtendido.Size = new System.Drawing.Size(320, 280);
+            // 
+            // pageMenuContraido
+            // 
+            this.pageMenuContraido.Caption = "pageMenuContraido";
+            this.pageMenuContraido.Controls.Add(this.cmdIngresosSimple);
+            this.pageMenuContraido.Name = "pageMenuContraido";
+            this.pageMenuContraido.Size = new System.Drawing.Size(320, 280);
             // 
             // cmpMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.Controls.Add(this.pnlMenuContraido);
-            this.Controls.Add(this.pnlMenuExpandido);
+            this.Controls.Add(this.navigationMenus);
             this.Controls.Add(this.pnlLogo);
             this.Controls.Add(this.pnlExpandirMenu);
             this.MaximumSize = new System.Drawing.Size(320, 0);
-            this.MinimumSize = new System.Drawing.Size(36, 520);
+            this.MinimumSize = new System.Drawing.Size(30, 520);
             this.Name = "cmpMenu";
-            this.Size = new System.Drawing.Size(36, 520);
+            this.Size = new System.Drawing.Size(320, 520);
             this.pnlLogo.ResumeLayout(false);
             this.pnlExpandirMenu.ResumeLayout(false);
-            this.pnlMenuExpandido.ResumeLayout(false);
-            this.pnlMenuContraido.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.navigationMenus)).EndInit();
+            this.navigationMenus.ResumeLayout(false);
+            this.pageMenuExtendido.ResumeLayout(false);
+            this.pageMenuContraido.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -171,8 +190,9 @@ namespace TacticaReparaciones.DesktopApp.Componentes.Menu
         private System.Windows.Forms.Panel pnlExpandirMenu;
         private FontAwesome.Sharp.IconButton btnExpandirMenu;
         private FontAwesome.Sharp.IconButton cmdIngresos;
-        private System.Windows.Forms.Panel pnlMenuExpandido;
-        private System.Windows.Forms.Panel pnlMenuContraido;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton cmdIngresosSimple;
+        private DevExpress.XtraBars.Navigation.NavigationFrame navigationMenus;
+        private DevExpress.XtraBars.Navigation.NavigationPage pageMenuExtendido;
+        private DevExpress.XtraBars.Navigation.NavigationPage pageMenuContraido;
     }
 }

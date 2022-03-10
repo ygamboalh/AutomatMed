@@ -1,5 +1,6 @@
 using System;
 using System.Windows.Forms;
+using TacticaReparaciones.DesktopApp.Pantallas.Principales;
 
 namespace TacticaReparaciones.DesktopApp
 {
@@ -14,7 +15,7 @@ namespace TacticaReparaciones.DesktopApp
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmPrincipal());
+            Application.Run(new frmPrincipal());
         }
     }
 }
