@@ -1,4 +1,4 @@
-﻿namespace TacticaReparaciones.Servicios.Caracteristicas.Dtos
+﻿namespace TacticaReparaciones.Libs.Dtos
 {
     public class EstadoDto
     {

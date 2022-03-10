@@ -1,16 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TacticaReparaciones.Servicios.Caracteristicas.Servicios;
 
 namespace TacticaReparaciones.Servicios.Caracteristicas.Controladores
 {
     [Route("tipos-de-trabajo")]
     [ApiController]
-    public class TipoTrabajoController: ControllerBase
+    public class TipoTrabajoController : ControllerBase
     {
         private readonly TipoTrabajoService _tipoTrabajoService;
 

@@ -3,8 +3,7 @@ using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using TacticaReparaciones.Servicios.Caracteristicas.Dtos;
+using TacticaReparaciones.Libs.Dtos;
 using TacticaReparaciones.Servicios.Infraestructura;
 
 namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios

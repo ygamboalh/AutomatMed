@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
-using TacticaReparaciones.Servicios.Caracteristicas.Dtos;
+using TacticaReparaciones.Libs.Dtos;
 using TacticaReparaciones.Servicios.Caracteristicas.Servicios;
 
 namespace TacticaReparaciones.Servicios.Caracteristicas.Controladores
 {
     [Route("ingresos")]
     [ApiController]
-    public class IngresoController: ControllerBase
+    public class IngresoController : ControllerBase
     {
         private readonly IngresoService _ingresoService;
 
@@ -17,7 +17,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Controladores
         }
 
         [HttpGet, Route("por-estado/{estadoId}")]
-        public IActionResult GetPorEstado([FromRoute]int estadoId)
+        public IActionResult GetPorEstado([FromRoute] int estadoId)
         {
             var result = _ingresoService.ObtenerIngresosPorEstado(estadoId);
 

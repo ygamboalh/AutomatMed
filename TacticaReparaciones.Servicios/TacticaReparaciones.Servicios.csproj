@@ -10,6 +10,11 @@
     <PackageReference Include="Nagaira.Herramientas.Standard.Helpers" Version="1.0.0" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="TactitaReparaciones.Libs" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="out\" />
   </ItemGroup>
 
 </Project>

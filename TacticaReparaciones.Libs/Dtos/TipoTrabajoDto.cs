@@ -1,6 +1,6 @@
-﻿namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
+﻿namespace TacticaReparaciones.Libs.Dtos
 {
-    public class TipoTrabajo
+    public class TipoTrabajoDto
     {
         public int TipoTrabajoId { get; set; }
         public string Descripcion { get; set; }

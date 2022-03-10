@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
 {
@@ -54,7 +51,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
                 return false;
             }
 
-           
+
 
             mensaje = "Ok";
             return true;

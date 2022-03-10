@@ -167,6 +167,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmIngresos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmIngresos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.glCorreoElectronico.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit3View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.glContacto.Properties)).EndInit();
