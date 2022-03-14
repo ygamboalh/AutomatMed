@@ -1,9 +1,12 @@
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace TacticaReparaciones.Servicios
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
@@ -16,5 +19,6 @@ namespace TacticaReparaciones.Servicios
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
     }
 }

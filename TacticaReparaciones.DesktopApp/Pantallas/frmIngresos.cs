@@ -1,8 +1,4 @@
-﻿using Newtonsoft.Json;
-using RestSharp;
-using System.Collections.Generic;
-using System.Threading;
-using System.Windows;
+﻿using System;
 using TacticaReparaciones.DesktopApp.Helpers;
 using TacticaReparaciones.Libs.Dtos;
 
@@ -10,71 +6,34 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
 {
     public partial class frmIngresos : DevExpress.XtraEditors.XtraForm
     {
+        string rutaApi;
+        EmpresaDto empresaSeleccionada;
+        ContactoDto contactoSeleccionado;
+
         public frmIngresos()
         {
             InitializeComponent();
+
+            rutaApi = AplicacionHelper.ObtenerRutaApiDeAplicacion();
+
             EstablecerNombreYTituloDePantalla();
+            EstablecerNombreYTituloPopupEmpresas();
             CargarDatosDeEmpresas();
         }
 
-        
-
-        private async  void CargarDatosDeEmpresas()
+        private void EstablecerNombreYTituloPopupEmpresas()
         {
-           
-            var options = new RestClientOptions("http://localhost:65168")
-            {
-                ThrowOnAnyError = true,
-                Timeout = 1000
-            };
-            var client = new RestClient(options);
+            ctlEncabezadoPopup.lblTitulo.Text = "Listado de Empresas";
+            ctlEncabezadoPopup.EstablecerColoresDeFondoYLetra();
+        }
 
-            var request = new RestRequest("/empresas",Method.Get);
-            request.AddHeader("Content-Type", "application/json");
-            var response = await client.GetAsync(request);
+        private async void CargarDatosDeEmpresas()
+        {
+            string uri = "/empresas";
+            var empresas = await HttpHelper.Get<EmpresaDto>(rutaApi, uri, "");
 
-            /*string api = "http://localhost:65168";
-            RestClient restClient = new RestClient(api);
-           
+            gcEmpresas.DataSource = empresas;
 
-            var request = HttpHelper.Get("empresas", "", out string mensaje);
-            if (mensaje != "Ok")
-            {
-                MessageBox.Show(mensaje, "Falla en Respuesta HTTP", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-
-                var response = restClient.ExecuteAsync<EmpresaDto>(request, CancellationToken.None).GetAwaiter().GetResult();
-                if (response.StatusCode == 0)
-                {
-                    MessageBox.Show($"Error. {response.ErrorMessage}", "Falla en Respuesta HTTP", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-                if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
-                {
-                    MessageBox.Show("No se ha podido iniciar sesión.", "Falla en Respuesta HTTP", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-
-                if (response.StatusCode == System.Net.HttpStatusCode.InternalServerError)
-                {
-                    MessageBox.Show($"Error. {response.StatusDescription}", "Falla en Respuesta HTTP", MessageBoxButton.OK, MessageBoxImage.Error);           
-                    return;
-                }
-
-                if (response.StatusCode == 0)
-                {
-                
-                    MessageBox.Show("Se agoto el tiempo de conexión.", "Falla en Respuesta HTTP", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-
-                if (!response.IsSuccessful)
-                {
-                    MessageBox.Show(response.StatusDescription, "Falla en Respuesta HTTP", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-
-            var data = response.Data;*/
         }
 
         private void EstablecerNombreYTituloDePantalla()
@@ -92,11 +51,71 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
 
         private void btnBuscarEmpresa_Click(object sender, System.EventArgs e)
         {
-
+            this.Parent.BringToFront();
+            flyoutPanel1.ShowPopup();
         }
 
         private void frmIngresos_Load(object sender, System.EventArgs e)
         {
+
+        }
+
+        private void cmdCerrarPopupEmpresas_Click(object sender, EventArgs e)
+        {
+            flyoutPanel1.HidePopup();
+        }
+
+        private void gcEmpresas_DoubleClick(object sender, EventArgs e)
+        {
+            ObtenerEmpresaSeleccionada();
+        }
+        private void ObtenerContactosDeEmpresaSeleccionada()
+        {
+            LimpiarContactos();
+            glContacto.Properties.DataSource = empresaSeleccionada.Contactos;
+            glContacto.Properties.DisplayMember = "Nombre";
+            glContacto.Properties.ValueMember = "ContactoId";
+        }
+        public void ObtenerEmpresaSeleccionada()
+        {
+            empresaSeleccionada = gvEmpresas.GetFocusedRow() as EmpresaDto;
+            txtEmpresa.Text = empresaSeleccionada.NombreEmpresa;
+            flyoutPanel1.HidePopup();
+            ObtenerContactosDeEmpresaSeleccionada();
+        }
+
+        public void ObtenerCorreoElectronicoDeContacto()
+        {
+
+            LimpiarCorreos();
+            glCorreoElectronico.Properties.DataSource = contactoSeleccionado.CorreosElectronicos;
+            glCorreoElectronico.Properties.DisplayMember = "Direccion";
+            glCorreoElectronico.Properties.ValueMember = "RegistroId";
+        }
+        private void gcEmpresas_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.KeyCode == System.Windows.Forms.Keys.Enter)
+            {
+                ObtenerEmpresaSeleccionada();
+            }
+        }
+
+        private void glContacto_Properties_EditValueChanged(object sender, EventArgs e)
+        {
+            contactoSeleccionado = glContactos.GetFocusedRow() as ContactoDto;
+            ObtenerCorreoElectronicoDeContacto();
+        }
+
+        private void LimpiarContactos()
+        {
+            glContacto.Properties.DataSource = null;
+            contactoSeleccionado = null;
+            LimpiarCorreos();
+        }
+
+        private void LimpiarCorreos()
+        {
+            glCorreoElectronico.Properties.DataSource = null;
 
         }
     }

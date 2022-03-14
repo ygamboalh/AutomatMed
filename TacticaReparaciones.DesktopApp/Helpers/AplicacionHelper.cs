@@ -10,5 +10,13 @@ namespace TacticaReparaciones.DesktopApp.Helpers
             var nombreAplicacion = appSettings["NombreAplicacion"];
             return nombreAplicacion;
         }
+
+        public static string ObtenerRutaApiDeAplicacion()
+        {
+            var appSettings = ConfigurationManager.AppSettings;
+            var rutaApi = appSettings["ApiTacticaReparaciones"];
+            return rutaApi;
+
+        }
     }
 }

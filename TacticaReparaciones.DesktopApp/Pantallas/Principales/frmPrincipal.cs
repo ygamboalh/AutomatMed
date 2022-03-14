@@ -1,5 +1,4 @@
 ﻿using DevExpress.XtraEditors;
-using System;
 using System.Drawing;
 using System.Windows.Forms;
 using TacticaReparaciones.DesktopApp.Enums;
@@ -37,7 +36,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Principales
         }
 
         private void AgregarPantalla(ref XtraForm pantalla)
-        {          
+        {
             if (pantalla.Created)
             {
                 pantalla.Focus();
@@ -65,7 +64,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Principales
 
         private void xtraTabbedMdiManager1_PageAdded(object sender, DevExpress.XtraTabbedMdi.MdiTabPageEventArgs e)
         {
-          
+
         }
     }
 }

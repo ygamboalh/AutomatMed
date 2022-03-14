@@ -11,9 +11,9 @@ namespace TacticaReparaciones.Servicios.Infraestructura.Maps
             builder.ToTable("direccionescorreo");
 
             builder.HasKey(x => x.RegistroId);
-            builder.Property(x => x.RegistroId).HasColumnName("RecID").HasColumnType("VARCHAR").HasMaxLength(12).IsRequired();
-            builder.Property(x => x.ContactoId).HasColumnName("IDref").HasColumnType("VARCHAR").HasMaxLength(12).IsRequired();
-            builder.Property(x => x.Direccion).HasColumnName("Direccion").HasColumnType("VARCHAR").HasMaxLength(255);
+            builder.Property(x => x.RegistroId).HasColumnName("RecID").HasColumnType("VARCHAR(12)").IsRequired();
+            builder.Property(x => x.ContactoId).HasColumnName("IDref").HasColumnType("VARCHAR(12)").IsRequired();
+            builder.Property(x => x.Direccion).HasColumnName("Direccion").HasColumnType("VARCHAR(255)");
         }
     }
 }

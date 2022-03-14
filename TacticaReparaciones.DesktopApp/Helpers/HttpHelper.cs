@@ -1,9 +1,5 @@
 ﻿using RestSharp;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace TacticaReparaciones.DesktopApp.Helpers
@@ -12,22 +8,21 @@ namespace TacticaReparaciones.DesktopApp.Helpers
     {
         const int TIMEOUT = 60 * 10000;
 
-        public static RestRequest Get(string uri, string token, out string mensaje)
+        public static async Task<IEnumerable<T>> Get<T>(string api, string uri, string token)
         {
-            if (string.IsNullOrEmpty(uri))
+            var options = new RestClientOptions(api)
             {
-                mensaje = "La ruta no puede ser vacía.";
-                return null;
-            }
+                ThrowOnAnyError = true,
+                Timeout = 1000
+            };
+            var client = new RestClient(options);
 
-            RestRequest request = new RestRequest($"{uri}", Method.Get);
-            request.RequestFormat = DataFormat.Json;
-            request.Timeout = TIMEOUT;
+            var request = new RestRequest($"{uri}", Method.Get);
             request.AddHeader("Content-Type", "application/json");
-                  // .AddHeader("Authorization", $"Bearer {token}");
 
-            mensaje = "Ok";
-            return request;
+            var response = await client.GetAsync<IEnumerable<T>>(request);
+
+            return response;
         }
     }
 }

@@ -11,8 +11,8 @@ namespace TacticaReparaciones.Servicios.Infraestructura.Maps
             builder.ToTable("empresas");
 
             builder.HasKey(x => x.EmpresaId);
-            builder.Property(x => x.EmpresaId).HasColumnName("IDEmpresa").HasColumnType("VARCHAR").HasMaxLength(12).IsRequired();
-            builder.Property(x => x.NombreEmpresa).HasColumnName("Empresa").HasMaxLength(255);
+            builder.Property(x => x.EmpresaId).HasColumnName("IDEmpresa").HasColumnType("VARCHAR(12)").IsRequired();
+            builder.Property(x => x.NombreEmpresa).HasColumnName("Empresa").HasColumnType("VARCHAR(255)");
         }
     }
 }

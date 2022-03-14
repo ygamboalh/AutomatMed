@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Nagaira.Extensions.Configuration;
+using System;
 using TacticaReparaciones.Servicios.Caracteristicas.Servicios;
 using TacticaReparaciones.Servicios.Infraestructura;
 
@@ -18,26 +20,16 @@ namespace TacticaReparaciones.Servicios
         }
 
         public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddDbContext<TacticaDbContext>(options => options.UseMySql(Configuration.GetConnectionString("TacticaBD"),
-                                                                                ServerVersion.AutoDetect(Configuration.GetConnectionString("TacticaBD"))
-                                                                                )
-            );
-
-            services.AddDbContext<TacticaReparacionesDbContext>(options => options.UseMySql(Configuration.GetConnectionString("TacticaReparacionesBD"),
-                                                                              ServerVersion.AutoDetect(Configuration.GetConnectionString("TacticaReparacionesBD"))
-                                                                              )
-          );
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TacticaReparaciones.Servicios", Version = "v1" });
             });
+
+            services.AddDbContext<TacticaDbContext>(options => options.UseMySql(Configuration.GetConnectionStringFromENV("TacticaBD")).EnableDetailedErrors());
+            services.AddDbContext<TacticaReparacionesDbContext>(options =>  options.UseMySql(Configuration.GetConnectionStringFromENV("TacticaReparacionesBD")).EnableDetailedErrors());
 
             services.AddTransient<EmpresaService, EmpresaService>();
             services.AddTransient<EstadoService, EstadoService>();
@@ -45,7 +37,6 @@ namespace TacticaReparaciones.Servicios
             services.AddTransient<IngresoService, IngresoService>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

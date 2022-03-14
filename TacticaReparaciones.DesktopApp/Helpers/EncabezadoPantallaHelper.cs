@@ -8,7 +8,7 @@ namespace TacticaReparaciones.DesktopApp.Helpers
         {
             string tituloPantalla = "";
             switch (indiceMenu)
-            {   
+            {
                 case IndiceMenu.Ingresos:
                     tituloPantalla = "Ingresos";
                     break;

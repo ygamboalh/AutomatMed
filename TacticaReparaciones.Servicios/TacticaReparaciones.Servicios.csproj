@@ -5,10 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.14" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.23" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.23" />
+    <PackageReference Include="Nagaira.Extensions.Configuration" Version="2.2.0" />
     <PackageReference Include="Nagaira.Herramientas.Standard.Helpers" Version="1.0.0" />
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.4" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
     <PackageReference Include="TactitaReparaciones.Libs" Version="1.0.0" />
   </ItemGroup>

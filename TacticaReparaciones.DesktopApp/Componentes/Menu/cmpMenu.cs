@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 using TacticaReparaciones.DesktopApp.Enums;
 using TacticaReparaciones.DesktopApp.Helpers;
@@ -91,7 +90,7 @@ namespace TacticaReparaciones.DesktopApp.Componentes.Menu
             EstablecerMaximoTamanioDelMenu();
             HabilitarMenuConTitulos();
             AlinearBotonMenuALaIzquierda();
-        } 
+        }
 
         private void AccionesConBotonContraido()
         {
