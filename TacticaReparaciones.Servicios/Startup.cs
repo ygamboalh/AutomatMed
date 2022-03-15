@@ -35,6 +35,7 @@ namespace TacticaReparaciones.Servicios
             services.AddTransient<EstadoService, EstadoService>();
             services.AddTransient<TipoTrabajoService, TipoTrabajoService>();
             services.AddTransient<IngresoService, IngresoService>();
+            services.AddTransient<InstrumentoService, InstrumentoService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

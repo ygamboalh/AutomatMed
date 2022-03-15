@@ -14,6 +14,7 @@ namespace TacticaReparaciones.Servicios.Infraestructura
         public DbSet<Estado> Estados { get; set; }
         public DbSet<TipoTrabajo> TiposDeTrabajo { get; set; }
         public DbSet<Ingreso> Ingresos { get; set; }
+        public DbSet<Instrumento> Instrumentos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,6 +22,7 @@ namespace TacticaReparaciones.Servicios.Infraestructura
             modelBuilder.ApplyConfiguration(new EstadoMap());
             modelBuilder.ApplyConfiguration(new TipoTrabajoMap());
             modelBuilder.ApplyConfiguration(new IngresoMap());
+            modelBuilder.ApplyConfiguration(new InstrumentoMap());
         }
     }
 }

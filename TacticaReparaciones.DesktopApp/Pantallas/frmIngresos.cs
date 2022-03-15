@@ -18,7 +18,32 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
 
             EstablecerNombreYTituloDePantalla();
             EstablecerNombreYTituloPopupEmpresas();
+            EstablecerColorBotonPorDefecto();
+            EstablecerColorBotonGuardar();
             CargarDatosDeEmpresas();
+            CargarDatosTiposDeTrabajo();
+        }
+
+        private async void CargarDatosTiposDeTrabajo()
+        {
+            string uri = "/tipos-de-trabajo";
+            var tiposTrabajo = await HttpHelper.Get<TipoTrabajoDto>(rutaApi, uri, "");
+
+            glTiposTrabajo.Properties.DataSource = tiposTrabajo;
+        }
+
+        private void EstablecerColorBotonPorDefecto()
+        {
+            btnAgregarNuevInstrumento.BackColor = ColorHelper.ObtenerColorEnRGB("Default");
+            btnAgregarNuevInstrumento.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+            btnAgregarNuevInstrumento.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+        }
+
+        private void EstablecerColorBotonGuardar()
+        {
+            btnGuardarIngreso.BackColor = ColorHelper.ObtenerColorEnRGB("Sucess");
+            btnGuardarIngreso.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+            btnGuardarIngreso.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
         private void EstablecerNombreYTituloPopupEmpresas()
@@ -40,7 +65,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
         {
             string titulo = "Ingresos";
             this.Text = titulo;
-            this.ctlEncabezadoPantalla1.lblTitulo.Text = titulo;
+            this.ctlEncabezadoPantalla1.lblTitulo.Text = "Creación de Ingreso";
             this.ctlEncabezadoPantalla1.EstablecerColoresDeFondoYLetra();
         }
 
@@ -116,6 +141,11 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
         private void LimpiarCorreos()
         {
             glCorreoElectronico.Properties.DataSource = null;
+
+        }
+
+        private void trackBarControl1_EditValueChanged(object sender, EventArgs e)
+        {
 
         }
     }
