@@ -15,10 +15,10 @@ namespace TacticaReparaciones.Libs.Dtos
         public DateTime? FechaCompraFabricante { get; set; }
         public DateTime? FechaCompraCliente { get; set; }
         public DateTime? FechaUltimaCalibracion { get; set; }
-        public int PeriodoCalibracionId { get; set; }
+        public int? PeriodoCalibracionId { get; set; }
         public DateTime? FechaProximaCalibracion { get; set; }
-        public int GarantiaId { get; set; }
-        public int EmpresaId { get; set; }
+        public int? GarantiaId { get; set; }
+        public string EmpresaId { get; set; }
         public string NombreEmpresa { get; set; }
     }
 }

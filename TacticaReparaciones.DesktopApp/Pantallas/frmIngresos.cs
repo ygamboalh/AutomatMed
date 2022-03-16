@@ -19,6 +19,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             EstablecerNombreYTituloDePantalla();
             EstablecerNombreYTituloPopupEmpresas();
             EstablecerColorBotonPorDefecto();
+            EstablecerNombreYTituloPopupAgregarInstrumentos();
             EstablecerColorBotonGuardar();
             CargarDatosDeEmpresas();
             CargarDatosTiposDeTrabajo();
@@ -44,12 +45,22 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             btnGuardarIngreso.BackColor = ColorHelper.ObtenerColorEnRGB("Sucess");
             btnGuardarIngreso.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
             btnGuardarIngreso.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+
+            btnGuardarInstrumento.BackColor = ColorHelper.ObtenerColorEnRGB("Sucess");
+            btnGuardarInstrumento.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+            btnGuardarInstrumento.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
         private void EstablecerNombreYTituloPopupEmpresas()
         {
             ctlEncabezadoPopup.lblTitulo.Text = "Listado de Empresas";
             ctlEncabezadoPopup.EstablecerColoresDeFondoYLetra();
+        }
+
+        private void EstablecerNombreYTituloPopupAgregarInstrumentos()
+        {
+            ctlEncabezadoAgregarInstrumento.lblTitulo.Text = "Agregar Instrumento";
+            ctlEncabezadoAgregarInstrumento.EstablecerColoresDeFondoYLetra();
         }
 
         private async void CargarDatosDeEmpresas()
@@ -80,11 +91,6 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             flyoutPanel1.ShowPopup();
         }
 
-        private void frmIngresos_Load(object sender, System.EventArgs e)
-        {
-
-        }
-
         private void cmdCerrarPopupEmpresas_Click(object sender, EventArgs e)
         {
             flyoutPanel1.HidePopup();
@@ -92,7 +98,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
 
         private void gcEmpresas_DoubleClick(object sender, EventArgs e)
         {
-            ObtenerEmpresaSeleccionada();
+            ObtenerEmpresaSeleccionada(ModoSeleccionEmpresa.Ingreso);
         }
         private void ObtenerContactosDeEmpresaSeleccionada()
         {
@@ -101,12 +107,22 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             glContacto.Properties.DisplayMember = "Nombre";
             glContacto.Properties.ValueMember = "ContactoId";
         }
-        public void ObtenerEmpresaSeleccionada()
+        public void ObtenerEmpresaSeleccionada(ModoSeleccionEmpresa modoSeleccionEmpresa)
         {
             empresaSeleccionada = gvEmpresas.GetFocusedRow() as EmpresaDto;
-            txtEmpresa.Text = empresaSeleccionada.NombreEmpresa;
+            if (modoSeleccionEmpresa == ModoSeleccionEmpresa.Ingreso)
+            {
+                txtEmpresa.Text = empresaSeleccionada.NombreEmpresa;
+                ObtenerContactosDeEmpresaSeleccionada();
+            }
+            else
+            {
+                txtEmpresaInstrumento.Text = empresaSeleccionada.NombreEmpresa;
+            }
+          
+           
             flyoutPanel1.HidePopup();
-            ObtenerContactosDeEmpresaSeleccionada();
+           
         }
 
         public void ObtenerCorreoElectronicoDeContacto()
@@ -121,7 +137,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
         {
             if (e.KeyCode == System.Windows.Forms.Keys.Enter)
             {
-                ObtenerEmpresaSeleccionada();
+                ObtenerEmpresaSeleccionada(ModoSeleccionEmpresa.Ingreso);
             }
         }
 
@@ -144,10 +160,39 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
 
         }
 
-        private void trackBarControl1_EditValueChanged(object sender, EventArgs e)
+        private void btnAgregarNuevInstrumento_Click(object sender, EventArgs e)
         {
-
+            flyoutPanel2.ShowPopup();
         }
+
+        private void btnCerrarPopupAgregarInstrumento_Click(object sender, EventArgs e)
+        {
+            flyoutPanel2.HidePopup();
+        }
+
+        private void btnGuardarInstrumento_Click(object sender, EventArgs e)
+        {
+            HttpHelper.Post
+        }
+
+        private void btnAbrirPopupEmpresaPorInstrumento_Click(object sender, EventArgs e)
+        {
+            ObtenerEmpresaSeleccionada(ModoSeleccionEmpresa.Instrumento);
+        }
+
+        private void PrepararIngreso()
+        {
+            var tipoIngreso = glkTipoInstrumento.GetFocusedDataRow(); 
+            //IngresoDto ingresoDto = new IngresoDto
+            //{
+            //    TipoTrabajoId = glkTipoInstrumento.GetFocusedDataRow();
+            //}
+        }
+    }
+
+    public enum ModoSeleccionEmpresa {
+        Ingreso = 1,
+        Instrumento = 2
     }
 }
 
