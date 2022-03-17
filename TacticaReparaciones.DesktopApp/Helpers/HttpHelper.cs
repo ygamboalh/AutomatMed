@@ -1,6 +1,5 @@
 ﻿using RestSharp;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace TacticaReparaciones.DesktopApp.Helpers
@@ -26,7 +25,7 @@ namespace TacticaReparaciones.DesktopApp.Helpers
             return response;
         }
 
-        public static async Task<T> Post<T>(T item,string api, string uri, string token)
+        public static async Task<T> Post<T>(T item, string api, string uri, string token)
         {
             var options = new RestClientOptions(api)
             {
