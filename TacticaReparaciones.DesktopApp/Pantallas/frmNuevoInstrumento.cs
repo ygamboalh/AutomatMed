@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using TacticaReparaciones.DesktopApp.Helpers;
 using TacticaReparaciones.Libs.Dtos;
 
@@ -9,6 +10,8 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
         public delegate void InstrumentoAgregado(InstrumentoDto instrumento);
         public event InstrumentoAgregado OnInstrumentoAgregado;
 
+        EmpresaDto empresaSeleccionada;
+        public InstrumentoDto NuevoInstrumento { get; set; }
         string rutaApi;
 
         public frmNuevoInstrumento()
@@ -16,9 +19,12 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             InitializeComponent();
 
             rutaApi = AplicacionHelper.ObtenerRutaApiDeAplicacion();
-            CargarDatosMaestros();
+            CargarTiposDeInstrumentos();
+            AsignarConfiguracionComboBoxes();
             EstablecerColorBotonGuardar();
             EstablecerNombreYTituloPopupAgregarInstrumentos();
+
+            NuevoInstrumento = new InstrumentoDto();
         }
 
         private void EstablecerNombreYTituloPopupAgregarInstrumentos()
@@ -36,12 +42,23 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
 
         private void OnEmpresaSeleccionada(EmpresaDto empresa)
         {
+            empresaSeleccionada = empresa;
             txtEmpresaInstrumento.Text = empresa.NombreEmpresa;
         }
 
         private void btnGuardarInstrumento_Click(object sender, EventArgs e)
         {
-            OnInstrumentoAgregado?.Invoke(new InstrumentoDto());
+            PrepararNuevoInstrumentoParaGuardar();
+
+            if (!EsValidaLaInformacionIngresadaParaNuevoInstrumento(out string mensaje))
+            {
+                MessageBox.Show(mensaje);
+                return;
+            }
+
+            GuardarInstrumento();
+
+            OnInstrumentoAgregado?.Invoke(NuevoInstrumento);
             this.Close();
         }
 
@@ -52,78 +69,123 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             frmEmpresas.Show();
         }
 
-        private void CargarDatosMaestros()
-        {
-            CargarTiposDeInstrumentos();
-            CargarMarcas();
-            CargarModelos();
-            CargarGarantias();
-            CargarPeriodosDeCalibracion();
-        }
-
         private async void CargarTiposDeInstrumentos()
         {
-            string uri = "/tipos-instrumentos";
+            string uri = "/tipos-de-instrumento";
             var tiposDeInstrumentos = await HttpHelper.Get<TipoInstrumentoDto>(rutaApi, uri, "");
 
             glTipoInstrumento.Properties.DataSource = tiposDeInstrumentos;
         }
 
-        private async void CargarMarcas()
+        private async void GuardarInstrumento()
         {
-            string uri = "/marcas";
-            var marcas = await HttpHelper.Get<MarcaDto>(rutaApi, uri, "");
+            try
+            {
+                string uri = "/instrumentos";
+                var result = await HttpHelper.Post<InstrumentoDto>(NuevoInstrumento, rutaApi, uri, "");
+            }
+            catch (Exception exc)
+            {
 
-            glMarca.Properties.DataSource = marcas;
+                throw;
+            }
+
         }
 
-        private async void CargarPeriodosDeCalibracion()
+        private void AsignarConfiguracionComboBoxes()
         {
-            string uri = "/periodos-de-calibracion";
-            var periodosDeCalibracion = await HttpHelper.Get<PeriodoCalibracionDto>(rutaApi, uri, "");
+            glTipoInstrumento.Properties.ValueMember = "TipoInstrumentoId";
+            glTipoInstrumento.Properties.DisplayMember = "Descripcion";
 
-            glMarca.Properties.DataSource = periodosDeCalibracion;
-        }
+            glMarca.Properties.ValueMember = "MarcaId";
+            glMarca.Properties.DisplayMember = "Descripcion";
 
-        private async void CargarGarantias()
-        {
-            string uri = "/garantias";
-            var garantias = await HttpHelper.Get<GarantiaDto>(rutaApi, uri, "");
+            glGarantia.Properties.ValueMember = "GarantiaId";
+            glGarantia.Properties.DisplayMember = "Descripcion";
 
-            glMarca.Properties.DataSource = garantias;
-        }
+            glModelo.Properties.ValueMember = "ModeloId";
+            glModelo.Properties.DisplayMember = "Descripcion";
 
-        private async void CargarModelos()
-        {
-            string uri = "/modelos";
-            var modelos = await HttpHelper.Get<ModeloDto>(rutaApi, uri, "");
-
-            glModelo.Properties.DataSource = modelos;
+            glPeriodoCalibracion.Properties.ValueMember = "PeriodoCalibracionId";
+            glPeriodoCalibracion.Properties.DisplayMember = "Descripcion";
         }
 
         private void glTipoInstrumento_EditValueChanged(object sender, EventArgs e)
         {
-            var fila = glTipoInstrumento.GetSelectedDataRow() as TipoInstrumentoDto;
+            var tipoInstrumento = glTipoInstrumento.GetSelectedDataRow() as TipoInstrumentoDto;
+            AsignarDataSourcesQueDependenDelTipoInstrumento(tipoInstrumento);
+        }
+
+        private void AsignarDataSourcesQueDependenDelTipoInstrumento(TipoInstrumentoDto tipoInstrumento)
+        {
+            glMarca.Properties.DataSource = tipoInstrumento.Marcas;
+            glGarantia.Properties.DataSource = tipoInstrumento.Garantias;
+            glPeriodoCalibracion.Properties.DataSource = tipoInstrumento.PeriodosDeCalibracion;
         }
 
         private void glMarca_EditValueChanged(object sender, EventArgs e)
         {
-
+            var marca = glMarca.GetSelectedDataRow() as MarcaDto;
+            glModelo.Properties.DataSource = marca.Modelos;
         }
 
-        private void glModelo_EditValueChanged(object sender, EventArgs e)
+        private bool EsValidaLaInformacionIngresadaParaNuevoInstrumento(out string mensaje)
         {
+            if (string.IsNullOrEmpty(NuevoInstrumento.NombreEmpresa))
+            {
+                mensaje = "Es necesario ingresar un nombre de empresa para guardar el ingreso.";
+                return false;
+            }
 
+            if (string.IsNullOrEmpty(NuevoInstrumento.Descripcion))
+            {
+                mensaje = "Es necesario ingresar una descripcion para el instrumento.";
+                return false;
+            }
+
+            if (NuevoInstrumento.TipoInstrumentoId == 0)
+            {
+                mensaje = "Es necesario ingresar un tipo de instrumento para el nuevo instrumento.";
+                return false;
+            }
+
+            if (NuevoInstrumento.MarcaId == 0)
+            {
+                mensaje = "Es necesario ingresar una marca para el instrumento.";
+                return false;
+            }
+
+            if (NuevoInstrumento.ModeloId == 0)
+            {
+                mensaje = "Es necesario ingresar un modelo para el instrumento.";
+                return false;
+            }
+
+            mensaje = "Ok";
+            return true;
         }
 
-        private void glPeriodoCalibracion_EditValueChanged(object sender, EventArgs e)
+        private void PrepararNuevoInstrumentoParaGuardar()
         {
+            var marca = glMarca.GetSelectedDataRow() as MarcaDto;
+            var modelo = glModelo.GetSelectedDataRow() as ModeloDto;
+            var garantia = glGarantia.GetSelectedDataRow() as GarantiaDto;
+            var periodoCalibracion = glPeriodoCalibracion.GetSelectedDataRow() as PeriodoCalibracionDto;
+            var tipoInstrumento = glTipoInstrumento.GetSelectedDataRow() as TipoInstrumentoDto;
 
-        }
-
-        private void glGarantia_EditValueChanged(object sender, EventArgs e)
-        {
-
+            NuevoInstrumento.Descripcion = txtDescripcionInstrumento.Text;
+            NuevoInstrumento.EmpresaId = empresaSeleccionada.EmpresaId;
+            NuevoInstrumento.NombreEmpresa = empresaSeleccionada.NombreEmpresa;
+            NuevoInstrumento.TipoInstrumentoId = tipoInstrumento.TipoInstrumentoId;
+            NuevoInstrumento.MarcaId = marca.MarcaId;
+            NuevoInstrumento.ModeloId = modelo.ModeloId;
+            NuevoInstrumento.NumeroSerie = txtNumeroSerie.Text;
+            NuevoInstrumento.FechaCompraFabricante = dateFechaCompraFabricante.Value;
+            NuevoInstrumento.FechaCompraCliente = dateFechaCompraCliente.Value;
+            NuevoInstrumento.FechaUltimaCalibracion = dateUltimaCalibracion.Value;
+            NuevoInstrumento.PeriodoCalibracionId = periodoCalibracion.PeriodoCalibracionId;
+            NuevoInstrumento.FechaProximaCalibracion = dateProximaCalibracion.Value;
+            NuevoInstrumento.GarantiaId = garantia.GarantiaId;
         }
     }
 }

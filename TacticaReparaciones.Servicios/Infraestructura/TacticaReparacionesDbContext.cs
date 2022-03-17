@@ -15,6 +15,11 @@ namespace TacticaReparaciones.Servicios.Infraestructura
         public DbSet<TipoTrabajo> TiposDeTrabajo { get; set; }
         public DbSet<Ingreso> Ingresos { get; set; }
         public DbSet<Instrumento> Instrumentos { get; set; }
+        public DbSet<TipoInstrumento> TiposDeInstrumentos { get; set; }
+        public DbSet<Marca> Marcas { get; set; }
+        public DbSet<Modelo> Modelos { get; set; }
+        public DbSet<PeriodoDeCalibracion> PeriodosDeCalibracion { get; set; }
+        public DbSet<Garantia> Garantias { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,6 +28,11 @@ namespace TacticaReparaciones.Servicios.Infraestructura
             modelBuilder.ApplyConfiguration(new TipoTrabajoMap());
             modelBuilder.ApplyConfiguration(new IngresoMap());
             modelBuilder.ApplyConfiguration(new InstrumentoMap());
+            modelBuilder.ApplyConfiguration(new TipoInstrumentoMap());
+            modelBuilder.ApplyConfiguration(new MarcaMap());
+            modelBuilder.ApplyConfiguration(new ModeloMap());
+            modelBuilder.ApplyConfiguration(new PeriodoCalibracionMap());
+            modelBuilder.ApplyConfiguration(new GarantiaMap());
         }
     }
 }

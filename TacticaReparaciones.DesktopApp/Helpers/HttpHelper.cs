@@ -1,5 +1,6 @@
 ﻿using RestSharp;
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace TacticaReparaciones.DesktopApp.Helpers
@@ -27,22 +28,35 @@ namespace TacticaReparaciones.DesktopApp.Helpers
 
         public static async Task<T> Post<T>(T item, string api, string uri, string token)
         {
-            var options = new RestClientOptions(api)
+            try
             {
-                ThrowOnAnyError = true,
-                Timeout = 1000
-            };
-            var client = new RestClient(options);
 
-            var request = new RestRequest($"{uri}", Method.Post);
-            request.AddHeader("Content-Type", "application/json");
+                var options = new RestClientOptions(api)
+                {
+                    ThrowOnAnyError = true,
+                    Timeout = 1000
+                };
+                var client = new RestClient(options);
 
-            request.RequestFormat = DataFormat.Json;
-            request.AddBody(item);
+                var request = new RestRequest($"{uri}", Method.Post);
+                request.AddHeader("Content-Type", "application/json");
+                var json = JsonSerializer.Serialize(item);
 
-            var response = await client.PostAsync<T>(request);
 
-            return response;
+                request.AddJsonBody(new
+                {
+                    item
+                });
+
+                var response = await client.PostAsync<T>(request);
+
+                return response;
+            }
+            catch (System.Exception exc)
+            {
+
+                throw;
+            }
         }
     }
 }

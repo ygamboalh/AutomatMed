@@ -35,8 +35,8 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
                 mensaje = "Es necesario ingresar una descripcion para el instrumento.";
                 return false;
             }
-            
-             if (TipoInstrumentoId == 0)
+
+            if (TipoInstrumentoId == 0)
             {
                 mensaje = "Es necesario ingresar un tipo de instrumento para el nuevo instrumento.";
                 return false;
@@ -54,7 +54,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
                 return false;
             }
 
-           
+
             mensaje = "Ok";
             return true;
         }

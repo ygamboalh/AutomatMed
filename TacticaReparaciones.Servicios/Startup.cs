@@ -6,7 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Nagaira.Extensions.Configuration;
-using System;
 using TacticaReparaciones.Servicios.Caracteristicas.Servicios;
 using TacticaReparaciones.Servicios.Infraestructura;
 
@@ -29,13 +28,14 @@ namespace TacticaReparaciones.Servicios
             });
 
             services.AddDbContext<TacticaDbContext>(options => options.UseMySql(Configuration.GetConnectionStringFromENV("TacticaBD")).EnableDetailedErrors());
-            services.AddDbContext<TacticaReparacionesDbContext>(options =>  options.UseMySql(Configuration.GetConnectionStringFromENV("TacticaReparacionesBD")).EnableDetailedErrors());
+            services.AddDbContext<TacticaReparacionesDbContext>(options => options.UseMySql(Configuration.GetConnectionStringFromENV("TacticaReparacionesBD")).EnableDetailedErrors());
 
             services.AddTransient<EmpresaService, EmpresaService>();
             services.AddTransient<EstadoService, EstadoService>();
             services.AddTransient<TipoTrabajoService, TipoTrabajoService>();
             services.AddTransient<IngresoService, IngresoService>();
             services.AddTransient<InstrumentoService, InstrumentoService>();
+            services.AddTransient<TipoDeInstrumentoService, TipoDeInstrumentoService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

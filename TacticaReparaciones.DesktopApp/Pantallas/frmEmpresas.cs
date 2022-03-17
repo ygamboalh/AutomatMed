@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using TacticaReparaciones.DesktopApp.Helpers;
 using TacticaReparaciones.Libs.Dtos;
 
@@ -27,6 +28,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             var empresas = await HttpHelper.Get<EmpresaDto>(rutaApi, uri, "");
 
             gcEmpresas.DataSource = empresas;
+            lblTotalRegistros.Text = $"Total Registros: {empresas.Count()}";
 
         }
 

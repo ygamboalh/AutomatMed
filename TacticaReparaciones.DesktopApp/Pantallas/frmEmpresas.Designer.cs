@@ -35,6 +35,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.gvEmpresas = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colNombreEmpresa = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEmpresaId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.lblTotalRegistros = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.gcEmpresas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvEmpresas)).BeginInit();
             this.SuspendLayout();
@@ -55,9 +56,10 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.labelControl4.Dock = System.Windows.Forms.DockStyle.Top;
             this.labelControl4.Location = new System.Drawing.Point(10, 53);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(509, 23);
+            this.labelControl4.Size = new System.Drawing.Size(656, 23);
             this.labelControl4.TabIndex = 11;
-            this.labelControl4.Text = "Seleccione una Empresa, presione Enter para confirmar su elección";
+            this.labelControl4.Text = "Seleccione una Empresa, presione Enter o haga doble click para confirmar su elecc" +
+    "ión.";
             // 
             // gcEmpresas
             // 
@@ -66,7 +68,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.gcEmpresas.LookAndFeel.UseDefaultLookAndFeel = false;
             this.gcEmpresas.MainView = this.gvEmpresas;
             this.gcEmpresas.Name = "gcEmpresas";
-            this.gcEmpresas.Size = new System.Drawing.Size(832, 509);
+            this.gcEmpresas.Size = new System.Drawing.Size(832, 486);
             this.gcEmpresas.TabIndex = 12;
             this.gcEmpresas.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvEmpresas});
@@ -113,12 +115,23 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.colEmpresaId.OptionsColumn.ReadOnly = true;
             this.colEmpresaId.Width = 94;
             // 
+            // lblTotalRegistros
+            // 
+            this.lblTotalRegistros.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTotalRegistros.Appearance.Options.UseFont = true;
+            this.lblTotalRegistros.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblTotalRegistros.Location = new System.Drawing.Point(10, 562);
+            this.lblTotalRegistros.Name = "lblTotalRegistros";
+            this.lblTotalRegistros.Size = new System.Drawing.Size(0, 23);
+            this.lblTotalRegistros.TabIndex = 13;
+            // 
             // frmEmpresas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(852, 595);
             this.Controls.Add(this.gcEmpresas);
+            this.Controls.Add(this.lblTotalRegistros);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.ctlEncabezadoPopup);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -140,5 +153,6 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
         private DevExpress.XtraGrid.Views.Grid.GridView gvEmpresas;
         private DevExpress.XtraGrid.Columns.GridColumn colNombreEmpresa;
         private DevExpress.XtraGrid.Columns.GridColumn colEmpresaId;
+        private DevExpress.XtraEditors.LabelControl lblTotalRegistros;
     }
 }

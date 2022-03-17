@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 
-namespace TacticaReparaciones.Libs.Dtos
+namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
 {
-    public class MarcaDto
+    public class Marca
     {
         public int MarcaId { get; set; }
         public string Descripcion { get; set; }
         public int TipoInstrumentoId { get; set; }
-        public ICollection<ModeloDto> Modelos { get; set; }
+        ICollection<Modelo> Modelos { get; set; }
     }
 }

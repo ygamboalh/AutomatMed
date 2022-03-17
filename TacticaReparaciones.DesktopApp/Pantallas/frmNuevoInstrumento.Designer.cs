@@ -33,10 +33,6 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
             this.txtEmpresaInstrumento = new DevExpress.XtraEditors.TextEdit();
             this.btnAbrirPopupEmpresaPorInstrumento = new FontAwesome.Sharp.IconButton();
-            this.dateProximaCalibracion = new DevExpress.XtraEditors.DateEdit();
-            this.dateUltimaCalibracion = new DevExpress.XtraEditors.DateEdit();
-            this.dateFechaCompraCliente = new DevExpress.XtraEditors.DateEdit();
-            this.dateFechaCompraFabricante = new DevExpress.XtraEditors.DateEdit();
             this.txtNumeroSerie = new DevExpress.XtraEditors.TextEdit();
             this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
             this.glPeriodoCalibracion = new DevExpress.XtraEditors.GridLookUpEdit();
@@ -71,15 +67,11 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.colMarcaId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescripcionMarca = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtDescripcionInstrumento = new DevExpress.XtraEditors.TextEdit();
+            this.dateFechaCompraFabricante = new System.Windows.Forms.DateTimePicker();
+            this.dateFechaCompraCliente = new System.Windows.Forms.DateTimePicker();
+            this.dateUltimaCalibracion = new System.Windows.Forms.DateTimePicker();
+            this.dateProximaCalibracion = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpresaInstrumento.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateProximaCalibracion.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateProximaCalibracion.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateUltimaCalibracion.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateUltimaCalibracion.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateFechaCompraCliente.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateFechaCompraCliente.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateFechaCompraFabricante.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateFechaCompraFabricante.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroSerie.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glPeriodoCalibracion.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glPeriodoCalibracionView)).BeginInit();
@@ -140,38 +132,6 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.btnAbrirPopupEmpresaPorInstrumento.UseVisualStyleBackColor = true;
             this.btnAbrirPopupEmpresaPorInstrumento.Click += new System.EventHandler(this.btnAbrirPopupEmpresaPorInstrumento_Click);
             // 
-            // dateProximaCalibracion
-            // 
-            this.dateProximaCalibracion.EditValue = null;
-            this.dateProximaCalibracion.Location = new System.Drawing.Point(30, 511);
-            this.dateProximaCalibracion.Name = "dateProximaCalibracion";
-            this.dateProximaCalibracion.Size = new System.Drawing.Size(320, 22);
-            this.dateProximaCalibracion.TabIndex = 113;
-            // 
-            // dateUltimaCalibracion
-            // 
-            this.dateUltimaCalibracion.EditValue = null;
-            this.dateUltimaCalibracion.Location = new System.Drawing.Point(30, 439);
-            this.dateUltimaCalibracion.Name = "dateUltimaCalibracion";
-            this.dateUltimaCalibracion.Size = new System.Drawing.Size(320, 22);
-            this.dateUltimaCalibracion.TabIndex = 112;
-            // 
-            // dateFechaCompraCliente
-            // 
-            this.dateFechaCompraCliente.EditValue = null;
-            this.dateFechaCompraCliente.Location = new System.Drawing.Point(367, 366);
-            this.dateFechaCompraCliente.Name = "dateFechaCompraCliente";
-            this.dateFechaCompraCliente.Size = new System.Drawing.Size(307, 22);
-            this.dateFechaCompraCliente.TabIndex = 111;
-            // 
-            // dateFechaCompraFabricante
-            // 
-            this.dateFechaCompraFabricante.EditValue = null;
-            this.dateFechaCompraFabricante.Location = new System.Drawing.Point(30, 366);
-            this.dateFechaCompraFabricante.Name = "dateFechaCompraFabricante";
-            this.dateFechaCompraFabricante.Size = new System.Drawing.Size(320, 22);
-            this.dateFechaCompraFabricante.TabIndex = 110;
-            // 
             // txtNumeroSerie
             // 
             this.txtNumeroSerie.EditValue = "";
@@ -204,7 +164,6 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.glPeriodoCalibracion.Properties.PopupView = this.glPeriodoCalibracionView;
             this.glPeriodoCalibracion.Size = new System.Drawing.Size(307, 26);
             this.glPeriodoCalibracion.TabIndex = 104;
-            this.glPeriodoCalibracion.EditValueChanged += new System.EventHandler(this.glPeriodoCalibracion_EditValueChanged);
             // 
             // glPeriodoCalibracionView
             // 
@@ -222,12 +181,16 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.colPeriodoCalibracionId.Caption = "Id";
             this.colPeriodoCalibracionId.FieldName = "PeriodoCalibracionId";
             this.colPeriodoCalibracionId.Name = "colPeriodoCalibracionId";
+            this.colPeriodoCalibracionId.OptionsColumn.AllowEdit = false;
+            this.colPeriodoCalibracionId.OptionsColumn.ReadOnly = true;
             // 
             // colDescripcionPeriodo
             // 
             this.colDescripcionPeriodo.Caption = "Periodo de Calibración";
             this.colDescripcionPeriodo.FieldName = "Descripcion";
             this.colDescripcionPeriodo.Name = "colDescripcionPeriodo";
+            this.colDescripcionPeriodo.OptionsColumn.AllowEdit = false;
+            this.colDescripcionPeriodo.OptionsColumn.ReadOnly = true;
             this.colDescripcionPeriodo.Visible = true;
             this.colDescripcionPeriodo.VisibleIndex = 0;
             // 
@@ -330,12 +293,16 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.colTipoInstrumentoId.Caption = "Id";
             this.colTipoInstrumentoId.FieldName = "TipoInstrumentoId";
             this.colTipoInstrumentoId.Name = "colTipoInstrumentoId";
+            this.colTipoInstrumentoId.OptionsColumn.AllowEdit = false;
+            this.colTipoInstrumentoId.OptionsColumn.ReadOnly = true;
             // 
             // colDescripcion
             // 
             this.colDescripcion.Caption = "Descripción";
             this.colDescripcion.FieldName = "Descripcion";
             this.colDescripcion.Name = "colDescripcion";
+            this.colDescripcion.OptionsColumn.AllowEdit = false;
+            this.colDescripcion.OptionsColumn.ReadOnly = true;
             this.colDescripcion.Visible = true;
             this.colDescripcion.VisibleIndex = 0;
             // 
@@ -370,7 +337,6 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.glGarantia.Properties.PopupView = this.glGarantiaView;
             this.glGarantia.Size = new System.Drawing.Size(307, 26);
             this.glGarantia.TabIndex = 108;
-            this.glGarantia.EditValueChanged += new System.EventHandler(this.glGarantia_EditValueChanged);
             // 
             // glGarantiaView
             // 
@@ -388,16 +354,18 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.colGarantiaId.Caption = "Id";
             this.colGarantiaId.FieldName = "GarantiaId";
             this.colGarantiaId.Name = "colGarantiaId";
-            this.colGarantiaId.Visible = true;
-            this.colGarantiaId.VisibleIndex = 0;
+            this.colGarantiaId.OptionsColumn.AllowEdit = false;
+            this.colGarantiaId.OptionsColumn.ReadOnly = true;
             // 
             // colDescripcionGarantia
             // 
             this.colDescripcionGarantia.Caption = "Garantía";
             this.colDescripcionGarantia.FieldName = "Descripcion";
             this.colDescripcionGarantia.Name = "colDescripcionGarantia";
+            this.colDescripcionGarantia.OptionsColumn.AllowEdit = false;
+            this.colDescripcionGarantia.OptionsColumn.ReadOnly = true;
             this.colDescripcionGarantia.Visible = true;
-            this.colDescripcionGarantia.VisibleIndex = 1;
+            this.colDescripcionGarantia.VisibleIndex = 0;
             // 
             // labelControl18
             // 
@@ -439,7 +407,6 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.glModelo.Properties.PopupView = this.glModeloView;
             this.glModelo.Size = new System.Drawing.Size(320, 26);
             this.glModelo.TabIndex = 98;
-            this.glModelo.EditValueChanged += new System.EventHandler(this.glModelo_EditValueChanged);
             // 
             // glModeloView
             // 
@@ -457,16 +424,18 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.colModeloId.Caption = "Id";
             this.colModeloId.FieldName = "ModeloId";
             this.colModeloId.Name = "colModeloId";
-            this.colModeloId.Visible = true;
-            this.colModeloId.VisibleIndex = 0;
+            this.colModeloId.OptionsColumn.AllowEdit = false;
+            this.colModeloId.OptionsColumn.ReadOnly = true;
             // 
             // colDescripcionModelo
             // 
             this.colDescripcionModelo.Caption = "Módelo";
             this.colDescripcionModelo.FieldName = "Descripcion";
             this.colDescripcionModelo.Name = "colDescripcionModelo";
+            this.colDescripcionModelo.OptionsColumn.AllowEdit = false;
+            this.colDescripcionModelo.OptionsColumn.ReadOnly = true;
             this.colDescripcionModelo.Visible = true;
-            this.colDescripcionModelo.VisibleIndex = 1;
+            this.colDescripcionModelo.VisibleIndex = 0;
             // 
             // glMarca
             // 
@@ -497,12 +466,16 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.colMarcaId.Caption = "Id";
             this.colMarcaId.FieldName = "MarcaId";
             this.colMarcaId.Name = "colMarcaId";
+            this.colMarcaId.OptionsColumn.AllowEdit = false;
+            this.colMarcaId.OptionsColumn.ReadOnly = true;
             // 
             // colDescripcionMarca
             // 
             this.colDescripcionMarca.Caption = "Descripción";
             this.colDescripcionMarca.FieldName = "Descripcion";
             this.colDescripcionMarca.Name = "colDescripcionMarca";
+            this.colDescripcionMarca.OptionsColumn.AllowEdit = false;
+            this.colDescripcionMarca.OptionsColumn.ReadOnly = true;
             this.colDescripcionMarca.Visible = true;
             this.colDescripcionMarca.VisibleIndex = 0;
             // 
@@ -517,18 +490,46 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.txtDescripcionInstrumento.Size = new System.Drawing.Size(644, 30);
             this.txtDescripcionInstrumento.TabIndex = 94;
             // 
+            // dateFechaCompraFabricante
+            // 
+            this.dateFechaCompraFabricante.Location = new System.Drawing.Point(30, 365);
+            this.dateFechaCompraFabricante.Name = "dateFechaCompraFabricante";
+            this.dateFechaCompraFabricante.Size = new System.Drawing.Size(320, 23);
+            this.dateFechaCompraFabricante.TabIndex = 117;
+            // 
+            // dateFechaCompraCliente
+            // 
+            this.dateFechaCompraCliente.Location = new System.Drawing.Point(367, 365);
+            this.dateFechaCompraCliente.Name = "dateFechaCompraCliente";
+            this.dateFechaCompraCliente.Size = new System.Drawing.Size(307, 23);
+            this.dateFechaCompraCliente.TabIndex = 118;
+            // 
+            // dateUltimaCalibracion
+            // 
+            this.dateUltimaCalibracion.Location = new System.Drawing.Point(30, 435);
+            this.dateUltimaCalibracion.Name = "dateUltimaCalibracion";
+            this.dateUltimaCalibracion.Size = new System.Drawing.Size(320, 23);
+            this.dateUltimaCalibracion.TabIndex = 119;
+            // 
+            // dateProximaCalibracion
+            // 
+            this.dateProximaCalibracion.Location = new System.Drawing.Point(30, 511);
+            this.dateProximaCalibracion.Name = "dateProximaCalibracion";
+            this.dateProximaCalibracion.Size = new System.Drawing.Size(320, 23);
+            this.dateProximaCalibracion.TabIndex = 120;
+            // 
             // frmNuevoInstrumento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(756, 646);
-            this.Controls.Add(this.labelControl20);
-            this.Controls.Add(this.txtEmpresaInstrumento);
-            this.Controls.Add(this.btnAbrirPopupEmpresaPorInstrumento);
             this.Controls.Add(this.dateProximaCalibracion);
             this.Controls.Add(this.dateUltimaCalibracion);
             this.Controls.Add(this.dateFechaCompraCliente);
             this.Controls.Add(this.dateFechaCompraFabricante);
+            this.Controls.Add(this.labelControl20);
+            this.Controls.Add(this.txtEmpresaInstrumento);
+            this.Controls.Add(this.btnAbrirPopupEmpresaPorInstrumento);
             this.Controls.Add(this.txtNumeroSerie);
             this.Controls.Add(this.labelControl19);
             this.Controls.Add(this.glPeriodoCalibracion);
@@ -553,14 +554,6 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.Name = "frmNuevoInstrumento";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpresaInstrumento.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateProximaCalibracion.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateProximaCalibracion.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateUltimaCalibracion.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateUltimaCalibracion.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateFechaCompraCliente.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateFechaCompraCliente.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateFechaCompraFabricante.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dateFechaCompraFabricante.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroSerie.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.glPeriodoCalibracion.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.glPeriodoCalibracionView)).EndInit();
@@ -584,10 +577,6 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
         private DevExpress.XtraEditors.LabelControl labelControl20;
         private DevExpress.XtraEditors.TextEdit txtEmpresaInstrumento;
         private FontAwesome.Sharp.IconButton btnAbrirPopupEmpresaPorInstrumento;
-        private DevExpress.XtraEditors.DateEdit dateProximaCalibracion;
-        private DevExpress.XtraEditors.DateEdit dateUltimaCalibracion;
-        private DevExpress.XtraEditors.DateEdit dateFechaCompraCliente;
-        private DevExpress.XtraEditors.DateEdit dateFechaCompraFabricante;
         private DevExpress.XtraEditors.TextEdit txtNumeroSerie;
         private DevExpress.XtraEditors.LabelControl labelControl19;
         private DevExpress.XtraEditors.GridLookUpEdit glPeriodoCalibracion;
@@ -622,5 +611,9 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
         private DevExpress.XtraGrid.Columns.GridColumn colMarcaId;
         private DevExpress.XtraGrid.Columns.GridColumn colDescripcionMarca;
         private DevExpress.XtraEditors.TextEdit txtDescripcionInstrumento;
+        private System.Windows.Forms.DateTimePicker dateFechaCompraFabricante;
+        private System.Windows.Forms.DateTimePicker dateFechaCompraCliente;
+        private System.Windows.Forms.DateTimePicker dateUltimaCalibracion;
+        private System.Windows.Forms.DateTimePicker dateProximaCalibracion;
     }
 }
