@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows;
 using TacticaReparaciones.DesktopApp.Helpers;
 using TacticaReparaciones.Libs.Dtos;
@@ -46,7 +47,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             txtEmpresaInstrumento.Text = empresa.NombreEmpresa;
         }
 
-        private void btnGuardarInstrumento_Click(object sender, EventArgs e)
+        private async void btnGuardarInstrumento_Click(object sender, EventArgs e)
         {
             PrepararNuevoInstrumentoParaGuardar();
 
@@ -56,10 +57,12 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
                 return;
             }
 
-            GuardarInstrumento();
-
-            OnInstrumentoAgregado?.Invoke(NuevoInstrumento);
-            this.Close();
+            if ((await GuardarInstrumento()))
+            {
+                MessageBox.Show("¡El instrumento se ha registrado exitosamente!", "Tactica Reparaciones", MessageBoxButton.OK, MessageBoxImage.Information);
+                OnInstrumentoAgregado?.Invoke(NuevoInstrumento);
+                this.Close();
+            }
         }
 
         private void btnAbrirPopupEmpresaPorInstrumento_Click(object sender, EventArgs e)
@@ -77,19 +80,21 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             glTipoInstrumento.Properties.DataSource = tiposDeInstrumentos;
         }
 
-        private async void GuardarInstrumento()
+        private async Task<bool> GuardarInstrumento()
         {
+            bool guardado = false;
+            string uri = "/instrumentos";
+
             try
-            {
-                string uri = "/instrumentos";
-                var result = await HttpHelper.Post<InstrumentoDto>(NuevoInstrumento, rutaApi, uri, "");
+            {                
+                guardado = await HttpHelper.Post<InstrumentoDto>(NuevoInstrumento, rutaApi, uri, "");           
             }
             catch (Exception exc)
             {
-
-                throw;
+                MessageBox.Show(exc.Message, "Tactica Reparaciones", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
+            return guardado;
         }
 
         private void AsignarConfiguracionComboBoxes()
@@ -139,7 +144,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
 
             if (string.IsNullOrEmpty(NuevoInstrumento.Descripcion))
             {
-                mensaje = "Es necesario ingresar una descripcion para el instrumento.";
+                mensaje = "Es necesario ingresar una descripción para el instrumento.";
                 return false;
             }
 

@@ -30,7 +30,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Controladores
         [HttpGet, Route("por-empresa/{empresaId}")]
         public IActionResult GetByEmpresa([FromRoute] string empresaId)
         {
-            var result = _instrumentoService.ObtenerInstrumentosPorEmpresa(empresaId);
+            var result = _instrumentoService.ObtenerInstrumentos(empresaId);
 
             if (result.Type != TypeResponse.Ok)
                 return BadRequest(result.Message);

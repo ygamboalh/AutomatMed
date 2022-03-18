@@ -30,6 +30,35 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             glTiposTrabajo.Properties.DataSource = tiposTrabajo;
         }
 
+        private async void ObtenerInstrumentosParaEmpresaSeleccionada()
+        {
+            string uri = $"/instrumentos/por-empresa/{empresaSeleccionada.EmpresaId}";
+            var instrumentos = await HttpHelper.Get<InstrumentoDto>(rutaApi, uri, "");
+
+            gcInstrumentosDeEmpresa.DataSource = instrumentos;
+        }
+
+        private async void CargarTiposDeInstrumentos()
+        {
+            string uri = "/tipos-de-instrumento";
+            var tiposDeInstrumentos = await HttpHelper.Get<TipoInstrumentoDto>(rutaApi, uri, "");
+
+            glTipoInstrumento.DataSource = tiposDeInstrumentos;        
+            ConfiguracionColumnasGridInstrumentos();
+        }
+
+        public void ConfiguracionColumnasGridInstrumentos()
+        {
+            glPopupModelo.DisplayMember = "Descripcion";
+            glPopupModelo.ValueMember = "ModeloId";
+
+            glTipoInstrumento.DisplayMember = "Descripcion";
+            glTipoInstrumento.ValueMember = "TipoInstrumentoId";
+
+            glMarcaPopup.DisplayMember = "Descripcion";
+            glMarcaPopup.ValueMember = "MarcaId";
+        }
+
         private void EstablecerColorBotonPorDefecto()
         {
             btnAgregarNuevInstrumento.BackColor = ColorHelper.ObtenerColorEnRGB("Default");
@@ -68,6 +97,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
         {
             empresaSeleccionada = empresa;
             txtEmpresa.Text = empresaSeleccionada.NombreEmpresa;
+            ObtenerInstrumentosParaEmpresaSeleccionada();
             ObtenerContactosDeEmpresaSeleccionada();
         }
 
@@ -99,7 +129,6 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             glContacto.Properties.DataSource = null;
             contactoSeleccionado = null;
             LimpiarCorreos();
-
         }
 
         private void LimpiarCorreos()
@@ -116,7 +145,10 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
 
         private void OnInstrumentoAgregado(InstrumentoDto empresa)
         {
-
+            if (empresaSeleccionada != null)
+            {
+                ObtenerInstrumentosParaEmpresaSeleccionada();
+            }
         }
     }
 }

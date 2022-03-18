@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="devexpress.win.design" Version="21.2.5" />
     <PackageReference Include="FontAwesome.Sharp" Version="5.15.4" />
+    <PackageReference Include="Nagaira.Herramientas.Standard.Helpers" Version="2.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="RestSharp" Version="107.3.0" />
     <PackageReference Include="TacticaReparaciones.Libs" Version="1.0.7" />

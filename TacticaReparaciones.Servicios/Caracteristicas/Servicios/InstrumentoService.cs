@@ -48,7 +48,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
             }
         }
 
-        public Response<List<InstrumentoDto>> ObtenerInstrumentosPorEmpresa(string empresaId)
+        public Response<List<InstrumentoDto>> ObtenerInstrumentos(string empresaId)
         {
             try
             {

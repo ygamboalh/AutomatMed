@@ -1,61 +1,53 @@
 ﻿using RestSharp;
+using System;
 using System.Collections.Generic;
-using System.Text.Json;
+using System.Net;
 using System.Threading.Tasks;
+
 
 namespace TacticaReparaciones.DesktopApp.Helpers
 {
     public static class HttpHelper
     {
-        const int TIMEOUT = 60 * 10000;
-
         public static async Task<IEnumerable<T>> Get<T>(string api, string uri, string token)
-        {
-            var options = new RestClientOptions(api)
-            {
-                ThrowOnAnyError = true,
-                Timeout = 1000
-            };
-            var client = new RestClient(options);
-
-            var request = new RestRequest($"{uri}", Method.Get);
-            request.AddHeader("Content-Type", "application/json");
-
-            var response = await client.GetAsync<IEnumerable<T>>(request);
-
-            return response;
-        }
-
-        public static async Task<T> Post<T>(T item, string api, string uri, string token)
-        {
+        {         
+            var cliente = new RestClient(api);
             try
             {
-
-                var options = new RestClientOptions(api)
-                {
-                    ThrowOnAnyError = true,
-                    Timeout = 1000
-                };
-                var client = new RestClient(options);
-
-                var request = new RestRequest($"{uri}", Method.Post);
-                request.AddHeader("Content-Type", "application/json");
-                var json = JsonSerializer.Serialize(item);
-
-
-                request.AddJsonBody(new
-                {
-                    item
-                });
-
-                var response = await client.PostAsync<T>(request);
-
-                return response;
+                var peticion = new RestRequest($"{uri}", Method.Get);
+                peticion.AddHeader("Content-Type", "application/json");
+                var respuesta = await cliente.GetAsync<IEnumerable<T>>(peticion);
+                return respuesta;
             }
-            catch (System.Exception exc)
+            finally
             {
+                cliente.Dispose();
+            }
+        }
 
-                throw;
+        public static async Task<bool> Post<T>(T objetoParaGuardar, string rutaApi, string endpoint, string token)
+        {
+            var cliente = new RestClient(rutaApi);
+           
+            try
+            {
+                var peticion = new RestRequest(endpoint, Method.Post);
+                peticion.RequestFormat = DataFormat.Json;
+                peticion.AddBody(objetoParaGuardar);
+                var respuesta = await cliente.ExecuteAsync<T>(peticion);
+
+                if (respuesta.StatusCode != HttpStatusCode.OK)
+                {
+                    string message = respuesta.ErrorMessage;
+                    var tacticaException = new Exception(message, respuesta.ErrorException);
+                    throw tacticaException;
+                }
+
+                return true;
+            }
+            finally
+            {
+                cliente.Dispose();
             }
         }
     }
