@@ -6,8 +6,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Nagaira.Extensions.Configuration;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using TacticaReparaciones.Servicios.Caracteristicas.Servicios;
+using TacticaReparaciones.Servicios.Common;
 using TacticaReparaciones.Servicios.Infraestructura;
+
 
 namespace TacticaReparaciones.Servicios
 {
@@ -21,12 +25,23 @@ namespace TacticaReparaciones.Servicios
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TacticaReparaciones.Servicios", Version = "v1" });
             });
 
+           
+
+            services.AddAutoMapper(options => options.AddProfile(new ConfigMap()));
+                    
             services.AddDbContext<TacticaDbContext>(options => options.UseMySql(Configuration.GetConnectionStringFromENV("TacticaBD")).EnableDetailedErrors());
             services.AddDbContext<TacticaReparacionesDbContext>(options => options.UseMySql(Configuration.GetConnectionStringFromENV("TacticaReparacionesBD")).EnableDetailedErrors());
 
@@ -36,6 +51,10 @@ namespace TacticaReparaciones.Servicios
             services.AddTransient<IngresoService, IngresoService>();
             services.AddTransient<InstrumentoService, InstrumentoService>();
             services.AddTransient<TipoDeInstrumentoService, TipoDeInstrumentoService>();
+            services.AddTransient<GarantiaService, GarantiaService>();
+            services.AddTransient<PeriodoCalibracionService, PeriodoCalibracionService>();
+            services.AddTransient<ModeloService, ModeloService>();
+            services.AddTransient<MarcaService, MarcaService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

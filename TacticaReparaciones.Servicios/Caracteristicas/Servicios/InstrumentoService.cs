@@ -1,4 +1,6 @@
-﻿using Nagaira.Herramientas.Standard.Helpers.Exceptions;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using Nagaira.Herramientas.Standard.Helpers.Exceptions;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
@@ -12,35 +14,23 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
     public class InstrumentoService
     {
         private readonly TacticaReparacionesDbContext _tacticaReparacionesDbContext;
+        private readonly IMapper _mapper;
 
-        public InstrumentoService(TacticaReparacionesDbContext tacticaReparacionesDbContext)
+        public InstrumentoService(TacticaReparacionesDbContext tacticaReparacionesDbContext, IMapper mapper)
         {
             _tacticaReparacionesDbContext = tacticaReparacionesDbContext;
+            _mapper = mapper;
         }
 
         public Response<List<InstrumentoDto>> ObtenerInstrumentos()
         {
             try
             {
-                var instrumentos = _tacticaReparacionesDbContext.Instrumentos.Select(x => new InstrumentoDto
-                {
-                    Descripcion = x.Descripcion,
-                    EmpresaId = x.EmpresaId,
-                    FechaCompraCliente = x.FechaCompraCliente.Value,
-                    FechaCompraFabricante = x.FechaCompraFabricante,
-                    FechaProximaCalibracion = x.FechaProximaCalibracion,
-                    FechaUltimaCalibracion = x.FechaUltimaCalibracion,
-                    GarantiaId = x.GarantiaId,
-                    InstrumentoId = x.InstrumentoId,
-                    MarcaId = x.MarcaId,
-                    ModeloId = x.ModeloId,
-                    NombreEmpresa = x.NombreEmpresa,
-                    NumeroSerie = x.NumeroSerie,
-                    PeriodoCalibracionId = x.PeriodoCalibracionId,
-                    TipoInstrumentoId = x.TipoInstrumentoId
-                }).ToList();
-
-                return Response<List<InstrumentoDto>>.Ok("Ok", instrumentos);
+                var instrumentos = _tacticaReparacionesDbContext.Instrumentos.AsQueryable()
+                                                                             .Include(x => x.Marca)
+                                                                             .Include(x => x.Modelo)
+                                                                             .Include(x => x.TipoInstrumento).ToList();
+                return Response<List<InstrumentoDto>>.Ok("Ok", _mapper.Map<List<InstrumentoDto>>(instrumentos));
             }
             catch (Exception exc)
             {
@@ -52,27 +42,15 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
         {
             try
             {
-                var instrumentos = _tacticaReparacionesDbContext.Instrumentos.Where(x => x.Activo &&
-                                                                                    x.EmpresaId.Equals(empresaId))
-                                                                        .Select(x => new InstrumentoDto
-                                                                        {
-                                                                            Descripcion = x.Descripcion,
-                                                                            EmpresaId = x.EmpresaId,
-                                                                            FechaCompraCliente = x.FechaCompraCliente.Value,
-                                                                            FechaCompraFabricante = x.FechaCompraFabricante,
-                                                                            FechaProximaCalibracion = x.FechaProximaCalibracion,
-                                                                            FechaUltimaCalibracion = x.FechaUltimaCalibracion,
-                                                                            GarantiaId = x.GarantiaId,
-                                                                            InstrumentoId = x.InstrumentoId,
-                                                                            MarcaId = x.MarcaId,
-                                                                            ModeloId = x.ModeloId,
-                                                                            NombreEmpresa = x.NombreEmpresa,
-                                                                            NumeroSerie = x.NumeroSerie,
-                                                                            PeriodoCalibracionId = x.PeriodoCalibracionId,
-                                                                            TipoInstrumentoId = x.TipoInstrumentoId
-                                                                        }).ToList();
+                var instrumentos = _tacticaReparacionesDbContext.Instrumentos.AsQueryable()
+                                                                             .Include(x => x.Marca)
+                                                                             .Include(x => x.Modelo)
+                                                                             .Include(x => x.TipoInstrumento)
+                                                                             .Where(x => x.Activo &&
+                                                                                    x.EmpresaId.Equals(empresaId)).AsEnumerable();
+                                                                      
 
-                return Response<List<InstrumentoDto>>.Ok("Ok", instrumentos);
+                return Response<List<InstrumentoDto>>.Ok("Ok", _mapper.Map<List<InstrumentoDto>>(instrumentos));
             }
             catch (Exception exc)
             {

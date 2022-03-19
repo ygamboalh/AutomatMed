@@ -11,45 +11,37 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
     public class TipoDeInstrumentoService
     {
         private readonly TacticaReparacionesDbContext _tacticaDbContext;
+        private readonly GarantiaService _garantiaService;
+        private readonly MarcaService _marcaService;
+        private readonly PeriodoCalibracionService _periodoCalibracionService;
 
-        public TipoDeInstrumentoService(TacticaReparacionesDbContext tacticaReparacionesDbContext)
+        public TipoDeInstrumentoService(TacticaReparacionesDbContext tacticaReparacionesDbContext, GarantiaService garantiaService, 
+               MarcaService marcaService, PeriodoCalibracionService periodoCalibracionService)
         {
             _tacticaDbContext = tacticaReparacionesDbContext;
+            _garantiaService = garantiaService;
+            _marcaService = marcaService;
+            _periodoCalibracionService = periodoCalibracionService;
         }
 
         public Response<List<TipoInstrumentoDto>> ObtenerTiposDeInstrumento()
         {
             try
             {
-                var modelos = _tacticaDbContext.Modelos.Select(x => new ModeloDto
-                {
-                    MarcaId = x.MarcaId,
-                    Descripcion = x.Descripcion,
-                    ModeloId = x.ModeloId
-                }).ToList();
+                var resultMarcas = _marcaService.ObtenerMarcas();
+                if (resultMarcas.Type != TypeResponse.Ok) return Response<List<TipoInstrumentoDto>>.Error(resultMarcas.Message, null);
 
-                var marcas = _tacticaDbContext.Marcas.Select(x => new MarcaDto
-                {
-                    MarcaId = x.MarcaId,
-                    Descripcion = x.Descripcion,
-                    TipoInstrumentoId = x.TipoInstrumentoId,
-                    Modelos = modelos
-                }).ToList();
+                var marcas = resultMarcas.Data;
 
-                var periodosDeCalibracion = _tacticaDbContext.PeriodosDeCalibracion.Select(x => new PeriodoCalibracionDto
-                {
-                    Descripcion = x.Descripcion,
-                    TipoInstrumentoId = x.TipoInstrumentoId,
-                    PeriodoCalibracionId = x.PeriodoCalibracionId
-                }).ToList();
+                var resultPeriodoCalibracion = _periodoCalibracionService.ObtenerPeriodosDeCalibracion();
+                if (resultPeriodoCalibracion.Type != TypeResponse.Ok) return Response<List<TipoInstrumentoDto>>.Error(resultPeriodoCalibracion.Message, null);
 
+                var periodosDeCalibracion = resultPeriodoCalibracion.Data;
 
-                var garantias = _tacticaDbContext.Garantias.Select(x => new GarantiaDto
-                {
-                    Descripcion = x.Descripcion,
-                    GarantiaId = x.GarantiaId,
-                    TipoInstrumentoId = x.TipoInstrumentoId
-                }).ToList();
+                var resultGarantias = _garantiaService.ObtenerGarantias();
+                if (resultGarantias.Type != TypeResponse.Ok) return Response<List<TipoInstrumentoDto>>.Error(resultGarantias.Message, null);
+
+                var garantias = resultGarantias.Data;
 
                 var tiposDeInstrumentos = _tacticaDbContext.TiposDeInstrumentos.ToList();
 

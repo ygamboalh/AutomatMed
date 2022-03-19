@@ -5,13 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.23" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.23" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.23" />
     <PackageReference Include="Nagaira.Extensions.Configuration" Version="2.2.0" />
     <PackageReference Include="Nagaira.Herramientas.Standard.Helpers" Version="1.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
-    <PackageReference Include="TacticaReparaciones.Libs" Version="1.0.7" />
+    <PackageReference Include="TacticaReparaciones.Libs" Version="1.0.9" />
   </ItemGroup>
 
   <ItemGroup>

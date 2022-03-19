@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using TacticaReparaciones.DesktopApp.Helpers;
 using TacticaReparaciones.Libs.Dtos;
 
@@ -19,10 +20,12 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             EstablecerNombreYTituloDePantalla();
             EstablecerColorBotonPorDefecto();
             EstablecerColorBotonGuardar();
-            CargarDatosTiposDeTrabajo();
+            ConfiguracionColumnasGridInstrumentos();
+            CargarDatosMaestros();
+            
         }
 
-        private async void CargarDatosTiposDeTrabajo()
+        private async Task CargarDatosTiposDeTrabajo()
         {
             string uri = "/tipos-de-trabajo";
             var tiposTrabajo = await HttpHelper.Get<TipoTrabajoDto>(rutaApi, uri, "");
@@ -30,23 +33,24 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             glTiposTrabajo.Properties.DataSource = tiposTrabajo;
         }
 
-        private async void ObtenerInstrumentosParaEmpresaSeleccionada()
+        private async Task CargarTiposDeInstrumentos()
+        {
+            string uri = "/tipos-de-instrumento";
+            var tiposDeInstrumentos = await HttpHelper.Get<TipoInstrumentoDto>(rutaApi, uri, "");
+
+            glTipoInstrumento.DataSource = tiposDeInstrumentos;
+        }
+
+       
+        private async Task ObtenerInstrumentosParaEmpresaSeleccionada()
         {
             string uri = $"/instrumentos/por-empresa/{empresaSeleccionada.EmpresaId}";
             var instrumentos = await HttpHelper.Get<InstrumentoDto>(rutaApi, uri, "");
 
             gcInstrumentosDeEmpresa.DataSource = instrumentos;
+            lblTotalInstrumentos.Text = $"Total Instrumentos: {instrumentos}";
         }
-
-        private async void CargarTiposDeInstrumentos()
-        {
-            string uri = "/tipos-de-instrumento";
-            var tiposDeInstrumentos = await HttpHelper.Get<TipoInstrumentoDto>(rutaApi, uri, "");
-
-            glTipoInstrumento.DataSource = tiposDeInstrumentos;        
-            ConfiguracionColumnasGridInstrumentos();
-        }
-
+     
         public void ConfiguracionColumnasGridInstrumentos()
         {
             glPopupModelo.DisplayMember = "Descripcion";
@@ -93,11 +97,11 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             frmEmpresas.Show();
         }
 
-        private void OnEmpresaSeleccionada(EmpresaDto empresa)
+        private async void OnEmpresaSeleccionada(EmpresaDto empresa)
         {
             empresaSeleccionada = empresa;
             txtEmpresa.Text = empresaSeleccionada.NombreEmpresa;
-            ObtenerInstrumentosParaEmpresaSeleccionada();
+            await ObtenerInstrumentosParaEmpresaSeleccionada();
             ObtenerContactosDeEmpresaSeleccionada();
         }
 
@@ -143,12 +147,18 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             frmNuevoInstrumento.Show();
         }
 
-        private void OnInstrumentoAgregado(InstrumentoDto empresa)
+        private async void OnInstrumentoAgregado(InstrumentoDto empresa)
         {
             if (empresaSeleccionada != null)
             {
-                ObtenerInstrumentosParaEmpresaSeleccionada();
+                await ObtenerInstrumentosParaEmpresaSeleccionada();
             }
+        }
+
+        private void CargarDatosMaestros()
+        {
+            _ = CargarDatosTiposDeTrabajo();
+            _ = CargarTiposDeInstrumentos();
         }
     }
 }

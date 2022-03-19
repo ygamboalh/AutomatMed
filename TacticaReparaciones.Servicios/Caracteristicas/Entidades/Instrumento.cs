@@ -21,6 +21,12 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
         public DateTime FechaRegistro { get; set; }
         public int UsuarioRegistro { get; set; }
         public bool Activo { get; set; }
+        public Modelo Modelo { get; set; }
+        public Marca Marca { get; set; }
+        public TipoInstrumento TipoInstrumento { get; set; }
+        public Garantia Garantia { get; set; }
+        public PeriodoDeCalibracion PeriodoDeCalibracion { get; set; }
+
 
         public bool EsValido(out string mensaje)
         {

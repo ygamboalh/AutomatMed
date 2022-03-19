@@ -9,14 +9,15 @@ namespace TacticaReparaciones.DesktopApp.Helpers
 {
     public static class HttpHelper
     {
-        public static async Task<IEnumerable<T>> Get<T>(string api, string uri, string token)
+        public static async Task<List<T>> Get<T>(string api, string uri, string token)
         {         
             var cliente = new RestClient(api);
             try
             {
                 var peticion = new RestRequest($"{uri}", Method.Get);
                 peticion.AddHeader("Content-Type", "application/json");
-                var respuesta = await cliente.GetAsync<IEnumerable<T>>(peticion);
+                var respuesta = await cliente.GetAsync<List<T>>(peticion);
+
                 return respuesta;
             }
             finally

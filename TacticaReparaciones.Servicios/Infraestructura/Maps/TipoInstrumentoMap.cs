@@ -14,6 +14,11 @@ namespace TacticaReparaciones.Servicios.Infraestructura.Maps
             builder.Property(x => x.TipoInstrumentoId).HasColumnName("tipo_instrumento_id").HasColumnType("INT").IsRequired();
             builder.Property(x => x.Descripcion).HasColumnName("descripcion").HasColumnType("VARCHAR(200)").IsRequired();
 
+            builder.HasMany(x => x.Instrumentos).WithOne(x => x.TipoInstrumento).HasForeignKey(x => x.TipoInstrumentoId);
+            builder.HasMany(x => x.Marcas).WithOne(x => x.TipoInstrumento).HasForeignKey(x => x.TipoInstrumentoId);
+            builder.HasMany(x => x.PeriodosDeCalibracion).WithOne(x => x.TipoInstrumento).HasForeignKey(x => x.TipoInstrumentoId);
+            builder.HasMany(x => x.Garantias).WithOne(x => x.TipoInstrumento).HasForeignKey(x => x.TipoInstrumentoId);
+
         }
     }
 }

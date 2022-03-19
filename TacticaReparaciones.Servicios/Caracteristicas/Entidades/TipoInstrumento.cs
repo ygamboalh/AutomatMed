@@ -6,8 +6,9 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
     {
         public int TipoInstrumentoId { get; set; }
         public string Descripcion { get; set; }
-        ICollection<Marca> Marcas { get; set; }
-        ICollection<PeriodoDeCalibracion> PeriodosDeCalibracion { get; set; }
-        ICollection<PeriodoDeCalibracion> Garantias { get; set; }
+        public ICollection<Marca> Marcas { get; set; }
+        public ICollection<PeriodoDeCalibracion> PeriodosDeCalibracion { get; set; }
+        public ICollection<Garantia> Garantias { get; set; }
+        public ICollection<Instrumento> Instrumentos { get; set; }
     }
 }
