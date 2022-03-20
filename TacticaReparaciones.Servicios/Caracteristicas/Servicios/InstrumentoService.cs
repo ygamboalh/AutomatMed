@@ -38,7 +38,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
             }
         }
 
-        public Response<List<InstrumentoDto>> ObtenerInstrumentos(string empresaId)
+        public Response<List<InstrumentoDto>> ObtenerInstrumentos(string nombreEmpresa)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
                                                                              .Include(x => x.Modelo)
                                                                              .Include(x => x.TipoInstrumento)
                                                                              .Where(x => x.Activo &&
-                                                                                    x.EmpresaId.Equals(empresaId)).AsEnumerable();
+                                                                                    x.NombreEmpresa.Equals(nombreEmpresa)).AsEnumerable();
                                                                       
 
                 return Response<List<InstrumentoDto>>.Ok("Ok", _mapper.Map<List<InstrumentoDto>>(instrumentos));

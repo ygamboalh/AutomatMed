@@ -40,12 +40,12 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Principales
             this.cmpMenu1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.cmpMenu1.Dock = System.Windows.Forms.DockStyle.Left;
             this.cmpMenu1.ExpandirMenu = true;
-            this.cmpMenu1.Location = new System.Drawing.Point(0, 0);
+            this.cmpMenu1.Location = new System.Drawing.Point(3, 3);
             this.cmpMenu1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cmpMenu1.MaximumSize = new System.Drawing.Size(280, 0);
             this.cmpMenu1.MinimumSize = new System.Drawing.Size(26, 416);
             this.cmpMenu1.Name = "cmpMenu1";
-            this.cmpMenu1.Size = new System.Drawing.Size(280, 527);
+            this.cmpMenu1.Size = new System.Drawing.Size(280, 521);
             this.cmpMenu1.TabIndex = 1;
             // 
             // xtraTabbedMdiManager1
@@ -54,6 +54,8 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Principales
             // 
             // frmPrincipal
             // 
+            this.Appearance.BackColor = System.Drawing.Color.White;
+            this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1204, 527);
@@ -61,6 +63,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Principales
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.None;
             this.IsMdiContainer = true;
             this.Name = "frmPrincipal";
+            this.Padding = new System.Windows.Forms.Padding(3);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Principal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

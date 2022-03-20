@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using TacticaReparaciones.DesktopApp.Enums;
 using TacticaReparaciones.DesktopApp.Helpers;
 using TacticaReparaciones.Libs.Dtos;
 
@@ -11,6 +15,12 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
 
         ContactoDto contactoSeleccionado;
         EmpresaDto empresaSeleccionada;
+        CorreoElectronicoDto correoSeleccionado;
+        TipoTrabajoDto tipoTrabajoSeleccionado;
+
+        ICollection<InstrumentoDto> instrumentosSeleccionados;
+
+        public IngresoDto Ingreso { get; set; }
 
         public frmIngresos()
         {
@@ -20,9 +30,54 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             EstablecerNombreYTituloDePantalla();
             EstablecerColorBotonPorDefecto();
             EstablecerColorBotonGuardar();
-            ConfiguracionColumnasGridInstrumentos();
-            CargarDatosMaestros();
-            
+            _ = CargarDatosTiposDeTrabajo();
+
+            Ingreso = new IngresoDto();
+            instrumentosSeleccionados = new List<InstrumentoDto>();
+
+            chkSeleccionarInstrumento.EditValueChanged += onSeleccionaInstrumento;
+        }
+
+        private void onSeleccionaInstrumento(object sender, EventArgs e)
+        {
+            var checkSeleccionado = sender as DevExpress.XtraEditors.CheckEdit;
+
+            if (checkSeleccionado.EditValue == null) return;
+
+            var estaSeleccionadoElInstrumento = (bool)checkSeleccionado.EditValue;
+
+            var instrumento = gvInstrumentosDeEmpresa.GetFocusedRow() as InstrumentoDto;
+
+            if (instrumento == null) return;
+
+            var yaFueSeleccionado = YaFueSeleccionadoElInstrumento(instrumento.InstrumentoId);
+
+            if (!estaSeleccionadoElInstrumento && yaFueSeleccionado) QuitarInstrumentoDeListaDeSeleccionados(instrumento.InstrumentoId);
+
+            if (estaSeleccionadoElInstrumento && !yaFueSeleccionado) AgregarInstrumentoEnListaDeSeleccionados(instrumento);
+
+            lblInstrumentosSeleccionados.Text = $"Instrumentos Seleccionados: {instrumentosSeleccionados.Count}";
+        }
+
+        private void AgregarInstrumentoEnListaDeSeleccionados(InstrumentoDto instrumento)
+        {
+            instrumentosSeleccionados.Add(instrumento);
+        }
+
+        private void QuitarInstrumentoDeListaDeSeleccionados(int instrumentoId)
+        {
+            instrumentosSeleccionados = instrumentosSeleccionados.Where(x => x.InstrumentoId != instrumentoId).ToList();
+        }
+
+        private bool YaFueSeleccionadoElInstrumento(int instrumentoId)
+        {
+            var instrumentosIds = instrumentosSeleccionados.Select(x => x.InstrumentoId);
+            if (instrumentosIds.Contains(instrumentoId))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private async Task CargarDatosTiposDeTrabajo()
@@ -31,36 +86,16 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             var tiposTrabajo = await HttpHelper.Get<TipoTrabajoDto>(rutaApi, uri, "");
 
             glTiposTrabajo.Properties.DataSource = tiposTrabajo;
+            glTiposTrabajo.Properties.DisplayMember = "Descripcion";
+            glTiposTrabajo.Properties.ValueMember = "TipoTrabajoId";
         }
 
-        private async Task CargarTiposDeInstrumentos()
+        private async Task<List<InstrumentoDto>> ObtenerInstrumentosParaEmpresaSeleccionada()
         {
-            string uri = "/tipos-de-instrumento";
-            var tiposDeInstrumentos = await HttpHelper.Get<TipoInstrumentoDto>(rutaApi, uri, "");
-
-            glTipoInstrumento.DataSource = tiposDeInstrumentos;
-        }
-
-       
-        private async Task ObtenerInstrumentosParaEmpresaSeleccionada()
-        {
-            string uri = $"/instrumentos/por-empresa/{empresaSeleccionada.EmpresaId}";
+            string uri = $"/instrumentos/por-empresa/{empresaSeleccionada.NombreEmpresa}";
             var instrumentos = await HttpHelper.Get<InstrumentoDto>(rutaApi, uri, "");
 
-            gcInstrumentosDeEmpresa.DataSource = instrumentos;
-            lblTotalInstrumentos.Text = $"Total Instrumentos: {instrumentos}";
-        }
-     
-        public void ConfiguracionColumnasGridInstrumentos()
-        {
-            glPopupModelo.DisplayMember = "Descripcion";
-            glPopupModelo.ValueMember = "ModeloId";
-
-            glTipoInstrumento.DisplayMember = "Descripcion";
-            glTipoInstrumento.ValueMember = "TipoInstrumentoId";
-
-            glMarcaPopup.DisplayMember = "Descripcion";
-            glMarcaPopup.ValueMember = "MarcaId";
+            return instrumentos;
         }
 
         private void EstablecerColorBotonPorDefecto()
@@ -99,10 +134,24 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
 
         private async void OnEmpresaSeleccionada(EmpresaDto empresa)
         {
+            if (empresa == null) return;
+
             empresaSeleccionada = empresa;
             txtEmpresa.Text = empresaSeleccionada.NombreEmpresa;
-            await ObtenerInstrumentosParaEmpresaSeleccionada();
+            var instrumentos = await ObtenerInstrumentosParaEmpresaSeleccionada();
+
+            AsignarInstrumentosDeEmpresa(instrumentos);
             ObtenerContactosDeEmpresaSeleccionada();
+        }
+
+        private void AsignarInstrumentosDeEmpresa(List<InstrumentoDto> instrumentos)
+        {
+            gcInstrumentosDeEmpresa.DataSource = null;
+            gcInstrumentosDeEmpresa.DataSource = instrumentos;
+            lblTotalInstrumentos.Visible = true;
+            lblInstrumentosSeleccionados.Visible = true;
+            lblTotalInstrumentos.Text = $"Total Instrumentos: {instrumentos.Count}";
+            lblInstrumentosSeleccionados.Text = $"Instrumentos Seleccionados: {instrumentosSeleccionados.Count}";
         }
 
         private void ObtenerContactosDeEmpresaSeleccionada()
@@ -155,10 +204,121 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             }
         }
 
-        private void CargarDatosMaestros()
+        private void PrepararNuevoIngreso()
         {
-            _ = CargarDatosTiposDeTrabajo();
-            _ = CargarTiposDeInstrumentos();
+            Ingreso.EmpresaId = empresaSeleccionada.EmpresaId;
+            Ingreso.NombreEmpresa = empresaSeleccionada.NombreEmpresa;
+            Ingreso.ContactoId = contactoSeleccionado.ContactoId;
+            Ingreso.NombreContacto = contactoSeleccionado.Nombre;
+            Ingreso.CorreoElectronicoId = correoSeleccionado.RegistroId;
+            Ingreso.DireccionCorreoElectronico = correoSeleccionado.Direccion;
+            Ingreso.Instrumentos = instrumentosSeleccionados;
+            Ingreso.EstadoId = (int)Estados.Ingresado;
+            Ingreso.TipoTrabajoId = tipoTrabajoSeleccionado.TipoTrabajoId;
+            Ingreso.Comentarios = memoComentarios.Text;
+            Ingreso.Prioridad = trackBarControl1.Value;
+        }
+
+        private void glCorreoElectronico_EditValueChanged(object sender, EventArgs e)
+        {
+            correoSeleccionado = glCorreo.GetFocusedRow() as CorreoElectronicoDto;
+        }
+
+        private bool SeLlenaronCamposObligatorios(out string mensaje)
+        {
+
+            if (empresaSeleccionada == null)
+            {
+                mensaje = "Es necesario que seleccione una empresa para continuar";
+                return false;
+            }
+
+            if (contactoSeleccionado == null)
+            {
+                mensaje = "Es necesario que seleccione un contacto para continuar";
+                return false;
+            }
+
+            if (correoSeleccionado == null)
+            {
+                mensaje = "Es necesario que seleccione un correo para continuar";
+                return false;
+            }
+
+            if (!instrumentosSeleccionados.Any())
+            {
+                mensaje = "Es necesario que seleccione al menos un instrumento para continuar";
+                return false;
+            }
+
+            if (tipoTrabajoSeleccionado == null)
+            {
+                mensaje = "Es necesario que seleccione un tipo de trabajo para continuar";
+                return false;
+            }
+
+            mensaje = "Ok";
+            return true;
+        }
+
+        private async void btnGuardarIngreso_Click(object sender, EventArgs e)
+        {
+            if (!SeLlenaronCamposObligatorios(out string mensaje))
+            {
+                MessageBox.Show(mensaje);
+                return;
+            }
+
+            PrepararNuevoIngreso();
+
+            if ((await GuardarIngreso()))
+            {
+                MessageBox.Show("¡El ingreso se ha guardado exitosamente!", "Tactica Reparaciones", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LimpiarFormulario();
+            }
+        }
+
+        private async Task<bool> GuardarIngreso()
+        {
+            bool guardado = false;
+            string uri = "/ingresos";
+
+            try
+            {
+                guardado = await HttpHelper.Post<IngresoDto>(Ingreso, rutaApi, uri, "");
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message, "Tactica Reparaciones", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return guardado;
+        }
+
+        private void glTiposTrabajo_EditValueChanged(object sender, EventArgs e)
+        {
+            tipoTrabajoSeleccionado = glTipoTrabajo.GetFocusedRow() as TipoTrabajoDto;
+        }
+
+        private void LimpiarFormulario()
+        {
+            txtEmpresa.ResetText();
+            glContacto.EditValue = null;
+            glCorreoElectronico.EditValue = null;
+            instrumentosSeleccionados.Clear();
+            gcInstrumentosDeEmpresa.DataSource = null;
+            lblInstrumentosSeleccionados.Text = "";
+            lblTotalInstrumentos.Text = "";
+            lblTotalInstrumentos.Visible = false;
+            lblInstrumentosSeleccionados.Visible = false;
+            glTiposTrabajo.EditValue = null;
+            memoComentarios.Text = "";
+            trackBarControl1.Value = 1;
+            empresaSeleccionada = null;
+            tipoTrabajoSeleccionado = null;
+            contactoSeleccionado = null;
+            correoSeleccionado = null;
+            Ingreso = new IngresoDto();
         }
     }
 }

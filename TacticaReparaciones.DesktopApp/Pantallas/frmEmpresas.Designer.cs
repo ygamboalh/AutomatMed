@@ -53,10 +53,11 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl4.Appearance.Options.UseFont = true;
+            this.labelControl4.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl4.Dock = System.Windows.Forms.DockStyle.Top;
             this.labelControl4.Location = new System.Drawing.Point(10, 53);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(656, 23);
+            this.labelControl4.Size = new System.Drawing.Size(832, 38);
             this.labelControl4.TabIndex = 11;
             this.labelControl4.Text = "Seleccione una Empresa, presione Enter o haga doble click para confirmar su elecc" +
     "ión.";
@@ -64,11 +65,11 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             // gcEmpresas
             // 
             this.gcEmpresas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcEmpresas.Location = new System.Drawing.Point(10, 76);
+            this.gcEmpresas.Location = new System.Drawing.Point(10, 91);
             this.gcEmpresas.LookAndFeel.UseDefaultLookAndFeel = false;
             this.gcEmpresas.MainView = this.gvEmpresas;
             this.gcEmpresas.Name = "gcEmpresas";
-            this.gcEmpresas.Size = new System.Drawing.Size(832, 486);
+            this.gcEmpresas.Size = new System.Drawing.Size(832, 471);
             this.gcEmpresas.TabIndex = 12;
             this.gcEmpresas.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvEmpresas});
@@ -117,7 +118,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             // 
             // lblTotalRegistros
             // 
-            this.lblTotalRegistros.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTotalRegistros.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblTotalRegistros.Appearance.Options.UseFont = true;
             this.lblTotalRegistros.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblTotalRegistros.Location = new System.Drawing.Point(10, 562);

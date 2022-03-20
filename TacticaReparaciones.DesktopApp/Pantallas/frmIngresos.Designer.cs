@@ -57,25 +57,23 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.gvInstrumentosDeEmpresa = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTipo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.glTipoInstrumento = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
-            this.popupViewTipoInstrumentos = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMarca = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.glMarcaPopup = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
-            this.popupViewMarca = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colModelo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.glPopupModelo = new DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit();
-            this.repositoryItemGridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colSeleccionar = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.chkSeleccionarInstrumento = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.btnGuardarIngreso = new FontAwesome.Sharp.IconButton();
-            this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
+            this.memoComentarios = new DevExpress.XtraEditors.MemoEdit();
             this.trackBarControl1 = new DevExpress.XtraEditors.TrackBarControl();
             this.glTiposTrabajo = new DevExpress.XtraEditors.GridLookUpEdit();
             this.glTipoTrabajo = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lblTotalInstrumentos = new DevExpress.XtraEditors.LabelControl();
+            this.lblInstrumentosSeleccionados = new DevExpress.XtraEditors.LabelControl();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.glCorreoElectronico.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glCorreo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glContacto.Properties)).BeginInit();
@@ -83,17 +81,13 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpresa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcInstrumentosDeEmpresa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvInstrumentosDeEmpresa)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumento)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupViewTipoInstrumentos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glMarcaPopup)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupViewMarca)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glPopupModelo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSeleccionarInstrumento)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoComentarios.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarControl1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glTiposTrabajo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glTipoTrabajo)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -140,6 +134,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.glCorreoElectronico.Properties.PopupView = this.glCorreo;
             this.glCorreoElectronico.Size = new System.Drawing.Size(420, 26);
             this.glCorreoElectronico.TabIndex = 5;
+            this.glCorreoElectronico.EditValueChanged += new System.EventHandler(this.glCorreoElectronico_EditValueChanged);
             // 
             // glCorreo
             // 
@@ -178,7 +173,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.btnBuscarEmpresa.IconColor = System.Drawing.Color.Black;
             this.btnBuscarEmpresa.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnBuscarEmpresa.IconSize = 30;
-            this.btnBuscarEmpresa.Location = new System.Drawing.Point(724, 86);
+            this.btnBuscarEmpresa.Location = new System.Drawing.Point(794, 83);
             this.btnBuscarEmpresa.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnBuscarEmpresa.Name = "btnBuscarEmpresa";
             this.btnBuscarEmpresa.Size = new System.Drawing.Size(43, 32);
@@ -198,7 +193,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.glContacto.Properties.NullText = "";
             this.glContacto.Properties.PopupView = this.glContactos;
             this.glContacto.Properties.EditValueChanged += new System.EventHandler(this.glContacto_Properties_EditValueChanged);
-            this.glContacto.Size = new System.Drawing.Size(654, 26);
+            this.glContacto.Size = new System.Drawing.Size(732, 26);
             this.glContacto.TabIndex = 8;
             // 
             // glContactos
@@ -251,7 +246,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.txtEmpresa.Properties.Appearance.Options.UseFont = true;
             this.txtEmpresa.Properties.ReadOnly = true;
             this.txtEmpresa.Properties.UseReadOnlyAppearance = false;
-            this.txtEmpresa.Size = new System.Drawing.Size(654, 30);
+            this.txtEmpresa.Size = new System.Drawing.Size(732, 30);
             this.txtEmpresa.TabIndex = 9;
             // 
             // ctlEncabezadoPantalla1
@@ -260,7 +255,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.ctlEncabezadoPantalla1.Location = new System.Drawing.Point(0, 0);
             this.ctlEncabezadoPantalla1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.ctlEncabezadoPantalla1.Name = "ctlEncabezadoPantalla1";
-            this.ctlEncabezadoPantalla1.Size = new System.Drawing.Size(819, 39);
+            this.ctlEncabezadoPantalla1.Size = new System.Drawing.Size(876, 39);
             this.ctlEncabezadoPantalla1.TabIndex = 12;
             // 
             // labelControl5
@@ -284,7 +279,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.btnAgregarNuevInstrumento.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAgregarNuevInstrumento.IconSize = 30;
             this.btnAgregarNuevInstrumento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarNuevInstrumento.Location = new System.Drawing.Point(547, 241);
+            this.btnAgregarNuevInstrumento.Location = new System.Drawing.Point(617, 240);
             this.btnAgregarNuevInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnAgregarNuevInstrumento.Name = "btnAgregarNuevInstrumento";
             this.btnAgregarNuevInstrumento.Size = new System.Drawing.Size(220, 32);
@@ -302,10 +297,8 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.gcInstrumentosDeEmpresa.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.gcInstrumentosDeEmpresa.Name = "gcInstrumentosDeEmpresa";
             this.gcInstrumentosDeEmpresa.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.glTipoInstrumento,
-            this.glMarcaPopup,
-            this.glPopupModelo});
-            this.gcInstrumentosDeEmpresa.Size = new System.Drawing.Size(713, 130);
+            this.chkSeleccionarInstrumento});
+            this.gcInstrumentosDeEmpresa.Size = new System.Drawing.Size(783, 130);
             this.gcInstrumentosDeEmpresa.TabIndex = 16;
             this.gcInstrumentosDeEmpresa.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvInstrumentosDeEmpresa});
@@ -316,7 +309,8 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.colDescripcion,
             this.colTipo,
             this.colMarca,
-            this.colModelo});
+            this.colModelo,
+            this.colSeleccionar});
             this.gvInstrumentosDeEmpresa.GridControl = this.gcInstrumentosDeEmpresa;
             this.gvInstrumentosDeEmpresa.Name = "gvInstrumentosDeEmpresa";
             this.gvInstrumentosDeEmpresa.OptionsView.ShowAutoFilterRow = true;
@@ -326,47 +320,30 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             // colDescripcion
             // 
             this.colDescripcion.Caption = "Descripción";
+            this.colDescripcion.FieldName = "Descripcion";
             this.colDescripcion.MinWidth = 23;
             this.colDescripcion.Name = "colDescripcion";
+            this.colDescripcion.OptionsColumn.AllowEdit = false;
+            this.colDescripcion.OptionsColumn.ReadOnly = true;
             this.colDescripcion.Visible = true;
             this.colDescripcion.VisibleIndex = 0;
-            this.colDescripcion.Width = 87;
+            this.colDescripcion.Width = 176;
             // 
             // colTipo
             // 
             this.colTipo.Caption = "Tipo";
-            this.colTipo.ColumnEdit = this.glTipoInstrumento;
             this.colTipo.FieldName = "TipoInstrumento.Descripcion";
             this.colTipo.MinWidth = 23;
             this.colTipo.Name = "colTipo";
             this.colTipo.OptionsColumn.AllowEdit = false;
+            this.colTipo.OptionsColumn.ReadOnly = true;
             this.colTipo.Visible = true;
             this.colTipo.VisibleIndex = 1;
-            this.colTipo.Width = 87;
-            // 
-            // glTipoInstrumento
-            // 
-            this.glTipoInstrumento.AutoHeight = false;
-            this.glTipoInstrumento.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.glTipoInstrumento.Name = "glTipoInstrumento";
-            this.glTipoInstrumento.NullText = "";
-            this.glTipoInstrumento.PopupView = this.popupViewTipoInstrumentos;
-            this.glTipoInstrumento.ReadOnly = true;
-            // 
-            // popupViewTipoInstrumentos
-            // 
-            this.popupViewTipoInstrumentos.DetailHeight = 431;
-            this.popupViewTipoInstrumentos.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.popupViewTipoInstrumentos.Name = "popupViewTipoInstrumentos";
-            this.popupViewTipoInstrumentos.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.popupViewTipoInstrumentos.OptionsView.ShowGroupPanel = false;
-            this.popupViewTipoInstrumentos.OptionsView.ShowIndicator = false;
+            this.colTipo.Width = 213;
             // 
             // colMarca
             // 
             this.colMarca.Caption = "Marca";
-            this.colMarca.ColumnEdit = this.glMarcaPopup;
             this.colMarca.FieldName = "Marca.Descripcion";
             this.colMarca.MinWidth = 23;
             this.colMarca.Name = "colMarca";
@@ -374,30 +351,11 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.colMarca.OptionsColumn.ReadOnly = true;
             this.colMarca.Visible = true;
             this.colMarca.VisibleIndex = 2;
-            this.colMarca.Width = 87;
-            // 
-            // glMarcaPopup
-            // 
-            this.glMarcaPopup.AutoHeight = false;
-            this.glMarcaPopup.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.glMarcaPopup.Name = "glMarcaPopup";
-            this.glMarcaPopup.NullText = "";
-            this.glMarcaPopup.PopupView = this.popupViewMarca;
-            // 
-            // popupViewMarca
-            // 
-            this.popupViewMarca.DetailHeight = 431;
-            this.popupViewMarca.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.popupViewMarca.Name = "popupViewMarca";
-            this.popupViewMarca.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.popupViewMarca.OptionsView.ShowGroupPanel = false;
-            this.popupViewMarca.OptionsView.ShowIndicator = false;
+            this.colMarca.Width = 213;
             // 
             // colModelo
             // 
             this.colModelo.Caption = "Modelo";
-            this.colModelo.ColumnEdit = this.glPopupModelo;
             this.colModelo.FieldName = "Modelo.Descripcion";
             this.colModelo.MinWidth = 23;
             this.colModelo.Name = "colModelo";
@@ -405,25 +363,24 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.colModelo.OptionsColumn.ReadOnly = true;
             this.colModelo.Visible = true;
             this.colModelo.VisibleIndex = 3;
-            this.colModelo.Width = 87;
+            this.colModelo.Width = 187;
             // 
-            // glPopupModelo
+            // colSeleccionar
             // 
-            this.glPopupModelo.AutoHeight = false;
-            this.glPopupModelo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.glPopupModelo.Name = "glPopupModelo";
-            this.glPopupModelo.NullText = "";
-            this.glPopupModelo.PopupView = this.repositoryItemGridLookUpEdit1View;
+            this.colSeleccionar.Caption = "Seleccionar";
+            this.colSeleccionar.ColumnEdit = this.chkSeleccionarInstrumento;
+            this.colSeleccionar.FieldName = "Seleccionar";
+            this.colSeleccionar.MinWidth = 25;
+            this.colSeleccionar.Name = "colSeleccionar";
+            this.colSeleccionar.Visible = true;
+            this.colSeleccionar.VisibleIndex = 4;
+            this.colSeleccionar.Width = 126;
             // 
-            // repositoryItemGridLookUpEdit1View
+            // chkSeleccionarInstrumento
             // 
-            this.repositoryItemGridLookUpEdit1View.DetailHeight = 431;
-            this.repositoryItemGridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.repositoryItemGridLookUpEdit1View.Name = "repositoryItemGridLookUpEdit1View";
-            this.repositoryItemGridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.repositoryItemGridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
-            this.repositoryItemGridLookUpEdit1View.OptionsView.ShowIndicator = false;
+            this.chkSeleccionarInstrumento.AutoHeight = false;
+            this.chkSeleccionarInstrumento.Name = "chkSeleccionarInstrumento";
+            this.chkSeleccionarInstrumento.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
             // 
             // labelControl6
             // 
@@ -468,7 +425,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.btnGuardarIngreso.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardarIngreso.IconSize = 30;
             this.btnGuardarIngreso.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardarIngreso.Location = new System.Drawing.Point(547, 691);
+            this.btnGuardarIngreso.Location = new System.Drawing.Point(617, 691);
             this.btnGuardarIngreso.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnGuardarIngreso.Name = "btnGuardarIngreso";
             this.btnGuardarIngreso.Size = new System.Drawing.Size(220, 52);
@@ -476,14 +433,15 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.btnGuardarIngreso.Text = "Guardar Ingreso";
             this.btnGuardarIngreso.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardarIngreso.UseVisualStyleBackColor = true;
+            this.btnGuardarIngreso.Click += new System.EventHandler(this.btnGuardarIngreso_Click);
             // 
-            // memoEdit1
+            // memoComentarios
             // 
-            this.memoEdit1.Location = new System.Drawing.Point(54, 539);
-            this.memoEdit1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.memoEdit1.Name = "memoEdit1";
-            this.memoEdit1.Size = new System.Drawing.Size(710, 59);
-            this.memoEdit1.TabIndex = 24;
+            this.memoComentarios.Location = new System.Drawing.Point(54, 539);
+            this.memoComentarios.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.memoComentarios.Name = "memoComentarios";
+            this.memoComentarios.Size = new System.Drawing.Size(783, 59);
+            this.memoComentarios.TabIndex = 24;
             // 
             // trackBarControl1
             // 
@@ -526,8 +484,9 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.glTiposTrabajo.Properties.Appearance.Options.UseFont = true;
             this.glTiposTrabajo.Properties.NullText = "";
             this.glTiposTrabajo.Properties.PopupView = this.glTipoTrabajo;
-            this.glTiposTrabajo.Size = new System.Drawing.Size(340, 26);
+            this.glTiposTrabajo.Size = new System.Drawing.Size(420, 26);
             this.glTiposTrabajo.TabIndex = 26;
+            this.glTiposTrabajo.EditValueChanged += new System.EventHandler(this.glTiposTrabajo_EditValueChanged);
             // 
             // glTipoTrabajo
             // 
@@ -563,22 +522,46 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             // 
             this.lblTotalInstrumentos.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblTotalInstrumentos.Appearance.Options.UseFont = true;
-            this.lblTotalInstrumentos.Location = new System.Drawing.Point(54, 412);
+            this.lblTotalInstrumentos.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblTotalInstrumentos.Location = new System.Drawing.Point(0, 0);
             this.lblTotalInstrumentos.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.lblTotalInstrumentos.Name = "lblTotalInstrumentos";
             this.lblTotalInstrumentos.Size = new System.Drawing.Size(7, 17);
             this.lblTotalInstrumentos.TabIndex = 27;
             this.lblTotalInstrumentos.Text = "0";
+            this.lblTotalInstrumentos.Visible = false;
+            // 
+            // lblInstrumentosSeleccionados
+            // 
+            this.lblInstrumentosSeleccionados.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblInstrumentosSeleccionados.Appearance.Options.UseFont = true;
+            this.lblInstrumentosSeleccionados.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblInstrumentosSeleccionados.Location = new System.Drawing.Point(776, 0);
+            this.lblInstrumentosSeleccionados.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.lblInstrumentosSeleccionados.Name = "lblInstrumentosSeleccionados";
+            this.lblInstrumentosSeleccionados.Size = new System.Drawing.Size(7, 17);
+            this.lblInstrumentosSeleccionados.TabIndex = 28;
+            this.lblInstrumentosSeleccionados.Text = "0";
+            this.lblInstrumentosSeleccionados.Visible = false;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lblTotalInstrumentos);
+            this.panel1.Controls.Add(this.lblInstrumentosSeleccionados);
+            this.panel1.Location = new System.Drawing.Point(54, 413);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(783, 27);
+            this.panel1.TabIndex = 29;
             // 
             // frmIngresos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(819, 754);
-            this.Controls.Add(this.lblTotalInstrumentos);
+            this.ClientSize = new System.Drawing.Size(876, 754);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.glTiposTrabajo);
             this.Controls.Add(this.trackBarControl1);
-            this.Controls.Add(this.memoEdit1);
+            this.Controls.Add(this.memoComentarios);
             this.Controls.Add(this.btnGuardarIngreso);
             this.Controls.Add(this.labelControl8);
             this.Controls.Add(this.labelControl7);
@@ -606,17 +589,14 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpresa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcInstrumentosDeEmpresa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvInstrumentosDeEmpresa)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumento)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupViewTipoInstrumentos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glMarcaPopup)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupViewMarca)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glPopupModelo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemGridLookUpEdit1View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSeleccionarInstrumento)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoComentarios.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarControl1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.glTiposTrabajo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.glTipoTrabajo)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -651,7 +631,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
         private DevExpress.XtraGrid.GridControl gcInstrumentosDeEmpresa;
         private DevExpress.XtraGrid.Views.Grid.GridView gvInstrumentosDeEmpresa;
         private DevExpress.XtraEditors.TrackBarControl trackBarControl1;
-        private DevExpress.XtraEditors.MemoEdit memoEdit1;
+        private DevExpress.XtraEditors.MemoEdit memoComentarios;
         private DevExpress.XtraEditors.GridLookUpEdit glTiposTrabajo;
         private DevExpress.XtraGrid.Views.Grid.GridView glTipoTrabajo;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
@@ -660,12 +640,10 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
         private DevExpress.XtraGrid.Columns.GridColumn colTipo;
         private DevExpress.XtraGrid.Columns.GridColumn colMarca;
         private DevExpress.XtraGrid.Columns.GridColumn colModelo;
-        private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit glTipoInstrumento;
-        private DevExpress.XtraGrid.Views.Grid.GridView popupViewTipoInstrumentos;
-        private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit glMarcaPopup;
-        private DevExpress.XtraGrid.Views.Grid.GridView popupViewMarca;
-        private DevExpress.XtraEditors.Repository.RepositoryItemGridLookUpEdit glPopupModelo;
-        private DevExpress.XtraGrid.Views.Grid.GridView repositoryItemGridLookUpEdit1View;
         private DevExpress.XtraEditors.LabelControl lblTotalInstrumentos;
+        private DevExpress.XtraGrid.Columns.GridColumn colSeleccionar;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit chkSeleccionarInstrumento;
+        private DevExpress.XtraEditors.LabelControl lblInstrumentosSeleccionados;
+        private System.Windows.Forms.Panel panel1;
     }
 }

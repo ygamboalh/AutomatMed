@@ -43,6 +43,9 @@ namespace TacticaReparaciones.DesktopApp.Componentes.Menu
         {
             this.cmdIngresos.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
             this.cmdIngresosSimple.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
+
+            this.btnDiagnosticos.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
+            this.btnDiagnosticos.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
         }
 
         private void EstablecerColorFondoMenu()
@@ -72,7 +75,7 @@ namespace TacticaReparaciones.DesktopApp.Componentes.Menu
 
         private void EstablecerMinimoTamanioDelMenu()
         {
-            this.Size = new Size(this.MinimumSize.Width, this.Height);
+            this.Size = new Size(this.MinimumSize.Width + 5, this.Height);
         }
 
         private void HabilitarMenuSinTitulos()
@@ -114,6 +117,11 @@ namespace TacticaReparaciones.DesktopApp.Componentes.Menu
         private void cmdIngresos_Click(object sender, System.EventArgs e)
         {
             OnMenuSeleccionado?.Invoke(IndiceMenu.Ingresos);
+        }
+
+        private void btnDiagnosticos_Click(object sender, System.EventArgs e)
+        {
+
         }
     }
 }

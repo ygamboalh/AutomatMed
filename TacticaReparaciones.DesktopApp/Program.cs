@@ -5,11 +5,11 @@ using TacticaReparaciones.DesktopApp.Pantallas.Principales;
 namespace TacticaReparaciones.DesktopApp
 {
     static class Program
-    {       
+    {
         [STAThread]
         static void Main()
         {
-           
+
             try
             {
                 Application.SetHighDpiMode(HighDpiMode.SystemAware);

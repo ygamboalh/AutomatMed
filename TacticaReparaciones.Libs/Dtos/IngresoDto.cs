@@ -1,4 +1,6 @@
-﻿namespace TacticaReparaciones.Libs.Dtos
+﻿using System.Collections.Generic;
+
+namespace TacticaReparaciones.Libs.Dtos
 {
     public class IngresoDto
     {
@@ -13,5 +15,6 @@
         public int TipoTrabajoId { get; set; }
         public int Prioridad { get; set; }
         public string Comentarios { get; set; }
+        public ICollection<InstrumentoDto> Instrumentos { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Nagaira.Herramientas.Standard.Helpers.Exceptions;
+﻿using AutoMapper;
+using Nagaira.Herramientas.Standard.Helpers.Exceptions;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
@@ -13,33 +14,21 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
     public class IngresoService
     {
         private readonly TacticaReparacionesDbContext _tacticaReparacionesDbContext;
+        private readonly IMapper _mapper;
 
-        public IngresoService(TacticaReparacionesDbContext tacticaReparacionesDbContext)
+        public IngresoService(TacticaReparacionesDbContext tacticaReparacionesDbContext, IMapper mapper)
         {
             _tacticaReparacionesDbContext = tacticaReparacionesDbContext;
+            _mapper = mapper;
         }
 
         public Response<List<IngresoDto>> ObtenerIngresosPorEstado(int estadoId)
         {
             try
             {
-                var ingresos = _tacticaReparacionesDbContext.Ingresos.Where(x => x.EstadoId.Equals(estadoId))
-                                                                     .Select(x => new IngresoDto
-                                                                     {
-                                                                         IngresoId = x.IngresoId,
-                                                                         EmpresaId = x.EmpresaId,
-                                                                         NombreEmpresa = x.NombreEmpresa,
-                                                                         NombreContacto = x.NombreContacto,
-                                                                         ContactoId = x.ContactoId,
-                                                                         DireccionCorreoElectronico = x.DireccionCorreoElectronico,
-                                                                         CorreoElectronicoId = x.CorreoElectronicoId,
-                                                                         EstadoId = x.EstadoId,
-                                                                         Prioridad = x.Prioridad,
-                                                                         Comentarios = x.Comentarios,
-                                                                         TipoTrabajoId = x.TipoTrabajoId
-                                                                     }).ToList();
+                var ingresos = _tacticaReparacionesDbContext.Ingresos.Where(x => x.EstadoId.Equals(estadoId)).ToList();
 
-                return Response<List<IngresoDto>>.Ok("Ok", ingresos);
+                return Response<List<IngresoDto>>.Ok("Ok", _mapper.Map<List<IngresoDto>>(ingresos));
             }
             catch (Exception exc)
             {
@@ -72,13 +61,31 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
                     return Response<bool>.ErrorValidation(mensaje, false);
                 }
 
+                _tacticaReparacionesDbContext.Database.BeginTransaction();
                 _tacticaReparacionesDbContext.Ingresos.Add(ingreso);
                 _tacticaReparacionesDbContext.SaveChanges();
+
+                foreach (var instrumento in ingresoDto.Instrumentos)
+                {
+                    IngresoInstrumento ingresoInstrumento = new IngresoInstrumento
+                    {
+                        IngresoId = ingreso.IngresoId,
+                        Activo = true,
+                        InstrumentoId = instrumento.InstrumentoId
+                    };
+
+                    _tacticaReparacionesDbContext.IngresosInstrumentos.Add(ingresoInstrumento);
+                    
+                }
+
+                _tacticaReparacionesDbContext.SaveChanges();
+                _tacticaReparacionesDbContext.Database.CommitTransaction();
 
                 return Response<bool>.Ok("¡El ingreso se guardó exitosamente!", true);
             }
             catch (Exception exc)
             {
+                _tacticaReparacionesDbContext.Database.RollbackTransaction();
                 return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
             }
         }

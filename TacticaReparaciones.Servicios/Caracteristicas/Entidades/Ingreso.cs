@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
 {
@@ -18,6 +19,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
         public DateTime FechaRegistro { get; set; }
         public int UsuarioRegistro { get; set; }
         public bool Activo { get; set; }
+        public ICollection<IngresoInstrumento> IngresosInstrumentos { get; set; }
 
         public bool EsValido(out string mensaje)
         {

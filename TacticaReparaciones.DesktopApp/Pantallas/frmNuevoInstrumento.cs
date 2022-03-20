@@ -86,8 +86,8 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             string uri = "/instrumentos";
 
             try
-            {                
-                guardado = await HttpHelper.Post<InstrumentoDto>(NuevoInstrumento, rutaApi, uri, "");           
+            {
+                guardado = await HttpHelper.Post<InstrumentoDto>(NuevoInstrumento, rutaApi, uri, "");
             }
             catch (Exception exc)
             {

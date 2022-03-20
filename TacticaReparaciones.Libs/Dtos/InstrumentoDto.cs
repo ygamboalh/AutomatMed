@@ -20,5 +20,6 @@ namespace TacticaReparaciones.Libs.Dtos
         public string NombreEmpresa { get; set; }
         public ModeloDto Modelo { get; set; }
         public MarcaDto Marca { get; set; }
+        public TipoInstrumentoDto TipoInstrumento { get; set; }
     }
 }

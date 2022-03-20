@@ -28,6 +28,14 @@ namespace TacticaReparaciones.Servicios.Infraestructura.Maps
             builder.Property(x => x.FechaRegistro).HasColumnName("fecha_registro").HasColumnType("DATETIME").IsRequired();
             builder.Property(x => x.UsuarioRegistro).HasColumnName("usuario_registro").HasColumnType("INT");
             builder.Property(x => x.Activo).HasColumnName("activo").HasColumnType("TINYINT").IsRequired();
+
+            builder.HasOne(x => x.Marca).WithMany(x => x.Instrumentos).HasForeignKey(x => x.MarcaId);
+            builder.HasOne(x => x.TipoInstrumento).WithMany(x => x.Instrumentos).HasForeignKey(x => x.TipoInstrumentoId);
+            builder.HasOne(x => x.Modelo).WithMany(x => x.Instrumentos).HasForeignKey(x => x.ModeloId);
+            builder.HasOne(x => x.PeriodoDeCalibracion).WithMany(x => x.Instrumentos).HasForeignKey(x => x.PeriodoCalibracionId);
+            builder.HasOne(x => x.Garantia).WithMany(x => x.Instrumentos).HasForeignKey(x => x.GarantiaId);
+            builder.HasMany(x => x.IngresosInstrumentos).WithOne(x => x.Instrumento).HasForeignKey(x => x.InstrumentoId);
+
         }
     }
 }

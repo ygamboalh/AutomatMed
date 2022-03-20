@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
 {
@@ -26,6 +27,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
         public TipoInstrumento TipoInstrumento { get; set; }
         public Garantia Garantia { get; set; }
         public PeriodoDeCalibracion PeriodoDeCalibracion { get; set; }
+        public ICollection<IngresoInstrumento> IngresosInstrumentos { get; set; }
 
 
         public bool EsValido(out string mensaje)

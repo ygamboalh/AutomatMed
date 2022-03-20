@@ -61,10 +61,5 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Principales
                 }
             }
         }
-
-        private void xtraTabbedMdiManager1_PageAdded(object sender, DevExpress.XtraTabbedMdi.MdiTabPageEventArgs e)
-        {
-
-        }
     }
 }
