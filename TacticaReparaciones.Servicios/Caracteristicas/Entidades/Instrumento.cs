@@ -25,8 +25,6 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
         public Modelo Modelo { get; set; }
         public Marca Marca { get; set; }
         public TipoInstrumento TipoInstrumento { get; set; }
-        public Garantia Garantia { get; set; }
-        public PeriodoDeCalibracion PeriodoDeCalibracion { get; set; }
         public ICollection<IngresoInstrumento> IngresosInstrumentos { get; set; }
 
 

@@ -16,9 +16,6 @@ namespace TacticaReparaciones.Servicios.Infraestructura.Maps
 
             builder.HasMany(x => x.Instrumentos).WithOne(x => x.TipoInstrumento).HasForeignKey(x => x.TipoInstrumentoId);
             builder.HasMany(x => x.Marcas).WithOne(x => x.TipoInstrumento).HasForeignKey(x => x.TipoInstrumentoId);
-            builder.HasMany(x => x.PeriodosDeCalibracion).WithOne(x => x.TipoInstrumento).HasForeignKey(x => x.TipoInstrumentoId);
-            builder.HasMany(x => x.Garantias).WithOne(x => x.TipoInstrumento).HasForeignKey(x => x.TipoInstrumentoId);
-
         }
     }
 }

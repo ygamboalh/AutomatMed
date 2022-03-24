@@ -38,8 +38,6 @@ namespace TacticaReparaciones.Servicios
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "TacticaReparaciones.Servicios", Version = "v1" });
             });
 
-           
-
             services.AddAutoMapper(options => options.AddProfile(new ConfigMap()));
                     
             services.AddDbContext<TacticaDbContext>(options => options.UseMySql(Configuration.GetConnectionStringFromENV("TacticaBD")).EnableDetailedErrors());
@@ -51,8 +49,6 @@ namespace TacticaReparaciones.Servicios
             services.AddTransient<IngresoService, IngresoService>();
             services.AddTransient<InstrumentoService, InstrumentoService>();
             services.AddTransient<TipoDeInstrumentoService, TipoDeInstrumentoService>();
-            services.AddTransient<GarantiaService, GarantiaService>();
-            services.AddTransient<PeriodoCalibracionService, PeriodoCalibracionService>();
             services.AddTransient<ModeloService, ModeloService>();
             services.AddTransient<MarcaService, MarcaService>();
         }

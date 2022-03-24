@@ -18,8 +18,6 @@ namespace TacticaReparaciones.Servicios.Infraestructura
         public DbSet<TipoInstrumento> TiposDeInstrumentos { get; set; }
         public DbSet<Marca> Marcas { get; set; }
         public DbSet<Modelo> Modelos { get; set; }
-        public DbSet<PeriodoDeCalibracion> PeriodosDeCalibracion { get; set; }
-        public DbSet<Garantia> Garantias { get; set; }
         public DbSet<IngresoInstrumento> IngresosInstrumentos { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -32,8 +30,6 @@ namespace TacticaReparaciones.Servicios.Infraestructura
             modelBuilder.ApplyConfiguration(new TipoInstrumentoMap());
             modelBuilder.ApplyConfiguration(new MarcaMap());
             modelBuilder.ApplyConfiguration(new ModeloMap());
-            modelBuilder.ApplyConfiguration(new PeriodoCalibracionMap());
-            modelBuilder.ApplyConfiguration(new GarantiaMap());
             modelBuilder.ApplyConfiguration(new IngresoInstrumentoMap());
         }
     }

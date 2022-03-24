@@ -11,17 +11,12 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
     public class TipoDeInstrumentoService
     {
         private readonly TacticaReparacionesDbContext _tacticaDbContext;
-        private readonly GarantiaService _garantiaService;
         private readonly MarcaService _marcaService;
-        private readonly PeriodoCalibracionService _periodoCalibracionService;
 
-        public TipoDeInstrumentoService(TacticaReparacionesDbContext tacticaReparacionesDbContext, GarantiaService garantiaService, 
-               MarcaService marcaService, PeriodoCalibracionService periodoCalibracionService)
+        public TipoDeInstrumentoService(TacticaReparacionesDbContext tacticaReparacionesDbContext, MarcaService marcaService)
         {
-            _tacticaDbContext = tacticaReparacionesDbContext;
-            _garantiaService = garantiaService;
+            _tacticaDbContext = tacticaReparacionesDbContext;         
             _marcaService = marcaService;
-            _periodoCalibracionService = periodoCalibracionService;
         }
 
         public Response<List<TipoInstrumentoDto>> ObtenerTiposDeInstrumento()
@@ -33,25 +28,13 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
 
                 var marcas = resultMarcas.Data;
 
-                var resultPeriodoCalibracion = _periodoCalibracionService.ObtenerPeriodosDeCalibracion();
-                if (resultPeriodoCalibracion.Type != TypeResponse.Ok) return Response<List<TipoInstrumentoDto>>.Error(resultPeriodoCalibracion.Message, null);
-
-                var periodosDeCalibracion = resultPeriodoCalibracion.Data;
-
-                var resultGarantias = _garantiaService.ObtenerGarantias();
-                if (resultGarantias.Type != TypeResponse.Ok) return Response<List<TipoInstrumentoDto>>.Error(resultGarantias.Message, null);
-
-                var garantias = resultGarantias.Data;
-
                 var tiposDeInstrumentos = _tacticaDbContext.TiposDeInstrumentos.ToList();
 
                 var query = tiposDeInstrumentos.AsQueryable().Select(x => new TipoInstrumentoDto
                 {
                     TipoInstrumentoId = x.TipoInstrumentoId,
                     Descripcion = x.Descripcion,
-                    Garantias = garantias,
                     Marcas = marcas,
-                    PeriodosDeCalibracion = periodosDeCalibracion
                 }).ToList();
 
 
