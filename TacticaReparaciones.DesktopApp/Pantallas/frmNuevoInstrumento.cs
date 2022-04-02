@@ -123,15 +123,15 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
 
         private void AsignarDataSourcesQueDependenDelTipoInstrumento(TipoInstrumentoDto tipoInstrumento)
         {
-            glMarca.Properties.DataSource = tipoInstrumento.Marcas;
-            glGarantia.Properties.DataSource = tipoInstrumento.Garantias;
-            glPeriodoCalibracion.Properties.DataSource = tipoInstrumento.PeriodosDeCalibracion;
+            //glMarca.Properties.DataSource = tipoInstrumento.Marcas;
+            //glGarantia.Properties.DataSource = tipoInstrumento.Garantias;
+            //glPeriodoCalibracion.Properties.DataSource = tipoInstrumento.PeriodosDeCalibracion;
         }
 
         private void glMarca_EditValueChanged(object sender, EventArgs e)
         {
             var marca = glMarca.GetSelectedDataRow() as MarcaDto;
-            glModelo.Properties.DataSource = marca.Modelos;
+           // glModelo.Properties.DataSource = marca.Modelos;
         }
 
         private bool EsValidaLaInformacionIngresadaParaNuevoInstrumento(out string mensaje)
@@ -170,12 +170,14 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             return true;
         }
 
+
+
         private void PrepararNuevoInstrumentoParaGuardar()
         {
             var marca = glMarca.GetSelectedDataRow() as MarcaDto;
             var modelo = glModelo.GetSelectedDataRow() as ModeloDto;
-            var garantia = glGarantia.GetSelectedDataRow() as GarantiaDto;
-            var periodoCalibracion = glPeriodoCalibracion.GetSelectedDataRow() as PeriodoCalibracionDto;
+           // var garantia = glGarantia.GetSelectedDataRow() as GarantiaDto;
+            //var periodoCalibracion = glPeriodoCalibracion.GetSelectedDataRow() as PeriodoCalibracionDto;
             var tipoInstrumento = glTipoInstrumento.GetSelectedDataRow() as TipoInstrumentoDto;
 
             NuevoInstrumento.Descripcion = txtDescripcionInstrumento.Text;
@@ -188,9 +190,9 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             NuevoInstrumento.FechaCompraFabricante = dateFechaCompraFabricante.Value;
             NuevoInstrumento.FechaCompraCliente = dateFechaCompraCliente.Value;
             NuevoInstrumento.FechaUltimaCalibracion = dateUltimaCalibracion.Value;
-            NuevoInstrumento.PeriodoCalibracionId = periodoCalibracion.PeriodoCalibracionId;
+            //NuevoInstrumento.PeriodoCalibracionId = periodoCalibracion.PeriodoCalibracionId;
             NuevoInstrumento.FechaProximaCalibracion = dateProximaCalibracion.Value;
-            NuevoInstrumento.GarantiaId = garantia.GarantiaId;
+            //NuevoInstrumento.GarantiaId = garantia.GarantiaId;
         }
     }
 }

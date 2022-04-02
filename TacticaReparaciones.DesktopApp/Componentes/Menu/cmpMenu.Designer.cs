@@ -37,23 +37,29 @@ namespace TacticaReparaciones.DesktopApp.Componentes.Menu
             this.cmdIngresosSimple = new FontAwesome.Sharp.IconButton();
             this.navigationMenus = new DevExpress.XtraBars.Navigation.NavigationFrame();
             this.pageMenuExtendido = new DevExpress.XtraBars.Navigation.NavigationPage();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.btnTiposDeInstrumetnos = new FontAwesome.Sharp.IconButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnDiagnosticos = new FontAwesome.Sharp.IconButton();
             this.pnlIngresos = new System.Windows.Forms.Panel();
             this.pageMenuContraido = new DevExpress.XtraBars.Navigation.NavigationPage();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnDiagnosticosNoExpandido = new FontAwesome.Sharp.IconButton();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.btnTipoInstrumentoSimplificado = new FontAwesome.Sharp.IconButton();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnDiagnosticosNoExpandido = new FontAwesome.Sharp.IconButton();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.pnlLogo.SuspendLayout();
             this.pnlExpandirMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navigationMenus)).BeginInit();
             this.navigationMenus.SuspendLayout();
             this.pageMenuExtendido.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnlIngresos.SuspendLayout();
             this.pageMenuContraido.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmpLogo1
@@ -161,10 +167,41 @@ namespace TacticaReparaciones.DesktopApp.Componentes.Menu
             // pageMenuExtendido
             // 
             this.pageMenuExtendido.Caption = "pageMenuExtendido";
+            this.pageMenuExtendido.Controls.Add(this.panel4);
             this.pageMenuExtendido.Controls.Add(this.panel1);
             this.pageMenuExtendido.Controls.Add(this.pnlIngresos);
             this.pageMenuExtendido.Name = "pageMenuExtendido";
             this.pageMenuExtendido.Size = new System.Drawing.Size(320, 280);
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.btnTiposDeInstrumetnos);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 96);
+            this.panel4.Name = "panel4";
+            this.panel4.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.panel4.Size = new System.Drawing.Size(320, 48);
+            this.panel4.TabIndex = 6;
+            // 
+            // btnTiposDeInstrumetnos
+            // 
+            this.btnTiposDeInstrumetnos.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnTiposDeInstrumetnos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTiposDeInstrumetnos.FlatAppearance.BorderSize = 0;
+            this.btnTiposDeInstrumetnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTiposDeInstrumetnos.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnTiposDeInstrumetnos.IconChar = FontAwesome.Sharp.IconChar.Cogs;
+            this.btnTiposDeInstrumetnos.IconColor = System.Drawing.Color.Black;
+            this.btnTiposDeInstrumetnos.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnTiposDeInstrumetnos.IconSize = 25;
+            this.btnTiposDeInstrumetnos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTiposDeInstrumetnos.Location = new System.Drawing.Point(0, 0);
+            this.btnTiposDeInstrumetnos.Name = "btnTiposDeInstrumetnos";
+            this.btnTiposDeInstrumetnos.Size = new System.Drawing.Size(320, 43);
+            this.btnTiposDeInstrumetnos.TabIndex = 3;
+            this.btnTiposDeInstrumetnos.Text = "Configuraciones";
+            this.btnTiposDeInstrumetnos.UseVisualStyleBackColor = false;
+            this.btnTiposDeInstrumetnos.Click += new System.EventHandler(this.btnTiposDeInstrumetnos_Click);
             // 
             // panel1
             // 
@@ -209,20 +246,49 @@ namespace TacticaReparaciones.DesktopApp.Componentes.Menu
             // pageMenuContraido
             // 
             this.pageMenuContraido.Caption = "pageMenuContraido";
+            this.pageMenuContraido.Controls.Add(this.panel5);
             this.pageMenuContraido.Controls.Add(this.panel3);
             this.pageMenuContraido.Controls.Add(this.panel2);
             this.pageMenuContraido.Name = "pageMenuContraido";
             this.pageMenuContraido.Size = new System.Drawing.Size(320, 280);
             // 
-            // panel2
+            // panel5
             // 
-            this.panel2.Controls.Add(this.cmdIngresosSimple);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.panel2.Size = new System.Drawing.Size(320, 43);
-            this.panel2.TabIndex = 4;
+            this.panel5.Controls.Add(this.btnTipoInstrumentoSimplificado);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 86);
+            this.panel5.Name = "panel5";
+            this.panel5.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.panel5.Size = new System.Drawing.Size(320, 43);
+            this.panel5.TabIndex = 7;
+            // 
+            // btnTipoInstrumentoSimplificado
+            // 
+            this.btnTipoInstrumentoSimplificado.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnTipoInstrumentoSimplificado.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTipoInstrumentoSimplificado.FlatAppearance.BorderSize = 0;
+            this.btnTipoInstrumentoSimplificado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTipoInstrumentoSimplificado.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnTipoInstrumentoSimplificado.IconChar = FontAwesome.Sharp.IconChar.Cogs;
+            this.btnTipoInstrumentoSimplificado.IconColor = System.Drawing.Color.Black;
+            this.btnTipoInstrumentoSimplificado.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnTipoInstrumentoSimplificado.IconSize = 25;
+            this.btnTipoInstrumentoSimplificado.Location = new System.Drawing.Point(0, 0);
+            this.btnTipoInstrumentoSimplificado.Name = "btnTipoInstrumentoSimplificado";
+            this.btnTipoInstrumentoSimplificado.Size = new System.Drawing.Size(320, 38);
+            this.btnTipoInstrumentoSimplificado.TabIndex = 5;
+            this.btnTipoInstrumentoSimplificado.UseVisualStyleBackColor = false;
+            this.btnTipoInstrumentoSimplificado.Click += new System.EventHandler(this.btnTiposDeInstrumetnos_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.btnDiagnosticosNoExpandido);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 43);
+            this.panel3.Name = "panel3";
+            this.panel3.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.panel3.Size = new System.Drawing.Size(320, 43);
+            this.panel3.TabIndex = 6;
             // 
             // btnDiagnosticosNoExpandido
             // 
@@ -242,15 +308,15 @@ namespace TacticaReparaciones.DesktopApp.Componentes.Menu
             this.btnDiagnosticosNoExpandido.UseVisualStyleBackColor = false;
             this.btnDiagnosticosNoExpandido.Click += new System.EventHandler(this.btnDiagnosticos_Click);
             // 
-            // panel3
+            // panel2
             // 
-            this.panel3.Controls.Add(this.btnDiagnosticosNoExpandido);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 43);
-            this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.panel3.Size = new System.Drawing.Size(320, 43);
-            this.panel3.TabIndex = 6;
+            this.panel2.Controls.Add(this.cmdIngresosSimple);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.panel2.Size = new System.Drawing.Size(320, 43);
+            this.panel2.TabIndex = 4;
             // 
             // cmpMenu
             // 
@@ -269,11 +335,13 @@ namespace TacticaReparaciones.DesktopApp.Componentes.Menu
             ((System.ComponentModel.ISupportInitialize)(this.navigationMenus)).EndInit();
             this.navigationMenus.ResumeLayout(false);
             this.pageMenuExtendido.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.pnlIngresos.ResumeLayout(false);
             this.pageMenuContraido.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -295,5 +363,9 @@ namespace TacticaReparaciones.DesktopApp.Componentes.Menu
         private System.Windows.Forms.Panel panel3;
         private FontAwesome.Sharp.IconButton btnDiagnosticosNoExpandido;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel4;
+        private FontAwesome.Sharp.IconButton btnTiposDeInstrumetnos;
+        private System.Windows.Forms.Panel panel5;
+        private FontAwesome.Sharp.IconButton btnTipoInstrumentoSimplificado;
     }
 }

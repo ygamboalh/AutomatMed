@@ -6,7 +6,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
     {
         public int TipoInstrumentoId { get; set; }
         public string Descripcion { get; set; }
-        public ICollection<Marca> Marcas { get; set; }
-        public ICollection<Instrumento> Instrumentos { get; set; }
+        public string Resumen { get; set; }
+        public string Metodologia { get; set; }
     }
 }

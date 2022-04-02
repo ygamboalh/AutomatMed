@@ -19,6 +19,8 @@ namespace TacticaReparaciones.Servicios.Infraestructura
         public DbSet<Marca> Marcas { get; set; }
         public DbSet<Modelo> Modelos { get; set; }
         public DbSet<IngresoInstrumento> IngresosInstrumentos { get; set; }
+        public DbSet<ClasificacionInstrumento> ClasificacionesInstrumentos { get; set; }
+        //public DbSet<VariablePatronMap> VariablesPatrones { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -31,6 +33,10 @@ namespace TacticaReparaciones.Servicios.Infraestructura
             modelBuilder.ApplyConfiguration(new MarcaMap());
             modelBuilder.ApplyConfiguration(new ModeloMap());
             modelBuilder.ApplyConfiguration(new IngresoInstrumentoMap());
+            modelBuilder.ApplyConfiguration(new ClasificacionInstrumentoMap());
+
+            // modelBuilder.ApplyConfiguration(new VariablePatronMap());
+
         }
     }
 }

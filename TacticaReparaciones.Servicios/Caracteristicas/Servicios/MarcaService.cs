@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TacticaReparaciones.Libs.Dtos;
+using TacticaReparaciones.Servicios.Caracteristicas.Entidades;
 using TacticaReparaciones.Servicios.Infraestructura;
 
 namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
@@ -24,17 +25,14 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
         {
             try
             {
-                var resultModelo = _modeloService.ObtenerModelos();
-                if (resultModelo.Type != TypeResponse.Ok) return Response<List<MarcaDto>>.Error(resultModelo.Message, null);
-
-                var modelos = resultModelo.Data;
+                
 
                 var marcas = _tacticaReparacionesDbContext.Marcas.Select(x => new MarcaDto
                 {
                     MarcaId = x.MarcaId,
                     Descripcion = x.Descripcion,
-                    TipoInstrumentoId = x.TipoInstrumentoId,
-                    Modelos = modelos
+               
+                   
                 }).ToList();
 
                 return Response<List<MarcaDto>>.Ok("Ok", marcas);
@@ -42,6 +40,50 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
             catch (Exception exc)
             {
                 return Response<List<MarcaDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
+        public Response<bool> RegistrarMarca(MarcaDto marcaDto)
+        {
+            try
+            {
+                Marca marca = new Marca
+                {
+                    Descripcion = marcaDto.Descripcion
+                };
+
+                _tacticaReparacionesDbContext.Marcas.Add(marca);
+                _tacticaReparacionesDbContext.SaveChanges();
+
+                return Response<bool>.Ok("Ok", true);
+            }
+            catch (Exception exc)
+            {
+                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+            }
+        }
+
+        public Response<bool> ActualizarMarca(MarcaDto marcaDto)
+        {
+            try
+            {
+                var marcaBd = _tacticaReparacionesDbContext.Marcas.FirstOrDefault(x => x.MarcaId == marcaDto.MarcaId);
+
+                if (marcaBd == null)
+                {
+                    return Response<bool>.Error("La marca no fue encontrado en almacén de datos", false);
+                }
+
+
+                marcaBd.Descripcion = marcaDto.Descripcion;
+
+                _tacticaReparacionesDbContext.SaveChanges();
+
+                return Response<bool>.Ok("Ok", true);
+            }
+            catch (Exception exc)
+            {
+                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
             }
         }
     }

@@ -46,6 +46,9 @@ namespace TacticaReparaciones.DesktopApp.Componentes.Menu
 
             this.btnDiagnosticos.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
             this.btnDiagnosticos.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
+
+            this.btnTiposDeInstrumetnos.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
+            this.btnTiposDeInstrumetnos.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
         }
 
         private void EstablecerColorFondoMenu()
@@ -122,6 +125,11 @@ namespace TacticaReparaciones.DesktopApp.Componentes.Menu
         private void btnDiagnosticos_Click(object sender, System.EventArgs e)
         {
 
+        }
+
+        private void btnTiposDeInstrumetnos_Click(object sender, System.EventArgs e)
+        {
+            OnMenuSeleccionado?.Invoke(IndiceMenu.Configuracion);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
+using TacticaReparaciones.Libs.Dtos;
 using TacticaReparaciones.Servicios.Caracteristicas.Servicios;
 
 namespace TacticaReparaciones.Servicios.Caracteristicas.Controladores
@@ -19,6 +20,28 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Controladores
         public IActionResult Get()
         {
             var result = _tipoInstrumentoService.ObtenerTiposDeInstrumento();
+
+            if (result.Type != TypeResponse.Ok)
+                return BadRequest(result.Message);
+
+            return Ok(result.Data);
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] TipoInstrumentoDto tipoInstrumentoDto)
+        {
+            var result = _tipoInstrumentoService.RegistrarTipoInstrumento(tipoInstrumentoDto);
+
+            if (result.Type != TypeResponse.Ok)
+                return BadRequest(result.Message);
+
+            return Ok(result.Data);
+        }
+
+        [HttpPatch]
+        public IActionResult Patch([FromBody] TipoInstrumentoDto tipoInstrumentoDto)
+        {
+            var result = _tipoInstrumentoService.ActualizarTipoDeInstrumento(tipoInstrumentoDto);
 
             if (result.Type != TypeResponse.Ok)
                 return BadRequest(result.Message);

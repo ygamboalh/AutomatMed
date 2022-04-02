@@ -27,9 +27,8 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
             try
             {
                 var instrumentos = _tacticaReparacionesDbContext.Instrumentos.AsQueryable()
-                                                                             .Include(x => x.Marca)
-                                                                             .Include(x => x.Modelo)
-                                                                             .Include(x => x.TipoInstrumento).ToList();
+                                                                             
+                                                                             .ToList();
                 return Response<List<InstrumentoDto>>.Ok("Ok", _mapper.Map<List<InstrumentoDto>>(instrumentos));
             }
             catch (Exception exc)
@@ -43,9 +42,8 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
             try
             {
                 var instrumentos = _tacticaReparacionesDbContext.Instrumentos.AsQueryable()
-                                                                             .Include(x => x.Marca)
-                                                                             .Include(x => x.Modelo)
-                                                                             .Include(x => x.TipoInstrumento)
+                                                                           
+                                                                             
                                                                              .Where(x => x.Activo &&
                                                                                     x.NombreEmpresa.Equals(nombreEmpresa)).AsEnumerable();
                                                                       
@@ -73,12 +71,10 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
                     FechaProximaCalibracion = instrumentoDto.FechaProximaCalibracion,
                     FechaRegistro = DateTime.Now,
                     FechaUltimaCalibracion = instrumentoDto.FechaUltimaCalibracion,
-                    GarantiaId = instrumentoDto.GarantiaId,
-                    MarcaId = instrumentoDto.MarcaId,
-                    ModeloId = instrumentoDto.ModeloId,
+
+                    
                     NumeroSerie = instrumentoDto.NumeroSerie,
-                    PeriodoCalibracionId = instrumentoDto.PeriodoCalibracionId,
-                    TipoInstrumentoId = instrumentoDto.TipoInstrumentoId,
+                
                 };
 
                 if (!instrumento.EsValido(out string mensaje))

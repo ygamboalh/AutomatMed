@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TacticaReparaciones.Libs.Dtos;
 using TacticaReparaciones.Servicios.Caracteristicas.Servicios;
 
 namespace TacticaReparaciones.Servicios.Caracteristicas.Controladores
@@ -23,6 +24,28 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Controladores
         public IActionResult Get()
         {
             var result = _marcaService.ObtenerMarcas();
+
+            if (result.Type != TypeResponse.Ok)
+                return BadRequest(result.Message);
+
+            return Ok(result.Data);
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] MarcaDto marcaDto)
+        {
+            var result = _marcaService.RegistrarMarca(marcaDto);
+
+            if (result.Type != TypeResponse.Ok)
+                return BadRequest(result.Message);
+
+            return Ok(result.Data);
+        }
+
+        [HttpPatch]
+        public IActionResult Patch([FromBody] MarcaDto marcaDto)
+        {
+            var result = _marcaService.ActualizarMarca(marcaDto);
 
             if (result.Type != TypeResponse.Ok)
                 return BadRequest(result.Message);

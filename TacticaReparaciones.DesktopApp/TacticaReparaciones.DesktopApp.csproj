@@ -12,7 +12,11 @@
     <PackageReference Include="Nagaira.Herramientas.Standard.Helpers" Version="2.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="RestSharp" Version="107.3.0" />
-    <PackageReference Include="TacticaReparaciones.Libs" Version="1.0.12" />
+    <PackageReference Include="TacticaReparaciones.Libs" Version="1.0.15" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TacticaReparaciones.Libs\TacticaReparaciones.Libs.csproj" />
   </ItemGroup>
 
   <ItemGroup>
