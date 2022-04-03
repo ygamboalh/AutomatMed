@@ -6,10 +6,7 @@ namespace TacticaReparaciones.Servicios.Infraestructura
 {
     public class TacticaReparacionesDbContext : DbContext
     {
-        public TacticaReparacionesDbContext(DbContextOptions<TacticaReparacionesDbContext> options) : base(options)
-        {
-
-        }
+        public TacticaReparacionesDbContext(DbContextOptions<TacticaReparacionesDbContext> options) : base(options) { }
 
         public DbSet<Estado> Estados { get; set; }
         public DbSet<TipoTrabajo> TiposDeTrabajo { get; set; }
@@ -20,7 +17,7 @@ namespace TacticaReparaciones.Servicios.Infraestructura
         public DbSet<Modelo> Modelos { get; set; }
         public DbSet<IngresoInstrumento> IngresosInstrumentos { get; set; }
         public DbSet<ClasificacionInstrumento> ClasificacionesInstrumentos { get; set; }
-        //public DbSet<VariablePatronMap> VariablesPatrones { get; set; }
+        public DbSet<VariableDeMedicion> VariablesDeMedicion { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,9 +31,7 @@ namespace TacticaReparaciones.Servicios.Infraestructura
             modelBuilder.ApplyConfiguration(new ModeloMap());
             modelBuilder.ApplyConfiguration(new IngresoInstrumentoMap());
             modelBuilder.ApplyConfiguration(new ClasificacionInstrumentoMap());
-
-            // modelBuilder.ApplyConfiguration(new VariablePatronMap());
-
+            modelBuilder.ApplyConfiguration(new VariableDeMedicionMap());
         }
     }
 }

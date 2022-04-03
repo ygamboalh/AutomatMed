@@ -52,6 +52,7 @@ namespace TacticaReparaciones.Servicios
             services.AddTransient<ModeloService, ModeloService>();
             services.AddTransient<MarcaService, MarcaService>();
             services.AddTransient<ClasificacionInstrumentoService, ClasificacionInstrumentoService>();
+            services.AddTransient<VariableMedicionService, VariableMedicionService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

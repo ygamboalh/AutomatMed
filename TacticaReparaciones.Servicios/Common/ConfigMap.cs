@@ -16,6 +16,7 @@ namespace TacticaReparaciones.Servicios.Common
             CreateMap<TipoInstrumento, TipoInstrumentoDto>().ReverseMap();
             CreateMap<TipoTrabajo, TipoTrabajoDto>().ReverseMap();
             CreateMap<ClasificacionInstrumento, ClasificacionInstrumentoDto>().ReverseMap();
+            CreateMap<VariableDeMedicion, VariableMedicionDto>().ReverseMap();
         }
     }
 }

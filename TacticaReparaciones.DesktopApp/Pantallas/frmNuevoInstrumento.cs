@@ -82,7 +82,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             {
                 clasificaciones.ForEach(x => x.DescripcionCompuesta = $"{x.TipoInstrumento.Descripcion} / {x.Marca.Descripcion} / {x.Modelo.Descripcion}");
                 glClasificacion.Properties.DataSource = clasificaciones;
-            }          
+            }
         }
 
         private async Task<bool> GuardarInstrumento()

@@ -13,7 +13,6 @@ namespace TacticaReparaciones.Servicios.Infraestructura.Maps
             builder.HasKey(x => x.VariableMedicionId);
             builder.Property(x => x.VariableMedicionId).HasColumnName("variable_medicion_id").HasColumnType("INT").IsRequired();
             builder.Property(x => x.Descripcion).HasColumnName("descripcion").HasColumnType("VARCHAR(200)").IsRequired();
-            builder.Property(x => x.TipoInstrumentoId).HasColumnName("tipo_instrumento_id").HasColumnType("INT").IsRequired();
             builder.Property(x => x.PrimerValorRango).HasColumnName("primer_valor_rango").HasColumnType("DECIMAL").IsRequired();
             builder.Property(x => x.SegundoValorRango).HasColumnName("segundo_valor_rango").HasColumnType("DECIMAL").IsRequired();
             builder.Property(x => x.Tolerancia).HasColumnName("tolerancia").HasColumnType("DECIMAL").IsRequired();

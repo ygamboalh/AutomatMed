@@ -22,4 +22,8 @@
     <Folder Include="out\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TacticaReparaciones.Libs\TacticaReparaciones.Libs.csproj" />
+  </ItemGroup>
+
 </Project>
