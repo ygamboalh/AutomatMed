@@ -4,6 +4,7 @@ using TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones;
 using TacticaReparaciones.DesktopApp.Pantallas.Marcas;
 using TacticaReparaciones.DesktopApp.Pantallas.Modelos;
 using TacticaReparaciones.DesktopApp.Pantallas.TiposDeInstrumento;
+using TacticaReparaciones.DesktopApp.Pantallas.VariablesDeMedicion;
 
 namespace TacticaReparaciones.DesktopApp.Pantallas
 {
@@ -55,6 +56,12 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
         {
             XtraForm nuevoInstrumento = new frmNuevoInstrumento();
             AgregarPantalla(ref nuevoInstrumento);
+        }
+
+        private void variableMedicionMenu_Click(object sender, EventArgs e)
+        {
+            XtraForm variableMedicion = new frmVariablesDeMedicion();
+            AgregarPantalla(ref variableMedicion);
         }
     }
 }

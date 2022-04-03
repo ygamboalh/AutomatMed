@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nagaira.Herramientas.Standard.Helpers.Requests;
+using System;
 using System.Threading.Tasks;
 using System.Windows;
 using TacticaReparaciones.DesktopApp.Helpers;
@@ -132,8 +133,6 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             mensaje = "Ok";
             return true;
         }
-
-
 
         private void PrepararNuevoInstrumentoParaGuardar()
         {

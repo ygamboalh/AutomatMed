@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Nagaira.Herramientas.Standard.Helpers.Enums;
+using Nagaira.Herramientas.Standard.Helpers.Requests;
+using System;
 using System.Threading.Tasks;
 using System.Windows;
-using TacticaReparaciones.DesktopApp.Enums;
 using TacticaReparaciones.DesktopApp.Helpers;
 using TacticaReparaciones.Libs.Dtos;
 
@@ -109,7 +110,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.TiposDeInstrumento
 
             try
             {
-                guardado = await HttpHelper.Patch<TipoInstrumentoDto>(NuevoTipoInstrumento, rutaApi, uri, "");
+                guardado = await HttpHelper.Put<TipoInstrumentoDto>(NuevoTipoInstrumento, rutaApi, uri, "");
             }
             catch (Exception exc)
             {

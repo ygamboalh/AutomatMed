@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>1ea80e1c-a312-4bc9-b542-05adce95bcfd</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,19 +12,15 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.23" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.23" />
     <PackageReference Include="Nagaira.Extensions.Configuration" Version="2.2.0" />
-    <PackageReference Include="Nagaira.Herramientas.Standard.Helpers" Version="1.0.0" />
+    <PackageReference Include="Nagaira.Herramientas.Standard.Helpers" Version="1.0.6" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
-    <PackageReference Include="TacticaReparaciones.Libs" Version="1.0.18" />
+    <PackageReference Include="TacticaReparaciones.Libs" Version="1.0.19" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="out\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\TacticaReparaciones.Libs\TacticaReparaciones.Libs.csproj" />
   </ItemGroup>
 
 </Project>

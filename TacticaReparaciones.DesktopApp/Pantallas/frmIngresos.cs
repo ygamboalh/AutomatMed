@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nagaira.Herramientas.Standard.Helpers.Requests;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

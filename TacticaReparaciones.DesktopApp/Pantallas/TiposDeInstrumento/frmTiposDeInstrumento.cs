@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Nagaira.Herramientas.Standard.Helpers.Enums;
+using Nagaira.Herramientas.Standard.Helpers.Requests;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using TacticaReparaciones.DesktopApp.Enums;
 using TacticaReparaciones.DesktopApp.Helpers;
 using TacticaReparaciones.Libs.Dtos;
 

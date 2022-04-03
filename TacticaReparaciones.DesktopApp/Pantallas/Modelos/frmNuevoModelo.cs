@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Nagaira.Herramientas.Standard.Helpers.Enums;
+using Nagaira.Herramientas.Standard.Helpers.Requests;
+using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
-using TacticaReparaciones.DesktopApp.Enums;
 using TacticaReparaciones.DesktopApp.Helpers;
 using TacticaReparaciones.Libs.Dtos;
 using MessageBox = System.Windows.Forms.MessageBox;
@@ -76,7 +77,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Modelos
 
             try
             {
-                guardado = await HttpHelper.Patch<ModeloDto>(NuevaModelo, rutaApi, uri, "");
+                guardado = await HttpHelper.Put<ModeloDto>(NuevaModelo, rutaApi, uri, "");
             }
             catch (Exception exc)
             {
