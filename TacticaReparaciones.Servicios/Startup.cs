@@ -25,7 +25,7 @@ namespace TacticaReparaciones.Servicios
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
             services.AddControllers().AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
@@ -39,7 +39,7 @@ namespace TacticaReparaciones.Servicios
             });
 
             services.AddAutoMapper(options => options.AddProfile(new ConfigMap()));
-                    
+
             services.AddDbContext<TacticaDbContext>(options => options.UseMySql(Configuration.GetConnectionStringFromENV("TacticaBD")).EnableDetailedErrors());
             services.AddDbContext<TacticaReparacionesDbContext>(options => options.UseMySql(Configuration.GetConnectionStringFromENV("TacticaReparacionesBD")).EnableDetailedErrors());
 

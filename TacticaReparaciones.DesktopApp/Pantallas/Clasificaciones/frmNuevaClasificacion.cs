@@ -1,11 +1,5 @@
-﻿using DevExpress.XtraEditors;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
@@ -41,7 +35,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             EstablecerColorBotonGuardar();
 
             NuevaClasificacion = new ClasificacionInstrumentoDto();
-            
+
         }
 
         public void InicializarMaestros()
@@ -105,7 +99,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
 
             try
             {
-                guardado = await HttpHelper.Patch<ClasificacionInstrumentoDto>(NuevaClasificacion, rutaApi, uri, "");
+                guardado = await HttpHelper.Put<ClasificacionInstrumentoDto>(NuevaClasificacion, rutaApi, uri, "");
             }
             catch (Exception exc)
             {

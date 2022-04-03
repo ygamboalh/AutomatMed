@@ -37,6 +37,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.marcaMenu = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuItem1 = new FontAwesome.Sharp.IconMenuItem();
             this.clasificacionInstrumentoMenu = new FontAwesome.Sharp.IconMenuItem();
+            this.instrumentosMenu = new FontAwesome.Sharp.IconMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu2)).BeginInit();
             this.tipoInstrumento.SuspendLayout();
@@ -58,7 +59,8 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.tipoInstrumentoMenu,
             this.marcaMenu,
             this.iconMenuItem1,
-            this.clasificacionInstrumentoMenu});
+            this.clasificacionInstrumentoMenu,
+            this.instrumentosMenu});
             this.tipoInstrumento.Location = new System.Drawing.Point(0, 0);
             this.tipoInstrumento.Name = "tipoInstrumento";
             this.tipoInstrumento.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -107,6 +109,16 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.clasificacionInstrumentoMenu.Text = "Clasificaciones de Instrumentos";
             this.clasificacionInstrumentoMenu.Click += new System.EventHandler(this.clasificacionInstrumentoMenu_Click);
             // 
+            // instrumentosMenu
+            // 
+            this.instrumentosMenu.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            this.instrumentosMenu.IconColor = System.Drawing.Color.Black;
+            this.instrumentosMenu.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.instrumentosMenu.Name = "instrumentosMenu";
+            this.instrumentosMenu.Size = new System.Drawing.Size(180, 24);
+            this.instrumentosMenu.Text = "Agregar Instrumento";
+            this.instrumentosMenu.Click += new System.EventHandler(this.instrumentosMenu_Click);
+            // 
             // frmConfiguracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -136,5 +148,6 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
         private FontAwesome.Sharp.IconMenuItem marcaMenu;
         private FontAwesome.Sharp.IconMenuItem iconMenuItem1;
         private FontAwesome.Sharp.IconMenuItem clasificacionInstrumentoMenu;
+        private FontAwesome.Sharp.IconMenuItem instrumentosMenu;
     }
 }

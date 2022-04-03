@@ -3,7 +3,6 @@ using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using TacticaReparaciones.Libs.Dtos;
 using TacticaReparaciones.Servicios.Caracteristicas.Entidades;
 using TacticaReparaciones.Servicios.Infraestructura;
@@ -25,7 +24,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
             {
                 var modelos = _tacticaReparacionesDbContext.Modelos.Select(x => new ModeloDto
                 {
-                   
+
                     Descripcion = x.Descripcion,
                     ModeloId = x.ModeloId
                 }).ToList();
@@ -45,7 +44,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
             {
                 Modelo modelo = new Modelo
                 {
-                    Descripcion = modeloDto.Descripcion               
+                    Descripcion = modeloDto.Descripcion
                 };
 
                 _tacticaReparacionesDbContext.Modelos.Add(modelo);

@@ -3,7 +3,6 @@ using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using TacticaReparaciones.Libs.Dtos;
 using TacticaReparaciones.Servicios.Caracteristicas.Entidades;
 using TacticaReparaciones.Servicios.Infraestructura;
@@ -25,14 +24,14 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
         {
             try
             {
-                
+
 
                 var marcas = _tacticaReparacionesDbContext.Marcas.Select(x => new MarcaDto
                 {
                     MarcaId = x.MarcaId,
                     Descripcion = x.Descripcion,
-               
-                   
+
+
                 }).ToList();
 
                 return Response<List<MarcaDto>>.Ok("Ok", marcas);

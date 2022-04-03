@@ -1,17 +1,9 @@
 ﻿using DevExpress.XtraEditors;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones;
 using TacticaReparaciones.DesktopApp.Pantallas.Marcas;
 using TacticaReparaciones.DesktopApp.Pantallas.Modelos;
 using TacticaReparaciones.DesktopApp.Pantallas.TiposDeInstrumento;
-using TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones;
 
 namespace TacticaReparaciones.DesktopApp.Pantallas
 {
@@ -57,6 +49,12 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
         {
             XtraForm frmClasificaciones = new frmClasificaciones();
             AgregarPantalla(ref frmClasificaciones);
+        }
+
+        private void instrumentosMenu_Click(object sender, EventArgs e)
+        {
+            XtraForm nuevoInstrumento = new frmNuevoInstrumento();
+            AgregarPantalla(ref nuevoInstrumento);
         }
     }
 }

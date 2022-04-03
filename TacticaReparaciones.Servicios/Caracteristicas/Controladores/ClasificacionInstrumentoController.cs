@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TacticaReparaciones.Libs.Dtos;
 using TacticaReparaciones.Servicios.Caracteristicas.Servicios;
 
@@ -11,7 +7,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Controladores
 {
     [Route("clasificaciones-instrumentos")]
     [ApiController]
-    public class ClasificacionInstrumentoController: ControllerBase
+    public class ClasificacionInstrumentoController : ControllerBase
     {
         private readonly ClasificacionInstrumentoService _clasificacionInstrumentoService;
 

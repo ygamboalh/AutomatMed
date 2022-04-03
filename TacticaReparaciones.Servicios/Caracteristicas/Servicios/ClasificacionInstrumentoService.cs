@@ -46,11 +46,11 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
 
                 var existeEstaClasificacion = _tacticaDbContext.ClasificacionesInstrumentos.Any(x => x.TipoInstrumentoId.Equals(clasificacionDto.TipoInstrumentoId) &&
                                                                                                      x.MarcaId.Equals(clasificacionDto.MarcaId) &&
-                                                                                                     x.ModeloId.Equals(clasificacionDto.ModeloId) && 
+                                                                                                     x.ModeloId.Equals(clasificacionDto.ModeloId) &&
                                                                                                      x.Activo);
                 if (existeEstaClasificacion)
                 {
-                    return Response<bool>.Error("La clasificación que intenta registrar ya existe, por favor verifique la información ingresada e intente nuevamente.", false); 
+                    return Response<bool>.Error("La clasificación que intenta registrar ya existe, por favor verifique la información ingresada e intente nuevamente.", false);
                 }
 
                 ClasificacionInstrumento clasificacionInstrumento = new ClasificacionInstrumento
@@ -77,7 +77,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
         {
             try
             {
-                var clasificacionBd = _tacticaDbContext.ClasificacionesInstrumentos.FirstOrDefault(x => x.MarcaId == clasificacionInstrumentoDto.ClasificacionId);
+                var clasificacionBd = _tacticaDbContext.ClasificacionesInstrumentos.FirstOrDefault(x => x.ClasificacionId == clasificacionInstrumentoDto.ClasificacionId);
 
                 if (clasificacionBd == null)
                 {
@@ -103,7 +103,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
         {
             try
             {
-                var clasificacionBd = _tacticaDbContext.ClasificacionesInstrumentos.FirstOrDefault(x => x.MarcaId == clasificacionInstrumentoDto.ClasificacionId);
+                var clasificacionBd = _tacticaDbContext.ClasificacionesInstrumentos.FirstOrDefault(x => x.ClasificacionId == clasificacionInstrumentoDto.ClasificacionId);
 
                 if (clasificacionBd == null)
                 {

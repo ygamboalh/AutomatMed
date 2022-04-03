@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using Nagaira.Herramientas.Standard.Helpers.Exceptions;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
@@ -27,7 +26,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
             try
             {
                 var instrumentos = _tacticaReparacionesDbContext.Instrumentos.AsQueryable()
-                                                                             
+
                                                                              .ToList();
                 return Response<List<InstrumentoDto>>.Ok("Ok", _mapper.Map<List<InstrumentoDto>>(instrumentos));
             }
@@ -42,11 +41,9 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
             try
             {
                 var instrumentos = _tacticaReparacionesDbContext.Instrumentos.AsQueryable()
-                                                                           
-                                                                             
                                                                              .Where(x => x.Activo &&
                                                                                     x.NombreEmpresa.Equals(nombreEmpresa)).AsEnumerable();
-                                                                      
+
 
                 return Response<List<InstrumentoDto>>.Ok("Ok", _mapper.Map<List<InstrumentoDto>>(instrumentos));
             }
@@ -71,10 +68,10 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
                     FechaProximaCalibracion = instrumentoDto.FechaProximaCalibracion,
                     FechaRegistro = DateTime.Now,
                     FechaUltimaCalibracion = instrumentoDto.FechaUltimaCalibracion,
-
-                    
+                    Garantia = instrumentoDto.Garantia,
+                    ClasificacionId = instrumentoDto.ClasificacionId,
                     NumeroSerie = instrumentoDto.NumeroSerie,
-                
+
                 };
 
                 if (!instrumento.EsValido(out string mensaje))

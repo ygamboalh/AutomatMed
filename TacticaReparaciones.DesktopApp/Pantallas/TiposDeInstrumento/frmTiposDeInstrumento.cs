@@ -1,11 +1,8 @@
-﻿
-using DevExpress.XtraEditors.Controls;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using TacticaReparaciones.DesktopApp.Enums;
 using TacticaReparaciones.DesktopApp.Helpers;
-using TacticaReparaciones.DesktopApp.Pantallas.TiposDeInstrumento;
 using TacticaReparaciones.Libs.Dtos;
 
 namespace TacticaReparaciones.DesktopApp.Pantallas.TiposDeInstrumento

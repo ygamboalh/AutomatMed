@@ -7,20 +7,18 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
     {
         public int InstrumentoId { get; set; }
         public string Descripcion { get; set; }
-      
-      
+        public int ClasificacionId { get; set; }
         public string NumeroSerie { get; set; }
         public DateTime? FechaCompraFabricante { get; set; }
         public DateTime? FechaCompraCliente { get; set; }
         public DateTime? FechaUltimaCalibracion { get; set; }
-   
         public DateTime? FechaProximaCalibracion { get; set; }
-     
         public string EmpresaId { get; set; }
         public string NombreEmpresa { get; set; }
         public DateTime FechaRegistro { get; set; }
         public int UsuarioRegistro { get; set; }
-        public bool Activo { get; set; }    
+        public bool Activo { get; set; }
+        public string Garantia { get; set; }
         public ICollection<IngresoInstrumento> IngresosInstrumentos { get; set; }
 
 

@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using TacticaReparaciones.Servicios.Caracteristicas.Entidades;
 
 namespace TacticaReparaciones.Servicios.Infraestructura.Maps
@@ -20,7 +16,9 @@ namespace TacticaReparaciones.Servicios.Infraestructura.Maps
             builder.Property(x => x.ModeloId).HasColumnName("modelo_id").HasColumnType("INT").IsRequired();
             builder.Property(x => x.MarcaId).HasColumnName("marca_id").HasColumnType("INT").IsRequired();
             builder.Property(x => x.PeriodoDeCalibracion).HasColumnName("periodo_calibracion").HasColumnType("INT").IsRequired();
-            builder.Property(x => x.Activo).HasColumnName("activo").HasColumnType("TINYINT").IsRequired();          
+            builder.Property(x => x.Activo).HasColumnName("activo").HasColumnType("TINYINT").IsRequired();
+
+
         }
     }
 }

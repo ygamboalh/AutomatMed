@@ -35,6 +35,11 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -55,12 +60,15 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             this.ctlEncabezadoPantalla3 = new TacticaReparaciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotal = new DevExpress.XtraEditors.LabelControl();
+            this.colInactivar = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmdInactivar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gcClasificaciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvClasificaciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmdEditar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmdInactivar)).BeginInit();
             this.SuspendLayout();
             // 
             // gcClasificaciones
@@ -74,7 +82,8 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             this.gcClasificaciones.Padding = new System.Windows.Forms.Padding(5);
             this.gcClasificaciones.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.cmdEditar,
-            this.repositoryItemButtonEdit1});
+            this.repositoryItemButtonEdit1,
+            this.cmdInactivar});
             this.gcClasificaciones.Size = new System.Drawing.Size(964, 528);
             this.gcClasificaciones.TabIndex = 32;
             this.gcClasificaciones.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -88,7 +97,8 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             this.colMarca,
             this.colModelo,
             this.colPeriodoCalibracion,
-            this.colEditar});
+            this.colEditar,
+            this.colInactivar});
             this.gvClasificaciones.GridControl = this.gcClasificaciones;
             this.gvClasificaciones.Name = "gvClasificaciones";
             this.gvClasificaciones.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
@@ -109,7 +119,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             // colTipoInstrumento
             // 
             this.colTipoInstrumento.Caption = "Tipo de Instrumento";
-            this.colTipoInstrumento.FieldName = "TipoInstrumentoId";
+            this.colTipoInstrumento.FieldName = "TipoInstrumento.Descripcion";
             this.colTipoInstrumento.MinWidth = 24;
             this.colTipoInstrumento.Name = "colTipoInstrumento";
             this.colTipoInstrumento.OptionsColumn.AllowEdit = false;
@@ -121,7 +131,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             // colMarca
             // 
             this.colMarca.Caption = "Marca";
-            this.colMarca.FieldName = "MarcaId";
+            this.colMarca.FieldName = "Marca.Descripcion";
             this.colMarca.MinWidth = 24;
             this.colMarca.Name = "colMarca";
             this.colMarca.OptionsColumn.AllowEdit = false;
@@ -133,7 +143,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             // colModelo
             // 
             this.colModelo.Caption = "Modelo";
-            this.colModelo.FieldName = "ModeloId";
+            this.colModelo.FieldName = "Modelo.Descripcion";
             this.colModelo.MinWidth = 24;
             this.colModelo.Name = "colModelo";
             this.colModelo.OptionsColumn.AllowEdit = false;
@@ -145,9 +155,10 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             // colPeriodoCalibracion
             // 
             this.colPeriodoCalibracion.Caption = "Periodo de Calibración";
-            this.colPeriodoCalibracion.FieldName = "PeriodoCalibracion";
+            this.colPeriodoCalibracion.FieldName = "PeriodoDeCalibracion";
             this.colPeriodoCalibracion.MinWidth = 25;
             this.colPeriodoCalibracion.Name = "colPeriodoCalibracion";
+            this.colPeriodoCalibracion.OptionsColumn.AllowEdit = false;
             this.colPeriodoCalibracion.Visible = true;
             this.colPeriodoCalibracion.VisibleIndex = 3;
             this.colPeriodoCalibracion.Width = 132;
@@ -173,9 +184,9 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             // repositoryItemButtonEdit1
             // 
             this.repositoryItemButtonEdit1.AutoHeight = false;
-            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
             this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
             this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -243,6 +254,24 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             this.lblTotal.Text = "0";
             this.lblTotal.Visible = false;
             // 
+            // colInactivar
+            // 
+            this.colInactivar.ColumnEdit = this.cmdInactivar;
+            this.colInactivar.MinWidth = 25;
+            this.colInactivar.Name = "colInactivar";
+            this.colInactivar.Visible = true;
+            this.colInactivar.VisibleIndex = 5;
+            this.colInactivar.Width = 94;
+            // 
+            // cmdInactivar
+            // 
+            this.cmdInactivar.AutoHeight = false;
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            this.cmdInactivar.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.cmdInactivar.Name = "cmdInactivar";
+            this.cmdInactivar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
             // frmClasificaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -261,6 +290,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cmdInactivar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -282,5 +312,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
         private System.Windows.Forms.Panel panel2;
         private DevExpress.XtraEditors.LabelControl lblTotal;
         private DevExpress.XtraGrid.Columns.GridColumn colPeriodoCalibracion;
+        private DevExpress.XtraGrid.Columns.GridColumn colInactivar;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit cmdInactivar;
     }
 }

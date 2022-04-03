@@ -14,7 +14,7 @@ namespace TacticaReparaciones.Servicios.Infraestructura.Maps
             builder.Property(x => x.TipoInstrumentoId).HasColumnName("tipo_instrumento_id").HasColumnType("INT").IsRequired();
             builder.Property(x => x.Descripcion).HasColumnName("descripcion").HasColumnType("VARCHAR(200)").IsRequired();
 
-            
+
         }
     }
 }

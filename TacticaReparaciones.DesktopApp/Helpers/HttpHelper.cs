@@ -53,6 +53,33 @@ namespace TacticaReparaciones.DesktopApp.Helpers
             }
         }
 
+        public static async Task<bool> Put<T>(T objetoParaGuardar, string rutaApi, string endpoint, string token)
+        {
+            var cliente = new RestClient(rutaApi);
+
+            try
+            {
+                var peticion = new RestRequest(endpoint, Method.Put);
+                peticion.RequestFormat = DataFormat.Json;
+                peticion.AddBody(objetoParaGuardar);
+                var respuesta = await cliente.ExecuteAsync<T>(peticion);
+
+
+                if (respuesta.StatusCode != HttpStatusCode.OK)
+                {
+                    string message = string.IsNullOrEmpty(respuesta.Content) ? respuesta.ErrorMessage : respuesta.Content;
+                    var tacticaException = new Exception(message, respuesta.ErrorException);
+                    throw tacticaException;
+                }
+
+                return true;
+            }
+            finally
+            {
+                cliente.Dispose();
+            }
+        }
+
         public static async Task<bool> Patch<T>(T objetoParaGuardar, string rutaApi, string endpoint, string token)
         {
             var cliente = new RestClient(rutaApi);

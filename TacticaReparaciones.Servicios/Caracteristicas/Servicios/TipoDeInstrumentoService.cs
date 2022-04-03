@@ -12,16 +12,16 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
     public class TipoDeInstrumentoService
     {
         private readonly TacticaReparacionesDbContext _tacticaDbContext;
-      
+
         public TipoDeInstrumentoService(TacticaReparacionesDbContext tacticaReparacionesDbContext)
         {
-            _tacticaDbContext = tacticaReparacionesDbContext;         
+            _tacticaDbContext = tacticaReparacionesDbContext;
         }
 
         public Response<List<TipoInstrumentoDto>> ObtenerTiposDeInstrumento()
         {
             try
-            {                      
+            {
                 var tiposDeInstrumentos = _tacticaDbContext.TiposDeInstrumentos.ToList();
 
                 var query = tiposDeInstrumentos.AsQueryable().Select(x => new TipoInstrumentoDto
@@ -48,7 +48,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
                 {
                     Descripcion = tipoInstrumentoDto.Descripcion,
                     Metodologia = tipoInstrumentoDto.Metodologia,
-                    Resumen = tipoInstrumentoDto.Resumen,                   
+                    Resumen = tipoInstrumentoDto.Resumen,
                 };
 
                 _tacticaDbContext.TiposDeInstrumentos.Add(tipoInstrumento);
@@ -77,7 +77,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
                 tipoInstrumentoBd.Descripcion = tipoInstrumentoDto.Descripcion;
                 tipoInstrumentoBd.Metodologia = tipoInstrumentoDto.Metodologia;
                 tipoInstrumentoBd.Resumen = tipoInstrumentoDto.Resumen;
-             
+
                 _tacticaDbContext.SaveChanges();
 
                 return Response<bool>.Ok("Ok", true);

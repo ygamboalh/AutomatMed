@@ -75,7 +75,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
                     };
 
                     _tacticaReparacionesDbContext.IngresosInstrumentos.Add(ingresoInstrumento);
-                    
+
                 }
 
                 _tacticaReparacionesDbContext.SaveChanges();

@@ -1,11 +1,4 @@
-﻿using DevExpress.XtraEditors;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
 using System.Windows;
 using TacticaReparaciones.DesktopApp.Enums;
@@ -33,10 +26,10 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.TiposDeInstrumento
             _tipoTransaccion = tipoTransaccion;
             EstablecerNombreYTituloPopupAgregarInstrumentos();
             EstablecerColorBotonGuardar();
-         
-            
+
+
             NuevoTipoInstrumento = new TipoInstrumentoDto();
-            
+
         }
 
         public void SetearValoresParaActualizar()
@@ -49,7 +42,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.TiposDeInstrumento
         private void EstablecerNombreYTituloPopupAgregarInstrumentos()
         {
             this.Text = "";
-            ctlEncabezadoPantalla1.lblTitulo.Text = _tipoTransaccion == TipoTransaccion.Insertar ?  "Agregar Tipo de Instrumento" : "Modificar Tipo de Instrumento";
+            ctlEncabezadoPantalla1.lblTitulo.Text = _tipoTransaccion == TipoTransaccion.Insertar ? "Agregar Tipo de Instrumento" : "Modificar Tipo de Instrumento";
             ctlEncabezadoPantalla1.EstablecerColoresDeFondoYLetra();
         }
         private void EstablecerColorBotonGuardar()
@@ -61,9 +54,9 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.TiposDeInstrumento
 
         private async void btnGuardarInstrumento_Click(object sender, EventArgs e)
         {
-            
+
             PrepararNuevoTipoInstrumento();
-            
+
             if (!EsValidaLaInformacionIngresadaParaNuevoTipoInstrumento(out string mensaje))
             {
                 MessageBox.Show(mensaje);
@@ -88,7 +81,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.TiposDeInstrumento
                     this.Close();
                 }
             }
-           
+
         }
 
 
@@ -136,7 +129,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.TiposDeInstrumento
 
         private bool EsValidaLaInformacionIngresadaParaNuevoTipoInstrumento(out string mensaje)
         {
-           
+
 
             if (string.IsNullOrEmpty(NuevoTipoInstrumento.Descripcion))
             {

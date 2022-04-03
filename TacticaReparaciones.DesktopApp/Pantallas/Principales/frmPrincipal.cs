@@ -32,7 +32,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Principales
                     XtraForm frmIngresos = new frmIngresos();
                     AgregarPantalla(ref frmIngresos);
                     break;
-                 case IndiceMenu.Configuracion:
+                case IndiceMenu.Configuracion:
                     XtraForm frmConfiguracion = new frmConfiguracion();
                     AgregarPantalla(ref frmConfiguracion);
                     break;

@@ -1,16 +1,14 @@
-﻿using DevExpress.XtraEditors;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 using TacticaReparaciones.DesktopApp.Enums;
 using TacticaReparaciones.DesktopApp.Helpers;
 using TacticaReparaciones.Libs.Dtos;
+using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
 {
@@ -34,6 +32,19 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             CargarTiposDeInstrumentos();
 
             cmdEditar.Click += OnSeleccionaMarcaParaModificar;
+            cmdInactivar.Click += OnSeleccionarClasificacionParaInactivar;
+        }
+
+        private async void OnSeleccionarClasificacionParaInactivar(object sender, EventArgs e)
+        {
+            var clasificacionInstrumento = gvClasificaciones.GetFocusedRow() as ClasificacionInstrumentoDto;
+            if ((await InactivarClasificacionInstrumento(clasificacionInstrumento)))
+            {
+                MessageBox.Show("¡La inactivación de la Clasificación se ha realizado exitosamente!", "Tactica Reparaciones", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Information);
+                clasificaciones = clasificaciones.Where(x => x.ClasificacionId != clasificacionInstrumento.ClasificacionId).ToList();
+                gcClasificaciones.DataSource = clasificaciones;
+                gcClasificaciones.RefreshDataSource();
+            }
         }
 
         private void OnSeleccionaMarcaParaModificar(object sender, EventArgs e)
@@ -44,9 +55,27 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             frmNuevaClasificacion.modelos = modelos;
             frmNuevaClasificacion.marcas = marcas;
             frmNuevaClasificacion.tiposDeInstrumento = tiposDeInstrumento;
+            frmNuevaClasificacion.InicializarMaestros();
             frmNuevaClasificacion.SetearValoresParaActualizar();
             frmNuevaClasificacion.OnClasificacionInstrumentoModificada += OnClasificacionInstrumentoModificada;
             frmNuevaClasificacion.Show();
+        }
+
+        private async Task<bool> InactivarClasificacionInstrumento(ClasificacionInstrumentoDto clasificacionInstrumentoDto)
+        {
+            bool guardado = false;
+            string uri = "/clasificaciones-instrumentos";
+
+            try
+            {
+                guardado = await HttpHelper.Patch<ClasificacionInstrumentoDto>(clasificacionInstrumentoDto, rutaApi, uri, "");
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message, "Tactica Reparaciones", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Error);
+            }
+
+            return guardado;
         }
 
         private void OnClasificacionInstrumentoModificada(ClasificacionInstrumentoDto clasificacionInstrumentoDto)
@@ -54,10 +83,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             clasificaciones = clasificaciones.Where(x => x.ClasificacionId != clasificacionInstrumentoDto.ClasificacionId).ToList();
             clasificaciones.Add(clasificacionInstrumentoDto);
 
-            gcClasificaciones.DataSource = clasificaciones;
-            gcClasificaciones.RefreshDataSource();
-
-            SetearTotales();
+            CargarClasificaciones();
         }
 
         private void SetearTotales()
@@ -85,6 +111,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             clasificaciones = clasificacionesRespuesta;
 
             gcClasificaciones.DataSource = clasificaciones;
+            gcClasificaciones.RefreshDataSource();
 
             SetearTotales();
         }
@@ -96,8 +123,6 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             var marcasRespuesta = await HttpHelper.Get<MarcaDto>(rutaApi, uri, "");
             marcas = marcasRespuesta;
 
-           
-
             SetearTotales();
         }
 
@@ -108,8 +133,6 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             var ModelosRespuesta = await HttpHelper.Get<ModeloDto>(rutaApi, uri, "");
             modelos = ModelosRespuesta;
 
-         
-
             SetearTotales();
         }
 
@@ -119,17 +142,12 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             var tiposDeInstrumentos = await HttpHelper.Get<TipoInstrumentoDto>(rutaApi, uri, "");
             tiposDeInstrumento = tiposDeInstrumentos;
 
-        
             SetearTotales();
         }
 
         private void OnClasificacionInstrumentoAgregada(ClasificacionInstrumentoDto clasificacionInstrumentoDto)
         {
-            clasificaciones.Add(clasificacionInstrumentoDto);
-            gcClasificaciones.DataSource = clasificacionInstrumentoDto;
-            gcClasificaciones.RefreshDataSource();
-
-            SetearTotales();
+            CargarClasificaciones();
         }
 
         private void btnNuevaClasificacion_Click(object sender, EventArgs e)

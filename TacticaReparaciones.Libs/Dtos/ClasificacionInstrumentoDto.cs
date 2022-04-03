@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TacticaReparaciones.Libs.Dtos
+﻿namespace TacticaReparaciones.Libs.Dtos
 {
     public class ClasificacionInstrumentoDto
     {
@@ -12,8 +8,8 @@ namespace TacticaReparaciones.Libs.Dtos
         public int ModeloId { get; set; }
         public int PeriodoDeCalibracion { get; set; }
         public bool Activo { get; set; }
-        public ICollection<TipoInstrumentoDto>TipoInstrumento { get; set; }
-        public ICollection<ModeloDto> Modelo { get; set; }
-        public ICollection<MarcaDto> Marca { get; set; }
+        public TipoInstrumentoDto TipoInstrumento { get; set; }
+        public ModeloDto Modelo { get; set; }
+        public MarcaDto Marca { get; set; }
     }
 }
