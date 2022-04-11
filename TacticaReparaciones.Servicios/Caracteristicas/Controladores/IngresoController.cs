@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
-using TacticaReparaciones.Libs.Dtos;
-using TacticaReparaciones.Servicios.Caracteristicas.Servicios;
+using AutomatMediciones.Libs.Dtos;
+using AutomatMediciones.Servicios.Caracteristicas.Servicios;
 
-namespace TacticaReparaciones.Servicios.Caracteristicas.Controladores
+namespace AutomatMediciones.Servicios.Caracteristicas.Controladores
 {
     [Route("ingresos")]
     [ApiController]
@@ -16,10 +16,21 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Controladores
             _ingresoService = ingresoService;
         }
 
+        [HttpGet]
+        public IActionResult GetIngresosQueNoEstanCerrados()
+        {
+            var result = _ingresoService.ObtenerIngresos();
+
+            if (result.Type != TypeResponse.Ok)
+                return BadRequest(result.Message);
+
+            return Ok(result.Data);
+        }
+
         [HttpGet, Route("por-estado/{estadoId}")]
         public IActionResult GetPorEstado([FromRoute] int estadoId)
         {
-            var result = _ingresoService.ObtenerIngresosPorEstado(estadoId);
+            var result = _ingresoService.ObtenerIngresos(estadoId);
 
             if (result.Type != TypeResponse.Ok)
                 return BadRequest(result.Message);

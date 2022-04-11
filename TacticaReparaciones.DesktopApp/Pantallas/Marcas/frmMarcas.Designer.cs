@@ -1,5 +1,5 @@
 ﻿
-namespace TacticaReparaciones.DesktopApp.Pantallas.Marcas
+namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
 {
     partial class frmMarcas
     {
@@ -51,7 +51,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Marcas
             this.cmdEditar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ctlEncabezadoPantalla3 = new TacticaReparaciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
+            this.ctlEncabezadoPantalla3 = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcMarcas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMarcas)).BeginInit();
@@ -211,6 +211,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Marcas
             this.Controls.Add(this.gcMarcas);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.ctlEncabezadoPantalla3);
+            this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMarcas";
             this.Text = "Marcas";

@@ -1,5 +1,5 @@
 ﻿
-namespace TacticaReparaciones.DesktopApp.Pantallas.Principales
+namespace AutomatMediciones.DesktopApp.Pantallas.Principales
 {
     partial class frmPrincipal
     {
@@ -30,7 +30,8 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Principales
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.cmpMenu1 = new TacticaReparaciones.DesktopApp.Componentes.Menu.cmpMenu();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
+            this.cmpMenu1 = new AutomatMediciones.DesktopApp.Componentes.Menu.cmpMenu();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
@@ -61,6 +62,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Principales
             this.ClientSize = new System.Drawing.Size(1204, 527);
             this.Controls.Add(this.cmpMenu1);
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.None;
+            this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("frmPrincipal.IconOptions.Icon")));
             this.IsMdiContainer = true;
             this.Name = "frmPrincipal";
             this.Padding = new System.Windows.Forms.Padding(3);

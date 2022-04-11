@@ -1,5 +1,5 @@
 ﻿
-namespace TacticaReparaciones.DesktopApp.Pantallas.VariablesDeMedicion
+namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
 {
     partial class frmVariablesDeMedicion
     {
@@ -42,7 +42,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.VariablesDeMedicion
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnAgregarNuevInstrumento = new FontAwesome.Sharp.IconButton();
-            this.ctlEncabezadoPantalla3 = new TacticaReparaciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
+            this.ctlEncabezadoPantalla3 = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             this.colDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotal = new DevExpress.XtraEditors.LabelControl();
@@ -253,6 +253,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.ctlEncabezadoPantalla3);
             this.Controls.Add(this.panel2);
+            this.IconOptions.ShowIcon = false;
             this.Name = "frmVariablesDeMedicion";
             this.Text = "Variables de Medición";
             this.panel1.ResumeLayout(false);

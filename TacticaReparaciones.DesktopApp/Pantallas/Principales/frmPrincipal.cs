@@ -1,10 +1,11 @@
 ﻿using DevExpress.XtraEditors;
 using System.Drawing;
 using System.Windows.Forms;
-using TacticaReparaciones.DesktopApp.Enums;
-using TacticaReparaciones.DesktopApp.Helpers;
+using AutomatMediciones.DesktopApp.Enums;
+using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos;
 
-namespace TacticaReparaciones.DesktopApp.Pantallas.Principales
+namespace AutomatMediciones.DesktopApp.Pantallas.Principales
 {
     public partial class frmPrincipal : DevExpress.XtraEditors.XtraForm
     {
@@ -31,6 +32,10 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Principales
                 case IndiceMenu.Ingresos:
                     XtraForm frmIngresos = new frmIngresos();
                     AgregarPantalla(ref frmIngresos);
+                    break;
+                case IndiceMenu.Diagnosticos:
+                    XtraForm frmDiagnosticos = new frmDiagnosticos();
+                    AgregarPantalla(ref frmDiagnosticos);
                     break;
                 case IndiceMenu.Configuracion:
                     XtraForm frmConfiguracion = new frmConfiguracion();

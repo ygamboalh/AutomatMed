@@ -1,10 +1,10 @@
 ﻿using Nagaira.Herramientas.Standard.Helpers.Requests;
 using System;
 using System.Linq;
-using TacticaReparaciones.DesktopApp.Helpers;
-using TacticaReparaciones.Libs.Dtos;
+using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.Libs.Dtos;
 
-namespace TacticaReparaciones.DesktopApp.Pantallas
+namespace AutomatMediciones.DesktopApp.Pantallas
 {
     public partial class frmEmpresas : DevExpress.XtraEditors.XtraForm
     {

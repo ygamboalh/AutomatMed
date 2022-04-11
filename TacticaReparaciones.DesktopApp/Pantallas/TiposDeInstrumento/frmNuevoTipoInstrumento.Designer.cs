@@ -1,5 +1,5 @@
 ﻿
-namespace TacticaReparaciones.DesktopApp.Pantallas.TiposDeInstrumento
+namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
 {
     partial class frmNuevoTipoInstrumento
     {
@@ -29,7 +29,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.TiposDeInstrumento
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctlEncabezadoPantalla1 = new TacticaReparaciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
+            this.ctlEncabezadoPantalla1 = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.txtDescripcion = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();

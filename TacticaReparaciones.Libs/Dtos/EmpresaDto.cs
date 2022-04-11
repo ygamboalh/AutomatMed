@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TacticaReparaciones.Libs.Dtos
+namespace AutomatMediciones.Libs.Dtos
 {
     public class EmpresaDto
     {

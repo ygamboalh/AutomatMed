@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TacticaReparaciones.Servicios.Caracteristicas.Entidades;
+using AutomatMediciones.Servicios.Caracteristicas.Entidades;
 
-namespace TacticaReparaciones.Servicios.Infraestructura.Maps
+namespace AutomatMediciones.Servicios.Infraestructura.Maps
 {
     public class VariableDeMedicionMap : IEntityTypeConfiguration<VariableDeMedicion>
     {
@@ -16,6 +16,8 @@ namespace TacticaReparaciones.Servicios.Infraestructura.Maps
             builder.Property(x => x.PrimerValorRango).HasColumnName("primer_valor_rango").HasColumnType("DECIMAL").IsRequired();
             builder.Property(x => x.SegundoValorRango).HasColumnName("segundo_valor_rango").HasColumnType("DECIMAL").IsRequired();
             builder.Property(x => x.Tolerancia).HasColumnName("tolerancia").HasColumnType("DECIMAL").IsRequired();
+
+            builder.HasMany(x => x.TiposDeInstrumentoVariables).WithOne(x => x.VariableDeMedicion).HasForeignKey(x => x.VariableMedicionId);
         }
     }
 }

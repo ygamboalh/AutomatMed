@@ -4,13 +4,20 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+    <SignAssembly>false</SignAssembly>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <Company>Automat Medición</Company>
+    <Product>Automat DesktopApp</Product>
+    <Authors>Automat Medición</Authors>
+    <Version>1.0.1</Version>
+    <Copyright>Automat Medición 2022</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutomatMediciones.Libs" Version="2.1.1" />
     <PackageReference Include="devexpress.win.design" Version="21.2.5" />
     <PackageReference Include="FontAwesome.Sharp" Version="5.15.4" />
     <PackageReference Include="Nagaira.Herramientas.Standard.Helpers" Version="1.0.6" />
-    <PackageReference Include="TacticaReparaciones.Libs" Version="1.0.19" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +33,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="out\" />
   </ItemGroup>
 
 </Project>

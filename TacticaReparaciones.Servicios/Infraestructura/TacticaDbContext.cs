@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TacticaReparaciones.Servicios.Caracteristicas.Entidades;
-using TacticaReparaciones.Servicios.Infraestructura.Maps;
+using AutomatMediciones.Servicios.Caracteristicas.Entidades;
+using AutomatMediciones.Servicios.Infraestructura.Maps;
 
-namespace TacticaReparaciones.Servicios.Infraestructura
+namespace AutomatMediciones.Servicios.Infraestructura
 {
     public class TacticaDbContext : DbContext
     {

@@ -15,22 +15,22 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "FS_PORT": "3306",
-        "FS_TACTICA_REPARACIONES_DB": "tactica_reparaciones_bd",
-        "FS_TACTICA_DB": "basedemo",
+        "FS_TACTICA": "basedemo",
+        "FS_AUTOMAT_MEDICIONES_DB": "automat_mediciones_bd",
         "FS_HOST": "127.0.0.1",
         "FS_PASSWORD": "laboratorio",
         "ASPNETCORE_ENVIRONMENT": "Development",
         "FS_USUARIO": "laboratorio"
       }
     },
-    "TacticaReparaciones.Servicios": {
+    "AutomatMediciones.Servicios": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
         "FS_PORT": "3306",
-        "FS_TACTICA_REPARACIONES_DB": "basedemo",
-        "FS_TACTICA_DB": "tactica_reparaciones_bd",
+        "FS_TACTICA": "basedemo",
+        "FS_AUTOMAT_MEDICIONES_DB": "automat_mediciones_bd",
         "FS_HOST": "127.0.0.1",
         "FS_PASSWORD": "laboratorio",
         "ASPNETCORE_ENVIRONMENT": "Development",

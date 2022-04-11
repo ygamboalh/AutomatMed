@@ -1,5 +1,5 @@
 ﻿
-namespace TacticaReparaciones.DesktopApp.Pantallas
+namespace AutomatMediciones.DesktopApp.Pantallas
 {
     partial class frmNuevoInstrumento
     {
@@ -29,23 +29,18 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctlEncabezadoAgregarInstrumento = new TacticaReparaciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
+            this.ctlEncabezadoAgregarInstrumento = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
             this.txtEmpresaInstrumento = new DevExpress.XtraEditors.TextEdit();
             this.btnAbrirPopupEmpresaPorInstrumento = new FontAwesome.Sharp.IconButton();
             this.txtNumeroSerie = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl19 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
-            this.glClasificacion = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.glTipoInstrumento = new DevExpress.XtraEditors.GridLookUpEdit();
             this.glTipoInstrumentoView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colClasificacionId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTipoInstrumento = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMarca = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colModelo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDescripcionCompuesta = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTipoInstrumentoId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDescripcionTipoInstrumento = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
@@ -53,15 +48,27 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.txtDescripcionInstrumento = new DevExpress.XtraEditors.TextEdit();
             this.dateFechaCompraFabricante = new System.Windows.Forms.DateTimePicker();
             this.dateFechaCompraCliente = new System.Windows.Forms.DateTimePicker();
-            this.dateUltimaCalibracion = new System.Windows.Forms.DateTimePicker();
-            this.dateProximaCalibracion = new System.Windows.Forms.DateTimePicker();
             this.txtGarantia = new DevExpress.XtraEditors.TextEdit();
+            this.glMarcas = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colMarcaId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDescripcionMarca = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.glModelos = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.gridLookUpEdit2View = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colModeloId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDescripcionModelo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpresaInstrumento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroSerie.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glClasificacion.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumentoView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcionInstrumento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGarantia.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glMarcas.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glModelos.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit2View)).BeginInit();
             this.SuspendLayout();
             // 
             // ctlEncabezadoAgregarInstrumento
@@ -70,29 +77,31 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.ctlEncabezadoAgregarInstrumento.Location = new System.Drawing.Point(0, 0);
             this.ctlEncabezadoAgregarInstrumento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ctlEncabezadoAgregarInstrumento.Name = "ctlEncabezadoAgregarInstrumento";
-            this.ctlEncabezadoAgregarInstrumento.Size = new System.Drawing.Size(756, 43);
+            this.ctlEncabezadoAgregarInstrumento.Size = new System.Drawing.Size(648, 35);
             this.ctlEncabezadoAgregarInstrumento.TabIndex = 10;
             // 
             // labelControl20
             // 
             this.labelControl20.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl20.Appearance.Options.UseFont = true;
-            this.labelControl20.Location = new System.Drawing.Point(30, 129);
+            this.labelControl20.Location = new System.Drawing.Point(26, 105);
+            this.labelControl20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl20.Name = "labelControl20";
-            this.labelControl20.Size = new System.Drawing.Size(126, 17);
+            this.labelControl20.Size = new System.Drawing.Size(99, 12);
             this.labelControl20.TabIndex = 116;
-            this.labelControl20.Text = "Nombre de Empresa:";
+            this.labelControl20.Text = "Nombre de Empresa *:";
             // 
             // txtEmpresaInstrumento
             // 
             this.txtEmpresaInstrumento.EditValue = "";
-            this.txtEmpresaInstrumento.Location = new System.Drawing.Point(30, 149);
+            this.txtEmpresaInstrumento.Location = new System.Drawing.Point(26, 121);
+            this.txtEmpresaInstrumento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEmpresaInstrumento.Name = "txtEmpresaInstrumento";
             this.txtEmpresaInstrumento.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtEmpresaInstrumento.Properties.Appearance.Options.UseFont = true;
             this.txtEmpresaInstrumento.Properties.ReadOnly = true;
             this.txtEmpresaInstrumento.Properties.UseReadOnlyAppearance = false;
-            this.txtEmpresaInstrumento.Size = new System.Drawing.Size(644, 30);
+            this.txtEmpresaInstrumento.Size = new System.Drawing.Size(552, 26);
             this.txtEmpresaInstrumento.TabIndex = 115;
             // 
             // btnAbrirPopupEmpresaPorInstrumento
@@ -103,9 +112,10 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.btnAbrirPopupEmpresaPorInstrumento.IconColor = System.Drawing.Color.Black;
             this.btnAbrirPopupEmpresaPorInstrumento.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAbrirPopupEmpresaPorInstrumento.IconSize = 30;
-            this.btnAbrirPopupEmpresaPorInstrumento.Location = new System.Drawing.Point(700, 152);
+            this.btnAbrirPopupEmpresaPorInstrumento.Location = new System.Drawing.Point(600, 124);
+            this.btnAbrirPopupEmpresaPorInstrumento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAbrirPopupEmpresaPorInstrumento.Name = "btnAbrirPopupEmpresaPorInstrumento";
-            this.btnAbrirPopupEmpresaPorInstrumento.Size = new System.Drawing.Size(33, 32);
+            this.btnAbrirPopupEmpresaPorInstrumento.Size = new System.Drawing.Size(28, 26);
             this.btnAbrirPopupEmpresaPorInstrumento.TabIndex = 114;
             this.btnAbrirPopupEmpresaPorInstrumento.UseVisualStyleBackColor = true;
             this.btnAbrirPopupEmpresaPorInstrumento.Click += new System.EventHandler(this.btnAbrirPopupEmpresaPorInstrumento_Click);
@@ -113,41 +123,23 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             // txtNumeroSerie
             // 
             this.txtNumeroSerie.EditValue = "";
-            this.txtNumeroSerie.Location = new System.Drawing.Point(30, 288);
+            this.txtNumeroSerie.Location = new System.Drawing.Point(25, 237);
+            this.txtNumeroSerie.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNumeroSerie.Name = "txtNumeroSerie";
             this.txtNumeroSerie.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtNumeroSerie.Properties.Appearance.Options.UseFont = true;
             this.txtNumeroSerie.Properties.UseReadOnlyAppearance = false;
-            this.txtNumeroSerie.Size = new System.Drawing.Size(644, 30);
+            this.txtNumeroSerie.Size = new System.Drawing.Size(552, 26);
             this.txtNumeroSerie.TabIndex = 109;
-            // 
-            // labelControl19
-            // 
-            this.labelControl19.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelControl19.Appearance.Options.UseFont = true;
-            this.labelControl19.Location = new System.Drawing.Point(367, 412);
-            this.labelControl19.Name = "labelControl19";
-            this.labelControl19.Size = new System.Drawing.Size(119, 17);
-            this.labelControl19.TabIndex = 106;
-            this.labelControl19.Text = "Próxima Calibración:";
-            // 
-            // labelControl17
-            // 
-            this.labelControl17.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelControl17.Appearance.Options.UseFont = true;
-            this.labelControl17.Location = new System.Drawing.Point(30, 412);
-            this.labelControl17.Name = "labelControl17";
-            this.labelControl17.Size = new System.Drawing.Size(109, 17);
-            this.labelControl17.TabIndex = 102;
-            this.labelControl17.Text = "Última Calibración:";
             // 
             // labelControl14
             // 
             this.labelControl14.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl14.Appearance.Options.UseFont = true;
-            this.labelControl14.Location = new System.Drawing.Point(367, 342);
+            this.labelControl14.Location = new System.Drawing.Point(313, 286);
+            this.labelControl14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(171, 17);
+            this.labelControl14.Size = new System.Drawing.Size(128, 12);
             this.labelControl14.TabIndex = 101;
             this.labelControl14.Text = "Fecha de Compra del Cliente:";
             // 
@@ -155,9 +147,10 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             // 
             this.labelControl15.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl15.Appearance.Options.UseFont = true;
-            this.labelControl15.Location = new System.Drawing.Point(30, 342);
+            this.labelControl15.Location = new System.Drawing.Point(24, 286);
+            this.labelControl15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(184, 17);
+            this.labelControl15.Size = new System.Drawing.Size(138, 12);
             this.labelControl15.TabIndex = 100;
             this.labelControl15.Text = "Fecha de Compra al Fabricante:";
             // 
@@ -165,110 +158,85 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             // 
             this.labelControl9.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl9.Appearance.Options.UseFont = true;
-            this.labelControl9.Location = new System.Drawing.Point(30, 265);
+            this.labelControl9.Location = new System.Drawing.Point(25, 218);
+            this.labelControl9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(103, 17);
+            this.labelControl9.Size = new System.Drawing.Size(75, 12);
             this.labelControl9.TabIndex = 99;
             this.labelControl9.Text = "Número de Serie:";
             // 
-            // glClasificacion
+            // glTipoInstrumento
             // 
-            this.glClasificacion.EditValue = "";
-            this.glClasificacion.Location = new System.Drawing.Point(30, 217);
-            this.glClasificacion.Name = "glClasificacion";
-            this.glClasificacion.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.glClasificacion.Properties.Appearance.Options.UseFont = true;
-            this.glClasificacion.Properties.NullText = "";
-            this.glClasificacion.Properties.PopupView = this.glTipoInstrumentoView;
-            this.glClasificacion.Size = new System.Drawing.Size(644, 26);
-            this.glClasificacion.TabIndex = 93;
-            this.glClasificacion.EditValueChanged += new System.EventHandler(this.glClasificacion_EditValueChanged);
+            this.glTipoInstrumento.EditValue = "";
+            this.glTipoInstrumento.Location = new System.Drawing.Point(26, 176);
+            this.glTipoInstrumento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.glTipoInstrumento.Name = "glTipoInstrumento";
+            this.glTipoInstrumento.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.glTipoInstrumento.Properties.Appearance.Options.UseFont = true;
+            this.glTipoInstrumento.Properties.NullText = "";
+            this.glTipoInstrumento.Properties.PopupView = this.glTipoInstrumentoView;
+            this.glTipoInstrumento.Size = new System.Drawing.Size(175, 22);
+            this.glTipoInstrumento.TabIndex = 93;
+            this.glTipoInstrumento.EditValueChanged += new System.EventHandler(this.glTipoInstrumento_EditValueChanged);
             // 
             // glTipoInstrumentoView
             // 
             this.glTipoInstrumentoView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colClasificacionId,
-            this.colTipoInstrumento,
-            this.colMarca,
-            this.colModelo,
-            this.colDescripcionCompuesta});
+            this.colTipoInstrumentoId,
+            this.colDescripcionTipoInstrumento});
+            this.glTipoInstrumentoView.DetailHeight = 284;
             this.glTipoInstrumentoView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.glTipoInstrumentoView.Name = "glTipoInstrumentoView";
             this.glTipoInstrumentoView.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.glTipoInstrumentoView.OptionsView.ShowGroupPanel = false;
             this.glTipoInstrumentoView.OptionsView.ShowIndicator = false;
             // 
-            // colClasificacionId
+            // colTipoInstrumentoId
             // 
-            this.colClasificacionId.Caption = "Id";
-            this.colClasificacionId.FieldName = "TipoInstrumentoId";
-            this.colClasificacionId.Name = "colClasificacionId";
-            this.colClasificacionId.OptionsColumn.AllowEdit = false;
-            this.colClasificacionId.OptionsColumn.ReadOnly = true;
+            this.colTipoInstrumentoId.Caption = "Id";
+            this.colTipoInstrumentoId.FieldName = "TipoInstrumentoId";
+            this.colTipoInstrumentoId.Name = "colTipoInstrumentoId";
+            this.colTipoInstrumentoId.Width = 64;
             // 
-            // colTipoInstrumento
+            // colDescripcionTipoInstrumento
             // 
-            this.colTipoInstrumento.Caption = "Tipo de Instrumento";
-            this.colTipoInstrumento.FieldName = "TipoInstrumento.Descripcion";
-            this.colTipoInstrumento.Name = "colTipoInstrumento";
-            this.colTipoInstrumento.OptionsColumn.AllowEdit = false;
-            this.colTipoInstrumento.OptionsColumn.ReadOnly = true;
-            this.colTipoInstrumento.Visible = true;
-            this.colTipoInstrumento.VisibleIndex = 0;
-            // 
-            // colMarca
-            // 
-            this.colMarca.Caption = "Marca";
-            this.colMarca.FieldName = "Marca.Descripcion";
-            this.colMarca.Name = "colMarca";
-            this.colMarca.OptionsColumn.AllowEdit = false;
-            this.colMarca.OptionsColumn.ReadOnly = true;
-            this.colMarca.Visible = true;
-            this.colMarca.VisibleIndex = 1;
-            // 
-            // colModelo
-            // 
-            this.colModelo.Caption = "Modelo";
-            this.colModelo.FieldName = "Modelo.Descripcion";
-            this.colModelo.Name = "colModelo";
-            this.colModelo.OptionsColumn.AllowEdit = false;
-            this.colModelo.OptionsColumn.ReadOnly = true;
-            this.colModelo.Visible = true;
-            this.colModelo.VisibleIndex = 2;
-            // 
-            // colDescripcionCompuesta
-            // 
-            this.colDescripcionCompuesta.Caption = "Descripcion Compuesta";
-            this.colDescripcionCompuesta.FieldName = "DescripcionCompuesta";
-            this.colDescripcionCompuesta.Name = "colDescripcionCompuesta";
+            this.colDescripcionTipoInstrumento.Caption = "Descripción";
+            this.colDescripcionTipoInstrumento.FieldName = "Descripcion";
+            this.colDescripcionTipoInstrumento.Name = "colDescripcionTipoInstrumento";
+            this.colDescripcionTipoInstrumento.Visible = true;
+            this.colDescripcionTipoInstrumento.VisibleIndex = 0;
+            this.colDescripcionTipoInstrumento.Width = 64;
             // 
             // labelControl10
             // 
             this.labelControl10.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Location = new System.Drawing.Point(30, 194);
+            this.labelControl10.Location = new System.Drawing.Point(26, 158);
+            this.labelControl10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(74, 17);
+            this.labelControl10.Size = new System.Drawing.Size(99, 12);
             this.labelControl10.TabIndex = 92;
-            this.labelControl10.Text = "Clasificación:";
+            this.labelControl10.Text = "Tipo de Instrumento *:";
             // 
             // labelControl11
             // 
             this.labelControl11.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl11.Appearance.Options.UseFont = true;
-            this.labelControl11.Location = new System.Drawing.Point(30, 61);
+            this.labelControl11.Location = new System.Drawing.Point(26, 50);
+            this.labelControl11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(160, 17);
+            this.labelControl11.Size = new System.Drawing.Size(131, 12);
             this.labelControl11.TabIndex = 91;
-            this.labelControl11.Text = "Descripción de Instrumento";
+            this.labelControl11.Text = "Descripción de Instrumento *:";
             // 
             // labelControl18
             // 
             this.labelControl18.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl18.Appearance.Options.UseFont = true;
-            this.labelControl18.Location = new System.Drawing.Point(30, 478);
+            this.labelControl18.Location = new System.Drawing.Point(24, 344);
+            this.labelControl18.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl18.Name = "labelControl18";
-            this.labelControl18.Size = new System.Drawing.Size(52, 17);
+            this.labelControl18.Size = new System.Drawing.Size(38, 12);
             this.labelControl18.TabIndex = 107;
             this.labelControl18.Text = "Garantía:";
             // 
@@ -282,9 +250,10 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.btnGuardarInstrumento.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardarInstrumento.IconSize = 30;
             this.btnGuardarInstrumento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardarInstrumento.Location = new System.Drawing.Point(453, 563);
+            this.btnGuardarInstrumento.Location = new System.Drawing.Point(389, 415);
+            this.btnGuardarInstrumento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGuardarInstrumento.Name = "btnGuardarInstrumento";
-            this.btnGuardarInstrumento.Size = new System.Drawing.Size(221, 52);
+            this.btnGuardarInstrumento.Size = new System.Drawing.Size(189, 42);
             this.btnGuardarInstrumento.TabIndex = 105;
             this.btnGuardarInstrumento.Text = "Guardar Instrumento";
             this.btnGuardarInstrumento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -294,73 +263,167 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             // txtDescripcionInstrumento
             // 
             this.txtDescripcionInstrumento.EditValue = "";
-            this.txtDescripcionInstrumento.Location = new System.Drawing.Point(30, 84);
+            this.txtDescripcionInstrumento.Location = new System.Drawing.Point(26, 68);
+            this.txtDescripcionInstrumento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDescripcionInstrumento.Name = "txtDescripcionInstrumento";
             this.txtDescripcionInstrumento.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtDescripcionInstrumento.Properties.Appearance.Options.UseFont = true;
             this.txtDescripcionInstrumento.Properties.UseReadOnlyAppearance = false;
-            this.txtDescripcionInstrumento.Size = new System.Drawing.Size(644, 30);
+            this.txtDescripcionInstrumento.Size = new System.Drawing.Size(552, 26);
             this.txtDescripcionInstrumento.TabIndex = 94;
             // 
             // dateFechaCompraFabricante
             // 
-            this.dateFechaCompraFabricante.Location = new System.Drawing.Point(30, 365);
+            this.dateFechaCompraFabricante.Location = new System.Drawing.Point(24, 305);
+            this.dateFechaCompraFabricante.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateFechaCompraFabricante.Name = "dateFechaCompraFabricante";
-            this.dateFechaCompraFabricante.Size = new System.Drawing.Size(320, 23);
+            this.dateFechaCompraFabricante.Size = new System.Drawing.Size(275, 21);
             this.dateFechaCompraFabricante.TabIndex = 117;
             // 
             // dateFechaCompraCliente
             // 
-            this.dateFechaCompraCliente.Location = new System.Drawing.Point(367, 365);
+            this.dateFechaCompraCliente.Location = new System.Drawing.Point(313, 305);
+            this.dateFechaCompraCliente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateFechaCompraCliente.Name = "dateFechaCompraCliente";
-            this.dateFechaCompraCliente.Size = new System.Drawing.Size(307, 23);
+            this.dateFechaCompraCliente.Size = new System.Drawing.Size(264, 21);
             this.dateFechaCompraCliente.TabIndex = 118;
-            // 
-            // dateUltimaCalibracion
-            // 
-            this.dateUltimaCalibracion.Location = new System.Drawing.Point(30, 435);
-            this.dateUltimaCalibracion.Name = "dateUltimaCalibracion";
-            this.dateUltimaCalibracion.Size = new System.Drawing.Size(320, 23);
-            this.dateUltimaCalibracion.TabIndex = 119;
-            // 
-            // dateProximaCalibracion
-            // 
-            this.dateProximaCalibracion.Location = new System.Drawing.Point(367, 435);
-            this.dateProximaCalibracion.Name = "dateProximaCalibracion";
-            this.dateProximaCalibracion.Size = new System.Drawing.Size(307, 23);
-            this.dateProximaCalibracion.TabIndex = 120;
             // 
             // txtGarantia
             // 
             this.txtGarantia.EditValue = "";
-            this.txtGarantia.Location = new System.Drawing.Point(30, 501);
+            this.txtGarantia.Location = new System.Drawing.Point(24, 363);
+            this.txtGarantia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtGarantia.Name = "txtGarantia";
             this.txtGarantia.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtGarantia.Properties.Appearance.Options.UseFont = true;
             this.txtGarantia.Properties.UseReadOnlyAppearance = false;
-            this.txtGarantia.Size = new System.Drawing.Size(644, 30);
+            this.txtGarantia.Size = new System.Drawing.Size(552, 26);
             this.txtGarantia.TabIndex = 121;
+            // 
+            // glMarcas
+            // 
+            this.glMarcas.EditValue = "";
+            this.glMarcas.Location = new System.Drawing.Point(218, 176);
+            this.glMarcas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.glMarcas.Name = "glMarcas";
+            this.glMarcas.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.glMarcas.Properties.Appearance.Options.UseFont = true;
+            this.glMarcas.Properties.NullText = "";
+            this.glMarcas.Properties.PopupView = this.gridLookUpEdit1View;
+            this.glMarcas.Size = new System.Drawing.Size(171, 22);
+            this.glMarcas.TabIndex = 123;
+            this.glMarcas.EditValueChanged += new System.EventHandler(this.glMarcas_EditValueChanged);
+            // 
+            // gridLookUpEdit1View
+            // 
+            this.gridLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colMarcaId,
+            this.colDescripcionMarca});
+            this.gridLookUpEdit1View.DetailHeight = 284;
+            this.gridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridLookUpEdit1View.Name = "gridLookUpEdit1View";
+            this.gridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
+            this.gridLookUpEdit1View.OptionsView.ShowIndicator = false;
+            // 
+            // colMarcaId
+            // 
+            this.colMarcaId.Caption = "Id";
+            this.colMarcaId.FieldName = "MarcaId";
+            this.colMarcaId.Name = "colMarcaId";
+            // 
+            // colDescripcionMarca
+            // 
+            this.colDescripcionMarca.Caption = "Marca";
+            this.colDescripcionMarca.FieldName = "Descripcion";
+            this.colDescripcionMarca.Name = "colDescripcionMarca";
+            this.colDescripcionMarca.OptionsColumn.AllowEdit = false;
+            this.colDescripcionMarca.Visible = true;
+            this.colDescripcionMarca.VisibleIndex = 0;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Location = new System.Drawing.Point(218, 158);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(36, 12);
+            this.labelControl1.TabIndex = 122;
+            this.labelControl1.Text = "Marca *:";
+            // 
+            // glModelos
+            // 
+            this.glModelos.EditValue = "";
+            this.glModelos.Location = new System.Drawing.Point(405, 176);
+            this.glModelos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.glModelos.Name = "glModelos";
+            this.glModelos.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.glModelos.Properties.Appearance.Options.UseFont = true;
+            this.glModelos.Properties.NullText = "";
+            this.glModelos.Properties.PopupView = this.gridLookUpEdit2View;
+            this.glModelos.Size = new System.Drawing.Size(173, 22);
+            this.glModelos.TabIndex = 125;
+            this.glModelos.EditValueChanged += new System.EventHandler(this.glModelos_EditValueChanged);
+            // 
+            // gridLookUpEdit2View
+            // 
+            this.gridLookUpEdit2View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colModeloId,
+            this.colDescripcionModelo});
+            this.gridLookUpEdit2View.DetailHeight = 284;
+            this.gridLookUpEdit2View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridLookUpEdit2View.Name = "gridLookUpEdit2View";
+            this.gridLookUpEdit2View.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridLookUpEdit2View.OptionsView.ShowGroupPanel = false;
+            this.gridLookUpEdit2View.OptionsView.ShowIndicator = false;
+            // 
+            // colModeloId
+            // 
+            this.colModeloId.Caption = "Id";
+            this.colModeloId.FieldName = "ModeloId";
+            this.colModeloId.Name = "colModeloId";
+            // 
+            // colDescripcionModelo
+            // 
+            this.colDescripcionModelo.Caption = "Descripción";
+            this.colDescripcionModelo.FieldName = "Descripcion";
+            this.colDescripcionModelo.Name = "colDescripcionModelo";
+            this.colDescripcionModelo.OptionsColumn.AllowEdit = false;
+            this.colDescripcionModelo.Visible = true;
+            this.colDescripcionModelo.VisibleIndex = 0;
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelControl2.Appearance.Options.UseFont = true;
+            this.labelControl2.Location = new System.Drawing.Point(405, 158);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(43, 12);
+            this.labelControl2.TabIndex = 124;
+            this.labelControl2.Text = "Modelo *:";
             // 
             // frmNuevoInstrumento
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(756, 646);
+            this.ClientSize = new System.Drawing.Size(648, 464);
+            this.Controls.Add(this.glModelos);
+            this.Controls.Add(this.labelControl2);
+            this.Controls.Add(this.glMarcas);
+            this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.txtGarantia);
-            this.Controls.Add(this.dateProximaCalibracion);
-            this.Controls.Add(this.dateUltimaCalibracion);
             this.Controls.Add(this.dateFechaCompraCliente);
             this.Controls.Add(this.dateFechaCompraFabricante);
             this.Controls.Add(this.labelControl20);
             this.Controls.Add(this.txtEmpresaInstrumento);
             this.Controls.Add(this.btnAbrirPopupEmpresaPorInstrumento);
             this.Controls.Add(this.txtNumeroSerie);
-            this.Controls.Add(this.labelControl19);
-            this.Controls.Add(this.labelControl17);
             this.Controls.Add(this.labelControl14);
             this.Controls.Add(this.labelControl15);
             this.Controls.Add(this.labelControl9);
-            this.Controls.Add(this.glClasificacion);
+            this.Controls.Add(this.glTipoInstrumento);
             this.Controls.Add(this.labelControl10);
             this.Controls.Add(this.labelControl11);
             this.Controls.Add(this.labelControl18);
@@ -368,15 +431,20 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             this.Controls.Add(this.txtDescripcionInstrumento);
             this.Controls.Add(this.ctlEncabezadoAgregarInstrumento);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmNuevoInstrumento";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nuevo Instrumento";
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpresaInstrumento.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroSerie.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glClasificacion.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumento.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumentoView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcionInstrumento.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGarantia.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glMarcas.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glModelos.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit2View)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -389,14 +457,11 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
         private DevExpress.XtraEditors.TextEdit txtEmpresaInstrumento;
         private FontAwesome.Sharp.IconButton btnAbrirPopupEmpresaPorInstrumento;
         private DevExpress.XtraEditors.TextEdit txtNumeroSerie;
-        private DevExpress.XtraEditors.LabelControl labelControl19;
-        private DevExpress.XtraEditors.LabelControl labelControl17;
         private DevExpress.XtraEditors.LabelControl labelControl14;
         private DevExpress.XtraEditors.LabelControl labelControl15;
         private DevExpress.XtraEditors.LabelControl labelControl9;
-        private DevExpress.XtraEditors.GridLookUpEdit glClasificacion;
+        private DevExpress.XtraEditors.GridLookUpEdit glTipoInstrumento;
         private DevExpress.XtraGrid.Views.Grid.GridView glTipoInstrumentoView;
-        private DevExpress.XtraGrid.Columns.GridColumn colClasificacionId;
         private DevExpress.XtraGrid.Columns.GridColumn colDescripcion;
         private DevExpress.XtraEditors.LabelControl labelControl10;
         private DevExpress.XtraEditors.LabelControl labelControl11;
@@ -405,12 +470,18 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
         private DevExpress.XtraEditors.TextEdit txtDescripcionInstrumento;
         private System.Windows.Forms.DateTimePicker dateFechaCompraFabricante;
         private System.Windows.Forms.DateTimePicker dateFechaCompraCliente;
-        private System.Windows.Forms.DateTimePicker dateUltimaCalibracion;
-        private System.Windows.Forms.DateTimePicker dateProximaCalibracion;
         private DevExpress.XtraEditors.TextEdit txtGarantia;
-        private DevExpress.XtraGrid.Columns.GridColumn colTipoInstrumento;
-        private DevExpress.XtraGrid.Columns.GridColumn colMarca;
-        private DevExpress.XtraGrid.Columns.GridColumn colModelo;
-        private DevExpress.XtraGrid.Columns.GridColumn colDescripcionCompuesta;
+        private DevExpress.XtraEditors.GridLookUpEdit glMarcas;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit1View;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.GridLookUpEdit glModelos;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit2View;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraGrid.Columns.GridColumn colTipoInstrumentoId;
+        private DevExpress.XtraGrid.Columns.GridColumn colDescripcionTipoInstrumento;
+        private DevExpress.XtraGrid.Columns.GridColumn colMarcaId;
+        private DevExpress.XtraGrid.Columns.GridColumn colDescripcionMarca;
+        private DevExpress.XtraGrid.Columns.GridColumn colModeloId;
+        private DevExpress.XtraGrid.Columns.GridColumn colDescripcionModelo;
     }
 }

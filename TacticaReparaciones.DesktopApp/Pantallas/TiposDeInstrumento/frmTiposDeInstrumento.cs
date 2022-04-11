@@ -3,10 +3,10 @@ using Nagaira.Herramientas.Standard.Helpers.Requests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TacticaReparaciones.DesktopApp.Helpers;
-using TacticaReparaciones.Libs.Dtos;
+using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.Libs.Dtos;
 
-namespace TacticaReparaciones.DesktopApp.Pantallas.TiposDeInstrumento
+namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
 {
     public partial class frmTiposDeInstrumento : DevExpress.XtraEditors.XtraForm
     {

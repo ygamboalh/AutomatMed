@@ -3,10 +3,10 @@ using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TacticaReparaciones.Libs.Dtos;
-using TacticaReparaciones.Servicios.Infraestructura;
+using AutomatMediciones.Libs.Dtos;
+using AutomatMediciones.Servicios.Infraestructura;
 
-namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
+namespace AutomatMediciones.Servicios.Caracteristicas.Servicios
 {
     public class EmpresaService
     {

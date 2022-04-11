@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using System.Drawing;
 
-namespace TacticaReparaciones.DesktopApp.Helpers
+namespace AutomatMediciones.DesktopApp.Helpers
 {
     public static class ColorHelper
     {

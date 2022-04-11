@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
+namespace AutomatMediciones.Servicios.Caracteristicas.Entidades
 {
     public class Patron
     {

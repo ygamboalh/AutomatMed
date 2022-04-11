@@ -1,23 +1,24 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Nagaira.Herramientas.Standard.Helpers.Exceptions;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TacticaReparaciones.Libs.Dtos;
-using TacticaReparaciones.Servicios.Caracteristicas.Entidades;
-using TacticaReparaciones.Servicios.Infraestructura;
+using AutomatMediciones.Libs.Dtos;
+using AutomatMediciones.Servicios.Caracteristicas.Entidades;
+using AutomatMediciones.Servicios.Infraestructura;
 
-namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
+namespace AutomatMediciones.Servicios.Caracteristicas.Servicios
 {
     public class InstrumentoService
     {
-        private readonly TacticaReparacionesDbContext _tacticaReparacionesDbContext;
+        private readonly AutomatMedicionesDbContext _AutomatMedicionesDbContext;
         private readonly IMapper _mapper;
 
-        public InstrumentoService(TacticaReparacionesDbContext tacticaReparacionesDbContext, IMapper mapper)
+        public InstrumentoService(AutomatMedicionesDbContext AutomatMedicionesDbContext, IMapper mapper)
         {
-            _tacticaReparacionesDbContext = tacticaReparacionesDbContext;
+            _AutomatMedicionesDbContext = AutomatMedicionesDbContext;
             _mapper = mapper;
         }
 
@@ -25,7 +26,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
         {
             try
             {
-                var instrumentos = _tacticaReparacionesDbContext.Instrumentos.AsQueryable()
+                var instrumentos = _AutomatMedicionesDbContext.Instrumentos.AsQueryable()
 
                                                                              .ToList();
                 return Response<List<InstrumentoDto>>.Ok("Ok", _mapper.Map<List<InstrumentoDto>>(instrumentos));
@@ -40,7 +41,10 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
         {
             try
             {
-                var instrumentos = _tacticaReparacionesDbContext.Instrumentos.AsQueryable()
+                var instrumentos = _AutomatMedicionesDbContext.Instrumentos.AsQueryable()
+                                                                             .Include(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
+                                                                             .Include(x => x.Clasificacion).ThenInclude(x => x.Marca)
+                                                                             .Include(x => x.Clasificacion).ThenInclude(x => x.Modelo)
                                                                              .Where(x => x.Activo &&
                                                                                     x.NombreEmpresa.Equals(nombreEmpresa)).AsEnumerable();
 
@@ -79,8 +83,8 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
                     return Response<bool>.ErrorValidation(mensaje, false);
                 }
 
-                _tacticaReparacionesDbContext.Instrumentos.Add(instrumento);
-                _tacticaReparacionesDbContext.SaveChanges();
+                _AutomatMedicionesDbContext.Instrumentos.Add(instrumento);
+                _AutomatMedicionesDbContext.SaveChanges();
 
                 return Response<bool>.Ok("Ok", true);
             }

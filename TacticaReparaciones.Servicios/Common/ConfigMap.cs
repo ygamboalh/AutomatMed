@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using TacticaReparaciones.Libs.Dtos;
-using TacticaReparaciones.Servicios.Caracteristicas.Entidades;
+using AutomatMediciones.Libs.Dtos;
+using AutomatMediciones.Servicios.Caracteristicas.Entidades;
 
-namespace TacticaReparaciones.Servicios.Common
+namespace AutomatMediciones.Servicios.Common
 {
     public class ConfigMap : Profile
     {
@@ -17,6 +17,8 @@ namespace TacticaReparaciones.Servicios.Common
             CreateMap<TipoTrabajo, TipoTrabajoDto>().ReverseMap();
             CreateMap<ClasificacionInstrumento, ClasificacionInstrumentoDto>().ReverseMap();
             CreateMap<VariableDeMedicion, VariableMedicionDto>().ReverseMap();
+            CreateMap<TipoInstrumentoVariable, TipoInstrumentoVariableDto>().ReverseMap();
+            CreateMap<IngresoInstrumento, IngresoInstrumentoDto>().ReverseMap();
         }
     }
 }

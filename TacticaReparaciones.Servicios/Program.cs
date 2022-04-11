@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace TacticaReparaciones.Servicios
+namespace AutomatMediciones.Servicios
 {
     public static class Program
     {

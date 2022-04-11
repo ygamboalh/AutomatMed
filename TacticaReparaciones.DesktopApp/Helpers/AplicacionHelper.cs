@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace TacticaReparaciones.DesktopApp.Helpers
+namespace AutomatMediciones.DesktopApp.Helpers
 {
     public static class AplicacionHelper
     {
@@ -14,7 +14,7 @@ namespace TacticaReparaciones.DesktopApp.Helpers
         public static string ObtenerRutaApiDeAplicacion()
         {
             var appSettings = ConfigurationManager.AppSettings;
-            var rutaApi = appSettings["ApiTacticaReparaciones"];
+            var rutaApi = appSettings["ApiAutomatMediciones"];
             return rutaApi;
 
         }

@@ -1,32 +1,51 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Nagaira.Herramientas.Standard.Helpers.Exceptions;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TacticaReparaciones.Libs.Dtos;
-using TacticaReparaciones.Servicios.Caracteristicas.Entidades;
-using TacticaReparaciones.Servicios.Caracteristicas.Enums;
-using TacticaReparaciones.Servicios.Infraestructura;
+using AutomatMediciones.Libs.Dtos;
+using AutomatMediciones.Servicios.Caracteristicas.Entidades;
+using AutomatMediciones.Servicios.Caracteristicas.Enums;
+using AutomatMediciones.Servicios.Infraestructura;
 
-namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
+namespace AutomatMediciones.Servicios.Caracteristicas.Servicios
 {
     public class IngresoService
     {
-        private readonly TacticaReparacionesDbContext _tacticaReparacionesDbContext;
+        private readonly AutomatMedicionesDbContext _AutomatMedicionesDbContext;
         private readonly IMapper _mapper;
 
-        public IngresoService(TacticaReparacionesDbContext tacticaReparacionesDbContext, IMapper mapper)
+        public IngresoService(AutomatMedicionesDbContext AutomatMedicionesDbContext, IMapper mapper)
         {
-            _tacticaReparacionesDbContext = tacticaReparacionesDbContext;
+            _AutomatMedicionesDbContext = AutomatMedicionesDbContext;
             _mapper = mapper;
         }
 
-        public Response<List<IngresoDto>> ObtenerIngresosPorEstado(int estadoId)
+        public Response<List<IngresoDto>> ObtenerIngresos(int estadoId)
         {
             try
             {
-                var ingresos = _tacticaReparacionesDbContext.Ingresos.Where(x => x.EstadoId.Equals(estadoId)).ToList();
+                var ingresos = _AutomatMedicionesDbContext.Ingresos.Where(x => x.EstadoId.Equals(estadoId)).ToList();
+
+                return Response<List<IngresoDto>>.Ok("Ok", _mapper.Map<List<IngresoDto>>(ingresos));
+            }
+            catch (Exception exc)
+            {
+                return Response<List<IngresoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
+        public Response<List<IngresoDto>> ObtenerIngresos()
+        {
+            try
+            {
+                var ingresos = _AutomatMedicionesDbContext.Ingresos.AsQueryable().Include(x => x.Estado)
+                                                                                   .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.Marca)
+                                                                                   .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.Modelo)
+                                                                                   .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
+                                                                                   .Where(x => x.EstadoId != (int)Estados.Cerrado).ToList();
 
                 return Response<List<IngresoDto>>.Ok("Ok", _mapper.Map<List<IngresoDto>>(ingresos));
             }
@@ -61,11 +80,11 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
                     return Response<bool>.ErrorValidation(mensaje, false);
                 }
 
-                _tacticaReparacionesDbContext.Database.BeginTransaction();
-                _tacticaReparacionesDbContext.Ingresos.Add(ingreso);
-                _tacticaReparacionesDbContext.SaveChanges();
+                _AutomatMedicionesDbContext.Database.BeginTransaction();
+                _AutomatMedicionesDbContext.Ingresos.Add(ingreso);
+                _AutomatMedicionesDbContext.SaveChanges();
 
-                foreach (var instrumento in ingresoDto.Instrumentos)
+                foreach (var instrumento in ingresoDto.IngresosInstrumentos)
                 {
                     IngresoInstrumento ingresoInstrumento = new IngresoInstrumento
                     {
@@ -74,18 +93,18 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
                         InstrumentoId = instrumento.InstrumentoId
                     };
 
-                    _tacticaReparacionesDbContext.IngresosInstrumentos.Add(ingresoInstrumento);
+                    _AutomatMedicionesDbContext.IngresosInstrumentos.Add(ingresoInstrumento);
 
                 }
 
-                _tacticaReparacionesDbContext.SaveChanges();
-                _tacticaReparacionesDbContext.Database.CommitTransaction();
+                _AutomatMedicionesDbContext.SaveChanges();
+                _AutomatMedicionesDbContext.Database.CommitTransaction();
 
                 return Response<bool>.Ok("¡El ingreso se guardó exitosamente!", true);
             }
             catch (Exception exc)
             {
-                _tacticaReparacionesDbContext.Database.RollbackTransaction();
+                _AutomatMedicionesDbContext.Database.RollbackTransaction();
                 return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
             }
         }

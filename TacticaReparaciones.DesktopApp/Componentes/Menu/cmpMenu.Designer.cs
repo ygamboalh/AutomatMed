@@ -1,5 +1,5 @@
 ﻿
-namespace TacticaReparaciones.DesktopApp.Componentes.Menu
+namespace AutomatMediciones.DesktopApp.Componentes.Menu
 {
     partial class cmpMenu
     {
@@ -29,7 +29,7 @@ namespace TacticaReparaciones.DesktopApp.Componentes.Menu
         /// </summary>
         private void InitializeComponent()
         {
-            this.cmpLogo1 = new TacticaReparaciones.DesktopApp.Componentes.Menu.cmpLogo();
+            this.cmpLogo1 = new AutomatMediciones.DesktopApp.Componentes.Menu.cmpLogo();
             this.pnlLogo = new System.Windows.Forms.Panel();
             this.pnlExpandirMenu = new System.Windows.Forms.Panel();
             this.btnExpandirMenu = new FontAwesome.Sharp.IconButton();

@@ -3,26 +3,26 @@ using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TacticaReparaciones.Libs.Dtos;
-using TacticaReparaciones.Servicios.Caracteristicas.Entidades;
-using TacticaReparaciones.Servicios.Infraestructura;
+using AutomatMediciones.Libs.Dtos;
+using AutomatMediciones.Servicios.Caracteristicas.Entidades;
+using AutomatMediciones.Servicios.Infraestructura;
 
-namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
+namespace AutomatMediciones.Servicios.Caracteristicas.Servicios
 {
     public class ModeloService
     {
-        private readonly TacticaReparacionesDbContext _tacticaReparacionesDbContext;
+        private readonly AutomatMedicionesDbContext _AutomatMedicionesDbContext;
 
-        public ModeloService(TacticaReparacionesDbContext tacticaReparacionesDbContext)
+        public ModeloService(AutomatMedicionesDbContext AutomatMedicionesDbContext)
         {
-            _tacticaReparacionesDbContext = tacticaReparacionesDbContext;
+            _AutomatMedicionesDbContext = AutomatMedicionesDbContext;
         }
 
         public Response<List<ModeloDto>> ObtenerModelos()
         {
             try
             {
-                var modelos = _tacticaReparacionesDbContext.Modelos.Select(x => new ModeloDto
+                var modelos = _AutomatMedicionesDbContext.Modelos.Select(x => new ModeloDto
                 {
 
                     Descripcion = x.Descripcion,
@@ -47,8 +47,8 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
                     Descripcion = modeloDto.Descripcion
                 };
 
-                _tacticaReparacionesDbContext.Modelos.Add(modelo);
-                _tacticaReparacionesDbContext.SaveChanges();
+                _AutomatMedicionesDbContext.Modelos.Add(modelo);
+                _AutomatMedicionesDbContext.SaveChanges();
 
                 return Response<bool>.Ok("Ok", true);
             }
@@ -62,7 +62,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
         {
             try
             {
-                var tipoInstrumentoBd = _tacticaReparacionesDbContext.Modelos.FirstOrDefault(x => x.ModeloId == modeloDto.ModeloId);
+                var tipoInstrumentoBd = _AutomatMedicionesDbContext.Modelos.FirstOrDefault(x => x.ModeloId == modeloDto.ModeloId);
 
                 if (tipoInstrumentoBd == null)
                 {
@@ -72,7 +72,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
 
                 tipoInstrumentoBd.Descripcion = modeloDto.Descripcion;
 
-                _tacticaReparacionesDbContext.SaveChanges();
+                _AutomatMedicionesDbContext.SaveChanges();
 
                 return Response<bool>.Ok("Ok", true);
             }

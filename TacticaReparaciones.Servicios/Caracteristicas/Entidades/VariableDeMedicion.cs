@@ -1,4 +1,6 @@
-﻿namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
+﻿using System.Collections.Generic;
+
+namespace AutomatMediciones.Servicios.Caracteristicas.Entidades
 {
     public class VariableDeMedicion
     {
@@ -7,5 +9,6 @@
         public decimal PrimerValorRango { get; set; }
         public decimal SegundoValorRango { get; set; }
         public decimal Tolerancia { get; set; }
+        public ICollection<TipoInstrumentoVariable> TiposDeInstrumentoVariables { get; set; }
     }
 }

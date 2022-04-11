@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TacticaReparaciones.Servicios.Caracteristicas.Entidades;
+using AutomatMediciones.Servicios.Caracteristicas.Entidades;
 
-namespace TacticaReparaciones.Servicios.Infraestructura.Maps
+namespace AutomatMediciones.Servicios.Infraestructura.Maps
 {
     public class ModeloMap : IEntityTypeConfiguration<Modelo>
     {

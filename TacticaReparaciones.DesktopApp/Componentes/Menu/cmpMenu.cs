@@ -1,9 +1,9 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
-using TacticaReparaciones.DesktopApp.Enums;
-using TacticaReparaciones.DesktopApp.Helpers;
+using AutomatMediciones.DesktopApp.Enums;
+using AutomatMediciones.DesktopApp.Helpers;
 
-namespace TacticaReparaciones.DesktopApp.Componentes.Menu
+namespace AutomatMediciones.DesktopApp.Componentes.Menu
 {
     public partial class cmpMenu : UserControl
     {
@@ -124,7 +124,7 @@ namespace TacticaReparaciones.DesktopApp.Componentes.Menu
 
         private void btnDiagnosticos_Click(object sender, System.EventArgs e)
         {
-
+            OnMenuSeleccionado?.Invoke(IndiceMenu.Diagnosticos);
         }
 
         private void btnTiposDeInstrumetnos_Click(object sender, System.EventArgs e)

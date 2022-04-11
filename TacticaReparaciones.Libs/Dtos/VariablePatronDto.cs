@@ -1,4 +1,4 @@
-﻿namespace TacticaReparaciones.Libs.Dtos
+﻿namespace AutomatMediciones.Libs.Dtos
 {
     public class VariablePatronDto
     {

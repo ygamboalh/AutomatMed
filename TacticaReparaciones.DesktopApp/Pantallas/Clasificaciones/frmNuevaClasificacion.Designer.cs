@@ -1,5 +1,5 @@
 ﻿
-namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
+namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
 {
     partial class frmNuevaClasificacion
     {
@@ -29,7 +29,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctlEncabezadoPantalla1 = new TacticaReparaciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
+            this.ctlEncabezadoPantalla1 = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             this.btnGuardarClasificacion = new FontAwesome.Sharp.IconButton();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -37,17 +37,17 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.glTipoInstrumento = new DevExpress.XtraEditors.GridLookUpEdit();
             this.gvTipoInstrumento = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.glMarca = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.gvMarca = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.glModelo = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.gvModelo = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.nmPeriodoCalibracion = new System.Windows.Forms.NumericUpDown();
             this.colTipoInstrumentoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.glMarca = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.gvMarca = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMarcaId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescripcionMarca = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.glModelo = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.gvModelo = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colModeloId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescripcionModelo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.nmPeriodoCalibracion = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTipoInstrumento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glMarca.Properties)).BeginInit();
@@ -153,6 +153,22 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             this.gvTipoInstrumento.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gvTipoInstrumento.OptionsView.ShowGroupPanel = false;
             // 
+            // colTipoInstrumentoId
+            // 
+            this.colTipoInstrumentoId.Caption = "Id";
+            this.colTipoInstrumentoId.FieldName = "TipoInstrumentoId";
+            this.colTipoInstrumentoId.Name = "colTipoInstrumentoId";
+            // 
+            // colDescripcion
+            // 
+            this.colDescripcion.Caption = "Descripcion";
+            this.colDescripcion.FieldName = "Descripcion";
+            this.colDescripcion.Name = "colDescripcion";
+            this.colDescripcion.OptionsColumn.AllowEdit = false;
+            this.colDescripcion.OptionsColumn.ReadOnly = true;
+            this.colDescripcion.Visible = true;
+            this.colDescripcion.VisibleIndex = 0;
+            // 
             // glMarca
             // 
             this.glMarca.Location = new System.Drawing.Point(36, 163);
@@ -172,6 +188,22 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             this.gvMarca.Name = "gvMarca";
             this.gvMarca.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gvMarca.OptionsView.ShowGroupPanel = false;
+            // 
+            // colMarcaId
+            // 
+            this.colMarcaId.Caption = "Id";
+            this.colMarcaId.FieldName = "MarcaId";
+            this.colMarcaId.Name = "colMarcaId";
+            // 
+            // colDescripcionMarca
+            // 
+            this.colDescripcionMarca.Caption = "Descripción";
+            this.colDescripcionMarca.FieldName = "Descripcion";
+            this.colDescripcionMarca.Name = "colDescripcionMarca";
+            this.colDescripcionMarca.OptionsColumn.AllowEdit = false;
+            this.colDescripcionMarca.OptionsColumn.ReadOnly = true;
+            this.colDescripcionMarca.Visible = true;
+            this.colDescripcionMarca.VisibleIndex = 0;
             // 
             // glModelo
             // 
@@ -193,45 +225,6 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             this.gvModelo.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gvModelo.OptionsView.ShowGroupPanel = false;
             // 
-            // nmPeriodoCalibracion
-            // 
-            this.nmPeriodoCalibracion.Location = new System.Drawing.Point(36, 318);
-            this.nmPeriodoCalibracion.Name = "nmPeriodoCalibracion";
-            this.nmPeriodoCalibracion.Size = new System.Drawing.Size(150, 23);
-            this.nmPeriodoCalibracion.TabIndex = 139;
-            // 
-            // colTipoInstrumentoId
-            // 
-            this.colTipoInstrumentoId.Caption = "Id";
-            this.colTipoInstrumentoId.FieldName = "TipoInstrumentoId";
-            this.colTipoInstrumentoId.Name = "colTipoInstrumentoId";
-            // 
-            // colDescripcion
-            // 
-            this.colDescripcion.Caption = "Descripcion";
-            this.colDescripcion.FieldName = "Descripcion";
-            this.colDescripcion.Name = "colDescripcion";
-            this.colDescripcion.OptionsColumn.AllowEdit = false;
-            this.colDescripcion.OptionsColumn.ReadOnly = true;
-            this.colDescripcion.Visible = true;
-            this.colDescripcion.VisibleIndex = 0;
-            // 
-            // colMarcaId
-            // 
-            this.colMarcaId.Caption = "Id";
-            this.colMarcaId.FieldName = "MarcaId";
-            this.colMarcaId.Name = "colMarcaId";
-            // 
-            // colDescripcionMarca
-            // 
-            this.colDescripcionMarca.Caption = "Descripción";
-            this.colDescripcionMarca.FieldName = "Descripcion";
-            this.colDescripcionMarca.Name = "colDescripcionMarca";
-            this.colDescripcionMarca.OptionsColumn.AllowEdit = false;
-            this.colDescripcionMarca.OptionsColumn.ReadOnly = true;
-            this.colDescripcionMarca.Visible = true;
-            this.colDescripcionMarca.VisibleIndex = 0;
-            // 
             // colModeloId
             // 
             this.colModeloId.Caption = "Id";
@@ -248,6 +241,13 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             this.colDescripcionModelo.Visible = true;
             this.colDescripcionModelo.VisibleIndex = 0;
             // 
+            // nmPeriodoCalibracion
+            // 
+            this.nmPeriodoCalibracion.Location = new System.Drawing.Point(36, 318);
+            this.nmPeriodoCalibracion.Name = "nmPeriodoCalibracion";
+            this.nmPeriodoCalibracion.Size = new System.Drawing.Size(150, 23);
+            this.nmPeriodoCalibracion.TabIndex = 139;
+            // 
             // frmNuevaClasificacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -263,6 +263,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             this.Controls.Add(this.labelControl11);
             this.Controls.Add(this.btnGuardarClasificacion);
             this.Controls.Add(this.ctlEncabezadoPantalla1);
+            this.IconOptions.ShowIcon = false;
             this.Name = "frmNuevaClasificacion";
             this.Text = "Nueva Clasificación";
             ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumento.Properties)).EndInit();

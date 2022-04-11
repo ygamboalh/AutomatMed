@@ -1,4 +1,4 @@
-﻿namespace TacticaReparaciones.Servicios.Caracteristicas.Enums
+﻿namespace AutomatMediciones.Servicios.Caracteristicas.Enums
 {
     public enum Estados
     {

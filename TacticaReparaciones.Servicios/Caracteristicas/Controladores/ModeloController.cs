@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
-using TacticaReparaciones.Libs.Dtos;
-using TacticaReparaciones.Servicios.Caracteristicas.Servicios;
+using AutomatMediciones.Libs.Dtos;
+using AutomatMediciones.Servicios.Caracteristicas.Servicios;
 
-namespace TacticaReparaciones.Servicios.Caracteristicas.Controladores
+namespace AutomatMediciones.Servicios.Caracteristicas.Controladores
 {
     [Route("modelos")]
     [ApiController]

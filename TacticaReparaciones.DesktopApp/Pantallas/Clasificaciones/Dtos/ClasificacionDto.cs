@@ -1,6 +1,6 @@
-﻿using TacticaReparaciones.Libs.Dtos;
+﻿using AutomatMediciones.Libs.Dtos;
 
-namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones.Dtos
+namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones.Dtos
 {
     public class ClasificacionDto : ClasificacionInstrumentoDto
     {

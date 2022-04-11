@@ -1,12 +1,12 @@
 ﻿using DevExpress.XtraEditors;
 using System;
-using TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones;
-using TacticaReparaciones.DesktopApp.Pantallas.Marcas;
-using TacticaReparaciones.DesktopApp.Pantallas.Modelos;
-using TacticaReparaciones.DesktopApp.Pantallas.TiposDeInstrumento;
-using TacticaReparaciones.DesktopApp.Pantallas.VariablesDeMedicion;
+using AutomatMediciones.DesktopApp.Pantallas.Clasificaciones;
+using AutomatMediciones.DesktopApp.Pantallas.Marcas;
+using AutomatMediciones.DesktopApp.Pantallas.Modelos;
+using AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento;
+using AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion;
 
-namespace TacticaReparaciones.DesktopApp.Pantallas
+namespace AutomatMediciones.DesktopApp.Pantallas
 {
     public partial class frmConfiguracion : DevExpress.XtraEditors.XtraForm
     {

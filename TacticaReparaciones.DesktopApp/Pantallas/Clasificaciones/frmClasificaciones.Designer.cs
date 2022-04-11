@@ -1,5 +1,5 @@
 ﻿
-namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
+namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
 {
     partial class frmClasificaciones
     {
@@ -35,16 +35,16 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
             this.gcClasificaciones = new DevExpress.XtraGrid.GridControl();
             this.gvClasificaciones = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -54,21 +54,21 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             this.colPeriodoCalibracion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEditar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmdEditar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.colInactivar = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.cmdInactivar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnNuevaClasificacion = new FontAwesome.Sharp.IconButton();
-            this.ctlEncabezadoPantalla3 = new TacticaReparaciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
+            this.ctlEncabezadoPantalla3 = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotal = new DevExpress.XtraEditors.LabelControl();
-            this.colInactivar = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.cmdInactivar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gcClasificaciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvClasificaciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmdEditar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmdInactivar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cmdInactivar)).BeginInit();
             this.SuspendLayout();
             // 
             // gcClasificaciones
@@ -181,6 +181,24 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             this.cmdEditar.Name = "cmdEditar";
             this.cmdEditar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
+            // colInactivar
+            // 
+            this.colInactivar.ColumnEdit = this.cmdInactivar;
+            this.colInactivar.MinWidth = 25;
+            this.colInactivar.Name = "colInactivar";
+            this.colInactivar.Visible = true;
+            this.colInactivar.VisibleIndex = 5;
+            this.colInactivar.Width = 94;
+            // 
+            // cmdInactivar
+            // 
+            this.cmdInactivar.AutoHeight = false;
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            this.cmdInactivar.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.cmdInactivar.Name = "cmdInactivar";
+            this.cmdInactivar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
             // repositoryItemButtonEdit1
             // 
             this.repositoryItemButtonEdit1.AutoHeight = false;
@@ -254,24 +272,6 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             this.lblTotal.Text = "0";
             this.lblTotal.Visible = false;
             // 
-            // colInactivar
-            // 
-            this.colInactivar.ColumnEdit = this.cmdInactivar;
-            this.colInactivar.MinWidth = 25;
-            this.colInactivar.Name = "colInactivar";
-            this.colInactivar.Visible = true;
-            this.colInactivar.VisibleIndex = 5;
-            this.colInactivar.Width = 94;
-            // 
-            // cmdInactivar
-            // 
-            this.cmdInactivar.AutoHeight = false;
-            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
-            this.cmdInactivar.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.cmdInactivar.Name = "cmdInactivar";
-            this.cmdInactivar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            // 
             // frmClasificaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -281,16 +281,17 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.ctlEncabezadoPantalla3);
             this.Controls.Add(this.panel2);
+            this.IconOptions.ShowIcon = false;
             this.Name = "frmClasificaciones";
             this.Text = "Clasificaciones de Instrumentos";
             ((System.ComponentModel.ISupportInitialize)(this.gcClasificaciones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvClasificaciones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmdEditar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cmdInactivar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cmdInactivar)).EndInit();
             this.ResumeLayout(false);
 
         }

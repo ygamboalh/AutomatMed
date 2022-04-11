@@ -1,9 +1,9 @@
 ﻿using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using TacticaReparaciones.DesktopApp.Helpers;
+using AutomatMediciones.DesktopApp.Helpers;
 
-namespace TacticaReparaciones.DesktopApp.Componentes.Menu
+namespace AutomatMediciones.DesktopApp.Componentes.Menu
 {
     public partial class cmpLogo : UserControl
     {

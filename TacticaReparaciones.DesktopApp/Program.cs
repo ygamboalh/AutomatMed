@@ -1,8 +1,8 @@
 using System;
 using System.Windows.Forms;
-using TacticaReparaciones.DesktopApp.Pantallas.Principales;
+using AutomatMediciones.DesktopApp.Pantallas.Principales;
 
-namespace TacticaReparaciones.DesktopApp
+namespace AutomatMediciones.DesktopApp
 {
     static class Program
     {

@@ -1,5 +1,5 @@
 ﻿
-namespace TacticaReparaciones.DesktopApp.Componentes.Encabezados
+namespace AutomatMediciones.DesktopApp.Componentes.Encabezados
 {
     partial class ctlEncabezadoPantalla
     {

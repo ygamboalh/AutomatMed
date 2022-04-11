@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TacticaReparaciones.Libs.Dtos
+namespace AutomatMediciones.Libs.Dtos
 {
     public class InstrumentoDto
     {
@@ -16,5 +16,6 @@ namespace TacticaReparaciones.Libs.Dtos
         public string Garantia { get; set; }
         public string EmpresaId { get; set; }
         public string NombreEmpresa { get; set; }
+        public ClasificacionInstrumentoDto Clasificacion { get; set; }
     }
 }

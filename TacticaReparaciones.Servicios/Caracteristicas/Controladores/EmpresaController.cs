@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
-using TacticaReparaciones.Servicios.Caracteristicas.Servicios;
+using AutomatMediciones.Servicios.Caracteristicas.Servicios;
 
-namespace TacticaReparaciones.Servicios.Caracteristicas.Controladores
+namespace AutomatMediciones.Servicios.Caracteristicas.Controladores
 {
     [Route("empresas")]
     [ApiController]

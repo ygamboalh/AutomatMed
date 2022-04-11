@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TacticaReparaciones.DesktopApp.Enums;
-using TacticaReparaciones.DesktopApp.Helpers;
-using TacticaReparaciones.Libs.Dtos;
+using AutomatMediciones.DesktopApp.Enums;
+using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.Libs.Dtos;
 
-namespace TacticaReparaciones.DesktopApp.Pantallas
+namespace AutomatMediciones.DesktopApp.Pantallas
 {
     public partial class frmIngresos : DevExpress.XtraEditors.XtraForm
     {
@@ -19,7 +19,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
         CorreoElectronicoDto correoSeleccionado;
         TipoTrabajoDto tipoTrabajoSeleccionado;
 
-        ICollection<InstrumentoDto> instrumentosSeleccionados;
+        ICollection<IngresoInstrumentoDto> instrumentosSeleccionados;
 
         public IngresoDto Ingreso { get; set; }
 
@@ -34,7 +34,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             _ = CargarDatosTiposDeTrabajo();
 
             Ingreso = new IngresoDto();
-            instrumentosSeleccionados = new List<InstrumentoDto>();
+            instrumentosSeleccionados = new List<IngresoInstrumentoDto>();
 
             chkSeleccionarInstrumento.EditValueChanged += onSeleccionaInstrumento;
         }
@@ -62,7 +62,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
 
         private void AgregarInstrumentoEnListaDeSeleccionados(InstrumentoDto instrumento)
         {
-            instrumentosSeleccionados.Add(instrumento);
+            instrumentosSeleccionados.Add(new IngresoInstrumentoDto());
         }
 
         private void QuitarInstrumentoDeListaDeSeleccionados(int instrumentoId)
@@ -96,6 +96,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             string uri = $"/instrumentos/por-empresa/{empresaSeleccionada.NombreEmpresa}";
             var instrumentos = await HttpHelper.Get<InstrumentoDto>(rutaApi, uri, "");
 
+            gcInstrumentosDeEmpresa.DataSource = instrumentos;
             return instrumentos;
         }
 
@@ -213,7 +214,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
             Ingreso.NombreContacto = contactoSeleccionado.Nombre;
             Ingreso.CorreoElectronicoId = correoSeleccionado.RegistroId;
             Ingreso.DireccionCorreoElectronico = correoSeleccionado.Direccion;
-            Ingreso.Instrumentos = instrumentosSeleccionados;
+            Ingreso.IngresosInstrumentos = instrumentosSeleccionados;
             Ingreso.EstadoId = (int)Estados.Ingresado;
             Ingreso.TipoTrabajoId = tipoTrabajoSeleccionado.TipoTrabajoId;
             Ingreso.Comentarios = memoComentarios.Text;

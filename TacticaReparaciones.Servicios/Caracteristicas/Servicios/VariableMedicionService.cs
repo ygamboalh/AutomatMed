@@ -1,21 +1,22 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using Nagaira.Herramientas.Standard.Helpers.Exceptions;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TacticaReparaciones.Libs.Dtos;
-using TacticaReparaciones.Servicios.Caracteristicas.Entidades;
-using TacticaReparaciones.Servicios.Infraestructura;
+using AutomatMediciones.Libs.Dtos;
+using AutomatMediciones.Servicios.Caracteristicas.Entidades;
+using AutomatMediciones.Servicios.Infraestructura;
 
-namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
+namespace AutomatMediciones.Servicios.Caracteristicas.Servicios
 {
     public class VariableMedicionService
     {
-        private readonly TacticaReparacionesDbContext _tacticaDbContext;
+        private readonly AutomatMedicionesDbContext _tacticaDbContext;
         private readonly IMapper _mapper;
 
-        public VariableMedicionService(TacticaReparacionesDbContext tacticaDbContext, IMapper mapper)
+        public VariableMedicionService(AutomatMedicionesDbContext tacticaDbContext, IMapper mapper)
         {
             _tacticaDbContext = tacticaDbContext;
             _mapper = mapper;
@@ -25,7 +26,9 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
         {
             try
             {
-                var variablesDeMedicion = _tacticaDbContext.VariablesDeMedicion.AsQueryable().ToList();
+                var variablesDeMedicion = _tacticaDbContext.VariablesDeMedicion.AsQueryable()
+                                                                               .Include(x => x.TiposDeInstrumentoVariables)
+                                                                               .ThenInclude(x => x.TipoInstrumento).ToList();
                 return Response<List<VariableMedicionDto>>.Ok("Ok", _mapper.Map<List<VariableMedicionDto>>(variablesDeMedicion));
             }
             catch (Exception exc)
@@ -46,13 +49,35 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
                     Tolerancia = variableMedicionDto.Tolerancia
                 };
 
+                _tacticaDbContext.Database.BeginTransaction();
                 _tacticaDbContext.VariablesDeMedicion.Add(variableDeMedicion);
                 _tacticaDbContext.SaveChanges();
+
+                if (variableMedicionDto.TiposDeInstrumentoVariables.Any())
+                {
+                    var tiposDeInstrumentoVariable = variableMedicionDto.TiposDeInstrumentoVariables.ToList();
+
+                    tiposDeInstrumentoVariable.ForEach(x =>
+                    {
+                        TipoInstrumentoVariable tipoInstrumentoVariable = new TipoInstrumentoVariable
+                        {
+                            VariableMedicionId = variableDeMedicion.VariableMedicionId,
+                            TipoInstrumentoId = x.TipoInstrumentoId
+                        };
+
+                        _tacticaDbContext.TiposDeInstrumentosVariable.Add(tipoInstrumentoVariable);
+
+                    });
+                }
+
+                _tacticaDbContext.SaveChanges();
+                _tacticaDbContext.Database.CommitTransaction();
 
                 return Response<bool>.Ok("Ok", true);
             }
             catch (Exception exc)
             {
+                _tacticaDbContext.Database.RollbackTransaction();
                 return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
             }
         }

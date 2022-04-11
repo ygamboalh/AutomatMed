@@ -1,5 +1,5 @@
 ﻿
-namespace TacticaReparaciones.DesktopApp.Pantallas.Modelos
+namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
 {
     partial class frmModelos
     {
@@ -40,7 +40,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Modelos
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
-            this.ctlEncabezadoPantalla3 = new TacticaReparaciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
+            this.ctlEncabezadoPantalla3 = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnAgregarNuevoModelo = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -211,6 +211,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.Modelos
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.ctlEncabezadoPantalla3);
+            this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmModelos";
             this.Text = "Modelos";

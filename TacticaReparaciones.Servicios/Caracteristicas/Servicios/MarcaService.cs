@@ -3,20 +3,20 @@ using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TacticaReparaciones.Libs.Dtos;
-using TacticaReparaciones.Servicios.Caracteristicas.Entidades;
-using TacticaReparaciones.Servicios.Infraestructura;
+using AutomatMediciones.Libs.Dtos;
+using AutomatMediciones.Servicios.Caracteristicas.Entidades;
+using AutomatMediciones.Servicios.Infraestructura;
 
-namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
+namespace AutomatMediciones.Servicios.Caracteristicas.Servicios
 {
     public class MarcaService
     {
-        private readonly TacticaReparacionesDbContext _tacticaReparacionesDbContext;
+        private readonly AutomatMedicionesDbContext _AutomatMedicionesDbContext;
         private readonly ModeloService _modeloService;
 
-        public MarcaService(TacticaReparacionesDbContext tacticaReparacionesDbContext, ModeloService modeloService)
+        public MarcaService(AutomatMedicionesDbContext AutomatMedicionesDbContext, ModeloService modeloService)
         {
-            _tacticaReparacionesDbContext = tacticaReparacionesDbContext;
+            _AutomatMedicionesDbContext = AutomatMedicionesDbContext;
             _modeloService = modeloService;
         }
 
@@ -26,7 +26,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
             {
 
 
-                var marcas = _tacticaReparacionesDbContext.Marcas.Select(x => new MarcaDto
+                var marcas = _AutomatMedicionesDbContext.Marcas.Select(x => new MarcaDto
                 {
                     MarcaId = x.MarcaId,
                     Descripcion = x.Descripcion,
@@ -51,8 +51,8 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
                     Descripcion = marcaDto.Descripcion
                 };
 
-                _tacticaReparacionesDbContext.Marcas.Add(marca);
-                _tacticaReparacionesDbContext.SaveChanges();
+                _AutomatMedicionesDbContext.Marcas.Add(marca);
+                _AutomatMedicionesDbContext.SaveChanges();
 
                 return Response<bool>.Ok("Ok", true);
             }
@@ -66,7 +66,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
         {
             try
             {
-                var marcaBd = _tacticaReparacionesDbContext.Marcas.FirstOrDefault(x => x.MarcaId == marcaDto.MarcaId);
+                var marcaBd = _AutomatMedicionesDbContext.Marcas.FirstOrDefault(x => x.MarcaId == marcaDto.MarcaId);
 
                 if (marcaBd == null)
                 {
@@ -76,7 +76,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
 
                 marcaBd.Descripcion = marcaDto.Descripcion;
 
-                _tacticaReparacionesDbContext.SaveChanges();
+                _AutomatMedicionesDbContext.SaveChanges();
 
                 return Response<bool>.Ok("Ok", true);
             }

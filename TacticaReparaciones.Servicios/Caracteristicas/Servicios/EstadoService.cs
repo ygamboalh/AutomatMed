@@ -3,25 +3,25 @@ using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TacticaReparaciones.Libs.Dtos;
-using TacticaReparaciones.Servicios.Infraestructura;
+using AutomatMediciones.Libs.Dtos;
+using AutomatMediciones.Servicios.Infraestructura;
 
-namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
+namespace AutomatMediciones.Servicios.Caracteristicas.Servicios
 {
     public class EstadoService
     {
-        private readonly TacticaReparacionesDbContext _tacticaReparacionesDbContext;
+        private readonly AutomatMedicionesDbContext _AutomatMedicionesDbContext;
 
-        public EstadoService(TacticaReparacionesDbContext tacticaReparacionesDbContext)
+        public EstadoService(AutomatMedicionesDbContext AutomatMedicionesDbContext)
         {
-            _tacticaReparacionesDbContext = tacticaReparacionesDbContext;
+            _AutomatMedicionesDbContext = AutomatMedicionesDbContext;
         }
 
         public Response<List<EstadoDto>> ObtenerEstados()
         {
             try
             {
-                var estados = _tacticaReparacionesDbContext.Estados.Select(x => new EstadoDto
+                var estados = _AutomatMedicionesDbContext.Estados.Select(x => new EstadoDto
                 {
                     EstadoId = x.EstadoId,
                     Descripcion = x.Descripcion

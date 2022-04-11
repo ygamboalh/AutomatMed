@@ -1,4 +1,4 @@
-﻿namespace TacticaReparaciones.DesktopApp.Enums
+﻿namespace AutomatMediciones.DesktopApp.Enums
 {
     public enum Estados
     {

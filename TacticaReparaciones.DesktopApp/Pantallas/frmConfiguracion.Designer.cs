@@ -1,5 +1,5 @@
 ﻿
-namespace TacticaReparaciones.DesktopApp.Pantallas
+namespace AutomatMediciones.DesktopApp.Pantallas
 {
     partial class frmConfiguracion
     {

@@ -1,5 +1,5 @@
 ﻿
-namespace TacticaReparaciones.DesktopApp.Pantallas.TiposDeInstrumento
+namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
 {
     partial class frmTiposDeInstrumento
     {
@@ -53,7 +53,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.TiposDeInstrumento
             this.btnAgregarNuevInstrumento = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotal = new DevExpress.XtraEditors.LabelControl();
-            this.ctlEncabezadoPantalla3 = new TacticaReparaciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
+            this.ctlEncabezadoPantalla3 = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             ((System.ComponentModel.ISupportInitialize)(this.gcTipoInstrumento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTipoInstrumento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
@@ -239,6 +239,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.TiposDeInstrumento
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.ctlEncabezadoPantalla3);
             this.Controls.Add(this.panel2);
+            this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "frmTiposDeInstrumento";
             this.Text = "Tipos de Instrumento";

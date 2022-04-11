@@ -4,10 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using TacticaReparaciones.DesktopApp.Helpers;
-using TacticaReparaciones.Libs.Dtos;
+using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.Libs.Dtos;
 
-namespace TacticaReparaciones.DesktopApp.Pantallas.Modelos
+namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
 {
     public partial class frmModelos : DevExpress.XtraEditors.XtraForm
     {

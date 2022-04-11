@@ -3,25 +3,25 @@ using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TacticaReparaciones.Libs.Dtos;
-using TacticaReparaciones.Servicios.Infraestructura;
+using AutomatMediciones.Libs.Dtos;
+using AutomatMediciones.Servicios.Infraestructura;
 
-namespace TacticaReparaciones.Servicios.Caracteristicas.Servicios
+namespace AutomatMediciones.Servicios.Caracteristicas.Servicios
 {
     public class TipoTrabajoService
     {
-        private readonly TacticaReparacionesDbContext _tacticaReparacionesDbContext;
+        private readonly AutomatMedicionesDbContext _AutomatMedicionesDbContext;
 
-        public TipoTrabajoService(TacticaReparacionesDbContext tacticareparacionesdbcontext)
+        public TipoTrabajoService(AutomatMedicionesDbContext AutomatMedicionesdbcontext)
         {
-            _tacticaReparacionesDbContext = tacticareparacionesdbcontext;
+            _AutomatMedicionesDbContext = AutomatMedicionesdbcontext;
         }
 
         public Response<List<TipoTrabajoDto>> ObtenerTiposDeTrabajo()
         {
             try
             {
-                var estados = _tacticaReparacionesDbContext.TiposDeTrabajo.Select(x => new TipoTrabajoDto
+                var estados = _AutomatMedicionesDbContext.TiposDeTrabajo.Select(x => new TipoTrabajoDto
                 {
                     TipoTrabajoId = x.TipoTrabajoId,
                     Descripcion = x.Descripcion

@@ -8,12 +8,12 @@ using Microsoft.OpenApi.Models;
 using Nagaira.Extensions.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using TacticaReparaciones.Servicios.Caracteristicas.Servicios;
-using TacticaReparaciones.Servicios.Common;
-using TacticaReparaciones.Servicios.Infraestructura;
+using AutomatMediciones.Servicios.Caracteristicas.Servicios;
+using AutomatMediciones.Servicios.Common;
+using AutomatMediciones.Servicios.Infraestructura;
 
 
-namespace TacticaReparaciones.Servicios
+namespace AutomatMediciones.Servicios
 {
     public class Startup
     {
@@ -35,13 +35,13 @@ namespace TacticaReparaciones.Servicios
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TacticaReparaciones.Servicios", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "AutomatMediciones.Servicios", Version = "v1" });
             });
 
             services.AddAutoMapper(options => options.AddProfile(new ConfigMap()));
 
             services.AddDbContext<TacticaDbContext>(options => options.UseMySql(Configuration.GetConnectionStringFromENV("TacticaBD")).EnableDetailedErrors());
-            services.AddDbContext<TacticaReparacionesDbContext>(options => options.UseMySql(Configuration.GetConnectionStringFromENV("TacticaReparacionesBD")).EnableDetailedErrors());
+            services.AddDbContext<AutomatMedicionesDbContext>(options => options.UseMySql(Configuration.GetConnectionStringFromENV("AutomatMedicionesBD")).EnableDetailedErrors());
 
             services.AddTransient<EmpresaService, EmpresaService>();
             services.AddTransient<EstadoService, EstadoService>();
@@ -61,7 +61,7 @@ namespace TacticaReparaciones.Servicios
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TacticaReparaciones.Servicios v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AutomatMediciones.Servicios v1"));
             }
 
             app.UseRouting();

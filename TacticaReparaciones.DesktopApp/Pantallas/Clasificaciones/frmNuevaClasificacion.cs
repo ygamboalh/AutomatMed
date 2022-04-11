@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
-using TacticaReparaciones.DesktopApp.Helpers;
-using TacticaReparaciones.Libs.Dtos;
+using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.Libs.Dtos;
 using MessageBox = System.Windows.Forms.MessageBox;
 
-namespace TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones
+namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
 {
     public partial class frmNuevaClasificacion : DevExpress.XtraEditors.XtraForm
     {

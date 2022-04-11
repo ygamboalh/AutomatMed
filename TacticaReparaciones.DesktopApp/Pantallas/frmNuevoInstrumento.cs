@@ -1,12 +1,14 @@
 ﻿using Nagaira.Herramientas.Standard.Helpers.Requests;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using TacticaReparaciones.DesktopApp.Helpers;
-using TacticaReparaciones.DesktopApp.Pantallas.Clasificaciones.Dtos;
-using TacticaReparaciones.Libs.Dtos;
+using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.DesktopApp.Pantallas.Clasificaciones.Dtos;
+using AutomatMediciones.Libs.Dtos;
 
-namespace TacticaReparaciones.DesktopApp.Pantallas
+namespace AutomatMediciones.DesktopApp.Pantallas
 {
     public partial class frmNuevoInstrumento : DevExpress.XtraEditors.XtraForm
     {
@@ -17,13 +19,18 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
         public InstrumentoDto NuevoInstrumento { get; set; }
         string rutaApi;
 
+        List<ClasificacionDto> clasificaciones = new List<ClasificacionDto>();
+        List<TipoInstrumentoDto> tiposInstrumentos = new List<TipoInstrumentoDto>();
+        List<MarcaDto> marcas = new List<MarcaDto>();
+        List<ModeloDto> modelos = new List<ModeloDto>();
+
         public frmNuevoInstrumento()
         {
             InitializeComponent();
 
             rutaApi = AplicacionHelper.ObtenerRutaApiDeAplicacion();
             CargarClasificacionesDeInstrumentos();
-            AsignarConfiguracionComboBoxes();
+
             EstablecerColorBotonGuardar();
             EstablecerNombreYTituloPopupAgregarInstrumentos();
 
@@ -77,13 +84,18 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
         private async void CargarClasificacionesDeInstrumentos()
         {
             string uri = "/clasificaciones-instrumentos";
-            var clasificaciones = await HttpHelper.Get<ClasificacionDto>(rutaApi, uri, "");
+            clasificaciones = await HttpHelper.Get<ClasificacionDto>(rutaApi, uri, "");
 
             if (clasificaciones != null)
             {
                 clasificaciones.ForEach(x => x.DescripcionCompuesta = $"{x.TipoInstrumento.Descripcion} / {x.Marca.Descripcion} / {x.Modelo.Descripcion}");
-                glClasificacion.Properties.DataSource = clasificaciones;
             }
+
+            marcas = clasificaciones.Select(x => x.Marca).ToList();
+            modelos = clasificaciones.Select(x => x.Modelo).ToList();
+            tiposInstrumentos = clasificaciones.Select(x => x.TipoInstrumento).ToList();
+
+            AsignarConfiguracionComboBoxes();
         }
 
         private async Task<bool> GuardarInstrumento()
@@ -105,8 +117,17 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
 
         private void AsignarConfiguracionComboBoxes()
         {
-            glClasificacion.Properties.ValueMember = "ClasificacionId";
-            glClasificacion.Properties.DisplayMember = "DescripcionCompuesta";
+            glTipoInstrumento.Properties.DataSource = tiposInstrumentos;
+            glTipoInstrumento.Properties.ValueMember = "TipoInstrumentoId";
+            glTipoInstrumento.Properties.DisplayMember = "Descripcion";
+
+            glMarcas.Properties.DataSource = marcas;
+            glMarcas.Properties.ValueMember = "MarcaId";
+            glMarcas.Properties.DisplayMember = "Descripcion";
+
+            glModelos.Properties.DataSource = modelos;
+            glModelos.Properties.ValueMember = "ModeloId";
+            glModelos.Properties.DisplayMember = "Descripcion";
         }
 
         private bool EsValidaLaInformacionIngresadaParaNuevoInstrumento(out string mensaje)
@@ -123,34 +144,63 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
                 return false;
             }
 
-            if (NuevoInstrumento.ClasificacionId == 0)
-            {
-                mensaje = "Es necesario ingresar un tipo de instrumento para el nuevo instrumento.";
-                return false;
-            }
-
-
             mensaje = "Ok";
             return true;
         }
 
         private void PrepararNuevoInstrumentoParaGuardar()
         {
-            var clasificacion = glClasificacion.GetSelectedDataRow() as ClasificacionDto;
+            var tipoInstrumentoSeleccionado = glTipoInstrumento.GetSelectedDataRow() as TipoInstrumentoDto;
+            var marcaSeleccionada = glMarcas.GetSelectedDataRow() as MarcaDto;
+            var modeloSeleccionado = glModelos.GetSelectedDataRow() as ModeloDto;
+
+            if (tipoInstrumentoSeleccionado == null || marcaSeleccionada == null || modeloSeleccionado == null)
+            {
+                MessageBox.Show("Es necesario que rellene campos obligatorios, para poder continuar.", "Tactica Reparaciones", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            var clasificacionSegunFiltrosSeleccionados = clasificaciones.FirstOrDefault(x => x.TipoInstrumentoId == tipoInstrumentoSeleccionado.TipoInstrumentoId &&
+                                                                                             x.MarcaId == marcaSeleccionada.MarcaId &&
+                                                                                             x.ModeloId == modeloSeleccionado.ModeloId);
+
+            if (clasificacionSegunFiltrosSeleccionados == null)
+            {
+                MessageBox.Show("No se pudo encontrar una clasificación con el tipo de instrumento, marca y modelo seleccionados.", "Tactica Reparaciones", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             NuevoInstrumento.Descripcion = txtDescripcionInstrumento.Text;
             NuevoInstrumento.EmpresaId = empresaSeleccionada.EmpresaId;
             NuevoInstrumento.NombreEmpresa = empresaSeleccionada.NombreEmpresa;
-            NuevoInstrumento.ClasificacionId = clasificacion.ClasificacionId;
+            NuevoInstrumento.ClasificacionId = clasificacionSegunFiltrosSeleccionados.ClasificacionId;
             NuevoInstrumento.NumeroSerie = txtNumeroSerie.Text;
             NuevoInstrumento.FechaCompraFabricante = dateFechaCompraFabricante.Value;
             NuevoInstrumento.FechaCompraCliente = dateFechaCompraCliente.Value;
-            NuevoInstrumento.FechaUltimaCalibracion = dateUltimaCalibracion.Value;
-            NuevoInstrumento.FechaProximaCalibracion = dateProximaCalibracion.Value;
             NuevoInstrumento.Garantia = txtGarantia.Text;
         }
 
-        private void glClasificacion_EditValueChanged(object sender, EventArgs e)
+        private void glTipoInstrumento_EditValueChanged(object sender, EventArgs e)
+        {
+            var tipoInstrumentoSeleccionado = glTipoInstrumento.GetSelectedDataRow() as TipoInstrumentoDto;
+            if (tipoInstrumentoSeleccionado != null)
+            {
+                marcas = clasificaciones.Where(x => x.TipoInstrumentoId.Equals(tipoInstrumentoSeleccionado.TipoInstrumentoId)).Select(x => x.Marca).ToList();
+                glMarcas.Properties.DataSource = marcas;
+            }
+        }
+
+        private void glMarcas_EditValueChanged(object sender, EventArgs e)
+        {
+            var marcaSeleccionada = glMarcas.GetSelectedDataRow() as MarcaDto;
+            if (marcaSeleccionada != null)
+            {
+                modelos = clasificaciones.Where(x => x.MarcaId.Equals(marcaSeleccionada.MarcaId)).Select(x => x.Modelo).ToList();
+                glModelos.Properties.DataSource = modelos;
+            }
+        }
+
+        private void glModelos_EditValueChanged(object sender, EventArgs e)
         {
 
         }

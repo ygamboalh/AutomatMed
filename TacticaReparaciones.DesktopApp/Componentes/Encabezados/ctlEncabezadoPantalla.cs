@@ -1,8 +1,8 @@
 ﻿
 using System.Windows.Forms;
-using TacticaReparaciones.DesktopApp.Helpers;
+using AutomatMediciones.DesktopApp.Helpers;
 
-namespace TacticaReparaciones.DesktopApp.Componentes.Encabezados
+namespace AutomatMediciones.DesktopApp.Componentes.Encabezados
 {
     public partial class ctlEncabezadoPantalla : UserControl
     {

@@ -4,11 +4,11 @@ using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
-using TacticaReparaciones.DesktopApp.Helpers;
-using TacticaReparaciones.Libs.Dtos;
+using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.Libs.Dtos;
 using MessageBox = System.Windows.Forms.MessageBox;
 
-namespace TacticaReparaciones.DesktopApp.Pantallas.Modelos
+namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
 {
     public partial class frmNuevoModelo : DevExpress.XtraEditors.XtraForm
     {

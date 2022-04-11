@@ -1,4 +1,6 @@
-﻿namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
+﻿using System.Collections.Generic;
+
+namespace AutomatMediciones.Servicios.Caracteristicas.Entidades
 {
     public class TipoInstrumento
     {
@@ -6,5 +8,6 @@
         public string Descripcion { get; set; }
         public string Resumen { get; set; }
         public string Metodologia { get; set; }
+        public ICollection<TipoInstrumentoVariable> TiposDeInstrumentoVariables { get; set; }
     }
 }

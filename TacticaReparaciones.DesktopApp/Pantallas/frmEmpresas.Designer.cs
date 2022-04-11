@@ -1,5 +1,5 @@
 ﻿
-namespace TacticaReparaciones.DesktopApp.Pantallas
+namespace AutomatMediciones.DesktopApp.Pantallas
 {
     partial class frmEmpresas
     {
@@ -29,7 +29,7 @@ namespace TacticaReparaciones.DesktopApp.Pantallas
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctlEncabezadoPopup = new TacticaReparaciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
+            this.ctlEncabezadoPopup = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.gcEmpresas = new DevExpress.XtraGrid.GridControl();
             this.gvEmpresas = new DevExpress.XtraGrid.Views.Grid.GridView();

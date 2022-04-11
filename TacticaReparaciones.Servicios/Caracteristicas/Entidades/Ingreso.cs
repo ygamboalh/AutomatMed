@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
+namespace AutomatMediciones.Servicios.Caracteristicas.Entidades
 {
     public class Ingreso
     {
@@ -19,6 +19,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
         public DateTime FechaRegistro { get; set; }
         public int UsuarioRegistro { get; set; }
         public bool Activo { get; set; }
+        public Estado Estado { get; set; }
         public ICollection<IngresoInstrumento> IngresosInstrumentos { get; set; }
 
         public bool EsValido(out string mensaje)
@@ -52,8 +53,6 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
                 mensaje = "Es necesario ingresar una prioridad para guardar el ingreso.";
                 return false;
             }
-
-
 
             mensaje = "Ok";
             return true;

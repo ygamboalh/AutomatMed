@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
+namespace AutomatMediciones.Servicios.Caracteristicas.Entidades
 {
     public class Instrumento
     {
@@ -19,6 +19,7 @@ namespace TacticaReparaciones.Servicios.Caracteristicas.Entidades
         public int UsuarioRegistro { get; set; }
         public bool Activo { get; set; }
         public string Garantia { get; set; }
+        public ClasificacionInstrumento Clasificacion { get; set; }
         public ICollection<IngresoInstrumento> IngresosInstrumentos { get; set; }
 
 

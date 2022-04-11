@@ -3,10 +3,10 @@ using Nagaira.Herramientas.Standard.Helpers.Requests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TacticaReparaciones.DesktopApp.Helpers;
-using TacticaReparaciones.Libs.Dtos;
+using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.Libs.Dtos;
 
-namespace TacticaReparaciones.DesktopApp.Pantallas.VariablesDeMedicion
+namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
 {
     public partial class frmVariablesDeMedicion : DevExpress.XtraEditors.XtraForm
     {
@@ -66,8 +66,8 @@ namespace TacticaReparaciones.DesktopApp.Pantallas.VariablesDeMedicion
         private async void CargarVariablesDeMedicion()
         {
             string uri = "/variables-de-medicion";
-            var VariableMedicionsRespuesta = await HttpHelper.Get<VariableMedicionDto>(rutaApi, uri, "");
-            variablesDeMedicion = VariableMedicionsRespuesta;
+            var variableMedicionsRespuesta = await HttpHelper.Get<VariableMedicionDto>(rutaApi, uri, "");
+            variablesDeMedicion = variableMedicionsRespuesta;
 
             gcVariablesDeMedicion.DataSource = variablesDeMedicion;
 

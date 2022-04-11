@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TacticaReparaciones.Servicios.Caracteristicas.Entidades;
+using AutomatMediciones.Servicios.Caracteristicas.Entidades;
 
-namespace TacticaReparaciones.Servicios.Infraestructura.Maps
+namespace AutomatMediciones.Servicios.Infraestructura.Maps
 {
     public class TipoInstrumentoMap : IEntityTypeConfiguration<TipoInstrumento>
     {
@@ -14,7 +14,7 @@ namespace TacticaReparaciones.Servicios.Infraestructura.Maps
             builder.Property(x => x.TipoInstrumentoId).HasColumnName("tipo_instrumento_id").HasColumnType("INT").IsRequired();
             builder.Property(x => x.Descripcion).HasColumnName("descripcion").HasColumnType("VARCHAR(200)").IsRequired();
 
-
+            builder.HasMany(x => x.TiposDeInstrumentoVariables).WithOne(x => x.TipoInstrumento).HasForeignKey(x => x.TipoInstrumentoId);
         }
     }
 }
