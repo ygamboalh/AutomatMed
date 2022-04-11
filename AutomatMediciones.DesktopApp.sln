@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32126.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomatMediciones.DesktopApp", "TacticaReparaciones.DesktopApp\AutomatMediciones.DesktopApp.csproj", "{D1C863BD-0BFC-4273-97D7-F246CB226E91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomatMediciones.DesktopApp", "AutomatMediciones.DesktopApp\AutomatMediciones.DesktopApp.csproj", "{465FF90B-88AC-451D-9EB1-A104BFC2B1AB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomatMediciones.Servicios", "TacticaReparaciones.Servicios\AutomatMediciones.Servicios.csproj", "{5E7C242D-1B89-47A8-BB69-6C8B8B0B704F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomatMediciones.Libs", "AutomatMediciones.Libs\AutomatMediciones.Libs.csproj", "{1E35902D-39F3-43CF-9B5B-A06CB181C792}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomatMediciones.Libs", "TacticaReparaciones.Libs\AutomatMediciones.Libs.csproj", "{78096844-AE02-4D89-95CA-071B04D97C9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomatMediciones.Servicios", "AutomatMediciones.Servicios\AutomatMediciones.Servicios.csproj", "{56BAAA4E-6A23-497F-8BE0-EADB840F97DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D1C863BD-0BFC-4273-97D7-F246CB226E91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D1C863BD-0BFC-4273-97D7-F246CB226E91}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D1C863BD-0BFC-4273-97D7-F246CB226E91}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D1C863BD-0BFC-4273-97D7-F246CB226E91}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5E7C242D-1B89-47A8-BB69-6C8B8B0B704F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5E7C242D-1B89-47A8-BB69-6C8B8B0B704F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5E7C242D-1B89-47A8-BB69-6C8B8B0B704F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5E7C242D-1B89-47A8-BB69-6C8B8B0B704F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{78096844-AE02-4D89-95CA-071B04D97C9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{78096844-AE02-4D89-95CA-071B04D97C9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{78096844-AE02-4D89-95CA-071B04D97C9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{78096844-AE02-4D89-95CA-071B04D97C9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{465FF90B-88AC-451D-9EB1-A104BFC2B1AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{465FF90B-88AC-451D-9EB1-A104BFC2B1AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{465FF90B-88AC-451D-9EB1-A104BFC2B1AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{465FF90B-88AC-451D-9EB1-A104BFC2B1AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E35902D-39F3-43CF-9B5B-A06CB181C792}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E35902D-39F3-43CF-9B5B-A06CB181C792}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E35902D-39F3-43CF-9B5B-A06CB181C792}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E35902D-39F3-43CF-9B5B-A06CB181C792}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56BAAA4E-6A23-497F-8BE0-EADB840F97DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56BAAA4E-6A23-497F-8BE0-EADB840F97DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56BAAA4E-6A23-497F-8BE0-EADB840F97DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56BAAA4E-6A23-497F-8BE0-EADB840F97DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
