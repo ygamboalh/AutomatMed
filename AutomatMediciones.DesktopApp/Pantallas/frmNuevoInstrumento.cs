@@ -1,12 +1,13 @@
-﻿using Nagaira.Herramientas.Standard.Helpers.Requests;
+﻿using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.DesktopApp.Pantallas.Clasificaciones.Dtos;
+using AutomatMediciones.Dominio.Caracteristicas.Servicios;
+using AutomatMediciones.Libs.Dtos;
+using Microsoft.Extensions.DependencyInjection;
+using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
-using AutomatMediciones.DesktopApp.Helpers;
-using AutomatMediciones.DesktopApp.Pantallas.Clasificaciones.Dtos;
-using AutomatMediciones.Libs.Dtos;
 
 namespace AutomatMediciones.DesktopApp.Pantallas
 {
@@ -15,26 +16,32 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         public delegate void InstrumentoAgregado(InstrumentoDto instrumento);
         public event InstrumentoAgregado OnInstrumentoAgregado;
 
+        private readonly ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
+        private readonly ClasificacionInstrumentoService _clasificacionInstrumentoService;
+        private readonly InstrumentoService _instrumentoService;
+
         EmpresaDto empresaSeleccionada;
         public InstrumentoDto NuevoInstrumento { get; set; }
-        string rutaApi;
 
         List<ClasificacionDto> clasificaciones = new List<ClasificacionDto>();
         List<TipoInstrumentoDto> tiposInstrumentos = new List<TipoInstrumentoDto>();
         List<MarcaDto> marcas = new List<MarcaDto>();
         List<ModeloDto> modelos = new List<ModeloDto>();
 
-        public frmNuevoInstrumento()
+        public frmNuevoInstrumento(ClasificacionInstrumentoService clasificacionInstrumentoService, InstrumentoService instrumentoService)
         {
             InitializeComponent();
 
-            rutaApi = AplicacionHelper.ObtenerRutaApiDeAplicacion();
+            _clasificacionInstrumentoService = clasificacionInstrumentoService;
+            _instrumentoService = instrumentoService;
+
             CargarClasificacionesDeInstrumentos();
 
             EstablecerColorBotonGuardar();
             EstablecerNombreYTituloPopupAgregarInstrumentos();
 
             NuevoInstrumento = new InstrumentoDto();
+
         }
 
         private void EstablecerNombreYTituloPopupAgregarInstrumentos()
@@ -56,7 +63,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             txtEmpresaInstrumento.Text = empresa.NombreEmpresa;
         }
 
-        private async void btnGuardarInstrumento_Click(object sender, EventArgs e)
+        private void btnGuardarInstrumento_Click(object sender, EventArgs e)
         {
             PrepararNuevoInstrumentoParaGuardar();
 
@@ -66,9 +73,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas
                 return;
             }
 
-            if ((await GuardarInstrumento()))
+            if (GuardarInstrumento())
             {
-                MessageBox.Show("¡El instrumento se ha registrado exitosamente!", "Tactica Reparaciones", MessageBoxButton.OK, MessageBoxImage.Information);
+                Notificaciones.MensajeConfirmacion("¡El instrumento se ha registrado exitosamente!");
+
                 OnInstrumentoAgregado?.Invoke(NuevoInstrumento);
                 this.Close();
             }
@@ -76,15 +84,22 @@ namespace AutomatMediciones.DesktopApp.Pantallas
 
         private void btnAbrirPopupEmpresaPorInstrumento_Click(object sender, EventArgs e)
         {
-            frmEmpresas frmEmpresas = new frmEmpresas();
+            var frmEmpresas = serviceProvider.GetService<frmEmpresas>();
             frmEmpresas.OnSeleccionaEmpresa += OnEmpresaSeleccionada;
             frmEmpresas.Show();
         }
 
-        private async void CargarClasificacionesDeInstrumentos()
+        private void CargarClasificacionesDeInstrumentos()
         {
-            string uri = "/clasificaciones-instrumentos";
-            clasificaciones = await HttpHelper.Get<ClasificacionDto>(rutaApi, uri, "");
+
+
+            var resultado = _clasificacionInstrumentoService.ObtenerClasificacionesActivas();
+            if (resultado.Type != TypeResponse.Ok)
+            {
+                Notificaciones.MensajeError(resultado.Message);
+                return;
+            }
+
 
             if (clasificaciones != null)
             {
@@ -98,21 +113,21 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             AsignarConfiguracionComboBoxes();
         }
 
-        private async Task<bool> GuardarInstrumento()
+        private bool GuardarInstrumento()
         {
-            bool guardado = false;
-            string uri = "/instrumentos";
 
             try
             {
-                guardado = await HttpHelper.Post<InstrumentoDto>(NuevoInstrumento, rutaApi, uri, "");
+                var resultado = _instrumentoService.RegistrarInstrumento(NuevoInstrumento);
+                if (resultado.Type != TypeResponse.Ok) return false;
+
+                return true;
             }
             catch (Exception exc)
             {
-                MessageBox.Show(exc.Message, "Tactica Reparaciones", MessageBoxButton.OK, MessageBoxImage.Error);
+                Notificaciones.MensajeError(Exceptions.ObtenerMensajeExcepcion(exc));
+                return false;
             }
-
-            return guardado;
         }
 
         private void AsignarConfiguracionComboBoxes()

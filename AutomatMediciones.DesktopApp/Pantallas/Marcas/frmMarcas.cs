@@ -1,33 +1,45 @@
-﻿using Nagaira.Herramientas.Standard.Helpers.Enums;
-using Nagaira.Herramientas.Standard.Helpers.Requests;
+﻿using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.Dominio.Caracteristicas.Servicios;
+using AutomatMediciones.Libs.Dtos;
+using Microsoft.Extensions.DependencyInjection;
+using Nagaira.Herramientas.Standard.Helpers.Enums;
+using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutomatMediciones.DesktopApp.Helpers;
-using AutomatMediciones.Libs.Dtos;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
 {
     public partial class frmMarcas : DevExpress.XtraEditors.XtraForm
     {
-        string rutaApi;
+
         ICollection<MarcaDto> marcas = new List<MarcaDto>();
 
-        public frmMarcas()
+        private readonly ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
+        private readonly MarcaService _marcaService;
+
+        public frmMarcas(MarcaService marcaService)
         {
             InitializeComponent();
-            rutaApi = AplicacionHelper.ObtenerRutaApiDeAplicacion();
+            _marcaService = marcaService;
+
             EstablecerNombreYTitulo();
             EstablecerColorBotonPorDefecto();
             CargarMarcas();
 
             cmdEditar.Click += OnSeleccionaMarcaParaModificar;
+
         }
+
 
         private void OnSeleccionaMarcaParaModificar(object sender, EventArgs e)
         {
             var marca = gvMarcas.GetFocusedRow() as MarcaDto;
-            frmNuevaMarca frmNuevaMarca = new frmNuevaMarca(TipoTransaccion.Actualizar);
+            if (marca == null) return;
+
+
+            var frmNuevaMarca = serviceProvider.GetService<frmNuevaMarca>();
+            frmNuevaMarca.TipoTransaccion = TipoTransaccion.Actualizar;
             frmNuevaMarca.NuevaMarca = marca;
             frmNuevaMarca.SetearValoresParaActualizar();
             frmNuevaMarca.OnMarcaModificada += OnMarcaModificada;
@@ -63,10 +75,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
             btnAgregarNuevInstrumento.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
-        private async void CargarMarcas()
+        private void CargarMarcas()
         {
-            string uri = "/marcas";
-            var marcasRespuesta = await HttpHelper.Get<MarcaDto>(rutaApi, uri, "");
+            var resultado = _marcaService.ObtenerMarcas();
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+            var marcasRespuesta = resultado.Data;
             marcas = marcasRespuesta;
 
             gcMarcas.DataSource = marcas;
@@ -76,7 +90,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
 
         private void btnAgregarNuevInstrumento_Click(object sender, System.EventArgs e)
         {
-            frmNuevaMarca frmNuevaMarca = new frmNuevaMarca(TipoTransaccion.Insertar);
+            var frmNuevaMarca = serviceProvider.GetService<frmNuevaMarca>();
+            frmNuevaMarca.TipoTransaccion = TipoTransaccion.Insertar;
             frmNuevaMarca.OnMarcaAgregada += OnMarcaAgregada;
             frmNuevaMarca.Show();
         }

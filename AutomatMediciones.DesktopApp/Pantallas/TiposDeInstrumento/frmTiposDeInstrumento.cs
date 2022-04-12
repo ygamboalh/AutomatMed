@@ -1,33 +1,46 @@
-﻿using Nagaira.Herramientas.Standard.Helpers.Enums;
-using Nagaira.Herramientas.Standard.Helpers.Requests;
+﻿using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.Dominio.Caracteristicas.Servicios;
+using AutomatMediciones.Libs.Dtos;
+using Microsoft.Extensions.DependencyInjection;
+using Nagaira.Herramientas.Standard.Helpers.Enums;
+using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutomatMediciones.DesktopApp.Helpers;
-using AutomatMediciones.Libs.Dtos;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
 {
     public partial class frmTiposDeInstrumento : DevExpress.XtraEditors.XtraForm
     {
-        string rutaApi;
+        private readonly ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
+        private readonly TipoDeInstrumentoService _tipoInstrumentoService;
+
         ICollection<TipoInstrumentoDto> tiposInstrumento = new List<TipoInstrumentoDto>();
 
-        public frmTiposDeInstrumento()
+        public frmTiposDeInstrumento(TipoDeInstrumentoService tipoInstrumentoService)
         {
             InitializeComponent();
-            rutaApi = AplicacionHelper.ObtenerRutaApiDeAplicacion();
+
+            _tipoInstrumentoService = tipoInstrumentoService;
+
             EstablecerNombreYTitulo();
             EstablecerColorBotonPorDefecto();
             CargarTiposDeInstrumentos();
 
             repositoryItemButtonEdit1.Click += onSeleccionaTipoInstrumentoParaEditar;
+
         }
 
         private void onSeleccionaTipoInstrumentoParaEditar(object sender, EventArgs e)
         {
             var tipoInstrumento = gvTipoInstrumento.GetFocusedRow() as TipoInstrumentoDto;
-            frmNuevoTipoInstrumento frmTipoInstrumento = new frmNuevoTipoInstrumento(TipoTransaccion.Actualizar);
+
+            if (tiposInstrumento == null) return;
+
+
+
+            var frmTipoInstrumento = serviceProvider.GetService<frmNuevoTipoInstrumento>();
+            frmTipoInstrumento.TipoTransaccion = TipoTransaccion.Actualizar;
             frmTipoInstrumento.NuevoTipoInstrumento = tipoInstrumento;
             frmTipoInstrumento.SetearValoresParaActualizar();
             frmTipoInstrumento.OnTipoInstrumentoModificado += OnTipoInstrumentoModificado;
@@ -63,20 +76,22 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             btnAgregarNuevInstrumento.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
-        private async void CargarTiposDeInstrumentos()
-        {
-            string uri = "/tipos-de-instrumento";
-            var tiposDeInstrumentos = await HttpHelper.Get<TipoInstrumentoDto>(rutaApi, uri, "");
-            tiposInstrumento = tiposDeInstrumentos;
 
-            gcTipoInstrumento.DataSource = tiposInstrumento;
+        private void CargarTiposDeInstrumentos()
+        {
+            var resultado = _tipoInstrumentoService.ObtenerTiposDeInstrumento();
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+            var tiposDeInstrumentos = resultado.Data;
+            gcTipoInstrumento.DataSource = tiposDeInstrumentos;
 
             SetearTotales();
         }
 
         private void btnAgregarNuevInstrumento_Click(object sender, System.EventArgs e)
         {
-            frmNuevoTipoInstrumento frmTipoInstrumento = new frmNuevoTipoInstrumento(TipoTransaccion.Insertar);
+            var frmTipoInstrumento = serviceProvider.GetService<frmNuevoTipoInstrumento>();
+            frmTipoInstrumento.TipoTransaccion = TipoTransaccion.Insertar;
             frmTipoInstrumento.OnTipoInstrumentoAgregado += OnTipoInstrumentoAgregado;
             frmTipoInstrumento.Show();
         }

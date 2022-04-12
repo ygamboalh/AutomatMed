@@ -1,14 +1,20 @@
-﻿using DevExpress.XtraEditors;
-using System.Drawing;
-using System.Windows.Forms;
-using AutomatMediciones.DesktopApp.Enums;
+﻿using AutomatMediciones.DesktopApp.Enums;
 using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos;
+using AutomatMediciones.DesktopApp.Pantallas.Ingresos;
+using AutomatMediciones.Dominio.Caracteristicas.Servicios;
+using DevExpress.XtraEditors;
+using DevExpress.XtraSplashScreen;
+using Microsoft.Extensions.DependencyInjection;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Principales
 {
     public partial class frmPrincipal : DevExpress.XtraEditors.XtraForm
     {
+        private readonly ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
+
         public frmPrincipal()
         {
             InitializeComponent();
@@ -16,8 +22,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
 
             EstablecerNombreAplicacion();
             EstablecerFondoMdiPantalla();
-            this.cmpMenu1.InicializarControl();
 
+            this.cmpMenu1.InicializarControl();
         }
 
         private void EstablecerNombreAplicacion()
@@ -30,16 +36,28 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
             switch (indiceMenu)
             {
                 case IndiceMenu.Ingresos:
-                    XtraForm frmIngresos = new frmIngresos();
-                    AgregarPantalla(ref frmIngresos);
+                    SplashScreenManager.ShowForm(typeof(frmLoading));                             
+                    var frmIngresos =  new frmIngresos(serviceProvider.GetService<IngresoService>(), 
+                                                       serviceProvider.GetService<InstrumentoService>(), 
+                                                       serviceProvider.GetService<TipoTrabajoService>()
+                                                      );
+                    XtraForm ingresos = frmIngresos;
+                    AgregarPantalla(ref ingresos);
+                    SplashScreenManager.CloseForm();
                     break;
                 case IndiceMenu.Diagnosticos:
-                    XtraForm frmDiagnosticos = new frmDiagnosticos();
-                    AgregarPantalla(ref frmDiagnosticos);
+                    SplashScreenManager.ShowForm(typeof(frmLoading));
+                    var frmDiagnosticos = new frmDiagnosticos(serviceProvider.GetService<IngresoService>());
+                    XtraForm diagnosticos = frmDiagnosticos;
+                    AgregarPantalla(ref diagnosticos);
+                    SplashScreenManager.CloseForm();
                     break;
                 case IndiceMenu.Configuracion:
-                    XtraForm frmConfiguracion = new frmConfiguracion();
-                    AgregarPantalla(ref frmConfiguracion);
+                    SplashScreenManager.ShowForm(typeof(frmLoading));
+                    var frmConfiguracion = new frmConfiguracion();
+                    XtraForm configuraciones = frmConfiguracion;
+                    AgregarPantalla(ref configuraciones);
+                    SplashScreenManager.CloseForm();
                     break;
             }
         }

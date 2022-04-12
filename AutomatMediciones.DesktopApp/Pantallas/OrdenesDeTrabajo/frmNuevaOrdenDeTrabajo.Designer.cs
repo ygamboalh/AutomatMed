@@ -29,11 +29,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.OrdenesDeTrabajo
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel1 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
-            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel2 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
-            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel3 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
-            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel4 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
-            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel5 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel6 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel7 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel8 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel9 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
+            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel10 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
             this.ctlEncabezadoPantalla1 = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             this.glModelos = new DevExpress.XtraEditors.GridLookUpEdit();
             this.glModelosView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -333,22 +333,22 @@ namespace AutomatMediciones.DesktopApp.Pantallas.OrdenesDeTrabajo
             this.trackPrioridad.Properties.AutoSize = false;
             this.trackPrioridad.Properties.LabelAppearance.Options.UseTextOptions = true;
             this.trackPrioridad.Properties.LabelAppearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            trackBarLabel1.Label = "1";
-            trackBarLabel1.Value = 1;
-            trackBarLabel2.Label = "2";
-            trackBarLabel2.Value = 2;
-            trackBarLabel3.Label = "3";
-            trackBarLabel3.Value = 3;
-            trackBarLabel4.Label = "4";
-            trackBarLabel4.Value = 4;
-            trackBarLabel5.Label = "5";
-            trackBarLabel5.Value = 5;
+            trackBarLabel6.Label = "1";
+            trackBarLabel6.Value = 1;
+            trackBarLabel7.Label = "2";
+            trackBarLabel7.Value = 2;
+            trackBarLabel8.Label = "3";
+            trackBarLabel8.Value = 3;
+            trackBarLabel9.Label = "4";
+            trackBarLabel9.Value = 4;
+            trackBarLabel10.Label = "5";
+            trackBarLabel10.Value = 5;
             this.trackPrioridad.Properties.Labels.AddRange(new DevExpress.XtraEditors.Repository.TrackBarLabel[] {
-            trackBarLabel1,
-            trackBarLabel2,
-            trackBarLabel3,
-            trackBarLabel4,
-            trackBarLabel5});
+            trackBarLabel6,
+            trackBarLabel7,
+            trackBarLabel8,
+            trackBarLabel9,
+            trackBarLabel10});
             this.trackPrioridad.Properties.Maximum = 5;
             this.trackPrioridad.Properties.Minimum = 1;
             this.trackPrioridad.Properties.ShowLabels = true;

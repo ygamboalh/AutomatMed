@@ -1,33 +1,43 @@
-﻿using Nagaira.Herramientas.Standard.Helpers.Enums;
-using Nagaira.Herramientas.Standard.Helpers.Requests;
+﻿using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.Dominio.Caracteristicas.Servicios;
+using AutomatMediciones.Libs.Dtos;
+using Microsoft.Extensions.DependencyInjection;
+using Nagaira.Herramientas.Standard.Helpers.Enums;
+using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutomatMediciones.DesktopApp.Helpers;
-using AutomatMediciones.Libs.Dtos;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
 {
     public partial class frmVariablesDeMedicion : DevExpress.XtraEditors.XtraForm
     {
-        string rutaApi;
+        private readonly ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
+        private readonly VariableMedicionService _variableMedicionService;
+
         ICollection<VariableMedicionDto> variablesDeMedicion = new List<VariableMedicionDto>();
 
-        public frmVariablesDeMedicion()
+        public frmVariablesDeMedicion(VariableMedicionService variableMedicionService)
         {
             InitializeComponent();
-            rutaApi = AplicacionHelper.ObtenerRutaApiDeAplicacion();
+
+            _variableMedicionService = variableMedicionService;
+
             EstablecerNombreYTitulo();
             EstablecerColorBotonPorDefecto();
             CargarVariablesDeMedicion();
 
             cmdEditar.Click += OnSeleccionaVariableMedicionParaModificar;
+
         }
 
         private void OnSeleccionaVariableMedicionParaModificar(object sender, EventArgs e)
         {
             var VariableMedicion = gvVariablesDeMedicion.GetFocusedRow() as VariableMedicionDto;
-            frmNuevaVariableMedicion frmNuevaVariableMedicion = new frmNuevaVariableMedicion(TipoTransaccion.Actualizar);
+            if (variablesDeMedicion == null) return;
+
+            var frmNuevaVariableMedicion = serviceProvider.GetService<frmNuevaVariableMedicion>();
+            frmNuevaVariableMedicion.TipoTransaccion = TipoTransaccion.Actualizar;
             frmNuevaVariableMedicion.NuevaVariableMedicion = VariableMedicion;
             frmNuevaVariableMedicion.SetearValoresParaActualizar();
             frmNuevaVariableMedicion.OnVariableMedicionModificada += OnVariableMedicionModificada;
@@ -63,11 +73,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             btnAgregarNuevInstrumento.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
-        private async void CargarVariablesDeMedicion()
+        private void CargarVariablesDeMedicion()
         {
-            string uri = "/variables-de-medicion";
-            var variableMedicionsRespuesta = await HttpHelper.Get<VariableMedicionDto>(rutaApi, uri, "");
-            variablesDeMedicion = variableMedicionsRespuesta;
+            var resultado = _variableMedicionService.ObtenerVariablesDeMedicionActivas();
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+            variablesDeMedicion = resultado.Data;
 
             gcVariablesDeMedicion.DataSource = variablesDeMedicion;
 
@@ -76,7 +87,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
 
         private void btnAgregarNuevInstrumento_Click(object sender, System.EventArgs e)
         {
-            frmNuevaVariableMedicion frmNuevaVariableMedicion = new frmNuevaVariableMedicion(TipoTransaccion.Insertar);
+            var frmNuevaVariableMedicion = serviceProvider.GetService<frmNuevaVariableMedicion>();
+            frmNuevaVariableMedicion.TipoTransaccion = TipoTransaccion.Insertar;
             frmNuevaVariableMedicion.OnVariableMedicionAgregada += OnVariableMedicionAgregada;
             frmNuevaVariableMedicion.Show();
         }

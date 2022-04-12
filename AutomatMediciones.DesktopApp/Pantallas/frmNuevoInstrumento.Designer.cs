@@ -462,7 +462,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private DevExpress.XtraEditors.GridLookUpEdit glTipoInstrumento;
         private DevExpress.XtraGrid.Views.Grid.GridView glTipoInstrumentoView;
-        private DevExpress.XtraGrid.Columns.GridColumn colDescripcion;
         private DevExpress.XtraEditors.LabelControl labelControl10;
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.LabelControl labelControl18;

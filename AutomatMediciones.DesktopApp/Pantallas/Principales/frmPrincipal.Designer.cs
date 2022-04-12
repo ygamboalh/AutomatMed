@@ -30,6 +30,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::AutomatMediciones.DesktopApp.Pantallas.frmLoading), true, true);
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             this.cmpMenu1 = new AutomatMediciones.DesktopApp.Componentes.Menu.cmpMenu();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
@@ -47,11 +48,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
             this.cmpMenu1.MinimumSize = new System.Drawing.Size(26, 416);
             this.cmpMenu1.Name = "cmpMenu1";
             this.cmpMenu1.Size = new System.Drawing.Size(280, 521);
-            this.cmpMenu1.TabIndex = 1;
+            this.cmpMenu1.TabIndex = 1;          
             // 
             // xtraTabbedMdiManager1
             // 
             this.xtraTabbedMdiManager1.MdiParent = this;
+            // 
+            // splashScreenManager1
+            // 
+            splashScreenManager1.ClosingDelay = 500;
             // 
             // frmPrincipal
             // 

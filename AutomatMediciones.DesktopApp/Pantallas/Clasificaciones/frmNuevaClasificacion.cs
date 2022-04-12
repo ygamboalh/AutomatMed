@@ -1,13 +1,10 @@
-﻿using Nagaira.Herramientas.Standard.Helpers.Enums;
-using Nagaira.Herramientas.Standard.Helpers.Requests;
+﻿using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.Dominio.Caracteristicas.Servicios;
+using AutomatMediciones.Libs.Dtos;
+using Nagaira.Herramientas.Standard.Helpers.Enums;
+using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Forms;
-using AutomatMediciones.DesktopApp.Helpers;
-using AutomatMediciones.Libs.Dtos;
-using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
 {
@@ -19,19 +16,21 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
         public delegate void ClasificacionInstrumentoModificada(ClasificacionInstrumentoDto tipoInstrumento);
         public event ClasificacionInstrumentoModificada OnClasificacionInstrumentoModificada;
 
-        string rutaApi;
-        private readonly TipoTransaccion _tipoTransaccion;
+        private readonly ClasificacionInstrumentoService _clasificacionInstrumentoService;
 
-        public ICollection<ModeloDto> modelos = new List<ModeloDto>();
-        public ICollection<MarcaDto> marcas = new List<MarcaDto>();
-        public ICollection<TipoInstrumentoDto> tiposDeInstrumento = new List<TipoInstrumentoDto>();
+        public TipoTransaccion TipoTransaccion { get; set; }
+
+        public ICollection<ModeloDto> Modelos = new List<ModeloDto>();
+        public ICollection<MarcaDto> Marcas = new List<MarcaDto>();
+        public ICollection<TipoInstrumentoDto> TiposDeInstrumento = new List<TipoInstrumentoDto>();
 
         public ClasificacionInstrumentoDto NuevaClasificacion { get; set; }
-        public frmNuevaClasificacion(TipoTransaccion tipoTransaccion)
+        public frmNuevaClasificacion(ClasificacionInstrumentoService clasificacionInstrumentoService)
         {
             InitializeComponent();
-            rutaApi = AplicacionHelper.ObtenerRutaApiDeAplicacion();
-            _tipoTransaccion = tipoTransaccion;
+
+            _clasificacionInstrumentoService = clasificacionInstrumentoService;
+
             EstablecerNombreYTituloPopupAgregarInstrumentos();
             EstablecerColorBotonGuardar();
 
@@ -41,9 +40,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
 
         public void InicializarMaestros()
         {
-            glMarca.Properties.DataSource = marcas;
-            glModelo.Properties.DataSource = modelos;
-            glTipoInstrumento.Properties.DataSource = tiposDeInstrumento;
+            glMarca.Properties.DataSource = Marcas;
+            glModelo.Properties.DataSource = Modelos;
+            glTipoInstrumento.Properties.DataSource = TiposDeInstrumento;
 
             glMarca.Properties.DisplayMember = "Descripcion";
             glMarca.Properties.ValueMember = "MarcaId";
@@ -66,7 +65,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
         private void EstablecerNombreYTituloPopupAgregarInstrumentos()
         {
             this.Text = "";
-            ctlEncabezadoPantalla1.lblTitulo.Text = _tipoTransaccion == TipoTransaccion.Insertar ? "Agregar Clasificación  de Instrumento" : "Modificar Clasificación de Instrumento";
+            ctlEncabezadoPantalla1.lblTitulo.Text = TipoTransaccion == TipoTransaccion.Insertar ? "Agregar Clasificación  de Instrumento" : "Modificar Clasificación de Instrumento";
             ctlEncabezadoPantalla1.EstablecerColoresDeFondoYLetra();
         }
         private void EstablecerColorBotonGuardar()
@@ -76,38 +75,37 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             btnGuardarClasificacion.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
-        private async Task<bool> GuardarClasificacionInstrumento()
+        private bool GuardarClasificacionInstrumento()
         {
-            bool guardado = false;
-            string uri = "/clasificaciones-instrumentos";
 
             try
             {
-                guardado = await HttpHelper.Post<ClasificacionInstrumentoDto>(NuevaClasificacion, rutaApi, uri, "");
+                var resultado = _clasificacionInstrumentoService.RegistrarClasificacion(NuevaClasificacion);
+                if (resultado.Type != TypeResponse.Ok) return false;
+
+                return true;
             }
             catch (Exception exc)
             {
-                MessageBox.Show(exc.Message, "Tactica Reparaciones", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Error);
+                Notificaciones.MensajeError(Exceptions.ObtenerMensajeExcepcion(exc));
+                return false;
             }
-
-            return guardado;
         }
 
-        private async Task<bool> ActualizarClasificacionInstrumento()
+        private bool ActualizarClasificacionInstrumento()
         {
-            bool guardado = false;
-            string uri = "/clasificaciones-instrumentos";
-
             try
             {
-                guardado = await HttpHelper.Put<ClasificacionInstrumentoDto>(NuevaClasificacion, rutaApi, uri, "");
+                var resultado = _clasificacionInstrumentoService.ActualizarClasificacion(NuevaClasificacion);
+                if (resultado.Type != TypeResponse.Ok) return false;
+
+                return true;
             }
             catch (Exception exc)
             {
-                MessageBox.Show(exc.Message, "Tactica Reparaciones", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Error);
+                Notificaciones.MensajeError(Exceptions.ObtenerMensajeExcepcion(exc));
+                return false;
             }
-
-            return guardado;
         }
 
         private void PrepararNuevaClasificacionInstrumento()
@@ -121,8 +119,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
 
         private bool EsValidaLaInformacionIngresadaParaNuevaClasificacion(out string mensaje)
         {
-
-
             if (NuevaClasificacion.TipoInstrumentoId == 0)
             {
                 mensaje = "Es necesario ingresar un Tipo de Instrumento para la Clasificación del Instrumento.";
@@ -142,30 +138,30 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             return true;
         }
 
-        private async void btnGuardarClasificacionInstrumento_Click(object sender, EventArgs e)
+        private void btnGuardarClasificacionInstrumento_Click(object sender, EventArgs e)
         {
             PrepararNuevaClasificacionInstrumento();
 
             if (!EsValidaLaInformacionIngresadaParaNuevaClasificacion(out string mensaje))
             {
-                MessageBox.Show(mensaje);
+                Notificaciones.MensajeAdvertencia(mensaje);
                 return;
             }
 
-            if (_tipoTransaccion == TipoTransaccion.Insertar)
+            if (TipoTransaccion == TipoTransaccion.Insertar)
             {
-                if ((await GuardarClasificacionInstrumento()))
+                if ((GuardarClasificacionInstrumento()))
                 {
-                    MessageBox.Show("¡La Clasificación de Instrumento se ha registrado exitosamente!", "Tactica Reparaciones", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Information);
+                    Notificaciones.MensajeConfirmacion("¡La Clasificación de Instrumento se ha registrado exitosamente!");
                     OnClasificacionInstrumentoAgregada?.Invoke(NuevaClasificacion);
                     this.Close();
                 }
             }
             else
             {
-                if ((await ActualizarClasificacionInstrumento()))
+                if (ActualizarClasificacionInstrumento())
                 {
-                    MessageBox.Show("¡La Clasificación de Instrumento se ha actualizado exitosamente!", "Tactica Reparaciones", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Information);
+                    Notificaciones.MensajeConfirmacion("¡La Clasificación de Instrumento se ha actualizado exitosamente!");
                     OnClasificacionInstrumentoModificada?.Invoke(NuevaClasificacion);
                     this.Close();
                 }

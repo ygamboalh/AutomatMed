@@ -1,6 +1,6 @@
 ﻿
-using System.Windows.Forms;
 using AutomatMediciones.DesktopApp.Helpers;
+using System.Windows.Forms;
 
 namespace AutomatMediciones.DesktopApp.Componentes.Encabezados
 {

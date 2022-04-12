@@ -14,10 +14,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="AutomatMediciones.Libs" Version="2.1.1" />
-    <PackageReference Include="devexpress.win.design" Version="21.2.5" />
+    <PackageReference Include="DevExpress.Win.Design" Version="21.2.6" />
     <PackageReference Include="FontAwesome.Sharp" Version="5.15.4" />
+    <PackageReference Include="Nagaira.Extensions.Configuration" Version="2.2.0" />
     <PackageReference Include="Nagaira.Herramientas.Standard.Helpers" Version="1.0.6" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +41,10 @@
 
   <ItemGroup>
     <Folder Include="out\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AutomatMediciones.Dominio\AutomatMediciones.Dominio.csproj" />
   </ItemGroup>
 
 </Project>

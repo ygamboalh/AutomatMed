@@ -1,33 +1,33 @@
-﻿using Nagaira.Herramientas.Standard.Helpers.Enums;
-using Nagaira.Herramientas.Standard.Helpers.Requests;
-using System;
-using System.Threading.Tasks;
-using System.Windows;
-using AutomatMediciones.DesktopApp.Helpers;
+﻿using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
+using Nagaira.Herramientas.Standard.Helpers.Enums;
+using Nagaira.Herramientas.Standard.Helpers.Responses;
+using System;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
 {
     public partial class frmNuevoTipoInstrumento : DevExpress.XtraEditors.XtraForm
     {
+        private readonly TipoDeInstrumentoService _tipoInstrumentoService;
+
         public delegate void TipoInstrumentoAgregado(TipoInstrumentoDto tipoInstrumento);
         public event TipoInstrumentoAgregado OnTipoInstrumentoAgregado;
 
         public delegate void TipoInstrumentoModificado(TipoInstrumentoDto tipoInstrumento);
         public event TipoInstrumentoAgregado OnTipoInstrumentoModificado;
 
-        string rutaApi;
-        private readonly TipoTransaccion _tipoTransaccion;
-
+        public TipoTransaccion TipoTransaccion { get; set; }
         public TipoInstrumentoDto NuevoTipoInstrumento { get; set; }
-        public frmNuevoTipoInstrumento(TipoTransaccion tipoTransaccion)
+
+        public frmNuevoTipoInstrumento(TipoDeInstrumentoService tipoInstrumentoService)
         {
             InitializeComponent();
-            rutaApi = AplicacionHelper.ObtenerRutaApiDeAplicacion();
-            _tipoTransaccion = tipoTransaccion;
+
+            _tipoInstrumentoService = tipoInstrumentoService;
+
             EstablecerNombreYTituloPopupAgregarInstrumentos();
             EstablecerColorBotonGuardar();
-
 
             NuevoTipoInstrumento = new TipoInstrumentoDto();
 
@@ -43,7 +43,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
         private void EstablecerNombreYTituloPopupAgregarInstrumentos()
         {
             this.Text = "";
-            ctlEncabezadoPantalla1.lblTitulo.Text = _tipoTransaccion == TipoTransaccion.Insertar ? "Agregar Tipo de Instrumento" : "Modificar Tipo de Instrumento";
+            ctlEncabezadoPantalla1.lblTitulo.Text = TipoTransaccion == TipoTransaccion.Insertar ? "Agregar Tipo de Instrumento" : "Modificar Tipo de Instrumento";
             ctlEncabezadoPantalla1.EstablecerColoresDeFondoYLetra();
         }
         private void EstablecerColorBotonGuardar()
@@ -53,31 +53,31 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             btnGuardarInstrumento.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
-        private async void btnGuardarInstrumento_Click(object sender, EventArgs e)
+        private void btnGuardarInstrumento_Click(object sender, EventArgs e)
         {
 
             PrepararNuevoTipoInstrumento();
 
             if (!EsValidaLaInformacionIngresadaParaNuevoTipoInstrumento(out string mensaje))
             {
-                MessageBox.Show(mensaje);
+                Notificaciones.MensajeAdvertencia(mensaje);
                 return;
             }
 
-            if (_tipoTransaccion == TipoTransaccion.Insertar)
+            if (TipoTransaccion == TipoTransaccion.Insertar)
             {
-                if ((await GuardarTipoInstrumento()))
+                if (GuardarTipoInstrumento())
                 {
-                    MessageBox.Show("¡El tipo de instrumento se ha registrado exitosamente!", "Tactica Reparaciones", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Notificaciones.MensajeConfirmacion("¡El tipo de instrumento se ha registrado exitosamente!");
                     OnTipoInstrumentoAgregado?.Invoke(NuevoTipoInstrumento);
                     this.Close();
                 }
             }
             else
             {
-                if ((await ActualizarTipoInstrumento()))
+                if (ActualizarTipoInstrumento())
                 {
-                    MessageBox.Show("¡El tipo de instrumento se ha actualizado exitosamente!", "Tactica Reparaciones", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Notificaciones.MensajeConfirmacion("¡El tipo de instrumento se ha actualizado exitosamente!");
                     OnTipoInstrumentoModificado?.Invoke(NuevoTipoInstrumento);
                     this.Close();
                 }
@@ -85,39 +85,38 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
 
         }
 
-
-        private async Task<bool> GuardarTipoInstrumento()
+        private bool GuardarTipoInstrumento()
         {
-            bool guardado = false;
-            string uri = "/tipos-de-instrumento";
 
             try
             {
-                guardado = await HttpHelper.Post<TipoInstrumentoDto>(NuevoTipoInstrumento, rutaApi, uri, "");
+                var resultado = _tipoInstrumentoService.RegistrarTipoInstrumento(NuevoTipoInstrumento);
+                if (resultado.Type != TypeResponse.Ok) return false;
+
+                return true;
             }
             catch (Exception exc)
             {
-                MessageBox.Show(exc.Message, "Tactica Reparaciones", MessageBoxButton.OK, MessageBoxImage.Error);
+                Notificaciones.MensajeError(Exceptions.ObtenerMensajeExcepcion(exc));
+                return false;
             }
-
-            return guardado;
         }
 
-        private async Task<bool> ActualizarTipoInstrumento()
+        private bool ActualizarTipoInstrumento()
         {
-            bool guardado = false;
-            string uri = "/tipos-de-instrumento";
 
             try
             {
-                guardado = await HttpHelper.Put<TipoInstrumentoDto>(NuevoTipoInstrumento, rutaApi, uri, "");
+                var resultado = _tipoInstrumentoService.ActualizarTipoDeInstrumento(NuevoTipoInstrumento);
+                if (resultado.Type != TypeResponse.Ok) return false;
+
+                return true;
             }
             catch (Exception exc)
             {
-                MessageBox.Show(exc.Message, "Tactica Reparaciones", MessageBoxButton.OK, MessageBoxImage.Error);
+                Notificaciones.MensajeError(Exceptions.ObtenerMensajeExcepcion(exc));
+                return false;
             }
-
-            return guardado;
         }
 
         private void PrepararNuevoTipoInstrumento()
@@ -130,8 +129,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
 
         private bool EsValidaLaInformacionIngresadaParaNuevoTipoInstrumento(out string mensaje)
         {
-
-
             if (string.IsNullOrEmpty(NuevoTipoInstrumento.Descripcion))
             {
                 mensaje = "Es necesario ingresar una descripción para el tipo de instrumento.";

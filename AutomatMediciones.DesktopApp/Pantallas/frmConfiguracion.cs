@@ -1,15 +1,18 @@
-﻿using DevExpress.XtraEditors;
-using System;
-using AutomatMediciones.DesktopApp.Pantallas.Clasificaciones;
+﻿using AutomatMediciones.DesktopApp.Pantallas.Clasificaciones;
 using AutomatMediciones.DesktopApp.Pantallas.Marcas;
 using AutomatMediciones.DesktopApp.Pantallas.Modelos;
 using AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento;
 using AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion;
+using AutomatMediciones.Dominio.Caracteristicas.Servicios;
+using DevExpress.XtraEditors;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace AutomatMediciones.DesktopApp.Pantallas
 {
     public partial class frmConfiguracion : DevExpress.XtraEditors.XtraForm
     {
+        private readonly ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
         public frmConfiguracion()
         {
             InitializeComponent();
@@ -17,8 +20,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas
 
         private void tipoInstrumentoMenu_Click(object sender, EventArgs e)
         {
-            XtraForm frmTiposDeInstrumento = new frmTiposDeInstrumento();
-            AgregarPantalla(ref frmTiposDeInstrumento);
+            var frmTipoInstrumento = new frmTiposDeInstrumento(serviceProvider.GetService<TipoDeInstrumentoService>());
+            XtraForm tiposDeInstrumento = frmTipoInstrumento;
+            AgregarPantalla(ref tiposDeInstrumento);
         }
 
         private void AgregarPantalla(ref XtraForm pantalla)
@@ -36,32 +40,43 @@ namespace AutomatMediciones.DesktopApp.Pantallas
 
         private void marcaMenu_Click(object sender, EventArgs e)
         {
-            XtraForm frmMarcas = new frmMarcas();
-            AgregarPantalla(ref frmMarcas);
+
+            var frmMarcas = new frmMarcas(serviceProvider.GetService<MarcaService>()) ;
+            XtraForm marcas = frmMarcas;
+            AgregarPantalla(ref marcas);
         }
 
         private void iconMenuItem1_Click(object sender, EventArgs e)
         {
-            XtraForm frmModelos = new frmModelos();
-            AgregarPantalla(ref frmModelos);
+            var frmModelos = new frmModelos(serviceProvider.GetService<ModeloService>());
+            XtraForm modelos = frmModelos;
+            AgregarPantalla(ref modelos);
         }
 
         private void clasificacionInstrumentoMenu_Click(object sender, EventArgs e)
         {
-            XtraForm frmClasificaciones = new frmClasificaciones();
-            AgregarPantalla(ref frmClasificaciones);
+            var frmClasificaciones = new frmClasificaciones(serviceProvider.GetService<ClasificacionInstrumentoService>(),
+                                                            serviceProvider.GetService<MarcaService>(),
+                                                            serviceProvider.GetService<ModeloService>(),
+                                                            serviceProvider.GetService<TipoDeInstrumentoService>()
+                                                            );
+            XtraForm clasificaciones = frmClasificaciones;
+            AgregarPantalla(ref clasificaciones);
         }
 
         private void instrumentosMenu_Click(object sender, EventArgs e)
         {
-            XtraForm nuevoInstrumento = new frmNuevoInstrumento();
+
+            var frmNuevoInstrumento = new frmNuevoInstrumento(serviceProvider.GetService<ClasificacionInstrumentoService>(), serviceProvider.GetService<InstrumentoService>());
+            XtraForm nuevoInstrumento = frmNuevoInstrumento;
             AgregarPantalla(ref nuevoInstrumento);
         }
 
         private void variableMedicionMenu_Click(object sender, EventArgs e)
         {
-            XtraForm variableMedicion = new frmVariablesDeMedicion();
-            AgregarPantalla(ref variableMedicion);
+            var frmVariablesDeMedicion = new frmVariablesDeMedicion(serviceProvider.GetService<VariableMedicionService>());
+            XtraForm variablesMedicion = frmVariablesDeMedicion;
+            AgregarPantalla(ref variablesMedicion);
         }
     }
 }

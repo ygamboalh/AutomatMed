@@ -1,38 +1,36 @@
-﻿using Nagaira.Herramientas.Standard.Helpers.Enums;
-using Nagaira.Herramientas.Standard.Helpers.Requests;
-using System;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Forms;
-using AutomatMediciones.DesktopApp.Helpers;
+﻿using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
+using Nagaira.Herramientas.Standard.Helpers.Enums;
+using Nagaira.Herramientas.Standard.Helpers.Responses;
+using System;
 using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
 {
     public partial class frmNuevoModelo : DevExpress.XtraEditors.XtraForm
     {
+        private readonly ModeloService _modeloService;
+
         public delegate void ModeloAgregada(ModeloDto modelo);
         public event ModeloAgregada OnModeloAgregada;
 
         public delegate void ModeloModificada(ModeloDto modelo);
         public event ModeloModificada OnModeloModificada;
 
-        string rutaApi;
-        private readonly TipoTransaccion _tipoTransaccion;
-
+        public TipoTransaccion TipoTransaccion { get; set; }
         public ModeloDto NuevaModelo { get; set; }
-        public frmNuevoModelo(TipoTransaccion tipoTransaccion)
+
+        public frmNuevoModelo(ModeloService modeloService)
         {
             InitializeComponent();
-            rutaApi = AplicacionHelper.ObtenerRutaApiDeAplicacion();
-            _tipoTransaccion = tipoTransaccion;
+
+            _modeloService = modeloService;
+
             EstablecerNombreYTituloPopupAgregarInstrumentos();
             EstablecerColorBotonGuardar();
 
-
             NuevaModelo = new ModeloDto();
-
         }
 
         public void SetearValoresParaActualizar()
@@ -43,7 +41,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
         private void EstablecerNombreYTituloPopupAgregarInstrumentos()
         {
             this.Text = "";
-            ctlEncabezadoPantalla1.lblTitulo.Text = _tipoTransaccion == TipoTransaccion.Insertar ? "Agregar Modelo" : "Modificar Modelo";
+            ctlEncabezadoPantalla1.lblTitulo.Text = TipoTransaccion == TipoTransaccion.Insertar ? "Agregar Modelo" : "Modificar Modelo";
             ctlEncabezadoPantalla1.EstablecerColoresDeFondoYLetra();
         }
         private void EstablecerColorBotonGuardar()
@@ -53,38 +51,38 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             btnGuardarModelo.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
-        private async Task<bool> GuardarModelo()
+        private bool GuardarModelo()
         {
-            bool guardado = false;
-            string uri = "/Modelos";
 
             try
             {
-                guardado = await HttpHelper.Post<ModeloDto>(NuevaModelo, rutaApi, uri, "");
+                var resultado = _modeloService.RegistrarModelo(NuevaModelo);
+                if (resultado.Type != TypeResponse.Ok) return false;
+
+                return true;
             }
             catch (Exception exc)
             {
-                MessageBox.Show(exc.Message, "Tactica Reparaciones", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Error);
+                Notificaciones.MensajeError(Exceptions.ObtenerMensajeExcepcion(exc));
+                return false;
             }
-
-            return guardado;
         }
 
-        private async Task<bool> ActualizarModelo()
+        private bool ActualizarModelo()
         {
-            bool guardado = false;
-            string uri = "/Modelos";
 
             try
             {
-                guardado = await HttpHelper.Put<ModeloDto>(NuevaModelo, rutaApi, uri, "");
+                var resultado = _modeloService.ActualizarModelo(NuevaModelo);
+                if (resultado.Type != TypeResponse.Ok) return false;
+
+                return true;
             }
             catch (Exception exc)
             {
-                MessageBox.Show(exc.Message, "Tactica Reparaciones", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Error);
+                Notificaciones.MensajeError(Exceptions.ObtenerMensajeExcepcion(exc));
+                return false;
             }
-
-            return guardado;
         }
 
         private void PrepararNuevaModelo()
@@ -96,18 +94,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
 
         private bool EsValidaLaInformacionIngresadaParaNuevoModelo(out string mensaje)
         {
-
-
             if (string.IsNullOrEmpty(NuevaModelo.Descripcion))
             {
-                mensaje = "Es necesario ingresar una descripción para la Modelo.";
+                mensaje = "Es necesario ingresar una descripción para el Modelo.";
                 return false;
             }
             mensaje = "Ok";
             return true;
         }
 
-        private async void btnGuardarModelo_Click(object sender, EventArgs e)
+        private void btnGuardarModelo_Click(object sender, EventArgs e)
         {
             PrepararNuevaModelo();
 
@@ -117,20 +113,20 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
                 return;
             }
 
-            if (_tipoTransaccion == TipoTransaccion.Insertar)
+            if (TipoTransaccion == TipoTransaccion.Insertar)
             {
-                if ((await GuardarModelo()))
+                if (GuardarModelo())
                 {
-                    MessageBox.Show("¡La Modelo se ha registrado exitosamente!", "Tactica Reparaciones", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Information);
+                    Notificaciones.MensajeConfirmacion("¡El Modelo se ha registrado exitosamente!");
                     OnModeloAgregada?.Invoke(NuevaModelo);
                     this.Close();
                 }
             }
             else
             {
-                if ((await ActualizarModelo()))
+                if (ActualizarModelo())
                 {
-                    MessageBox.Show("¡La Modelo se ha actualizado exitosamente!", "Tactica Reparaciones", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Information);
+                    Notificaciones.MensajeConfirmacion("¡El Modelo se ha actualizado exitosamente!");
                     OnModeloModificada?.Invoke(NuevaModelo);
                     this.Close();
                 }

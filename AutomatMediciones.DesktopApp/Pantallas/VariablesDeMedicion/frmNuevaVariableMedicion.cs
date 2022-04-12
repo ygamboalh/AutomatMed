@@ -1,35 +1,34 @@
-﻿using Nagaira.Herramientas.Standard.Helpers.Enums;
-using Nagaira.Herramientas.Standard.Helpers.Requests;
+﻿using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.Dominio.Caracteristicas.Servicios;
+using AutomatMediciones.Libs.Dtos;
+using Nagaira.Herramientas.Standard.Helpers.Enums;
+using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Forms;
-using AutomatMediciones.DesktopApp.Helpers;
-using AutomatMediciones.Libs.Dtos;
-using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
 {
     public partial class frmNuevaVariableMedicion : DevExpress.XtraEditors.XtraForm
     {
+        private readonly VariableMedicionService _variableMedicionService;
+        private readonly TipoDeInstrumentoService _tipoinstrumentoService;
+
         public delegate void VariableMedicionAgregada(VariableMedicionDto tipoInstrumento);
         public event VariableMedicionAgregada OnVariableMedicionAgregada;
 
         public delegate void VariableMedicionModificada(VariableMedicionDto tipoInstrumento);
         public event VariableMedicionModificada OnVariableMedicionModificada;
 
-        string rutaApi;
-        private readonly TipoTransaccion _tipoTransaccion;
+        public TipoTransaccion TipoTransaccion { get; set; }
 
         public VariableMedicionDto NuevaVariableMedicion { get; set; }
-        public frmNuevaVariableMedicion(TipoTransaccion tipoTransaccion)
+        public frmNuevaVariableMedicion(VariableMedicionService variableMedicionService, TipoDeInstrumentoService tipoinstrumentoService)
         {
             InitializeComponent();
-            rutaApi = AplicacionHelper.ObtenerRutaApiDeAplicacion();
-            _tipoTransaccion = tipoTransaccion;
+            _variableMedicionService = variableMedicionService;
+            _tipoinstrumentoService = tipoinstrumentoService;
+
             EstablecerNombreYTituloPopupAgregarInstrumentos();
             EstablecerColorBotonGuardar();
 
@@ -65,7 +64,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
         private void EstablecerNombreYTituloPopupAgregarInstrumentos()
         {
             this.Text = "";
-            ctlEncabezadoPantalla1.lblTitulo.Text = _tipoTransaccion == TipoTransaccion.Insertar ? "Agregar Variable de Medición" : "Modificar Variable de Medición";
+            ctlEncabezadoPantalla1.lblTitulo.Text = TipoTransaccion == TipoTransaccion.Insertar ? "Agregar Variable de Medición" : "Modificar Variable de Medición";
             ctlEncabezadoPantalla1.EstablecerColoresDeFondoYLetra();
         }
         private void EstablecerColorBotonGuardar()
@@ -75,51 +74,48 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             btnGuardarVariableMedicion.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
-        private async Task<bool> GuardarVariableMedicion()
+        private bool GuardarVariableMedicion()
         {
-            bool guardado = false;
-            string uri = "/variables-de-medicion";
 
             try
             {
-                var json = JsonSerializer.Serialize(NuevaVariableMedicion);
-                guardado = await HttpHelper.Post<VariableMedicionDto>(NuevaVariableMedicion, rutaApi, uri, "");
+                var resultado = _variableMedicionService.RegistrarVariableDeMedicion(NuevaVariableMedicion);
+                if (resultado.Type != TypeResponse.Ok) return false;
+
+                return true;
             }
             catch (Exception exc)
             {
-                string message = exc.InnerException == null ? exc.Message : exc.InnerException.Message;
-                MessageBox.Show(message, "Tactica Reparaciones", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Error);
+                Notificaciones.MensajeError(Exceptions.ObtenerMensajeExcepcion(exc));
+                return false;
             }
-
-            return guardado;
         }
 
-        private async void CargarTiposDeInstrumentos()
+        private void CargarTiposDeInstrumentos()
         {
-            string uri = "/tipos-de-instrumento";
-            var tiposDeInstrumentos = await HttpHelper.Get<TipoInstrumentoDto>(rutaApi, uri, "");
+            var resultado = _tipoinstrumentoService.ObtenerTiposDeInstrumento();
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
-            glTipoInstrumento.Properties.DataSource = tiposDeInstrumentos;
+            glTipoInstrumento.Properties.DataSource = resultado.Data;
             glTipoInstrumento.Properties.DisplayMember = "Descripcion";
             glTipoInstrumento.Properties.ValueMember = "TipoInstrumentoId";
         }
 
-        private async Task<bool> ActualizarVariableMedicion()
+        private bool ActualizarVariableMedicion()
         {
-            bool guardado = false;
-            string uri = "/variables-de-medicion";
 
             try
             {
-                guardado = await HttpHelper.Put<VariableMedicionDto>(NuevaVariableMedicion, rutaApi, uri, "");
+                var resultado = _variableMedicionService.ActualizarVariableDeMedicion(NuevaVariableMedicion);
+                if (resultado.Type != TypeResponse.Ok) return false;
+
+                return true;
             }
             catch (Exception exc)
             {
-                string message = exc.InnerException == null ? exc.Message : exc.InnerException.Message;
-                MessageBox.Show(message, "Tactica Reparaciones", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Error);
+                Notificaciones.MensajeError(Exceptions.ObtenerMensajeExcepcion(exc));
+                return false;
             }
-
-            return guardado;
         }
 
         private void PrepararNuevaVariableMedicion()
@@ -142,30 +138,30 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             return true;
         }
 
-        private async void btnGuardarVariableMedicion_Click(object sender, EventArgs e)
+        private void btnGuardarVariableMedicion_Click(object sender, EventArgs e)
         {
             PrepararNuevaVariableMedicion();
 
             if (!EsValidaLaInformacionIngresadaParaNuevoTipoInstrumento(out string mensaje))
             {
-                MessageBox.Show(mensaje);
+                Notificaciones.MensajeAdvertencia(mensaje);
                 return;
             }
 
-            if (_tipoTransaccion == TipoTransaccion.Insertar)
+            if (TipoTransaccion == TipoTransaccion.Insertar)
             {
-                if ((await GuardarVariableMedicion()))
+                if (GuardarVariableMedicion())
                 {
-                    MessageBox.Show("¡La Variable de Medición se ha registrado exitosamente!", "Tactica Reparaciones", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Information);
+                    Notificaciones.MensajeConfirmacion("¡La Variable de Medición se ha registrado exitosamente!");
                     OnVariableMedicionAgregada?.Invoke(NuevaVariableMedicion);
                     this.Close();
                 }
             }
             else
             {
-                if ((await ActualizarVariableMedicion()))
+                if (ActualizarVariableMedicion())
                 {
-                    MessageBox.Show("¡La Variable de Medición se ha actualizado exitosamente!", "Tactica Reparaciones", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Information);
+                    Notificaciones.MensajeConfirmacion("¡La Variable de Medición se ha actualizado exitosamente!");
                     OnVariableMedicionModificada?.Invoke(NuevaVariableMedicion);
                     this.Close();
                 }
@@ -176,7 +172,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
         {
             if (glTipoInstrumento.EditValue == null)
             {
-                MessageBox.Show("Es necesario que seleccione un tipo de instrumento para continuar.");
+                Notificaciones.MensajeAdvertencia("Es necesario que seleccione un tipo de instrumento para continuar.");
                 return;
             }
 
@@ -190,7 +186,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
 
             if (existeEnLista)
             {
-                MessageBox.Show("Este tipo de instrumento ya está agregado en la lista.");
+                Notificaciones.MensajeAdvertencia("Este tipo de instrumento ya está agregado en la lista.");
                 return;
             }
 

@@ -1,35 +1,44 @@
-﻿using Nagaira.Herramientas.Standard.Helpers.Enums;
-using Nagaira.Herramientas.Standard.Helpers.Requests;
+﻿using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.Dominio.Caracteristicas.Servicios;
+using AutomatMediciones.Libs.Dtos;
+using Microsoft.Extensions.DependencyInjection;
+using Nagaira.Herramientas.Standard.Helpers.Enums;
+using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using AutomatMediciones.DesktopApp.Helpers;
-using AutomatMediciones.Libs.Dtos;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
 {
     public partial class frmModelos : DevExpress.XtraEditors.XtraForm
     {
-        string rutaApi;
+        private readonly ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
+        private readonly ModeloService _modeloService;
+
         ICollection<ModeloDto> Modelos = new List<ModeloDto>();
 
-        public frmModelos()
+        public frmModelos(ModeloService modeloService)
         {
             InitializeComponent();
-            rutaApi = AplicacionHelper.ObtenerRutaApiDeAplicacion();
+
+            _modeloService = modeloService;
             EstablecerNombreYTitulo();
             EstablecerColorBotonPorDefecto();
             CargarModelos();
 
             cmdEditar.Click += OnSeleccionaModeloParaModificar;
+
         }
 
         private void OnSeleccionaModeloParaModificar(object sender, EventArgs e)
         {
-            var Modelo = gvModelos.GetFocusedRow() as ModeloDto;
-            frmNuevoModelo frmNuevoModelo = new frmNuevoModelo(TipoTransaccion.Actualizar);
-            frmNuevoModelo.NuevaModelo = Modelo;
+            var modelo = gvModelos.GetFocusedRow() as ModeloDto;
+            if (modelo == null) return;
+
+            var frmNuevoModelo = serviceProvider.GetService<frmNuevoModelo>();
+            frmNuevoModelo.TipoTransaccion = TipoTransaccion.Actualizar;
+            frmNuevoModelo.NuevaModelo = modelo;
             frmNuevoModelo.SetearValoresParaActualizar();
             frmNuevoModelo.OnModeloModificada += OnModeloModificada;
             frmNuevoModelo.Show();
@@ -64,11 +73,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             btnAgregarNuevoModelo.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
-        private async void CargarModelos()
+        private void CargarModelos()
         {
-            string uri = "/Modelos";
-            var ModelosRespuesta = await HttpHelper.Get<ModeloDto>(rutaApi, uri, "");
-            Modelos = ModelosRespuesta;
+            var resultado = _modeloService.ObtenerModelos();
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+            var modelosRespuesta = resultado.Data;
+            Modelos = modelosRespuesta;
 
             gcModelos.DataSource = Modelos;
 
@@ -77,7 +88,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
 
         private void btnAgregarNuevoModelo_Click(object sender, System.EventArgs e)
         {
-            frmNuevoModelo frmNuevoModelo = new frmNuevoModelo(TipoTransaccion.Insertar);
+            frmNuevoModelo frmNuevoModelo = serviceProvider.GetService<frmNuevoModelo>();
+            frmNuevoModelo.TipoTransaccion = TipoTransaccion.Insertar;
             frmNuevoModelo.OnModeloAgregada += OnModeloAgregada;
             frmNuevoModelo.Show();
         }

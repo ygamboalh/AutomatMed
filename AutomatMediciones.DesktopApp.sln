@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomatMediciones.DesktopAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomatMediciones.Libs", "AutomatMediciones.Libs\AutomatMediciones.Libs.csproj", "{1E35902D-39F3-43CF-9B5B-A06CB181C792}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutomatMediciones.Servicios", "AutomatMediciones.Servicios\AutomatMediciones.Servicios.csproj", "{56BAAA4E-6A23-497F-8BE0-EADB840F97DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatMediciones.Dominio", "AutomatMediciones.Dominio\AutomatMediciones.Dominio.csproj", "{1CE081C7-479F-4451-AB8C-545B49571069}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{1E35902D-39F3-43CF-9B5B-A06CB181C792}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E35902D-39F3-43CF-9B5B-A06CB181C792}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E35902D-39F3-43CF-9B5B-A06CB181C792}.Release|Any CPU.Build.0 = Release|Any CPU
-		{56BAAA4E-6A23-497F-8BE0-EADB840F97DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{56BAAA4E-6A23-497F-8BE0-EADB840F97DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{56BAAA4E-6A23-497F-8BE0-EADB840F97DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{56BAAA4E-6A23-497F-8BE0-EADB840F97DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CE081C7-479F-4451-AB8C-545B49571069}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CE081C7-479F-4451-AB8C-545B49571069}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CE081C7-479F-4451-AB8C-545B49571069}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CE081C7-479F-4451-AB8C-545B49571069}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

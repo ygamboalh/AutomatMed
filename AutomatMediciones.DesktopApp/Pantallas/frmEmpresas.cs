@@ -1,8 +1,9 @@
-﻿using Nagaira.Herramientas.Standard.Helpers.Requests;
+﻿using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.Dominio.Caracteristicas.Servicios;
+using AutomatMediciones.Libs.Dtos;
+using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Linq;
-using AutomatMediciones.DesktopApp.Helpers;
-using AutomatMediciones.Libs.Dtos;
 
 namespace AutomatMediciones.DesktopApp.Pantallas
 {
@@ -11,25 +12,27 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         public delegate void EmpresaSeleccionada(EmpresaDto empresa);
         public event EmpresaSeleccionada OnSeleccionaEmpresa;
 
-        string rutaApi;
         EmpresaDto empresaSeleccionada;
+        private readonly EmpresaService _empresaService;
 
-        public frmEmpresas()
+        public frmEmpresas(EmpresaService empresaService)
         {
             InitializeComponent();
 
-            rutaApi = AplicacionHelper.ObtenerRutaApiDeAplicacion();
+            _empresaService = empresaService;
+
             CargarDatosDeEmpresas();
             EstablecerNombreYTituloPopupEmpresas();
+
         }
 
-        private async void CargarDatosDeEmpresas()
+        private void CargarDatosDeEmpresas()
         {
-            string uri = "/empresas";
-            var empresas = await HttpHelper.Get<EmpresaDto>(rutaApi, uri, "");
+            var resultado = _empresaService.ObtenerEmpresas();
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
-            gcEmpresas.DataSource = empresas;
-            lblTotalRegistros.Text = $"Total Registros: {empresas.Count()}";
+            gcEmpresas.DataSource = resultado.Data;
+            lblTotalRegistros.Text = $"Total Registros: {resultado.Data.Count()}";
 
         }
 

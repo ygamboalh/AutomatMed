@@ -1,38 +1,33 @@
-﻿using Nagaira.Herramientas.Standard.Helpers.Enums;
-using Nagaira.Herramientas.Standard.Helpers.Requests;
-using System;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Forms;
-using AutomatMediciones.DesktopApp.Helpers;
+﻿using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
-using MessageBox = System.Windows.Forms.MessageBox;
+using Nagaira.Herramientas.Standard.Helpers.Enums;
+using Nagaira.Herramientas.Standard.Helpers.Responses;
+using System;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
 {
     public partial class frmNuevaMarca : DevExpress.XtraEditors.XtraForm
     {
+        private readonly MarcaService _marcaService;
+
         public delegate void MarcaAgregada(MarcaDto tipoInstrumento);
         public event MarcaAgregada OnMarcaAgregada;
 
         public delegate void MarcaModificada(MarcaDto tipoInstrumento);
         public event MarcaModificada OnMarcaModificada;
 
-        string rutaApi;
-        private readonly TipoTransaccion _tipoTransaccion;
+        public TipoTransaccion TipoTransaccion { get; set; }
 
         public MarcaDto NuevaMarca { get; set; }
-        public frmNuevaMarca(TipoTransaccion tipoTransaccion)
+        public frmNuevaMarca(MarcaService marcaService)
         {
             InitializeComponent();
-            rutaApi = AplicacionHelper.ObtenerRutaApiDeAplicacion();
-            _tipoTransaccion = tipoTransaccion;
+
+            _marcaService = marcaService;
             EstablecerNombreYTituloPopupAgregarInstrumentos();
             EstablecerColorBotonGuardar();
-
-
             NuevaMarca = new MarcaDto();
-
         }
 
         public void SetearValoresParaActualizar()
@@ -43,7 +38,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
         private void EstablecerNombreYTituloPopupAgregarInstrumentos()
         {
             this.Text = "";
-            ctlEncabezadoPantalla1.lblTitulo.Text = _tipoTransaccion == TipoTransaccion.Insertar ? "Agregar Marca" : "Modificar Marca";
+            ctlEncabezadoPantalla1.lblTitulo.Text = TipoTransaccion == TipoTransaccion.Insertar ? "Agregar Marca" : "Modificar Marca";
             ctlEncabezadoPantalla1.EstablecerColoresDeFondoYLetra();
         }
         private void EstablecerColorBotonGuardar()
@@ -53,38 +48,36 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
             btnGuardarMarca.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
-        private async Task<bool> GuardarMarca()
+        private bool GuardarMarca()
         {
-            bool guardado = false;
-            string uri = "/marcas";
-
             try
             {
-                guardado = await HttpHelper.Post<MarcaDto>(NuevaMarca, rutaApi, uri, "");
+                var resultado = _marcaService.RegistrarMarca(NuevaMarca);
+                if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+                return true;
             }
             catch (Exception exc)
             {
-                MessageBox.Show(exc.Message, "Tactica Reparaciones", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Error);
+                Notificaciones.MensajeError(Exceptions.ObtenerMensajeExcepcion(exc));
+                return false;
             }
-
-            return guardado;
         }
 
-        private async Task<bool> ActualizarMarca()
+        private bool ActualizarMarca()
         {
-            bool guardado = false;
-            string uri = "/marcas";
-
             try
             {
-                guardado = await HttpHelper.Put<MarcaDto>(NuevaMarca, rutaApi, uri, "");
+                var resultado = _marcaService.ActualizarMarca(NuevaMarca);
+                if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+                return true;
             }
             catch (Exception exc)
             {
-                MessageBox.Show(exc.Message, "Tactica Reparaciones", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Error);
+                Notificaciones.MensajeError(Exceptions.ObtenerMensajeExcepcion(exc));
+                return false;
             }
-
-            return guardado;
         }
 
         private void PrepararNuevaMarca()
@@ -96,8 +89,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
 
         private bool EsValidaLaInformacionIngresadaParaNuevoTipoInstrumento(out string mensaje)
         {
-
-
             if (string.IsNullOrEmpty(NuevaMarca.Descripcion))
             {
                 mensaje = "Es necesario ingresar una descripción para la marca.";
@@ -107,30 +98,31 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
             return true;
         }
 
-        private async void btnGuardarMarca_Click(object sender, EventArgs e)
+        private void btnGuardarMarca_Click(object sender, EventArgs e)
         {
             PrepararNuevaMarca();
 
             if (!EsValidaLaInformacionIngresadaParaNuevoTipoInstrumento(out string mensaje))
             {
-                MessageBox.Show(mensaje);
+                Notificaciones.MensajeAdvertencia(mensaje);
                 return;
             }
 
-            if (_tipoTransaccion == TipoTransaccion.Insertar)
+            if (TipoTransaccion == TipoTransaccion.Insertar)
             {
-                if ((await GuardarMarca()))
+                if (GuardarMarca())
                 {
-                    MessageBox.Show("¡La marca se ha registrado exitosamente!", "Tactica Reparaciones", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Information);
+                    Notificaciones.MensajeConfirmacion("¡La marca se ha registrado exitosamente!");
                     OnMarcaAgregada?.Invoke(NuevaMarca);
                     this.Close();
                 }
             }
             else
             {
-                if ((await ActualizarMarca()))
+                if (ActualizarMarca())
                 {
-                    MessageBox.Show("¡La marca se ha actualizado exitosamente!", "Tactica Reparaciones", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Information);
+
+                    Notificaciones.MensajeConfirmacion("¡La marca se ha actualizado exitosamente!");
                     OnMarcaModificada?.Invoke(NuevaMarca);
                     this.Close();
                 }

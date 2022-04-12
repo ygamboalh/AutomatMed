@@ -1,32 +1,42 @@
-﻿using Nagaira.Herramientas.Standard.Helpers.Enums;
-using Nagaira.Herramientas.Standard.Helpers.Requests;
+﻿using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.Dominio.Caracteristicas.Servicios;
+using AutomatMediciones.Libs.Dtos;
+using Microsoft.Extensions.DependencyInjection;
+using Nagaira.Herramientas.Standard.Helpers.Enums;
+using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Forms;
-using AutomatMediciones.DesktopApp.Helpers;
-using AutomatMediciones.Libs.Dtos;
-using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
 {
     public partial class frmClasificaciones : DevExpress.XtraEditors.XtraForm
     {
-        string rutaApi;
+        private readonly ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
+        private readonly ClasificacionInstrumentoService _clasificacionService;
+        private readonly MarcaService _marcaService;
+        private readonly ModeloService _modeloService;
+        private readonly TipoDeInstrumentoService _tipoDeInstrumentoService;
+
         ICollection<ClasificacionInstrumentoDto> clasificaciones = new List<ClasificacionInstrumentoDto>();
         ICollection<ModeloDto> modelos = new List<ModeloDto>();
         ICollection<MarcaDto> marcas = new List<MarcaDto>();
         ICollection<TipoInstrumentoDto> tiposDeInstrumento = new List<TipoInstrumentoDto>();
 
-        public frmClasificaciones()
+        public frmClasificaciones(ClasificacionInstrumentoService clasificacionService, MarcaService marcaService, ModeloService modeloService,
+            TipoDeInstrumentoService tipoDeInstrumentoService)
         {
             InitializeComponent();
-            rutaApi = AplicacionHelper.ObtenerRutaApiDeAplicacion();
+
+            _clasificacionService = clasificacionService;
+            _marcaService = marcaService;
+            _modeloService = modeloService;
+            _tipoDeInstrumentoService = tipoDeInstrumentoService;
+
             EstablecerNombreYTitulo();
             EstablecerColorBotonPorDefecto();
+
             CargarClasificaciones();
             CargarMarcas();
             CargarModelos();
@@ -34,14 +44,21 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
 
             cmdEditar.Click += OnSeleccionaMarcaParaModificar;
             cmdInactivar.Click += OnSeleccionarClasificacionParaInactivar;
+
+
+          
+
         }
 
-        private async void OnSeleccionarClasificacionParaInactivar(object sender, EventArgs e)
+        private void OnSeleccionarClasificacionParaInactivar(object sender, EventArgs e)
         {
             var clasificacionInstrumento = gvClasificaciones.GetFocusedRow() as ClasificacionInstrumentoDto;
-            if ((await InactivarClasificacionInstrumento(clasificacionInstrumento)))
+
+            if (clasificacionInstrumento == null) return;
+
+            if (InactivarClasificacionInstrumento(clasificacionInstrumento))
             {
-                MessageBox.Show("¡La inactivación de la Clasificación se ha realizado exitosamente!", "Tactica Reparaciones", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Information);
+                Notificaciones.MensajeConfirmacion("¡La inactivación de la Clasificación se ha realizado exitosamente!");
                 clasificaciones = clasificaciones.Where(x => x.ClasificacionId != clasificacionInstrumento.ClasificacionId).ToList();
                 gcClasificaciones.DataSource = clasificaciones;
                 gcClasificaciones.RefreshDataSource();
@@ -51,32 +68,35 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
         private void OnSeleccionaMarcaParaModificar(object sender, EventArgs e)
         {
             var clasificacionInstrumento = gvClasificaciones.GetFocusedRow() as ClasificacionInstrumentoDto;
-            frmNuevaClasificacion frmNuevaClasificacion = new frmNuevaClasificacion(TipoTransaccion.Actualizar);
+
+            if (clasificacionInstrumento == null) return;
+
+            var frmNuevaClasificacion = serviceProvider.GetService<frmNuevaClasificacion>();
+            frmNuevaClasificacion.TipoTransaccion = TipoTransaccion.Actualizar;
             frmNuevaClasificacion.NuevaClasificacion = clasificacionInstrumento;
-            frmNuevaClasificacion.modelos = modelos;
-            frmNuevaClasificacion.marcas = marcas;
-            frmNuevaClasificacion.tiposDeInstrumento = tiposDeInstrumento;
+            frmNuevaClasificacion.Modelos = modelos;
+            frmNuevaClasificacion.Marcas = marcas;
+            frmNuevaClasificacion.TiposDeInstrumento = tiposDeInstrumento;
             frmNuevaClasificacion.InicializarMaestros();
             frmNuevaClasificacion.SetearValoresParaActualizar();
             frmNuevaClasificacion.OnClasificacionInstrumentoModificada += OnClasificacionInstrumentoModificada;
             frmNuevaClasificacion.Show();
         }
 
-        private async Task<bool> InactivarClasificacionInstrumento(ClasificacionInstrumentoDto clasificacionInstrumentoDto)
+        private bool InactivarClasificacionInstrumento(ClasificacionInstrumentoDto clasificacionInstrumentoDto)
         {
-            bool guardado = false;
-            string uri = "/clasificaciones-instrumentos";
-
             try
             {
-                guardado = await HttpHelper.Patch<ClasificacionInstrumentoDto>(clasificacionInstrumentoDto, rutaApi, uri, "");
+                var resultado = _clasificacionService.DesactivarClasificacion(clasificacionInstrumentoDto);
+                if (resultado.Type != TypeResponse.Ok) return false;
+
+                return true;
             }
             catch (Exception exc)
             {
-                MessageBox.Show(exc.Message, "Tactica Reparaciones", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Error);
+                Notificaciones.MensajeError(Exceptions.ObtenerMensajeExcepcion(exc));
+                return false;
             }
-
-            return guardado;
         }
 
         private void OnClasificacionInstrumentoModificada(ClasificacionInstrumentoDto clasificacionInstrumentoDto)
@@ -105,10 +125,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             btnNuevaClasificacion.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
-        private async void CargarClasificaciones()
+        private void CargarClasificaciones()
         {
-            string uri = "/clasificaciones-instrumentos";
-            var clasificacionesRespuesta = await HttpHelper.Get<ClasificacionInstrumentoDto>(rutaApi, uri, "");
+
+            var resultado = _clasificacionService.ObtenerClasificacionesActivas();
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+            var clasificacionesRespuesta = resultado.Data;
             clasificaciones = clasificacionesRespuesta;
 
             gcClasificaciones.DataSource = clasificaciones;
@@ -118,29 +141,35 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
         }
 
 
-        private async void CargarMarcas()
+        private void CargarMarcas()
         {
-            string uri = "/marcas";
-            var marcasRespuesta = await HttpHelper.Get<MarcaDto>(rutaApi, uri, "");
+            var resultado = _marcaService.ObtenerMarcas();
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+            var marcasRespuesta = resultado.Data;
             marcas = marcasRespuesta;
 
             SetearTotales();
         }
 
 
-        private async void CargarModelos()
+        private void CargarModelos()
         {
-            string uri = "/Modelos";
-            var ModelosRespuesta = await HttpHelper.Get<ModeloDto>(rutaApi, uri, "");
+            var resultado = _modeloService.ObtenerModelos();
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+            var ModelosRespuesta = resultado.Data;
             modelos = ModelosRespuesta;
 
             SetearTotales();
         }
 
-        private async void CargarTiposDeInstrumentos()
+        private void CargarTiposDeInstrumentos()
         {
-            string uri = "/tipos-de-instrumento";
-            var tiposDeInstrumentos = await HttpHelper.Get<TipoInstrumentoDto>(rutaApi, uri, "");
+            var resultado = _tipoDeInstrumentoService.ObtenerTiposDeInstrumento();
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+            var tiposDeInstrumentos = resultado.Data;
             tiposDeInstrumento = tiposDeInstrumentos;
 
             SetearTotales();
@@ -153,11 +182,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
 
         private void btnNuevaClasificacion_Click(object sender, EventArgs e)
         {
-            frmNuevaClasificacion frmNuevaClasificacion = new frmNuevaClasificacion(TipoTransaccion.Insertar);
+            var frmNuevaClasificacion = serviceProvider.GetService<frmNuevaClasificacion>();
+            frmNuevaClasificacion.TipoTransaccion = TipoTransaccion.Insertar;
             frmNuevaClasificacion.OnClasificacionInstrumentoAgregada += OnClasificacionInstrumentoAgregada;
-            frmNuevaClasificacion.modelos = modelos;
-            frmNuevaClasificacion.marcas = marcas;
-            frmNuevaClasificacion.tiposDeInstrumento = tiposDeInstrumento;
+            frmNuevaClasificacion.Modelos = modelos;
+            frmNuevaClasificacion.Marcas = marcas;
+            frmNuevaClasificacion.TiposDeInstrumento = tiposDeInstrumento;
             frmNuevaClasificacion.InicializarMaestros();
             frmNuevaClasificacion.Show();
         }

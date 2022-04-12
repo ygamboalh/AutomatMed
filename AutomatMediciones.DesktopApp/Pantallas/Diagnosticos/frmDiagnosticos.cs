@@ -1,26 +1,28 @@
-﻿using Nagaira.Herramientas.Standard.Helpers.Requests;
+﻿using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos.Dtos;
+using AutomatMediciones.Dominio.Caracteristicas.Servicios;
+using AutomatMediciones.Libs.Dtos;
+using DevExpress.XtraGrid.Views.Grid;
+using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Windows;
-using System.Windows.Forms;
-using AutomatMediciones.DesktopApp.Helpers;
-using AutomatMediciones.Libs.Dtos;
-using GridView = DevExpress.XtraGrid.Views.Grid.GridView;
-using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
 {
     public partial class frmDiagnosticos : DevExpress.XtraEditors.XtraForm
     {
-        string rutaApi;
+        private readonly IngresoService _ingresoService;
+
         ICollection<IngresoDto> ingresos = new List<IngresoDto>();
-        public frmDiagnosticos()
+
+        public frmDiagnosticos(IngresoService ingresoService)
         {
             InitializeComponent();
 
-            rutaApi = AplicacionHelper.ObtenerRutaApiDeAplicacion();
+            _ingresoService = ingresoService;
+
             EstablecerNombreYTitulo();
             CargarIngresos();
 
@@ -35,15 +37,24 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             {
 
                 var fila = view.GetFocusedRow() as IngresoInstrumento;
+
+                //var frmNuevaOrdenTrabajo = 
             }
         }
 
-        private async void CargarIngresos()
+        private void CargarIngresos()
         {
             try
             {
-                string uri = "/ingresos";
-                var ingresosRespuesta = await HttpHelper.Get<IngresoDto>(rutaApi, uri, "");
+
+                var resultado = _ingresoService.ObtenerIngresos();
+                if (resultado.Type != TypeResponse.Ok)
+                {
+                    Notificaciones.MensajeError(resultado.Message);
+                    return;
+                }
+
+                var ingresosRespuesta = resultado.Data;
                 ingresos = ingresosRespuesta;
 
                 List<Ingreso> ingresosLista = new List<Ingreso>();
@@ -80,23 +91,22 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             }
             catch (Exception exc)
             {
-                string message = exc.InnerException == null ? exc.Message : exc.InnerException.Message;
-                MessageBox.Show(message, "Tactica Reparaciones", (MessageBoxButtons)MessageBoxButton.OK, (MessageBoxIcon)MessageBoxImage.Error);
+                Notificaciones.MensajeError(Exceptions.ObtenerMensajeExcepcion(exc));
             }
         }
 
-        public void ExpandAllRows(GridView View)
+        public void ExpandAllRows(GridView view)
         {
-            View.BeginUpdate();
+            view.BeginUpdate();
             try
             {
-                int dataRowCount = View.DataRowCount;
+                int dataRowCount = view.DataRowCount;
                 for (int rHandle = 0; rHandle < dataRowCount; rHandle++)
-                    View.SetMasterRowExpanded(rHandle, true);
+                    view.SetMasterRowExpanded(rHandle, true);
             }
             finally
             {
-                View.EndUpdate();
+                view.EndUpdate();
             }
         }
 

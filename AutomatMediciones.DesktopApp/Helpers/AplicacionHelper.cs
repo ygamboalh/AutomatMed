@@ -11,11 +11,11 @@ namespace AutomatMediciones.DesktopApp.Helpers
             return nombreAplicacion;
         }
 
-        public static string ObtenerRutaApiDeAplicacion()
+        public static string ObtenerCadenaConexion(string nombreCadena)
         {
             var appSettings = ConfigurationManager.AppSettings;
-            var rutaApi = appSettings["ApiAutomatMediciones"];
-            return rutaApi;
+            var cadenaConexion = appSettings[nombreCadena];
+            return cadenaConexion;
 
         }
     }

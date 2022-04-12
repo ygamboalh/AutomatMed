@@ -1,7 +1,7 @@
-﻿using System.Drawing;
+﻿using AutomatMediciones.DesktopApp.Helpers;
+using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using AutomatMediciones.DesktopApp.Helpers;
 
 namespace AutomatMediciones.DesktopApp.Componentes.Menu
 {

@@ -1,7 +1,7 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-using AutomatMediciones.DesktopApp.Enums;
+﻿using AutomatMediciones.DesktopApp.Enums;
 using AutomatMediciones.DesktopApp.Helpers;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace AutomatMediciones.DesktopApp.Componentes.Menu
 {
