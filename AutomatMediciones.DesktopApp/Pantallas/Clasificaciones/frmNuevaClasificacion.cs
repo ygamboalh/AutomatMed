@@ -25,10 +25,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
         public ICollection<TipoInstrumentoDto> TiposDeInstrumento = new List<TipoInstrumentoDto>();
 
         public ClasificacionInstrumentoDto NuevaClasificacion { get; set; }
-        public frmNuevaClasificacion(ClasificacionInstrumentoService clasificacionInstrumentoService)
+        public frmNuevaClasificacion(TipoTransaccion tipoTransaccion, ClasificacionInstrumentoService clasificacionInstrumentoService)
         {
             InitializeComponent();
-
+            TipoTransaccion = tipoTransaccion;
             _clasificacionInstrumentoService = clasificacionInstrumentoService;
 
             EstablecerNombreYTituloPopupAgregarInstrumentos();

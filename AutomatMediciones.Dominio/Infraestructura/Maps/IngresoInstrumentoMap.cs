@@ -15,6 +15,7 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.Property(x => x.IngresoId).HasColumnName("ingreso_id").HasColumnType("INT").IsRequired();
             builder.Property(x => x.InstrumentoId).HasColumnName("instrumento_id").HasColumnType("INT").IsRequired();
             builder.Property(x => x.Activo).HasColumnName("activo").HasColumnType("TINYINT").IsRequired();
+            builder.Property(x => x.Comentarios).HasColumnName("comentarios").HasColumnType("VARCHAR(3000)").IsRequired();
 
             builder.HasOne(x => x.Instrumento).WithMany(x => x.IngresosInstrumentos).HasForeignKey(x => x.InstrumentoId);
             builder.HasOne(x => x.Ingreso).WithMany(x => x.IngresosInstrumentos).HasForeignKey(x => x.IngresoId);

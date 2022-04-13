@@ -15,7 +15,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
         public int EstadoId { get; set; }
         public int TipoTrabajoId { get; set; }
         public int Prioridad { get; set; }
-        public string Comentarios { get; set; }
+        public string CuerpoCorreo { get; set; }
         public DateTime FechaRegistro { get; set; }
         public int UsuarioRegistro { get; set; }
         public bool Activo { get; set; }

@@ -69,7 +69,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     CorreoElectronicoId = ingresoDto.CorreoElectronicoId,
                     EstadoId = (int)Estados.Ingresado,
                     Prioridad = ingresoDto.Prioridad,
-                    Comentarios = ingresoDto.Comentarios,
+                    CuerpoCorreo = ingresoDto.CuerpoCorreo,
                     TipoTrabajoId = ingresoDto.TipoTrabajoId,
                     Activo = true,
                     FechaRegistro = DateTime.Now
@@ -88,6 +88,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 {
                     IngresoInstrumento ingresoInstrumento = new IngresoInstrumento
                     {
+                        Comentarios = instrumento.Comentarios,
                         IngresoId = ingreso.IngresoId,
                         Activo = true,
                         InstrumentoId = instrumento.InstrumentoId

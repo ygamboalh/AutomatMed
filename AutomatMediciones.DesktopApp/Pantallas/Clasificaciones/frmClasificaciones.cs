@@ -71,8 +71,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
 
             if (clasificacionInstrumento == null) return;
 
-            var frmNuevaClasificacion = serviceProvider.GetService<frmNuevaClasificacion>();
-            frmNuevaClasificacion.TipoTransaccion = TipoTransaccion.Actualizar;
+            var frmNuevaClasificacion = new frmNuevaClasificacion(TipoTransaccion.Actualizar, serviceProvider.GetService<ClasificacionInstrumentoService>());     
             frmNuevaClasificacion.NuevaClasificacion = clasificacionInstrumento;
             frmNuevaClasificacion.Modelos = modelos;
             frmNuevaClasificacion.Marcas = marcas;
@@ -182,8 +181,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
 
         private void btnNuevaClasificacion_Click(object sender, EventArgs e)
         {
-            var frmNuevaClasificacion = serviceProvider.GetService<frmNuevaClasificacion>();
-            frmNuevaClasificacion.TipoTransaccion = TipoTransaccion.Insertar;
+            var frmNuevaClasificacion = new frmNuevaClasificacion(TipoTransaccion.Insertar, serviceProvider.GetService<ClasificacionInstrumentoService>());
+          
             frmNuevaClasificacion.OnClasificacionInstrumentoAgregada += OnClasificacionInstrumentoAgregada;
             frmNuevaClasificacion.Modelos = modelos;
             frmNuevaClasificacion.Marcas = marcas;

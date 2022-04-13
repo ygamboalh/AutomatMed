@@ -67,7 +67,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         private void instrumentosMenu_Click(object sender, EventArgs e)
         {
 
-            var frmNuevoInstrumento = new frmNuevoInstrumento(serviceProvider.GetService<ClasificacionInstrumentoService>(), serviceProvider.GetService<InstrumentoService>());
+            var frmNuevoInstrumento = new frmNuevoInstrumento(serviceProvider.GetService<ClasificacionInstrumentoService>(),
+                                                                              serviceProvider.GetService<InstrumentoService>(),
+                                                                              serviceProvider.GetService<MarcaService>(),
+                                                                              serviceProvider.GetService<ModeloService>(),
+                                                                              serviceProvider.GetService<TipoDeInstrumentoService>());
             XtraForm nuevoInstrumento = frmNuevoInstrumento;
             AgregarPantalla(ref nuevoInstrumento);
         }

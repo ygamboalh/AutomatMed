@@ -1,8 +1,11 @@
 ﻿using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.DesktopApp.Pantallas.Clasificaciones;
 using AutomatMediciones.DesktopApp.Pantallas.Clasificaciones.Dtos;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
+using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
+using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
@@ -19,8 +22,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         private readonly ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
         private readonly ClasificacionInstrumentoService _clasificacionInstrumentoService;
         private readonly InstrumentoService _instrumentoService;
+        private readonly MarcaService _marcaService;
+        private readonly ModeloService _modeloService;
+        private readonly TipoDeInstrumentoService _tipoDeInstrumentoService;
 
-        EmpresaDto empresaSeleccionada;
+        private EmpresaDto EmpresaSeleccionada { get; set; }
+       
         public InstrumentoDto NuevoInstrumento { get; set; }
 
         List<ClasificacionDto> clasificaciones = new List<ClasificacionDto>();
@@ -28,13 +35,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         List<MarcaDto> marcas = new List<MarcaDto>();
         List<ModeloDto> modelos = new List<ModeloDto>();
 
-        public frmNuevoInstrumento(ClasificacionInstrumentoService clasificacionInstrumentoService, InstrumentoService instrumentoService)
+        public frmNuevoInstrumento(ClasificacionInstrumentoService clasificacionInstrumentoService, InstrumentoService instrumentoService, MarcaService marcaService, ModeloService modeloService, TipoDeInstrumentoService tipoDeInstrumentoService)
         {
             InitializeComponent();
 
             _clasificacionInstrumentoService = clasificacionInstrumentoService;
             _instrumentoService = instrumentoService;
-
+            _marcaService = marcaService;
+            _modeloService = modeloService;
+            _tipoDeInstrumentoService = tipoDeInstrumentoService;
             CargarClasificacionesDeInstrumentos();
 
             EstablecerColorBotonGuardar();
@@ -57,29 +66,39 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             btnGuardarInstrumento.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
-        private void OnEmpresaSeleccionada(EmpresaDto empresa)
+        public void OnEmpresaSeleccionada(EmpresaDto empresa)
         {
-            empresaSeleccionada = empresa;
+            if (empresa == null) return;
+         
+            EmpresaSeleccionada = empresa;
             txtEmpresaInstrumento.Text = empresa.NombreEmpresa;
         }
 
         private void btnGuardarInstrumento_Click(object sender, EventArgs e)
         {
-            PrepararNuevoInstrumentoParaGuardar();
-
-            if (!EsValidaLaInformacionIngresadaParaNuevoInstrumento(out string mensaje))
-            {
-                MessageBox.Show(mensaje);
+            if (!PrepararNuevoInstrumentoParaGuardar())
+            {          
                 return;
             }
 
+            if (!EsValidaLaInformacionIngresadaParaNuevoInstrumento(out string mensaje))
+            {
+                Notificaciones.MensajeAdvertencia(mensaje);
+                return;
+            }
+
+            CargarClasificacionesDeInstrumentos();
+            NuevoInstrumento.Clasificacion = clasificaciones.FirstOrDefault(x => x.ClasificacionId == NuevoInstrumento.ClasificacionId);
+
+            SplashScreenManager.ShowForm(typeof(frmLoading));
             if (GuardarInstrumento())
             {
                 Notificaciones.MensajeConfirmacion("¡El instrumento se ha registrado exitosamente!");
-
                 OnInstrumentoAgregado?.Invoke(NuevoInstrumento);
                 this.Close();
             }
+
+            SplashScreenManager.CloseForm();
         }
 
         private void btnAbrirPopupEmpresaPorInstrumento_Click(object sender, EventArgs e)
@@ -91,8 +110,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas
 
         private void CargarClasificacionesDeInstrumentos()
         {
-
-
             var resultado = _clasificacionInstrumentoService.ObtenerClasificacionesActivas();
             if (resultado.Type != TypeResponse.Ok)
             {
@@ -100,12 +117,31 @@ namespace AutomatMediciones.DesktopApp.Pantallas
                 return;
             }
 
+            PrepararDataSourceClasificaciones(resultado.Data);    
+        }
 
-            if (clasificaciones != null)
+        private void PrepararDataSourceClasificaciones(List<ClasificacionInstrumentoDto> clasificacionInstrumentos)
+        {
+            clasificaciones.Clear();
+            clasificacionInstrumentos.ForEach(x =>
             {
-                clasificaciones.ForEach(x => x.DescripcionCompuesta = $"{x.TipoInstrumento.Descripcion} / {x.Marca.Descripcion} / {x.Modelo.Descripcion}");
-            }
+                ClasificacionDto clasificacionDto = new ClasificacionDto
+                {
+                    Activo = x.Activo,
+                    ClasificacionId = x.ClasificacionId,
+                    MarcaId = x.MarcaId,
+                    ModeloId = x.ModeloId,
+                    TipoInstrumentoId = x.TipoInstrumentoId,
+                    DescripcionCompuesta = $"{x.TipoInstrumento.Descripcion} / {x.Marca.Descripcion} / {x.Modelo.Descripcion}",
+                    Marca = x.Marca,
+                    Modelo = x.Modelo,
+                    PeriodoDeCalibracion = x.PeriodoDeCalibracion,
+                    TipoInstrumento = x.TipoInstrumento
+                };
 
+                clasificaciones.Add(clasificacionDto);
+            });
+          
             marcas = clasificaciones.Select(x => x.Marca).ToList();
             modelos = clasificaciones.Select(x => x.Modelo).ToList();
             tiposInstrumentos = clasificaciones.Select(x => x.TipoInstrumento).ToList();
@@ -119,7 +155,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             try
             {
                 var resultado = _instrumentoService.RegistrarInstrumento(NuevoInstrumento);
-                if (resultado.Type != TypeResponse.Ok) return false;
+                if (resultado.Type != TypeResponse.Ok)
+                {
+                    Notificaciones.MensajeError(resultado.Message);
+                    return false;
+                }
 
                 return true;
             }
@@ -163,7 +203,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             return true;
         }
 
-        private void PrepararNuevoInstrumentoParaGuardar()
+        private bool PrepararNuevoInstrumentoParaGuardar()
         {
             var tipoInstrumentoSeleccionado = glTipoInstrumento.GetSelectedDataRow() as TipoInstrumentoDto;
             var marcaSeleccionada = glMarcas.GetSelectedDataRow() as MarcaDto;
@@ -172,7 +212,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             if (tipoInstrumentoSeleccionado == null || marcaSeleccionada == null || modeloSeleccionado == null)
             {
                 MessageBox.Show("Es necesario que rellene campos obligatorios, para poder continuar.", "Tactica Reparaciones", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                return false;
             }
 
             var clasificacionSegunFiltrosSeleccionados = clasificaciones.FirstOrDefault(x => x.TipoInstrumentoId == tipoInstrumentoSeleccionado.TipoInstrumentoId &&
@@ -182,17 +222,19 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             if (clasificacionSegunFiltrosSeleccionados == null)
             {
                 MessageBox.Show("No se pudo encontrar una clasificación con el tipo de instrumento, marca y modelo seleccionados.", "Tactica Reparaciones", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                return false;
             }
 
             NuevoInstrumento.Descripcion = txtDescripcionInstrumento.Text;
-            NuevoInstrumento.EmpresaId = empresaSeleccionada.EmpresaId;
-            NuevoInstrumento.NombreEmpresa = empresaSeleccionada.NombreEmpresa;
+            NuevoInstrumento.EmpresaId = EmpresaSeleccionada.EmpresaId;
+            NuevoInstrumento.NombreEmpresa = EmpresaSeleccionada.NombreEmpresa;
             NuevoInstrumento.ClasificacionId = clasificacionSegunFiltrosSeleccionados.ClasificacionId;
             NuevoInstrumento.NumeroSerie = txtNumeroSerie.Text;
             NuevoInstrumento.FechaCompraFabricante = dateFechaCompraFabricante.Value;
             NuevoInstrumento.FechaCompraCliente = dateFechaCompraCliente.Value;
             NuevoInstrumento.Garantia = txtGarantia.Text;
+
+            return true;
         }
 
         private void glTipoInstrumento_EditValueChanged(object sender, EventArgs e)
@@ -218,6 +260,62 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         private void glModelos_EditValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnAgregarClasificacion_Click(object sender, EventArgs e)
+        {
+            var frmClasificaciones = new frmNuevaClasificacion(TipoTransaccion.Insertar ,serviceProvider.GetService<ClasificacionInstrumentoService>());
+          
+            frmClasificaciones.OnClasificacionInstrumentoAgregada += OnClasificacionInstrumentoAgregada;
+            frmClasificaciones.Modelos = CargarModelos();
+            frmClasificaciones.Marcas = CargarMarcas();
+            frmClasificaciones.TiposDeInstrumento = CargarTiposDeInstrumentos();
+            frmClasificaciones.InicializarMaestros();
+            frmClasificaciones.Show();
+        }
+
+        private List<MarcaDto> CargarMarcas()
+        {
+            var resultado = _marcaService.ObtenerMarcas();
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+            var marcasRespuesta = resultado.Data;
+          return  marcasRespuesta;
+
+        }
+
+        private List<ModeloDto>  CargarModelos()
+        {
+            var resultado = _modeloService.ObtenerModelos();
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+            var modelosRespuesta = resultado.Data;
+            return modelosRespuesta;
+         
+        }
+
+        private List<TipoInstrumentoDto> CargarTiposDeInstrumentos()
+        {
+            var resultado = _tipoDeInstrumentoService.ObtenerTiposDeInstrumento();
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+            return resultado.Data;          
+        }
+
+        private void OnClasificacionInstrumentoAgregada(ClasificacionInstrumentoDto tipoInstrumento)
+        {
+            CargarClasificacionesDeInstrumentos();
+            this.Focus();
+        }
+
+        private void btnAbrirPopupEmpresaPorInstrumento_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.SetToolTip(btnAbrirPopupEmpresaPorInstrumento, "Presione para ir la a pantalla que le permite buscar y seleccionar una empresa");
+        }
+
+        private void btnAgregarClasificacion_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.SetToolTip(btnAgregarClasificacion, "Presione para ir la a pantalla que le permite agregar una nueva clasificación");
         }
     }
 }
