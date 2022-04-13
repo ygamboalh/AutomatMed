@@ -41,7 +41,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         private void marcaMenu_Click(object sender, EventArgs e)
         {
 
-            var frmMarcas = new frmMarcas(serviceProvider.GetService<MarcaService>()) ;
+            var frmMarcas = new frmMarcas(serviceProvider.GetService<MarcaService>());
             XtraForm marcas = frmMarcas;
             AgregarPantalla(ref marcas);
         }

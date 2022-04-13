@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AutomatMediciones.Libs.Dtos
+﻿namespace AutomatMediciones.Libs.Dtos
 {
     public class IngresoInstrumentoDto
     {

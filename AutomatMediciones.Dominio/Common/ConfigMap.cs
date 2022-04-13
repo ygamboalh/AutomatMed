@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using AutomatMediciones.Libs.Dtos;
 using AutomatMediciones.Dominio.Caracteristicas.Entidades;
+using AutomatMediciones.Libs.Dtos;
 
 namespace AutomatMediciones.Dominio.Common
 {

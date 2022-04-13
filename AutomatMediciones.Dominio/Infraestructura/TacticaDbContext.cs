@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using AutomatMediciones.Dominio.Caracteristicas.Entidades;
+﻿using AutomatMediciones.Dominio.Caracteristicas.Entidades;
 using AutomatMediciones.Dominio.Infraestructura.Maps;
+using Microsoft.EntityFrameworkCore;
 
 namespace AutomatMediciones.Dominio.Infraestructura
 {

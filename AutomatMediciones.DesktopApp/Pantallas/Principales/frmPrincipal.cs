@@ -36,9 +36,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
             switch (indiceMenu)
             {
                 case IndiceMenu.Ingresos:
-                    SplashScreenManager.ShowForm(typeof(frmLoading));                             
-                    var frmIngresos =  new frmIngresos(serviceProvider.GetService<IngresoService>(), 
-                                                       serviceProvider.GetService<InstrumentoService>(), 
+                    SplashScreenManager.ShowForm(typeof(frmLoading));
+                    var frmIngresos = new frmIngresos(serviceProvider.GetService<IngresoService>(),
+                                                       serviceProvider.GetService<InstrumentoService>(),
                                                        serviceProvider.GetService<TipoTrabajoService>()
                                                       );
                     XtraForm ingresos = frmIngresos;

@@ -1,8 +1,6 @@
 ﻿using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos.Dtos;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
-using AutomatMediciones.Libs.Dtos;
-using DevExpress.XtraGrid.Views.Grid;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
@@ -32,14 +30,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
 
         private void btnIniciarDiagnosticoClick(object sender, EventArgs e)
         {
-            GridView view = this.gcInstrumentos.Views[1] as GridView;
-            if (view != null)
-            {
+            var diagnosticoSeleccionado = gvInstrumentos.GetFocusedRow() as IngresoInstrumento;
+            if (diagnosticoSeleccionado == null) return;
 
-                var fila = view.GetFocusedRow() as IngresoInstrumento;
-
-                //var frmNuevaOrdenTrabajo = 
-            }
+            var frmNuevoDiagnostico = new frmNuevoDiagnostico()
         }
 
         private void CargarIngresos()
@@ -66,8 +60,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
                     NumeroServicioTecnico = y.NumeroServicioTecnico,
                     ClasificacionConcatenada = $"{y.Instrumento.Clasificacion.TipoInstrumento.Descripcion}/{y.Instrumento.Clasificacion.Marca.Descripcion}/{y.Instrumento.Clasificacion.Modelo.Descripcion}"
                 }).OrderBy(y => y.IngresoInstrumentoId).ToList();
-                            
-               gcInstrumentos.DataSource = ingresosInstrumentos;
+
+                gcInstrumentos.DataSource = ingresosInstrumentos;
 
                 SetearTotales();
             }

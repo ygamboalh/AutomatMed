@@ -34,23 +34,23 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
         public frmIngresos(IngresoService ingresoService, InstrumentoService instrumentoService, TipoTrabajoService tipoTrabajoService)
         {
-           
+
             InitializeComponent();
 
-     
+
             Cursor.Current = Cursors.WaitCursor;
 
             _ingresoService = ingresoService;
             _instrumentoService = instrumentoService;
             _tipoTrabajoService = tipoTrabajoService;
 
-           
+
             EstablecerNombreYTituloDePantalla();
             EstablecerColorBotonPorDefecto();
             EstablecerColorBotonGuardar();
             CargarDatosTiposDeTrabajo();
 
-       
+
             Cursor.Current = Cursors.Arrow;
 
             Ingreso = new IngresoDto();
@@ -71,7 +71,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             frmComentarioInstrumento frmComentarioInstrumento = new frmComentarioInstrumento();
             frmComentarioInstrumento.TipoTransaccion = TipoTransaccion.Actualizar;
-            frmComentarioInstrumento.OnComentarioActualizado += OnComentarioActualizado;         
+            frmComentarioInstrumento.OnComentarioActualizado += OnComentarioActualizado;
             frmComentarioInstrumento.Instrumento = instrumento;
             frmComentarioInstrumento.SetearComentarioParaActualizar(instrumento.Comentarios);
             frmComentarioInstrumento.Show();
@@ -84,7 +84,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             var estaSeleccionadoElInstrumento = (bool)checkSeleccionado.EditValue;
 
-            var instrumento = gvInstrumentosDeEmpresa.GetFocusedRow() as InstrumentoLista;   
+            var instrumento = gvInstrumentosDeEmpresa.GetFocusedRow() as InstrumentoLista;
             if (instrumento == null) return;
 
             instrumento.Seleccionado = estaSeleccionadoElInstrumento;
@@ -136,7 +136,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             instrumentosSeleccionados.Add(ingresoInstrumento);
 
-            ActualizarSeleccionDeInstrumento(instrumentosDeEmpresa.FirstOrDefault(x=> x.InstrumentoId == instrumento.InstrumentoId));
+            ActualizarSeleccionDeInstrumento(instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumento.InstrumentoId));
         }
 
         private void QuitarInstrumentoDeListaDeSeleccionados(int instrumentoId)
@@ -159,7 +159,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private void CargarDatosTiposDeTrabajo()
         {
             var resultado = _tipoTrabajoService.ObtenerTiposDeTrabajo();
-     
+
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
             glTiposTrabajo.Properties.DataSource = resultado.Data;
@@ -312,7 +312,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
         private void btnAgregarNuevInstrumento_Click(object sender, EventArgs e)
         {
-            frmNuevoInstrumento frmNuevoInstrumento = new frmNuevoInstrumento(serviceProvider.GetService<ClasificacionInstrumentoService>(), 
+            frmNuevoInstrumento frmNuevoInstrumento = new frmNuevoInstrumento(serviceProvider.GetService<ClasificacionInstrumentoService>(),
                                                                               serviceProvider.GetService<InstrumentoService>(),
                                                                               serviceProvider.GetService<MarcaService>(),
                                                                               serviceProvider.GetService<ModeloService>(),
@@ -436,7 +436,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 var resultado = _ingresoService.GuardarIngreso(Ingreso);
                 if (resultado.Type != TypeResponse.Ok)
                 {
-                    Notificaciones.MensajeError(resultado.Message);                   
+                    Notificaciones.MensajeError(resultado.Message);
                     return false;
                 }
 

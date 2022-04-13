@@ -1,10 +1,10 @@
-﻿using Nagaira.Herramientas.Standard.Helpers.Exceptions;
+﻿using AutomatMediciones.Dominio.Infraestructura;
+using AutomatMediciones.Libs.Dtos;
+using Nagaira.Herramientas.Standard.Helpers.Exceptions;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using AutomatMediciones.Libs.Dtos;
-using AutomatMediciones.Dominio.Infraestructura;
 
 namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 {
