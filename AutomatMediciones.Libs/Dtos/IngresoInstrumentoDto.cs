@@ -1,4 +1,6 @@
-﻿namespace AutomatMediciones.Libs.Dtos
+﻿using System;
+
+namespace AutomatMediciones.Libs.Dtos
 {
     public class IngresoInstrumentoDto
     {
@@ -7,6 +9,7 @@
         public int InstrumentoId { get; set; }
         public string Comentarios { get; set; }
         public bool Activo { get; set; }
+        public string NumeroServicioTecnico { get; set; }
         public IngresoDto Ingreso { get; set; }
         public InstrumentoDto Instrumento { get; set; }
     }

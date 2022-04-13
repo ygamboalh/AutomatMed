@@ -15,7 +15,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
     {
         private readonly IngresoService _ingresoService;
 
-        ICollection<IngresoDto> ingresos = new List<IngresoDto>();
+        List<IngresoInstrumento> ingresosInstrumentos = new List<IngresoInstrumento>();
 
         public frmDiagnosticos(IngresoService ingresoService)
         {
@@ -32,7 +32,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
 
         private void btnIniciarDiagnosticoClick(object sender, EventArgs e)
         {
-            GridView view = this.gridControl1.Views[1] as GridView;
+            GridView view = this.gcInstrumentos.Views[1] as GridView;
             if (view != null)
             {
 
@@ -54,38 +54,20 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
                     return;
                 }
 
-                var ingresosRespuesta = resultado.Data;
-                ingresos = ingresosRespuesta;
-
-                List<Ingreso> ingresosLista = new List<Ingreso>();
-
-                var detalle = ingresos.SelectMany(x => x.IngresosInstrumentos).ToList();
-                foreach (var ingreso in ingresos)
+                ingresosInstrumentos = resultado.Data.SelectMany(x => x.IngresosInstrumentos).Select(y => new IngresoInstrumento
                 {
-                    var nuevoIngreso = new Ingreso
-                    {
-                        Id = ingreso.IngresoId,
-                        Estado = ingreso.Estado.Descripcion,
-                        Fecha = ingreso.FechaRegistro,
-                        NombreEmpresa = ingreso.NombreEmpresa,
-                        Prioridad = ingreso.Prioridad,
-                        Instrumentos = detalle.Where(x => x.IngresoId == ingreso.IngresoId).Select(y => new IngresoInstrumento
-                        {
-                            IngresoId = y.IngresoId,
-                            IngresoInstrumentoId = y.IngresoInstrumentoId,
-                            DescripcionInstrumento = y.Instrumento.Descripcion,
-                            InstrumentoId = y.InstrumentoId,
-                            Marca = y.Instrumento.Clasificacion.Marca.Descripcion,
-                            Modelo = y.Instrumento.Clasificacion.Modelo.Descripcion,
-                            TipoInstrumento = y.Instrumento.Clasificacion.TipoInstrumento.Descripcion
-                        }).ToList()
-                    };
-
-                    ingresosLista.Add(nuevoIngreso);
-                }
-
-                gridControl1.DataSource = ingresosLista;
-                ExpandAllRows(gvIngresos);
+                    Activo = y.Activo,
+                    IngresoId = y.IngresoId,
+                    IngresoInstrumentoId = y.IngresoInstrumentoId,
+                    InstrumentoId = y.InstrumentoId,
+                    Comentarios = y.Comentarios,
+                    Ingreso = y.Ingreso,
+                    Instrumento = y.Instrumento,
+                    NumeroServicioTecnico = y.NumeroServicioTecnico,
+                    ClasificacionConcatenada = $"{y.Instrumento.Clasificacion.TipoInstrumento.Descripcion}/{y.Instrumento.Clasificacion.Marca.Descripcion}/{y.Instrumento.Clasificacion.Modelo.Descripcion}"
+                }).OrderBy(y => y.IngresoInstrumentoId).ToList();
+                            
+               gcInstrumentos.DataSource = ingresosInstrumentos;
 
                 SetearTotales();
             }
@@ -95,24 +77,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             }
         }
 
-        public void ExpandAllRows(GridView view)
-        {
-            view.BeginUpdate();
-            try
-            {
-                int dataRowCount = view.DataRowCount;
-                for (int rHandle = 0; rHandle < dataRowCount; rHandle++)
-                    view.SetMasterRowExpanded(rHandle, true);
-            }
-            finally
-            {
-                view.EndUpdate();
-            }
-        }
 
         private void SetearTotales()
         {
-            lblTotal.Text = $"Total Registros: {ingresos.Count}";
+            lblTotal.Text = $"Total Registros: {ingresosInstrumentos.Count}";
             lblTotal.Visible = true;
         }
 

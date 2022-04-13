@@ -82,9 +82,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.Controls.Add(this.btnIngresarComentario);
             this.Controls.Add(this.memoComentarios);
             this.Controls.Add(this.labelControl7);
+            this.IconOptions.ShowIcon = false;
             this.Name = "frmComentarioInstrumento";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Comentario de Instrumento";
+            this.Text = "Comnetario de Ingreso";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmComentarioInstrumento_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.memoComentarios.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -47,6 +47,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                                                                                    .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
                                                                                    .Where(x => x.EstadoId != (int)Estados.Cerrado).ToList();
 
+                ingresos = ingresos.OrderBy(y => y.Prioridad).ThenBy(y => y.IngresoId).ToList();
                 return Response<List<IngresoDto>>.Ok("Ok", _mapper.Map<List<IngresoDto>>(ingresos));
             }
             catch (Exception exc)
@@ -84,10 +85,13 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 _AutomatMedicionesDbContext.Ingresos.Add(ingreso);
                 _AutomatMedicionesDbContext.SaveChanges();
 
+
+                int correlativoIntrumento = 1;
                 foreach (var instrumento in ingresoDto.IngresosInstrumentos)
                 {
                     IngresoInstrumento ingresoInstrumento = new IngresoInstrumento
                     {
+                        NumeroServicioTecnico = $"{ingreso.IngresoId}-{correlativoIntrumento}",
                         Comentarios = instrumento.Comentarios,
                         IngresoId = ingreso.IngresoId,
                         Activo = true,
@@ -96,6 +100,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                     _AutomatMedicionesDbContext.IngresosInstrumentos.Add(ingresoInstrumento);
 
+                    correlativoIntrumento++;
                 }
 
                 _AutomatMedicionesDbContext.SaveChanges();

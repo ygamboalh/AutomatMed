@@ -1,14 +1,10 @@
-﻿namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos.Dtos
+﻿using AutomatMediciones.Libs.Dtos;
+
+namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos.Dtos
 {
 
-    public class IngresoInstrumento
+    public class IngresoInstrumento : IngresoInstrumentoDto
     {
-        public int IngresoInstrumentoId { get; set; }
-        public int IngresoId { get; set; }
-        public int InstrumentoId { get; set; }
-        public string DescripcionInstrumento { get; set; }
-        public string Marca { get; set; }
-        public string Modelo { get; set; }
-        public string TipoInstrumento { get; set; }
+        public string ClasificacionConcatenada { get; set; }
     }
 }

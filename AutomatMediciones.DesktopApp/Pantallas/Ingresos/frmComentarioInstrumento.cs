@@ -50,13 +50,19 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             
             }
 
-            this.Close();
 
+            this.Close();
+            memoComentarios.Text = "";
         }
 
         public void SetearComentarioParaActualizar(string comentarios)
         {
             memoComentarios.Text = comentarios;
+        }
+
+        private void frmComentarioInstrumento_FormClosing(object sender, FormClosingEventArgs e)
+        {
+          
         }
     }
 }

@@ -420,11 +420,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             PrepararNuevoIngreso();
 
+            SplashScreenManager.ShowForm(typeof(frmLoading));
             if (GuardarIngreso())
             {
                 Notificaciones.MensajeConfirmacion("¡El ingreso se ha guardado exitosamente!");
                 LimpiarFormulario();
             }
+            SplashScreenManager.CloseForm();
         }
 
         private bool GuardarIngreso()
@@ -432,7 +434,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             try
             {
                 var resultado = _ingresoService.GuardarIngreso(Ingreso);
-                if (resultado.Type != TypeResponse.Ok) return false;
+                if (resultado.Type != TypeResponse.Ok)
+                {
+                    Notificaciones.MensajeError(resultado.Message);                   
+                    return false;
+                }
 
                 return true;
             }
