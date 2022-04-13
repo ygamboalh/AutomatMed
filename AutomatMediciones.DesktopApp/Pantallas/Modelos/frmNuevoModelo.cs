@@ -1,6 +1,7 @@
 ﻿using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
+using DevExpress.XtraSplashScreen;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
@@ -21,10 +22,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
         public TipoTransaccion TipoTransaccion { get; set; }
         public ModeloDto NuevaModelo { get; set; }
 
-        public frmNuevoModelo(ModeloService modeloService)
+        public frmNuevoModelo(TipoTransaccion tipoTransaccion,ModeloService modeloService)
         {
             InitializeComponent();
-
+            TipoTransaccion = tipoTransaccion;
             _modeloService = modeloService;
 
             EstablecerNombreYTituloPopupAgregarInstrumentos();
@@ -113,6 +114,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
                 return;
             }
 
+            SplashScreenManager.ShowForm(typeof(frmLoadingSave));
             if (TipoTransaccion == TipoTransaccion.Insertar)
             {
                 if (GuardarModelo())
@@ -131,6 +133,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
                     this.Close();
                 }
             }
+            SplashScreenManager.CloseForm();
         }
     }
 }

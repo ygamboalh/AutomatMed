@@ -1,6 +1,7 @@
 ﻿using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
+using DevExpress.XtraSplashScreen;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
@@ -20,10 +21,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
         public TipoTransaccion TipoTransaccion { get; set; }
 
         public MarcaDto NuevaMarca { get; set; }
-        public frmNuevaMarca(MarcaService marcaService)
+        public frmNuevaMarca(TipoTransaccion tipoTransaccion, MarcaService marcaService)
         {
             InitializeComponent();
 
+            TipoTransaccion = tipoTransaccion;
             _marcaService = marcaService;
             EstablecerNombreYTituloPopupAgregarInstrumentos();
             EstablecerColorBotonGuardar();
@@ -37,7 +39,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
 
         private void EstablecerNombreYTituloPopupAgregarInstrumentos()
         {
-            this.Text = "";
             ctlEncabezadoPantalla1.lblTitulo.Text = TipoTransaccion == TipoTransaccion.Insertar ? "Agregar Marca" : "Modificar Marca";
             ctlEncabezadoPantalla1.EstablecerColoresDeFondoYLetra();
         }
@@ -108,6 +109,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
                 return;
             }
 
+            SplashScreenManager.ShowForm(typeof(frmLoadingSave));
             if (TipoTransaccion == TipoTransaccion.Insertar)
             {
                 if (GuardarMarca())
@@ -127,6 +129,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
                     this.Close();
                 }
             }
+
+            SplashScreenManager.CloseForm();
         }
     }
 }

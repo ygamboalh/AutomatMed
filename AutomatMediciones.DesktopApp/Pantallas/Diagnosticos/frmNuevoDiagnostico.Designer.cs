@@ -110,6 +110,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.btnGuardarDiagnostico.Text = "Guardar Nuevo Diagnóstico";
             this.btnGuardarDiagnostico.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardarDiagnostico.UseVisualStyleBackColor = true;
+            this.btnGuardarDiagnostico.Click += new System.EventHandler(this.btnGuardarDiagnostico_Click);
             // 
             // memoDiagnostico
             // 

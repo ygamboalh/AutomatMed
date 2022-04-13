@@ -1,4 +1,5 @@
-﻿using AutomatMediciones.DesktopApp.Helpers;
+﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
+using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,8 +37,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             var modelo = gvModelos.GetFocusedRow() as ModeloDto;
             if (modelo == null) return;
 
-            var frmNuevoModelo = serviceProvider.GetService<frmNuevoModelo>();
-            frmNuevoModelo.TipoTransaccion = TipoTransaccion.Actualizar;
+            var frmNuevoModelo = new frmNuevoModelo(TipoTransaccion.Actualizar, serviceProvider.GetService<ModeloService>());        
             frmNuevoModelo.NuevaModelo = modelo;
             frmNuevoModelo.SetearValoresParaActualizar();
             frmNuevoModelo.OnModeloModificada += OnModeloModificada;
@@ -63,6 +63,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
 
         private void EstablecerNombreYTitulo()
         {
+            ctlEncabezadoPantalla ctlEncabezadoPantalla3 = new ctlEncabezadoPantalla();
+            ctlEncabezadoPantalla3.Parent = this;
+            ctlEncabezadoPantalla3.Height = 43;
+            ctlEncabezadoPantalla3.Dock = System.Windows.Forms.DockStyle.Top;
             ctlEncabezadoPantalla3.lblTitulo.Text = "Modelos";
             ctlEncabezadoPantalla3.EstablecerColoresDeFondoYLetra();
         }
@@ -88,8 +92,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
 
         private void btnAgregarNuevoModelo_Click(object sender, System.EventArgs e)
         {
-            frmNuevoModelo frmNuevoModelo = serviceProvider.GetService<frmNuevoModelo>();
-            frmNuevoModelo.TipoTransaccion = TipoTransaccion.Insertar;
+            var frmNuevoModelo = new frmNuevoModelo(TipoTransaccion.Insertar, serviceProvider.GetService<ModeloService>());
+      
             frmNuevoModelo.OnModeloAgregada += OnModeloAgregada;
             frmNuevoModelo.Show();
         }

@@ -37,10 +37,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
 
             if (tiposInstrumento == null) return;
 
-
-
-            var frmTipoInstrumento = serviceProvider.GetService<frmNuevoTipoInstrumento>();
-            frmTipoInstrumento.TipoTransaccion = TipoTransaccion.Actualizar;
+            var frmTipoInstrumento = new frmNuevoTipoInstrumento(TipoTransaccion.Actualizar, serviceProvider.GetService<TipoDeInstrumentoService>());
             frmTipoInstrumento.NuevoTipoInstrumento = tipoInstrumento;
             frmTipoInstrumento.SetearValoresParaActualizar();
             frmTipoInstrumento.OnTipoInstrumentoModificado += OnTipoInstrumentoModificado;
@@ -82,16 +79,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             var resultado = _tipoInstrumentoService.ObtenerTiposDeInstrumento();
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
-            var tiposDeInstrumentos = resultado.Data;
-            gcTipoInstrumento.DataSource = tiposDeInstrumentos;
+            tiposInstrumento = resultado.Data;
+            gcTipoInstrumento.DataSource = tiposInstrumento;
 
             SetearTotales();
         }
 
         private void btnAgregarNuevInstrumento_Click(object sender, System.EventArgs e)
         {
-            var frmTipoInstrumento = serviceProvider.GetService<frmNuevoTipoInstrumento>();
-            frmTipoInstrumento.TipoTransaccion = TipoTransaccion.Insertar;
+            var frmTipoInstrumento = new frmNuevoTipoInstrumento(TipoTransaccion.Insertar, serviceProvider.GetService<TipoDeInstrumentoService>());      
             frmTipoInstrumento.OnTipoInstrumentoAgregado += OnTipoInstrumentoAgregado;
             frmTipoInstrumento.Show();
         }

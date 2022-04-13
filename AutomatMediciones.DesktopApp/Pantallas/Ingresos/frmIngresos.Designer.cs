@@ -304,7 +304,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Location = new System.Drawing.Point(12, 62);
+            this.labelControl8.Location = new System.Drawing.Point(12, 88);
             this.labelControl8.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(66, 17);
@@ -325,7 +325,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.btnGuardarIngreso.Location = new System.Drawing.Point(1051, 0);
             this.btnGuardarIngreso.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnGuardarIngreso.Name = "btnGuardarIngreso";
-            this.btnGuardarIngreso.Size = new System.Drawing.Size(220, 57);
+            this.btnGuardarIngreso.Size = new System.Drawing.Size(220, 72);
             this.btnGuardarIngreso.TabIndex = 23;
             this.btnGuardarIngreso.Text = "Guardar Ingreso";
             this.btnGuardarIngreso.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -338,13 +338,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.memoComentarios.Location = new System.Drawing.Point(0, 19);
             this.memoComentarios.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.memoComentarios.Name = "memoComentarios";
-            this.memoComentarios.Size = new System.Drawing.Size(805, 153);
+            this.memoComentarios.Size = new System.Drawing.Size(805, 138);
             this.memoComentarios.TabIndex = 24;
             // 
             // trackBarControl1
             // 
             this.trackBarControl1.EditValue = 1;
-            this.trackBarControl1.Location = new System.Drawing.Point(12, 83);
+            this.trackBarControl1.Location = new System.Drawing.Point(12, 109);
             this.trackBarControl1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.trackBarControl1.Name = "trackBarControl1";
             this.trackBarControl1.Properties.AutoSize = false;
@@ -369,9 +369,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.trackBarControl1.Properties.Maximum = 5;
             this.trackBarControl1.Properties.Minimum = 1;
             this.trackBarControl1.Properties.ShowLabels = true;
-            this.trackBarControl1.Size = new System.Drawing.Size(438, 48);
+            this.trackBarControl1.Size = new System.Drawing.Size(446, 48);
             this.trackBarControl1.TabIndex = 25;
             this.trackBarControl1.Value = 1;
+            this.trackBarControl1.EditValueChanged += new System.EventHandler(this.trackBarControl1_EditValueChanged);
             // 
             // glTiposTrabajo
             // 
@@ -445,7 +446,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.panel7.Location = new System.Drawing.Point(471, 5);
             this.panel7.Name = "panel7";
             this.panel7.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
-            this.panel7.Size = new System.Drawing.Size(805, 192);
+            this.panel7.Size = new System.Drawing.Size(805, 177);
             this.panel7.TabIndex = 28;
             // 
             // panel8
@@ -466,16 +467,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.panel9.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel9.Location = new System.Drawing.Point(5, 5);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(466, 192);
+            this.panel9.Size = new System.Drawing.Size(466, 177);
             this.panel9.TabIndex = 29;
             // 
             // panel6
             // 
             this.panel6.Controls.Add(this.btnGuardarIngreso);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(5, 197);
+            this.panel6.Location = new System.Drawing.Point(5, 182);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1271, 57);
+            this.panel6.Size = new System.Drawing.Size(1271, 72);
             this.panel6.TabIndex = 27;
             // 
             // panel1

@@ -457,11 +457,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             this.Controls.Add(this.btnGuardarInstrumento);
             this.Controls.Add(this.txtDescripcionInstrumento);
             this.Controls.Add(this.ctlEncabezadoAgregarInstrumento);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "frmNuevoInstrumento";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Nuevo Instrumento";
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpresaInstrumento.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroSerie.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumento.Properties)).EndInit();

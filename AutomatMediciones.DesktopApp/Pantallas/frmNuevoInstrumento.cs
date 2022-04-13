@@ -55,7 +55,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
 
         private void EstablecerNombreYTituloPopupAgregarInstrumentos()
         {
-            this.Text = "";
+            
             ctlEncabezadoAgregarInstrumento.lblTitulo.Text = "Agregar Instrumento";
             ctlEncabezadoAgregarInstrumento.EstablecerColoresDeFondoYLetra();
         }
@@ -90,7 +90,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             CargarClasificacionesDeInstrumentos();
             NuevoInstrumento.Clasificacion = clasificaciones.FirstOrDefault(x => x.ClasificacionId == NuevoInstrumento.ClasificacionId);
 
-            SplashScreenManager.ShowForm(typeof(frmLoading));
+            SplashScreenManager.ShowForm(typeof(frmSaving));
             if (GuardarInstrumento())
             {
                 Notificaciones.MensajeConfirmacion("¡El instrumento se ha registrado exitosamente!");

@@ -420,7 +420,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             PrepararNuevoIngreso();
 
-            SplashScreenManager.ShowForm(typeof(frmLoading));
+            SplashScreenManager.ShowForm(typeof(frmSaving));
             if (GuardarIngreso())
             {
                 Notificaciones.MensajeConfirmacion("¡El ingreso se ha guardado exitosamente!");
@@ -483,6 +483,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private void btnAgregarNuevInstrumento_MouseHover(object sender, EventArgs e)
         {
             toolTip1.SetToolTip(btnAgregarNuevInstrumento, "Presione para ir la a pantalla que le permite agregar un nuevo instrumento.");
+        }
+
+        private void trackBarControl1_EditValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

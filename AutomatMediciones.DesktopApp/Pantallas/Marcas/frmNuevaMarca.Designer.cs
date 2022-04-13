@@ -97,9 +97,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
             this.Controls.Add(this.labelControl11);
             this.Controls.Add(this.txtDescripcion);
             this.IconOptions.ShowIcon = false;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmNuevaMarca";
-            this.Text = "Nueva Marca";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcion.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

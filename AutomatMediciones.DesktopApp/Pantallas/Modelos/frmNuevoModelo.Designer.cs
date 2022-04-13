@@ -99,7 +99,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmNuevoModelo";
-            this.Text = "Nuevo Modelo";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcion.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

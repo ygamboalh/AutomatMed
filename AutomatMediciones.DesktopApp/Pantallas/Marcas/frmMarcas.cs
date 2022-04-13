@@ -38,8 +38,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
             if (marca == null) return;
 
 
-            var frmNuevaMarca = serviceProvider.GetService<frmNuevaMarca>();
-            frmNuevaMarca.TipoTransaccion = TipoTransaccion.Actualizar;
+            var frmNuevaMarca = new frmNuevaMarca(TipoTransaccion.Actualizar ,serviceProvider.GetService<MarcaService>());         
             frmNuevaMarca.NuevaMarca = marca;
             frmNuevaMarca.SetearValoresParaActualizar();
             frmNuevaMarca.OnMarcaModificada += OnMarcaModificada;
@@ -90,8 +89,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
 
         private void btnAgregarNuevInstrumento_Click(object sender, System.EventArgs e)
         {
-            var frmNuevaMarca = serviceProvider.GetService<frmNuevaMarca>();
-            frmNuevaMarca.TipoTransaccion = TipoTransaccion.Insertar;
+            var frmNuevaMarca = new frmNuevaMarca(TipoTransaccion.Insertar, serviceProvider.GetService<MarcaService>());         
             frmNuevaMarca.OnMarcaAgregada += OnMarcaAgregada;
             frmNuevaMarca.Show();
         }

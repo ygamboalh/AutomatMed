@@ -42,7 +42,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnAgregarNuevInstrumento = new FontAwesome.Sharp.IconButton();
-            this.ctlEncabezadoPantalla3 = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             this.colDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotal = new DevExpress.XtraEditors.LabelControl();
@@ -67,7 +66,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // 
             this.panel1.Controls.Add(this.btnAgregarNuevInstrumento);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 43);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(8, 7, 0, 7);
@@ -94,15 +93,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.btnAgregarNuevInstrumento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAgregarNuevInstrumento.UseVisualStyleBackColor = true;
             this.btnAgregarNuevInstrumento.Click += new System.EventHandler(this.btnAgregarNuevInstrumento_Click);
-            // 
-            // ctlEncabezadoPantalla3
-            // 
-            this.ctlEncabezadoPantalla3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctlEncabezadoPantalla3.Location = new System.Drawing.Point(0, 0);
-            this.ctlEncabezadoPantalla3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.ctlEncabezadoPantalla3.Name = "ctlEncabezadoPantalla3";
-            this.ctlEncabezadoPantalla3.Size = new System.Drawing.Size(995, 43);
-            this.ctlEncabezadoPantalla3.TabIndex = 39;
             // 
             // colDescripcion
             // 
@@ -143,7 +133,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // 
             this.gcVariablesDeMedicion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcVariablesDeMedicion.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.gcVariablesDeMedicion.Location = new System.Drawing.Point(0, 96);
+            this.gcVariablesDeMedicion.Location = new System.Drawing.Point(0, 53);
             this.gcVariablesDeMedicion.MainView = this.gvVariablesDeMedicion;
             this.gcVariablesDeMedicion.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.gcVariablesDeMedicion.Name = "gcVariablesDeMedicion";
@@ -151,7 +141,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.gcVariablesDeMedicion.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.cmdEditar,
             this.repositoryItemButtonEdit1});
-            this.gcVariablesDeMedicion.Size = new System.Drawing.Size(995, 587);
+            this.gcVariablesDeMedicion.Size = new System.Drawing.Size(995, 630);
             this.gcVariablesDeMedicion.TabIndex = 36;
             this.gcVariablesDeMedicion.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvVariablesDeMedicion});
@@ -251,7 +241,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.ClientSize = new System.Drawing.Size(995, 710);
             this.Controls.Add(this.gcVariablesDeMedicion);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.ctlEncabezadoPantalla3);
             this.Controls.Add(this.panel2);
             this.IconOptions.ShowIcon = false;
             this.Name = "frmVariablesDeMedicion";

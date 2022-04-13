@@ -53,7 +53,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             this.btnAgregarNuevInstrumento = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotal = new DevExpress.XtraEditors.LabelControl();
-            this.ctlEncabezadoPantalla3 = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             ((System.ComponentModel.ISupportInitialize)(this.gcTipoInstrumento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTipoInstrumento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
@@ -66,7 +65,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             // 
             this.gcTipoInstrumento.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcTipoInstrumento.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.gcTipoInstrumento.Location = new System.Drawing.Point(0, 102);
+            this.gcTipoInstrumento.Location = new System.Drawing.Point(0, 53);
             this.gcTipoInstrumento.MainView = this.gvTipoInstrumento;
             this.gcTipoInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.gcTipoInstrumento.Name = "gcTipoInstrumento";
@@ -74,7 +73,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             this.gcTipoInstrumento.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.cmdEditar,
             this.repositoryItemButtonEdit1});
-            this.gcTipoInstrumento.Size = new System.Drawing.Size(992, 521);
+            this.gcTipoInstrumento.Size = new System.Drawing.Size(992, 570);
             this.gcTipoInstrumento.TabIndex = 1;
             this.gcTipoInstrumento.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvTipoInstrumento});
@@ -170,7 +169,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             // 
             this.panel1.Controls.Add(this.btnAgregarNuevInstrumento);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 49);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(8, 7, 0, 7);
@@ -221,15 +220,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             this.lblTotal.Text = "0";
             this.lblTotal.Visible = false;
             // 
-            // ctlEncabezadoPantalla3
-            // 
-            this.ctlEncabezadoPantalla3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctlEncabezadoPantalla3.Location = new System.Drawing.Point(0, 0);
-            this.ctlEncabezadoPantalla3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.ctlEncabezadoPantalla3.Name = "ctlEncabezadoPantalla3";
-            this.ctlEncabezadoPantalla3.Size = new System.Drawing.Size(992, 49);
-            this.ctlEncabezadoPantalla3.TabIndex = 31;
-            // 
             // frmTiposDeInstrumento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -237,7 +227,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             this.ClientSize = new System.Drawing.Size(992, 650);
             this.Controls.Add(this.gcTipoInstrumento);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.ctlEncabezadoPantalla3);
             this.Controls.Add(this.panel2);
             this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);

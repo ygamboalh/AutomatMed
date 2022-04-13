@@ -1,6 +1,7 @@
 ﻿using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
+using DevExpress.XtraSplashScreen;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
@@ -23,9 +24,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
         public TipoTransaccion TipoTransaccion { get; set; }
 
         public VariableMedicionDto NuevaVariableMedicion { get; set; }
-        public frmNuevaVariableMedicion(VariableMedicionService variableMedicionService, TipoDeInstrumentoService tipoinstrumentoService)
+        public frmNuevaVariableMedicion(TipoTransaccion tipoTransaccion, VariableMedicionService variableMedicionService, TipoDeInstrumentoService tipoinstrumentoService)
         {
             InitializeComponent();
+            TipoTransaccion = tipoTransaccion;
             _variableMedicionService = variableMedicionService;
             _tipoinstrumentoService = tipoinstrumentoService;
 
@@ -148,6 +150,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
                 return;
             }
 
+            SplashScreenManager.ShowForm(typeof(frmLoadingSave));
             if (TipoTransaccion == TipoTransaccion.Insertar)
             {
                 if (GuardarVariableMedicion())
@@ -166,6 +169,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
                     this.Close();
                 }
             }
+
+            SplashScreenManager.CloseForm();
         }
 
         private void btnAgregarTipoDeInstrumento_Click(object sender, EventArgs e)

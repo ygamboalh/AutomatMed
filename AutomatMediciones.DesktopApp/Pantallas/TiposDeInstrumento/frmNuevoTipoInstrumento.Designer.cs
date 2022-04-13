@@ -145,6 +145,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             this.Controls.Add(this.ctlEncabezadoPantalla1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmNuevoTipoInstrumento";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcion.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtResumen.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMetodologia.Properties)).EndInit();

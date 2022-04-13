@@ -18,5 +18,21 @@ namespace AutomatMediciones.DesktopApp.Helpers
             return cadenaConexion;
 
         }
+
+
+        public static string ObtenerDataBaseServer(string nombreCadena)
+        {
+            var appSettings = ConfigurationManager.AppSettings;
+            var cadenaConexion = appSettings[nombreCadena];
+
+            var cadena = cadenaConexion.Split(";");
+
+            var segundaCadena = cadena[0].Split("Server=");
+            var terceraCadena = cadena[2].Split("Database=");
+
+
+            return $"{segundaCadena[1]}|{terceraCadena[1]}";
+
+        }
     }
 }

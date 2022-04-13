@@ -36,7 +36,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.btnGuardarVariableMedicion = new FontAwesome.Sharp.IconButton();
-            this.ctlEncabezadoPantalla1 = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.txtDescripcion = new DevExpress.XtraEditors.TextEdit();
             this.nmPrimerValorRango = new System.Windows.Forms.NumericUpDown();
@@ -93,15 +92,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.btnGuardarVariableMedicion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardarVariableMedicion.UseVisualStyleBackColor = true;
             this.btnGuardarVariableMedicion.Click += new System.EventHandler(this.btnGuardarVariableMedicion_Click);
-            // 
-            // ctlEncabezadoPantalla1
-            // 
-            this.ctlEncabezadoPantalla1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctlEncabezadoPantalla1.Location = new System.Drawing.Point(0, 0);
-            this.ctlEncabezadoPantalla1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.ctlEncabezadoPantalla1.Name = "ctlEncabezadoPantalla1";
-            this.ctlEncabezadoPantalla1.Size = new System.Drawing.Size(676, 38);
-            this.ctlEncabezadoPantalla1.TabIndex = 129;
             // 
             // labelControl11
             // 
@@ -324,7 +314,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // colDescripcionTipoInstrumento
             // 
             this.colDescripcionTipoInstrumento.Caption = "Descripción";
-            this.colDescripcionTipoInstrumento.FieldName = "TiposDeInstrumentoVariables.TipoDeInstrumento.Descripcion";
+            this.colDescripcionTipoInstrumento.FieldName = "TipoInstrumento.Descripcion";
             this.colDescripcionTipoInstrumento.MinWidth = 25;
             this.colDescripcionTipoInstrumento.Name = "colDescripcionTipoInstrumento";
             this.colDescripcionTipoInstrumento.Visible = true;
@@ -384,12 +374,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.Controls.Add(this.nmPrimerValorRango);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.btnGuardarVariableMedicion);
-            this.Controls.Add(this.ctlEncabezadoPantalla1);
             this.Controls.Add(this.labelControl11);
             this.Controls.Add(this.txtDescripcion);
             this.IconOptions.ShowIcon = false;
             this.Name = "frmNuevaVariableMedicion";
-            this.Text = "Agregar Variable de Medición";
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcion.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmPrimerValorRango)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmSegundoValorRango)).EndInit();

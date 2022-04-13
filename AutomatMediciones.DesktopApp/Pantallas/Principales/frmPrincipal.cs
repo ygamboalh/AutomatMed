@@ -22,6 +22,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
 
             EstablecerNombreAplicacion();
             EstablecerFondoMdiPantalla();
+            EstablecerEtiquetaVersionAplicacion();
+            EstablecerEtiquetaNombreServidorBaseDatos();
 
             this.cmpMenu1.InicializarControl();
         }
@@ -31,12 +33,23 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
             this.Text = AplicacionHelper.ObtenerNombreDeAplicacion();
         }
 
+        private void EstablecerEtiquetaVersionAplicacion()
+        {
+            lblVersion.Text = $"{this.Text} | V{Application.ProductVersion}";
+        }
+
+        private void EstablecerEtiquetaNombreServidorBaseDatos()
+        {
+         
+            lblBaseDatos.Text = AplicacionHelper.ObtenerDataBaseServer("AutomatConnectionString");
+        }
+
         private void cmpMenuOnMenuSeleccionado(IndiceMenu indiceMenu)
         {
             switch (indiceMenu)
             {
                 case IndiceMenu.Ingresos:
-                    SplashScreenManager.ShowForm(typeof(frmLoading));
+                    SplashScreenManager.ShowForm(typeof(frmSaving));
                     var frmIngresos = new frmIngresos(serviceProvider.GetService<IngresoService>(),
                                                        serviceProvider.GetService<InstrumentoService>(),
                                                        serviceProvider.GetService<TipoTrabajoService>()
@@ -46,14 +59,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
                     SplashScreenManager.CloseForm();
                     break;
                 case IndiceMenu.Diagnosticos:
-                    SplashScreenManager.ShowForm(typeof(frmLoading));
+                    SplashScreenManager.ShowForm(typeof(frmSaving));
                     var frmDiagnosticos = new frmDiagnosticos(serviceProvider.GetService<IngresoService>());
                     XtraForm diagnosticos = frmDiagnosticos;
                     AgregarPantalla(ref diagnosticos);
                     SplashScreenManager.CloseForm();
                     break;
                 case IndiceMenu.Configuracion:
-                    SplashScreenManager.ShowForm(typeof(frmLoading));
+                    SplashScreenManager.ShowForm(typeof(frmSaving));
                     var frmConfiguracion = new frmConfiguracion();
                     XtraForm configuraciones = frmConfiguracion;
                     AgregarPantalla(ref configuraciones);

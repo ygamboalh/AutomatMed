@@ -58,6 +58,8 @@ namespace AutomatMediciones.DesktopApp
             services.AddDbContext<TacticaDbContext>(options => options.UseMySql(tacticaConneccionString, ServerVersion.AutoDetect(tacticaConneccionString)));
             services.AddDbContext<AutomatMedicionesDbContext>(options => options.UseMySql(automatConnectionString, ServerVersion.AutoDetect(automatConnectionString)));
 
+      
+        
             services.AddAutoMapper(options => options.AddProfile(new ConfigMap()));
 
             services.AddTransient<EmpresaService, EmpresaService>();

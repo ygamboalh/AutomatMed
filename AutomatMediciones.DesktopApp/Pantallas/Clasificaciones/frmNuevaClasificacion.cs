@@ -1,6 +1,7 @@
 ﻿using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
+using DevExpress.XtraSplashScreen;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
@@ -148,6 +149,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
                 return;
             }
 
+            SplashScreenManager.ShowForm(typeof(frmLoadingSave));
             if (TipoTransaccion == TipoTransaccion.Insertar)
             {
                 if ((GuardarClasificacionInstrumento()))
@@ -166,6 +168,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
                     this.Close();
                 }
             }
+            SplashScreenManager.CloseForm();
         }
     }
 }

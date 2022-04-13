@@ -6,5 +6,10 @@
         {
             InitializeComponent();
         }
+
+        private void btnGuardarDiagnostico_Click(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

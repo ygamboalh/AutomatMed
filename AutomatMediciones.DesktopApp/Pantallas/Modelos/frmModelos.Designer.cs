@@ -40,7 +40,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
-            this.ctlEncabezadoPantalla3 = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnAgregarNuevoModelo = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -60,20 +59,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.SuspendLayout();
             // 
-            // ctlEncabezadoPantalla3
-            // 
-            this.ctlEncabezadoPantalla3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctlEncabezadoPantalla3.Location = new System.Drawing.Point(0, 0);
-            this.ctlEncabezadoPantalla3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.ctlEncabezadoPantalla3.Name = "ctlEncabezadoPantalla3";
-            this.ctlEncabezadoPantalla3.Size = new System.Drawing.Size(659, 37);
-            this.ctlEncabezadoPantalla3.TabIndex = 36;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnAgregarNuevoModelo);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 37);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(8, 7, 0, 7);
@@ -96,7 +86,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.btnAgregarNuevoModelo.Name = "btnAgregarNuevoModelo";
             this.btnAgregarNuevoModelo.Size = new System.Drawing.Size(211, 39);
             this.btnAgregarNuevoModelo.TabIndex = 16;
-            this.btnAgregarNuevoModelo.Text = "NuevoModelo";
+            this.btnAgregarNuevoModelo.Text = "Nuevo Modelo";
             this.btnAgregarNuevoModelo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAgregarNuevoModelo.UseVisualStyleBackColor = true;
             this.btnAgregarNuevoModelo.Click += new System.EventHandler(this.btnAgregarNuevoModelo_Click);
@@ -128,7 +118,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             // 
             this.gcModelos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcModelos.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.gcModelos.Location = new System.Drawing.Point(0, 90);
+            this.gcModelos.Location = new System.Drawing.Point(0, 53);
             this.gcModelos.MainView = this.gvModelos;
             this.gcModelos.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.gcModelos.Name = "gcModelos";
@@ -136,7 +126,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.gcModelos.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.cmdEditar,
             this.repositoryItemButtonEdit1});
-            this.gcModelos.Size = new System.Drawing.Size(659, 268);
+            this.gcModelos.Size = new System.Drawing.Size(659, 305);
             this.gcModelos.TabIndex = 39;
             this.gcModelos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvModelos});
@@ -210,7 +200,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.Controls.Add(this.gcModelos);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.ctlEncabezadoPantalla3);
             this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmModelos";

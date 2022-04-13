@@ -33,7 +33,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             var diagnosticoSeleccionado = gvInstrumentos.GetFocusedRow() as IngresoInstrumento;
             if (diagnosticoSeleccionado == null) return;
 
-            var frmNuevoDiagnostico = new frmNuevoDiagnostico()
+           
         }
 
         private void CargarIngresos()
