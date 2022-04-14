@@ -24,8 +24,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
             EstablecerFondoMdiPantalla();
             EstablecerEtiquetaVersionAplicacion();
             EstablecerEtiquetaNombreServidorBaseDatos();
+            EstablecerColorFondoBarraEstado();
 
             this.cmpMenu1.InicializarControl();
+        }
+
+        private void EstablecerColorFondoBarraEstado()
+        {
+            this.pnlStatus.BackColor = ColorHelper.ObtenerColorEnRGB("Primary200");
         }
 
         private void EstablecerNombreAplicacion()

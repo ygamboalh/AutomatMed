@@ -34,11 +34,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::AutomatMediciones.DesktopApp.Pantallas.frmSaving), true, true);
             this.cmpMenu1 = new AutomatMediciones.DesktopApp.Componentes.Menu.cmpMenu();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlStatus = new System.Windows.Forms.Panel();
             this.lblBaseDatos = new DevExpress.XtraEditors.LabelControl();
             this.lblVersion = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.pnlStatus.SuspendLayout();
             this.SuspendLayout();
             // 
             // splashScreenManager1
@@ -62,16 +62,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
             // 
             this.xtraTabbedMdiManager1.MdiParent = this;
             // 
-            // panel1
+            // pnlStatus
             // 
-            this.panel1.Controls.Add(this.lblBaseDatos);
-            this.panel1.Controls.Add(this.lblVersion);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(283, 613);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.panel1.Size = new System.Drawing.Size(918, 29);
-            this.panel1.TabIndex = 2;
+            this.pnlStatus.Controls.Add(this.lblBaseDatos);
+            this.pnlStatus.Controls.Add(this.lblVersion);
+            this.pnlStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlStatus.Location = new System.Drawing.Point(283, 613);
+            this.pnlStatus.Name = "pnlStatus";
+            this.pnlStatus.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.pnlStatus.Size = new System.Drawing.Size(918, 29);
+            this.pnlStatus.TabIndex = 2;
             // 
             // lblBaseDatos
             // 
@@ -102,7 +102,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1204, 645);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlStatus);
             this.Controls.Add(this.cmpMenu1);
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.None;
             this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("frmPrincipal.IconOptions.Icon")));
@@ -113,7 +113,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
             this.Text = "Principal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.pnlStatus.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -123,7 +123,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
         private Componentes.Menu.cmpMenu cmpMenu1;
         private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager xtraTabbedMdiManager1;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlStatus;
         private DevExpress.XtraEditors.LabelControl lblVersion;
         private DevExpress.XtraEditors.LabelControl lblBaseDatos;
     }

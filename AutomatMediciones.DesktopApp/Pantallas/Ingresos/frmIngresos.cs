@@ -26,9 +26,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private readonly InstrumentoService _instrumentoService;
         private readonly TipoTrabajoService _tipoTrabajoService;
 
-        ICollection<Libs.Dtos.IngresoInstrumentoDto> instrumentosSeleccionados;
+        ICollection<IngresoInstrumentoDto> instrumentosSeleccionados;
 
-        List<Dtos.InstrumentoLista> instrumentosDeEmpresa;
+        List<InstrumentoLista> instrumentosDeEmpresa;
 
         public IngresoDto Ingreso { get; set; }
 
@@ -89,8 +89,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             instrumento.Seleccionado = estaSeleccionadoElInstrumento;
 
             if (instrumento.Seleccionado)
-            {
-                frmInformacionAdicionalInstrumento frmComentarioInstrumento = new frmInformacionAdicionalInstrumento(TipoTransaccion.Insertar,serviceProvider.GetService<TipoTrabajoService>());
+            {   
+                frmInformacionAdicionalInstrumento frmComentarioInstrumento = new frmInformacionAdicionalInstrumento(TipoTransaccion.Insertar, serviceProvider.GetService<TipoTrabajoService>());
                 frmComentarioInstrumento.OnInformacionAdicionalAgregada += OnInformacionAgregada;
                 frmComentarioInstrumento.Instrumento = instrumento;
                 frmComentarioInstrumento.Instrumento.InformacionAdicional = new InformacionAdicionalInstrumento();
@@ -166,6 +166,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId).InformacionAdicional = instrumentoLista.InformacionAdicional;
             instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId).ClasificacionConcatenada = $"{instrumentoLista.Clasificacion.TipoInstrumento.Descripcion}/{instrumentoLista.Clasificacion.Marca.Descripcion}/{instrumentoLista.Clasificacion.Modelo.Descripcion}";
 
+
+            instrumentosDeEmpresa.ForEach(x =>
+            {
+                if (!x.Seleccionado)
+                {
+                    x.InformacionAdicional = new InformacionAdicionalInstrumento();
+                }
+            });
 
             gcInstrumentosDeEmpresa.DataSource = instrumentosDeEmpresa;
             gcInstrumentosDeEmpresa.RefreshDataSource();
