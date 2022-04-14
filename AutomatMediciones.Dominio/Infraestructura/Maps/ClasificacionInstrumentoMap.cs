@@ -17,8 +17,6 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.Property(x => x.MarcaId).HasColumnName("marca_id").HasColumnType("INT").IsRequired();
             builder.Property(x => x.PeriodoDeCalibracion).HasColumnName("periodo_calibracion").HasColumnType("INT").IsRequired();
             builder.Property(x => x.Activo).HasColumnName("activo").HasColumnType("TINYINT").IsRequired();
-
-
         }
     }
 }

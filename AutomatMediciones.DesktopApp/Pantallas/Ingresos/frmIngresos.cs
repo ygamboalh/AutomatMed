@@ -19,24 +19,22 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         ContactoDto contactoSeleccionado;
         EmpresaDto empresaSeleccionada;
         CorreoElectronicoDto correoSeleccionado;
-        TipoTrabajoDto tipoTrabajoSeleccionado;
+       
 
         private readonly ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
         private readonly IngresoService _ingresoService;
         private readonly InstrumentoService _instrumentoService;
         private readonly TipoTrabajoService _tipoTrabajoService;
 
-        ICollection<IngresoInstrumentoDto> instrumentosSeleccionados;
+        ICollection<Libs.Dtos.IngresoInstrumentoDto> instrumentosSeleccionados;
 
-        List<InstrumentoLista> instrumentosDeEmpresa;
+        List<Dtos.InstrumentoLista> instrumentosDeEmpresa;
 
         public IngresoDto Ingreso { get; set; }
 
         public frmIngresos(IngresoService ingresoService, InstrumentoService instrumentoService, TipoTrabajoService tipoTrabajoService)
         {
-
             InitializeComponent();
-
 
             Cursor.Current = Cursors.WaitCursor;
 
@@ -44,37 +42,38 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             _instrumentoService = instrumentoService;
             _tipoTrabajoService = tipoTrabajoService;
 
-
             EstablecerNombreYTituloDePantalla();
             EstablecerColorBotonPorDefecto();
             EstablecerColorBotonGuardar();
-            CargarDatosTiposDeTrabajo();
-
 
             Cursor.Current = Cursors.Arrow;
 
             Ingreso = new IngresoDto();
-            instrumentosSeleccionados = new List<IngresoInstrumentoDto>();
-            instrumentosDeEmpresa = new List<InstrumentoLista>();
+            instrumentosSeleccionados = new List<Libs.Dtos.IngresoInstrumentoDto>();
+            instrumentosDeEmpresa = new List<Dtos.InstrumentoLista>();
 
             chkSeleccionarInstrumento.EditValueChanged += onSeleccionaInstrumento;
-
             btnEditarComentario.Click += clickEditarComentario;
-
         }
 
         private void clickEditarComentario(object sender, EventArgs e)
         {
 
-            var instrumento = gvInstrumentosDeEmpresa.GetFocusedRow() as InstrumentoLista;
+            var instrumento = gvInstrumentosDeEmpresa.GetFocusedRow() as Dtos.InstrumentoLista;
             if (instrumento == null) return;
 
-            frmComentarioInstrumento frmComentarioInstrumento = new frmComentarioInstrumento();
-            frmComentarioInstrumento.TipoTransaccion = TipoTransaccion.Actualizar;
-            frmComentarioInstrumento.OnComentarioActualizado += OnComentarioActualizado;
-            frmComentarioInstrumento.Instrumento = instrumento;
-            frmComentarioInstrumento.SetearComentarioParaActualizar(instrumento.Comentarios);
+            var ingresoInstrumento = instrumentosSeleccionados.FirstOrDefault(x => x.InstrumentoId.Equals(instrumento.InstrumentoId));
+            if (ingresoInstrumento == null) return;
+
+            frmInformacionAdicionalInstrumento frmComentarioInstrumento = new frmInformacionAdicionalInstrumento(TipoTransaccion.Actualizar ,serviceProvider.GetService<TipoTrabajoService>());
+            frmComentarioInstrumento.OnInformacionAdicionalActualizada += OnInformacionAdicionalActualizada;
+            frmComentarioInstrumento.SetearInformacionAdicionalParaActualizar(ingresoInstrumento);
             frmComentarioInstrumento.Show();
+        }
+
+        private void OnInformacionAdicionalActualizada(InstrumentoLista instrumento)
+        {
+            AccionPorRealizarDespuesDeSeleccion(instrumento);
         }
 
         private void onSeleccionaInstrumento(object sender, EventArgs e)
@@ -84,18 +83,17 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             var estaSeleccionadoElInstrumento = (bool)checkSeleccionado.EditValue;
 
-            var instrumento = gvInstrumentosDeEmpresa.GetFocusedRow() as InstrumentoLista;
+            var instrumento = gvInstrumentosDeEmpresa.GetFocusedRow() as Dtos.InstrumentoLista;
             if (instrumento == null) return;
 
             instrumento.Seleccionado = estaSeleccionadoElInstrumento;
 
             if (instrumento.Seleccionado)
             {
-
-                frmComentarioInstrumento frmComentarioInstrumento = new frmComentarioInstrumento();
-                frmComentarioInstrumento.TipoTransaccion = TipoTransaccion.Insertar;
-                frmComentarioInstrumento.OnComentarioAgregado += OnComentarioAgregado;
+                frmInformacionAdicionalInstrumento frmComentarioInstrumento = new frmInformacionAdicionalInstrumento(TipoTransaccion.Insertar,serviceProvider.GetService<TipoTrabajoService>());
+                frmComentarioInstrumento.OnInformacionAdicionalAgregada += OnInformacionAgregada;
                 frmComentarioInstrumento.Instrumento = instrumento;
+                frmComentarioInstrumento.Instrumento.InformacionAdicional = new InformacionAdicionalInstrumento();
                 frmComentarioInstrumento.Show();
             }
             else
@@ -104,9 +102,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             }
         }
 
-        private void OnComentarioActualizado(InstrumentoLista instrumento)
+        private void OnInformacionAgregada(InstrumentoLista instrumento)
         {
-            ActualizarSeleccionDeInstrumento(instrumento);
+            AccionPorRealizarDespuesDeSeleccion(instrumento);
         }
 
         private void AccionPorRealizarDespuesDeSeleccion(InstrumentoLista instrumento)
@@ -120,16 +118,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             lblInstrumentosSeleccionados.Text = $"Instrumentos Seleccionados: {instrumentosSeleccionados.Count}";
         }
 
-        private void OnComentarioAgregado(InstrumentoLista instrumento)
-        {
-            AccionPorRealizarDespuesDeSeleccion(instrumento);
-        }
-
         private void AgregarInstrumentoEnListaDeSeleccionados(InstrumentoLista instrumento)
         {
             var ingresoInstrumento = new IngresoInstrumentoDto
             {
-                Comentarios = instrumento.Comentarios,
+                Comentarios = instrumento.InformacionAdicional.Comentarios,
+                Prioridad = instrumento.InformacionAdicional.Prioridad,
+                TipoTrabajoId = instrumento.InformacionAdicional.TipoTrabajoId,
+                FechaEntregaRequerida = instrumento.InformacionAdicional.FechaEntregaRequerida,
                 InstrumentoId = instrumento.InstrumentoId,
                 Activo = true
             };
@@ -154,18 +150,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             }
 
             return false;
-        }
-
-        private void CargarDatosTiposDeTrabajo()
-        {
-            var resultado = _tipoTrabajoService.ObtenerTiposDeTrabajo();
-
-            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
-
-            glTiposTrabajo.Properties.DataSource = resultado.Data;
-            glTiposTrabajo.Properties.DisplayMember = "Descripcion";
-            glTiposTrabajo.Properties.ValueMember = "TipoTrabajoId";
-        }
+        }   
 
         private List<InstrumentoDto> ObtenerInstrumentosParaEmpresaSeleccionada()
         {
@@ -178,7 +163,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private void ActualizarSeleccionDeInstrumento(InstrumentoLista instrumentoLista)
         {
             instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId).Seleccionado = instrumentoLista.Seleccionado;
-            instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId).Comentarios = instrumentoLista.Comentarios;
+            instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId).InformacionAdicional = instrumentoLista.InformacionAdicional;
+            instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId).ClasificacionConcatenada = $"{instrumentoLista.Clasificacion.TipoInstrumento.Descripcion}/{instrumentoLista.Clasificacion.Marca.Descripcion}/{instrumentoLista.Clasificacion.Modelo.Descripcion}";
+
 
             gcInstrumentosDeEmpresa.DataSource = instrumentosDeEmpresa;
             gcInstrumentosDeEmpresa.RefreshDataSource();
@@ -205,7 +192,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                     NombreEmpresa = x.NombreEmpresa,
                     NumeroSerie = x.NumeroSerie,
                     PeriodoCalibracion = x.PeriodoCalibracion,
-                    Seleccionado = false
+                    Seleccionado = false,
+                    ClasificacionConcatenada = $"{x.Clasificacion.TipoInstrumento.Descripcion}/{x.Clasificacion.Marca.Descripcion}/{x.Clasificacion.Modelo.Descripcion}"
                 };
 
                 instrumentosDeEmpresa.Add(instrumentoLista);
@@ -326,7 +314,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         {
             if (empresaSeleccionada != null)
             {
-                InstrumentoLista instrumentoLista = new InstrumentoLista
+                Dtos.InstrumentoLista instrumentoLista = new Dtos.InstrumentoLista
                 {
                     ClasificacionId = instrumento.ClasificacionId,
                     Clasificacion = instrumento.Clasificacion,
@@ -361,11 +349,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             Ingreso.NombreContacto = contactoSeleccionado.Nombre;
             Ingreso.CorreoElectronicoId = correoSeleccionado.RegistroId;
             Ingreso.DireccionCorreoElectronico = correoSeleccionado.Direccion;
-            Ingreso.IngresosInstrumentos = instrumentosSeleccionados;
-            Ingreso.EstadoId = (int)Estados.Ingresado;
-            Ingreso.TipoTrabajoId = tipoTrabajoSeleccionado.TipoTrabajoId;
-            Ingreso.CuerpoCorreo = memoComentarios.Text;
-            Ingreso.Prioridad = trackBarControl1.Value;
+            Ingreso.IngresosInstrumentos = instrumentosSeleccionados;          
+            Ingreso.CuerpoCorreo = memoComentarios.Text;          
         }
 
         private void glCorreoElectronico_EditValueChanged(object sender, EventArgs e)
@@ -397,12 +382,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             if (!instrumentosSeleccionados.Any())
             {
                 mensaje = "Es necesario que seleccione al menos un instrumento para continuar";
-                return false;
-            }
-
-            if (tipoTrabajoSeleccionado == null)
-            {
-                mensaje = "Es necesario que seleccione un tipo de trabajo para continuar";
                 return false;
             }
 
@@ -449,11 +428,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             }
         }
 
-        private void glTiposTrabajo_EditValueChanged(object sender, EventArgs e)
-        {
-            tipoTrabajoSeleccionado = glTipoTrabajo.GetFocusedRow() as TipoTrabajoDto;
-        }
-
         private void LimpiarFormulario()
         {
             txtEmpresa.ResetText();
@@ -464,31 +438,18 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             lblInstrumentosSeleccionados.Text = "";
             lblTotalInstrumentos.Text = "";
             lblTotalInstrumentos.Visible = false;
-            lblInstrumentosSeleccionados.Visible = false;
-            glTiposTrabajo.EditValue = null;
+            lblInstrumentosSeleccionados.Visible = false;       
             memoComentarios.Text = "";
-            trackBarControl1.Value = 1;
-            empresaSeleccionada = null;
-            tipoTrabajoSeleccionado = null;
+            empresaSeleccionada = null;         
             contactoSeleccionado = null;
             correoSeleccionado = null;
             Ingreso = new IngresoDto();
         }
 
-        private void btnAgregarNuevInstrumento_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnAgregarNuevInstrumento_MouseHover(object sender, EventArgs e)
         {
             toolTip1.SetToolTip(btnAgregarNuevInstrumento, "Presione para ir la a pantalla que le permite agregar un nuevo instrumento.");
-        }
-
-        private void trackBarControl1_EditValueChanged(object sender, EventArgs e)
-        {
-
-        }
+        }     
     }
 }
 

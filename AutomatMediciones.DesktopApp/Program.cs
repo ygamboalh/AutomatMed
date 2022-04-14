@@ -6,7 +6,6 @@ using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos;
 using AutomatMediciones.DesktopApp.Pantallas.Ingresos;
 using AutomatMediciones.DesktopApp.Pantallas.Marcas;
 using AutomatMediciones.DesktopApp.Pantallas.Modelos;
-using AutomatMediciones.DesktopApp.Pantallas.OrdenesDeTrabajo;
 using AutomatMediciones.DesktopApp.Pantallas.Principales;
 using AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento;
 using AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion;
@@ -86,7 +85,6 @@ namespace AutomatMediciones.DesktopApp
             services.AddScoped<frmModelos>();
             services.AddScoped<frmNuevoModelo>();
 
-            services.AddScoped<frmNuevaOrdenDeTrabajo>();
 
             services.AddScoped<frmNuevoTipoInstrumento>();
             services.AddScoped<frmTiposDeInstrumento>();

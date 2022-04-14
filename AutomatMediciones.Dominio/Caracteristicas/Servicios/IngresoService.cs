@@ -23,31 +23,17 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             _mapper = mapper;
         }
 
-        public Response<List<IngresoDto>> ObtenerIngresos(int estadoId)
-        {
-            try
-            {
-                var ingresos = _AutomatMedicionesDbContext.Ingresos.Where(x => x.EstadoId.Equals(estadoId)).ToList();
-
-                return Response<List<IngresoDto>>.Ok("Ok", _mapper.Map<List<IngresoDto>>(ingresos));
-            }
-            catch (Exception exc)
-            {
-                return Response<List<IngresoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
-            }
-        }
-
         public Response<List<IngresoDto>> ObtenerIngresos()
         {
             try
             {
-                var ingresos = _AutomatMedicionesDbContext.Ingresos.AsQueryable().Include(x => x.Estado)
+                var ingresos = _AutomatMedicionesDbContext.Ingresos.AsQueryable()
                                                                                    .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.Marca)
                                                                                    .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.Modelo)
                                                                                    .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
-                                                                                   .Where(x => x.EstadoId != (int)Estados.Cerrado).ToList();
+                                                                                   .ToList();
 
-                ingresos = ingresos.OrderBy(y => y.Prioridad).ThenBy(y => y.IngresoId).ToList();
+                ingresos = ingresos.OrderBy(y => y.IngresoId).ToList();
                 return Response<List<IngresoDto>>.Ok("Ok", _mapper.Map<List<IngresoDto>>(ingresos));
             }
             catch (Exception exc)
@@ -68,12 +54,10 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     ContactoId = ingresoDto.ContactoId,
                     DireccionCorreoElectronico = ingresoDto.DireccionCorreoElectronico,
                     CorreoElectronicoId = ingresoDto.CorreoElectronicoId,
-                    EstadoId = (int)Estados.Ingresado,
-                    Prioridad = ingresoDto.Prioridad,
                     CuerpoCorreo = ingresoDto.CuerpoCorreo,
-                    TipoTrabajoId = ingresoDto.TipoTrabajoId,
                     Activo = true,
-                    FechaRegistro = DateTime.Now
+                    FechaRegistro = DateTime.Now,
+                    UsuarioResponsableId = ingresoDto.UsuarioResponsableId
                 };
 
                 if (!ingreso.EsValido(out string mensaje))
@@ -85,17 +69,23 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 _AutomatMedicionesDbContext.Ingresos.Add(ingreso);
                 _AutomatMedicionesDbContext.SaveChanges();
 
-
                 int correlativoIntrumento = 1;
                 foreach (var instrumento in ingresoDto.IngresosInstrumentos)
                 {
-                    IngresoInstrumento ingresoInstrumento = new IngresoInstrumento
+                    var ingresoInstrumento = new IngresoInstrumento
                     {
                         NumeroServicioTecnico = $"{ingreso.IngresoId}-{correlativoIntrumento}",
                         Comentarios = instrumento.Comentarios,
                         IngresoId = ingreso.IngresoId,
                         Activo = true,
-                        InstrumentoId = instrumento.InstrumentoId
+                        InstrumentoId = instrumento.InstrumentoId,
+                        TipoTrabajoId = instrumento.TipoTrabajoId,
+                        FechaFin = instrumento.FechaFin,
+                        FechaInicio = instrumento.FechaInicio,
+                        Prioridad = instrumento.Prioridad,
+                        ResponsableId = instrumento.ResponsableId,
+                        EstadoId = (int)Estados.Ingresado,
+                        FechaEntregaRequerida = instrumento.FechaEntregaRequerida
                     };
 
                     _AutomatMedicionesDbContext.IngresosInstrumentos.Add(ingresoInstrumento);

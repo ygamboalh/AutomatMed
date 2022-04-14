@@ -16,9 +16,7 @@ namespace AutomatMediciones.Dominio.Infraestructura
         public DbSet<Instrumento> Instrumentos { get; set; }
         public DbSet<Marca> Marcas { get; set; }
         public DbSet<Modelo> Modelos { get; set; }
-        public DbSet<OrdenTrabajo> OrdenesDeTrabajo { get; set; }
         public DbSet<Patron> Patrones { get; set; }
-        public DbSet<TipoOrdenTrabajo> TiposOrdenTrabajo { get; set; }
         public DbSet<TipoInstrumento> TiposDeInstrumentos { get; set; }
         public DbSet<TipoInstrumentoVariable> TiposDeInstrumentosVariable { get; set; }
         public DbSet<TipoTrabajo> TiposDeTrabajo { get; set; }
@@ -26,6 +24,7 @@ namespace AutomatMediciones.Dominio.Infraestructura
         public DbSet<VariableDeMedicion> VariablesDeMedicion { get; set; }
         public DbSet<VariableInstrumento> VariablesInstrumentos { get; set; }
         public DbSet<VariablePatron> VariablesPatrones { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -44,11 +43,9 @@ namespace AutomatMediciones.Dominio.Infraestructura
             modelBuilder.ApplyConfiguration(new TipoInstrumentoVariableMap());
             modelBuilder.ApplyConfiguration(new VariableInstrumentoMap());
             modelBuilder.ApplyConfiguration(new VariableCertificadoMap());
-            modelBuilder.ApplyConfiguration(new TipoOrdenTrabajoMap());
             modelBuilder.ApplyConfiguration(new PatronMap());
-            modelBuilder.ApplyConfiguration(new OrdenTrabajoMap());
-
             modelBuilder.ApplyConfiguration(new VariablePatronMap());
+            modelBuilder.ApplyConfiguration(new UsuarioMap());
         }
     }
 }

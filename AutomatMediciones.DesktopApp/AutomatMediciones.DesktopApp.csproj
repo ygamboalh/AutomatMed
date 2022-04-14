@@ -16,7 +16,6 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
-    <PackageReference Include="AutomatMediciones.Libs" Version="2.1.6" />
     <PackageReference Include="DevExpress.Win.Design" Version="21.2.6" />
     <PackageReference Include="FontAwesome.Sharp" Version="5.15.4" />
     <PackageReference Include="Nagaira.Extensions.Configuration" Version="2.2.0" />
@@ -45,6 +44,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AutomatMediciones.Dominio\AutomatMediciones.Dominio.csproj" />
+    <ProjectReference Include="..\AutomatMediciones.Libs\AutomatMediciones.Libs.csproj" />
   </ItemGroup>
 
 </Project>
