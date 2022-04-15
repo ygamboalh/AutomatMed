@@ -12,5 +12,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos.Dtos
         public string CorreoDestinatario { get; set; }
         public string NombreDestinatario { get; set; }
         public string NombreEmpresa { get; set; }
+        public int IngresoId { get; set; }
     }
 }

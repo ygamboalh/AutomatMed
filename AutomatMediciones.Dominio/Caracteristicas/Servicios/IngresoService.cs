@@ -45,7 +45,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
-        public Response<bool> GuardarIngreso(IngresoDto ingresoDto)
+        public Response<IngresoDto> GuardarIngreso(IngresoDto ingresoDto)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                 if (!ingreso.EsValido(out string mensaje))
                 {
-                    return Response<bool>.ErrorValidation(mensaje, false);
+                    return Response<IngresoDto>.ErrorValidation(mensaje, null);
                 }
 
                 _AutomatMedicionesDbContext.Database.BeginTransaction();
@@ -95,15 +95,17 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     correlativoIntrumento++;
                 }
 
+                ingresoDto.IngresoId = ingreso.IngresoId;
+
                 _AutomatMedicionesDbContext.SaveChanges();
                 _AutomatMedicionesDbContext.Database.CommitTransaction();
 
-                return Response<bool>.Ok("¡El ingreso se guardó exitosamente!", true);
+                return Response<IngresoDto>.Ok("¡El ingreso se guardó exitosamente!", ingresoDto);
             }
             catch (Exception exc)
             {
                 _AutomatMedicionesDbContext.Database.RollbackTransaction();
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<IngresoDto>.Error(MessageException.LanzarExcepcion(exc), null);
             }
         }
 

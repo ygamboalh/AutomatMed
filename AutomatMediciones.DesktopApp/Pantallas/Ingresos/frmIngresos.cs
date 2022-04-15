@@ -487,7 +487,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 NombreDestinatario = contactoSeleccionado.Nombre,
                 CorreoDestinatario = correoSeleccionado.Direccion,
                 CopiasEnCorreo = copias,
-                Configuracion = configuracionNotificacion
+                Configuracion = configuracionNotificacion,
+                IngresoId = Ingreso.IngresoId
             };
 
             return correoNotificacionDto;
@@ -504,6 +505,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                     return false;
                 }
 
+                Ingreso.IngresoId = resultado.Data.IngresoId;
                 return true;
             }
             catch (Exception exc)

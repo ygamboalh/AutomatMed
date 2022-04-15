@@ -73,7 +73,7 @@ namespace AutomatMediciones.DesktopApp.Helpers
             var mensaje = new SendGridMessage()
             {
                 From = new EmailAddress(correoDto.Configuracion.CorreoOrigen, correoDto.Configuracion.Nombre),
-                Subject = $"{correoDto.Configuracion.Asunto} {correoDto.NombreEmpresa}",
+                Subject = $"{correoDto.Configuracion.Asunto} | Ingreso #{correoDto.IngresoId} | {correoDto.NombreEmpresa}",
                 PlainTextContent = correoDto.Body,
 
             };
