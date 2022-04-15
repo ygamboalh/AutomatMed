@@ -21,6 +21,7 @@
     <PackageReference Include="Nagaira.Extensions.Configuration" Version="2.2.0" />
     <PackageReference Include="Nagaira.Herramientas.Standard.Helpers" Version="1.0.6" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="5.0.4" />
+    <PackageReference Include="SendGrid" Version="9.27.0" />
   </ItemGroup>
 
   <ItemGroup>

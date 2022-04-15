@@ -37,8 +37,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             this.marcaMenu = new FontAwesome.Sharp.IconMenuItem();
             this.iconMenuItem1 = new FontAwesome.Sharp.IconMenuItem();
             this.clasificacionInstrumentoMenu = new FontAwesome.Sharp.IconMenuItem();
-            this.instrumentosMenu = new FontAwesome.Sharp.IconMenuItem();
             this.variableMedicionMenu = new FontAwesome.Sharp.IconMenuItem();
+            this.instrumentosMenu = new FontAwesome.Sharp.IconMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu2)).BeginInit();
             this.tipoInstrumento.SuspendLayout();
@@ -111,16 +111,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             this.clasificacionInstrumentoMenu.Text = "Clasificaciones de Instrumentos";
             this.clasificacionInstrumentoMenu.Click += new System.EventHandler(this.clasificacionInstrumentoMenu_Click);
             // 
-            // instrumentosMenu
-            // 
-            this.instrumentosMenu.IconChar = FontAwesome.Sharp.IconChar.Plus;
-            this.instrumentosMenu.IconColor = System.Drawing.Color.Black;
-            this.instrumentosMenu.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.instrumentosMenu.Name = "instrumentosMenu";
-            this.instrumentosMenu.Size = new System.Drawing.Size(180, 24);
-            this.instrumentosMenu.Text = "Agregar Instrumento";
-            this.instrumentosMenu.Click += new System.EventHandler(this.instrumentosMenu_Click);
-            // 
             // variableMedicionMenu
             // 
             this.variableMedicionMenu.IconChar = FontAwesome.Sharp.IconChar.List;
@@ -130,6 +120,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             this.variableMedicionMenu.Size = new System.Drawing.Size(190, 24);
             this.variableMedicionMenu.Text = "Variables de Medición";
             this.variableMedicionMenu.Click += new System.EventHandler(this.variableMedicionMenu_Click);
+            // 
+            // instrumentosMenu
+            // 
+            this.instrumentosMenu.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            this.instrumentosMenu.IconColor = System.Drawing.Color.Black;
+            this.instrumentosMenu.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.instrumentosMenu.Name = "instrumentosMenu";
+            this.instrumentosMenu.Size = new System.Drawing.Size(180, 24);
+            this.instrumentosMenu.Text = "Agregar Instrumento";
+            this.instrumentosMenu.Click += new System.EventHandler(this.instrumentosMenu_Click);
             // 
             // frmConfiguracion
             // 

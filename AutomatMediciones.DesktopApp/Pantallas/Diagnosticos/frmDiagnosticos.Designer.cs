@@ -29,7 +29,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDiagnosticos));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -54,8 +53,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotal = new DevExpress.XtraEditors.LabelControl();
-            this.ctlEncabezadoPantalla1 = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
-            this.jsonDataSource1 = new DevExpress.DataAccess.Json.JsonDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.btnIniciarDiagnostico)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcInstrumentos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvInstrumentos)).BeginInit();
@@ -75,12 +72,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // gcInstrumentos
             // 
             this.gcInstrumentos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcInstrumentos.Location = new System.Drawing.Point(0, 97);
+            this.gcInstrumentos.Location = new System.Drawing.Point(0, 57);
             this.gcInstrumentos.MainView = this.gvInstrumentos;
             this.gcInstrumentos.Name = "gcInstrumentos";
             this.gcInstrumentos.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnIniciarDiagnostico});
-            this.gcInstrumentos.Size = new System.Drawing.Size(1534, 560);
+            this.gcInstrumentos.Size = new System.Drawing.Size(1534, 600);
             this.gcInstrumentos.TabIndex = 157;
             this.gcInstrumentos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvInstrumentos});
@@ -118,7 +115,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // colPrioridad
             // 
             this.colPrioridad.Caption = "Prioridad";
-            this.colPrioridad.FieldName = "Ingreso.Prioridad";
+            this.colPrioridad.FieldName = "Prioridad";
             this.colPrioridad.MinWidth = 25;
             this.colPrioridad.Name = "colPrioridad";
             this.colPrioridad.OptionsColumn.AllowEdit = false;
@@ -180,7 +177,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // colEstado
             // 
             this.colEstado.Caption = "Estado";
-            this.colEstado.FieldName = "Ingreso.Estado.Descripcion";
+            this.colEstado.FieldName = "Estado.Descripcion";
             this.colEstado.MinWidth = 25;
             this.colEstado.Name = "colEstado";
             this.colEstado.OptionsColumn.AllowEdit = false;
@@ -203,8 +200,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             // colFechaEstimada
             // 
-            this.colFechaEstimada.Caption = "Fecha Estimada";
-            this.colFechaEstimada.FieldName = "Instrumento.FechaEstimada";
+            this.colFechaEstimada.Caption = "Fecha de Entrega Requerida";
+            this.colFechaEstimada.FieldName = "FechaEntregaRequerida";
             this.colFechaEstimada.MinWidth = 25;
             this.colFechaEstimada.Name = "colFechaEstimada";
             this.colFechaEstimada.OptionsColumn.AllowEdit = false;
@@ -249,7 +246,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             this.panel1.Controls.Add(this.labelControl5);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 40);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1534, 57);
@@ -278,19 +275,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.lblTotal.Text = "0";
             this.lblTotal.Visible = false;
             // 
-            // ctlEncabezadoPantalla1
-            // 
-            this.ctlEncabezadoPantalla1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctlEncabezadoPantalla1.Location = new System.Drawing.Point(0, 0);
-            this.ctlEncabezadoPantalla1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ctlEncabezadoPantalla1.Name = "ctlEncabezadoPantalla1";
-            this.ctlEncabezadoPantalla1.Size = new System.Drawing.Size(1534, 40);
-            this.ctlEncabezadoPantalla1.TabIndex = 156;
-            // 
-            // jsonDataSource1
-            // 
-            this.jsonDataSource1.Name = "jsonDataSource1";
-            // 
             // frmDiagnosticos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -298,7 +282,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.ClientSize = new System.Drawing.Size(1534, 684);
             this.Controls.Add(this.gcInstrumentos);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.ctlEncabezadoPantalla1);
             this.Controls.Add(this.panel2);
             this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
@@ -316,14 +299,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
 
         #endregion
 
-        private Componentes.Encabezados.ctlEncabezadoPantalla ctlEncabezadoPantalla1;
+  
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private DevExpress.XtraEditors.LabelControl lblTotal;    
         private DevExpress.XtraGrid.GridControl gcInstrumentos;
         private DevExpress.XtraGrid.Views.Grid.GridView gvInstrumentos;
-        private DevExpress.DataAccess.Json.JsonDataSource jsonDataSource1;
         private DevExpress.XtraGrid.Columns.GridColumn colIngresoId;
         private DevExpress.XtraGrid.Columns.GridColumn colPrioridad;
         private DevExpress.XtraGrid.Columns.GridColumn colFecha;

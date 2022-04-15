@@ -29,68 +29,49 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel1 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
-            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel2 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
-            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel3 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
-            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel4 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
-            DevExpress.XtraEditors.Repository.TrackBarLabel trackBarLabel5 = new DevExpress.XtraEditors.Repository.TrackBarLabel();
-            this.ctlEncabezadoPantalla1 = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
+            this.components = new System.ComponentModel.Container();
             this.btnGuardarDiagnostico = new FontAwesome.Sharp.IconButton();
             this.memoDiagnostico = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
-            this.nmTiempoEstimado = new System.Windows.Forms.NumericUpDown();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.memoComentarios = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.dateFechaInicioOrdenTrabajo = new System.Windows.Forms.DateTimePicker();
-            this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
-            this.trackPrioridad = new DevExpress.XtraEditors.TrackBarControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.glTipoOrdenDeTrabajo = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.glTipoOrdenDeTrabajoView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.glModelos = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.glModelosView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colModeloId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDescripcionModelo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.glMarcas = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.glMarcasView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colMarcaId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDescripcionMarca = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.glTipoInstrumento = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.glTipoInstrumentoView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colTipoInstrumentoId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDescripcionTipoInstrumento = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.txtTipoInstrumento = new DevExpress.XtraEditors.TextEdit();
+            this.txtMarca = new DevExpress.XtraEditors.TextEdit();
+            this.txtModelo = new DevExpress.XtraEditors.TextEdit();
+            this.txtTipoOrdenTrabajo = new DevExpress.XtraEditors.TextEdit();
+            this.txtPrioridad = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.glUsuariosResponsables = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.glUsuariosResponsablesView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colUsuarioId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNombreUsuario = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
+            this.glEstado = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.glEstadoView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colIdEstado = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colEstadoDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
+            this.lblTiempo = new DevExpress.XtraEditors.LabelControl();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.memoDiagnostico.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nmTiempoEstimado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoComentarios.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackPrioridad)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackPrioridad.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoOrdenDeTrabajo.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoOrdenDeTrabajoView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glModelos.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glModelosView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glMarcas.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glMarcasView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumento.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumentoView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTipoInstrumento.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMarca.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtModelo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTipoOrdenTrabajo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPrioridad.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glUsuariosResponsables.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glUsuariosResponsablesView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glEstado.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glEstadoView)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ctlEncabezadoPantalla1
-            // 
-            this.ctlEncabezadoPantalla1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctlEncabezadoPantalla1.Location = new System.Drawing.Point(0, 0);
-            this.ctlEncabezadoPantalla1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ctlEncabezadoPantalla1.Name = "ctlEncabezadoPantalla1";
-            this.ctlEncabezadoPantalla1.Size = new System.Drawing.Size(744, 44);
-            this.ctlEncabezadoPantalla1.TabIndex = 0;
             // 
             // btnGuardarDiagnostico
             // 
@@ -102,62 +83,38 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.btnGuardarDiagnostico.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardarDiagnostico.IconSize = 30;
             this.btnGuardarDiagnostico.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardarDiagnostico.Location = new System.Drawing.Point(396, 658);
+            this.btnGuardarDiagnostico.Location = new System.Drawing.Point(455, 654);
             this.btnGuardarDiagnostico.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnGuardarDiagnostico.Name = "btnGuardarDiagnostico";
-            this.btnGuardarDiagnostico.Size = new System.Drawing.Size(295, 52);
+            this.btnGuardarDiagnostico.Size = new System.Drawing.Size(237, 52);
             this.btnGuardarDiagnostico.TabIndex = 167;
-            this.btnGuardarDiagnostico.Text = "Guardar Nuevo Diagnóstico";
+            this.btnGuardarDiagnostico.Text = "Guardar Diagnóstico";
             this.btnGuardarDiagnostico.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardarDiagnostico.UseVisualStyleBackColor = true;
             this.btnGuardarDiagnostico.Click += new System.EventHandler(this.btnGuardarDiagnostico_Click);
             // 
             // memoDiagnostico
             // 
-            this.memoDiagnostico.Location = new System.Drawing.Point(44, 446);
+            this.memoDiagnostico.Location = new System.Drawing.Point(45, 385);
             this.memoDiagnostico.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.memoDiagnostico.Name = "memoDiagnostico";
-            this.memoDiagnostico.Size = new System.Drawing.Size(647, 59);
+            this.memoDiagnostico.Size = new System.Drawing.Size(647, 93);
             this.memoDiagnostico.TabIndex = 166;
             // 
             // labelControl9
             // 
             this.labelControl9.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl9.Appearance.Options.UseFont = true;
-            this.labelControl9.Location = new System.Drawing.Point(46, 425);
+            this.labelControl9.Location = new System.Drawing.Point(47, 364);
             this.labelControl9.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(69, 17);
             this.labelControl9.TabIndex = 165;
             this.labelControl9.Text = "Diagnóstico";
             // 
-            // nmTiempoEstimado
-            // 
-            this.nmTiempoEstimado.DecimalPlaces = 2;
-            this.nmTiempoEstimado.Location = new System.Drawing.Point(47, 387);
-            this.nmTiempoEstimado.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.nmTiempoEstimado.Name = "nmTiempoEstimado";
-            this.nmTiempoEstimado.Size = new System.Drawing.Size(150, 23);
-            this.nmTiempoEstimado.TabIndex = 164;
-            // 
-            // labelControl6
-            // 
-            this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(47, 365);
-            this.labelControl6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(105, 17);
-            this.labelControl6.TabIndex = 163;
-            this.labelControl6.Text = "Tiempo Estimado:";
-            // 
             // memoComentarios
             // 
-            this.memoComentarios.Location = new System.Drawing.Point(45, 291);
+            this.memoComentarios.Location = new System.Drawing.Point(47, 285);
             this.memoComentarios.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.memoComentarios.Name = "memoComentarios";
             this.memoComentarios.Size = new System.Drawing.Size(646, 59);
@@ -167,69 +124,18 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(44, 270);
+            this.labelControl7.Location = new System.Drawing.Point(46, 264);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(74, 17);
             this.labelControl7.TabIndex = 161;
             this.labelControl7.Text = "Comentarios";
             // 
-            // dateFechaInicioOrdenTrabajo
-            // 
-            this.dateFechaInicioOrdenTrabajo.Location = new System.Drawing.Point(369, 235);
-            this.dateFechaInicioOrdenTrabajo.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.dateFechaInicioOrdenTrabajo.Name = "dateFechaInicioOrdenTrabajo";
-            this.dateFechaInicioOrdenTrabajo.Size = new System.Drawing.Size(320, 23);
-            this.dateFechaInicioOrdenTrabajo.TabIndex = 160;
-            // 
-            // labelControl15
-            // 
-            this.labelControl15.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelControl15.Appearance.Options.UseFont = true;
-            this.labelControl15.Location = new System.Drawing.Point(369, 212);
-            this.labelControl15.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.labelControl15.Name = "labelControl15";
-            this.labelControl15.Size = new System.Drawing.Size(89, 17);
-            this.labelControl15.TabIndex = 159;
-            this.labelControl15.Text = "Fecha de Inicio:";
-            // 
-            // trackPrioridad
-            // 
-            this.trackPrioridad.EditValue = 1;
-            this.trackPrioridad.Location = new System.Drawing.Point(45, 550);
-            this.trackPrioridad.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.trackPrioridad.Name = "trackPrioridad";
-            this.trackPrioridad.Properties.AutoSize = false;
-            this.trackPrioridad.Properties.LabelAppearance.Options.UseTextOptions = true;
-            this.trackPrioridad.Properties.LabelAppearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            trackBarLabel1.Label = "1";
-            trackBarLabel1.Value = 1;
-            trackBarLabel2.Label = "2";
-            trackBarLabel2.Value = 2;
-            trackBarLabel3.Label = "3";
-            trackBarLabel3.Value = 3;
-            trackBarLabel4.Label = "4";
-            trackBarLabel4.Value = 4;
-            trackBarLabel5.Label = "5";
-            trackBarLabel5.Value = 5;
-            this.trackPrioridad.Properties.Labels.AddRange(new DevExpress.XtraEditors.Repository.TrackBarLabel[] {
-            trackBarLabel1,
-            trackBarLabel2,
-            trackBarLabel3,
-            trackBarLabel4,
-            trackBarLabel5});
-            this.trackPrioridad.Properties.Maximum = 5;
-            this.trackPrioridad.Properties.Minimum = 1;
-            this.trackPrioridad.Properties.ShowLabels = true;
-            this.trackPrioridad.Size = new System.Drawing.Size(273, 63);
-            this.trackPrioridad.TabIndex = 158;
-            this.trackPrioridad.Value = 1;
-            // 
             // labelControl8
             // 
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Location = new System.Drawing.Point(45, 526);
+            this.labelControl8.Location = new System.Drawing.Point(271, 143);
             this.labelControl8.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(57, 17);
@@ -240,117 +146,34 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(33, 173);
+            this.labelControl5.Location = new System.Drawing.Point(47, 219);
             this.labelControl5.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(318, 20);
             this.labelControl5.TabIndex = 156;
             this.labelControl5.Text = "Información complementaria para Diagnóstico";
             // 
-            // glTipoOrdenDeTrabajo
-            // 
-            this.glTipoOrdenDeTrabajo.EditValue = "";
-            this.glTipoOrdenDeTrabajo.Location = new System.Drawing.Point(45, 234);
-            this.glTipoOrdenDeTrabajo.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.glTipoOrdenDeTrabajo.Name = "glTipoOrdenDeTrabajo";
-            this.glTipoOrdenDeTrabajo.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.glTipoOrdenDeTrabajo.Properties.Appearance.Options.UseFont = true;
-            this.glTipoOrdenDeTrabajo.Properties.NullText = "";
-            this.glTipoOrdenDeTrabajo.Properties.PopupView = this.glTipoOrdenDeTrabajoView;
-            this.glTipoOrdenDeTrabajo.Size = new System.Drawing.Size(303, 26);
-            this.glTipoOrdenDeTrabajo.TabIndex = 155;
-            // 
-            // glTipoOrdenDeTrabajoView
-            // 
-            this.glTipoOrdenDeTrabajoView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
-            this.gridColumn2});
-            this.glTipoOrdenDeTrabajoView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.glTipoOrdenDeTrabajoView.Name = "glTipoOrdenDeTrabajoView";
-            this.glTipoOrdenDeTrabajoView.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.glTipoOrdenDeTrabajoView.OptionsView.ShowGroupPanel = false;
-            this.glTipoOrdenDeTrabajoView.OptionsView.ShowIndicator = false;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "Id";
-            this.gridColumn1.FieldName = "TipoInstrumentoId";
-            this.gridColumn1.MinWidth = 23;
-            this.gridColumn1.Name = "gridColumn1";
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "Descripción";
-            this.gridColumn2.FieldName = "Descripcion";
-            this.gridColumn2.MinWidth = 23;
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 0;
-            // 
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(45, 211);
+            this.labelControl4.Location = new System.Drawing.Point(46, 143);
             this.labelControl4.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(138, 17);
+            this.labelControl4.Size = new System.Drawing.Size(97, 17);
             this.labelControl4.TabIndex = 154;
-            this.labelControl4.Text = "Tipo Orden de Trabajo:";
+            this.labelControl4.Text = "Tipo de Trabajo:";
             // 
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(33, 48);
+            this.labelControl3.Location = new System.Drawing.Point(47, 46);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(175, 20);
             this.labelControl3.TabIndex = 153;
             this.labelControl3.Text = "Instrumento seleccionado";
-            // 
-            // glModelos
-            // 
-            this.glModelos.EditValue = "";
-            this.glModelos.Location = new System.Drawing.Point(489, 104);
-            this.glModelos.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.glModelos.Name = "glModelos";
-            this.glModelos.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.glModelos.Properties.Appearance.Options.UseFont = true;
-            this.glModelos.Properties.NullText = "";
-            this.glModelos.Properties.PopupView = this.glModelosView;
-            this.glModelos.Size = new System.Drawing.Size(202, 26);
-            this.glModelos.TabIndex = 152;
-            // 
-            // glModelosView
-            // 
-            this.glModelosView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colModeloId,
-            this.colDescripcionModelo});
-            this.glModelosView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.glModelosView.Name = "glModelosView";
-            this.glModelosView.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.glModelosView.OptionsView.ShowGroupPanel = false;
-            this.glModelosView.OptionsView.ShowIndicator = false;
-            // 
-            // colModeloId
-            // 
-            this.colModeloId.Caption = "Id";
-            this.colModeloId.FieldName = "ModeloId";
-            this.colModeloId.MinWidth = 23;
-            this.colModeloId.Name = "colModeloId";
-            this.colModeloId.Width = 87;
-            // 
-            // colDescripcionModelo
-            // 
-            this.colDescripcionModelo.Caption = "Descripción";
-            this.colDescripcionModelo.FieldName = "Descripcion";
-            this.colDescripcionModelo.MinWidth = 23;
-            this.colDescripcionModelo.Name = "colDescripcionModelo";
-            this.colDescripcionModelo.OptionsColumn.AllowEdit = false;
-            this.colDescripcionModelo.Visible = true;
-            this.colDescripcionModelo.VisibleIndex = 0;
-            this.colDescripcionModelo.Width = 87;
             // 
             // labelControl2
             // 
@@ -363,49 +186,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.labelControl2.TabIndex = 151;
             this.labelControl2.Text = "Modelo *:";
             // 
-            // glMarcas
-            // 
-            this.glMarcas.EditValue = "";
-            this.glMarcas.Location = new System.Drawing.Point(271, 104);
-            this.glMarcas.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.glMarcas.Name = "glMarcas";
-            this.glMarcas.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.glMarcas.Properties.Appearance.Options.UseFont = true;
-            this.glMarcas.Properties.NullText = "";
-            this.glMarcas.Properties.PopupView = this.glMarcasView;
-            this.glMarcas.Size = new System.Drawing.Size(200, 26);
-            this.glMarcas.TabIndex = 150;
-            // 
-            // glMarcasView
-            // 
-            this.glMarcasView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colMarcaId,
-            this.colDescripcionMarca});
-            this.glMarcasView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.glMarcasView.Name = "glMarcasView";
-            this.glMarcasView.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.glMarcasView.OptionsView.ShowGroupPanel = false;
-            this.glMarcasView.OptionsView.ShowIndicator = false;
-            // 
-            // colMarcaId
-            // 
-            this.colMarcaId.Caption = "Id";
-            this.colMarcaId.FieldName = "MarcaId";
-            this.colMarcaId.MinWidth = 23;
-            this.colMarcaId.Name = "colMarcaId";
-            this.colMarcaId.Width = 87;
-            // 
-            // colDescripcionMarca
-            // 
-            this.colDescripcionMarca.Caption = "Marca";
-            this.colDescripcionMarca.FieldName = "Descripcion";
-            this.colDescripcionMarca.MinWidth = 23;
-            this.colDescripcionMarca.Name = "colDescripcionMarca";
-            this.colDescripcionMarca.OptionsColumn.AllowEdit = false;
-            this.colDescripcionMarca.Visible = true;
-            this.colDescripcionMarca.VisibleIndex = 0;
-            this.colDescripcionMarca.Width = 87;
-            // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -416,46 +196,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.labelControl1.Size = new System.Drawing.Size(49, 17);
             this.labelControl1.TabIndex = 149;
             this.labelControl1.Text = "Marca *:";
-            // 
-            // glTipoInstrumento
-            // 
-            this.glTipoInstrumento.EditValue = "";
-            this.glTipoInstrumento.Location = new System.Drawing.Point(47, 104);
-            this.glTipoInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.glTipoInstrumento.Name = "glTipoInstrumento";
-            this.glTipoInstrumento.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.glTipoInstrumento.Properties.Appearance.Options.UseFont = true;
-            this.glTipoInstrumento.Properties.NullText = "";
-            this.glTipoInstrumento.Properties.PopupView = this.glTipoInstrumentoView;
-            this.glTipoInstrumento.Size = new System.Drawing.Size(204, 26);
-            this.glTipoInstrumento.TabIndex = 148;
-            // 
-            // glTipoInstrumentoView
-            // 
-            this.glTipoInstrumentoView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colTipoInstrumentoId,
-            this.colDescripcionTipoInstrumento});
-            this.glTipoInstrumentoView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.glTipoInstrumentoView.Name = "glTipoInstrumentoView";
-            this.glTipoInstrumentoView.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.glTipoInstrumentoView.OptionsView.ShowGroupPanel = false;
-            this.glTipoInstrumentoView.OptionsView.ShowIndicator = false;
-            // 
-            // colTipoInstrumentoId
-            // 
-            this.colTipoInstrumentoId.Caption = "Id";
-            this.colTipoInstrumentoId.FieldName = "TipoInstrumentoId";
-            this.colTipoInstrumentoId.MinWidth = 23;
-            this.colTipoInstrumentoId.Name = "colTipoInstrumentoId";
-            // 
-            // colDescripcionTipoInstrumento
-            // 
-            this.colDescripcionTipoInstrumento.Caption = "Descripción";
-            this.colDescripcionTipoInstrumento.FieldName = "Descripcion";
-            this.colDescripcionTipoInstrumento.MinWidth = 23;
-            this.colDescripcionTipoInstrumento.Name = "colDescripcionTipoInstrumento";
-            this.colDescripcionTipoInstrumento.Visible = true;
-            this.colDescripcionTipoInstrumento.VisibleIndex = 0;
             // 
             // labelControl10
             // 
@@ -468,89 +208,265 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.labelControl10.TabIndex = 147;
             this.labelControl10.Text = "Tipo de Instrumento *:";
             // 
+            // txtTipoInstrumento
+            // 
+            this.txtTipoInstrumento.Location = new System.Drawing.Point(47, 103);
+            this.txtTipoInstrumento.Name = "txtTipoInstrumento";
+            this.txtTipoInstrumento.Properties.ReadOnly = true;
+            this.txtTipoInstrumento.Properties.UseReadOnlyAppearance = false;
+            this.txtTipoInstrumento.Size = new System.Drawing.Size(200, 22);
+            this.txtTipoInstrumento.TabIndex = 168;
+            // 
+            // txtMarca
+            // 
+            this.txtMarca.Location = new System.Drawing.Point(271, 103);
+            this.txtMarca.Name = "txtMarca";
+            this.txtMarca.Properties.ReadOnly = true;
+            this.txtMarca.Properties.UseReadOnlyAppearance = false;
+            this.txtMarca.Size = new System.Drawing.Size(200, 22);
+            this.txtMarca.TabIndex = 169;
+            // 
+            // txtModelo
+            // 
+            this.txtModelo.Location = new System.Drawing.Point(489, 103);
+            this.txtModelo.Name = "txtModelo";
+            this.txtModelo.Properties.ReadOnly = true;
+            this.txtModelo.Properties.UseReadOnlyAppearance = false;
+            this.txtModelo.Size = new System.Drawing.Size(200, 22);
+            this.txtModelo.TabIndex = 170;
+            // 
+            // txtTipoOrdenTrabajo
+            // 
+            this.txtTipoOrdenTrabajo.Location = new System.Drawing.Point(45, 168);
+            this.txtTipoOrdenTrabajo.Name = "txtTipoOrdenTrabajo";
+            this.txtTipoOrdenTrabajo.Properties.ReadOnly = true;
+            this.txtTipoOrdenTrabajo.Properties.UseReadOnlyAppearance = false;
+            this.txtTipoOrdenTrabajo.Size = new System.Drawing.Size(202, 22);
+            this.txtTipoOrdenTrabajo.TabIndex = 171;
+            // 
+            // txtPrioridad
+            // 
+            this.txtPrioridad.Location = new System.Drawing.Point(269, 168);
+            this.txtPrioridad.Name = "txtPrioridad";
+            this.txtPrioridad.Properties.ReadOnly = true;
+            this.txtPrioridad.Properties.UseReadOnlyAppearance = false;
+            this.txtPrioridad.Size = new System.Drawing.Size(107, 22);
+            this.txtPrioridad.TabIndex = 172;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelControl6.Appearance.Options.UseFont = true;
+            this.labelControl6.Location = new System.Drawing.Point(46, 573);
+            this.labelControl6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(127, 17);
+            this.labelControl6.TabIndex = 173;
+            this.labelControl6.Text = "Usuario Responsable:";
+            // 
+            // glUsuariosResponsables
+            // 
+            this.glUsuariosResponsables.Location = new System.Drawing.Point(46, 594);
+            this.glUsuariosResponsables.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.glUsuariosResponsables.Name = "glUsuariosResponsables";
+            this.glUsuariosResponsables.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.glUsuariosResponsables.Properties.Appearance.Options.UseFont = true;
+            this.glUsuariosResponsables.Properties.NullText = "";
+            this.glUsuariosResponsables.Properties.PopupView = this.glUsuariosResponsablesView;
+            this.glUsuariosResponsables.Size = new System.Drawing.Size(438, 26);
+            this.glUsuariosResponsables.TabIndex = 174;
+            this.glUsuariosResponsables.EditValueChanged += new System.EventHandler(this.glUsuariosResponsables_EditValueChanged);
+            // 
+            // glUsuariosResponsablesView
+            // 
+            this.glUsuariosResponsablesView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colUsuarioId,
+            this.colNombreUsuario});
+            this.glUsuariosResponsablesView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.glUsuariosResponsablesView.Name = "glUsuariosResponsablesView";
+            this.glUsuariosResponsablesView.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.glUsuariosResponsablesView.OptionsView.ShowColumnHeaders = false;
+            this.glUsuariosResponsablesView.OptionsView.ShowGroupPanel = false;
+            this.glUsuariosResponsablesView.OptionsView.ShowIndicator = false;
+            // 
+            // colUsuarioId
+            // 
+            this.colUsuarioId.Caption = "Id";
+            this.colUsuarioId.FieldName = "UsuarioId";
+            this.colUsuarioId.Name = "colUsuarioId";
+            this.colUsuarioId.OptionsColumn.AllowEdit = false;
+            this.colUsuarioId.OptionsColumn.ReadOnly = true;
+            // 
+            // colNombreUsuario
+            // 
+            this.colNombreUsuario.Caption = "Nombre";
+            this.colNombreUsuario.FieldName = "Nombre";
+            this.colNombreUsuario.Name = "colNombreUsuario";
+            this.colNombreUsuario.OptionsColumn.AllowEdit = false;
+            this.colNombreUsuario.OptionsColumn.ReadOnly = true;
+            this.colNombreUsuario.Visible = true;
+            this.colNombreUsuario.VisibleIndex = 0;
+            // 
+            // labelControl11
+            // 
+            this.labelControl11.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelControl11.Appearance.Options.UseFont = true;
+            this.labelControl11.Location = new System.Drawing.Point(47, 502);
+            this.labelControl11.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl11.Name = "labelControl11";
+            this.labelControl11.Size = new System.Drawing.Size(43, 17);
+            this.labelControl11.TabIndex = 175;
+            this.labelControl11.Text = "Estado:";
+            // 
+            // glEstado
+            // 
+            this.glEstado.Location = new System.Drawing.Point(47, 523);
+            this.glEstado.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.glEstado.Name = "glEstado";
+            this.glEstado.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.glEstado.Properties.Appearance.Options.UseFont = true;
+            this.glEstado.Properties.NullText = "";
+            this.glEstado.Properties.PopupView = this.glEstadoView;
+            this.glEstado.Size = new System.Drawing.Size(438, 26);
+            this.glEstado.TabIndex = 176;
+            this.glEstado.EditValueChanged += new System.EventHandler(this.glEstado_EditValueChanged);
+            // 
+            // glEstadoView
+            // 
+            this.glEstadoView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colIdEstado,
+            this.colEstadoDescripcion});
+            this.glEstadoView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.glEstadoView.Name = "glEstadoView";
+            this.glEstadoView.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.glEstadoView.OptionsView.ShowColumnHeaders = false;
+            this.glEstadoView.OptionsView.ShowGroupPanel = false;
+            this.glEstadoView.OptionsView.ShowIndicator = false;
+            // 
+            // colIdEstado
+            // 
+            this.colIdEstado.Caption = "Id";
+            this.colIdEstado.FieldName = "EstadoId";
+            this.colIdEstado.Name = "colIdEstado";
+            this.colIdEstado.OptionsColumn.AllowEdit = false;
+            this.colIdEstado.OptionsColumn.ReadOnly = true;
+            // 
+            // colEstadoDescripcion
+            // 
+            this.colEstadoDescripcion.Caption = "Estado";
+            this.colEstadoDescripcion.FieldName = "Descripcion";
+            this.colEstadoDescripcion.Name = "colEstadoDescripcion";
+            this.colEstadoDescripcion.OptionsColumn.AllowEdit = false;
+            this.colEstadoDescripcion.OptionsColumn.ReadOnly = true;
+            this.colEstadoDescripcion.Visible = true;
+            this.colEstadoDescripcion.VisibleIndex = 0;
+            // 
+            // labelControl12
+            // 
+            this.labelControl12.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelControl12.Appearance.Options.UseFont = true;
+            this.labelControl12.Location = new System.Drawing.Point(489, 143);
+            this.labelControl12.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl12.Name = "labelControl12";
+            this.labelControl12.Size = new System.Drawing.Size(122, 17);
+            this.labelControl12.TabIndex = 177;
+            this.labelControl12.Text = "Tiempo Transcurrido";
+            // 
+            // lblTiempo
+            // 
+            this.lblTiempo.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTiempo.Appearance.Options.UseFont = true;
+            this.lblTiempo.Location = new System.Drawing.Point(489, 173);
+            this.lblTiempo.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.lblTiempo.Name = "lblTiempo";
+            this.lblTiempo.Size = new System.Drawing.Size(0, 17);
+            this.lblTiempo.TabIndex = 178;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // frmNuevoDiagnostico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(744, 735);
+            this.ClientSize = new System.Drawing.Size(744, 734);
+            this.Controls.Add(this.lblTiempo);
+            this.Controls.Add(this.labelControl12);
+            this.Controls.Add(this.labelControl11);
+            this.Controls.Add(this.glEstado);
+            this.Controls.Add(this.labelControl6);
+            this.Controls.Add(this.glUsuariosResponsables);
+            this.Controls.Add(this.txtPrioridad);
+            this.Controls.Add(this.txtTipoOrdenTrabajo);
+            this.Controls.Add(this.txtModelo);
+            this.Controls.Add(this.txtMarca);
+            this.Controls.Add(this.txtTipoInstrumento);
             this.Controls.Add(this.btnGuardarDiagnostico);
             this.Controls.Add(this.memoDiagnostico);
             this.Controls.Add(this.labelControl9);
-            this.Controls.Add(this.nmTiempoEstimado);
-            this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.memoComentarios);
             this.Controls.Add(this.labelControl7);
-            this.Controls.Add(this.dateFechaInicioOrdenTrabajo);
-            this.Controls.Add(this.labelControl15);
-            this.Controls.Add(this.trackPrioridad);
             this.Controls.Add(this.labelControl8);
             this.Controls.Add(this.labelControl5);
-            this.Controls.Add(this.glTipoOrdenDeTrabajo);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.labelControl3);
-            this.Controls.Add(this.glModelos);
             this.Controls.Add(this.labelControl2);
-            this.Controls.Add(this.glMarcas);
             this.Controls.Add(this.labelControl1);
-            this.Controls.Add(this.glTipoInstrumento);
             this.Controls.Add(this.labelControl10);
-            this.Controls.Add(this.ctlEncabezadoPantalla1);
             this.IconOptions.ShowIcon = false;
             this.Name = "frmNuevoDiagnostico";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nuevo Diagnóstico";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmNuevoDiagnostico_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.memoDiagnostico.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nmTiempoEstimado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoComentarios.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackPrioridad.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackPrioridad)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoOrdenDeTrabajo.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoOrdenDeTrabajoView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glModelos.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glModelosView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glMarcas.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glMarcasView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumento.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumentoView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTipoInstrumento.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMarca.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtModelo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTipoOrdenTrabajo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPrioridad.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glUsuariosResponsables.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glUsuariosResponsablesView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glEstado.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glEstadoView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private Componentes.Encabezados.ctlEncabezadoPantalla ctlEncabezadoPantalla1;
         private FontAwesome.Sharp.IconButton btnGuardarDiagnostico;
         private DevExpress.XtraEditors.MemoEdit memoDiagnostico;
         private DevExpress.XtraEditors.LabelControl labelControl9;
-        private System.Windows.Forms.NumericUpDown nmTiempoEstimado;
-        private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.MemoEdit memoComentarios;
         private DevExpress.XtraEditors.LabelControl labelControl7;
-        private System.Windows.Forms.DateTimePicker dateFechaInicioOrdenTrabajo;
-        private DevExpress.XtraEditors.LabelControl labelControl15;
-        private DevExpress.XtraEditors.TrackBarControl trackPrioridad;
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.GridLookUpEdit glTipoOrdenDeTrabajo;
-        private DevExpress.XtraGrid.Views.Grid.GridView glTipoOrdenDeTrabajoView;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.GridLookUpEdit glModelos;
-        private DevExpress.XtraGrid.Views.Grid.GridView glModelosView;
-        private DevExpress.XtraGrid.Columns.GridColumn colModeloId;
-        private DevExpress.XtraGrid.Columns.GridColumn colDescripcionModelo;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.GridLookUpEdit glMarcas;
-        private DevExpress.XtraGrid.Views.Grid.GridView glMarcasView;
-        private DevExpress.XtraGrid.Columns.GridColumn colMarcaId;
-        private DevExpress.XtraGrid.Columns.GridColumn colDescripcionMarca;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.GridLookUpEdit glTipoInstrumento;
-        private DevExpress.XtraGrid.Views.Grid.GridView glTipoInstrumentoView;
-        private DevExpress.XtraGrid.Columns.GridColumn colTipoInstrumentoId;
-        private DevExpress.XtraGrid.Columns.GridColumn colDescripcionTipoInstrumento;
         private DevExpress.XtraEditors.LabelControl labelControl10;
+        private DevExpress.XtraEditors.TextEdit txtTipoInstrumento;
+        private DevExpress.XtraEditors.TextEdit txtMarca;
+        private DevExpress.XtraEditors.TextEdit txtModelo;
+        private DevExpress.XtraEditors.TextEdit txtTipoOrdenTrabajo;
+        private DevExpress.XtraEditors.TextEdit txtPrioridad;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.GridLookUpEdit glUsuariosResponsables;
+        private DevExpress.XtraGrid.Views.Grid.GridView glUsuariosResponsablesView;
+        private DevExpress.XtraGrid.Columns.GridColumn colUsuarioId;
+        private DevExpress.XtraGrid.Columns.GridColumn colNombreUsuario;
+        private DevExpress.XtraEditors.LabelControl labelControl11;
+        private DevExpress.XtraEditors.GridLookUpEdit glEstado;
+        private DevExpress.XtraGrid.Views.Grid.GridView glEstadoView;
+        private DevExpress.XtraGrid.Columns.GridColumn colIdEstado;
+        private DevExpress.XtraGrid.Columns.GridColumn colEstadoDescripcion;
+        private DevExpress.XtraGrid.Columns.GridColumn colEstadoId;
+        private DevExpress.XtraEditors.LabelControl labelControl12;
+        private DevExpress.XtraEditors.LabelControl lblTiempo;
+        private System.Windows.Forms.Timer timer1;
     }
 }

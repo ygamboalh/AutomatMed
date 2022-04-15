@@ -23,12 +23,13 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.Property(x => x.FechaInicio).HasColumnName("fecha_inicio").HasColumnType("DATETIME");
             builder.Property(x => x.FechaFin).HasColumnName("fecha_fin").HasColumnType("DATETIME");
             builder.Property(x => x.FechaEntregaRequerida).HasColumnName("fecha_entrega_requerida").HasColumnType("DATETIME");
-            builder.Property(x => x.TiempoConsumido).HasColumnName("tiempo_consumido").HasColumnType("DECIMAL(10,2)");
-            builder.Property(x => x.ResponsableId).HasColumnName("responsable_id").HasColumnType("INT").IsRequired();
+            builder.Property(x => x.TiempoConsumido).HasColumnName("tiempo_consumido").HasColumnType("TIME)");
+            builder.Property(x => x.ResponsableId).HasColumnName("responsable_diagnostico_id").HasColumnType("INT");
             builder.Property(x => x.Activo).HasColumnName("activo").HasColumnType("TINYINT").IsRequired();
-            
-            builder.HasOne(x => x.Instrumento).WithMany(x => x.IngresosInstrumentos).HasForeignKey(x => x.InstrumentoId);
-            builder.HasOne(x => x.Ingreso).WithMany(x => x.IngresosInstrumentos).HasForeignKey(x => x.IngresoId);
+
+
+            //builder.HasOne(x => x.Instrumento).WithMany(x => x.IngresosInstrumentos).HasForeignKey(x => x.InstrumentoId);
+            //builder.HasOne(x => x.Ingreso).WithMany(x => x.IngresosInstrumentos).HasForeignKey(x => x.IngresoId);
         }
     }
 }

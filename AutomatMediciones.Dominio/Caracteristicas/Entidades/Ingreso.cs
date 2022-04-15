@@ -11,10 +11,10 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
         public string ContactoId { get; set; }
         public string NombreContacto { get; set; }
         public string CorreoElectronicoId { get; set; }
-        public string DireccionCorreoElectronico { get; set; }    
+        public string DireccionCorreoElectronico { get; set; }
         public string CuerpoCorreo { get; set; }
         public DateTime FechaRegistro { get; set; }
-        public int UsuarioResponsableId { get; set; }
+        public int UsuarioId { get; set; }
         public bool Activo { get; set; }
         public ICollection<IngresoInstrumento> IngresosInstrumentos { get; set; }
 

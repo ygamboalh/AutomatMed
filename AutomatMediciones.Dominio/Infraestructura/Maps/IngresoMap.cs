@@ -17,13 +17,13 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.Property(x => x.ContactoId).HasColumnName("contacto_id").HasColumnType("VARCHAR(12)").IsRequired();
             builder.Property(x => x.NombreContacto).HasColumnName("nombre_contacto").HasColumnType("VARCHAR(255)").IsRequired();
             builder.Property(x => x.CorreoElectronicoId).HasColumnName("correo_electronico_id").HasColumnType("VARCHAR(12)").IsRequired();
-            builder.Property(x => x.DireccionCorreoElectronico).HasColumnName("direccion_correo").HasColumnType("VARCHAR(255)").IsRequired();         
+            builder.Property(x => x.DireccionCorreoElectronico).HasColumnName("direccion_correo").HasColumnType("VARCHAR(255)").IsRequired();
             builder.Property(x => x.CuerpoCorreo).HasColumnName("cuerpo_correo").HasColumnType("VARCHAR(3000)");
             builder.Property(x => x.FechaRegistro).HasColumnName("fecha_registro").HasColumnType("DATETIME").IsRequired();
-            builder.Property(x => x.UsuarioResponsableId).HasColumnName("usuario_responsable_id").HasColumnType("INT");
+            builder.Property(x => x.UsuarioId).HasColumnName("usuario_id").HasColumnType("INT");
             builder.Property(x => x.Activo).HasColumnName("activo").HasColumnType("TINYINT").IsRequired();
 
-            builder.HasMany(x => x.IngresosInstrumentos).WithOne(x => x.Ingreso).HasForeignKey(x => x.IngresoId);
+            // builder.HasMany(x => x.IngresosInstrumentos).WithOne(x => x.Ingreso).HasForeignKey(x => x.IngresoId);
         }
     }
 }

@@ -16,9 +16,11 @@ namespace AutomatMediciones.Libs.Dtos
         public DateTime? FechaInicio { get; set; }
         public DateTime? FechaFin { get; set; }
         public DateTime FechaEntregaRequerida { get; set; }
-        public decimal? TiempoConsumido { get; set; }
-        public int ResponsableId { get; set; }
+        public TimeSpan? TiempoConsumido { get; set; }
+        public int? ResponsableId { get; set; }
         public bool Activo { get; set; }
+        public TipoTrabajoDto TipoTrabajo { get; set; }
+        public EstadoDto Estado { get; set; }
         public IngresoDto Ingreso { get; set; }
         public InstrumentoDto Instrumento { get; set; }
     }

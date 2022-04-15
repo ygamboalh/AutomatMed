@@ -87,7 +87,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
 
         private void btnAgregarNuevInstrumento_Click(object sender, System.EventArgs e)
         {
-            var frmTipoInstrumento = new frmNuevoTipoInstrumento(TipoTransaccion.Insertar, serviceProvider.GetService<TipoDeInstrumentoService>());      
+            var frmTipoInstrumento = new frmNuevoTipoInstrumento(TipoTransaccion.Insertar, serviceProvider.GetService<TipoDeInstrumentoService>());
             frmTipoInstrumento.OnTipoInstrumentoAgregado += OnTipoInstrumentoAgregado;
             frmTipoInstrumento.Show();
         }

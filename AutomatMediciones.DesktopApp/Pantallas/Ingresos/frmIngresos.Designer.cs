@@ -30,12 +30,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIngresos));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
@@ -54,9 +48,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.btnGuardarIngreso = new FontAwesome.Sharp.IconButton();
             this.memoComentarios = new DevExpress.XtraEditors.MemoEdit();
-            this.ctlEncabezadoPantalla1 = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.glUsuariosResponsables = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.glUsuariosResponsablesView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colUsuarioId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNombreUsuario = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -77,6 +75,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.btnAgregarNuevInstrumento = new FontAwesome.Sharp.IconButton();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.panel5 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.glCorreoElectronico.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glCorreo)).BeginInit();
@@ -86,6 +85,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             ((System.ComponentModel.ISupportInitialize)(this.memoComentarios.Properties)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.glUsuariosResponsables.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glUsuariosResponsablesView)).BeginInit();
             this.panel8.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -284,7 +285,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.btnGuardarIngreso.Location = new System.Drawing.Point(1051, 0);
             this.btnGuardarIngreso.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnGuardarIngreso.Name = "btnGuardarIngreso";
-            this.btnGuardarIngreso.Size = new System.Drawing.Size(220, 72);
+            this.btnGuardarIngreso.Size = new System.Drawing.Size(220, 66);
             this.btnGuardarIngreso.TabIndex = 23;
             this.btnGuardarIngreso.Text = "Guardar Ingreso";
             this.btnGuardarIngreso.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -293,43 +294,90 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             // memoComentarios
             // 
-            this.memoComentarios.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.memoComentarios.Dock = System.Windows.Forms.DockStyle.Top;
             this.memoComentarios.Location = new System.Drawing.Point(0, 19);
             this.memoComentarios.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.memoComentarios.Name = "memoComentarios";
             this.memoComentarios.Size = new System.Drawing.Size(1271, 138);
             this.memoComentarios.TabIndex = 24;
             // 
-            // ctlEncabezadoPantalla1
-            // 
-            this.ctlEncabezadoPantalla1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctlEncabezadoPantalla1.Location = new System.Drawing.Point(10, 10);
-            this.ctlEncabezadoPantalla1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ctlEncabezadoPantalla1.Name = "ctlEncabezadoPantalla1";
-            this.ctlEncabezadoPantalla1.Size = new System.Drawing.Size(1281, 35);
-            this.ctlEncabezadoPantalla1.TabIndex = 30;
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.panel7);
             this.panel2.Controls.Add(this.panel6);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(10, 440);
+            this.panel2.Location = new System.Drawing.Point(10, 505);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(5);
-            this.panel2.Size = new System.Drawing.Size(1281, 259);
+            this.panel2.Size = new System.Drawing.Size(1281, 310);
             this.panel2.TabIndex = 31;
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.labelControl6);
+            this.panel7.Controls.Add(this.glUsuariosResponsables);
             this.panel7.Controls.Add(this.memoComentarios);
             this.panel7.Controls.Add(this.panel8);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(5, 5);
             this.panel7.Name = "panel7";
             this.panel7.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
-            this.panel7.Size = new System.Drawing.Size(1271, 177);
+            this.panel7.Size = new System.Drawing.Size(1271, 234);
             this.panel7.TabIndex = 28;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelControl6.Appearance.Options.UseFont = true;
+            this.labelControl6.Location = new System.Drawing.Point(0, 172);
+            this.labelControl6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(127, 17);
+            this.labelControl6.TabIndex = 30;
+            this.labelControl6.Text = "Usuario Responsable:";
+            // 
+            // glUsuariosResponsables
+            // 
+            this.glUsuariosResponsables.Location = new System.Drawing.Point(0, 193);
+            this.glUsuariosResponsables.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.glUsuariosResponsables.Name = "glUsuariosResponsables";
+            this.glUsuariosResponsables.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.glUsuariosResponsables.Properties.Appearance.Options.UseFont = true;
+            this.glUsuariosResponsables.Properties.NullText = "";
+            this.glUsuariosResponsables.Properties.PopupView = this.glUsuariosResponsablesView;
+            this.glUsuariosResponsables.Size = new System.Drawing.Size(438, 26);
+            this.glUsuariosResponsables.TabIndex = 31;
+            this.glUsuariosResponsables.EditValueChanged += new System.EventHandler(this.glUsuariosResponsables_EditValueChanged);
+            // 
+            // glUsuariosResponsablesView
+            // 
+            this.glUsuariosResponsablesView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colUsuarioId,
+            this.colNombreUsuario});
+            this.glUsuariosResponsablesView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.glUsuariosResponsablesView.Name = "glUsuariosResponsablesView";
+            this.glUsuariosResponsablesView.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.glUsuariosResponsablesView.OptionsView.ShowColumnHeaders = false;
+            this.glUsuariosResponsablesView.OptionsView.ShowGroupPanel = false;
+            this.glUsuariosResponsablesView.OptionsView.ShowIndicator = false;
+            // 
+            // colUsuarioId
+            // 
+            this.colUsuarioId.Caption = "Id";
+            this.colUsuarioId.FieldName = "UsuarioId";
+            this.colUsuarioId.Name = "colUsuarioId";
+            this.colUsuarioId.OptionsColumn.AllowEdit = false;
+            this.colUsuarioId.OptionsColumn.ReadOnly = true;
+            // 
+            // colNombreUsuario
+            // 
+            this.colNombreUsuario.Caption = "Nombre";
+            this.colNombreUsuario.FieldName = "Nombre";
+            this.colNombreUsuario.Name = "colNombreUsuario";
+            this.colNombreUsuario.OptionsColumn.AllowEdit = false;
+            this.colNombreUsuario.OptionsColumn.ReadOnly = true;
+            this.colNombreUsuario.Visible = true;
+            this.colNombreUsuario.VisibleIndex = 0;
             // 
             // panel8
             // 
@@ -344,9 +392,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             this.panel6.Controls.Add(this.btnGuardarIngreso);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(5, 182);
+            this.panel6.Location = new System.Drawing.Point(5, 239);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1271, 72);
+            this.panel6.Size = new System.Drawing.Size(1271, 66);
             this.panel6.TabIndex = 27;
             // 
             // panel1
@@ -354,10 +402,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.gcInstrumentosDeEmpresa);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(10, 242);
+            this.panel1.Location = new System.Drawing.Point(10, 207);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(1281, 198);
+            this.panel1.Size = new System.Drawing.Size(1281, 298);
             this.panel1.TabIndex = 32;
             // 
             // panel3
@@ -365,7 +413,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.panel3.Controls.Add(this.lblTotalInstrumentos);
             this.panel3.Controls.Add(this.lblInstrumentosSeleccionados);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(5, 166);
+            this.panel3.Location = new System.Drawing.Point(5, 266);
             this.panel3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(5);
@@ -410,7 +458,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.chkSeleccionarInstrumento,
             this.memoComentario,
             this.btnEditarComentario});
-            this.gcInstrumentosDeEmpresa.Size = new System.Drawing.Size(1271, 188);
+            this.gcInstrumentosDeEmpresa.Size = new System.Drawing.Size(1271, 288);
             this.gcInstrumentosDeEmpresa.TabIndex = 32;
             this.gcInstrumentosDeEmpresa.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvInstrumentosDeEmpresa});
@@ -489,9 +537,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // btnEditarComentario
             // 
             this.btnEditarComentario.AutoHeight = false;
-            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
             this.btnEditarComentario.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph)});
             this.btnEditarComentario.Name = "btnEditarComentario";
             this.btnEditarComentario.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -553,6 +600,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.iconButton1);
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Controls.Add(this.labelControl1);
             this.panel4.Controls.Add(this.labelControl2);
@@ -562,11 +610,26 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.panel4.Controls.Add(this.btnBuscarEmpresa);
             this.panel4.Controls.Add(this.glContacto);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(10, 45);
+            this.panel4.Location = new System.Drawing.Point(10, 10);
             this.panel4.Name = "panel4";
             this.panel4.Padding = new System.Windows.Forms.Padding(5);
             this.panel4.Size = new System.Drawing.Size(1281, 197);
             this.panel4.TabIndex = 33;
+            // 
+            // iconButton1
+            // 
+            this.iconButton1.FlatAppearance.BorderSize = 0;
+            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Search;
+            this.iconButton1.IconColor = System.Drawing.Color.Black;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 30;
+            this.iconButton1.Location = new System.Drawing.Point(943, 59);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(43, 32);
+            this.iconButton1.TabIndex = 33;
+            this.iconButton1.UseVisualStyleBackColor = true;
             // 
             // panel5
             // 
@@ -582,11 +645,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1301, 709);
+            this.ClientSize = new System.Drawing.Size(1301, 825);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.ctlEncabezadoPantalla1);
             this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "frmIngresos";
@@ -602,6 +664,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             ((System.ComponentModel.ISupportInitialize)(this.memoComentarios.Properties)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.glUsuariosResponsables.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glUsuariosResponsablesView)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             this.panel6.ResumeLayout(false);
@@ -641,7 +706,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private FontAwesome.Sharp.IconButton btnGuardarIngreso;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.MemoEdit memoComentarios;
-        private Componentes.Encabezados.ctlEncabezadoPantalla ctlEncabezadoPantalla1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
@@ -665,5 +729,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private System.Windows.Forms.Panel panel8;
         private DevExpress.XtraGrid.Columns.GridColumn colClasificacion;
         private DevExpress.XtraGrid.Columns.GridColumn colNumeroSerie;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.GridLookUpEdit glUsuariosResponsables;
+        private DevExpress.XtraGrid.Views.Grid.GridView glUsuariosResponsablesView;
+        private DevExpress.XtraGrid.Columns.GridColumn colUsuarioId;
+        private DevExpress.XtraGrid.Columns.GridColumn colNombreUsuario;
+        private FontAwesome.Sharp.IconButton iconButton1;
     }
 }

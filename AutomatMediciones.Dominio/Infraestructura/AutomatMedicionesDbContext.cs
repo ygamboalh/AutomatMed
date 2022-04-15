@@ -25,6 +25,7 @@ namespace AutomatMediciones.Dominio.Infraestructura
         public DbSet<VariableInstrumento> VariablesInstrumentos { get; set; }
         public DbSet<VariablePatron> VariablesPatrones { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<ConfiguracionNotificacion> ConfiguracionesNotificaciones { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -46,6 +47,7 @@ namespace AutomatMediciones.Dominio.Infraestructura
             modelBuilder.ApplyConfiguration(new PatronMap());
             modelBuilder.ApplyConfiguration(new VariablePatronMap());
             modelBuilder.ApplyConfiguration(new UsuarioMap());
+            modelBuilder.ApplyConfiguration(new ConfiguracionNotificacionMap());
         }
     }
 }

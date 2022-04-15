@@ -37,7 +37,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             if (variablesDeMedicion == null) return;
 
             var frmNuevaVariableMedicion = new frmNuevaVariableMedicion(TipoTransaccion.Actualizar, serviceProvider.GetService<VariableMedicionService>(), serviceProvider.GetService<TipoDeInstrumentoService>());
-          
+
             frmNuevaVariableMedicion.NuevaVariableMedicion = VariableMedicion;
             frmNuevaVariableMedicion.SetearValoresParaActualizar();
             frmNuevaVariableMedicion.OnVariableMedicionModificada += OnVariableMedicionModificada;
@@ -87,7 +87,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
 
         private void btnAgregarNuevInstrumento_Click(object sender, System.EventArgs e)
         {
-            var frmNuevaVariableMedicion = new frmNuevaVariableMedicion(TipoTransaccion.Insertar, serviceProvider.GetService<VariableMedicionService>(), serviceProvider.GetService<TipoDeInstrumentoService>());      
+            var frmNuevaVariableMedicion = new frmNuevaVariableMedicion(TipoTransaccion.Insertar, serviceProvider.GetService<VariableMedicionService>(), serviceProvider.GetService<TipoDeInstrumentoService>());
             frmNuevaVariableMedicion.OnVariableMedicionAgregada += OnVariableMedicionAgregada;
             frmNuevaVariableMedicion.Show();
         }

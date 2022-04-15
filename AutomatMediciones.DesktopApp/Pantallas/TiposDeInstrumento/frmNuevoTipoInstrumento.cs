@@ -103,7 +103,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             }
             catch (Exception exc)
             {
-                Notificaciones.MensajeError(Exceptions.ObtenerMensajeExcepcion(exc));
+                Notificaciones.MensajeError(ExceptionsHelper.ObtenerMensajeExcepcion(exc));
                 return false;
             }
         }
@@ -120,7 +120,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             }
             catch (Exception exc)
             {
-                Notificaciones.MensajeError(Exceptions.ObtenerMensajeExcepcion(exc));
+                Notificaciones.MensajeError(ExceptionsHelper.ObtenerMensajeExcepcion(exc));
                 return false;
             }
         }

@@ -16,9 +16,12 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
         public DateTime? FechaInicio { get; set; }
         public DateTime? FechaFin { get; set; }
         public DateTime FechaEntregaRequerida { get; set; }
-        public decimal? TiempoConsumido { get; set; }
-        public int ResponsableId { get; set; }
+        public TimeSpan? TiempoConsumido { get; set; }
+        public int? ResponsableId { get; set; }
         public bool Activo { get; set; }
+
+        public TipoTrabajo TipoTrabajo { get; set; }
+        public Estado Estado { get; set; }
         public Ingreso Ingreso { get; set; }
         public Instrumento Instrumento { get; set; }
 

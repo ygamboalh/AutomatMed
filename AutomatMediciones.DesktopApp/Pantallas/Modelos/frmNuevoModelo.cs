@@ -22,7 +22,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
         public TipoTransaccion TipoTransaccion { get; set; }
         public ModeloDto NuevaModelo { get; set; }
 
-        public frmNuevoModelo(TipoTransaccion tipoTransaccion,ModeloService modeloService)
+        public frmNuevoModelo(TipoTransaccion tipoTransaccion, ModeloService modeloService)
         {
             InitializeComponent();
             TipoTransaccion = tipoTransaccion;
@@ -64,7 +64,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             }
             catch (Exception exc)
             {
-                Notificaciones.MensajeError(Exceptions.ObtenerMensajeExcepcion(exc));
+                Notificaciones.MensajeError(ExceptionsHelper.ObtenerMensajeExcepcion(exc));
                 return false;
             }
         }
@@ -81,7 +81,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             }
             catch (Exception exc)
             {
-                Notificaciones.MensajeError(Exceptions.ObtenerMensajeExcepcion(exc));
+                Notificaciones.MensajeError(ExceptionsHelper.ObtenerMensajeExcepcion(exc));
                 return false;
             }
         }

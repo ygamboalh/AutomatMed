@@ -57,8 +57,8 @@ namespace AutomatMediciones.DesktopApp
             services.AddDbContext<TacticaDbContext>(options => options.UseMySql(tacticaConneccionString, ServerVersion.AutoDetect(tacticaConneccionString)));
             services.AddDbContext<AutomatMedicionesDbContext>(options => options.UseMySql(automatConnectionString, ServerVersion.AutoDetect(automatConnectionString)));
 
-      
-        
+
+
             services.AddAutoMapper(options => options.AddProfile(new ConfigMap()));
 
             services.AddTransient<EmpresaService, EmpresaService>();
@@ -69,8 +69,10 @@ namespace AutomatMediciones.DesktopApp
             services.AddTransient<TipoDeInstrumentoService, TipoDeInstrumentoService>();
             services.AddTransient<ModeloService, ModeloService>();
             services.AddTransient<MarcaService, MarcaService>();
+            services.AddTransient<UsuarioService, UsuarioService>();
             services.AddTransient<ClasificacionInstrumentoService, ClasificacionInstrumentoService>();
             services.AddTransient<VariableMedicionService, VariableMedicionService>();
+            services.AddTransient<ConfiguracionNotificacionService, ConfiguracionNotificacionService>();
 
             services.AddScoped<frmPrincipal>();
 

@@ -2,7 +2,7 @@
 
 namespace AutomatMediciones.DesktopApp.Helpers
 {
-    public static class Exceptions
+    public static class ExceptionsHelper
     {
         public static string ObtenerMensajeExcepcion(Exception exception)
         {

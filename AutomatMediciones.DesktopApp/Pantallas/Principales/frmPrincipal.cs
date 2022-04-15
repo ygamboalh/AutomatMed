@@ -46,7 +46,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
 
         private void EstablecerEtiquetaNombreServidorBaseDatos()
         {
-         
+
             lblBaseDatos.Text = AplicacionHelper.ObtenerDataBaseServer("AutomatConnectionString");
         }
 
@@ -58,7 +58,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
                     SplashScreenManager.ShowForm(typeof(frmSaving));
                     var frmIngresos = new frmIngresos(serviceProvider.GetService<IngresoService>(),
                                                        serviceProvider.GetService<InstrumentoService>(),
-                                                       serviceProvider.GetService<TipoTrabajoService>()
+                                                       serviceProvider.GetService<UsuarioService>(),
+                                                       serviceProvider.GetService<ConfiguracionNotificacionService>()
                                                       );
                     XtraForm ingresos = frmIngresos;
                     AgregarPantalla(ref ingresos);

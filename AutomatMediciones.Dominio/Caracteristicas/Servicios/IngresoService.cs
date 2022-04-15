@@ -31,6 +31,9 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                                                                                    .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.Marca)
                                                                                    .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.Modelo)
                                                                                    .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
+                                                                                   .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Estado)
+                                                                                   .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.TipoTrabajo)
+                                                                                   .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Ingreso)
                                                                                    .ToList();
 
                 ingresos = ingresos.OrderBy(y => y.IngresoId).ToList();
@@ -57,7 +60,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     CuerpoCorreo = ingresoDto.CuerpoCorreo,
                     Activo = true,
                     FechaRegistro = DateTime.Now,
-                    UsuarioResponsableId = ingresoDto.UsuarioResponsableId
+                    UsuarioId = ingresoDto.UsuarioId
                 };
 
                 if (!ingreso.EsValido(out string mensaje))
@@ -83,7 +86,6 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         FechaFin = instrumento.FechaFin,
                         FechaInicio = instrumento.FechaInicio,
                         Prioridad = instrumento.Prioridad,
-                        ResponsableId = instrumento.ResponsableId,
                         EstadoId = (int)Estados.Ingresado,
                         FechaEntregaRequerida = instrumento.FechaEntregaRequerida
                     };
@@ -97,6 +99,61 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 _AutomatMedicionesDbContext.Database.CommitTransaction();
 
                 return Response<bool>.Ok("¡El ingreso se guardó exitosamente!", true);
+            }
+            catch (Exception exc)
+            {
+                _AutomatMedicionesDbContext.Database.RollbackTransaction();
+                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+            }
+        }
+
+        public Response<bool> ActualizarDiagnostico(IngresoInstrumentoDto ingresoInstrumento)
+        {
+            try
+            {
+                var diagnostico = _AutomatMedicionesDbContext.IngresosInstrumentos.FirstOrDefault(x => x.IngresoInstrumentoId.Equals(ingresoInstrumento.IngresoInstrumentoId));
+
+                if (diagnostico == null)
+                {
+                    return Response<bool>.Error("No se encontró ningún registro en almacen de datos.", true);
+                }
+
+                diagnostico.Comentarios = ingresoInstrumento.Comentarios;
+                diagnostico.Diagnostico = ingresoInstrumento.Diagnostico;
+                diagnostico.EstadoId = ingresoInstrumento.EstadoId;
+                diagnostico.ResponsableId = ingresoInstrumento.ResponsableId;
+                diagnostico.TiempoConsumido = ingresoInstrumento.TiempoConsumido;
+                diagnostico.FechaInicio = ingresoInstrumento.FechaInicio;
+
+                _AutomatMedicionesDbContext.SaveChanges();
+
+                return Response<bool>.Ok("¡El diagnóstico se guardó exitosamente!", true);
+            }
+            catch (Exception exc)
+            {
+                _AutomatMedicionesDbContext.Database.RollbackTransaction();
+                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+            }
+        }
+
+        public Response<bool> ActualizarFechaUltimoIngreso(IngresoInstrumentoDto ingresoInstrumento)
+        {
+            try
+            {
+                var diagnostico = _AutomatMedicionesDbContext.IngresosInstrumentos.FirstOrDefault(x => x.IngresoInstrumentoId.Equals(ingresoInstrumento.IngresoInstrumentoId));
+
+                if (diagnostico == null)
+                {
+                    return Response<bool>.Error("No se encontró ningún registro en almacen de datos.", true);
+                }
+
+                diagnostico.FechaInicio = ingresoInstrumento.FechaInicio;
+                diagnostico.TiempoConsumido = ingresoInstrumento.TiempoConsumido;
+
+
+                _AutomatMedicionesDbContext.SaveChanges();
+
+                return Response<bool>.Ok("¡El diagnóstico se guardó exitosamente!", true);
             }
             catch (Exception exc)
             {

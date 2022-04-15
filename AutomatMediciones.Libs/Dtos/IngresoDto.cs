@@ -14,7 +14,7 @@ namespace AutomatMediciones.Libs.Dtos
         public string DireccionCorreoElectronico { get; set; }
         public string CuerpoCorreo { get; set; }
         public DateTime FechaRegistro { get; set; }
-        public int UsuarioResponsableId { get; set; }
+        public int UsuarioId { get; set; }
         public bool Activo { get; set; }
         public ICollection<IngresoInstrumentoDto> IngresosInstrumentos { get; set; }
     }

@@ -55,7 +55,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
 
         private void EstablecerNombreYTituloPopupAgregarInstrumentos()
         {
-            
+
             ctlEncabezadoAgregarInstrumento.lblTitulo.Text = "Agregar Instrumento";
             ctlEncabezadoAgregarInstrumento.EstablecerColoresDeFondoYLetra();
         }
@@ -165,7 +165,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             }
             catch (Exception exc)
             {
-                Notificaciones.MensajeError(Exceptions.ObtenerMensajeExcepcion(exc));
+                Notificaciones.MensajeError(ExceptionsHelper.ObtenerMensajeExcepcion(exc));
                 return false;
             }
         }

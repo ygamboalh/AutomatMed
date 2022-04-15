@@ -18,8 +18,9 @@ namespace AutomatMediciones.Dominio.Common
             CreateMap<ClasificacionInstrumento, ClasificacionInstrumentoDto>().ReverseMap();
             CreateMap<VariableDeMedicion, VariableMedicionDto>().ReverseMap();
             CreateMap<TipoInstrumentoVariable, TipoInstrumentoVariableDto>().ReverseMap();
-            CreateMap<IngresoInstrumento, IngresoInstrumento>().ReverseMap();
+            CreateMap<IngresoInstrumento, IngresoInstrumentoDto>().ReverseMap();
             CreateMap<Usuario, UsuarioDto>().ReverseMap();
+            CreateMap<ConfiguracionNotificacion, ConfiguracionNotificacionDto>().ReverseMap();
         }
     }
 }

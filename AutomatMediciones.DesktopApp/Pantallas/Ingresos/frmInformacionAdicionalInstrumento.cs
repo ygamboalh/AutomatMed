@@ -5,7 +5,6 @@ using AutomatMediciones.Libs.Dtos;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
-using System.Windows.Forms;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 {
@@ -29,6 +28,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             _tipoTrabajoService = tipoTrabajoService;
 
             TipoTransaccion = tipoTransaccion;
+            tipoTrabajoSeleccionado = new TipoTrabajoDto();
 
             CargarDatosTiposDeTrabajo();
         }
@@ -46,10 +46,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
         private void btnIngresarComentario_Click(object sender, EventArgs e)
         {
-          
-            if (string.IsNullOrEmpty(memoComentarios.Text))
+
+            if (tipoTrabajoSeleccionado.TipoTrabajoId == 0)
             {
-                Notificaciones.MensajeAdvertencia("Es necesario que ingrese un comentario.");
+                Notificaciones.MensajeAdvertencia("Es necesario que seleccione un tipo de trabajo.");
                 return;
             }
 
@@ -69,7 +69,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             this.Close();
             ResetearCampos();
-          
+
         }
 
         private void ResetearCampos()
