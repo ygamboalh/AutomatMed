@@ -24,6 +24,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
         public Estado Estado { get; set; }
         public Ingreso Ingreso { get; set; }
         public Instrumento Instrumento { get; set; }
+        public Usuario Responsable { get; set; }
 
         public bool EsValido(out string mensaje)
         {

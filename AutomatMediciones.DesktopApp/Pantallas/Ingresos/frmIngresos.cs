@@ -7,7 +7,6 @@ using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
-using SendGrid.Helpers.Mail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +48,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             EstablecerColorBotonPorDefecto();
             EstablecerColorBotonGuardar();
 
+            copiasEnCorreo = new List<UsuarioDto>();
             CargarUsuarios();
             CargarConfiguraciones();
 
@@ -56,7 +56,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             Ingreso = new IngresoDto();
 
-            copiasEnCorreo = new List<UsuarioDto>();
             instrumentosSeleccionados = new List<IngresoInstrumentoDto>();
             instrumentosDeEmpresa = new List<InstrumentoLista>();
 
@@ -451,7 +450,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
                 var correoHelper = new CorreoHelper();
 
-                if (await correoHelper.EnviarEmail(PrepararCorreo()))
+                if (correoHelper.EnviarCorreo(PrepararCorreo()))
                 {
                     Notificaciones.MensajeConfirmacion("¡El ingreso se ha guardado exitosamente!");
                 }
@@ -467,17 +466,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
         private CorreoNotificacionDto PrepararCorreo()
         {
-            List<EmailAddress> copias = new List<EmailAddress>();
+            List<string> copias = new List<string>();
 
             copiasEnCorreo.ForEach(x =>
             {
-                EmailAddress emailAddress = new EmailAddress
-                {
-                    Name = x.Nombre,
-                    Email = x.Correo
-                };
 
-                copias.Add(emailAddress);
+                copias.Add(x.Correo);
             });
 
             CorreoNotificacionDto correoNotificacionDto = new CorreoNotificacionDto
@@ -542,6 +536,20 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private void glUsuariosResponsables_EditValueChanged(object sender, EventArgs e)
         {
             UsuarioSeleccionado = glUsuariosResponsablesView.GetFocusedRow() as UsuarioDto;
+        }
+
+        private void iconButton1_Click_1(object sender, EventArgs e)
+        {
+            var correoHelper = new CorreoHelper();
+
+            if (correoHelper.EnviarCorreo(PrepararCorreo()))
+            {
+                Notificaciones.MensajeConfirmacion("¡El ingreso se ha guardado exitosamente!");
+            }
+            else
+            {
+                Notificaciones.MensajeConfirmacion("El ingreso se ha guardado exitosamente, pero hubo una falla en el momento de enviar la notificación por correo electrónico.");
+            }
         }
     }
 }

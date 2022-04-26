@@ -39,14 +39,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.gcInstrumentos = new DevExpress.XtraGrid.GridControl();
             this.gvInstrumentos = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colIngresoId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPrioridad = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNumeroServicioTecnico = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colEmpresa = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colClasificacion = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSerie = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPrioridad = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colResponsable = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFecha = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colEmpresa = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colEstado = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colNumeroServicioTecnico = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFechaEstimada = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colEstado = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIniciarDiagnostico = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colIngresoInstrumentoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
@@ -86,19 +88,22 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             this.gvInstrumentos.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colIngresoId,
-            this.colPrioridad,
+            this.colNumeroServicioTecnico,
+            this.colEmpresa,
             this.colDescripcion,
             this.colClasificacion,
+            this.colSerie,
+            this.colPrioridad,
+            this.colResponsable,
             this.colFecha,
-            this.colEmpresa,
-            this.colEstado,
-            this.colNumeroServicioTecnico,
             this.colFechaEstimada,
+            this.colEstado,
             this.colIniciarDiagnostico,
             this.colIngresoInstrumentoId});
             this.gvInstrumentos.GridControl = this.gcInstrumentos;
             this.gvInstrumentos.Name = "gvInstrumentos";
             this.gvInstrumentos.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
+            this.gvInstrumentos.OptionsView.ShowAutoFilterRow = true;
             this.gvInstrumentos.OptionsView.ShowGroupPanel = false;
             this.gvInstrumentos.OptionsView.ShowIndicator = false;
             // 
@@ -112,17 +117,29 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.colIngresoId.OptionsColumn.ReadOnly = true;
             this.colIngresoId.Width = 94;
             // 
-            // colPrioridad
+            // colNumeroServicioTecnico
             // 
-            this.colPrioridad.Caption = "Prioridad";
-            this.colPrioridad.FieldName = "Prioridad";
-            this.colPrioridad.MinWidth = 25;
-            this.colPrioridad.Name = "colPrioridad";
-            this.colPrioridad.OptionsColumn.AllowEdit = false;
-            this.colPrioridad.OptionsColumn.ReadOnly = true;
-            this.colPrioridad.Visible = true;
-            this.colPrioridad.VisibleIndex = 0;
-            this.colPrioridad.Width = 78;
+            this.colNumeroServicioTecnico.Caption = "N° Servicio Técnico";
+            this.colNumeroServicioTecnico.FieldName = "NumeroServicioTecnico";
+            this.colNumeroServicioTecnico.MinWidth = 25;
+            this.colNumeroServicioTecnico.Name = "colNumeroServicioTecnico";
+            this.colNumeroServicioTecnico.OptionsColumn.AllowEdit = false;
+            this.colNumeroServicioTecnico.OptionsColumn.ReadOnly = true;
+            this.colNumeroServicioTecnico.Visible = true;
+            this.colNumeroServicioTecnico.VisibleIndex = 0;
+            this.colNumeroServicioTecnico.Width = 99;
+            // 
+            // colEmpresa
+            // 
+            this.colEmpresa.Caption = "Empresa";
+            this.colEmpresa.FieldName = "Ingreso.NombreEmpresa";
+            this.colEmpresa.MinWidth = 25;
+            this.colEmpresa.Name = "colEmpresa";
+            this.colEmpresa.OptionsColumn.AllowEdit = false;
+            this.colEmpresa.OptionsColumn.ReadOnly = true;
+            this.colEmpresa.Visible = true;
+            this.colEmpresa.VisibleIndex = 1;
+            this.colEmpresa.Width = 203;
             // 
             // colDescripcion
             // 
@@ -133,8 +150,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.colDescripcion.OptionsColumn.AllowEdit = false;
             this.colDescripcion.OptionsColumn.ReadOnly = true;
             this.colDescripcion.Visible = true;
-            this.colDescripcion.VisibleIndex = 1;
-            this.colDescripcion.Width = 276;
+            this.colDescripcion.VisibleIndex = 2;
+            this.colDescripcion.Width = 205;
             // 
             // colClasificacion
             // 
@@ -145,8 +162,42 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.colClasificacion.OptionsColumn.AllowEdit = false;
             this.colClasificacion.OptionsColumn.ReadOnly = true;
             this.colClasificacion.Visible = true;
-            this.colClasificacion.VisibleIndex = 2;
-            this.colClasificacion.Width = 304;
+            this.colClasificacion.VisibleIndex = 3;
+            this.colClasificacion.Width = 237;
+            // 
+            // colSerie
+            // 
+            this.colSerie.Caption = "N° Serie";
+            this.colSerie.FieldName = "Instrumento.NumeroSerie";
+            this.colSerie.MinWidth = 25;
+            this.colSerie.Name = "colSerie";
+            this.colSerie.Visible = true;
+            this.colSerie.VisibleIndex = 4;
+            this.colSerie.Width = 154;
+            // 
+            // colPrioridad
+            // 
+            this.colPrioridad.Caption = "Prioridad";
+            this.colPrioridad.FieldName = "Prioridad";
+            this.colPrioridad.MinWidth = 25;
+            this.colPrioridad.Name = "colPrioridad";
+            this.colPrioridad.OptionsColumn.AllowEdit = false;
+            this.colPrioridad.OptionsColumn.ReadOnly = true;
+            this.colPrioridad.Visible = true;
+            this.colPrioridad.VisibleIndex = 5;
+            this.colPrioridad.Width = 92;
+            // 
+            // colResponsable
+            // 
+            this.colResponsable.Caption = "Responsable";
+            this.colResponsable.FieldName = "Ingreso.Responsable.Nombre";
+            this.colResponsable.MinWidth = 25;
+            this.colResponsable.Name = "colResponsable";
+            this.colResponsable.OptionsColumn.AllowEdit = false;
+            this.colResponsable.OptionsColumn.AllowFocus = false;
+            this.colResponsable.Visible = true;
+            this.colResponsable.VisibleIndex = 6;
+            this.colResponsable.Width = 154;
             // 
             // colFecha
             // 
@@ -159,44 +210,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.colFecha.OptionsColumn.AllowEdit = false;
             this.colFecha.OptionsColumn.ReadOnly = true;
             this.colFecha.Visible = true;
-            this.colFecha.VisibleIndex = 3;
-            this.colFecha.Width = 97;
-            // 
-            // colEmpresa
-            // 
-            this.colEmpresa.Caption = "Empresa";
-            this.colEmpresa.FieldName = "Ingreso.NombreEmpresa";
-            this.colEmpresa.MinWidth = 25;
-            this.colEmpresa.Name = "colEmpresa";
-            this.colEmpresa.OptionsColumn.AllowEdit = false;
-            this.colEmpresa.OptionsColumn.ReadOnly = true;
-            this.colEmpresa.Visible = true;
-            this.colEmpresa.VisibleIndex = 4;
-            this.colEmpresa.Width = 260;
-            // 
-            // colEstado
-            // 
-            this.colEstado.Caption = "Estado";
-            this.colEstado.FieldName = "Estado.Descripcion";
-            this.colEstado.MinWidth = 25;
-            this.colEstado.Name = "colEstado";
-            this.colEstado.OptionsColumn.AllowEdit = false;
-            this.colEstado.OptionsColumn.ReadOnly = true;
-            this.colEstado.Visible = true;
-            this.colEstado.VisibleIndex = 5;
-            this.colEstado.Width = 195;
-            // 
-            // colNumeroServicioTecnico
-            // 
-            this.colNumeroServicioTecnico.Caption = "N° Servicio Técnico";
-            this.colNumeroServicioTecnico.FieldName = "NumeroServicioTecnico";
-            this.colNumeroServicioTecnico.MinWidth = 25;
-            this.colNumeroServicioTecnico.Name = "colNumeroServicioTecnico";
-            this.colNumeroServicioTecnico.OptionsColumn.AllowEdit = false;
-            this.colNumeroServicioTecnico.OptionsColumn.ReadOnly = true;
-            this.colNumeroServicioTecnico.Visible = true;
-            this.colNumeroServicioTecnico.VisibleIndex = 6;
-            this.colNumeroServicioTecnico.Width = 130;
+            this.colFecha.VisibleIndex = 7;
+            this.colFecha.Width = 73;
             // 
             // colFechaEstimada
             // 
@@ -207,8 +222,20 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.colFechaEstimada.OptionsColumn.AllowEdit = false;
             this.colFechaEstimada.OptionsColumn.ReadOnly = true;
             this.colFechaEstimada.Visible = true;
-            this.colFechaEstimada.VisibleIndex = 7;
-            this.colFechaEstimada.Width = 97;
+            this.colFechaEstimada.VisibleIndex = 8;
+            this.colFechaEstimada.Width = 90;
+            // 
+            // colEstado
+            // 
+            this.colEstado.Caption = "Estado";
+            this.colEstado.FieldName = "Estado.Descripcion";
+            this.colEstado.MinWidth = 25;
+            this.colEstado.Name = "colEstado";
+            this.colEstado.OptionsColumn.AllowEdit = false;
+            this.colEstado.OptionsColumn.ReadOnly = true;
+            this.colEstado.Visible = true;
+            this.colEstado.VisibleIndex = 9;
+            this.colEstado.Width = 142;
             // 
             // colIniciarDiagnostico
             // 
@@ -217,8 +244,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.colIniciarDiagnostico.MinWidth = 25;
             this.colIniciarDiagnostico.Name = "colIniciarDiagnostico";
             this.colIniciarDiagnostico.Visible = true;
-            this.colIniciarDiagnostico.VisibleIndex = 8;
-            this.colIniciarDiagnostico.Width = 94;
+            this.colIniciarDiagnostico.VisibleIndex = 10;
+            this.colIniciarDiagnostico.Width = 83;
             // 
             // colIngresoInstrumentoId
             // 
@@ -318,5 +345,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
         private DevExpress.XtraGrid.Columns.GridColumn colFechaEstimada;
         private DevExpress.XtraGrid.Columns.GridColumn colIniciarDiagnostico;
         private DevExpress.XtraGrid.Columns.GridColumn colIngresoInstrumentoId;
+        private DevExpress.XtraGrid.Columns.GridColumn colResponsable;
+        private DevExpress.XtraGrid.Columns.GridColumn colSerie;
     }
 }

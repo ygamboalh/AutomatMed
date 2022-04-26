@@ -26,7 +26,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             InitializeComponent();
 
             _ingresoService = ingresoService;
-
             EstablecerNombreYTitulo();
             CargarIngresos();
 
@@ -42,7 +41,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             var nuevoDiagnostico = new frmNuevoDiagnostico(diagnosticoSeleccionado, serviceProvider.GetService<UsuarioService>(), serviceProvider.GetService<EstadoService>(), serviceProvider.GetService<IngresoService>());
             nuevoDiagnostico.OnDiagnosticoAgregado += OnDiagnosticoAgregado;
             nuevoDiagnostico.Show();
-
         }
 
 
@@ -79,6 +77,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
                     TipoTrabajo = y.TipoTrabajo,
                     Prioridad = y.Prioridad,
                     TipoTrabajoId = y.TipoTrabajoId,
+                    Responsable = y.Responsable,
                     Diagnostico = y.Diagnostico,
                     FechaInicio = y.FechaInicio,
                     FechaFin = y.FechaFin,

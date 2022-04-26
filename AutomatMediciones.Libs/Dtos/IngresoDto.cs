@@ -16,6 +16,7 @@ namespace AutomatMediciones.Libs.Dtos
         public DateTime FechaRegistro { get; set; }
         public int UsuarioId { get; set; }
         public bool Activo { get; set; }
+        public UsuarioDto Responsable { get; set; }
         public ICollection<IngresoInstrumentoDto> IngresosInstrumentos { get; set; }
     }
 }

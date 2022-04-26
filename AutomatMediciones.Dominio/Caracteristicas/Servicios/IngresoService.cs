@@ -34,6 +34,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                                                                                    .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Estado)
                                                                                    .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.TipoTrabajo)
                                                                                    .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Ingreso)
+                                                                                    .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Responsable)
                                                                                    .ToList();
 
                 ingresos = ingresos.OrderBy(y => y.IngresoId).ToList();

@@ -19,46 +19,6 @@ namespace AutomatMediciones.DesktopApp.Helpers
 
         }
 
-        public static string ObtenerHostCorreo()
-        {
-            var appSettings = ConfigurationManager.AppSettings;
-            var servidorCorreo = appSettings["ServidorSMTP"];
-
-
-            return servidorCorreo;
-
-        }
-
-        public static string ObtenerCorreoNotificacion()
-        {
-            var appSettings = ConfigurationManager.AppSettings;
-            var correo = appSettings["DireccionCorreoNotificaciones"];
-
-
-            return correo;
-
-        }
-
-        public static string ObtenerPassCorreoNotificacion()
-        {
-            var appSettings = ConfigurationManager.AppSettings;
-            var password = appSettings["PasswordCorreoNotificaciones"];
-
-
-            return password;
-
-        }
-
-        public static string ObtenerApiKeyGridMail()
-        {
-            var appSettings = ConfigurationManager.AppSettings;
-            var apiKey = appSettings["ApiKeyGridMail"];
-
-
-            return apiKey;
-
-        }
-
         public static string ObtenerDataBaseServer(string nombreCadena)
         {
             var appSettings = ConfigurationManager.AppSettings;

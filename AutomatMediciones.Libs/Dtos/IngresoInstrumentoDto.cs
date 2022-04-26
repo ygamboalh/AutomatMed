@@ -23,5 +23,6 @@ namespace AutomatMediciones.Libs.Dtos
         public EstadoDto Estado { get; set; }
         public IngresoDto Ingreso { get; set; }
         public InstrumentoDto Instrumento { get; set; }
+        public UsuarioDto Responsable { get; set; }
     }
 }

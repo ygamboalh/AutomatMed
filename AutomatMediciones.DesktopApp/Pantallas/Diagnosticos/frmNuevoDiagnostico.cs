@@ -34,6 +34,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             _estadoService = estadoService;
             _ingresoService = ingresoService;
             EstablecerNombreYTitulo();
+            EstablecerColorBotonGuardar();
 
             CargarUsuarios();
             CargarEstados();
@@ -78,10 +79,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
                 v_minutos = Convert.ToInt32(IngresoInstrumento.TiempoConsumido.Value.Minutes);
                 v_hora = Convert.ToInt32(IngresoInstrumento.TiempoConsumido.Value.Hours);
             }
+        }
 
-
-
-
+        private void EstablecerColorBotonGuardar()
+        {
+            btnGuardarDiagnostico.BackColor = ColorHelper.ObtenerColorEnRGB("Sucess");
+            btnGuardarDiagnostico.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+            btnGuardarDiagnostico.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
         private void EstablecerNombreYTitulo()

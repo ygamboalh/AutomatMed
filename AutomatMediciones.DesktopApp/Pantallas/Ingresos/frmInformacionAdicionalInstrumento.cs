@@ -30,6 +30,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             TipoTransaccion = tipoTransaccion;
             tipoTrabajoSeleccionado = new TipoTrabajoDto();
 
+            EstablecerColorBotonGuardar();
+
             CargarDatosTiposDeTrabajo();
         }
 
@@ -42,6 +44,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             glTiposTrabajo.Properties.DataSource = resultado.Data;
             glTiposTrabajo.Properties.DisplayMember = "Descripcion";
             glTiposTrabajo.Properties.ValueMember = "TipoTrabajoId";
+        }
+
+        private void EstablecerColorBotonGuardar()
+        {
+            btnIngresarInformacionAdicional.BackColor = ColorHelper.ObtenerColorEnRGB("Sucess");
+            btnIngresarInformacionAdicional.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+            btnIngresarInformacionAdicional.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
         private void btnIngresarComentario_Click(object sender, EventArgs e)
