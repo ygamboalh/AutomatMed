@@ -29,7 +29,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctlEncabezadoPantalla1 = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             this.btnGuardarClasificacion = new FontAwesome.Sharp.IconButton();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -56,15 +55,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             ((System.ComponentModel.ISupportInitialize)(this.gvModelo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmPeriodoCalibracion)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ctlEncabezadoPantalla1
-            // 
-            this.ctlEncabezadoPantalla1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctlEncabezadoPantalla1.Location = new System.Drawing.Point(0, 0);
-            this.ctlEncabezadoPantalla1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ctlEncabezadoPantalla1.Name = "ctlEncabezadoPantalla1";
-            this.ctlEncabezadoPantalla1.Size = new System.Drawing.Size(794, 49);
-            this.ctlEncabezadoPantalla1.TabIndex = 0;
             // 
             // btnGuardarClasificacion
             // 
@@ -262,9 +252,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.labelControl11);
             this.Controls.Add(this.btnGuardarClasificacion);
-            this.Controls.Add(this.ctlEncabezadoPantalla1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IconOptions.ShowIcon = false;
             this.Name = "frmNuevaClasificacion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nueva Clasificación";
             ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumento.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTipoInstrumento)).EndInit();
@@ -279,8 +270,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
         }
 
         #endregion
-
-        private Componentes.Encabezados.ctlEncabezadoPantalla ctlEncabezadoPantalla1;
         private FontAwesome.Sharp.IconButton btnGuardarClasificacion;
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.LabelControl labelControl1;

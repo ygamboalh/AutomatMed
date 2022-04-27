@@ -51,7 +51,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
             this.cmdEditar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ctlEncabezadoPantalla3 = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcMarcas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMarcas)).BeginInit();
@@ -108,7 +107,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
             // 
             this.gcMarcas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcMarcas.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.gcMarcas.Location = new System.Drawing.Point(0, 96);
+            this.gcMarcas.Location = new System.Drawing.Point(0, 53);
             this.gcMarcas.MainView = this.gvMarcas;
             this.gcMarcas.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.gcMarcas.Name = "gcMarcas";
@@ -116,7 +115,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
             this.gcMarcas.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.cmdEditar,
             this.repositoryItemButtonEdit1});
-            this.gcMarcas.Size = new System.Drawing.Size(846, 439);
+            this.gcMarcas.Size = new System.Drawing.Size(846, 482);
             this.gcMarcas.TabIndex = 32;
             this.gcMarcas.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvMarcas});
@@ -186,21 +185,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
             // 
             this.panel1.Controls.Add(this.btnAgregarNuevInstrumento);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 43);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(8, 7, 0, 7);
             this.panel1.Size = new System.Drawing.Size(846, 53);
             this.panel1.TabIndex = 33;
-            // 
-            // ctlEncabezadoPantalla3
-            // 
-            this.ctlEncabezadoPantalla3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctlEncabezadoPantalla3.Location = new System.Drawing.Point(0, 0);
-            this.ctlEncabezadoPantalla3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.ctlEncabezadoPantalla3.Name = "ctlEncabezadoPantalla3";
-            this.ctlEncabezadoPantalla3.Size = new System.Drawing.Size(846, 43);
-            this.ctlEncabezadoPantalla3.TabIndex = 35;
             // 
             // frmMarcas
             // 
@@ -210,7 +200,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.gcMarcas);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.ctlEncabezadoPantalla3);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMarcas";
@@ -239,6 +229,5 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit cmdEditar;
         private System.Windows.Forms.Panel panel1;
-        private Componentes.Encabezados.ctlEncabezadoPantalla ctlEncabezadoPantalla3;
     }
 }

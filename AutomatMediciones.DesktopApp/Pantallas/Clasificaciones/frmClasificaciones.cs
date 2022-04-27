@@ -1,4 +1,5 @@
-﻿using AutomatMediciones.DesktopApp.Helpers;
+﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
+using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
 {
@@ -55,7 +57,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
 
             if (InactivarClasificacionInstrumento(clasificacionInstrumento))
             {
-                Notificaciones.MensajeConfirmacion("¡La inactivación de la Clasificación se ha realizado exitosamente!");
+                Notificaciones.MensajeConfirmacion("¡La desactivación de la Clasificación se ha realizado exitosamente!");
                 clasificaciones = clasificaciones.Where(x => x.ClasificacionId != clasificacionInstrumento.ClasificacionId).ToList();
                 gcClasificaciones.DataSource = clasificaciones;
                 gcClasificaciones.RefreshDataSource();
@@ -111,6 +113,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
 
         private void EstablecerNombreYTitulo()
         {
+            ctlEncabezadoPantalla ctlEncabezadoPantalla3 = new ctlEncabezadoPantalla();
+            ctlEncabezadoPantalla3.Parent = this;
+            ctlEncabezadoPantalla3.Height = 43;
+            ctlEncabezadoPantalla3.Dock = DockStyle.Top;
             ctlEncabezadoPantalla3.lblTitulo.Text = "Clasificaciones de Instrumentos";
             ctlEncabezadoPantalla3.EstablecerColoresDeFondoYLetra();
         }

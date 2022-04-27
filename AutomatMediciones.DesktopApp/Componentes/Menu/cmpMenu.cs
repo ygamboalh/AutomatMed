@@ -45,10 +45,10 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.cmdIngresosSimple.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
 
             this.btnDiagnosticos.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
-            this.btnDiagnosticos.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
+            this.btnDiagnosticosNoExpandido.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
 
             this.btnTiposDeInstrumetnos.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
-            this.btnTiposDeInstrumetnos.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
+            this.btnTipoInstrumentoSimplificado.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
         }
 
         private void EstablecerColorFondoMenu()

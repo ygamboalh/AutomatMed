@@ -39,12 +39,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="out\" />
+    <ProjectReference Include="..\AutomatMediciones.Dominio\AutomatMediciones.Dominio.csproj" />
+    <ProjectReference Include="..\AutomatMediciones.Libs\AutomatMediciones.Libs.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AutomatMediciones.Dominio\AutomatMediciones.Dominio.csproj" />
-    <ProjectReference Include="..\AutomatMediciones.Libs\AutomatMediciones.Libs.csproj" />
+    <Folder Include="out\" />
   </ItemGroup>
 
 </Project>

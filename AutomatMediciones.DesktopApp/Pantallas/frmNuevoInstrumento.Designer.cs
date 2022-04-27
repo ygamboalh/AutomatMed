@@ -30,7 +30,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.ctlEncabezadoAgregarInstrumento = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
             this.txtEmpresaInstrumento = new DevExpress.XtraEditors.TextEdit();
             this.btnAbrirPopupEmpresaPorInstrumento = new FontAwesome.Sharp.IconButton();
@@ -73,15 +72,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             ((System.ComponentModel.ISupportInitialize)(this.glModelos.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit2View)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ctlEncabezadoAgregarInstrumento
-            // 
-            this.ctlEncabezadoAgregarInstrumento.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctlEncabezadoAgregarInstrumento.Location = new System.Drawing.Point(0, 0);
-            this.ctlEncabezadoAgregarInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.ctlEncabezadoAgregarInstrumento.Name = "ctlEncabezadoAgregarInstrumento";
-            this.ctlEncabezadoAgregarInstrumento.Size = new System.Drawing.Size(756, 43);
-            this.ctlEncabezadoAgregarInstrumento.TabIndex = 10;
             // 
             // labelControl20
             // 
@@ -370,7 +360,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             this.glModelos.Properties.PopupView = this.gridLookUpEdit2View;
             this.glModelos.Size = new System.Drawing.Size(211, 26);
             this.glModelos.TabIndex = 125;
-            this.glModelos.EditValueChanged += new System.EventHandler(this.glModelos_EditValueChanged);
             // 
             // gridLookUpEdit2View
             // 
@@ -456,8 +445,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             this.Controls.Add(this.labelControl18);
             this.Controls.Add(this.btnGuardarInstrumento);
             this.Controls.Add(this.txtDescripcionInstrumento);
-            this.Controls.Add(this.ctlEncabezadoAgregarInstrumento);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "frmNuevoInstrumento";
@@ -478,8 +466,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         }
 
         #endregion
-
-        private Componentes.Encabezados.ctlEncabezadoPantalla ctlEncabezadoAgregarInstrumento;
         private DevExpress.XtraEditors.LabelControl labelControl20;
         private DevExpress.XtraEditors.TextEdit txtEmpresaInstrumento;
         private FontAwesome.Sharp.IconButton btnAbrirPopupEmpresaPorInstrumento;

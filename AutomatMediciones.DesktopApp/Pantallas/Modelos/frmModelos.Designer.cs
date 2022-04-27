@@ -200,6 +200,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.Controls.Add(this.gcModelos);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmModelos";

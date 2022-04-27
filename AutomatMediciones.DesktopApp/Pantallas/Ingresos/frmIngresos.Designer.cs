@@ -103,7 +103,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(5, 4);
+            this.labelControl1.Location = new System.Drawing.Point(40, 2);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(135, 17);
@@ -114,7 +114,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(5, 59);
+            this.labelControl2.Location = new System.Drawing.Point(40, 57);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(136, 17);
@@ -125,7 +125,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(5, 110);
+            this.labelControl3.Location = new System.Drawing.Point(40, 108);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(121, 17);
@@ -134,7 +134,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             // glCorreoElectronico
             // 
-            this.glCorreoElectronico.Location = new System.Drawing.Point(5, 130);
+            this.glCorreoElectronico.Location = new System.Drawing.Point(40, 128);
             this.glCorreoElectronico.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.glCorreoElectronico.Name = "glCorreoElectronico";
             this.glCorreoElectronico.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -182,10 +182,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.btnBuscarEmpresa.IconColor = System.Drawing.Color.Black;
             this.btnBuscarEmpresa.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnBuscarEmpresa.IconSize = 30;
-            this.btnBuscarEmpresa.Location = new System.Drawing.Point(744, 23);
+            this.btnBuscarEmpresa.Location = new System.Drawing.Point(0, 23);
             this.btnBuscarEmpresa.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnBuscarEmpresa.Name = "btnBuscarEmpresa";
-            this.btnBuscarEmpresa.Size = new System.Drawing.Size(43, 32);
+            this.btnBuscarEmpresa.Size = new System.Drawing.Size(37, 32);
             this.btnBuscarEmpresa.TabIndex = 7;
             this.btnBuscarEmpresa.UseVisualStyleBackColor = true;
             this.btnBuscarEmpresa.Click += new System.EventHandler(this.btnBuscarEmpresa_Click);
@@ -194,7 +194,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // glContacto
             // 
             this.glContacto.EditValue = "";
-            this.glContacto.Location = new System.Drawing.Point(5, 80);
+            this.glContacto.Location = new System.Drawing.Point(40, 78);
             this.glContacto.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.glContacto.Name = "glContacto";
             this.glContacto.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -248,7 +248,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // txtEmpresa
             // 
             this.txtEmpresa.EditValue = "";
-            this.txtEmpresa.Location = new System.Drawing.Point(5, 25);
+            this.txtEmpresa.Location = new System.Drawing.Point(40, 23);
             this.txtEmpresa.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtEmpresa.Name = "txtEmpresa";
             this.txtEmpresa.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -639,6 +639,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "frmIngresos";

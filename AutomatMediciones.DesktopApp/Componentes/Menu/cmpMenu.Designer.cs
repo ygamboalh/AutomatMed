@@ -180,7 +180,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.panel4.Location = new System.Drawing.Point(0, 96);
             this.panel4.Name = "panel4";
             this.panel4.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.panel4.Size = new System.Drawing.Size(320, 48);
+            this.panel4.Size = new System.Drawing.Size(320, 47);
             this.panel4.TabIndex = 6;
             // 
             // btnTiposDeInstrumetnos
@@ -197,7 +197,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.btnTiposDeInstrumetnos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTiposDeInstrumetnos.Location = new System.Drawing.Point(0, 0);
             this.btnTiposDeInstrumetnos.Name = "btnTiposDeInstrumetnos";
-            this.btnTiposDeInstrumetnos.Size = new System.Drawing.Size(320, 43);
+            this.btnTiposDeInstrumetnos.Size = new System.Drawing.Size(320, 42);
             this.btnTiposDeInstrumetnos.TabIndex = 3;
             this.btnTiposDeInstrumetnos.Text = "Configuraciones";
             this.btnTiposDeInstrumetnos.UseVisualStyleBackColor = false;

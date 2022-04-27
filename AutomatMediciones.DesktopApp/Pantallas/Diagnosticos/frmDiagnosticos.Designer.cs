@@ -310,6 +310,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.Controls.Add(this.gcInstrumentos);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "frmDiagnosticos";

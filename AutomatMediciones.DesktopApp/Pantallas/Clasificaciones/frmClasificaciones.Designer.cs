@@ -59,7 +59,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnNuevaClasificacion = new FontAwesome.Sharp.IconButton();
-            this.ctlEncabezadoPantalla3 = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotal = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.gcClasificaciones)).BeginInit();
@@ -75,7 +74,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             // 
             this.gcClasificaciones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcClasificaciones.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.gcClasificaciones.Location = new System.Drawing.Point(0, 92);
+            this.gcClasificaciones.Location = new System.Drawing.Point(0, 53);
             this.gcClasificaciones.MainView = this.gvClasificaciones;
             this.gcClasificaciones.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.gcClasificaciones.Name = "gcClasificaciones";
@@ -84,7 +83,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             this.cmdEditar,
             this.repositoryItemButtonEdit1,
             this.cmdInactivar});
-            this.gcClasificaciones.Size = new System.Drawing.Size(964, 528);
+            this.gcClasificaciones.Size = new System.Drawing.Size(964, 567);
             this.gcClasificaciones.TabIndex = 32;
             this.gcClasificaciones.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvClasificaciones});
@@ -165,6 +164,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             // 
             // colEditar
             // 
+            this.colEditar.Caption = "Editar";
             this.colEditar.ColumnEdit = this.cmdEditar;
             this.colEditar.MinWidth = 24;
             this.colEditar.Name = "colEditar";
@@ -183,6 +183,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             // 
             // colInactivar
             // 
+            this.colInactivar.Caption = "Desactivar";
             this.colInactivar.ColumnEdit = this.cmdInactivar;
             this.colInactivar.MinWidth = 25;
             this.colInactivar.Name = "colInactivar";
@@ -212,7 +213,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             // 
             this.panel1.Controls.Add(this.btnNuevaClasificacion);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 39);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(8, 7, 0, 7);
@@ -239,15 +240,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             this.btnNuevaClasificacion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnNuevaClasificacion.UseVisualStyleBackColor = true;
             this.btnNuevaClasificacion.Click += new System.EventHandler(this.btnNuevaClasificacion_Click);
-            // 
-            // ctlEncabezadoPantalla3
-            // 
-            this.ctlEncabezadoPantalla3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctlEncabezadoPantalla3.Location = new System.Drawing.Point(0, 0);
-            this.ctlEncabezadoPantalla3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.ctlEncabezadoPantalla3.Name = "ctlEncabezadoPantalla3";
-            this.ctlEncabezadoPantalla3.Size = new System.Drawing.Size(964, 39);
-            this.ctlEncabezadoPantalla3.TabIndex = 35;
             // 
             // panel2
             // 
@@ -279,8 +271,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             this.ClientSize = new System.Drawing.Size(964, 647);
             this.Controls.Add(this.gcClasificaciones);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.ctlEncabezadoPantalla3);
             this.Controls.Add(this.panel2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IconOptions.ShowIcon = false;
             this.Name = "frmClasificaciones";
             this.Text = "Clasificaciones de Instrumentos";
@@ -309,7 +301,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit cmdEditar;
         private System.Windows.Forms.Panel panel1;
         private FontAwesome.Sharp.IconButton btnNuevaClasificacion;
-        private Componentes.Encabezados.ctlEncabezadoPantalla ctlEncabezadoPantalla3;
         private System.Windows.Forms.Panel panel2;
         private DevExpress.XtraEditors.LabelControl lblTotal;
         private DevExpress.XtraGrid.Columns.GridColumn colPeriodoCalibracion;

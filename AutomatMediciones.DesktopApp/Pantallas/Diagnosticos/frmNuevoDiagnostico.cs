@@ -105,11 +105,22 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
 
         private void GuardarDiagnostico()
         {
+            if (memoDiagnostico.Text.Length == 0)
+            {
+                Notificaciones.MensajeAdvertencia("¡Es necesario que ingrese un diagnóstico!");
+                return;
+            }
+
+            if (usuarioSeleccionado == null)
+            {
+                Notificaciones.MensajeAdvertencia("¡Es necesario que seleccione un responsable!");
+                return;
+            }
 
             IngresoInstrumento.Comentarios = memoComentarios.Text;
             IngresoInstrumento.Diagnostico = memoDiagnostico.Text;
             IngresoInstrumento.EstadoId = estadoSeleccionado == null ? IngresoInstrumento.EstadoId : estadoSeleccionado.EstadoId;
-            IngresoInstrumento.ResponsableId = usuarioSeleccionado == null ? IngresoInstrumento.ResponsableId : usuarioSeleccionado.UsuarioId;
+            IngresoInstrumento.ResponsableId = usuarioSeleccionado.UsuarioId;
             IngresoInstrumento.TiempoConsumido = new TimeSpan(v_hora, v_minutos, v_segundos);
             IngresoInstrumento.FechaFin = DateTime.Now;
 

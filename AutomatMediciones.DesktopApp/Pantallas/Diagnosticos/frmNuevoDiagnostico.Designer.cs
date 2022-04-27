@@ -108,9 +108,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.labelControl9.Location = new System.Drawing.Point(47, 364);
             this.labelControl9.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(69, 17);
+            this.labelControl9.Size = new System.Drawing.Size(72, 17);
             this.labelControl9.TabIndex = 165;
-            this.labelControl9.Text = "Diagnóstico";
+            this.labelControl9.Text = "Diagnóstico:";
             // 
             // memoComentarios
             // 
@@ -127,9 +127,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.labelControl7.Location = new System.Drawing.Point(46, 264);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(74, 17);
+            this.labelControl7.Size = new System.Drawing.Size(147, 17);
             this.labelControl7.TabIndex = 161;
-            this.labelControl7.Text = "Comentarios";
+            this.labelControl7.Text = "Comentarios Adicionales:";
             // 
             // labelControl8
             // 
@@ -171,9 +171,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.labelControl3.Location = new System.Drawing.Point(47, 46);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(175, 20);
+            this.labelControl3.Size = new System.Drawing.Size(262, 20);
             this.labelControl3.TabIndex = 153;
-            this.labelControl3.Text = "Instrumento seleccionado";
+            this.labelControl3.Text = "Resumen de Instrumento seleccionado";
             // 
             // labelControl2
             // 
@@ -182,9 +182,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.labelControl2.Location = new System.Drawing.Point(489, 81);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(58, 17);
+            this.labelControl2.Size = new System.Drawing.Size(49, 17);
             this.labelControl2.TabIndex = 151;
-            this.labelControl2.Text = "Modelo *:";
+            this.labelControl2.Text = "Modelo:";
             // 
             // labelControl1
             // 
@@ -193,9 +193,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.labelControl1.Location = new System.Drawing.Point(271, 81);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(49, 17);
+            this.labelControl1.Size = new System.Drawing.Size(40, 17);
             this.labelControl1.TabIndex = 149;
-            this.labelControl1.Text = "Marca *:";
+            this.labelControl1.Text = "Marca:";
             // 
             // labelControl10
             // 
@@ -204,16 +204,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.labelControl10.Location = new System.Drawing.Point(47, 81);
             this.labelControl10.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(130, 17);
+            this.labelControl10.Size = new System.Drawing.Size(121, 17);
             this.labelControl10.TabIndex = 147;
-            this.labelControl10.Text = "Tipo de Instrumento *:";
+            this.labelControl10.Text = "Tipo de Instrumento:";
             // 
             // txtTipoInstrumento
             // 
             this.txtTipoInstrumento.Location = new System.Drawing.Point(47, 103);
             this.txtTipoInstrumento.Name = "txtTipoInstrumento";
             this.txtTipoInstrumento.Properties.ReadOnly = true;
-            this.txtTipoInstrumento.Properties.UseReadOnlyAppearance = false;
             this.txtTipoInstrumento.Size = new System.Drawing.Size(200, 22);
             this.txtTipoInstrumento.TabIndex = 168;
             // 
@@ -222,7 +221,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.txtMarca.Location = new System.Drawing.Point(271, 103);
             this.txtMarca.Name = "txtMarca";
             this.txtMarca.Properties.ReadOnly = true;
-            this.txtMarca.Properties.UseReadOnlyAppearance = false;
             this.txtMarca.Size = new System.Drawing.Size(200, 22);
             this.txtMarca.TabIndex = 169;
             // 
@@ -231,7 +229,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.txtModelo.Location = new System.Drawing.Point(489, 103);
             this.txtModelo.Name = "txtModelo";
             this.txtModelo.Properties.ReadOnly = true;
-            this.txtModelo.Properties.UseReadOnlyAppearance = false;
             this.txtModelo.Size = new System.Drawing.Size(200, 22);
             this.txtModelo.TabIndex = 170;
             // 
@@ -240,7 +237,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.txtTipoOrdenTrabajo.Location = new System.Drawing.Point(45, 168);
             this.txtTipoOrdenTrabajo.Name = "txtTipoOrdenTrabajo";
             this.txtTipoOrdenTrabajo.Properties.ReadOnly = true;
-            this.txtTipoOrdenTrabajo.Properties.UseReadOnlyAppearance = false;
             this.txtTipoOrdenTrabajo.Size = new System.Drawing.Size(202, 22);
             this.txtTipoOrdenTrabajo.TabIndex = 171;
             // 
@@ -249,7 +245,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.txtPrioridad.Location = new System.Drawing.Point(269, 168);
             this.txtPrioridad.Name = "txtPrioridad";
             this.txtPrioridad.Properties.ReadOnly = true;
-            this.txtPrioridad.Properties.UseReadOnlyAppearance = false;
             this.txtPrioridad.Size = new System.Drawing.Size(107, 22);
             this.txtPrioridad.TabIndex = 172;
             // 
@@ -415,6 +410,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.labelControl10);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IconOptions.ShowIcon = false;
             this.Name = "frmNuevoDiagnostico";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

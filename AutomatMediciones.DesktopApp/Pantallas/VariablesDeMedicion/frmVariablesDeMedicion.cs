@@ -1,4 +1,5 @@
-﻿using AutomatMediciones.DesktopApp.Helpers;
+﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
+using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,6 +8,7 @@ using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
 {
@@ -63,6 +65,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
 
         private void EstablecerNombreYTitulo()
         {
+            ctlEncabezadoPantalla ctlEncabezadoPantalla3 = new ctlEncabezadoPantalla();
+            ctlEncabezadoPantalla3.Parent = this;
+            ctlEncabezadoPantalla3.Height = 43;
+            ctlEncabezadoPantalla3.Dock = DockStyle.Top;
             ctlEncabezadoPantalla3.lblTitulo.Text = "Variables de Medición";
             ctlEncabezadoPantalla3.EstablecerColoresDeFondoYLetra();
         }

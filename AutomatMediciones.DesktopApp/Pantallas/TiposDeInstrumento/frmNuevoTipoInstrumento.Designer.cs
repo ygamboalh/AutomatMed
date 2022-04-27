@@ -29,7 +29,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctlEncabezadoPantalla1 = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
+           
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.txtDescripcion = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -41,15 +41,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             ((System.ComponentModel.ISupportInitialize)(this.txtResumen.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMetodologia.Properties)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ctlEncabezadoPantalla1
-            // 
-            this.ctlEncabezadoPantalla1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctlEncabezadoPantalla1.Location = new System.Drawing.Point(0, 0);
-            this.ctlEncabezadoPantalla1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ctlEncabezadoPantalla1.Name = "ctlEncabezadoPantalla1";
-            this.ctlEncabezadoPantalla1.Size = new System.Drawing.Size(685, 55);
-            this.ctlEncabezadoPantalla1.TabIndex = 0;
+       
             // 
             // labelControl11
             // 
@@ -142,7 +134,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             this.Controls.Add(this.txtResumen);
             this.Controls.Add(this.labelControl11);
             this.Controls.Add(this.txtDescripcion);
-            this.Controls.Add(this.ctlEncabezadoPantalla1);
+           
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmNuevoTipoInstrumento";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -156,7 +148,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
 
         #endregion
 
-        private Componentes.Encabezados.ctlEncabezadoPantalla ctlEncabezadoPantalla1;
+        
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.TextEdit txtDescripcion;
         private DevExpress.XtraEditors.LabelControl labelControl1;

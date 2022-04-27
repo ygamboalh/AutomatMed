@@ -21,7 +21,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         CorreoElectronicoDto correoSeleccionado;
         UsuarioDto UsuarioSeleccionado;
 
-        private readonly ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
+        private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
         private readonly IngresoService _ingresoService;
         private readonly InstrumentoService _instrumentoService;
         private readonly UsuarioService _usuarioService;
@@ -355,6 +355,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
         private void OnInstrumentoAgregado(InstrumentoDto instrumento)
         {
+            ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
+
             if (empresaSeleccionada != null)
             {
                 InstrumentoLista instrumentoLista = new InstrumentoLista

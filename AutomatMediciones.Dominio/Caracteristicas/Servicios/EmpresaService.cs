@@ -17,11 +17,11 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             _tacticaDbContext = tacticaDbContext;
         }
 
-        public Response<List<EmpresaDto>> ObtenerEmpresas()
+        public Response<List<EmpresaDto>> ObtenerEmpresas(string filtro)
         {
             try
             {
-                var empresas = _tacticaDbContext.Empresas.ToList();
+                var empresas = _tacticaDbContext.Empresas.Where(x => x.NombreEmpresa.Contains(filtro)).ToList();
                 var contactos = _tacticaDbContext.Contactos.ToList();
                 var correosElectronicos = _tacticaDbContext.CorreosElectronicos.ToList();
 

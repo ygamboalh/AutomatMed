@@ -29,21 +29,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctlEncabezadoPantalla1 = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.txtDescripcion = new DevExpress.XtraEditors.TextEdit();
             this.btnGuardarModelo = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcion.Properties)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ctlEncabezadoPantalla1
-            // 
-            this.ctlEncabezadoPantalla1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctlEncabezadoPantalla1.Location = new System.Drawing.Point(0, 0);
-            this.ctlEncabezadoPantalla1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.ctlEncabezadoPantalla1.Name = "ctlEncabezadoPantalla1";
-            this.ctlEncabezadoPantalla1.Size = new System.Drawing.Size(652, 42);
-            this.ctlEncabezadoPantalla1.TabIndex = 124;
             // 
             // labelControl11
             // 
@@ -77,10 +67,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.btnGuardarModelo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardarModelo.IconSize = 30;
             this.btnGuardarModelo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardarModelo.Location = new System.Drawing.Point(317, 160);
+            this.btnGuardarModelo.Location = new System.Drawing.Point(361, 160);
             this.btnGuardarModelo.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnGuardarModelo.Name = "btnGuardarModelo";
-            this.btnGuardarModelo.Size = new System.Drawing.Size(301, 52);
+            this.btnGuardarModelo.Size = new System.Drawing.Size(257, 52);
             this.btnGuardarModelo.TabIndex = 127;
             this.btnGuardarModelo.Text = "Guardar Modelo";
             this.btnGuardarModelo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -95,7 +85,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.Controls.Add(this.btnGuardarModelo);
             this.Controls.Add(this.labelControl11);
             this.Controls.Add(this.txtDescripcion);
-            this.Controls.Add(this.ctlEncabezadoPantalla1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmNuevoModelo";
@@ -107,8 +97,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
         }
 
         #endregion
-
-        private Componentes.Encabezados.ctlEncabezadoPantalla ctlEncabezadoPantalla1;
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.TextEdit txtDescripcion;
         private FontAwesome.Sharp.IconButton btnGuardarModelo;

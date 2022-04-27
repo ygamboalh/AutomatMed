@@ -31,7 +31,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
         {
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.txtDescripcion = new DevExpress.XtraEditors.TextEdit();
-            this.ctlEncabezadoPantalla1 = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             this.btnGuardarMarca = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcion.Properties)).BeginInit();
             this.SuspendLayout();
@@ -58,15 +57,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
             this.txtDescripcion.Size = new System.Drawing.Size(604, 30);
             this.txtDescripcion.TabIndex = 122;
             // 
-            // ctlEncabezadoPantalla1
-            // 
-            this.ctlEncabezadoPantalla1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctlEncabezadoPantalla1.Location = new System.Drawing.Point(0, 0);
-            this.ctlEncabezadoPantalla1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.ctlEncabezadoPantalla1.Name = "ctlEncabezadoPantalla1";
-            this.ctlEncabezadoPantalla1.Size = new System.Drawing.Size(642, 48);
-            this.ctlEncabezadoPantalla1.TabIndex = 123;
-            // 
             // btnGuardarMarca
             // 
             this.btnGuardarMarca.FlatAppearance.BorderSize = 0;
@@ -77,12 +67,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
             this.btnGuardarMarca.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardarMarca.IconSize = 30;
             this.btnGuardarMarca.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardarMarca.Location = new System.Drawing.Point(317, 151);
+            this.btnGuardarMarca.Location = new System.Drawing.Point(376, 151);
             this.btnGuardarMarca.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnGuardarMarca.Name = "btnGuardarMarca";
-            this.btnGuardarMarca.Size = new System.Drawing.Size(301, 52);
+            this.btnGuardarMarca.Size = new System.Drawing.Size(242, 52);
             this.btnGuardarMarca.TabIndex = 126;
-            this.btnGuardarMarca.Text = "Guardar Tipo de Instrumento";
+            this.btnGuardarMarca.Text = "Guardar Marca";
             this.btnGuardarMarca.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardarMarca.UseVisualStyleBackColor = true;
             this.btnGuardarMarca.Click += new System.EventHandler(this.btnGuardarMarca_Click);
@@ -93,9 +83,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(642, 260);
             this.Controls.Add(this.btnGuardarMarca);
-            this.Controls.Add(this.ctlEncabezadoPantalla1);
             this.Controls.Add(this.labelControl11);
             this.Controls.Add(this.txtDescripcion);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmNuevaMarca";
@@ -110,7 +100,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
 
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.TextEdit txtDescripcion;
-        private Componentes.Encabezados.ctlEncabezadoPantalla ctlEncabezadoPantalla1;
         private FontAwesome.Sharp.IconButton btnGuardarMarca;
     }
 }

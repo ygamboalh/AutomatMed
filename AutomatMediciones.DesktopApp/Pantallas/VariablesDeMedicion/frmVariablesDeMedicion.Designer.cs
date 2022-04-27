@@ -242,8 +242,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.Controls.Add(this.gcVariablesDeMedicion);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IconOptions.ShowIcon = false;
             this.Name = "frmVariablesDeMedicion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Variables de Medición";
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

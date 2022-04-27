@@ -4,17 +4,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AutomatMediciones.DesktopApp.Helpers
 {
-
     public class CorreoHelper
     {
         private bool RemoteServerCertificateValidationCallback(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certificate, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
         {
-            Console.WriteLine(certificate);
-
             return true;
         }
 
@@ -41,7 +37,7 @@ namespace AutomatMediciones.DesktopApp.Helpers
 
             try
             {
-                message.From = new System.Net.Mail.MailAddress(correoDto.Configuracion.CorreoOrigen);
+                message.From = new MailAddress(correoDto.Configuracion.CorreoOrigen, correoDto.Configuracion.Nombre);
                 message.To.Add(listaDestinatarios);
                 message.Subject = correoDto.Configuracion.Asunto;
                 message.SubjectEncoding = Encoding.UTF8;
@@ -59,6 +55,7 @@ namespace AutomatMediciones.DesktopApp.Helpers
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 return false;
             }
         }

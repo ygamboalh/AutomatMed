@@ -1,4 +1,5 @@
-﻿using AutomatMediciones.DesktopApp.Helpers;
+﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
+using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.DesktopApp.Pantallas.Clasificaciones;
 using AutomatMediciones.DesktopApp.Pantallas.Clasificaciones.Dtos;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
@@ -10,7 +11,7 @@ using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
+using System.Windows.Forms;
 
 namespace AutomatMediciones.DesktopApp.Pantallas
 {
@@ -19,7 +20,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         public delegate void InstrumentoAgregado(InstrumentoDto instrumento);
         public event InstrumentoAgregado OnInstrumentoAgregado;
 
-        private readonly ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
+        private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
         private readonly ClasificacionInstrumentoService _clasificacionInstrumentoService;
         private readonly InstrumentoService _instrumentoService;
         private readonly MarcaService _marcaService;
@@ -55,9 +56,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas
 
         private void EstablecerNombreYTituloPopupAgregarInstrumentos()
         {
-
-            ctlEncabezadoAgregarInstrumento.lblTitulo.Text = "Agregar Instrumento";
-            ctlEncabezadoAgregarInstrumento.EstablecerColoresDeFondoYLetra();
+            ctlEncabezadoPantalla ctlEncabezadoPantalla3 = new ctlEncabezadoPantalla();
+            ctlEncabezadoPantalla3.Parent = this;
+            ctlEncabezadoPantalla3.Height = 43;
+            ctlEncabezadoPantalla3.Dock = DockStyle.Top;
+            ctlEncabezadoPantalla3.lblTitulo.Text = "Agregar Instrumento";
+            ctlEncabezadoPantalla3.EstablecerColoresDeFondoYLetra();
         }
         private void EstablecerColorBotonGuardar()
         {
@@ -120,6 +124,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             PrepararDataSourceClasificaciones(resultado.Data);
         }
 
+
         private void PrepararDataSourceClasificaciones(List<ClasificacionInstrumentoDto> clasificacionInstrumentos)
         {
             clasificaciones.Clear();
@@ -142,9 +147,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas
                 clasificaciones.Add(clasificacionDto);
             });
 
-            marcas = clasificaciones.Select(x => x.Marca).ToList();
-            modelos = clasificaciones.Select(x => x.Modelo).ToList();
-            tiposInstrumentos = clasificaciones.Select(x => x.TipoInstrumento).ToList();
+            tiposInstrumentos = clasificaciones.GroupBy(y => y.TipoInstrumentoId).Select(x => x.First().TipoInstrumento).ToList();
+            marcas = clasificaciones.GroupBy(y => y.MarcaId).Select(x => x.First().Marca).Distinct().ToList();
+            modelos = clasificaciones.GroupBy(y => y.ModeloId).Select(x => x.First().Modelo).Distinct().ToList();
 
             AsignarConfiguracionComboBoxes();
         }
@@ -211,7 +216,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
 
             if (tipoInstrumentoSeleccionado == null || marcaSeleccionada == null || modeloSeleccionado == null)
             {
-                MessageBox.Show("Es necesario que rellene campos obligatorios, para poder continuar.", "Tactica Reparaciones", MessageBoxButton.OK, MessageBoxImage.Error);
+                Notificaciones.MensajeAdvertencia("Es necesario que rellene campos obligatorios, para poder continuar.");
                 return false;
             }
 
@@ -221,7 +226,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas
 
             if (clasificacionSegunFiltrosSeleccionados == null)
             {
-                MessageBox.Show("No se pudo encontrar una clasificación con el tipo de instrumento, marca y modelo seleccionados.", "Tactica Reparaciones", MessageBoxButton.OK, MessageBoxImage.Error);
+                Notificaciones.MensajeAdvertencia("No se pudo encontrar una clasificación con el tipo de instrumento, marca y modelo seleccionados.");
+
                 return false;
             }
 
@@ -255,11 +261,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas
                 modelos = clasificaciones.Where(x => x.MarcaId.Equals(marcaSeleccionada.MarcaId)).Select(x => x.Modelo).ToList();
                 glModelos.Properties.DataSource = modelos;
             }
-        }
-
-        private void glModelos_EditValueChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btnAgregarClasificacion_Click(object sender, EventArgs e)
@@ -304,6 +305,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
 
         private void OnClasificacionInstrumentoAgregada(ClasificacionInstrumentoDto tipoInstrumento)
         {
+            serviceProvider = Program.services.BuildServiceProvider();
             CargarClasificacionesDeInstrumentos();
             this.Focus();
         }

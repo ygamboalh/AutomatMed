@@ -1,9 +1,11 @@
-﻿using AutomatMediciones.DesktopApp.Helpers;
+﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
+using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace AutomatMediciones.DesktopApp.Pantallas
 {
@@ -20,15 +22,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             InitializeComponent();
 
             _empresaService = empresaService;
+            txtBusqueda.Select();
 
-            CargarDatosDeEmpresas();
+
             EstablecerNombreYTituloPopupEmpresas();
 
         }
 
         private void CargarDatosDeEmpresas()
         {
-            var resultado = _empresaService.ObtenerEmpresas();
+            var resultado = _empresaService.ObtenerEmpresas(txtBusqueda.Text);
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
             gcEmpresas.DataSource = resultado.Data;
@@ -39,8 +42,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         private void EstablecerNombreYTituloPopupEmpresas()
         {
             this.Text = "";
-            ctlEncabezadoPopup.lblTitulo.Text = "Listado de Empresas";
-            ctlEncabezadoPopup.EstablecerColoresDeFondoYLetra();
+
+            ctlEncabezadoPantalla ctlEncabezadoPantalla3 = new ctlEncabezadoPantalla();
+            ctlEncabezadoPantalla3.Parent = this;
+            ctlEncabezadoPantalla3.Height = 43;
+            ctlEncabezadoPantalla3.Dock = DockStyle.Top;
+            ctlEncabezadoPantalla3.lblTitulo.Text = "Listado de Empresas";
+            ctlEncabezadoPantalla3.EstablecerColoresDeFondoYLetra();
         }
 
         private void gcEmpresas_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
@@ -62,6 +70,19 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             OnSeleccionaEmpresa?.Invoke(empresaSeleccionada);
             this.Close();
 
+        }
+
+        private void btnBuscarEmpresa_Click(object sender, EventArgs e)
+        {
+            CargarDatosDeEmpresas();
+        }
+
+        private void txtBusqueda_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                CargarDatosDeEmpresas();
+            }
         }
     }
 }

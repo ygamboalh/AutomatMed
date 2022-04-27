@@ -85,7 +85,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
                     ResponsableId = y.ResponsableId,
                     FechaEntregaRequerida = y.FechaEntregaRequerida,
                     NumeroServicioTecnico = y.NumeroServicioTecnico,
-                    ClasificacionConcatenada = $"{y.Instrumento.Clasificacion.TipoInstrumento.Descripcion}/{y.Instrumento.Clasificacion.Marca.Descripcion}/{y.Instrumento.Clasificacion.Modelo.Descripcion}"
+                    ClasificacionConcatenada = $"{y.Instrumento.Clasificacion.TipoInstrumento.Descripcion} / {y.Instrumento.Clasificacion.Marca.Descripcion} / {y.Instrumento.Clasificacion.Modelo.Descripcion}"
                 }).OrderBy(y => y.Prioridad).ToList();
 
                 gcInstrumentos.DataSource = ingresosInstrumentos;
@@ -133,7 +133,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
                     ResponsableId = y.ResponsableId,
                     FechaEntregaRequerida = y.FechaEntregaRequerida,
                     NumeroServicioTecnico = y.NumeroServicioTecnico,
-                    ClasificacionConcatenada = $"{y.Instrumento.Clasificacion.TipoInstrumento.Descripcion}/{y.Instrumento.Clasificacion.Marca.Descripcion}/{y.Instrumento.Clasificacion.Modelo.Descripcion}"
+                    ClasificacionConcatenada = $"{y.Instrumento.Clasificacion.TipoInstrumento.Descripcion} / {y.Instrumento.Clasificacion.Marca.Descripcion} / {y.Instrumento.Clasificacion.Modelo.Descripcion}"
                 }).OrderBy(y => y.Prioridad).ToList();
 
                 gcInstrumentos.DataSource = ingresosInstrumentos;

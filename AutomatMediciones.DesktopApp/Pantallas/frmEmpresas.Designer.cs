@@ -29,25 +29,20 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctlEncabezadoPopup = new AutomatMediciones.DesktopApp.Componentes.Encabezados.ctlEncabezadoPantalla();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.gcEmpresas = new DevExpress.XtraGrid.GridControl();
             this.gvEmpresas = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colNombreEmpresa = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEmpresaId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lblTotalRegistros = new DevExpress.XtraEditors.LabelControl();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.txtBusqueda = new DevExpress.XtraEditors.TextEdit();
+            this.btnBuscarEmpresa = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.gcEmpresas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvEmpresas)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBusqueda.Properties)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ctlEncabezadoPopup
-            // 
-            this.ctlEncabezadoPopup.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ctlEncabezadoPopup.Location = new System.Drawing.Point(10, 10);
-            this.ctlEncabezadoPopup.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.ctlEncabezadoPopup.Name = "ctlEncabezadoPopup";
-            this.ctlEncabezadoPopup.Size = new System.Drawing.Size(832, 43);
-            this.ctlEncabezadoPopup.TabIndex = 10;
             // 
             // labelControl4
             // 
@@ -55,7 +50,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             this.labelControl4.Appearance.Options.UseFont = true;
             this.labelControl4.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.labelControl4.Location = new System.Drawing.Point(10, 53);
+            this.labelControl4.Location = new System.Drawing.Point(10, 59);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(832, 38);
             this.labelControl4.TabIndex = 11;
@@ -65,11 +60,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             // gcEmpresas
             // 
             this.gcEmpresas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcEmpresas.Location = new System.Drawing.Point(10, 91);
+            this.gcEmpresas.Location = new System.Drawing.Point(10, 97);
             this.gcEmpresas.LookAndFeel.UseDefaultLookAndFeel = false;
             this.gcEmpresas.MainView = this.gvEmpresas;
             this.gcEmpresas.Name = "gcEmpresas";
-            this.gcEmpresas.Size = new System.Drawing.Size(832, 471);
+            this.gcEmpresas.Size = new System.Drawing.Size(832, 465);
             this.gcEmpresas.TabIndex = 12;
             this.gcEmpresas.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvEmpresas});
@@ -126,34 +121,79 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             this.lblTotalRegistros.Size = new System.Drawing.Size(0, 23);
             this.lblTotalRegistros.TabIndex = 13;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.txtBusqueda);
+            this.panel1.Controls.Add(this.btnBuscarEmpresa);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(10, 10);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(0, 8, 0, 0);
+            this.panel1.Size = new System.Drawing.Size(832, 49);
+            this.panel1.TabIndex = 128;
+            // 
+            // txtBusqueda
+            // 
+            this.txtBusqueda.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBusqueda.EditValue = "";
+            this.txtBusqueda.Location = new System.Drawing.Point(0, 8);
+            this.txtBusqueda.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txtBusqueda.Name = "txtBusqueda";
+            this.txtBusqueda.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtBusqueda.Properties.Appearance.Options.UseFont = true;
+            this.txtBusqueda.Properties.AutoHeight = false;
+            this.txtBusqueda.Size = new System.Drawing.Size(789, 41);
+            this.txtBusqueda.TabIndex = 129;
+            this.txtBusqueda.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBusqueda_KeyUp);
+            // 
+            // btnBuscarEmpresa
+            // 
+            this.btnBuscarEmpresa.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnBuscarEmpresa.FlatAppearance.BorderSize = 0;
+            this.btnBuscarEmpresa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscarEmpresa.IconChar = FontAwesome.Sharp.IconChar.Search;
+            this.btnBuscarEmpresa.IconColor = System.Drawing.Color.Black;
+            this.btnBuscarEmpresa.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnBuscarEmpresa.IconSize = 30;
+            this.btnBuscarEmpresa.Location = new System.Drawing.Point(789, 8);
+            this.btnBuscarEmpresa.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnBuscarEmpresa.Name = "btnBuscarEmpresa";
+            this.btnBuscarEmpresa.Size = new System.Drawing.Size(43, 41);
+            this.btnBuscarEmpresa.TabIndex = 128;
+            this.btnBuscarEmpresa.UseVisualStyleBackColor = true;
+            this.btnBuscarEmpresa.Click += new System.EventHandler(this.btnBuscarEmpresa_Click);
+            // 
             // frmEmpresas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(852, 595);
             this.Controls.Add(this.gcEmpresas);
-            this.Controls.Add(this.lblTotalRegistros);
             this.Controls.Add(this.labelControl4);
-            this.Controls.Add(this.ctlEncabezadoPopup);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.lblTotalRegistros);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmEmpresas";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.gcEmpresas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvEmpresas)).EndInit();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtBusqueda.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private Componentes.Encabezados.ctlEncabezadoPantalla ctlEncabezadoPopup;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraGrid.GridControl gcEmpresas;
         private DevExpress.XtraGrid.Views.Grid.GridView gvEmpresas;
         private DevExpress.XtraGrid.Columns.GridColumn colNombreEmpresa;
         private DevExpress.XtraGrid.Columns.GridColumn colEmpresaId;
         private DevExpress.XtraEditors.LabelControl lblTotalRegistros;
+        private System.Windows.Forms.Panel panel1;
+        private FontAwesome.Sharp.IconButton btnBuscarEmpresa;
+        private DevExpress.XtraEditors.TextEdit txtBusqueda;
     }
 }
