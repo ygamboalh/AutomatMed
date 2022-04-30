@@ -1,7 +1,10 @@
 ﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
 using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos.Dtos;
+using AutomatMediciones.DesktopApp.Reportes;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
+using DevExpress.XtraReports.UI;
+using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
@@ -30,7 +33,24 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             CargarIngresos();
 
             btnIniciarDiagnostico.Click += btnIniciarDiagnosticoClick;
+            btnVerReporteDeIngreso.Click += btnVerReporteIngresoClick;
 
+        }
+
+        private void btnVerReporteIngresoClick(object sender, EventArgs e)
+        {
+            var diagnosticoSeleccionado = gvInstrumentos.GetFocusedRow() as IngresoInstrumento;
+            if (diagnosticoSeleccionado == null) return;
+
+            SplashScreenManager.ShowForm(typeof(frmSaving));
+
+            rptIngreso rptIngreso = new rptIngreso();
+            rptIngreso.objectDataSource1.DataSource = diagnosticoSeleccionado.Ingreso;
+            rptIngreso.DisplayName = $"Ingreso #{diagnosticoSeleccionado.Ingreso.IngresoId}";
+            ReportPrintTool printTool = new ReportPrintTool(rptIngreso);
+            printTool.ShowRibbonPreview();
+
+            SplashScreenManager.CloseForm();
         }
 
         private void btnIniciarDiagnosticoClick(object sender, EventArgs e)

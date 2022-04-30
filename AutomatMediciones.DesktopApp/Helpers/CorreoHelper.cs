@@ -1,5 +1,6 @@
 ﻿using AutomatMediciones.DesktopApp.Pantallas.Ingresos.Dtos;
 using System;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -9,7 +10,10 @@ namespace AutomatMediciones.DesktopApp.Helpers
 {
     public class CorreoHelper
     {
-        private bool RemoteServerCertificateValidationCallback(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certificate, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
+        private bool RemoteServerCertificateValidationCallback(object sender,
+                                                               System.Security.Cryptography.X509Certificates.X509Certificate certificate,
+                                                               System.Security.Cryptography.X509Certificates.X509Chain chain,
+                                                               System.Net.Security.SslPolicyErrors sslPolicyErrors)
         {
             return true;
         }
@@ -49,6 +53,18 @@ namespace AutomatMediciones.DesktopApp.Helpers
                 if (listaDestinatariosCopia.Any()) message.CC.Add(listaDestinatariosCopia);
 
                 server.Host = correoDto.Configuracion.Servidor;
+
+                if (correoDto.Adjuntos != null)
+                {
+                    foreach (var item in correoDto.Adjuntos)
+                    {
+                        Stream archivo = item.Value;
+                        string nombre = item.Key;
+
+                        archivo.Seek(0, SeekOrigin.Begin);
+                        message.Attachments.Add(new Attachment(archivo, nombre, correoDto.AdjuntoMediaType));
+                    }
+                }
 
                 server.Send(message);
                 return true;

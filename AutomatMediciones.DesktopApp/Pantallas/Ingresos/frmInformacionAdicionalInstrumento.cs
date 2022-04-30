@@ -1,10 +1,12 @@
-﻿using AutomatMediciones.DesktopApp.Helpers;
+﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
+using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.DesktopApp.Pantallas.Ingresos.Dtos;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
+using System.Windows.Forms;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 {
@@ -31,8 +33,22 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             tipoTrabajoSeleccionado = new TipoTrabajoDto();
 
             EstablecerColorBotonGuardar();
+            EstablecerNombreYTituloDePantalla();
 
             CargarDatosTiposDeTrabajo();
+        }
+
+        private void EstablecerNombreYTituloDePantalla()
+        {
+            string titulo = "";
+            this.Text = titulo;
+
+            ctlEncabezadoPantalla ctlEncabezadoPantalla3 = new ctlEncabezadoPantalla();
+            ctlEncabezadoPantalla3.Parent = this;
+            ctlEncabezadoPantalla3.Height = 43;
+            ctlEncabezadoPantalla3.Dock = DockStyle.Top;
+            ctlEncabezadoPantalla3.lblTitulo.Text = "Información de Ingreso para Instrumento";
+            ctlEncabezadoPantalla3.EstablecerColoresDeFondoYLetra();
         }
 
         private void CargarDatosTiposDeTrabajo()

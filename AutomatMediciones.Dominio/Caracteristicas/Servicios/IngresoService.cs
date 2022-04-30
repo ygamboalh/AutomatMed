@@ -101,7 +101,11 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 _AutomatMedicionesDbContext.SaveChanges();
                 _AutomatMedicionesDbContext.Database.CommitTransaction();
 
-                return Response<IngresoDto>.Ok("¡El ingreso se guardó exitosamente!", ingresoDto);
+                var ingresoRegistrado = _AutomatMedicionesDbContext.Ingresos.Include(x => x.IngresosInstrumentos)
+                                                                  .Include(x => x.Responsable)
+                                                                  .FirstOrDefault(x => x.IngresoId == ingreso.IngresoId);
+
+                return Response<IngresoDto>.Ok("¡El ingreso se guardó exitosamente!", _mapper.Map<IngresoDto>(ingresoRegistrado));
             }
             catch (Exception exc)
             {

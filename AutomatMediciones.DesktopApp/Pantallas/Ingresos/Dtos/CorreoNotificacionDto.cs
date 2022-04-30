@@ -1,5 +1,6 @@
 ﻿using AutomatMediciones.Libs.Dtos;
 using System.Collections.Generic;
+using System.IO;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos.Dtos
 {
@@ -12,5 +13,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos.Dtos
         public string NombreDestinatario { get; set; }
         public string NombreEmpresa { get; set; }
         public int IngresoId { get; set; }
+        public Dictionary<string, Stream>? Adjuntos { get; set; }
+        public string AdjuntoMediaType { get; set; }
     }
 }

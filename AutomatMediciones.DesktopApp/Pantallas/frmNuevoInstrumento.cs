@@ -166,6 +166,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
                     return false;
                 }
 
+                NuevoInstrumento = resultado.Data;
                 return true;
             }
             catch (Exception exc)

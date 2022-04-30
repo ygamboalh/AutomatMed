@@ -54,6 +54,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
 
         private void PrecargarDatos()
         {
+            usuarioSeleccionado = IngresoInstrumento.Ingreso.Responsable;
             txtMarca.Text = IngresoInstrumento.Instrumento.Clasificacion.Marca.Descripcion;
             txtModelo.Text = IngresoInstrumento.Instrumento.Clasificacion.Modelo.Descripcion;
             txtTipoInstrumento.Text = IngresoInstrumento.Instrumento.Clasificacion.TipoInstrumento.Descripcion;
@@ -64,6 +65,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             memoDiagnostico.Text = IngresoInstrumento.Diagnostico;
             glUsuariosResponsables.EditValue = IngresoInstrumento.ResponsableId;
             IngresoInstrumento.FechaInicio = IngresoInstrumento.FechaInicio == null ? DateTime.Now : IngresoInstrumento.FechaInicio;
+
 
             if (IngresoInstrumento.TiempoConsumido == null)
             {

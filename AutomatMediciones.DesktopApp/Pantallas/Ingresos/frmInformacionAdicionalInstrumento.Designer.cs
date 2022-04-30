@@ -55,7 +55,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             // memoComentarios
             // 
-            this.memoComentarios.Location = new System.Drawing.Point(28, 312);
+            this.memoComentarios.Location = new System.Drawing.Point(35, 356);
             this.memoComentarios.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.memoComentarios.Name = "memoComentarios";
             this.memoComentarios.Size = new System.Drawing.Size(742, 175);
@@ -65,7 +65,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(28, 271);
+            this.labelControl7.Location = new System.Drawing.Point(35, 315);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(277, 17);
@@ -82,7 +82,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.btnIngresarInformacionAdicional.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnIngresarInformacionAdicional.IconSize = 30;
             this.btnIngresarInformacionAdicional.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnIngresarInformacionAdicional.Location = new System.Drawing.Point(443, 521);
+            this.btnIngresarInformacionAdicional.Location = new System.Drawing.Point(450, 565);
             this.btnIngresarInformacionAdicional.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnIngresarInformacionAdicional.Name = "btnIngresarInformacionAdicional";
             this.btnIngresarInformacionAdicional.Size = new System.Drawing.Size(327, 52);
@@ -96,7 +96,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(28, 25);
+            this.labelControl6.Location = new System.Drawing.Point(35, 69);
             this.labelControl6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(106, 17);
@@ -105,7 +105,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             // glTiposTrabajo
             // 
-            this.glTiposTrabajo.Location = new System.Drawing.Point(28, 46);
+            this.glTiposTrabajo.Location = new System.Drawing.Point(35, 90);
             this.glTiposTrabajo.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.glTiposTrabajo.Name = "glTiposTrabajo";
             this.glTiposTrabajo.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -150,7 +150,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Location = new System.Drawing.Point(28, 163);
+            this.labelControl8.Location = new System.Drawing.Point(35, 207);
             this.labelControl8.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(66, 17);
@@ -160,7 +160,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // trackBarControl1
             // 
             this.trackBarControl1.EditValue = 1;
-            this.trackBarControl1.Location = new System.Drawing.Point(28, 197);
+            this.trackBarControl1.Location = new System.Drawing.Point(35, 241);
             this.trackBarControl1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.trackBarControl1.Name = "trackBarControl1";
             this.trackBarControl1.Properties.AutoSize = false;
@@ -193,7 +193,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(28, 93);
+            this.labelControl1.Location = new System.Drawing.Point(35, 137);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(149, 17);
@@ -202,7 +202,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             // dateFechaEntregaRequerida
             // 
-            this.dateFechaEntregaRequerida.Location = new System.Drawing.Point(28, 115);
+            this.dateFechaEntregaRequerida.Location = new System.Drawing.Point(35, 159);
             this.dateFechaEntregaRequerida.Name = "dateFechaEntregaRequerida";
             this.dateFechaEntregaRequerida.Size = new System.Drawing.Size(438, 23);
             this.dateFechaEntregaRequerida.TabIndex = 33;
@@ -211,7 +211,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(803, 595);
+            this.ClientSize = new System.Drawing.Size(803, 634);
             this.Controls.Add(this.dateFechaEntregaRequerida);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.labelControl8);

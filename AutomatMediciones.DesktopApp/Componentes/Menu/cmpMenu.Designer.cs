@@ -125,7 +125,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.cmdIngresos.Name = "cmdIngresos";
             this.cmdIngresos.Size = new System.Drawing.Size(320, 43);
             this.cmdIngresos.TabIndex = 3;
-            this.cmdIngresos.Text = "Ingresos";
+            this.cmdIngresos.Text = "Creación de Ingreso";
             this.cmdIngresos.UseVisualStyleBackColor = false;
             this.cmdIngresos.Click += new System.EventHandler(this.cmdIngresos_Click);
             // 

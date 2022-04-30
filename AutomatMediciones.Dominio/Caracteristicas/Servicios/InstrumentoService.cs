@@ -57,7 +57,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
-        public Response<bool> RegistrarInstrumento(InstrumentoDto instrumentoDto)
+        public Response<InstrumentoDto> RegistrarInstrumento(InstrumentoDto instrumentoDto)
         {
             try
             {
@@ -80,17 +80,21 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                 if (!instrumento.EsValido(out string mensaje))
                 {
-                    return Response<bool>.ErrorValidation(mensaje, false);
+                    return Response<InstrumentoDto>.ErrorValidation(mensaje, null);
                 }
 
                 _AutomatMedicionesDbContext.Instrumentos.Add(instrumento);
                 _AutomatMedicionesDbContext.SaveChanges();
 
-                return Response<bool>.Ok("Ok", true);
+                var instrumentoIngresado = _AutomatMedicionesDbContext.Instrumentos.AsQueryable()
+                                                                                   .Include(x => x.Clasificacion)
+                                                                                   .FirstOrDefault(x => x.InstrumentoId == instrumento.InstrumentoId);
+
+                return Response<InstrumentoDto>.Ok("Ok", _mapper.Map<InstrumentoDto>(instrumentoIngresado));
             }
             catch (Exception exc)
             {
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<InstrumentoDto>.Error(MessageException.LanzarExcepcion(exc), null);
             }
         }
     }

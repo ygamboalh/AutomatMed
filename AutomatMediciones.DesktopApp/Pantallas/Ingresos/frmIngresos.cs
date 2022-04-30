@@ -1,6 +1,7 @@
 ﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
 using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.DesktopApp.Pantallas.Ingresos.Dtos;
+using AutomatMediciones.DesktopApp.Reportes;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraSplashScreen;
@@ -9,6 +10,7 @@ using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -355,7 +357,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
         private void OnInstrumentoAgregado(InstrumentoDto instrumento)
         {
-            ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
+            serviceProvider = Program.services.BuildServiceProvider();
 
             if (empresaSeleccionada != null)
             {
@@ -374,15 +376,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                     Garantia = instrumento.Garantia,
                     NombreEmpresa = instrumento.NombreEmpresa,
                     PeriodoCalibracion = instrumento.PeriodoCalibracion,
-                    Seleccionado = false
+                    Seleccionado = false,
+                    ClasificacionConcatenada = $"{instrumento.Clasificacion.TipoInstrumento.Descripcion}/{instrumento.Clasificacion.Marca.Descripcion}/{instrumento.Clasificacion.Modelo.Descripcion}"
                 };
 
 
                 instrumentosDeEmpresa.Add(instrumentoLista);
                 gcInstrumentosDeEmpresa.DataSource = instrumentosDeEmpresa;
                 gcInstrumentosDeEmpresa.RefreshDataSource();
-
-                //ObtenerInstrumentosParaEmpresaSeleccionada();
             }
         }
 
@@ -435,7 +436,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             return true;
         }
 
-        private async void btnGuardarIngreso_Click(object sender, EventArgs e)
+        private void btnGuardarIngreso_Click(object sender, EventArgs e)
         {
             if (!SeLlenaronCamposObligatorios(out string mensaje))
             {
@@ -449,9 +450,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             SplashScreenManager.ShowForm(typeof(frmSaving));
             if (GuardarIngreso())
             {
-
                 var correoHelper = new CorreoHelper();
-
                 if (correoHelper.EnviarCorreo(PrepararCorreo()))
                 {
                     Notificaciones.MensajeConfirmacion("¡El ingreso se ha guardado exitosamente!");
@@ -476,6 +475,17 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 copias.Add(x.Correo);
             });
 
+            rptIngreso reporteIngreso = new rptIngreso();
+            reporteIngreso.objectDataSource1.DataSource = Ingreso;
+            reporteIngreso.DisplayName = $"Ingreso #{Ingreso.IngresoId}.pdf";
+
+
+            MemoryStream reportStream = new MemoryStream();
+            reporteIngreso.ExportToPdf(reportStream);
+
+            var diccionarioAdjuntos = new Dictionary<string, Stream>();
+            diccionarioAdjuntos.Add(reporteIngreso.DisplayName, reportStream);
+
             CorreoNotificacionDto correoNotificacionDto = new CorreoNotificacionDto
             {
                 Body = memoComentarios.Text,
@@ -484,7 +494,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 CorreoDestinatario = correoSeleccionado.Direccion,
                 CopiasEnCorreo = copias,
                 Configuracion = configuracionNotificacion,
-                IngresoId = Ingreso.IngresoId
+                IngresoId = Ingreso.IngresoId,
+                Adjuntos = diccionarioAdjuntos,
+                AdjuntoMediaType = "application/pdf"
             };
 
             return correoNotificacionDto;
@@ -494,6 +506,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         {
             try
             {
+
                 var resultado = _ingresoService.GuardarIngreso(Ingreso);
                 if (resultado.Type != TypeResponse.Ok)
                 {
@@ -501,7 +514,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                     return false;
                 }
 
-                Ingreso.IngresoId = resultado.Data.IngresoId;
+                Ingreso = resultado.Data;
                 return true;
             }
             catch (Exception exc)
