@@ -399,6 +399,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             Ingreso.NombreEmpresa = empresaSeleccionada.NombreEmpresa;
             Ingreso.ContactoId = contactoSeleccionado.ContactoId;
             Ingreso.NombreContacto = contactoSeleccionado.Nombre;
+            Ingreso.ApellidoContacto = contactoSeleccionado.Apellido;
             Ingreso.CorreoElectronicoId = correoSeleccionado.RegistroId;
             Ingreso.DireccionCorreoElectronico = correoSeleccionado.Direccion;
             Ingreso.IngresosInstrumentos = instrumentosSeleccionados;
