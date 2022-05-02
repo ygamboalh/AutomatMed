@@ -55,6 +55,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     EmpresaId = ingresoDto.EmpresaId,
                     NombreEmpresa = ingresoDto.NombreEmpresa,
                     NombreContacto = ingresoDto.NombreContacto,
+                    ApellidoContacto = ingresoDto.ApellidoContacto,
                     ContactoId = ingresoDto.ContactoId,
                     DireccionCorreoElectronico = ingresoDto.DireccionCorreoElectronico,
                     CorreoElectronicoId = ingresoDto.CorreoElectronicoId,

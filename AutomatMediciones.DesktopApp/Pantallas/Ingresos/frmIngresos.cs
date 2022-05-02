@@ -4,6 +4,7 @@ using AutomatMediciones.DesktopApp.Pantallas.Ingresos.Dtos;
 using AutomatMediciones.DesktopApp.Reportes;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
+using DevExpress.XtraReports.UI;
 using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
@@ -325,10 +326,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             glCorreoElectronico.Properties.ValueMember = "RegistroId";
         }
 
-        private void glContacto_Properties_EditValueChanged(object sender, EventArgs e)
+        private void BusquedaCorreo()
         {
             contactoSeleccionado = glContactos.GetFocusedRow() as ContactoDto;
             ObtenerCorreoElectronicoDeContacto();
+        }
+
+        private void glContacto_Properties_EditValueChanged(object sender, EventArgs e)
+        {
+            BusquedaCorreo();
         }
 
         private void LimpiarContactos()
@@ -446,14 +452,22 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             PrepararNuevoIngreso();
 
-
-            SplashScreenManager.ShowForm(typeof(frmSaving));
+            SplashScreenManager.ShowForm(typeof(frmLoadingSave));
             if (GuardarIngreso())
             {
                 var correoHelper = new CorreoHelper();
                 if (correoHelper.EnviarCorreo(PrepararCorreo()))
                 {
                     Notificaciones.MensajeConfirmacion("¡El ingreso se ha guardado exitosamente!");
+
+                    if (Notificaciones.PreguntaConfirmacion("¿Desea imprimir reporte de Ingreso?") == DialogResult.Yes)
+                    {
+                        rptIngreso reporteIngreso = new rptIngreso();
+                        reporteIngreso.objectDataSource1.DataSource = Ingreso;
+                        reporteIngreso.DisplayName = $"Ingreso #{Ingreso.IngresoId}.pdf";
+                        ReportPrintTool printTool = new ReportPrintTool(reporteIngreso);
+                        printTool.ShowRibbonPreview();
+                    }
                 }
                 else
                 {
@@ -478,7 +492,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             rptIngreso reporteIngreso = new rptIngreso();
             reporteIngreso.objectDataSource1.DataSource = Ingreso;
             reporteIngreso.DisplayName = $"Ingreso #{Ingreso.IngresoId}.pdf";
-
 
             MemoryStream reportStream = new MemoryStream();
             reporteIngreso.ExportToPdf(reportStream);
@@ -565,6 +578,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             {
                 Notificaciones.MensajeConfirmacion("El ingreso se ha guardado exitosamente, pero hubo una falla en el momento de enviar la notificación por correo electrónico.");
             }
+        }
+
+        private void glContacto_TextChanged(object sender, EventArgs e)
+        {
+            contactoSeleccionado = empresaSeleccionada.Contactos.FirstOrDefault(x => x.Nombre.Contains(glContacto.Text));
+            ObtenerCorreoElectronicoDeContacto();
         }
     }
 }

@@ -34,6 +34,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                                          {
                                              Cargo = y.Cargo,
                                              Nombre = y.Nombre,
+                                             Apellido = y.Apellido,
                                              EmpresaId = y.EmpresaId,
                                              ContactoId = y.ContactoId,
                                              CorreosElectronicos = correosElectronicos.Where(p => p.ContactoId.Equals(y.ContactoId))

@@ -30,12 +30,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIngresos));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
@@ -47,6 +47,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.glContacto = new DevExpress.XtraEditors.GridLookUpEdit();
             this.glContactos = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colNombreContacto = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colApellido = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCargo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colContactoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtEmpresa = new DevExpress.XtraEditors.TextEdit();
@@ -67,14 +68,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.gcInstrumentosDeEmpresa = new DevExpress.XtraGrid.GridControl();
             this.gvInstrumentosDeEmpresa = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colClasificacion = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNumeroSerie = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSeleccionar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.chkSeleccionarInstrumento = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.colComentario = new DevExpress.XtraGrid.Columns.GridColumn();
             this.memoComentario = new DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit();
             this.colEditarComentario = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEditarComentario = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.colClasificacion = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colNumeroSerie = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblTotalInstrumentos = new DevExpress.XtraEditors.LabelControl();
             this.lblInstrumentosSeleccionados = new DevExpress.XtraEditors.LabelControl();
@@ -210,11 +211,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.glContacto.Properties.EditValueChanged += new System.EventHandler(this.glContacto_Properties_EditValueChanged);
             this.glContacto.Size = new System.Drawing.Size(732, 26);
             this.glContacto.TabIndex = 8;
+            this.glContacto.TextChanged += new System.EventHandler(this.glContacto_TextChanged);
             // 
             // glContactos
             // 
             this.glContactos.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colNombreContacto,
+            this.colApellido,
             this.colCargo,
             this.colContactoId});
             this.glContactos.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
@@ -233,6 +236,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.colNombreContacto.Visible = true;
             this.colNombreContacto.VisibleIndex = 0;
             // 
+            // colApellido
+            // 
+            this.colApellido.Caption = "Apellido";
+            this.colApellido.FieldName = "Apellido";
+            this.colApellido.Name = "colApellido";
+            this.colApellido.Visible = true;
+            this.colApellido.VisibleIndex = 1;
+            // 
             // colCargo
             // 
             this.colCargo.Caption = "Cargo";
@@ -241,7 +252,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.colCargo.OptionsColumn.AllowEdit = false;
             this.colCargo.OptionsColumn.ReadOnly = true;
             this.colCargo.Visible = true;
-            this.colCargo.VisibleIndex = 1;
+            this.colCargo.VisibleIndex = 2;
             // 
             // colContactoId
             // 
@@ -464,6 +475,32 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.colDescripcion.VisibleIndex = 0;
             this.colDescripcion.Width = 328;
             // 
+            // colClasificacion
+            // 
+            this.colClasificacion.Caption = "Clasificación";
+            this.colClasificacion.FieldName = "ClasificacionConcatenada";
+            this.colClasificacion.MinWidth = 24;
+            this.colClasificacion.Name = "colClasificacion";
+            this.colClasificacion.OptionsColumn.AllowEdit = false;
+            this.colClasificacion.OptionsColumn.AllowFocus = false;
+            this.colClasificacion.OptionsColumn.ReadOnly = true;
+            this.colClasificacion.Visible = true;
+            this.colClasificacion.VisibleIndex = 1;
+            this.colClasificacion.Width = 232;
+            // 
+            // colNumeroSerie
+            // 
+            this.colNumeroSerie.Caption = "N° de Serie";
+            this.colNumeroSerie.FieldName = "NumeroSerie";
+            this.colNumeroSerie.MinWidth = 24;
+            this.colNumeroSerie.Name = "colNumeroSerie";
+            this.colNumeroSerie.OptionsColumn.AllowEdit = false;
+            this.colNumeroSerie.OptionsColumn.AllowFocus = false;
+            this.colNumeroSerie.OptionsColumn.ReadOnly = true;
+            this.colNumeroSerie.Visible = true;
+            this.colNumeroSerie.VisibleIndex = 2;
+            this.colNumeroSerie.Width = 210;
+            // 
             // colSeleccionar
             // 
             this.colSeleccionar.Caption = "Seleccionar para dar Ingreso";
@@ -515,37 +552,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // btnEditarComentario
             // 
             this.btnEditarComentario.AutoHeight = false;
-            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
             this.btnEditarComentario.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEditarComentario.Name = "btnEditarComentario";
             this.btnEditarComentario.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            // 
-            // colClasificacion
-            // 
-            this.colClasificacion.Caption = "Clasificación";
-            this.colClasificacion.FieldName = "ClasificacionConcatenada";
-            this.colClasificacion.MinWidth = 24;
-            this.colClasificacion.Name = "colClasificacion";
-            this.colClasificacion.OptionsColumn.AllowEdit = false;
-            this.colClasificacion.OptionsColumn.AllowFocus = false;
-            this.colClasificacion.OptionsColumn.ReadOnly = true;
-            this.colClasificacion.Visible = true;
-            this.colClasificacion.VisibleIndex = 1;
-            this.colClasificacion.Width = 232;
-            // 
-            // colNumeroSerie
-            // 
-            this.colNumeroSerie.Caption = "N° de Serie";
-            this.colNumeroSerie.FieldName = "NumeroSerie";
-            this.colNumeroSerie.MinWidth = 24;
-            this.colNumeroSerie.Name = "colNumeroSerie";
-            this.colNumeroSerie.OptionsColumn.AllowEdit = false;
-            this.colNumeroSerie.OptionsColumn.AllowFocus = false;
-            this.colNumeroSerie.OptionsColumn.ReadOnly = true;
-            this.colNumeroSerie.Visible = true;
-            this.colNumeroSerie.VisibleIndex = 2;
-            this.colNumeroSerie.Width = 210;
             // 
             // panel3
             // 
@@ -744,5 +755,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private DevExpress.XtraGrid.Views.Grid.GridView glUsuariosResponsablesView;
         private DevExpress.XtraGrid.Columns.GridColumn colUsuarioId;
         private DevExpress.XtraGrid.Columns.GridColumn colNombreUsuario;
+        private DevExpress.XtraGrid.Columns.GridColumn colApellido;
     }
 }

@@ -16,6 +16,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
         public DateTime FechaRegistro { get; set; }
         public int UsuarioId { get; set; }
         public bool Activo { get; set; }
+        public string ApellidoContacto { get; set; }
         public Usuario Responsable { get; set; }
         public ICollection<IngresoInstrumento> IngresosInstrumentos { get; set; }
 
