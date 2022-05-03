@@ -260,7 +260,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             // 
             this.xrLabel24.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel24.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[NombreContacto]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[NombreContacto] + \' \' + [ApellidoContacto]")});
             this.xrLabel24.LocationFloat = new DevExpress.Utils.PointFloat(10F, 79.60739F);
             this.xrLabel24.Multiline = true;
             this.xrLabel24.Name = "xrLabel24";

@@ -4,6 +4,7 @@ using AutomatMediciones.DesktopApp.Pantallas;
 using AutomatMediciones.DesktopApp.Pantallas.Clasificaciones;
 using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos;
 using AutomatMediciones.DesktopApp.Pantallas.Ingresos;
+using AutomatMediciones.DesktopApp.Pantallas.Instrumentos;
 using AutomatMediciones.DesktopApp.Pantallas.Marcas;
 using AutomatMediciones.DesktopApp.Pantallas.Modelos;
 using AutomatMediciones.DesktopApp.Pantallas.Principales;
@@ -97,6 +98,8 @@ namespace AutomatMediciones.DesktopApp
             services.AddScoped<frmConfiguracion>();
             services.AddScoped<frmEmpresas>();
             services.AddScoped<frmIngresos>();
+
+            services.AddScoped<frmInstrumentos>();
             services.AddScoped<frmNuevoInstrumento>();
         }
     }

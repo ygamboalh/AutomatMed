@@ -40,11 +40,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
             this.gcClasificaciones = new DevExpress.XtraGrid.GridControl();
             this.gvClasificaciones = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -56,7 +51,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             this.cmdEditar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colInactivar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmdInactivar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnNuevaClasificacion = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -65,7 +59,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             ((System.ComponentModel.ISupportInitialize)(this.gvClasificaciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmdEditar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmdInactivar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -81,7 +74,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             this.gcClasificaciones.Padding = new System.Windows.Forms.Padding(5);
             this.gcClasificaciones.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.cmdEditar,
-            this.repositoryItemButtonEdit1,
             this.cmdInactivar});
             this.gcClasificaciones.Size = new System.Drawing.Size(964, 567);
             this.gcClasificaciones.TabIndex = 32;
@@ -200,15 +192,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             this.cmdInactivar.Name = "cmdInactivar";
             this.cmdInactivar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
-            // repositoryItemButtonEdit1
-            // 
-            this.repositoryItemButtonEdit1.AutoHeight = false;
-            editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
-            this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
-            this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnNuevaClasificacion);
@@ -280,7 +263,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             ((System.ComponentModel.ISupportInitialize)(this.gvClasificaciones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmdEditar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmdInactivar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -297,7 +279,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
         private DevExpress.XtraGrid.Columns.GridColumn colMarca;
         private DevExpress.XtraGrid.Columns.GridColumn colModelo;
         private DevExpress.XtraGrid.Columns.GridColumn colEditar;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit cmdEditar;
         private System.Windows.Forms.Panel panel1;
         private FontAwesome.Sharp.IconButton btnNuevaClasificacion;

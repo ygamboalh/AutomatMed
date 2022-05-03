@@ -1,6 +1,7 @@
 ﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
 using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.DesktopApp.Pantallas.Ingresos.Dtos;
+using AutomatMediciones.DesktopApp.Pantallas.Instrumentos;
 using AutomatMediciones.DesktopApp.Reportes;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
@@ -234,7 +235,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                     NumeroSerie = x.NumeroSerie,
                     PeriodoCalibracion = x.PeriodoCalibracion,
                     Seleccionado = false,
-                    ClasificacionConcatenada = $"{x.Clasificacion.TipoInstrumento.Descripcion}/{x.Clasificacion.Marca.Descripcion}/{x.Clasificacion.Modelo.Descripcion}"
+                    ClasificacionConcatenada = $"{x.Clasificacion.TipoInstrumento.Descripcion} / {x.Clasificacion.Marca.Descripcion} / {x.Clasificacion.Modelo.Descripcion}"
                 };
 
                 instrumentosDeEmpresa.Add(instrumentoLista);
@@ -351,11 +352,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
         private void btnAgregarNuevInstrumento_Click(object sender, EventArgs e)
         {
-            frmNuevoInstrumento frmNuevoInstrumento = new frmNuevoInstrumento(serviceProvider.GetService<ClasificacionInstrumentoService>(),
+            frmNuevoInstrumento frmNuevoInstrumento = new frmNuevoInstrumento(TipoTransaccion.Insertar, serviceProvider.GetService<ClasificacionInstrumentoService>(),
                                                                               serviceProvider.GetService<InstrumentoService>(),
                                                                               serviceProvider.GetService<MarcaService>(),
                                                                               serviceProvider.GetService<ModeloService>(),
-                                                                              serviceProvider.GetService<TipoDeInstrumentoService>());
+                                                                              serviceProvider.GetService<TipoDeInstrumentoService>(),
+                                                                              serviceProvider.GetService<EmpresaService>()
+                                                                              );
             frmNuevoInstrumento.OnEmpresaSeleccionada(empresaSeleccionada);
             frmNuevoInstrumento.OnInstrumentoAgregado += OnInstrumentoAgregado;
             frmNuevoInstrumento.Show();

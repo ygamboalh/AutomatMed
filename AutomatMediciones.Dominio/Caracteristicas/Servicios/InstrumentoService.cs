@@ -27,7 +27,10 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             try
             {
                 var instrumentos = _AutomatMedicionesDbContext.Instrumentos.AsQueryable()
-
+                                                                              .Include(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
+                                                                             .Include(x => x.Clasificacion).ThenInclude(x => x.Marca)
+                                                                             .Include(x => x.Clasificacion).ThenInclude(x => x.Modelo)
+                                                                             .Where(x => x.Activo)
                                                                              .ToList();
                 return Response<List<InstrumentoDto>>.Ok("Ok", _mapper.Map<List<InstrumentoDto>>(instrumentos));
             }
@@ -95,6 +98,58 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             catch (Exception exc)
             {
                 return Response<InstrumentoDto>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
+        public Response<bool> ActualizarInstrumento(InstrumentoDto instrumentoDto)
+        {
+            try
+            {
+                var instrumentoBd = _AutomatMedicionesDbContext.Instrumentos.FirstOrDefault(x => x.InstrumentoId == instrumentoDto.InstrumentoId);
+                if (instrumentoBd == null)
+                {
+                    return Response<bool>.ErrorValidation("El instrumento no fue encontrado", false);
+                }
+
+                instrumentoBd.ClasificacionId = instrumentoDto.ClasificacionId;
+                instrumentoBd.Descripcion = instrumentoDto.Descripcion;
+                instrumentoBd.EmpresaId = instrumentoDto.EmpresaId;
+                instrumentoBd.FechaCompraCliente = instrumentoDto.FechaCompraCliente;
+                instrumentoBd.FechaCompraFabricante = instrumentoDto.FechaCompraFabricante;
+                instrumentoBd.Garantia = instrumentoDto.Garantia;
+                instrumentoBd.NombreEmpresa = instrumentoDto.NombreEmpresa;
+                instrumentoBd.NumeroSerie = instrumentoDto.NumeroSerie;
+                
+                _AutomatMedicionesDbContext.SaveChanges();
+
+                return Response<bool>.Ok("Ok", true);
+            }
+            catch (Exception exc)
+            {
+                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+            }
+        }
+
+        public Response<bool> DesactivarInstrumento(InstrumentoDto instrumentoDto)
+        {
+            try
+            {
+                var instrumentoBd = _AutomatMedicionesDbContext.Instrumentos.FirstOrDefault(x => x.InstrumentoId == instrumentoDto.InstrumentoId);
+                if (instrumentoBd == null)
+                {
+                    return Response<bool>.ErrorValidation("El instrumento no fue encontrado", false);
+                }
+
+                instrumentoBd.Activo = false;
+               
+
+                _AutomatMedicionesDbContext.SaveChanges();
+
+                return Response<bool>.Ok("Ok", true);
+            }
+            catch (Exception exc)
+            {
+                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
             }
         }
     }

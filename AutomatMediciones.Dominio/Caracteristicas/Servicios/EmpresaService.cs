@@ -1,4 +1,5 @@
-﻿using AutomatMediciones.Dominio.Infraestructura;
+﻿using AutoMapper;
+using AutomatMediciones.Dominio.Infraestructura;
 using AutomatMediciones.Libs.Dtos;
 using Nagaira.Herramientas.Standard.Helpers.Exceptions;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
@@ -11,10 +12,12 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
     public class EmpresaService
     {
         private readonly TacticaDbContext _tacticaDbContext;
+        private readonly IMapper _mapper;
 
-        public EmpresaService(TacticaDbContext tacticaDbContext)
+        public EmpresaService(TacticaDbContext tacticaDbContext, IMapper mapper)
         {
             _tacticaDbContext = tacticaDbContext;
+            _mapper = mapper;
         }
 
         public Response<List<EmpresaDto>> ObtenerEmpresas(string filtro)
@@ -53,6 +56,20 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             catch (Exception exc)
             {
                 return Response<List<EmpresaDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
+        public Response<EmpresaDto> ObtenerEmpresaPorId(string empresaId)
+        {
+            try
+            {
+                var empresa = _tacticaDbContext.Empresas.FirstOrDefault(x => x.EmpresaId == empresaId);
+                
+                return Response<EmpresaDto>.Ok("Ok", _mapper.Map<EmpresaDto>(empresa));
+            }
+            catch (Exception exc)
+            {
+                return Response<EmpresaDto>.Error(MessageException.LanzarExcepcion(exc), null);
             }
         }
     }

@@ -82,13 +82,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // gcInstrumentos
             // 
             this.gcInstrumentos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcInstrumentos.Location = new System.Drawing.Point(0, 47);
+            this.gcInstrumentos.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
+            this.gcInstrumentos.Location = new System.Drawing.Point(0, 58);
             this.gcInstrumentos.MainView = this.gvInstrumentos;
+            this.gcInstrumentos.Margin = new System.Windows.Forms.Padding(4);
             this.gcInstrumentos.Name = "gcInstrumentos";
             this.gcInstrumentos.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnIniciarDiagnostico,
             this.btnVerReporteDeIngreso});
-            this.gcInstrumentos.Size = new System.Drawing.Size(1079, 487);
+            this.gcInstrumentos.Size = new System.Drawing.Size(1259, 599);
             this.gcInstrumentos.TabIndex = 157;
             this.gcInstrumentos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvInstrumentos});
@@ -110,7 +112,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.colIniciarDiagnostico,
             this.colIngresoInstrumentoId,
             this.colVerReporte});
-            this.gvInstrumentos.DetailHeight = 285;
+            this.gvInstrumentos.DetailHeight = 351;
             this.gvInstrumentos.GridControl = this.gcInstrumentos;
             this.gvInstrumentos.Name = "gvInstrumentos";
             this.gvInstrumentos.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
@@ -122,93 +124,95 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             this.colIngresoId.Caption = "Id";
             this.colIngresoId.FieldName = "IngresoId";
-            this.colIngresoId.MinWidth = 21;
+            this.colIngresoId.MinWidth = 24;
             this.colIngresoId.Name = "colIngresoId";
             this.colIngresoId.OptionsColumn.AllowEdit = false;
             this.colIngresoId.OptionsColumn.ReadOnly = true;
-            this.colIngresoId.Width = 81;
+            this.colIngresoId.Width = 94;
             // 
             // colNumeroServicioTecnico
             // 
             this.colNumeroServicioTecnico.Caption = "N° Servicio Técnico";
             this.colNumeroServicioTecnico.FieldName = "NumeroServicioTecnico";
-            this.colNumeroServicioTecnico.MinWidth = 21;
+            this.colNumeroServicioTecnico.MinWidth = 24;
             this.colNumeroServicioTecnico.Name = "colNumeroServicioTecnico";
             this.colNumeroServicioTecnico.OptionsColumn.AllowEdit = false;
             this.colNumeroServicioTecnico.OptionsColumn.ReadOnly = true;
             this.colNumeroServicioTecnico.Visible = true;
             this.colNumeroServicioTecnico.VisibleIndex = 0;
-            this.colNumeroServicioTecnico.Width = 85;
+            this.colNumeroServicioTecnico.Width = 99;
             // 
             // colEmpresa
             // 
             this.colEmpresa.Caption = "Empresa";
             this.colEmpresa.FieldName = "Ingreso.NombreEmpresa";
-            this.colEmpresa.MinWidth = 21;
+            this.colEmpresa.MinWidth = 24;
             this.colEmpresa.Name = "colEmpresa";
             this.colEmpresa.OptionsColumn.AllowEdit = false;
             this.colEmpresa.OptionsColumn.ReadOnly = true;
             this.colEmpresa.Visible = true;
             this.colEmpresa.VisibleIndex = 1;
-            this.colEmpresa.Width = 174;
+            this.colEmpresa.Width = 203;
             // 
             // colDescripcion
             // 
             this.colDescripcion.Caption = "Instrumento";
             this.colDescripcion.FieldName = "Instrumento.Descripcion";
-            this.colDescripcion.MinWidth = 21;
+            this.colDescripcion.MinWidth = 24;
             this.colDescripcion.Name = "colDescripcion";
             this.colDescripcion.OptionsColumn.AllowEdit = false;
             this.colDescripcion.OptionsColumn.ReadOnly = true;
             this.colDescripcion.Visible = true;
             this.colDescripcion.VisibleIndex = 2;
-            this.colDescripcion.Width = 176;
+            this.colDescripcion.Width = 205;
             // 
             // colClasificacion
             // 
             this.colClasificacion.Caption = "Clasificación";
             this.colClasificacion.FieldName = "ClasificacionConcatenada";
-            this.colClasificacion.MinWidth = 21;
+            this.colClasificacion.MinWidth = 24;
             this.colClasificacion.Name = "colClasificacion";
             this.colClasificacion.OptionsColumn.AllowEdit = false;
             this.colClasificacion.OptionsColumn.ReadOnly = true;
             this.colClasificacion.Visible = true;
             this.colClasificacion.VisibleIndex = 3;
-            this.colClasificacion.Width = 203;
+            this.colClasificacion.Width = 237;
             // 
             // colSerie
             // 
             this.colSerie.Caption = "N° Serie";
             this.colSerie.FieldName = "Instrumento.NumeroSerie";
-            this.colSerie.MinWidth = 21;
+            this.colSerie.MinWidth = 24;
             this.colSerie.Name = "colSerie";
+            this.colSerie.OptionsColumn.AllowEdit = false;
+            this.colSerie.OptionsColumn.AllowFocus = false;
             this.colSerie.Visible = true;
             this.colSerie.VisibleIndex = 4;
-            this.colSerie.Width = 132;
+            this.colSerie.Width = 154;
             // 
             // colPrioridad
             // 
             this.colPrioridad.Caption = "Prioridad";
             this.colPrioridad.FieldName = "Prioridad";
-            this.colPrioridad.MinWidth = 21;
+            this.colPrioridad.MinWidth = 24;
             this.colPrioridad.Name = "colPrioridad";
             this.colPrioridad.OptionsColumn.AllowEdit = false;
             this.colPrioridad.OptionsColumn.ReadOnly = true;
             this.colPrioridad.Visible = true;
             this.colPrioridad.VisibleIndex = 5;
-            this.colPrioridad.Width = 79;
+            this.colPrioridad.Width = 92;
             // 
             // colResponsable
             // 
             this.colResponsable.Caption = "Responsable";
             this.colResponsable.FieldName = "Ingreso.Responsable.Nombre";
-            this.colResponsable.MinWidth = 21;
+            this.colResponsable.MinWidth = 24;
             this.colResponsable.Name = "colResponsable";
             this.colResponsable.OptionsColumn.AllowEdit = false;
             this.colResponsable.OptionsColumn.AllowFocus = false;
             this.colResponsable.Visible = true;
             this.colResponsable.VisibleIndex = 6;
-            this.colResponsable.Width = 132;
+            this.colResponsable.Width = 154;
             // 
             // colFecha
             // 
@@ -216,65 +220,65 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.colFecha.DisplayFormat.FormatString = "dd/MM/yy";
             this.colFecha.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colFecha.FieldName = "Ingreso.FechaRegistro";
-            this.colFecha.MinWidth = 21;
+            this.colFecha.MinWidth = 24;
             this.colFecha.Name = "colFecha";
             this.colFecha.OptionsColumn.AllowEdit = false;
             this.colFecha.OptionsColumn.ReadOnly = true;
             this.colFecha.Visible = true;
             this.colFecha.VisibleIndex = 7;
-            this.colFecha.Width = 63;
+            this.colFecha.Width = 73;
             // 
             // colFechaEstimada
             // 
             this.colFechaEstimada.Caption = "Fecha de Entrega Requerida";
             this.colFechaEstimada.FieldName = "FechaEntregaRequerida";
-            this.colFechaEstimada.MinWidth = 21;
+            this.colFechaEstimada.MinWidth = 24;
             this.colFechaEstimada.Name = "colFechaEstimada";
             this.colFechaEstimada.OptionsColumn.AllowEdit = false;
             this.colFechaEstimada.OptionsColumn.ReadOnly = true;
             this.colFechaEstimada.Visible = true;
             this.colFechaEstimada.VisibleIndex = 8;
-            this.colFechaEstimada.Width = 77;
+            this.colFechaEstimada.Width = 90;
             // 
             // colEstado
             // 
             this.colEstado.Caption = "Estado";
             this.colEstado.FieldName = "Estado.Descripcion";
-            this.colEstado.MinWidth = 21;
+            this.colEstado.MinWidth = 24;
             this.colEstado.Name = "colEstado";
             this.colEstado.OptionsColumn.AllowEdit = false;
             this.colEstado.OptionsColumn.ReadOnly = true;
             this.colEstado.Visible = true;
             this.colEstado.VisibleIndex = 9;
-            this.colEstado.Width = 122;
+            this.colEstado.Width = 142;
             // 
             // colIniciarDiagnostico
             // 
             this.colIniciarDiagnostico.Caption = "Iniciar Diagnóstico";
             this.colIniciarDiagnostico.ColumnEdit = this.btnIniciarDiagnostico;
-            this.colIniciarDiagnostico.MinWidth = 21;
+            this.colIniciarDiagnostico.MinWidth = 24;
             this.colIniciarDiagnostico.Name = "colIniciarDiagnostico";
             this.colIniciarDiagnostico.Visible = true;
             this.colIniciarDiagnostico.VisibleIndex = 10;
-            this.colIniciarDiagnostico.Width = 71;
+            this.colIniciarDiagnostico.Width = 83;
             // 
             // colIngresoInstrumentoId
             // 
             this.colIngresoInstrumentoId.Caption = "Ingreso Instrumento Id";
             this.colIngresoInstrumentoId.FieldName = "IngresoInstrumentoId";
-            this.colIngresoInstrumentoId.MinWidth = 21;
+            this.colIngresoInstrumentoId.MinWidth = 24;
             this.colIngresoInstrumentoId.Name = "colIngresoInstrumentoId";
-            this.colIngresoInstrumentoId.Width = 81;
+            this.colIngresoInstrumentoId.Width = 94;
             // 
             // colVerReporte
             // 
             this.colVerReporte.Caption = "Visualizar Reporte de Ingreso";
             this.colVerReporte.ColumnEdit = this.btnVerReporteDeIngreso;
-            this.colVerReporte.MinWidth = 21;
+            this.colVerReporte.MinWidth = 24;
             this.colVerReporte.Name = "colVerReporte";
             this.colVerReporte.Visible = true;
             this.colVerReporte.VisibleIndex = 11;
-            this.colVerReporte.Width = 81;
+            this.colVerReporte.Width = 94;
             // 
             // btnVerReporteDeIngreso
             // 
@@ -292,10 +296,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.labelControl5.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             this.labelControl5.Dock = System.Windows.Forms.DockStyle.Left;
             this.labelControl5.Location = new System.Drawing.Point(0, 0);
-            this.labelControl5.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.labelControl5.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Padding = new System.Windows.Forms.Padding(17, 0, 0, 0);
-            this.labelControl5.Size = new System.Drawing.Size(298, 47);
+            this.labelControl5.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.labelControl5.Size = new System.Drawing.Size(348, 58);
             this.labelControl5.TabIndex = 152;
             this.labelControl5.Text = "Instrumentos Ingresados";
             // 
@@ -304,19 +308,19 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.panel1.Controls.Add(this.labelControl5);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1079, 47);
+            this.panel1.Size = new System.Drawing.Size(1259, 58);
             this.panel1.TabIndex = 153;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.lblTotal);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 534);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.panel2.Location = new System.Drawing.Point(0, 657);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1079, 22);
+            this.panel2.Size = new System.Drawing.Size(1259, 27);
             this.panel2.TabIndex = 154;
             // 
             // lblTotal
@@ -325,24 +329,24 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.lblTotal.Appearance.Options.UseFont = true;
             this.lblTotal.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblTotal.Location = new System.Drawing.Point(0, 0);
-            this.lblTotal.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(6, 12);
+            this.lblTotal.Size = new System.Drawing.Size(7, 17);
             this.lblTotal.TabIndex = 27;
             this.lblTotal.Text = "0";
             this.lblTotal.Visible = false;
             // 
             // frmDiagnosticos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1079, 556);
+            this.ClientSize = new System.Drawing.Size(1259, 684);
             this.Controls.Add(this.gcInstrumentos);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IconOptions.ShowIcon = false;
-            this.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
             this.Name = "frmDiagnosticos";
             this.Text = "Diagnósticos";
             ((System.ComponentModel.ISupportInitialize)(this.btnIniciarDiagnostico)).EndInit();

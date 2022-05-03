@@ -1,5 +1,5 @@
 ﻿
-namespace AutomatMediciones.DesktopApp.Pantallas
+namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 {
     partial class frmNuevoInstrumento
     {
@@ -130,7 +130,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             // 
             this.labelControl14.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl14.Appearance.Options.UseFont = true;
-            this.labelControl14.Location = new System.Drawing.Point(416, 352);
+            this.labelControl14.Location = new System.Drawing.Point(415, 345);
             this.labelControl14.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl14.Name = "labelControl14";
             this.labelControl14.Size = new System.Drawing.Size(171, 17);
@@ -141,7 +141,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             // 
             this.labelControl15.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl15.Appearance.Options.UseFont = true;
-            this.labelControl15.Location = new System.Drawing.Point(28, 352);
+            this.labelControl15.Location = new System.Drawing.Point(30, 345);
             this.labelControl15.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl15.Name = "labelControl15";
             this.labelControl15.Size = new System.Drawing.Size(184, 17);
@@ -226,7 +226,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             // 
             this.labelControl18.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl18.Appearance.Options.UseFont = true;
-            this.labelControl18.Location = new System.Drawing.Point(28, 423);
+            this.labelControl18.Location = new System.Drawing.Point(30, 404);
             this.labelControl18.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl18.Name = "labelControl18";
             this.labelControl18.Size = new System.Drawing.Size(52, 17);
@@ -243,7 +243,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             this.btnGuardarInstrumento.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardarInstrumento.IconSize = 30;
             this.btnGuardarInstrumento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardarInstrumento.Location = new System.Drawing.Point(503, 508);
+            this.btnGuardarInstrumento.Location = new System.Drawing.Point(505, 486);
             this.btnGuardarInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnGuardarInstrumento.Name = "btnGuardarInstrumento";
             this.btnGuardarInstrumento.Size = new System.Drawing.Size(220, 52);
@@ -267,7 +267,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             // 
             // dateFechaCompraFabricante
             // 
-            this.dateFechaCompraFabricante.Location = new System.Drawing.Point(28, 375);
+            this.dateFechaCompraFabricante.Location = new System.Drawing.Point(30, 368);
             this.dateFechaCompraFabricante.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.dateFechaCompraFabricante.Name = "dateFechaCompraFabricante";
             this.dateFechaCompraFabricante.Size = new System.Drawing.Size(320, 23);
@@ -275,7 +275,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             // 
             // dateFechaCompraCliente
             // 
-            this.dateFechaCompraCliente.Location = new System.Drawing.Point(416, 375);
+            this.dateFechaCompraCliente.Location = new System.Drawing.Point(415, 368);
             this.dateFechaCompraCliente.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.dateFechaCompraCliente.Name = "dateFechaCompraCliente";
             this.dateFechaCompraCliente.Size = new System.Drawing.Size(307, 23);
@@ -284,7 +284,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             // txtGarantia
             // 
             this.txtGarantia.EditValue = "";
-            this.txtGarantia.Location = new System.Drawing.Point(28, 447);
+            this.txtGarantia.Location = new System.Drawing.Point(30, 425);
             this.txtGarantia.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtGarantia.Name = "txtGarantia";
             this.txtGarantia.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -423,7 +423,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(756, 571);
+            this.ClientSize = new System.Drawing.Size(756, 555);
             this.Controls.Add(this.btnAgregarClasificacion);
             this.Controls.Add(this.glModelos);
             this.Controls.Add(this.labelControl2);

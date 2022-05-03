@@ -123,12 +123,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             // 
             // instrumentosMenu
             // 
-            this.instrumentosMenu.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            this.instrumentosMenu.IconChar = FontAwesome.Sharp.IconChar.List;
             this.instrumentosMenu.IconColor = System.Drawing.Color.Black;
             this.instrumentosMenu.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.instrumentosMenu.Name = "instrumentosMenu";
-            this.instrumentosMenu.Size = new System.Drawing.Size(180, 24);
-            this.instrumentosMenu.Text = "Agregar Instrumento";
+            this.instrumentosMenu.Size = new System.Drawing.Size(128, 24);
+            this.instrumentosMenu.Text = "Instrumentos";
             this.instrumentosMenu.Click += new System.EventHandler(this.instrumentosMenu_Click);
             // 
             // frmConfiguracion

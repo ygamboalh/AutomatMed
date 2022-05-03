@@ -218,5 +218,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             lblTotalInstrumentos.Visible = true;
             lblTotalInstrumentos.Text = $"Total Instrumentos: {NuevaVariableMedicion.TiposDeInstrumentoVariables.Count}";
         }
+
+        private void btnAgregarTipoDeInstrumento_MouseMove(object sender, MouseEventArgs e)
+        {
+            toolTip1.SetToolTip(btnAgregarTipoDeInstrumento, "Presione para agregar a lista de instrumentos asociados.");
+        }
     }
 }

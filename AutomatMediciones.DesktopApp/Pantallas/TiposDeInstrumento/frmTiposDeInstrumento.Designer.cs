@@ -35,11 +35,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.gcTipoInstrumento = new DevExpress.XtraGrid.GridControl();
             this.gvTipoInstrumento = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -48,7 +43,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             this.colMetodologia = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEditar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.cmdEditar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnAgregarNuevInstrumento = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -56,7 +50,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             ((System.ComponentModel.ISupportInitialize)(this.gcTipoInstrumento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTipoInstrumento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmdEditar)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -71,7 +64,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             this.gcTipoInstrumento.Name = "gcTipoInstrumento";
             this.gcTipoInstrumento.Padding = new System.Windows.Forms.Padding(5);
             this.gcTipoInstrumento.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.cmdEditar,
             this.repositoryItemButtonEdit1});
             this.gcTipoInstrumento.Size = new System.Drawing.Size(992, 570);
             this.gcTipoInstrumento.TabIndex = 1;
@@ -156,15 +148,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
             this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
-            // cmdEditar
-            // 
-            this.cmdEditar.AutoHeight = false;
-            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
-            this.cmdEditar.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.cmdEditar.Name = "cmdEditar";
-            this.cmdEditar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnAgregarNuevInstrumento);
@@ -236,7 +219,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             ((System.ComponentModel.ISupportInitialize)(this.gcTipoInstrumento)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTipoInstrumento)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmdEditar)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -257,7 +239,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
         private DevExpress.XtraGrid.Columns.GridColumn colResumen;
         private DevExpress.XtraGrid.Columns.GridColumn colMetodologia;
         private DevExpress.XtraGrid.Columns.GridColumn colEditar;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit cmdEditar;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
         private Componentes.Encabezados.ctlEncabezadoPantalla ctlEncabezadoPantalla3;
     }

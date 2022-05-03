@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace AutomatMediciones.DesktopApp.Pantallas
+namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 {
     public partial class frmNuevoInstrumento : DevExpress.XtraEditors.XtraForm
     {
@@ -26,6 +26,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         private readonly MarcaService _marcaService;
         private readonly ModeloService _modeloService;
         private readonly TipoDeInstrumentoService _tipoDeInstrumentoService;
+        private readonly EmpresaService _empresaService;
+
+        public TipoTransaccion TipoTransaccion { get; set; }
 
         private EmpresaDto EmpresaSeleccionada { get; set; }
 
@@ -36,15 +39,23 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         List<MarcaDto> marcas = new List<MarcaDto>();
         List<ModeloDto> modelos = new List<ModeloDto>();
 
-        public frmNuevoInstrumento(ClasificacionInstrumentoService clasificacionInstrumentoService, InstrumentoService instrumentoService, MarcaService marcaService, ModeloService modeloService, TipoDeInstrumentoService tipoDeInstrumentoService)
+        public frmNuevoInstrumento(TipoTransaccion tipoTransaccion,
+                                   ClasificacionInstrumentoService clasificacionInstrumentoService,
+                                   InstrumentoService instrumentoService,
+                                   MarcaService marcaService,
+                                   ModeloService modeloService,
+                                   TipoDeInstrumentoService tipoDeInstrumentoService,
+                                   EmpresaService empresaService)
         {
             InitializeComponent();
 
+            TipoTransaccion = tipoTransaccion;
             _clasificacionInstrumentoService = clasificacionInstrumentoService;
             _instrumentoService = instrumentoService;
             _marcaService = marcaService;
             _modeloService = modeloService;
             _tipoDeInstrumentoService = tipoDeInstrumentoService;
+            _empresaService = empresaService;
             CargarClasificacionesDeInstrumentos();
 
             EstablecerColorBotonGuardar();
@@ -54,13 +65,29 @@ namespace AutomatMediciones.DesktopApp.Pantallas
 
         }
 
+        public void SetearValoresParaActualizar()
+        {
+            txtDescripcionInstrumento.Text = NuevoInstrumento.Descripcion;
+            txtEmpresaInstrumento.Text = NuevoInstrumento.NombreEmpresa;
+            glTipoInstrumento.EditValue = NuevoInstrumento.Clasificacion.TipoInstrumentoId;
+            glMarcas.EditValue = NuevoInstrumento.Clasificacion.MarcaId;
+            glModelos.EditValue = NuevoInstrumento.Clasificacion.ModeloId;
+            txtNumeroSerie.Text = NuevoInstrumento.NumeroSerie;
+            dateFechaCompraCliente.Value = NuevoInstrumento.FechaCompraCliente.Value;
+            dateFechaCompraFabricante.Value = NuevoInstrumento.FechaCompraFabricante.Value;
+            txtGarantia.Text = NuevoInstrumento.Garantia;
+
+            EmpresaSeleccionada = _empresaService.ObtenerEmpresaPorId(NuevoInstrumento.EmpresaId).Data;
+
+        }
+
         private void EstablecerNombreYTituloPopupAgregarInstrumentos()
         {
             ctlEncabezadoPantalla ctlEncabezadoPantalla3 = new ctlEncabezadoPantalla();
             ctlEncabezadoPantalla3.Parent = this;
             ctlEncabezadoPantalla3.Height = 43;
             ctlEncabezadoPantalla3.Dock = DockStyle.Top;
-            ctlEncabezadoPantalla3.lblTitulo.Text = "Agregar Instrumento";
+            ctlEncabezadoPantalla3.lblTitulo.Text = TipoTransaccion == TipoTransaccion.Insertar ? "Agregar Instrumento" : "Editar Instrumento";
             ctlEncabezadoPantalla3.EstablecerColoresDeFondoYLetra();
         }
         private void EstablecerColorBotonGuardar()
@@ -91,18 +118,57 @@ namespace AutomatMediciones.DesktopApp.Pantallas
                 return;
             }
 
-            CargarClasificacionesDeInstrumentos();
-            NuevoInstrumento.Clasificacion = clasificaciones.FirstOrDefault(x => x.ClasificacionId == NuevoInstrumento.ClasificacionId);
-
-            SplashScreenManager.ShowForm(typeof(frmSaving));
-            if (GuardarInstrumento())
+            if (TipoTransaccion == TipoTransaccion.Insertar)
             {
-                Notificaciones.MensajeConfirmacion("¡El instrumento se ha registrado exitosamente!");
-                OnInstrumentoAgregado?.Invoke(NuevoInstrumento);
-                this.Close();
+                
+
+                CargarClasificacionesDeInstrumentos();
+                NuevoInstrumento.Clasificacion = clasificaciones.FirstOrDefault(x => x.ClasificacionId == NuevoInstrumento.ClasificacionId);
+
+                SplashScreenManager.ShowForm(typeof(frmLoadingSave));
+                if (GuardarInstrumento())
+                {
+                    Notificaciones.MensajeConfirmacion("¡El instrumento se ha registrado exitosamente!");
+                    OnInstrumentoAgregado?.Invoke(NuevoInstrumento);
+                    this.Close();
+                }
+
+                SplashScreenManager.CloseForm();
+            }
+            else
+            {
+                SplashScreenManager.ShowForm(typeof(frmLoadingSave));
+                if (ActualizarInstrumento())
+                {
+                    Notificaciones.MensajeConfirmacion("¡El instrumento se ha actualizado exitosamente!");
+                    OnInstrumentoAgregado?.Invoke(NuevoInstrumento);
+                    this.Close();
+                }
+
+                SplashScreenManager.CloseForm();
             }
 
-            SplashScreenManager.CloseForm();
+
+        }
+
+        private bool ActualizarInstrumento()
+        {
+            try
+            {
+                var resultado = _instrumentoService.ActualizarInstrumento(NuevoInstrumento);
+                if (resultado.Type != TypeResponse.Ok)
+                {
+                    Notificaciones.MensajeError(resultado.Message);
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception exc)
+            {
+                Notificaciones.MensajeError(ExceptionsHelper.ObtenerMensajeExcepcion(exc));
+                return false;
+            }
         }
 
         private void btnAbrirPopupEmpresaPorInstrumento_Click(object sender, EventArgs e)

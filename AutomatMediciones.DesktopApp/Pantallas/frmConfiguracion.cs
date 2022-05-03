@@ -1,4 +1,5 @@
 ﻿using AutomatMediciones.DesktopApp.Pantallas.Clasificaciones;
+using AutomatMediciones.DesktopApp.Pantallas.Instrumentos;
 using AutomatMediciones.DesktopApp.Pantallas.Marcas;
 using AutomatMediciones.DesktopApp.Pantallas.Modelos;
 using AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento;
@@ -75,12 +76,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         private void instrumentosMenu_Click(object sender, EventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(frmSaving));
-            var frmNuevoInstrumento = new frmNuevoInstrumento(serviceProvider.GetService<ClasificacionInstrumentoService>(),
-                                                                              serviceProvider.GetService<InstrumentoService>(),
-                                                                              serviceProvider.GetService<MarcaService>(),
-                                                                              serviceProvider.GetService<ModeloService>(),
-                                                                              serviceProvider.GetService<TipoDeInstrumentoService>());
-            XtraForm nuevoInstrumento = frmNuevoInstrumento;
+            var frmInstrumentos = new frmInstrumentos(serviceProvider.GetService<InstrumentoService>());
+            XtraForm nuevoInstrumento = frmInstrumentos;
             AgregarPantalla(ref nuevoInstrumento);
             SplashScreenManager.CloseForm();
         }
