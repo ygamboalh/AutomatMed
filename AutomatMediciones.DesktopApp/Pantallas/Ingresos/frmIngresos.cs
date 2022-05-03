@@ -52,6 +52,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             EstablecerColorBotonPorDefecto();
             EstablecerColorBotonGuardar();
 
+            dateFechaIngreso.Value = DateTime.Now;
+
             copiasEnCorreo = new List<UsuarioDto>();
             CargarUsuarios();
             CargarConfiguraciones();
@@ -408,6 +410,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             Ingreso.IngresosInstrumentos = instrumentosSeleccionados;
             Ingreso.CuerpoCorreo = memoComentarios.Text;
             Ingreso.UsuarioId = UsuarioSeleccionado.UsuarioId;
+            Ingreso.FechaRegistro = dateFechaIngreso.Value;
         }
 
         private void glCorreoElectronico_EditValueChanged(object sender, EventArgs e)

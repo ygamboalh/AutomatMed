@@ -61,7 +61,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     CorreoElectronicoId = ingresoDto.CorreoElectronicoId,
                     CuerpoCorreo = ingresoDto.CuerpoCorreo,
                     Activo = true,
-                    FechaRegistro = DateTime.Now,
+                    FechaRegistro = ingresoDto.FechaRegistro,
                     UsuarioId = ingresoDto.UsuarioId
                 };
 

@@ -57,6 +57,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.memoComentarios = new DevExpress.XtraEditors.MemoEdit();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.dateFechaIngreso = new System.Windows.Forms.DateTimePicker();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.glUsuariosResponsables = new DevExpress.XtraEditors.GridLookUpEdit();
             this.glUsuariosResponsablesView = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -331,6 +333,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.dateFechaIngreso);
+            this.panel7.Controls.Add(this.labelControl4);
             this.panel7.Controls.Add(this.labelControl6);
             this.panel7.Controls.Add(this.glUsuariosResponsables);
             this.panel7.Controls.Add(this.memoComentarios);
@@ -342,6 +346,24 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.panel7.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
             this.panel7.Size = new System.Drawing.Size(1271, 234);
             this.panel7.TabIndex = 28;
+            // 
+            // dateFechaIngreso
+            // 
+            this.dateFechaIngreso.Location = new System.Drawing.Point(533, 196);
+            this.dateFechaIngreso.Name = "dateFechaIngreso";
+            this.dateFechaIngreso.Size = new System.Drawing.Size(298, 23);
+            this.dateFechaIngreso.TabIndex = 33;
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelControl4.Appearance.Options.UseFont = true;
+            this.labelControl4.Location = new System.Drawing.Point(533, 172);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(103, 17);
+            this.labelControl4.TabIndex = 32;
+            this.labelControl4.Text = "Fecha de Ingreso:";
             // 
             // labelControl6
             // 
@@ -756,5 +778,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private DevExpress.XtraGrid.Columns.GridColumn colUsuarioId;
         private DevExpress.XtraGrid.Columns.GridColumn colNombreUsuario;
         private DevExpress.XtraGrid.Columns.GridColumn colApellido;
+        private System.Windows.Forms.DateTimePicker dateFechaIngreso;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
     }
 }
