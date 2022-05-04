@@ -462,25 +462,31 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             SplashScreenManager.ShowForm(typeof(frmLoadingSave));
             if (GuardarIngreso())
             {
-                var correoHelper = new CorreoHelper();
-                if (correoHelper.EnviarCorreo(PrepararCorreo()))
+                if (checkEnviarReporte.CheckState == CheckState.Checked)
                 {
-                    Notificaciones.MensajeConfirmacion("¡El ingreso se ha guardado exitosamente!");
-
-                    if (Notificaciones.PreguntaConfirmacion("¿Desea imprimir reporte de Ingreso?") == DialogResult.Yes)
+                    var correoHelper = new CorreoHelper();
+                    if (correoHelper.EnviarCorreo(PrepararCorreo()))
                     {
-                        rptIngreso reporteIngreso = new rptIngreso();
-                        reporteIngreso.objectDataSource1.DataSource = Ingreso;
-                        reporteIngreso.DisplayName = $"Ingreso #{Ingreso.IngresoId}.pdf";
-                        ReportPrintTool printTool = new ReportPrintTool(reporteIngreso);
-                        printTool.ShowRibbonPreview();
+                        Notificaciones.MensajeConfirmacion("¡El ingreso se ha guardado exitosamente!");
+
+                        if (Notificaciones.PreguntaConfirmacion("¿Desea imprimir reporte de Ingreso?") == DialogResult.Yes)
+                        {
+                            rptIngreso reporteIngreso = new rptIngreso();
+                            reporteIngreso.objectDataSource1.DataSource = Ingreso;
+                            reporteIngreso.DisplayName = $"Ingreso #{Ingreso.IngresoId}.pdf";
+                            ReportPrintTool printTool = new ReportPrintTool(reporteIngreso);
+                            printTool.ShowRibbonPreview();
+                        }
+                    }
+                    else
+                    {
+                        Notificaciones.MensajeConfirmacion("El ingreso se ha guardado exitosamente, pero hubo una falla en el momento de enviar la notificación por correo electrónico.");
                     }
                 }
                 else
                 {
-                    Notificaciones.MensajeConfirmacion("El ingreso se ha guardado exitosamente, pero hubo una falla en el momento de enviar la notificación por correo electrónico.");
+                    Notificaciones.MensajeConfirmacion("¡El ingreso se ha guardado exitosamente!");
                 }
-
                 LimpiarFormulario();
             }
             SplashScreenManager.CloseForm();
