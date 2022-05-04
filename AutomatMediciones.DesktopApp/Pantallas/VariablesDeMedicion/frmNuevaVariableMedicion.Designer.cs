@@ -30,12 +30,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNuevaVariableMedicion));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.btnGuardarVariableMedicion = new FontAwesome.Sharp.IconButton();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.txtDescripcion = new DevExpress.XtraEditors.TextEdit();
@@ -50,7 +50,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.colTipoInstrumentoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.btnAgregarTipoDeInstrumento = new FontAwesome.Sharp.IconButton();
+            this.btnVincularVariableMedicion = new FontAwesome.Sharp.IconButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblTotalInstrumentos = new DevExpress.XtraEditors.LabelControl();
             this.gcTiposDeInstrumento = new DevExpress.XtraGrid.GridControl();
@@ -109,7 +109,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // txtDescripcion
             // 
             this.txtDescripcion.EditValue = "";
-            this.txtDescripcion.Location = new System.Drawing.Point(29, 93);
+            this.txtDescripcion.Location = new System.Drawing.Point(29, 94);
             this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -121,6 +121,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // 
             this.nmPrimerValorRango.DecimalPlaces = 2;
             this.nmPrimerValorRango.Location = new System.Drawing.Point(29, 161);
+            this.nmPrimerValorRango.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.nmPrimerValorRango.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -145,6 +146,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // 
             this.nmSegundoValorRango.DecimalPlaces = 2;
             this.nmSegundoValorRango.Location = new System.Drawing.Point(257, 161);
+            this.nmSegundoValorRango.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.nmSegundoValorRango.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -169,6 +171,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // 
             this.nmTolerancia.DecimalPlaces = 2;
             this.nmTolerancia.Location = new System.Drawing.Point(482, 161);
+            this.nmTolerancia.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.nmTolerancia.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -193,6 +196,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // 
             this.glTipoInstrumento.EditValue = "";
             this.glTipoInstrumento.Location = new System.Drawing.Point(29, 239);
+            this.glTipoInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.glTipoInstrumento.Name = "glTipoInstrumento";
             this.glTipoInstrumento.Properties.AutoHeight = false;
             this.glTipoInstrumento.Properties.NullText = "";
@@ -237,25 +241,25 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.labelControl4.TabIndex = 146;
             this.labelControl4.Text = "Tipo de Instrumento";
             // 
-            // btnAgregarTipoDeInstrumento
+            // btnVincularVariableMedicion
             // 
-            this.btnAgregarTipoDeInstrumento.FlatAppearance.BorderSize = 0;
-            this.btnAgregarTipoDeInstrumento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregarTipoDeInstrumento.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAgregarTipoDeInstrumento.IconChar = FontAwesome.Sharp.IconChar.Plus;
-            this.btnAgregarTipoDeInstrumento.IconColor = System.Drawing.Color.Black;
-            this.btnAgregarTipoDeInstrumento.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAgregarTipoDeInstrumento.IconSize = 30;
-            this.btnAgregarTipoDeInstrumento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarTipoDeInstrumento.Location = new System.Drawing.Point(429, 238);
-            this.btnAgregarTipoDeInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.btnAgregarTipoDeInstrumento.Name = "btnAgregarTipoDeInstrumento";
-            this.btnAgregarTipoDeInstrumento.Size = new System.Drawing.Size(40, 32);
-            this.btnAgregarTipoDeInstrumento.TabIndex = 148;
-            this.btnAgregarTipoDeInstrumento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAgregarTipoDeInstrumento.UseVisualStyleBackColor = true;
-            this.btnAgregarTipoDeInstrumento.Click += new System.EventHandler(this.btnAgregarTipoDeInstrumento_Click);
-            this.btnAgregarTipoDeInstrumento.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnAgregarTipoDeInstrumento_MouseMove);
+            this.btnVincularVariableMedicion.FlatAppearance.BorderSize = 0;
+            this.btnVincularVariableMedicion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVincularVariableMedicion.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnVincularVariableMedicion.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            this.btnVincularVariableMedicion.IconColor = System.Drawing.Color.Black;
+            this.btnVincularVariableMedicion.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnVincularVariableMedicion.IconSize = 30;
+            this.btnVincularVariableMedicion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnVincularVariableMedicion.Location = new System.Drawing.Point(429, 238);
+            this.btnVincularVariableMedicion.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnVincularVariableMedicion.Name = "btnVincularVariableMedicion";
+            this.btnVincularVariableMedicion.Size = new System.Drawing.Size(40, 32);
+            this.btnVincularVariableMedicion.TabIndex = 148;
+            this.btnVincularVariableMedicion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnVincularVariableMedicion.UseVisualStyleBackColor = true;
+            this.btnVincularVariableMedicion.Click += new System.EventHandler(this.btnAgregarTipoDeInstrumento_Click);
+            this.btnVincularVariableMedicion.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnAgregarTipoDeInstrumento_MouseMove);
             // 
             // panel1
             // 
@@ -310,7 +314,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // 
             this.colId.Caption = "Id";
             this.colId.FieldName = "TipoInstrumentoId";
-            this.colId.MinWidth = 25;
+            this.colId.MinWidth = 24;
             this.colId.Name = "colId";
             this.colId.Width = 94;
             // 
@@ -318,16 +322,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // 
             this.colDescripcionTipoInstrumento.Caption = "Descripción";
             this.colDescripcionTipoInstrumento.FieldName = "TipoInstrumento.Descripcion";
-            this.colDescripcionTipoInstrumento.MinWidth = 25;
+            this.colDescripcionTipoInstrumento.MinWidth = 24;
             this.colDescripcionTipoInstrumento.Name = "colDescripcionTipoInstrumento";
             this.colDescripcionTipoInstrumento.Visible = true;
             this.colDescripcionTipoInstrumento.VisibleIndex = 0;
-            this.colDescripcionTipoInstrumento.Width = 501;
+            this.colDescripcionTipoInstrumento.Width = 500;
             // 
             // colEliminar
             // 
             this.colEliminar.ColumnEdit = this.btnEliminar;
-            this.colEliminar.MinWidth = 25;
+            this.colEliminar.MinWidth = 24;
             this.colEliminar.Name = "colEliminar";
             this.colEliminar.Visible = true;
             this.colEliminar.VisibleIndex = 1;
@@ -336,9 +340,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // btnEliminar
             // 
             this.btnEliminar.AutoHeight = false;
-            editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
             this.btnEliminar.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -367,7 +371,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.Controls.Add(this.labelControl5);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.gcTiposDeInstrumento);
-            this.Controls.Add(this.btnAgregarTipoDeInstrumento);
+            this.Controls.Add(this.btnVincularVariableMedicion);
             this.Controls.Add(this.glTipoInstrumento);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.nmTolerancia);
@@ -381,6 +385,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.Controls.Add(this.txtDescripcion);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IconOptions.ShowIcon = false;
+            this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "frmNuevaVariableMedicion";
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcion.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmPrimerValorRango)).EndInit();
@@ -416,7 +421,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
         private DevExpress.XtraGrid.Columns.GridColumn colTipoInstrumentoId;
         private DevExpress.XtraGrid.Columns.GridColumn colDescripcion;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private FontAwesome.Sharp.IconButton btnAgregarTipoDeInstrumento;
+        private FontAwesome.Sharp.IconButton btnVincularVariableMedicion;
         private System.Windows.Forms.Panel panel1;
         private DevExpress.XtraEditors.LabelControl lblTotalInstrumentos;
         private DevExpress.XtraGrid.GridControl gcTiposDeInstrumento;

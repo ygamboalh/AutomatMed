@@ -120,7 +120,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
             if (TipoTransaccion == TipoTransaccion.Insertar)
             {
-                
+
 
                 CargarClasificacionesDeInstrumentos();
                 NuevoInstrumento.Clasificacion = clasificaciones.FirstOrDefault(x => x.ClasificacionId == NuevoInstrumento.ClasificacionId);

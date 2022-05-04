@@ -221,7 +221,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
 
         private void btnAgregarTipoDeInstrumento_MouseMove(object sender, MouseEventArgs e)
         {
-            toolTip1.SetToolTip(btnAgregarTipoDeInstrumento, "Presione para agregar a lista de instrumentos asociados.");
+            toolTip1.SetToolTip(btnVincularVariableMedicion, "Presione para agregar a lista de instrumentos asociados.");
         }
     }
 }

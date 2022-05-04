@@ -44,7 +44,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             if (respuesta.Type != TypeResponse.Ok)
             {
                 Notificaciones.MensajeError(respuesta.Message);
-                return; 
+                return;
             }
 
             serviceProvider = Program.services.BuildServiceProvider();
