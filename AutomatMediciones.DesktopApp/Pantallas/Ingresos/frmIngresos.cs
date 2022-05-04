@@ -467,26 +467,36 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                     var correoHelper = new CorreoHelper();
                     if (correoHelper.EnviarCorreo(PrepararCorreo()))
                     {
-                        Notificaciones.MensajeConfirmacion("¡El ingreso se ha guardado exitosamente!");
-
-                        if (Notificaciones.PreguntaConfirmacion("¿Desea imprimir reporte de Ingreso?") == DialogResult.Yes)
-                        {
-                            rptIngreso reporteIngreso = new rptIngreso();
-                            reporteIngreso.objectDataSource1.DataSource = Ingreso;
-                            reporteIngreso.DisplayName = $"Ingreso #{Ingreso.IngresoId}.pdf";
-                            ReportPrintTool printTool = new ReportPrintTool(reporteIngreso);
-                            printTool.ShowRibbonPreview();
-                        }
+                        Notificaciones.MensajeConfirmacion("¡El ingreso se ha guardado exitosamente!");         
                     }
                     else
                     {
                         Notificaciones.MensajeConfirmacion("El ingreso se ha guardado exitosamente, pero hubo una falla en el momento de enviar la notificación por correo electrónico.");
                     }
+
+                    if (Notificaciones.PreguntaConfirmacion("¿Desea imprimir reporte de Ingreso?") == DialogResult.Yes)
+                    {
+                        rptIngreso reporteIngreso = new rptIngreso();
+                        reporteIngreso.objectDataSource1.DataSource = Ingreso;
+                        reporteIngreso.DisplayName = $"Ingreso #{Ingreso.IngresoId}.pdf";
+                        ReportPrintTool printTool = new ReportPrintTool(reporteIngreso);
+                        printTool.ShowRibbonPreview();
+                    }
                 }
                 else
                 {
                     Notificaciones.MensajeConfirmacion("¡El ingreso se ha guardado exitosamente!");
+
+                    if (Notificaciones.PreguntaConfirmacion("¿Desea imprimir reporte de Ingreso?") == DialogResult.Yes)
+                    {
+                        rptIngreso reporteIngreso = new rptIngreso();
+                        reporteIngreso.objectDataSource1.DataSource = Ingreso;
+                        reporteIngreso.DisplayName = $"Ingreso #{Ingreso.IngresoId}.pdf";
+                        ReportPrintTool printTool = new ReportPrintTool(reporteIngreso);
+                        printTool.ShowRibbonPreview();
+                    }
                 }
+
                 LimpiarFormulario();
             }
             SplashScreenManager.CloseForm();
