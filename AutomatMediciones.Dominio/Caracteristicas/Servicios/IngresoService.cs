@@ -88,7 +88,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         FechaFin = instrumento.FechaFin,
                         FechaInicio = instrumento.FechaInicio,
                         Prioridad = instrumento.Prioridad,
-                        EstadoId = (int)Estados.Ingresado,
+                        EstadoId = instrumento.EstadoId,
+                        ComentariosAcercaDelInstrumento = instrumento.ComentariosAcercaDelInstrumento,
                         FechaEntregaRequerida = instrumento.FechaEntregaRequerida
                     };
 
@@ -103,6 +104,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 _AutomatMedicionesDbContext.Database.CommitTransaction();
 
                 var ingresoRegistrado = _AutomatMedicionesDbContext.Ingresos.Include(x => x.IngresosInstrumentos)
+                                                                            .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Instrumento)
+                                                                            .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.TipoTrabajo)
                                                                   .Include(x => x.Responsable)
                                                                   .FirstOrDefault(x => x.IngresoId == ingreso.IngresoId);
 

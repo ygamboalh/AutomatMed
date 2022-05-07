@@ -6,6 +6,8 @@ using AutomatMediciones.Libs.Dtos;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
@@ -21,6 +23,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         TipoTrabajoDto tipoTrabajoSeleccionado;
         private readonly TipoTrabajoService _tipoTrabajoService;
 
+        public List<TipoTrabajoDto> TiposDeTrabajo { get; set; }
+
         public TipoTransaccion TipoTransaccion { get; set; }
 
         public InstrumentoLista Instrumento { get; set; }
@@ -31,6 +35,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             TipoTransaccion = tipoTransaccion;
             tipoTrabajoSeleccionado = new TipoTrabajoDto();
+            Instrumento = new InstrumentoLista();
 
             EstablecerColorBotonGuardar();
             EstablecerNombreYTituloDePantalla();
@@ -57,6 +62,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
+            TiposDeTrabajo = resultado.Data;
             glTiposTrabajo.Properties.DataSource = resultado.Data;
             glTiposTrabajo.Properties.DisplayMember = "Descripcion";
             glTiposTrabajo.Properties.ValueMember = "TipoTrabajoId";
@@ -71,6 +77,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
         private void btnIngresarComentario_Click(object sender, EventArgs e)
         {
+            if (tipoTrabajoSeleccionado == null)
+            {
+                return;
+            }
+
 
             if (tipoTrabajoSeleccionado.TipoTrabajoId == 0)
             {
@@ -78,11 +89,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 return;
             }
 
+            Instrumento.InformacionAdicional = new InformacionAdicionalInstrumento();
+
+            Instrumento.InformacionAdicional.ComentariosAcercaDelInstrumento = memoComentariosInstrumento.Text;
             Instrumento.InformacionAdicional.Comentarios = memoComentarios.Text;
             Instrumento.InformacionAdicional.Prioridad = trackBarControl1.Value;
             Instrumento.InformacionAdicional.TipoTrabajoId = tipoTrabajoSeleccionado.TipoTrabajoId;
             Instrumento.InformacionAdicional.FechaEntregaRequerida = dateFechaEntregaRequerida.Value;
-
+            Instrumento.InformacionAdicional.TipoTrabajo = tipoTrabajoSeleccionado;
+           
             if (TipoTransaccion == TipoTransaccion.Actualizar)
             {
                 OnInformacionAdicionalActualizada?.Invoke(Instrumento);
@@ -101,14 +116,22 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         {
             memoComentarios.Text = "";
             trackBarControl1.Value = 1;
-            glTiposTrabajo.EditValue = null;
+           
         }
 
-        public void SetearInformacionAdicionalParaActualizar(IngresoInstrumentoDto ingresoInstrumentoDto)
+        public void SetearInformacionAdicionalParaActualizar(IngresoInstrumentoDto ingresoInstrumentoDto, bool seleccionado)
         {
-            memoComentarios.Text = ingresoInstrumentoDto.Comentarios;
-            trackBarControl1.Value = ingresoInstrumentoDto.Prioridad;
+            Instrumento = new InstrumentoLista();
             glTiposTrabajo.EditValue = ingresoInstrumentoDto.TipoTrabajoId;
+            tipoTrabajoSeleccionado = TiposDeTrabajo.FirstOrDefault(x => x.TipoTrabajoId == ingresoInstrumentoDto.TipoTrabajoId);       
+            memoComentarios.Text = ingresoInstrumentoDto.Comentarios;
+            memoComentariosInstrumento.Text = ingresoInstrumentoDto.ComentariosAcercaDelInstrumento;
+            trackBarControl1.Value = ingresoInstrumentoDto.Prioridad;
+           
+
+
+            Instrumento.Seleccionado = seleccionado;
+            Instrumento.InstrumentoId = ingresoInstrumentoDto.InstrumentoId;
         }
 
         private void glTiposTrabajo_EditValueChanged(object sender, EventArgs e)

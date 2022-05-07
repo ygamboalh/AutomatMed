@@ -59,7 +59,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
                     var frmIngresos = new frmIngresos(serviceProvider.GetService<IngresoService>(),
                                                        serviceProvider.GetService<InstrumentoService>(),
                                                        serviceProvider.GetService<UsuarioService>(),
-                                                       serviceProvider.GetService<ConfiguracionNotificacionService>()
+                                                       serviceProvider.GetService<ConfiguracionNotificacionService>(),
+                                                       serviceProvider.GetService<EstadoService>()
                                                       );
                     XtraForm ingresos = frmIngresos;
                     AgregarPantalla(ref ingresos);

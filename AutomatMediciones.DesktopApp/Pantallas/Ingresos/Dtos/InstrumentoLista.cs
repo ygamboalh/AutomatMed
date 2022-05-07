@@ -13,10 +13,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos.Dtos
 
     public class InformacionAdicionalInstrumento
     {
+        public TipoTrabajoDto TipoTrabajo { get; set; }
         public int InstrumentoId { get; set; }
-        public DateTime FechaEntregaRequerida { get; set; }
+        public DateTime? FechaEntregaRequerida { get; set; }
         public int Prioridad { get; set; }
         public string Comentarios { get; set; }
         public int TipoTrabajoId { get; set; }
+        public string ComentariosAcercaDelInstrumento { get; set; }
     }
 }

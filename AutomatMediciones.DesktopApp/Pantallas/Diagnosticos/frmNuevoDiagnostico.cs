@@ -54,10 +54,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
 
         private void PrecargarDatos()
         {
+            var tipoInstrumento = IngresoInstrumento.Instrumento.Clasificacion.TipoInstrumento.Descripcion;
+            var marca = IngresoInstrumento.Instrumento.Clasificacion.Marca.Descripcion;
+            var modelo = IngresoInstrumento.Instrumento.Clasificacion.Modelo.Descripcion;
+            var serie = IngresoInstrumento.Instrumento.NumeroSerie;
+
             usuarioSeleccionado = IngresoInstrumento.Ingreso.Responsable;
-            txtMarca.Text = IngresoInstrumento.Instrumento.Clasificacion.Marca.Descripcion;
-            txtModelo.Text = IngresoInstrumento.Instrumento.Clasificacion.Modelo.Descripcion;
-            txtTipoInstrumento.Text = IngresoInstrumento.Instrumento.Clasificacion.TipoInstrumento.Descripcion;
+            txtClasificacion.Text = $"{tipoInstrumento} / {marca} / {modelo} - Serie: {serie}";
             txtTipoOrdenTrabajo.Text = IngresoInstrumento.TipoTrabajo.Descripcion;
             txtPrioridad.Text = IngresoInstrumento.Prioridad.ToString();
             glEstado.EditValue = IngresoInstrumento.EstadoId;
