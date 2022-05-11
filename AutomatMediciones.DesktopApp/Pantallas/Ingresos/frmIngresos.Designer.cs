@@ -36,6 +36,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
@@ -78,6 +83,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.colDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colClasificacion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNumeroSerie = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colComentariosDeInstrumento = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTipoTrabajo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFechaEntregaRequerida = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colComentario = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -87,12 +93,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.chkSeleccionarInstrumento = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.colEditarComentario = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEditarComentario = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.colEditarInstrumento = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnEditarInstrumento = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblTotalInstrumentos = new DevExpress.XtraEditors.LabelControl();
             this.lblInstrumentosSeleccionados = new DevExpress.XtraEditors.LabelControl();
             this.btnAgregarNuevInstrumento = new FontAwesome.Sharp.IconButton();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.txtCorreoNuevo = new DevExpress.XtraEditors.TextEdit();
             this.panel5 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.glCorreoElectronico.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glCorreo)).BeginInit();
@@ -115,8 +124,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             ((System.ComponentModel.ISupportInitialize)(this.memoComentario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkSeleccionarInstrumento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditarComentario)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEditarInstrumento)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCorreoNuevo.Properties)).BeginInit();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -124,7 +135,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(46, 23);
+            this.labelControl1.Location = new System.Drawing.Point(45, 18);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(135, 17);
@@ -135,7 +146,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(46, 78);
+            this.labelControl2.Location = new System.Drawing.Point(583, 18);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(136, 17);
@@ -146,7 +157,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(46, 129);
+            this.labelControl3.Location = new System.Drawing.Point(960, 18);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(121, 17);
@@ -155,14 +166,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             // glCorreoElectronico
             // 
-            this.glCorreoElectronico.Location = new System.Drawing.Point(46, 149);
+            this.glCorreoElectronico.Location = new System.Drawing.Point(960, 39);
             this.glCorreoElectronico.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.glCorreoElectronico.Name = "glCorreoElectronico";
             this.glCorreoElectronico.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.glCorreoElectronico.Properties.Appearance.Options.UseFont = true;
+            this.glCorreoElectronico.Properties.AutoHeight = false;
             this.glCorreoElectronico.Properties.NullText = "";
             this.glCorreoElectronico.Properties.PopupView = this.glCorreo;
-            this.glCorreoElectronico.Size = new System.Drawing.Size(420, 26);
+            this.glCorreoElectronico.Size = new System.Drawing.Size(289, 30);
             this.glCorreoElectronico.TabIndex = 5;
             this.glCorreoElectronico.EditValueChanged += new System.EventHandler(this.glCorreoElectronico_EditValueChanged);
             // 
@@ -203,7 +215,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.btnBuscarEmpresa.IconColor = System.Drawing.Color.Black;
             this.btnBuscarEmpresa.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnBuscarEmpresa.IconSize = 30;
-            this.btnBuscarEmpresa.Location = new System.Drawing.Point(5, 44);
+            this.btnBuscarEmpresa.Location = new System.Drawing.Point(4, 39);
             this.btnBuscarEmpresa.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnBuscarEmpresa.Name = "btnBuscarEmpresa";
             this.btnBuscarEmpresa.Size = new System.Drawing.Size(37, 32);
@@ -215,15 +227,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // glContacto
             // 
             this.glContacto.EditValue = "";
-            this.glContacto.Location = new System.Drawing.Point(46, 98);
+            this.glContacto.Location = new System.Drawing.Point(583, 39);
             this.glContacto.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.glContacto.Name = "glContacto";
             this.glContacto.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.glContacto.Properties.Appearance.Options.UseFont = true;
+            this.glContacto.Properties.AutoHeight = false;
             this.glContacto.Properties.NullText = "";
             this.glContacto.Properties.PopupView = this.glContactos;
             this.glContacto.Properties.EditValueChanged += new System.EventHandler(this.glContacto_Properties_EditValueChanged);
-            this.glContacto.Size = new System.Drawing.Size(732, 26);
+            this.glContacto.Size = new System.Drawing.Size(356, 30);
             this.glContacto.TabIndex = 8;
             this.glContacto.TextChanged += new System.EventHandler(this.glContacto_TextChanged);
             // 
@@ -279,14 +292,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // txtEmpresa
             // 
             this.txtEmpresa.EditValue = "";
-            this.txtEmpresa.Location = new System.Drawing.Point(46, 44);
+            this.txtEmpresa.Location = new System.Drawing.Point(45, 39);
             this.txtEmpresa.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtEmpresa.Name = "txtEmpresa";
             this.txtEmpresa.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtEmpresa.Properties.Appearance.Options.UseFont = true;
             this.txtEmpresa.Properties.ReadOnly = true;
             this.txtEmpresa.Properties.UseReadOnlyAppearance = false;
-            this.txtEmpresa.Size = new System.Drawing.Size(732, 30);
+            this.txtEmpresa.Size = new System.Drawing.Size(506, 30);
             this.txtEmpresa.TabIndex = 9;
             // 
             // labelControl7
@@ -312,7 +325,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.btnGuardarIngreso.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardarIngreso.IconSize = 30;
             this.btnGuardarIngreso.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardarIngreso.Location = new System.Drawing.Point(1051, 0);
+            this.btnGuardarIngreso.Location = new System.Drawing.Point(1072, 0);
             this.btnGuardarIngreso.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnGuardarIngreso.Name = "btnGuardarIngreso";
             this.btnGuardarIngreso.Size = new System.Drawing.Size(220, 66);
@@ -328,7 +341,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.memoComentarios.Location = new System.Drawing.Point(0, 18);
             this.memoComentarios.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.memoComentarios.Name = "memoComentarios";
-            this.memoComentarios.Size = new System.Drawing.Size(1271, 138);
+            this.memoComentarios.Size = new System.Drawing.Size(1292, 138);
             this.memoComentarios.TabIndex = 24;
             // 
             // panel2
@@ -340,7 +353,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(5);
-            this.panel2.Size = new System.Drawing.Size(1281, 310);
+            this.panel2.Size = new System.Drawing.Size(1302, 310);
             this.panel2.TabIndex = 31;
             // 
             // panel7
@@ -359,7 +372,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.panel7.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel7.Name = "panel7";
             this.panel7.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
-            this.panel7.Size = new System.Drawing.Size(1271, 234);
+            this.panel7.Size = new System.Drawing.Size(1292, 234);
             this.panel7.TabIndex = 28;
             // 
             // labelControl8
@@ -509,7 +522,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.panel8.Location = new System.Drawing.Point(0, 0);
             this.panel8.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1271, 18);
+            this.panel8.Size = new System.Drawing.Size(1292, 18);
             this.panel8.TabIndex = 25;
             // 
             // panel6
@@ -519,7 +532,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.panel6.Location = new System.Drawing.Point(5, 239);
             this.panel6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1271, 66);
+            this.panel6.Size = new System.Drawing.Size(1292, 66);
             this.panel6.TabIndex = 27;
             // 
             // panel1
@@ -527,11 +540,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.panel1.Controls.Add(this.gcInstrumentosDeEmpresa);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(10, 246);
+            this.panel1.Location = new System.Drawing.Point(10, 172);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(1281, 275);
+            this.panel1.Size = new System.Drawing.Size(1302, 349);
             this.panel1.TabIndex = 32;
             // 
             // gcInstrumentosDeEmpresa
@@ -545,8 +558,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.gcInstrumentosDeEmpresa.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.chkSeleccionarInstrumento,
             this.memoComentario,
-            this.btnEditarComentario});
-            this.gcInstrumentosDeEmpresa.Size = new System.Drawing.Size(1271, 234);
+            this.btnEditarComentario,
+            this.btnEditarInstrumento});
+            this.gcInstrumentosDeEmpresa.Size = new System.Drawing.Size(1292, 308);
             this.gcInstrumentosDeEmpresa.TabIndex = 32;
             this.gcInstrumentosDeEmpresa.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvInstrumentosDeEmpresa});
@@ -557,12 +571,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.colDescripcion,
             this.colClasificacion,
             this.colNumeroSerie,
+            this.colComentariosDeInstrumento,
             this.colTipoTrabajo,
             this.colFechaEntregaRequerida,
             this.colComentario,
             this.colPrioridad,
             this.colSeleccionar,
-            this.colEditarComentario});
+            this.colEditarComentario,
+            this.colEditarInstrumento});
             this.gvInstrumentosDeEmpresa.GridControl = this.gcInstrumentosDeEmpresa;
             this.gvInstrumentosDeEmpresa.Name = "gvInstrumentosDeEmpresa";
             this.gvInstrumentosDeEmpresa.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
@@ -581,7 +597,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.colDescripcion.OptionsColumn.ReadOnly = true;
             this.colDescripcion.Visible = true;
             this.colDescripcion.VisibleIndex = 0;
-            this.colDescripcion.Width = 213;
+            this.colDescripcion.Width = 205;
             // 
             // colClasificacion
             // 
@@ -595,7 +611,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.colClasificacion.OptionsFilter.AllowFilter = false;
             this.colClasificacion.Visible = true;
             this.colClasificacion.VisibleIndex = 1;
-            this.colClasificacion.Width = 225;
+            this.colClasificacion.Width = 160;
             // 
             // colNumeroSerie
             // 
@@ -608,7 +624,19 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.colNumeroSerie.OptionsColumn.ReadOnly = true;
             this.colNumeroSerie.Visible = true;
             this.colNumeroSerie.VisibleIndex = 2;
-            this.colNumeroSerie.Width = 203;
+            this.colNumeroSerie.Width = 131;
+            // 
+            // colComentariosDeInstrumento
+            // 
+            this.colComentariosDeInstrumento.Caption = "Comentarios de Instrumento";
+            this.colComentariosDeInstrumento.FieldName = "Comentarios";
+            this.colComentariosDeInstrumento.MinWidth = 25;
+            this.colComentariosDeInstrumento.Name = "colComentariosDeInstrumento";
+            this.colComentariosDeInstrumento.OptionsColumn.AllowEdit = false;
+            this.colComentariosDeInstrumento.OptionsColumn.AllowFocus = false;
+            this.colComentariosDeInstrumento.Visible = true;
+            this.colComentariosDeInstrumento.VisibleIndex = 3;
+            this.colComentariosDeInstrumento.Width = 151;
             // 
             // colTipoTrabajo
             // 
@@ -620,8 +648,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.colTipoTrabajo.OptionsColumn.AllowFocus = false;
             this.colTipoTrabajo.OptionsColumn.ReadOnly = true;
             this.colTipoTrabajo.Visible = true;
-            this.colTipoTrabajo.VisibleIndex = 3;
-            this.colTipoTrabajo.Width = 144;
+            this.colTipoTrabajo.VisibleIndex = 4;
+            this.colTipoTrabajo.Width = 135;
             // 
             // colFechaEntregaRequerida
             // 
@@ -631,9 +659,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.colFechaEntregaRequerida.FieldName = "InformacionAdicional.FechaEntregaRequerida";
             this.colFechaEntregaRequerida.MinWidth = 25;
             this.colFechaEntregaRequerida.Name = "colFechaEntregaRequerida";
+            this.colFechaEntregaRequerida.OptionsColumn.AllowEdit = false;
+            this.colFechaEntregaRequerida.OptionsColumn.AllowFocus = false;
             this.colFechaEntregaRequerida.Visible = true;
-            this.colFechaEntregaRequerida.VisibleIndex = 4;
-            this.colFechaEntregaRequerida.Width = 94;
+            this.colFechaEntregaRequerida.VisibleIndex = 5;
+            this.colFechaEntregaRequerida.Width = 86;
             // 
             // colComentario
             // 
@@ -650,8 +680,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.colComentario.OptionsColumn.AllowFocus = false;
             this.colComentario.OptionsColumn.ReadOnly = true;
             this.colComentario.Visible = true;
-            this.colComentario.VisibleIndex = 5;
-            this.colComentario.Width = 185;
+            this.colComentario.VisibleIndex = 6;
+            this.colComentario.Width = 135;
             // 
             // memoComentario
             // 
@@ -660,7 +690,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             // colPrioridad
             // 
-            this.colPrioridad.Caption = "Prioridad";
+            this.colPrioridad.Caption = "P.";
             this.colPrioridad.FieldName = "InformacionAdicional.Prioridad";
             this.colPrioridad.MinWidth = 25;
             this.colPrioridad.Name = "colPrioridad";
@@ -668,8 +698,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.colPrioridad.OptionsColumn.AllowFocus = false;
             this.colPrioridad.OptionsColumn.ReadOnly = true;
             this.colPrioridad.Visible = true;
-            this.colPrioridad.VisibleIndex = 6;
-            this.colPrioridad.Width = 91;
+            this.colPrioridad.VisibleIndex = 7;
+            this.colPrioridad.Width = 38;
             // 
             // colSeleccionar
             // 
@@ -679,8 +709,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.colSeleccionar.MinWidth = 24;
             this.colSeleccionar.Name = "colSeleccionar";
             this.colSeleccionar.Visible = true;
-            this.colSeleccionar.VisibleIndex = 7;
-            this.colSeleccionar.Width = 92;
+            this.colSeleccionar.VisibleIndex = 8;
+            this.colSeleccionar.Width = 77;
             // 
             // chkSeleccionarInstrumento
             // 
@@ -695,8 +725,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.colEditarComentario.MinWidth = 24;
             this.colEditarComentario.Name = "colEditarComentario";
             this.colEditarComentario.Visible = true;
-            this.colEditarComentario.VisibleIndex = 8;
-            this.colEditarComentario.Width = 80;
+            this.colEditarComentario.VisibleIndex = 9;
+            this.colEditarComentario.Width = 64;
             // 
             // btnEditarComentario
             // 
@@ -707,16 +737,35 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.btnEditarComentario.Name = "btnEditarComentario";
             this.btnEditarComentario.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
+            // colEditarInstrumento
+            // 
+            this.colEditarInstrumento.Caption = "Editar Instrumento";
+            this.colEditarInstrumento.ColumnEdit = this.btnEditarInstrumento;
+            this.colEditarInstrumento.MinWidth = 25;
+            this.colEditarInstrumento.Name = "colEditarInstrumento";
+            this.colEditarInstrumento.Visible = true;
+            this.colEditarInstrumento.VisibleIndex = 10;
+            this.colEditarInstrumento.Width = 64;
+            // 
+            // btnEditarInstrumento
+            // 
+            this.btnEditarInstrumento.AutoHeight = false;
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            this.btnEditarInstrumento.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.btnEditarInstrumento.Name = "btnEditarInstrumento";
+            this.btnEditarInstrumento.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.lblTotalInstrumentos);
             this.panel3.Controls.Add(this.lblInstrumentosSeleccionados);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(5, 239);
+            this.panel3.Location = new System.Drawing.Point(5, 313);
             this.panel3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(5);
-            this.panel3.Size = new System.Drawing.Size(1271, 31);
+            this.panel3.Size = new System.Drawing.Size(1292, 31);
             this.panel3.TabIndex = 33;
             // 
             // lblTotalInstrumentos
@@ -737,7 +786,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.lblInstrumentosSeleccionados.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblInstrumentosSeleccionados.Appearance.Options.UseFont = true;
             this.lblInstrumentosSeleccionados.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblInstrumentosSeleccionados.Location = new System.Drawing.Point(1259, 5);
+            this.lblInstrumentosSeleccionados.Location = new System.Drawing.Point(1280, 5);
             this.lblInstrumentosSeleccionados.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.lblInstrumentosSeleccionados.Name = "lblInstrumentosSeleccionados";
             this.lblInstrumentosSeleccionados.Size = new System.Drawing.Size(7, 17);
@@ -756,7 +805,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.btnAgregarNuevInstrumento.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAgregarNuevInstrumento.IconSize = 30;
             this.btnAgregarNuevInstrumento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarNuevInstrumento.Location = new System.Drawing.Point(1051, 0);
+            this.btnAgregarNuevInstrumento.Location = new System.Drawing.Point(1072, 0);
             this.btnAgregarNuevInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnAgregarNuevInstrumento.Name = "btnAgregarNuevInstrumento";
             this.btnAgregarNuevInstrumento.Size = new System.Drawing.Size(220, 37);
@@ -783,6 +832,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             // panel4
             // 
+            this.panel4.Controls.Add(this.txtCorreoNuevo);
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Controls.Add(this.labelControl1);
             this.panel4.Controls.Add(this.labelControl2);
@@ -796,25 +846,39 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.panel4.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel4.Name = "panel4";
             this.panel4.Padding = new System.Windows.Forms.Padding(5);
-            this.panel4.Size = new System.Drawing.Size(1281, 236);
+            this.panel4.Size = new System.Drawing.Size(1302, 162);
             this.panel4.TabIndex = 33;
+            // 
+            // txtCorreoNuevo
+            // 
+            this.txtCorreoNuevo.EditValue = "";
+            this.txtCorreoNuevo.Location = new System.Drawing.Point(960, 39);
+            this.txtCorreoNuevo.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txtCorreoNuevo.Name = "txtCorreoNuevo";
+            this.txtCorreoNuevo.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtCorreoNuevo.Properties.Appearance.Options.UseFont = true;
+            this.txtCorreoNuevo.Properties.UseReadOnlyAppearance = false;
+            this.txtCorreoNuevo.Size = new System.Drawing.Size(289, 30);
+            this.txtCorreoNuevo.TabIndex = 34;
+            this.txtCorreoNuevo.TextChanged += new System.EventHandler(this.txtCorreoNuevo_TextChanged);
+            this.txtCorreoNuevo.Click += new System.EventHandler(this.txtCorreoNuevo_Click);
             // 
             // panel5
             // 
             this.panel5.Controls.Add(this.labelControl5);
             this.panel5.Controls.Add(this.btnAgregarNuevInstrumento);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(5, 194);
+            this.panel5.Location = new System.Drawing.Point(5, 120);
             this.panel5.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1271, 37);
+            this.panel5.Size = new System.Drawing.Size(1292, 37);
             this.panel5.TabIndex = 32;
             // 
             // frmIngresos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1301, 841);
+            this.ClientSize = new System.Drawing.Size(1322, 841);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
@@ -849,10 +913,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             ((System.ComponentModel.ISupportInitialize)(this.memoComentario)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkSeleccionarInstrumento)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditarComentario)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEditarInstrumento)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCorreoNuevo.Properties)).EndInit();
             this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -919,5 +985,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private DevExpress.XtraGrid.Columns.GridColumn colTipoTrabajo;
         private DevExpress.XtraGrid.Columns.GridColumn colPrioridad;
         private DevExpress.XtraGrid.Columns.GridColumn colFechaEntregaRequerida;
+        private DevExpress.XtraGrid.Columns.GridColumn colComentariosDeInstrumento;
+        private DevExpress.XtraGrid.Columns.GridColumn colEditarInstrumento;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEditarInstrumento;
+        private DevExpress.XtraEditors.TextEdit txtCorreoNuevo;
     }
 }

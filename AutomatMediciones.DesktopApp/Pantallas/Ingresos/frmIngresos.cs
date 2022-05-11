@@ -27,6 +27,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         EstadoDto estadoSeleccionado;
 
         private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
+
         private readonly IngresoService _ingresoService;
         private readonly InstrumentoService _instrumentoService;
         private readonly UsuarioService _usuarioService;
@@ -74,8 +75,30 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             chkSeleccionarInstrumento.EditValueChanged += onSeleccionaInstrumento;
             btnEditarComentario.Click += clickEditarComentario;
+            btnEditarInstrumento.Click += clickEditarInstrumento;
         }
 
+        private void clickEditarInstrumento(object sender, EventArgs e)
+        {
+            var instrumento = gvInstrumentosDeEmpresa.GetFocusedRow() as InstrumentoDto;
+            if (instrumento == null)
+            {
+                return;
+            }
+
+            var frmNuevoInstrumento = new frmNuevoInstrumento(TipoTransaccion.Actualizar, serviceProvider.GetService<ClasificacionInstrumentoService>(),
+                                                                           serviceProvider.GetService<InstrumentoService>(),
+                                                                           serviceProvider.GetService<MarcaService>(),
+                                                                           serviceProvider.GetService<ModeloService>(),
+                                                                           serviceProvider.GetService<TipoDeInstrumentoService>(),
+                                                                           serviceProvider.GetService<EmpresaService>());
+
+            frmNuevoInstrumento.OnInstrumentoAgregado += OnInstrumentoAgregado;
+            frmNuevoInstrumento.NuevoInstrumento = instrumento;
+            frmNuevoInstrumento.SetearValoresParaActualizar();
+            frmNuevoInstrumento.ShowDialog();
+
+        }
 
         private void CargarConfiguraciones()
         {
@@ -104,6 +127,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             var usuarios = resultado.Data;
 
+          
+
             copiasEnCorreo = usuarios.Where(x => x.CopiaEnNotificaciones).ToList();
 
             glUsuariosResponsables.Properties.DataSource = usuarios;
@@ -129,7 +154,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             frmInformacionAdicionalInstrumento frmComentarioInstrumento = new frmInformacionAdicionalInstrumento(TipoTransaccion.Actualizar, serviceProvider.GetService<TipoTrabajoService>());
             frmComentarioInstrumento.OnInformacionAdicionalActualizada += OnInformacionAdicionalActualizada;
-            frmComentarioInstrumento.SetearInformacionAdicionalParaActualizar(ingresoInstrumento, instrumento.Seleccionado);
+            frmComentarioInstrumento.SetearInformacionAdicionalParaActualizar(ingresoInstrumento, instrumento.Seleccionado, instrumento.InformacionAdicional.ComentariosAcercaInstrumento);
             frmComentarioInstrumento.Show();
         }
 
@@ -185,7 +210,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 {
                     if (x.InstrumentoId == instrumento.InstrumentoId)
                     {
-                        x.ComentariosAcercaDelInstrumento = instrumento.InformacionAdicional.ComentariosAcercaDelInstrumento;
+
+                        x.Instrumento.Comentarios = instrumento.InformacionAdicional.ComentariosAcercaInstrumento;
                         x.Comentarios = instrumento.InformacionAdicional.Comentarios;
                         x.Prioridad = instrumento.InformacionAdicional.Prioridad;
                         x.TipoTrabajoId = instrumento.InformacionAdicional.TipoTrabajoId;
@@ -200,9 +226,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 {
                     if (x.InstrumentoId == instrumento.InstrumentoId)
                     {
+                        x.InformacionAdicional.ComentariosAcercaInstrumento = instrumento.InformacionAdicional.ComentariosAcercaInstrumento;
                         x.InformacionAdicional.TipoTrabajo = instrumento.InformacionAdicional.TipoTrabajo;
                         x.InformacionAdicional.Comentarios = instrumento.InformacionAdicional.Comentarios;
-                        x.InformacionAdicional.ComentariosAcercaDelInstrumento = instrumento.InformacionAdicional.ComentariosAcercaDelInstrumento;
                         x.InformacionAdicional.FechaEntregaRequerida = instrumento.InformacionAdicional.FechaEntregaRequerida;
                         x.InformacionAdicional.Prioridad = instrumento.InformacionAdicional.Prioridad;
                         x.InformacionAdicional.TipoTrabajoId = instrumento.InformacionAdicional.TipoTrabajoId;
@@ -223,13 +249,20 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         {
             var ingresoInstrumento = new IngresoInstrumentoDto
             {               
-                ComentariosAcercaDelInstrumento = instrumento.InformacionAdicional.ComentariosAcercaDelInstrumento,
                 Comentarios = instrumento.InformacionAdicional.Comentarios,
                 Prioridad = instrumento.InformacionAdicional.Prioridad,
                 TipoTrabajoId = instrumento.InformacionAdicional.TipoTrabajoId,
                 FechaEntregaRequerida = instrumento.InformacionAdicional.FechaEntregaRequerida.Value,
                 InstrumentoId = instrumento.InstrumentoId,
-                Activo = true
+                Activo = true,
+                Instrumento = new InstrumentoDto
+                {
+                    InstrumentoId = instrumento.InstrumentoId,
+                    Comentarios = instrumento.InformacionAdicional.ComentariosAcercaInstrumento,
+                    NumeroSerie = instrumento.NumeroSerie,
+                    EmpresaId = instrumento.EmpresaId
+                }
+
             };
 
             instrumentosSeleccionados.Add(ingresoInstrumento);
@@ -267,7 +300,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId).Seleccionado = instrumentoLista.Seleccionado;
             instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId).InformacionAdicional = instrumentoLista.InformacionAdicional;
             instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId).ClasificacionConcatenada = $"{instrumentoLista.Clasificacion.TipoInstrumento.Descripcion}/{instrumentoLista.Clasificacion.Marca.Descripcion}/{instrumentoLista.Clasificacion.Modelo.Descripcion}";
-
             instrumentosDeEmpresa.ForEach(x =>
             {
                 if (!x.Seleccionado)
@@ -378,8 +410,28 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         {
             LimpiarContactos();
             if (empresaSeleccionada == null) return;
-            glContacto.Properties.DataSource = empresaSeleccionada.Contactos;
-            glContacto.Properties.DisplayMember = "Nombre";
+
+            List<ContactoLista> contactoListas = new List<ContactoLista>();
+
+            empresaSeleccionada.Contactos.ToList().ForEach(x =>
+            {
+                var contacto = new ContactoLista
+                {
+                    ContactoId = x.ContactoId,
+                    Apellido = x.Apellido,
+                    Cargo = x.Cargo,
+                    ContactoConcatenado = $"{x.Nombre} {x.Apellido}",
+                    EmpresaId = x.EmpresaId,
+                    Nombre = x.Nombre,
+                    CorreosElectronicos = x.CorreosElectronicos
+                };
+
+                contactoListas.Add(contacto);
+            });
+
+            glContacto.Properties.DataSource =  contactoListas;
+
+            glContacto.Properties.DisplayMember = "ContactoConcatenado";
             glContacto.Properties.ValueMember = "ContactoId";
         }
 
@@ -427,7 +479,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                                                                               serviceProvider.GetService<EmpresaService>()
                                                                               );
             frmNuevoInstrumento.OnEmpresaSeleccionada(empresaSeleccionada);
-            frmNuevoInstrumento.OnInstrumentoAgregado += OnInstrumentoAgregado;
+         
             frmNuevoInstrumento.Show();
         }
 
@@ -476,6 +528,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             Ingreso.CuerpoCorreo = memoComentarios.Text;
             Ingreso.UsuarioId = usuarioSeleccionado.UsuarioId;
             Ingreso.FechaRegistro = dateFechaIngreso.Value;
+
             Ingreso.IngresosInstrumentos.ToList().ForEach(x =>
             {
                 x.EstadoId = (int)glEstado.EditValue;
@@ -485,6 +538,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private void glCorreoElectronico_EditValueChanged(object sender, EventArgs e)
         {
             correoSeleccionado = glCorreo.GetFocusedRow() as CorreoElectronicoDto;
+            txtCorreoNuevo.Text = correoSeleccionado.Direccion;
         }
 
         private bool SeLlenaronCamposObligatorios(out string mensaje)
@@ -644,6 +698,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private void LimpiarFormulario()
         {
             txtEmpresa.ResetText();
+            txtCorreoNuevo.ResetText();
             glContacto.EditValue = null;
             glCorreoElectronico.EditValue = null;
             glUsuariosResponsables.EditValue = null;
@@ -687,13 +742,29 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
         private void glContacto_TextChanged(object sender, EventArgs e)
         {
-            contactoSeleccionado = empresaSeleccionada.Contactos.FirstOrDefault(x => x.Nombre.Contains(glContacto.Text));
+            if (string.IsNullOrEmpty(glContacto.Text)) return;
+            contactoSeleccionado = empresaSeleccionada.Contactos.FirstOrDefault(x => x.ContactoId.Contains(glContacto.EditValue.ToString()));
             ObtenerCorreoElectronicoDeContacto();
         }
 
         private void glEstado_EditValueChanged(object sender, EventArgs e)
         {
             estadoSeleccionado = glEstadoView.GetFocusedRow() as EstadoDto;
+        }
+
+     
+        private void txtCorreoNuevo_Click(object sender, EventArgs e)
+        {
+            glCorreoElectronico.ShowPopup();
+        }
+
+        private void txtCorreoNuevo_TextChanged(object sender, EventArgs e)
+        {
+            if (correoSeleccionado != null)
+            {
+                correoSeleccionado.Direccion = txtCorreoNuevo.Text;
+            }
+         
         }
     }
 }

@@ -229,7 +229,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.btnDiagnosticos.Name = "btnDiagnosticos";
             this.btnDiagnosticos.Size = new System.Drawing.Size(320, 43);
             this.btnDiagnosticos.TabIndex = 3;
-            this.btnDiagnosticos.Text = "Diagnósticos";
+            this.btnDiagnosticos.Text = "Ingresos";
             this.btnDiagnosticos.UseVisualStyleBackColor = false;
             this.btnDiagnosticos.Click += new System.EventHandler(this.btnDiagnosticos_Click);
             // 

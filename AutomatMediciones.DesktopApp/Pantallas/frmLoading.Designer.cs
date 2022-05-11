@@ -32,9 +32,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSaving));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
@@ -50,7 +50,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 17, 0, 17);
             this.tableLayoutPanel1.RowCount = 1;
@@ -69,6 +69,26 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             this.panel1.Size = new System.Drawing.Size(281, 50);
             this.panel1.TabIndex = 0;
             // 
+            // label2
+            // 
+            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(89, 26);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(192, 26);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Cargando Datos...";
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(89, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(192, 26);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Automat Medición";
+            // 
             // pictureEdit1
             // 
             this.pictureEdit1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -82,27 +102,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             this.pictureEdit1.Size = new System.Drawing.Size(89, 50);
             this.pictureEdit1.TabIndex = 0;
             // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(89, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(192, 26);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Automat Mediciones";
-            // 
-            // label2
-            // 
-            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(89, 26);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(192, 26);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Cargando Datos...";
-            // 
-            // frmLoading
+            // frmSaving
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -111,8 +111,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             this.ClientSize = new System.Drawing.Size(287, 90);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "frmLoading";
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Name = "frmSaving";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Form1";
             this.tableLayoutPanel1.ResumeLayout(false);

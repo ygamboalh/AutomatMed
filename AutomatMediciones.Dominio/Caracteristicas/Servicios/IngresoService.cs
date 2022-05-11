@@ -77,6 +77,14 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 int correlativoIntrumento = 1;
                 foreach (var instrumento in ingresoDto.IngresosInstrumentos)
                 {
+
+                    var instrumentoBd = _AutomatMedicionesDbContext.Instrumentos.FirstOrDefault(x => x.InstrumentoId == instrumento.InstrumentoId);
+
+                    if (instrumentoBd != null)
+                    {
+                        instrumentoBd.Comentarios = instrumento.Instrumento.Comentarios;
+                    }
+
                     var ingresoInstrumento = new IngresoInstrumento
                     {
                         NumeroServicioTecnico = $"{ingreso.IngresoId}-{correlativoIntrumento}",
@@ -88,8 +96,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         FechaFin = instrumento.FechaFin,
                         FechaInicio = instrumento.FechaInicio,
                         Prioridad = instrumento.Prioridad,
-                        EstadoId = instrumento.EstadoId,
-                        ComentariosAcercaDelInstrumento = instrumento.ComentariosAcercaDelInstrumento,
+                        EstadoId = instrumento.EstadoId,   
+                        ResponsableId = ingresoDto.UsuarioId,
                         FechaEntregaRequerida = instrumento.FechaEntregaRequerida
                     };
 
@@ -127,6 +135,12 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 if (diagnostico == null)
                 {
                     return Response<bool>.Error("No se encontró ningún registro en almacen de datos.", true);
+                }
+
+                var instrumento = _AutomatMedicionesDbContext.Instrumentos.FirstOrDefault(x => x.InstrumentoId == ingresoInstrumento.InstrumentoId);
+                if (instrumento != null)
+                {
+                    instrumento.Comentarios = ingresoInstrumento.Instrumento.Comentarios;
                 }
 
                 diagnostico.Comentarios = ingresoInstrumento.Comentarios;

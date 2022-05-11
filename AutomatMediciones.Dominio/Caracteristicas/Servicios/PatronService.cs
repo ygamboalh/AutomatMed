@@ -1,4 +1,5 @@
-﻿using AutomatMediciones.Dominio.Caracteristicas.Entidades;
+﻿using AutoMapper;
+using AutomatMediciones.Dominio.Caracteristicas.Entidades;
 using AutomatMediciones.Dominio.Infraestructura;
 using AutomatMediciones.Libs.Dtos;
 using Nagaira.Herramientas.Standard.Helpers.Exceptions;
@@ -14,10 +15,12 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
     public class PatronService
     {
         private readonly AutomatMedicionesDbContext _automatMedicionesDbContext;
+        private readonly IMapper _mapper;
 
-        public PatronService(AutomatMedicionesDbContext automatMedicionesDbContext)
+        public PatronService(AutomatMedicionesDbContext automatMedicionesDbContext, IMapper mapper)
         {
             _automatMedicionesDbContext = automatMedicionesDbContext;
+            _mapper = mapper;
         }
 
         public Response<bool> RegistrarPatron(PatronDto patronDto)
@@ -42,6 +45,22 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
             }
         }
+
+        public Response<ICollection<PatronDto>> ObtenerPatrones()
+        {
+            try
+            {
+                var patrones = _automatMedicionesDbContext.Patrones.Where(x => x.Activo);
+
+
+                return Response<ICollection<PatronDto>>.Ok("Ok", _mapper.Map<List<PatronDto>>(patrones));
+            }
+            catch (Exception exc)
+            {
+                return Response<ICollection<PatronDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
 
     }
 }

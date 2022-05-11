@@ -59,6 +59,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             var modelo = IngresoInstrumento.Instrumento.Clasificacion.Modelo.Descripcion;
             var serie = IngresoInstrumento.Instrumento.NumeroSerie;
 
+            glUsuariosResponsables.EditValue = IngresoInstrumento.ResponsableId;
             usuarioSeleccionado = IngresoInstrumento.Ingreso.Responsable;
             txtClasificacion.Text = $"{tipoInstrumento} / {marca} / {modelo} - Serie: {serie}";
             txtTipoOrdenTrabajo.Text = IngresoInstrumento.TipoTrabajo.Descripcion;
@@ -66,9 +67,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             glEstado.EditValue = IngresoInstrumento.EstadoId;
             memoComentarios.Text = IngresoInstrumento.Comentarios;
             memoDiagnostico.Text = IngresoInstrumento.Diagnostico;
-            glUsuariosResponsables.EditValue = IngresoInstrumento.ResponsableId;
-            IngresoInstrumento.FechaInicio = IngresoInstrumento.FechaInicio == null ? DateTime.Now : IngresoInstrumento.FechaInicio;
 
+            IngresoInstrumento.FechaInicio = IngresoInstrumento.FechaInicio == null ? DateTime.Now : IngresoInstrumento.FechaInicio;
+            memoComentariosInstrumento.Text = IngresoInstrumento.Instrumento.Comentarios;
 
             if (IngresoInstrumento.TiempoConsumido == null)
             {
@@ -122,6 +123,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
                 return;
             }
 
+            IngresoInstrumento.Instrumento.Comentarios = memoComentariosInstrumento.Text;
             IngresoInstrumento.Comentarios = memoComentarios.Text;
             IngresoInstrumento.Diagnostico = memoDiagnostico.Text;
             IngresoInstrumento.EstadoId = estadoSeleccionado == null ? IngresoInstrumento.EstadoId : estadoSeleccionado.EstadoId;

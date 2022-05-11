@@ -56,6 +56,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             this.lblTiempo = new DevExpress.XtraEditors.LabelControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.memoComentariosInstrumento = new DevExpress.XtraEditors.MemoEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.memoDiagnostico.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoComentarios.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClasificacion.Properties)).BeginInit();
@@ -65,6 +67,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             ((System.ComponentModel.ISupportInitialize)(this.glUsuariosResponsablesView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glEstado.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glEstadoView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoComentariosInstrumento.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGuardarDiagnostico
@@ -77,7 +80,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.btnGuardarDiagnostico.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardarDiagnostico.IconSize = 30;
             this.btnGuardarDiagnostico.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardarDiagnostico.Location = new System.Drawing.Point(460, 676);
+            this.btnGuardarDiagnostico.Location = new System.Drawing.Point(459, 686);
             this.btnGuardarDiagnostico.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnGuardarDiagnostico.Name = "btnGuardarDiagnostico";
             this.btnGuardarDiagnostico.Size = new System.Drawing.Size(237, 52);
@@ -89,7 +92,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             // memoDiagnostico
             // 
-            this.memoDiagnostico.Location = new System.Drawing.Point(49, 420);
+            this.memoDiagnostico.Location = new System.Drawing.Point(48, 465);
             this.memoDiagnostico.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.memoDiagnostico.Name = "memoDiagnostico";
             this.memoDiagnostico.Size = new System.Drawing.Size(648, 94);
@@ -99,7 +102,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             this.labelControl9.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl9.Appearance.Options.UseFont = true;
-            this.labelControl9.Location = new System.Drawing.Point(50, 399);
+            this.labelControl9.Location = new System.Drawing.Point(49, 444);
             this.labelControl9.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(74, 17);
@@ -108,7 +111,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             // memoComentarios
             // 
-            this.memoComentarios.Location = new System.Drawing.Point(50, 321);
+            this.memoComentarios.Location = new System.Drawing.Point(48, 370);
             this.memoComentarios.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.memoComentarios.Name = "memoComentarios";
             this.memoComentarios.Size = new System.Drawing.Size(646, 59);
@@ -118,7 +121,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(49, 298);
+            this.labelControl7.Location = new System.Drawing.Point(47, 347);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(152, 17);
@@ -129,7 +132,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Location = new System.Drawing.Point(274, 178);
+            this.labelControl8.Location = new System.Drawing.Point(275, 149);
             this.labelControl8.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(58, 17);
@@ -140,7 +143,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(50, 254);
+            this.labelControl5.Location = new System.Drawing.Point(50, 312);
             this.labelControl5.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(318, 20);
@@ -151,7 +154,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(49, 178);
+            this.labelControl4.Location = new System.Drawing.Point(50, 149);
             this.labelControl4.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(97, 17);
@@ -162,7 +165,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(50, 81);
+            this.labelControl3.Location = new System.Drawing.Point(47, 71);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(262, 20);
@@ -173,7 +176,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             this.labelControl10.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Location = new System.Drawing.Point(50, 116);
+            this.labelControl10.Location = new System.Drawing.Point(51, 95);
             this.labelControl10.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(75, 17);
@@ -182,7 +185,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             // txtClasificacion
             // 
-            this.txtClasificacion.Location = new System.Drawing.Point(50, 138);
+            this.txtClasificacion.Location = new System.Drawing.Point(50, 116);
             this.txtClasificacion.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtClasificacion.Name = "txtClasificacion";
             this.txtClasificacion.Properties.ReadOnly = true;
@@ -192,7 +195,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             // txtTipoOrdenTrabajo
             // 
-            this.txtTipoOrdenTrabajo.Location = new System.Drawing.Point(49, 202);
+            this.txtTipoOrdenTrabajo.Location = new System.Drawing.Point(50, 173);
             this.txtTipoOrdenTrabajo.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtTipoOrdenTrabajo.Name = "txtTipoOrdenTrabajo";
             this.txtTipoOrdenTrabajo.Properties.ReadOnly = true;
@@ -202,7 +205,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             // txtPrioridad
             // 
-            this.txtPrioridad.Location = new System.Drawing.Point(273, 202);
+            this.txtPrioridad.Location = new System.Drawing.Point(274, 173);
             this.txtPrioridad.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtPrioridad.Name = "txtPrioridad";
             this.txtPrioridad.Properties.ReadOnly = true;
@@ -214,7 +217,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(365, 537);
+            this.labelControl6.Location = new System.Drawing.Point(366, 572);
             this.labelControl6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(129, 17);
@@ -223,7 +226,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             // glUsuariosResponsables
             // 
-            this.glUsuariosResponsables.Location = new System.Drawing.Point(365, 557);
+            this.glUsuariosResponsables.Location = new System.Drawing.Point(366, 592);
             this.glUsuariosResponsables.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.glUsuariosResponsables.Name = "glUsuariosResponsables";
             this.glUsuariosResponsables.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -268,7 +271,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             this.labelControl11.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl11.Appearance.Options.UseFont = true;
-            this.labelControl11.Location = new System.Drawing.Point(50, 537);
+            this.labelControl11.Location = new System.Drawing.Point(51, 572);
             this.labelControl11.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(44, 17);
@@ -277,7 +280,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             // glEstado
             // 
-            this.glEstado.Location = new System.Drawing.Point(50, 558);
+            this.glEstado.Location = new System.Drawing.Point(51, 593);
             this.glEstado.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.glEstado.Name = "glEstado";
             this.glEstado.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -322,7 +325,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             this.labelControl12.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl12.Appearance.Options.UseFont = true;
-            this.labelControl12.Location = new System.Drawing.Point(50, 610);
+            this.labelControl12.Location = new System.Drawing.Point(51, 645);
             this.labelControl12.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl12.Name = "labelControl12";
             this.labelControl12.Size = new System.Drawing.Size(157, 23);
@@ -333,7 +336,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             this.lblTiempo.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblTiempo.Appearance.Options.UseFont = true;
-            this.lblTiempo.Location = new System.Drawing.Point(237, 610);
+            this.lblTiempo.Location = new System.Drawing.Point(238, 645);
             this.lblTiempo.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.lblTiempo.Name = "lblTiempo";
             this.lblTiempo.Size = new System.Drawing.Size(0, 23);
@@ -344,11 +347,32 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // memoComentariosInstrumento
+            // 
+            this.memoComentariosInstrumento.Location = new System.Drawing.Point(50, 230);
+            this.memoComentariosInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.memoComentariosInstrumento.Name = "memoComentariosInstrumento";
+            this.memoComentariosInstrumento.Size = new System.Drawing.Size(646, 53);
+            this.memoComentariosInstrumento.TabIndex = 179;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Location = new System.Drawing.Point(51, 209);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(208, 17);
+            this.labelControl1.TabIndex = 180;
+            this.labelControl1.Text = "Comentarios sobre el instrumento";
+            // 
             // frmNuevoDiagnostico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(744, 742);
+            this.ClientSize = new System.Drawing.Size(744, 749);
+            this.Controls.Add(this.labelControl1);
+            this.Controls.Add(this.memoComentariosInstrumento);
             this.Controls.Add(this.lblTiempo);
             this.Controls.Add(this.labelControl12);
             this.Controls.Add(this.labelControl11);
@@ -383,6 +407,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             ((System.ComponentModel.ISupportInitialize)(this.glUsuariosResponsablesView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.glEstado.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.glEstadoView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoComentariosInstrumento.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -416,5 +441,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
         private DevExpress.XtraEditors.LabelControl labelControl12;
         private DevExpress.XtraEditors.LabelControl lblTiempo;
         private System.Windows.Forms.Timer timer1;
+        private DevExpress.XtraEditors.MemoEdit memoComentariosInstrumento;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
     }
 }

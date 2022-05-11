@@ -91,12 +91,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             Instrumento.InformacionAdicional = new InformacionAdicionalInstrumento();
 
-            Instrumento.InformacionAdicional.ComentariosAcercaDelInstrumento = memoComentariosInstrumento.Text;
             Instrumento.InformacionAdicional.Comentarios = memoComentarios.Text;
             Instrumento.InformacionAdicional.Prioridad = trackBarControl1.Value;
             Instrumento.InformacionAdicional.TipoTrabajoId = tipoTrabajoSeleccionado.TipoTrabajoId;
             Instrumento.InformacionAdicional.FechaEntregaRequerida = dateFechaEntregaRequerida.Value;
             Instrumento.InformacionAdicional.TipoTrabajo = tipoTrabajoSeleccionado;
+            Instrumento.InformacionAdicional.ComentariosAcercaInstrumento = memoComentariosAcercaInstrumento.Text;
            
             if (TipoTransaccion == TipoTransaccion.Actualizar)
             {
@@ -119,17 +119,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
            
         }
 
-        public void SetearInformacionAdicionalParaActualizar(IngresoInstrumentoDto ingresoInstrumentoDto, bool seleccionado)
+        public void SetearInformacionAdicionalParaActualizar(IngresoInstrumentoDto ingresoInstrumentoDto, bool seleccionado, string comentariosInstrumento)
         {
             Instrumento = new InstrumentoLista();
             glTiposTrabajo.EditValue = ingresoInstrumentoDto.TipoTrabajoId;
             tipoTrabajoSeleccionado = TiposDeTrabajo.FirstOrDefault(x => x.TipoTrabajoId == ingresoInstrumentoDto.TipoTrabajoId);       
-            memoComentarios.Text = ingresoInstrumentoDto.Comentarios;
-            memoComentariosInstrumento.Text = ingresoInstrumentoDto.ComentariosAcercaDelInstrumento;
+            memoComentarios.Text = ingresoInstrumentoDto.Comentarios;        
             trackBarControl1.Value = ingresoInstrumentoDto.Prioridad;
+            memoComentariosAcercaInstrumento.Text = comentariosInstrumento;
            
-
-
             Instrumento.Seleccionado = seleccionado;
             Instrumento.InstrumentoId = ingresoInstrumentoDto.InstrumentoId;
         }

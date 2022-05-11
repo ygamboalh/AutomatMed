@@ -19,6 +19,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos.Dtos
         public int Prioridad { get; set; }
         public string Comentarios { get; set; }
         public int TipoTrabajoId { get; set; }
-        public string ComentariosAcercaDelInstrumento { get; set; }
+        public string ComentariosAcercaInstrumento { get; set; }
     }
 }

@@ -61,6 +61,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btnAgregarClasificacion = new FontAwesome.Sharp.IconButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.memoComentarios = new DevExpress.XtraEditors.MemoEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpresaInstrumento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroSerie.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumento.Properties)).BeginInit();
@@ -71,6 +73,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glModelos.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit2View)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoComentarios.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl20
@@ -243,7 +246,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.btnGuardarInstrumento.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardarInstrumento.IconSize = 30;
             this.btnGuardarInstrumento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardarInstrumento.Location = new System.Drawing.Point(505, 486);
+            this.btnGuardarInstrumento.Location = new System.Drawing.Point(505, 593);
             this.btnGuardarInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnGuardarInstrumento.Name = "btnGuardarInstrumento";
             this.btnGuardarInstrumento.Size = new System.Drawing.Size(220, 52);
@@ -290,7 +293,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.txtGarantia.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtGarantia.Properties.Appearance.Options.UseFont = true;
             this.txtGarantia.Properties.UseReadOnlyAppearance = false;
-            this.txtGarantia.Size = new System.Drawing.Size(695, 30);
+            this.txtGarantia.Size = new System.Drawing.Size(693, 30);
             this.txtGarantia.TabIndex = 121;
             // 
             // glMarcas
@@ -419,11 +422,32 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.btnAgregarClasificacion.Click += new System.EventHandler(this.btnAgregarClasificacion_Click);
             this.btnAgregarClasificacion.MouseHover += new System.EventHandler(this.btnAgregarClasificacion_MouseHover);
             // 
+            // labelControl3
+            // 
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelControl3.Appearance.Options.UseFont = true;
+            this.labelControl3.Location = new System.Drawing.Point(30, 467);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(77, 17);
+            this.labelControl3.TabIndex = 127;
+            this.labelControl3.Text = "Comentarios:";
+            // 
+            // memoComentarios
+            // 
+            this.memoComentarios.Location = new System.Drawing.Point(30, 488);
+            this.memoComentarios.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.memoComentarios.Name = "memoComentarios";
+            this.memoComentarios.Size = new System.Drawing.Size(693, 71);
+            this.memoComentarios.TabIndex = 128;
+            // 
             // frmNuevoInstrumento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(756, 555);
+            this.ClientSize = new System.Drawing.Size(756, 656);
+            this.Controls.Add(this.memoComentarios);
+            this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.btnAgregarClasificacion);
             this.Controls.Add(this.glModelos);
             this.Controls.Add(this.labelControl2);
@@ -460,6 +484,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.glModelos.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit2View)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.memoComentarios.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -497,5 +522,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         private DevExpress.XtraGrid.Columns.GridColumn colDescripcionModelo;
         private FontAwesome.Sharp.IconButton btnAgregarClasificacion;
         private System.Windows.Forms.ToolTip toolTip1;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.MemoEdit memoComentarios;
     }
 }

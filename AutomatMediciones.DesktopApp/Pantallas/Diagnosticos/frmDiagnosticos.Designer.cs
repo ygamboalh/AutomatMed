@@ -60,6 +60,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.btnVerReporteDeIngreso = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnCliente = new FontAwesome.Sharp.IconButton();
+            this.btnComercial = new FontAwesome.Sharp.IconButton();
+            this.btnServicioTecnico = new FontAwesome.Sharp.IconButton();
+            this.btnFiltroTodos = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotal = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.btnIniciarDiagnostico)).BeginInit();
@@ -67,6 +72,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             ((System.ComponentModel.ISupportInitialize)(this.gvInstrumentos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnVerReporteDeIngreso)).BeginInit();
             this.panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,7 +96,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.gcInstrumentos.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnIniciarDiagnostico,
             this.btnVerReporteDeIngreso});
-            this.gcInstrumentos.Size = new System.Drawing.Size(1259, 599);
+            this.gcInstrumentos.Size = new System.Drawing.Size(1348, 599);
             this.gcInstrumentos.TabIndex = 157;
             this.gcInstrumentos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvInstrumentos});
@@ -305,13 +311,107 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.labelControl5);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1259, 58);
+            this.panel1.Size = new System.Drawing.Size(1348, 58);
             this.panel1.TabIndex = 153;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.btnCliente);
+            this.panel3.Controls.Add(this.btnComercial);
+            this.panel3.Controls.Add(this.btnServicioTecnico);
+            this.panel3.Controls.Add(this.btnFiltroTodos);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(663, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(685, 58);
+            this.panel3.TabIndex = 153;
+            // 
+            // btnCliente
+            // 
+            this.btnCliente.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCliente.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnCliente.IconChar = FontAwesome.Sharp.IconChar.Filter;
+            this.btnCliente.IconColor = System.Drawing.Color.Black;
+            this.btnCliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCliente.IconSize = 30;
+            this.btnCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCliente.Location = new System.Drawing.Point(540, 11);
+            this.btnCliente.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnCliente.Name = "btnCliente";
+            this.btnCliente.Size = new System.Drawing.Size(125, 37);
+            this.btnCliente.TabIndex = 160;
+            this.btnCliente.Text = "Cliente";
+            this.btnCliente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCliente.UseVisualStyleBackColor = true;
+            this.btnCliente.Click += new System.EventHandler(this.btnCliente_Click);
+            // 
+            // btnComercial
+            // 
+            this.btnComercial.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnComercial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnComercial.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnComercial.IconChar = FontAwesome.Sharp.IconChar.Filter;
+            this.btnComercial.IconColor = System.Drawing.Color.Black;
+            this.btnComercial.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnComercial.IconSize = 30;
+            this.btnComercial.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnComercial.Location = new System.Drawing.Point(376, 11);
+            this.btnComercial.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnComercial.Name = "btnComercial";
+            this.btnComercial.Size = new System.Drawing.Size(144, 37);
+            this.btnComercial.TabIndex = 159;
+            this.btnComercial.Text = "Comercial";
+            this.btnComercial.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnComercial.UseVisualStyleBackColor = true;
+            this.btnComercial.Click += new System.EventHandler(this.btnComercial_Click);
+            // 
+            // btnServicioTecnico
+            // 
+            this.btnServicioTecnico.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnServicioTecnico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnServicioTecnico.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnServicioTecnico.IconChar = FontAwesome.Sharp.IconChar.Filter;
+            this.btnServicioTecnico.IconColor = System.Drawing.Color.Black;
+            this.btnServicioTecnico.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnServicioTecnico.IconSize = 30;
+            this.btnServicioTecnico.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnServicioTecnico.Location = new System.Drawing.Point(179, 11);
+            this.btnServicioTecnico.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnServicioTecnico.Name = "btnServicioTecnico";
+            this.btnServicioTecnico.Size = new System.Drawing.Size(178, 37);
+            this.btnServicioTecnico.TabIndex = 158;
+            this.btnServicioTecnico.Text = "Servicio Técnico";
+            this.btnServicioTecnico.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnServicioTecnico.UseVisualStyleBackColor = true;
+            this.btnServicioTecnico.Click += new System.EventHandler(this.btnServicioTecnico_Click);
+            // 
+            // btnFiltroTodos
+            // 
+            this.btnFiltroTodos.BackColor = System.Drawing.Color.Transparent;
+            this.btnFiltroTodos.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnFiltroTodos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFiltroTodos.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnFiltroTodos.IconChar = FontAwesome.Sharp.IconChar.Filter;
+            this.btnFiltroTodos.IconColor = System.Drawing.Color.Black;
+            this.btnFiltroTodos.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnFiltroTodos.IconSize = 30;
+            this.btnFiltroTodos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnFiltroTodos.Location = new System.Drawing.Point(20, 11);
+            this.btnFiltroTodos.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnFiltroTodos.Name = "btnFiltroTodos";
+            this.btnFiltroTodos.Size = new System.Drawing.Size(120, 37);
+            this.btnFiltroTodos.TabIndex = 157;
+            this.btnFiltroTodos.Text = "Todos";
+            this.btnFiltroTodos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnFiltroTodos.UseVisualStyleBackColor = false;
+            this.btnFiltroTodos.Click += new System.EventHandler(this.btnFiltroTodos_Click);
             // 
             // panel2
             // 
@@ -320,7 +420,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.panel2.Location = new System.Drawing.Point(0, 657);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1259, 27);
+            this.panel2.Size = new System.Drawing.Size(1348, 27);
             this.panel2.TabIndex = 154;
             // 
             // lblTotal
@@ -340,7 +440,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1259, 684);
+            this.ClientSize = new System.Drawing.Size(1348, 684);
             this.Controls.Add(this.gcInstrumentos);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
@@ -348,12 +448,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
             this.Name = "frmDiagnosticos";
-            this.Text = "Diagnósticos";
+            this.Text = "Ingresos";
             ((System.ComponentModel.ISupportInitialize)(this.btnIniciarDiagnostico)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcInstrumentos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvInstrumentos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnVerReporteDeIngreso)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -385,5 +486,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
         private DevExpress.XtraGrid.Columns.GridColumn colSerie;
         private DevExpress.XtraGrid.Columns.GridColumn colVerReporte;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnVerReporteDeIngreso;
+        private System.Windows.Forms.Panel panel3;
+        private FontAwesome.Sharp.IconButton btnCliente;
+        private FontAwesome.Sharp.IconButton btnComercial;
+        private FontAwesome.Sharp.IconButton btnServicioTecnico;
+        private FontAwesome.Sharp.IconButton btnFiltroTodos;
     }
 }

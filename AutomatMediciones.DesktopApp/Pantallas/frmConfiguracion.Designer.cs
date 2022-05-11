@@ -39,6 +39,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             this.clasificacionInstrumentoMenu = new FontAwesome.Sharp.IconMenuItem();
             this.variableMedicionMenu = new FontAwesome.Sharp.IconMenuItem();
             this.instrumentosMenu = new FontAwesome.Sharp.IconMenuItem();
+            this.patronesMenu = new FontAwesome.Sharp.IconMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu2)).BeginInit();
             this.tipoInstrumento.SuspendLayout();
@@ -62,7 +63,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             this.iconMenuItem1,
             this.clasificacionInstrumentoMenu,
             this.variableMedicionMenu,
-            this.instrumentosMenu});
+            this.instrumentosMenu,
+            this.patronesMenu});
             this.tipoInstrumento.Location = new System.Drawing.Point(0, 0);
             this.tipoInstrumento.Name = "tipoInstrumento";
             this.tipoInstrumento.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -131,6 +133,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             this.instrumentosMenu.Text = "Instrumentos";
             this.instrumentosMenu.Click += new System.EventHandler(this.instrumentosMenu_Click);
             // 
+            // patronesMenu
+            // 
+            this.patronesMenu.IconChar = FontAwesome.Sharp.IconChar.List;
+            this.patronesMenu.IconColor = System.Drawing.Color.Black;
+            this.patronesMenu.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.patronesMenu.Name = "patronesMenu";
+            this.patronesMenu.Size = new System.Drawing.Size(99, 24);
+            this.patronesMenu.Text = "Patrones";
+            this.patronesMenu.Click += new System.EventHandler(this.patronesMenu_Click);
+            // 
             // frmConfiguracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -162,5 +174,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         private FontAwesome.Sharp.IconMenuItem clasificacionInstrumentoMenu;
         private FontAwesome.Sharp.IconMenuItem instrumentosMenu;
         private FontAwesome.Sharp.IconMenuItem variableMedicionMenu;
+        private FontAwesome.Sharp.IconMenuItem patronesMenu;
     }
 }

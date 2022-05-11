@@ -74,6 +74,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     FechaCompraFabricante = instrumentoDto.FechaCompraFabricante,
                     FechaProximaCalibracion = instrumentoDto.FechaProximaCalibracion,
                     FechaRegistro = DateTime.Now,
+                    Comentarios = instrumentoDto.Comentarios,
                     FechaUltimaCalibracion = instrumentoDto.FechaUltimaCalibracion,
                     Garantia = instrumentoDto.Garantia,
                     ClasificacionId = instrumentoDto.ClasificacionId,
@@ -111,6 +112,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     return Response<bool>.ErrorValidation("El instrumento no fue encontrado", false);
                 }
 
+
+                instrumentoBd.Comentarios = instrumentoDto.Comentarios;
                 instrumentoBd.ClasificacionId = instrumentoDto.ClasificacionId;
                 instrumentoBd.Descripcion = instrumentoDto.Descripcion;
                 instrumentoBd.EmpresaId = instrumentoDto.EmpresaId;

@@ -16,6 +16,7 @@ namespace AutomatMediciones.Libs.Dtos
         public string Garantia { get; set; }
         public string EmpresaId { get; set; }
         public string NombreEmpresa { get; set; }
+        public string Comentarios { get; set; }
         public ClasificacionInstrumentoDto Clasificacion { get; set; }
     }
 }

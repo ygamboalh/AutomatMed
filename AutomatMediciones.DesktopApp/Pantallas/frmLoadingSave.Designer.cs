@@ -50,7 +50,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 17, 0, 17);
             this.tableLayoutPanel1.RowCount = 1;
@@ -87,7 +87,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(192, 26);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Automat Mediciones";
+            this.label1.Text = "Automat Medición";
             // 
             // pictureEdit1
             // 
@@ -111,7 +111,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             this.ClientSize = new System.Drawing.Size(287, 90);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmLoadingSave";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Form1";

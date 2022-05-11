@@ -298,6 +298,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
                 return false;
             }
 
+            NuevoInstrumento.Comentarios = memoComentarios.Text;
             NuevoInstrumento.Descripcion = txtDescripcionInstrumento.Text;
             NuevoInstrumento.EmpresaId = EmpresaSeleccionada.EmpresaId;
             NuevoInstrumento.NombreEmpresa = EmpresaSeleccionada.NombreEmpresa;

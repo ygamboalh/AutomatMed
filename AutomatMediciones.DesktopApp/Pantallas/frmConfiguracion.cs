@@ -2,6 +2,7 @@
 using AutomatMediciones.DesktopApp.Pantallas.Instrumentos;
 using AutomatMediciones.DesktopApp.Pantallas.Marcas;
 using AutomatMediciones.DesktopApp.Pantallas.Modelos;
+using AutomatMediciones.DesktopApp.Pantallas.Patrones;
 using AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento;
 using AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
@@ -88,6 +89,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             var frmVariablesDeMedicion = new frmVariablesDeMedicion(serviceProvider.GetService<VariableMedicionService>());
             XtraForm variablesMedicion = frmVariablesDeMedicion;
             AgregarPantalla(ref variablesMedicion);
+            SplashScreenManager.CloseForm();
+        }
+
+        private void patronesMenu_Click(object sender, EventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(frmSaving));
+            var frmPatrones = new frmPatrones(serviceProvider.GetService<PatronService>());
+            XtraForm patrones = frmPatrones;
+            AgregarPantalla(ref patrones);
             SplashScreenManager.CloseForm();
         }
     }

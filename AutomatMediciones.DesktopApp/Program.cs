@@ -7,6 +7,7 @@ using AutomatMediciones.DesktopApp.Pantallas.Ingresos;
 using AutomatMediciones.DesktopApp.Pantallas.Instrumentos;
 using AutomatMediciones.DesktopApp.Pantallas.Marcas;
 using AutomatMediciones.DesktopApp.Pantallas.Modelos;
+using AutomatMediciones.DesktopApp.Pantallas.Patrones;
 using AutomatMediciones.DesktopApp.Pantallas.Principales;
 using AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento;
 using AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion;
@@ -74,6 +75,7 @@ namespace AutomatMediciones.DesktopApp
             services.AddTransient<ClasificacionInstrumentoService, ClasificacionInstrumentoService>();
             services.AddTransient<VariableMedicionService, VariableMedicionService>();
             services.AddTransient<ConfiguracionNotificacionService, ConfiguracionNotificacionService>();
+            services.AddTransient<PatronService, PatronService>();
 
             services.AddScoped<frmPrincipal>();
 
@@ -101,6 +103,9 @@ namespace AutomatMediciones.DesktopApp
 
             services.AddScoped<frmInstrumentos>();
             services.AddScoped<frmNuevoInstrumento>();
+
+            services.AddScoped<frmPatrones>();
+            services.AddScoped<frmNuevoPatron>();
         }
     }
 }
