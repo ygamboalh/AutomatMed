@@ -135,13 +135,17 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     return Response<bool>.ErrorValidation("El instrumento no fue encontrado", false);
                 }
 
-                var existeConMismaDescripcion = _AutomatMedicionesDbContext.Instrumentos.Any(x => x.Descripcion == instrumentoDto.Descripcion && x.EmpresaId == instrumentoDto.EmpresaId && x.Activo);
-                if (existeConMismaDescripcion) return Response<bool>.Error($"Ya existe un instrumento para la empresa {instrumentoDto.NombreEmpresa} con esta misma descripción.", false);
+                if (instrumentoBd.Descripcion != instrumentoDto.Descripcion)
+                {
+                    var existeConMismaDescripcion = _AutomatMedicionesDbContext.Instrumentos.Any(x => x.Descripcion == instrumentoDto.Descripcion && x.EmpresaId == instrumentoDto.EmpresaId && x.Activo);
+                    if (existeConMismaDescripcion) return Response<bool>.Error($"Ya existe un instrumento para la empresa {instrumentoDto.NombreEmpresa} con esta misma descripción.", false);
+                }
 
-                var existeConMismaSerie = _AutomatMedicionesDbContext.Instrumentos.Any(x => x.NumeroSerie == instrumentoDto.NumeroSerie && x.EmpresaId == instrumentoDto.EmpresaId && x.Activo);
-                if (existeConMismaSerie) return Response<bool>.Error($"Ya existe un instrumento para la empresa {instrumentoDto.NombreEmpresa} con esta misma serie.", false);
-
-
+                if (instrumentoBd.NumeroSerie != instrumentoDto.NumeroSerie)
+                {
+                    var existeConMismaSerie = _AutomatMedicionesDbContext.Instrumentos.Any(x => x.NumeroSerie == instrumentoDto.NumeroSerie && x.EmpresaId == instrumentoDto.EmpresaId && x.Activo);
+                    if (existeConMismaSerie) return Response<bool>.Error($"Ya existe un instrumento para la empresa {instrumentoDto.NombreEmpresa} con esta misma serie.", false);
+                }
 
                 instrumentoBd.Comentarios = instrumentoDto.Comentarios;
                 instrumentoBd.ClasificacionId = instrumentoDto.ClasificacionId;
