@@ -75,5 +75,47 @@ namespace AutomatMediciones.DesktopApp.Helpers
                 return false;
             }
         }
+
+        public bool EnviarCorreo(CorreoNotificacionCambioResponsableDto correoDto)
+        {
+            ServicePointManager.ServerCertificateValidationCallback = new System.Net.Security.RemoteCertificateValidationCallback(RemoteServerCertificateValidationCallback);
+
+            var server = new SmtpClient(correoDto.Configuracion.Servidor, correoDto.Configuracion.Puerto);
+
+            server.DeliveryMethod = SmtpDeliveryMethod.Network;
+            server.Host = correoDto.Configuracion.Servidor;
+            server.Port = correoDto.Configuracion.Puerto;
+            server.ServicePoint.MaxIdleTime = 1;
+            server.Timeout = 30000;
+            server.EnableSsl = true;
+            server.UseDefaultCredentials = false;
+            server.Credentials = new NetworkCredential(correoDto.Configuracion.CorreoOrigen, correoDto.Configuracion.Password);
+
+            MailMessage message = new MailMessage();
+            var body = correoDto.Body;
+
+            var listaDestinatarios = string.Join(",", correoDto.CorreoDestinatario); 
+            try
+            {
+                message.From = new MailAddress(correoDto.Configuracion.CorreoOrigen, correoDto.Configuracion.Nombre);
+                message.To.Add(listaDestinatarios);
+                message.Subject = correoDto.Configuracion.Asunto;
+                message.SubjectEncoding = Encoding.UTF8;
+                message.Body = body;
+                message.Priority = MailPriority.Normal;
+                message.IsBodyHtml = true;
+                message.BodyEncoding = Encoding.UTF8;
+
+                server.Host = correoDto.Configuracion.Servidor;
+
+                server.Send(message);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
     }
 }

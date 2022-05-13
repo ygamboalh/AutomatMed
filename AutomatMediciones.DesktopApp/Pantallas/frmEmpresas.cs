@@ -29,7 +29,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
 
         }
 
-        private void CargarDatosDeEmpresas()
+        public void CargarDatosDeEmpresas()
         {
             var resultado = _empresaService.ObtenerEmpresas(txtBusqueda.Text);
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);

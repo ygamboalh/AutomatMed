@@ -23,7 +23,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
         public Filtros FiltroSeleccionado { get; set; }
         List<IngresoInstrumento> ingresosInstrumentos = new List<IngresoInstrumento>();
 
-        private readonly ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
+        private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
 
         public frmDiagnosticos(IngresoService ingresoService)
         {
@@ -64,9 +64,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             var diagnosticoSeleccionado = gvInstrumentos.GetFocusedRow() as IngresoInstrumento;
             if (diagnosticoSeleccionado == null) return;
 
-            var nuevoDiagnostico = new frmNuevoDiagnostico(diagnosticoSeleccionado, serviceProvider.GetService<UsuarioService>(), serviceProvider.GetService<EstadoService>(), serviceProvider.GetService<IngresoService>());
+            serviceProvider = Program.services.BuildServiceProvider();
+            var nuevoDiagnostico = new frmNuevoDiagnostico(diagnosticoSeleccionado, 
+                serviceProvider.GetService<UsuarioService>(), 
+                serviceProvider.GetService<EstadoService>(), 
+                serviceProvider.GetService<IngresoService>(),
+                serviceProvider.GetService<ConfiguracionNotificacionService>()
+              );
             nuevoDiagnostico.OnDiagnosticoAgregado += OnDiagnosticoAgregado;
-            nuevoDiagnostico.Show();
+            nuevoDiagnostico.ShowDialog();
         }
 
 
@@ -285,13 +291,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             btnFiltroTodos.IconColor = Color.Black;
 
             FiltroSeleccionado = Filtros.Clientes;
-        }
-
-        private void EstablecerColores()
-        {
-           
-            
-
         }
     }
 

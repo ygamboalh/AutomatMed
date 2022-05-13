@@ -1,11 +1,13 @@
 ﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
 using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos.Dtos;
+using AutomatMediciones.DesktopApp.Pantallas.Ingresos.Dtos;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraSplashScreen;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
+using System.Collections.Generic;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
 {
@@ -14,6 +16,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
         private readonly UsuarioService _usuarioService;
         private readonly EstadoService _estadoService;
         private readonly IngresoService _ingresoService;
+        private readonly ConfiguracionNotificacionService _configuracionNotificacionService;
+
+        ConfiguracionNotificacionDto configuracionNotificacion;
 
         public delegate void DignosticoGuardado(IngresoInstrumento ingresoInstrumento);
         public event DignosticoGuardado OnDiagnosticoAgregado;
@@ -26,18 +31,20 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
         int v_hora;
         string v_tiempo;
         public IngresoInstrumento IngresoInstrumento { get; set; }
-        public frmNuevoDiagnostico(IngresoInstrumento ingresoInstrumento, UsuarioService usuarioService, EstadoService estadoService, IngresoService ingresoService)
+        public frmNuevoDiagnostico(IngresoInstrumento ingresoInstrumento, UsuarioService usuarioService, EstadoService estadoService, IngresoService ingresoService, ConfiguracionNotificacionService configuracionNotificacionService)
         {
             InitializeComponent();
             IngresoInstrumento = ingresoInstrumento;
             _usuarioService = usuarioService;
             _estadoService = estadoService;
             _ingresoService = ingresoService;
+            _configuracionNotificacionService = configuracionNotificacionService;
             EstablecerNombreYTitulo();
             EstablecerColorBotonGuardar();
 
             CargarUsuarios();
             CargarEstados();
+            CargarConfiguraciones();
             PrecargarDatos();
 
             if (IngresoInstrumento.FechaFin != null)
@@ -51,6 +58,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             }
 
         }
+
+        private void CargarConfiguraciones()
+        {
+            var resultado = _configuracionNotificacionService.ObtenerConfiguraciones();
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+            configuracionNotificacion = resultado.Data;
+        }
+
 
         private void PrecargarDatos()
         {
@@ -123,6 +139,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
                 return;
             }
 
+            var resultIngresoActual = _ingresoService.ObtenerIngresoInstrumento(IngresoInstrumento.IngresoInstrumentoId);
+            if (resultIngresoActual.Type != TypeResponse.Ok) { Notificaciones.MensajeAdvertencia("¡Es necesario que seleccione un responsable!"); return; }
+
+            var responsableActual = resultIngresoActual.Data.ResponsableId;
+
             IngresoInstrumento.Instrumento.Comentarios = memoComentariosInstrumento.Text;
             IngresoInstrumento.Comentarios = memoComentarios.Text;
             IngresoInstrumento.Diagnostico = memoDiagnostico.Text;
@@ -135,13 +156,57 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
 
             if ((ActualizarClasificacionInstrumento()))
             {
-                Notificaciones.MensajeConfirmacion("¡El diagnóstico se ha registrado exitosamente!");
+                if (responsableActual != usuarioSeleccionado.UsuarioId)
+                {
+                    var correoHelper = new CorreoHelper();
+
+                    if (correoHelper.EnviarCorreo(PrepararCorreo()))
+                    {
+                        Notificaciones.MensajeConfirmacion("¡El diagnóstico se ha registrado exitosamente!");
+                    }
+                    else
+                    {
+                        Notificaciones.MensajeConfirmacion("El diagnóstico se ha registrado exitosamente, pero, hubo una falla en el momento de enviar la notificación por correo a la persona responsable.");
+                    }
+                }
+                else
+                {
+                    Notificaciones.MensajeConfirmacion("¡El diagnóstico se ha registrado exitosamente!");
+                }
+
+               
                 OnDiagnosticoAgregado?.Invoke(IngresoInstrumento);
                 timer1.Stop();
                 this.Close();
             }
 
             SplashScreenManager.CloseForm();
+        }
+
+        private CorreoNotificacionCambioResponsableDto PrepararCorreo()
+        {          
+            configuracionNotificacion.Asunto = $"Asignación de Servicio Técnico #{IngresoInstrumento.NumeroServicioTecnico}";
+
+            string body = "";
+
+            body = $"<p>¡Hola! Le notificamos que el Servicio Técnico #{IngresoInstrumento.NumeroServicioTecnico} con estado {IngresoInstrumento.Estado.Descripcion} le ha sido asignado. </p>";
+            body += $"<p><strong>Empresa:</strong> {IngresoInstrumento.Ingreso.NombreEmpresa} </p>";
+            body += $"<p><strong>Tipo de Trabajo:</strong> {IngresoInstrumento.TipoTrabajo.Descripcion} </p>";
+            body += $"<p><strong>Tipo de Instrumento:</strong> {IngresoInstrumento.Instrumento.Clasificacion.TipoInstrumento.Descripcion} </p>";
+            body += $"<p><strong>Marca:</strong> {IngresoInstrumento.Instrumento.Clasificacion.Marca.Descripcion} </p>";
+            body += $"<p><strong>Modelo:</strong> {IngresoInstrumento.Instrumento.Clasificacion.Modelo.Descripcion} </p>";
+            body += $"<p><strong>Observaciones acerca del Instrumento:</strong> {IngresoInstrumento.Instrumento.Comentarios} </p>";
+            body += $"<p><strong>Detalle o Problema:</strong> {IngresoInstrumento.Comentarios}";
+
+            CorreoNotificacionCambioResponsableDto correoNotificacionDto = new CorreoNotificacionCambioResponsableDto
+            {
+                Body = body,
+                CorreoDestinatario = usuarioSeleccionado.Correo,
+                NombreDestinatario = usuarioSeleccionado.Nombre,   
+                Configuracion = configuracionNotificacion
+            };
+
+            return correoNotificacionDto;
         }
 
         private void CargarUsuarios()

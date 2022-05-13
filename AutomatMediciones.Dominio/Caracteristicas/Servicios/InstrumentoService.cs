@@ -40,6 +40,23 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
+        public Response<InstrumentoDto> ObtenerInstrumento(int instrumentoId)
+        {
+            try
+            {
+                var instrumentos = _AutomatMedicionesDbContext.Instrumentos.AsQueryable()
+                                                                              .Include(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
+                                                                             .Include(x => x.Clasificacion).ThenInclude(x => x.Marca)
+                                                                             .Include(x => x.Clasificacion).ThenInclude(x => x.Modelo)
+                                                                             .FirstOrDefault(x => x.InstrumentoId == instrumentoId);                                                                             
+                return Response<InstrumentoDto>.Ok("Ok", _mapper.Map<InstrumentoDto>(instrumentos));
+            }
+            catch (Exception exc)
+            {
+                return Response<InstrumentoDto>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
         public Response<List<InstrumentoDto>> ObtenerInstrumentos(string nombreEmpresa)
         {
             try
@@ -64,6 +81,12 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
         {
             try
             {
+                var existeConMismaDescripcion = _AutomatMedicionesDbContext.Instrumentos.Any(x => x.Descripcion == instrumentoDto.Descripcion && x.EmpresaId == instrumentoDto.EmpresaId && x.Activo);
+                if (existeConMismaDescripcion) return Response<InstrumentoDto>.Error($"Ya existe un instrumento para la empresa {instrumentoDto.NombreEmpresa} con esta misma descripción.", null);
+
+                var existeConMismaSerie = _AutomatMedicionesDbContext.Instrumentos.Any(x => x.NumeroSerie == instrumentoDto.NumeroSerie && x.EmpresaId == instrumentoDto.EmpresaId && x.Activo);
+                if (existeConMismaSerie) return Response<InstrumentoDto>.Error($"Ya existe un instrumento para la empresa {instrumentoDto.NombreEmpresa} con esta misma serie.", null);
+
                 Instrumento instrumento = new Instrumento
                 {
                     Descripcion = instrumentoDto.Descripcion,
@@ -111,6 +134,13 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 {
                     return Response<bool>.ErrorValidation("El instrumento no fue encontrado", false);
                 }
+
+                var existeConMismaDescripcion = _AutomatMedicionesDbContext.Instrumentos.Any(x => x.Descripcion == instrumentoDto.Descripcion && x.EmpresaId == instrumentoDto.EmpresaId && x.Activo);
+                if (existeConMismaDescripcion) return Response<bool>.Error($"Ya existe un instrumento para la empresa {instrumentoDto.NombreEmpresa} con esta misma descripción.", false);
+
+                var existeConMismaSerie = _AutomatMedicionesDbContext.Instrumentos.Any(x => x.NumeroSerie == instrumentoDto.NumeroSerie && x.EmpresaId == instrumentoDto.EmpresaId && x.Activo);
+                if (existeConMismaSerie) return Response<bool>.Error($"Ya existe un instrumento para la empresa {instrumentoDto.NombreEmpresa} con esta misma serie.", false);
+
 
 
                 instrumentoBd.Comentarios = instrumentoDto.Comentarios;

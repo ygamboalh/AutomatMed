@@ -61,6 +61,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.memoComentarios.Location = new System.Drawing.Point(35, 468);
             this.memoComentarios.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.memoComentarios.Name = "memoComentarios";
+            this.memoComentarios.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.memoComentarios.Properties.Appearance.Options.UseFont = true;
             this.memoComentarios.Size = new System.Drawing.Size(742, 113);
             this.memoComentarios.TabIndex = 26;
             // 
@@ -215,6 +217,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.memoComentariosAcercaInstrumento.Location = new System.Drawing.Point(35, 324);
             this.memoComentariosAcercaInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.memoComentariosAcercaInstrumento.Name = "memoComentariosAcercaInstrumento";
+            this.memoComentariosAcercaInstrumento.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.memoComentariosAcercaInstrumento.Properties.Appearance.Options.UseFont = true;
             this.memoComentariosAcercaInstrumento.Size = new System.Drawing.Size(742, 113);
             this.memoComentariosAcercaInstrumento.TabIndex = 35;
             // 
@@ -274,7 +278,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private DevExpress.XtraEditors.TrackBarControl trackBarControl1;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private System.Windows.Forms.DateTimePicker dateFechaEntregaRequerida;
-        private DevExpress.XtraEditors.MemoEdit memoComentariosAcercaInstrumento;
         private DevExpress.XtraEditors.LabelControl labelControl2;
+        public DevExpress.XtraEditors.MemoEdit memoComentariosAcercaInstrumento;
     }
 }

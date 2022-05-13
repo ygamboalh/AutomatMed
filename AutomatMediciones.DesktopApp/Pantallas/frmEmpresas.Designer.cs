@@ -194,6 +194,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         private DevExpress.XtraEditors.LabelControl lblTotalRegistros;
         private System.Windows.Forms.Panel panel1;
         private FontAwesome.Sharp.IconButton btnBuscarEmpresa;
-        private DevExpress.XtraEditors.TextEdit txtBusqueda;
+        public DevExpress.XtraEditors.TextEdit txtBusqueda;
     }
 }

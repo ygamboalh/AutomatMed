@@ -85,7 +85,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             {
                 return;
             }
-
+            serviceProvider = Program.services.BuildServiceProvider();
             var frmNuevoInstrumento = new frmNuevoInstrumento(TipoTransaccion.Actualizar, serviceProvider.GetService<ClasificacionInstrumentoService>(),
                                                                            serviceProvider.GetService<InstrumentoService>(),
                                                                            serviceProvider.GetService<MarcaService>(),
@@ -93,11 +93,37 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                                                                            serviceProvider.GetService<TipoDeInstrumentoService>(),
                                                                            serviceProvider.GetService<EmpresaService>());
 
-            frmNuevoInstrumento.OnInstrumentoAgregado += OnInstrumentoAgregado;
+            frmNuevoInstrumento.OnInstrumentoModificado += OnIntrumentoModificado;
             frmNuevoInstrumento.NuevoInstrumento = instrumento;
             frmNuevoInstrumento.SetearValoresParaActualizar();
             frmNuevoInstrumento.ShowDialog();
 
+        }
+
+        private void OnIntrumentoModificado(InstrumentoDto instrumento)
+        {
+            instrumentosDeEmpresa = instrumentosDeEmpresa.Where(x => x.InstrumentoId != instrumento.InstrumentoId).ToList();
+
+            instrumentosDeEmpresa.Add(new InstrumentoLista
+            {
+                InstrumentoId = instrumento.InstrumentoId,
+                ClasificacionConcatenada = $"{instrumento.Clasificacion.TipoInstrumento.Descripcion}/{instrumento.Clasificacion.Marca.Descripcion}/{instrumento.Clasificacion.Modelo.Descripcion}",
+                ClasificacionId = instrumento.ClasificacionId,
+                Clasificacion = instrumento.Clasificacion,
+                Comentarios = instrumento.Comentarios,
+                Descripcion = instrumento.Descripcion,
+                EmpresaId = instrumento.EmpresaId,
+                FechaCompraCliente = instrumento.FechaCompraCliente,
+                FechaCompraFabricante = instrumento.FechaCompraFabricante,
+                FechaProximaCalibracion = instrumento.FechaProximaCalibracion,
+                FechaUltimaCalibracion = instrumento.FechaUltimaCalibracion,
+                Garantia = instrumento.Garantia,
+                NombreEmpresa = instrumento.NombreEmpresa,
+                NumeroSerie = instrumento.NumeroSerie,
+                PeriodoCalibracion = instrumento.PeriodoCalibracion
+            });
+
+            gcInstrumentosDeEmpresa.RefreshDataSource();
         }
 
         private void CargarConfiguraciones()
@@ -152,10 +178,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 return;
             }
 
+            serviceProvider = Program.services.BuildServiceProvider();
             frmInformacionAdicionalInstrumento frmComentarioInstrumento = new frmInformacionAdicionalInstrumento(TipoTransaccion.Actualizar, serviceProvider.GetService<TipoTrabajoService>());
             frmComentarioInstrumento.OnInformacionAdicionalActualizada += OnInformacionAdicionalActualizada;
             frmComentarioInstrumento.SetearInformacionAdicionalParaActualizar(ingresoInstrumento, instrumento.Seleccionado, instrumento.InformacionAdicional.ComentariosAcercaInstrumento);
-            frmComentarioInstrumento.Show();
+            frmComentarioInstrumento.ShowDialog();
         }
 
         private void OnInformacionAdicionalActualizada(InstrumentoLista instrumento)
@@ -179,11 +206,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             if (instrumento.Seleccionado)
             {
+                serviceProvider = Program.services.BuildServiceProvider();
                 frmInformacionAdicionalInstrumento frmComentarioInstrumento = new frmInformacionAdicionalInstrumento(TipoTransaccion.Insertar, serviceProvider.GetService<TipoTrabajoService>());
                 frmComentarioInstrumento.OnInformacionAdicionalAgregada += OnInformacionAgregada;
                 frmComentarioInstrumento.Instrumento = instrumento;
+                frmComentarioInstrumento.memoComentariosAcercaInstrumento.Text = instrumento.Comentarios;
                 frmComentarioInstrumento.Instrumento.InformacionAdicional = new InformacionAdicionalInstrumento();
-                frmComentarioInstrumento.Show();
+                frmComentarioInstrumento.ShowDialog();
             }
             else
             {
@@ -210,7 +239,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 {
                     if (x.InstrumentoId == instrumento.InstrumentoId)
                     {
-
+                       
                         x.Instrumento.Comentarios = instrumento.InformacionAdicional.ComentariosAcercaInstrumento;
                         x.Comentarios = instrumento.InformacionAdicional.Comentarios;
                         x.Prioridad = instrumento.InformacionAdicional.Prioridad;
@@ -226,17 +255,38 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 {
                     if (x.InstrumentoId == instrumento.InstrumentoId)
                     {
-                        x.InformacionAdicional.ComentariosAcercaInstrumento = instrumento.InformacionAdicional.ComentariosAcercaInstrumento;
-                        x.InformacionAdicional.TipoTrabajo = instrumento.InformacionAdicional.TipoTrabajo;
-                        x.InformacionAdicional.Comentarios = instrumento.InformacionAdicional.Comentarios;
-                        x.InformacionAdicional.FechaEntregaRequerida = instrumento.InformacionAdicional.FechaEntregaRequerida;
-                        x.InformacionAdicional.Prioridad = instrumento.InformacionAdicional.Prioridad;
-                        x.InformacionAdicional.TipoTrabajoId = instrumento.InformacionAdicional.TipoTrabajoId;
+
+                        x.Comentarios = instrumento.InformacionAdicional.ComentariosAcercaInstrumento;
+
+                        if (x.InformacionAdicional == null)
+                        {
+                            x.InformacionAdicional = new InformacionAdicionalInstrumento
+                            {
+                                ComentariosAcercaInstrumento = instrumento.InformacionAdicional.ComentariosAcercaInstrumento,
+                                TipoTrabajo = instrumento.InformacionAdicional.TipoTrabajo,
+                                Comentarios = instrumento.InformacionAdicional.Comentarios,
+                                FechaEntregaRequerida = instrumento.InformacionAdicional.FechaEntregaRequerida,
+                                Prioridad = instrumento.InformacionAdicional.Prioridad,
+                                TipoTrabajoId = instrumento.InformacionAdicional.TipoTrabajoId
+                            };
+                        }
+                        else
+                        {
+                            
+                            x.InformacionAdicional.ComentariosAcercaInstrumento = instrumento.InformacionAdicional.ComentariosAcercaInstrumento;
+                            x.InformacionAdicional.TipoTrabajo = instrumento.InformacionAdicional.TipoTrabajo;
+                            x.InformacionAdicional.Comentarios = instrumento.InformacionAdicional.Comentarios;
+                            x.InformacionAdicional.FechaEntregaRequerida = instrumento.InformacionAdicional.FechaEntregaRequerida;
+                            x.InformacionAdicional.Prioridad = instrumento.InformacionAdicional.Prioridad;
+                            x.InformacionAdicional.TipoTrabajoId = instrumento.InformacionAdicional.TipoTrabajoId;
+                        }
+                     
+                       
 
                     }
                 });
 
-
+                gcInstrumentosDeEmpresa.DataSource = instrumentosDeEmpresa;
                 gcInstrumentosDeEmpresa.RefreshDataSource();
 
 
@@ -299,6 +349,25 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         {
             instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId).Seleccionado = instrumentoLista.Seleccionado;
             instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId).InformacionAdicional = instrumentoLista.InformacionAdicional;
+
+            if (!instrumentoLista.Seleccionado)
+            {
+                var instrumento = _instrumentoService.ObtenerInstrumento(instrumentoLista.InstrumentoId);
+
+                if (instrumento.Type != TypeResponse.Ok)
+                {
+                    instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId).Comentarios = "";
+                }
+                else
+                {
+                    instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId).Comentarios = instrumento.Data.Comentarios;
+                }               
+            }
+            else
+            {
+                instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId).Comentarios = instrumentoLista.InformacionAdicional.ComentariosAcercaInstrumento;
+            }
+           
             instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId).ClasificacionConcatenada = $"{instrumentoLista.Clasificacion.TipoInstrumento.Descripcion}/{instrumentoLista.Clasificacion.Marca.Descripcion}/{instrumentoLista.Clasificacion.Modelo.Descripcion}";
             instrumentosDeEmpresa.ForEach(x =>
             {
@@ -331,6 +400,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                     Garantia = x.Garantia,
                     InstrumentoId = x.InstrumentoId,
                     NombreEmpresa = x.NombreEmpresa,
+                    Comentarios = x.Comentarios,
                     NumeroSerie = x.NumeroSerie,
                     PeriodoCalibracion = x.PeriodoCalibracion,
                     Seleccionado = false,
@@ -379,7 +449,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         {
             var frmEmpresas = new frmEmpresas(serviceProvider.GetService<EmpresaService>());
             frmEmpresas.OnSeleccionaEmpresa += OnEmpresaSeleccionada;
-            frmEmpresas.Show();
+            frmEmpresas.ShowDialog();
         }
 
         private void OnEmpresaSeleccionada(EmpresaDto empresa)
@@ -467,10 +537,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private void LimpiarCorreos()
         {
             glCorreoElectronico.Properties.DataSource = null;
+            txtCorreoNuevo.ResetText();
         }
 
         private void btnAgregarNuevInstrumento_Click(object sender, EventArgs e)
         {
+            serviceProvider = Program.services.BuildServiceProvider();
             frmNuevoInstrumento frmNuevoInstrumento = new frmNuevoInstrumento(TipoTransaccion.Insertar, serviceProvider.GetService<ClasificacionInstrumentoService>(),
                                                                               serviceProvider.GetService<InstrumentoService>(),
                                                                               serviceProvider.GetService<MarcaService>(),
@@ -479,8 +551,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                                                                               serviceProvider.GetService<EmpresaService>()
                                                                               );
             frmNuevoInstrumento.OnEmpresaSeleccionada(empresaSeleccionada);
-         
-            frmNuevoInstrumento.Show();
+            frmNuevoInstrumento.OnInstrumentoAgregado += OnInstrumentoAgregado;
+            frmNuevoInstrumento.ShowDialog();
         }
 
         private void OnInstrumentoAgregado(InstrumentoDto instrumento)
@@ -505,6 +577,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                     NombreEmpresa = instrumento.NombreEmpresa,
                     PeriodoCalibracion = instrumento.PeriodoCalibracion,
                     Seleccionado = false,
+                    Comentarios = instrumento.Comentarios,
                     ClasificacionConcatenada = $"{instrumento.Clasificacion.TipoInstrumento.Descripcion}/{instrumento.Clasificacion.Marca.Descripcion}/{instrumento.Clasificacion.Modelo.Descripcion}"
                 };
 
@@ -765,6 +838,24 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 correoSeleccionado.Direccion = txtCorreoNuevo.Text;
             }
          
+        }
+
+        private void txtEmpresa_KeyPress(object sender, KeyPressEventArgs e)
+        {
+           
+        }
+
+        private void txtEmpresa_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                serviceProvider = Program.services.BuildServiceProvider();
+                var frmEmpresas = new frmEmpresas(serviceProvider.GetService<EmpresaService>());
+                frmEmpresas.OnSeleccionaEmpresa += OnEmpresaSeleccionada;
+                frmEmpresas.txtBusqueda.Text = txtEmpresa.Text;
+                frmEmpresas.CargarDatosDeEmpresas();
+                frmEmpresas.ShowDialog();
+            }
         }
     }
 }

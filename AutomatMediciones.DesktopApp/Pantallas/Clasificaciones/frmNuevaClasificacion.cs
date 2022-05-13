@@ -1,11 +1,15 @@
 ﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
 using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
+using AutomatMediciones.DesktopApp.Pantallas.Marcas;
 using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraSplashScreen;
+using Microsoft.Extensions.DependencyInjection;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
+using AutomatMediciones.DesktopApp.Pantallas.Modelos;
 using System;
+using AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -19,21 +23,30 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
         public delegate void ClasificacionInstrumentoModificada(ClasificacionInstrumentoDto tipoInstrumento);
         public event ClasificacionInstrumentoModificada OnClasificacionInstrumentoModificada;
 
+
+
         private readonly ClasificacionInstrumentoService _clasificacionInstrumentoService;
+        private readonly MarcaService _marcaService;
+        private readonly ModeloService _modeloService;
+        private readonly TipoDeInstrumentoService _tipoDeInstrumentoService;
 
         public TipoTransaccion TipoTransaccion { get; set; }
+
+        private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
 
         public ICollection<ModeloDto> Modelos = new List<ModeloDto>();
         public ICollection<MarcaDto> Marcas = new List<MarcaDto>();
         public ICollection<TipoInstrumentoDto> TiposDeInstrumento = new List<TipoInstrumentoDto>();
 
         public ClasificacionInstrumentoDto NuevaClasificacion { get; set; }
-        public frmNuevaClasificacion(TipoTransaccion tipoTransaccion, ClasificacionInstrumentoService clasificacionInstrumentoService)
+        public frmNuevaClasificacion(TipoTransaccion tipoTransaccion, ClasificacionInstrumentoService clasificacionInstrumentoService, MarcaService marcaService, ModeloService modeloService, TipoDeInstrumentoService tipoDeInstrumentoService)
         {
             InitializeComponent();
             TipoTransaccion = tipoTransaccion;
             _clasificacionInstrumentoService = clasificacionInstrumentoService;
-
+            _marcaService = marcaService;
+            _modeloService = modeloService;
+            _tipoDeInstrumentoService = tipoDeInstrumentoService;
             EstablecerNombreYTituloPopupAgregarInstrumentos();
             EstablecerColorBotonGuardar();
 
@@ -175,6 +188,52 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
                 }
             }
             SplashScreenManager.CloseForm();
+        }
+
+        private void btnNuevaClasificacion_Click(object sender, EventArgs e)
+        {
+            var frmTipoInstrumento = new frmNuevoTipoInstrumento(TipoTransaccion.Insertar, serviceProvider.GetService<TipoDeInstrumentoService>());
+            frmTipoInstrumento.OnTipoInstrumentoAgregado += OnTipoInstrumentoAgregado;
+            frmTipoInstrumento.ShowDialog();
+        }
+
+        private void OnTipoInstrumentoAgregado(TipoInstrumentoDto tipoInstrumento)
+        {
+            serviceProvider = Program.services.BuildServiceProvider();
+            TiposDeInstrumento = _tipoDeInstrumentoService.ObtenerTiposDeInstrumento().Data;
+            glTipoInstrumento.Properties.DataSource = TiposDeInstrumento;
+            this.Focus();
+        }
+
+        private void btnNuevaMarca_Click(object sender, EventArgs e)
+        {
+            var frmNuevaMarca = new frmNuevaMarca(TipoTransaccion.Insertar, serviceProvider.GetService<MarcaService>());
+            frmNuevaMarca.OnMarcaAgregada += OnMarcaAgregada;
+            frmNuevaMarca.ShowDialog();
+        }
+
+        private void OnMarcaAgregada(MarcaDto tipoInstrumento)
+        {
+            serviceProvider = Program.services.BuildServiceProvider();
+            Marcas = _marcaService.ObtenerMarcas().Data;
+            glMarca.Properties.DataSource = Marcas;
+            this.Focus();
+        }
+
+        private void btnNuevoModelo_Click(object sender, EventArgs e)
+        {
+            var frmNuevoModelo = new frmNuevoModelo(TipoTransaccion.Insertar, serviceProvider.GetService<ModeloService>());
+
+            frmNuevoModelo.OnModeloAgregada += OnModeloAgregada;
+            frmNuevoModelo.ShowDialog();
+        }
+
+        private void OnModeloAgregada(ModeloDto modelo)
+        {
+            serviceProvider = Program.services.BuildServiceProvider();
+            Modelos = _modeloService.ObtenerModelos().Data;
+            glModelo.Properties.DataSource = Modelos;
+            this.Focus();
         }
     }
 }

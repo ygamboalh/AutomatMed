@@ -15,7 +15,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
 {
     public partial class frmConfiguracion : DevExpress.XtraEditors.XtraForm
     {
-        private readonly ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
+        private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
         public frmConfiguracion()
         {
             InitializeComponent();
@@ -24,6 +24,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         private void tipoInstrumentoMenu_Click(object sender, EventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(frmSaving));
+            serviceProvider = Program.services.BuildServiceProvider();
             var frmTipoInstrumento = new frmTiposDeInstrumento(serviceProvider.GetService<TipoDeInstrumentoService>());
             XtraForm tiposDeInstrumento = frmTipoInstrumento;
             AgregarPantalla(ref tiposDeInstrumento);
@@ -46,6 +47,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         private void marcaMenu_Click(object sender, EventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(frmSaving));
+            serviceProvider = Program.services.BuildServiceProvider();
             var frmMarcas = new frmMarcas(serviceProvider.GetService<MarcaService>());
             XtraForm marcas = frmMarcas;
             AgregarPantalla(ref marcas);
@@ -55,6 +57,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         private void iconMenuItem1_Click(object sender, EventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(frmSaving));
+            serviceProvider = Program.services.BuildServiceProvider();
             var frmModelos = new frmModelos(serviceProvider.GetService<ModeloService>());
             XtraForm modelos = frmModelos;
             AgregarPantalla(ref modelos);
@@ -64,6 +67,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         private void clasificacionInstrumentoMenu_Click(object sender, EventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(frmSaving));
+            serviceProvider = Program.services.BuildServiceProvider();
             var frmClasificaciones = new frmClasificaciones(serviceProvider.GetService<ClasificacionInstrumentoService>(),
                                                             serviceProvider.GetService<MarcaService>(),
                                                             serviceProvider.GetService<ModeloService>(),
@@ -77,6 +81,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         private void instrumentosMenu_Click(object sender, EventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(frmSaving));
+            serviceProvider = Program.services.BuildServiceProvider();
             var frmInstrumentos = new frmInstrumentos(serviceProvider.GetService<InstrumentoService>());
             XtraForm nuevoInstrumento = frmInstrumentos;
             AgregarPantalla(ref nuevoInstrumento);
@@ -86,6 +91,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         private void variableMedicionMenu_Click(object sender, EventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(frmSaving));
+            serviceProvider = Program.services.BuildServiceProvider();
             var frmVariablesDeMedicion = new frmVariablesDeMedicion(serviceProvider.GetService<VariableMedicionService>());
             XtraForm variablesMedicion = frmVariablesDeMedicion;
             AgregarPantalla(ref variablesMedicion);
@@ -95,6 +101,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         private void patronesMenu_Click(object sender, EventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(frmSaving));
+            serviceProvider = Program.services.BuildServiceProvider();
             var frmPatrones = new frmPatrones(serviceProvider.GetService<PatronService>());
             XtraForm patrones = frmPatrones;
             AgregarPantalla(ref patrones);

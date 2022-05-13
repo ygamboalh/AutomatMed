@@ -41,7 +41,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             frmNuevoModelo.NuevaModelo = modelo;
             frmNuevoModelo.SetearValoresParaActualizar();
             frmNuevoModelo.OnModeloModificada += OnModeloModificada;
-            frmNuevoModelo.Show();
+            frmNuevoModelo.ShowDialog();
         }
 
         private void OnModeloModificada(ModeloDto Modelo)
@@ -95,7 +95,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             var frmNuevoModelo = new frmNuevoModelo(TipoTransaccion.Insertar, serviceProvider.GetService<ModeloService>());
 
             frmNuevoModelo.OnModeloAgregada += OnModeloAgregada;
-            frmNuevoModelo.Show();
+            frmNuevoModelo.ShowDialog();
         }
 
         private void OnModeloAgregada(ModeloDto Modelo)

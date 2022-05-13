@@ -438,6 +438,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.memoComentarios.Location = new System.Drawing.Point(30, 488);
             this.memoComentarios.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.memoComentarios.Name = "memoComentarios";
+            this.memoComentarios.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.memoComentarios.Properties.Appearance.Options.UseFont = true;
             this.memoComentarios.Size = new System.Drawing.Size(693, 71);
             this.memoComentarios.TabIndex = 128;
             // 

@@ -20,6 +20,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         public delegate void InstrumentoAgregado(InstrumentoDto instrumento);
         public event InstrumentoAgregado OnInstrumentoAgregado;
 
+        public delegate void InstrumentoModificado(InstrumentoDto instrumento);
+        public event InstrumentoModificado OnInstrumentoModificado;
+
         private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
         private readonly ClasificacionInstrumentoService _clasificacionInstrumentoService;
         private readonly InstrumentoService _instrumentoService;
@@ -67,6 +70,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
         public void SetearValoresParaActualizar()
         {
+            memoComentarios.Text = NuevoInstrumento.Comentarios;
             txtDescripcionInstrumento.Text = NuevoInstrumento.Descripcion;
             txtEmpresaInstrumento.Text = NuevoInstrumento.NombreEmpresa;
             glTipoInstrumento.EditValue = NuevoInstrumento.Clasificacion.TipoInstrumentoId;
@@ -141,7 +145,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
                 if (ActualizarInstrumento())
                 {
                     Notificaciones.MensajeConfirmacion("¡El instrumento se ha actualizado exitosamente!");
-                    OnInstrumentoAgregado?.Invoke(NuevoInstrumento);
+                    OnInstrumentoModificado?.Invoke(NuevoInstrumento);
                     this.Close();
                 }
 
@@ -333,7 +337,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
         private void btnAgregarClasificacion_Click(object sender, EventArgs e)
         {
-            var frmClasificaciones = new frmNuevaClasificacion(TipoTransaccion.Insertar, serviceProvider.GetService<ClasificacionInstrumentoService>());
+            var frmClasificaciones = new frmNuevaClasificacion(TipoTransaccion.Insertar, serviceProvider.GetService<ClasificacionInstrumentoService>(), serviceProvider.GetService<MarcaService>(),
+                serviceProvider.GetService<ModeloService>(), serviceProvider.GetService<TipoDeInstrumentoService>());
 
             frmClasificaciones.OnClasificacionInstrumentoAgregada += OnClasificacionInstrumentoAgregada;
             frmClasificaciones.Modelos = CargarModelos();

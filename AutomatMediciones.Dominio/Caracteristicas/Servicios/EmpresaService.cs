@@ -24,7 +24,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
         {
             try
             {
-                var empresas = _tacticaDbContext.Empresas.Where(x => x.NombreEmpresa.Contains(filtro)).ToList();
+                var empresas = _tacticaDbContext.Empresas.Where(x => x.NombreEmpresa.Contains(filtro)).Take(100).ToList();
                 var contactos = _tacticaDbContext.Contactos.ToList();
                 var correosElectronicos = _tacticaDbContext.CorreosElectronicos.ToList();
 

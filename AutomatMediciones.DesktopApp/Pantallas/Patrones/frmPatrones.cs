@@ -48,7 +48,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             var frmNuevoPatron = new frmNuevoPatron(TipoTransaccion.Insertar, serviceProvider.GetService<PatronService>(),
                 serviceProvider.GetService<VariableMedicionService>());
             frmNuevoPatron.OnPatronAgregado += OnPatronAgregado;
-            frmNuevoPatron.Show();
+            frmNuevoPatron.ShowDialog();
         }
 
         private void OnPatronAgregado(PatronDto patron)

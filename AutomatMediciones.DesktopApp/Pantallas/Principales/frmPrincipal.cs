@@ -13,7 +13,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
 {
     public partial class frmPrincipal : DevExpress.XtraEditors.XtraForm
     {
-        private readonly ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
+        private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
 
         public frmPrincipal()
         {
@@ -52,6 +52,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
 
         private void cmpMenuOnMenuSeleccionado(IndiceMenu indiceMenu)
         {
+            serviceProvider = Program.services.BuildServiceProvider();
             switch (indiceMenu)
             {
                 case IndiceMenu.Ingresos:

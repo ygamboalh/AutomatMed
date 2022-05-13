@@ -43,7 +43,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             frmNuevaVariableMedicion.NuevaVariableMedicion = VariableMedicion;
             frmNuevaVariableMedicion.SetearValoresParaActualizar();
             frmNuevaVariableMedicion.OnVariableMedicionModificada += OnVariableMedicionModificada;
-            frmNuevaVariableMedicion.Show();
+            frmNuevaVariableMedicion.ShowDialog();
         }
 
         private void OnVariableMedicionModificada(VariableMedicionDto VariableMedicion)
@@ -95,7 +95,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
         {
             var frmNuevaVariableMedicion = new frmNuevaVariableMedicion(TipoTransaccion.Insertar, serviceProvider.GetService<VariableMedicionService>(), serviceProvider.GetService<TipoDeInstrumentoService>());
             frmNuevaVariableMedicion.OnVariableMedicionAgregada += OnVariableMedicionAgregada;
-            frmNuevaVariableMedicion.Show();
+            frmNuevaVariableMedicion.ShowDialog();
         }
 
         private void OnVariableMedicionAgregada(VariableMedicionDto VariableMedicion)

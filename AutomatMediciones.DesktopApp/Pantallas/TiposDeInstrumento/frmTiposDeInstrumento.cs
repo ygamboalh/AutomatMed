@@ -43,7 +43,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             frmTipoInstrumento.NuevoTipoInstrumento = tipoInstrumento;
             frmTipoInstrumento.SetearValoresParaActualizar();
             frmTipoInstrumento.OnTipoInstrumentoModificado += OnTipoInstrumentoModificado;
-            frmTipoInstrumento.Show();
+            frmTipoInstrumento.ShowDialog();
         }
 
         private void OnTipoInstrumentoModificado(TipoInstrumentoDto tipoInstrumento)
@@ -96,7 +96,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
         {
             var frmTipoInstrumento = new frmNuevoTipoInstrumento(TipoTransaccion.Insertar, serviceProvider.GetService<TipoDeInstrumentoService>());
             frmTipoInstrumento.OnTipoInstrumentoAgregado += OnTipoInstrumentoAgregado;
-            frmTipoInstrumento.Show();
+            frmTipoInstrumento.ShowDialog();
         }
 
         private void OnTipoInstrumentoAgregado(TipoInstrumentoDto tipoInstrumento)

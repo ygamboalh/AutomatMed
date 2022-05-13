@@ -44,7 +44,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
             frmNuevaMarca.NuevaMarca = marca;
             frmNuevaMarca.SetearValoresParaActualizar();
             frmNuevaMarca.OnMarcaModificada += OnMarcaModificada;
-            frmNuevaMarca.Show();
+            frmNuevaMarca.ShowDialog();
         }
 
         private void OnMarcaModificada(MarcaDto marca)
@@ -95,9 +95,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
 
         private void btnAgregarNuevInstrumento_Click(object sender, System.EventArgs e)
         {
+
             var frmNuevaMarca = new frmNuevaMarca(TipoTransaccion.Insertar, serviceProvider.GetService<MarcaService>());
             frmNuevaMarca.OnMarcaAgregada += OnMarcaAgregada;
-            frmNuevaMarca.Show();
+            frmNuevaMarca.ShowDialog();
         }
 
         private void OnMarcaAgregada(MarcaDto marca)

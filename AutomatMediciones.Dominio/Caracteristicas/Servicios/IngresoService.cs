@@ -46,6 +46,26 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
+        public Response<IngresoInstrumentoDto> ObtenerIngresoInstrumento(int ingresoInstrumentoId)
+        {
+            try
+            {
+                var ingreso = _AutomatMedicionesDbContext.IngresosInstrumentos.FirstOrDefault(x => x.IngresoInstrumentoId == ingresoInstrumentoId);
+
+                if (ingreso == null)
+                {
+                    return Response<IngresoInstrumentoDto>.Error("No pudo ser obtenida la información de ingreso", null);
+                }
+
+
+                return Response<IngresoInstrumentoDto>.Ok("Ok", _mapper.Map<IngresoInstrumentoDto>(ingreso));
+            }
+            catch (Exception exc)
+            {
+                return Response<IngresoInstrumentoDto>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
         public Response<IngresoDto> GuardarIngreso(IngresoDto ingresoDto)
         {
             try

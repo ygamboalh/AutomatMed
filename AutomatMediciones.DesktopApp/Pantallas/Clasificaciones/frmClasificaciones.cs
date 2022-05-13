@@ -5,6 +5,7 @@ using AutomatMediciones.Libs.Dtos;
 using Microsoft.Extensions.DependencyInjection;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
+using AutomatMediciones.DesktopApp.Pantallas.Marcas;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -70,7 +71,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
 
             if (clasificacionInstrumento == null) return;
 
-            var frmNuevaClasificacion = new frmNuevaClasificacion(TipoTransaccion.Actualizar, serviceProvider.GetService<ClasificacionInstrumentoService>());
+            var frmNuevaClasificacion = new frmNuevaClasificacion(TipoTransaccion.Actualizar, serviceProvider.GetService<ClasificacionInstrumentoService>(), serviceProvider.GetService<MarcaService>(),
+                serviceProvider.GetService<ModeloService>(), serviceProvider.GetService<TipoDeInstrumentoService>());
             frmNuevaClasificacion.NuevaClasificacion = clasificacionInstrumento;
             frmNuevaClasificacion.Modelos = modelos;
             frmNuevaClasificacion.Marcas = marcas;
@@ -78,7 +80,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             frmNuevaClasificacion.InicializarMaestros();
             frmNuevaClasificacion.SetearValoresParaActualizar();
             frmNuevaClasificacion.OnClasificacionInstrumentoModificada += OnClasificacionInstrumentoModificada;
-            frmNuevaClasificacion.Show();
+            frmNuevaClasificacion.ShowDialog();
         }
 
         private bool InactivarClasificacionInstrumento(ClasificacionInstrumentoDto clasificacionInstrumentoDto)
@@ -184,14 +186,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
 
         private void btnNuevaClasificacion_Click(object sender, EventArgs e)
         {
-            var frmNuevaClasificacion = new frmNuevaClasificacion(TipoTransaccion.Insertar, serviceProvider.GetService<ClasificacionInstrumentoService>());
+            var frmNuevaClasificacion = new frmNuevaClasificacion(TipoTransaccion.Insertar, serviceProvider.GetService<ClasificacionInstrumentoService>(), serviceProvider.GetService<MarcaService>(),
+                serviceProvider.GetService<ModeloService>(), serviceProvider.GetService<TipoDeInstrumentoService>());
 
             frmNuevaClasificacion.OnClasificacionInstrumentoAgregada += OnClasificacionInstrumentoAgregada;
             frmNuevaClasificacion.Modelos = modelos;
             frmNuevaClasificacion.Marcas = marcas;
             frmNuevaClasificacion.TiposDeInstrumento = tiposDeInstrumento;
             frmNuevaClasificacion.InicializarMaestros();
-            frmNuevaClasificacion.Show();
+            frmNuevaClasificacion.ShowDialog();
         }
     }
 }
