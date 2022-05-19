@@ -97,7 +97,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.btnAgregarNuevoPatron.Name = "btnAgregarNuevoPatron";
             this.btnAgregarNuevoPatron.Size = new System.Drawing.Size(211, 39);
             this.btnAgregarNuevoPatron.TabIndex = 16;
-            this.btnAgregarNuevoPatron.Text = "Nueva Patrón";
+            this.btnAgregarNuevoPatron.Text = "Nuevo Patrón";
             this.btnAgregarNuevoPatron.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAgregarNuevoPatron.UseVisualStyleBackColor = true;
             this.btnAgregarNuevoPatron.Click += new System.EventHandler(this.btnAgregarNuevoPatron_Click);

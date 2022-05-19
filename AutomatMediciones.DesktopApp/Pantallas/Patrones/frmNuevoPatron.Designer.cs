@@ -67,6 +67,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.txtRutaArchivo = new DevExpress.XtraEditors.TextEdit();
             this.btnAdjunto = new FontAwesome.Sharp.IconButton();
+            this.xtraSaveFileDialog2 = new DevExpress.XtraEditors.XtraSaveFileDialog(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreRango.Properties)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmTolerancia)).BeginInit();
@@ -355,19 +356,25 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             // colDescripcionVariableMedicion
             // 
             this.colDescripcionVariableMedicion.Caption = "Descripción";
-            this.colDescripcionVariableMedicion.FieldName = "Descripcion";
+            this.colDescripcionVariableMedicion.FieldName = "VariableDeMedicion.Descripcion";
             this.colDescripcionVariableMedicion.MinWidth = 25;
             this.colDescripcionVariableMedicion.Name = "colDescripcionVariableMedicion";
+            this.colDescripcionVariableMedicion.OptionsColumn.AllowEdit = false;
+            this.colDescripcionVariableMedicion.OptionsColumn.AllowFocus = false;
+            this.colDescripcionVariableMedicion.OptionsColumn.ReadOnly = true;
             this.colDescripcionVariableMedicion.Visible = true;
             this.colDescripcionVariableMedicion.VisibleIndex = 0;
             this.colDescripcionVariableMedicion.Width = 218;
             // 
             // colValorRango
             // 
-            this.colValorRango.Caption = "Valor Rango";
-            this.colValorRango.FieldName = "ValorRango";
+            this.colValorRango.Caption = "Valor Patrón";
+            this.colValorRango.FieldName = "ValorPatron";
             this.colValorRango.MinWidth = 25;
             this.colValorRango.Name = "colValorRango";
+            this.colValorRango.OptionsColumn.AllowEdit = false;
+            this.colValorRango.OptionsColumn.AllowFocus = false;
+            this.colValorRango.OptionsColumn.ReadOnly = true;
             this.colValorRango.Visible = true;
             this.colValorRango.VisibleIndex = 1;
             this.colValorRango.Width = 218;
@@ -378,6 +385,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.colTolerancia.FieldName = "Tolerancia";
             this.colTolerancia.MinWidth = 25;
             this.colTolerancia.Name = "colTolerancia";
+            this.colTolerancia.OptionsColumn.AllowEdit = false;
+            this.colTolerancia.OptionsColumn.AllowFocus = false;
+            this.colTolerancia.OptionsColumn.ReadOnly = true;
             this.colTolerancia.Visible = true;
             this.colTolerancia.VisibleIndex = 2;
             this.colTolerancia.Width = 218;
@@ -407,9 +417,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.labelControl6.Location = new System.Drawing.Point(25, 565);
             this.labelControl6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(95, 17);
+            this.labelControl6.Size = new System.Drawing.Size(153, 17);
             this.labelControl6.TabIndex = 155;
-            this.labelControl6.Text = "Archivo Adjunto:";
+            this.labelControl6.Text = "Dirección Archivo Adjunto:";
             // 
             // txtRutaArchivo
             // 
@@ -439,7 +449,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.btnAdjunto.TabIndex = 157;
             this.btnAdjunto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdjunto.UseVisualStyleBackColor = true;
+            this.btnAdjunto.Click += new System.EventHandler(this.btnAdjunto_Click);
             this.btnAdjunto.MouseHover += new System.EventHandler(this.btnAdjunto_MouseHover);
+            // 
+            // xtraSaveFileDialog2
+            // 
+            this.xtraSaveFileDialog2.FileName = "xtraSaveFileDialog1";
             // 
             // frmNuevoPatron
             // 
@@ -462,6 +477,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmNuevoPatron";
             this.Text = "Nuevo Patrón";
+            this.Load += new System.EventHandler(this.frmNuevoPatron_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreRango.Properties)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -513,5 +529,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.TextEdit txtRutaArchivo;
         private FontAwesome.Sharp.IconButton btnAdjunto;
+        private DevExpress.XtraEditors.XtraSaveFileDialog xtraSaveFileDialog2;
     }
 }

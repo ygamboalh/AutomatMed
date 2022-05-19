@@ -2,11 +2,13 @@
 using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
+using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -33,6 +35,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             InitializeComponent();
             TipoTransaccion = tipoTransaccion;
 
+            NuevoPatron = new PatronDto();
+
             VariablesPatrones = new List<VariablePatronDto>();
 
             _patronService = patronService;
@@ -47,10 +51,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
 
         private void btnEliminarClick(object sender, EventArgs e)
         {
-            var filaSeleccioanda = gvVariableMedicion.GetFocusedRow() as VariablePatronDto;
+            var filaSeleccioanda = gvVariablesDeMedicion.GetFocusedRow() as VariablePatronDto;
             if (TipoTransaccion == TipoTransaccion.Insertar)
             {
-                //VariablesPatrones = VariablesPatrones.Where(x => x.VariableMeicionId != filaSeleccioanda.VariableMedicionId).ToList();
+                VariablesPatrones = VariablesPatrones.Where(x => x.VariableMeicionId != filaSeleccioanda.VariableMeicionId && 
+                                                                 x.ValorPatron == filaSeleccioanda.ValorPatron &&
+                                                                 x.Tolerancia == filaSeleccioanda.Tolerancia).ToList();
+
+             
+                gcVariablesDeMedicion.DataSource = VariablesPatrones;
+                gcVariablesDeMedicion.RefreshDataSource();
             }
             else
             {
@@ -80,14 +90,26 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
 
         }
 
+        private bool ExiteVariableEnLista(VariablePatronDto variablePatronDto)
+        {
+            return VariablesPatrones.Any(x => x.VariableMeicionId == variablePatronDto.VariableMeicionId && x.ValorPatron == variablePatronDto.ValorPatron && x.Tolerancia == variablePatronDto.Tolerancia);
+        }
+
         private void btnVincularVariableMedicion_Click(object sender, EventArgs e)
         {
             var variablePatron = new VariablePatronDto
             {
+              VariableDeMedicion = variableMedicionSeleccionada,
                 Tolerancia = nmTolerancia.Value,
                 ValorPatron = nmValorPatron.Value,
                 VariableMeicionId = variableMedicionSeleccionada.VariableMedicionId
             };
+
+            if (ExiteVariableEnLista(variablePatron))
+            {
+               Notificaciones.MensajeAdvertencia("¡La variable ingresada ya existe!"); 
+                return;
+            }
 
             VariablesPatrones.Add(variablePatron);
             gcVariablesDeMedicion.DataSource = VariablesPatrones;
@@ -118,6 +140,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
                 return false;
             }
 
+         
             mensaje = "Ok";
             return true;
         }
@@ -181,6 +204,27 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
         private void glVariablesDeMedicion_EditValueChanged(object sender, EventArgs e)
         {
             variableMedicionSeleccionada = gvVariableMedicion.GetFocusedRow() as VariableMedicionDto;
+        }
+
+        private void frmNuevoPatron_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAdjunto_Click(object sender, EventArgs e)
+        {
+
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Text files | *.txt"; // file types, that will be allowed to upload
+            dialog.Multiselect = false; // allow/deny user to upload more than one file at a time
+            if (dialog.ShowDialog() == DialogResult.OK) // if user clicked OK
+            {
+                String path = dialog.FileName; // get name of file
+                //using (StreamReader reader = new StreamReader(new FileStream(path, FileMode.Open), new UTF8Encoding())) // do anything you want, e.g. read it
+                //{
+                //    // ...
+                //}
+            }
         }
     }
 
