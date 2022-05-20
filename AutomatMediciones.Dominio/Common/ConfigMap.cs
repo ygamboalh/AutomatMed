@@ -22,6 +22,7 @@ namespace AutomatMediciones.Dominio.Common
             CreateMap<Usuario, UsuarioDto>().ReverseMap();
             CreateMap<Empresa, EmpresaDto>().ReverseMap();
             CreateMap<ConfiguracionNotificacion, ConfiguracionNotificacionDto>().ReverseMap();
+            CreateMap<VariableInstrumento, VariableInstrumentoDto>().ReverseMap();
         }
     }
 }

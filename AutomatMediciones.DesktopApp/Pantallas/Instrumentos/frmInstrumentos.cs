@@ -66,6 +66,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
             frmNuevoInstrumento.OnInstrumentoAgregado += OnInstrumentoAgregado;
             frmNuevoInstrumento.NuevoInstrumento = instrumento;
+            frmNuevoInstrumento.CargarVariablesInstrumentos();
             frmNuevoInstrumento.SetearValoresParaActualizar();
             frmNuevoInstrumento.ShowDialog();
         }

@@ -30,17 +30,17 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNuevoInstrumento));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
             this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
             this.txtEmpresaInstrumento = new DevExpress.XtraEditors.TextEdit();
             this.btnAbrirPopupEmpresaPorInstrumento = new FontAwesome.Sharp.IconButton();
@@ -75,8 +75,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.memoComentarios = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gcVariablesInstrumentos = new DevExpress.XtraGrid.GridControl();
+            this.gvVariablesInstrumentos = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colVariableInstrumentoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTieneAlarma = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -84,11 +84,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.colAlarmaAlta = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colStel = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTwa = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDesactivar = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.btnesactivar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colEditar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEditar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.btnAgregarNuevoInstrumento = new FontAwesome.Sharp.IconButton();
+            this.btnesactivar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.btnNuevaVinculacion = new FontAwesome.Sharp.IconButton();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpresaInstrumento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroSerie.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumento.Properties)).BeginInit();
@@ -100,10 +100,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             ((System.ComponentModel.ISupportInitialize)(this.glModelos.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit2View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoComentarios.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnesactivar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcVariablesInstrumentos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvVariablesInstrumentos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnesactivar)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl20
@@ -488,22 +488,22 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.labelControl4.TabIndex = 129;
             this.labelControl4.Text = "Variables de Medición:";
             // 
-            // gridControl1
+            // gcVariablesInstrumentos
             // 
-            this.gridControl1.Location = new System.Drawing.Point(30, 441);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.gcVariablesInstrumentos.Location = new System.Drawing.Point(30, 441);
+            this.gcVariablesInstrumentos.MainView = this.gvVariablesInstrumentos;
+            this.gcVariablesInstrumentos.Name = "gcVariablesInstrumentos";
+            this.gcVariablesInstrumentos.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnesactivar,
             this.btnEditar});
-            this.gridControl1.Size = new System.Drawing.Size(1084, 181);
-            this.gridControl1.TabIndex = 130;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.gcVariablesInstrumentos.Size = new System.Drawing.Size(1084, 181);
+            this.gcVariablesInstrumentos.TabIndex = 130;
+            this.gcVariablesInstrumentos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvVariablesInstrumentos});
             // 
-            // gridView1
+            // gvVariablesInstrumentos
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gvVariablesInstrumentos.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colVariableInstrumentoId,
             this.colDescripcion,
             this.colTieneAlarma,
@@ -511,12 +511,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.colAlarmaAlta,
             this.colStel,
             this.colTwa,
-            this.colDesactivar,
             this.colEditar});
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.OptionsView.ShowIndicator = false;
+            this.gvVariablesInstrumentos.GridControl = this.gcVariablesInstrumentos;
+            this.gvVariablesInstrumentos.Name = "gvVariablesInstrumentos";
+            this.gvVariablesInstrumentos.OptionsView.ShowGroupPanel = false;
+            this.gvVariablesInstrumentos.OptionsView.ShowIndicator = false;
             // 
             // colVariableInstrumentoId
             // 
@@ -529,7 +528,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             // colDescripcion
             // 
             this.colDescripcion.Caption = "Descripción";
-            this.colDescripcion.FieldName = "Descripcion";
+            this.colDescripcion.FieldName = "VariableDeMedicion.Descripcion";
             this.colDescripcion.MinWidth = 25;
             this.colDescripcion.Name = "colDescripcion";
             this.colDescripcion.OptionsColumn.AllowEdit = false;
@@ -581,7 +580,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             // colStel
             // 
             this.colStel.Caption = "Stel";
-            this.colStel.FieldName = "Stel";
+            this.colStel.FieldName = "AlarmaStel";
             this.colStel.MinWidth = 25;
             this.colStel.Name = "colStel";
             this.colStel.OptionsColumn.AllowEdit = false;
@@ -594,7 +593,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             // colTwa
             // 
             this.colTwa.Caption = "TWA";
-            this.colTwa.FieldName = "Twa";
+            this.colTwa.FieldName = "AlarmaTwa";
             this.colTwa.MinWidth = 25;
             this.colTwa.Name = "colTwa";
             this.colTwa.OptionsColumn.AllowEdit = false;
@@ -604,68 +603,81 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.colTwa.VisibleIndex = 5;
             this.colTwa.Width = 117;
             // 
-            // colDesactivar
-            // 
-            this.colDesactivar.ColumnEdit = this.btnesactivar;
-            this.colDesactivar.MinWidth = 25;
-            this.colDesactivar.Name = "colDesactivar";
-            this.colDesactivar.Visible = true;
-            this.colDesactivar.VisibleIndex = 6;
-            this.colDesactivar.Width = 30;
-            // 
-            // btnesactivar
-            // 
-            this.btnesactivar.AutoHeight = false;
-            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
-            this.btnesactivar.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "Desactivar", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.btnesactivar.Name = "btnesactivar";
-            this.btnesactivar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            // 
             // colEditar
             // 
             this.colEditar.ColumnEdit = this.btnEditar;
             this.colEditar.MinWidth = 25;
             this.colEditar.Name = "colEditar";
             this.colEditar.Visible = true;
-            this.colEditar.VisibleIndex = 7;
+            this.colEditar.VisibleIndex = 6;
             this.colEditar.Width = 30;
             // 
             // btnEditar
             // 
             this.btnEditar.AutoHeight = false;
-            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
             this.btnEditar.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "Editar", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "Editar", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
-            // btnAgregarNuevoInstrumento
+            // btnesactivar
             // 
-            this.btnAgregarNuevoInstrumento.FlatAppearance.BorderSize = 0;
-            this.btnAgregarNuevoInstrumento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregarNuevoInstrumento.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAgregarNuevoInstrumento.IconChar = FontAwesome.Sharp.IconChar.Plus;
-            this.btnAgregarNuevoInstrumento.IconColor = System.Drawing.Color.Black;
-            this.btnAgregarNuevoInstrumento.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAgregarNuevoInstrumento.IconSize = 30;
-            this.btnAgregarNuevoInstrumento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarNuevoInstrumento.Location = new System.Drawing.Point(903, 397);
-            this.btnAgregarNuevoInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.btnAgregarNuevoInstrumento.Name = "btnAgregarNuevoInstrumento";
-            this.btnAgregarNuevoInstrumento.Size = new System.Drawing.Size(211, 39);
-            this.btnAgregarNuevoInstrumento.TabIndex = 131;
-            this.btnAgregarNuevoInstrumento.Text = "Nuevo Instrumento";
-            this.btnAgregarNuevoInstrumento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAgregarNuevoInstrumento.UseVisualStyleBackColor = true;
+            this.btnesactivar.AutoHeight = false;
+            editorButtonImageOptions4.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions4.Image")));
+            this.btnesactivar.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "Desactivar", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.btnesactivar.Name = "btnesactivar";
+            this.btnesactivar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
+            // btnNuevaVinculacion
+            // 
+            this.btnNuevaVinculacion.FlatAppearance.BorderSize = 0;
+            this.btnNuevaVinculacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNuevaVinculacion.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnNuevaVinculacion.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            this.btnNuevaVinculacion.IconColor = System.Drawing.Color.Black;
+            this.btnNuevaVinculacion.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnNuevaVinculacion.IconSize = 30;
+            this.btnNuevaVinculacion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNuevaVinculacion.Location = new System.Drawing.Point(808, 397);
+            this.btnNuevaVinculacion.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnNuevaVinculacion.Name = "btnNuevaVinculacion";
+            this.btnNuevaVinculacion.Size = new System.Drawing.Size(306, 39);
+            this.btnNuevaVinculacion.TabIndex = 131;
+            this.btnNuevaVinculacion.Text = "Vincular Variable de Medición";
+            this.btnNuevaVinculacion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNuevaVinculacion.UseVisualStyleBackColor = true;
+            this.btnNuevaVinculacion.Click += new System.EventHandler(this.btnNuevaVinculacion_Click);
+            // 
+            // iconButton1
+            // 
+            this.iconButton1.FlatAppearance.BorderSize = 0;
+            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconButton1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.ListAlt;
+            this.iconButton1.IconColor = System.Drawing.Color.Black;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.IconSize = 30;
+            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.iconButton1.Location = new System.Drawing.Point(30, 637);
+            this.iconButton1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(220, 52);
+            this.iconButton1.TabIndex = 132;
+            this.iconButton1.Text = "Preparar Certificado";
+            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.iconButton1.UseVisualStyleBackColor = true;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // frmNuevoInstrumento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1141, 709);
-            this.Controls.Add(this.btnAgregarNuevoInstrumento);
-            this.Controls.Add(this.gridControl1);
+            this.Controls.Add(this.iconButton1);
+            this.Controls.Add(this.btnNuevaVinculacion);
+            this.Controls.Add(this.gcVariablesInstrumentos);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.memoComentarios);
             this.Controls.Add(this.labelControl3);
@@ -706,10 +718,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             ((System.ComponentModel.ISupportInitialize)(this.glModelos.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit2View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoComentarios.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnesactivar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcVariablesInstrumentos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvVariablesInstrumentos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnesactivar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -750,8 +762,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.MemoEdit memoComentarios;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.GridControl gcVariablesInstrumentos;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvVariablesInstrumentos;
         private DevExpress.XtraGrid.Columns.GridColumn colVariableInstrumentoId;
         private DevExpress.XtraGrid.Columns.GridColumn colDescripcion;
         private DevExpress.XtraGrid.Columns.GridColumn colTieneAlarma;
@@ -759,10 +771,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         private DevExpress.XtraGrid.Columns.GridColumn colAlarmaAlta;
         private DevExpress.XtraGrid.Columns.GridColumn colStel;
         private DevExpress.XtraGrid.Columns.GridColumn colTwa;
-        private DevExpress.XtraGrid.Columns.GridColumn colDesactivar;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnesactivar;
         private DevExpress.XtraGrid.Columns.GridColumn colEditar;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEditar;
-        private FontAwesome.Sharp.IconButton btnAgregarNuevoInstrumento;
+        private FontAwesome.Sharp.IconButton btnNuevaVinculacion;
+        private FontAwesome.Sharp.IconButton iconButton1;
     }
 }

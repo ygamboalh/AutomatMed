@@ -19,6 +19,8 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.Property(x => x.AlarmaAlta).HasColumnName("alarma_alta").HasColumnType("DECIMAL");
             builder.Property(x => x.AlarmaStel).HasColumnName("alarma_stel").HasColumnType("DECIMAL");
             builder.Property(x => x.AlarmaTwa).HasColumnName("alarma_twa").HasColumnType("DECIMAL");
+
+            builder.HasOne(x => x.VariableDeMedicion).WithMany(x => x.VariablesInstrumentos).HasForeignKey(x => x.VariableMedicionId);
         }
     }
 }

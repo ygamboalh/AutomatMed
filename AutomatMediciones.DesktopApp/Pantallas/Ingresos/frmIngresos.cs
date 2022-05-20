@@ -95,6 +95,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             frmNuevoInstrumento.OnInstrumentoModificado += OnIntrumentoModificado;
             frmNuevoInstrumento.NuevoInstrumento = instrumento;
+            frmNuevoInstrumento.CargarVariablesInstrumentos();
             frmNuevoInstrumento.SetearValoresParaActualizar();
             frmNuevoInstrumento.ShowDialog();
 

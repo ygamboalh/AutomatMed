@@ -1,5 +1,6 @@
 ﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
 using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion;
 using AutomatMediciones.DesktopApp.Pantallas.Clasificaciones;
 using AutomatMediciones.DesktopApp.Pantallas.Clasificaciones.Dtos;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
@@ -63,9 +64,42 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
             EstablecerColorBotonGuardar();
             EstablecerNombreYTituloPopupAgregarInstrumentos();
+            EstablecerColorBotonPorDefecto();
+
+            
+            
+            
 
             NuevoInstrumento = new InstrumentoDto();
 
+
+            btnEditar.Click += btnEditarClick;
+            btnesactivar.Click += btnDesactivarClick;
+
+        }
+
+        private void btnDesactivarClick(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void btnEditarClick(object sender, EventArgs e)
+        {
+            var variableInstrumento = gvVariablesInstrumentos.GetFocusedRow() as VariableInstrumentoDto;
+            if (variableInstrumento == null) return;
+
+            var frmNuevaVariableMedicion = new frmInstrumentoVariable(TipoTransaccion.Actualizar, serviceProvider.GetService<InstrumentoService>(), serviceProvider.GetService<VariableMedicionService>());
+
+            frmNuevaVariableMedicion.NuevaVariableInstrumento = variableInstrumento;
+            frmNuevaVariableMedicion.SetearValoresParaActualizar();
+            frmNuevaVariableMedicion.OnVariableInstrumentoActualizada += OnVariableMedicionModificada;
+            frmNuevaVariableMedicion.ShowDialog();
+        }
+
+        private void OnVariableMedicionModificada(VariableInstrumentoDto variableInstrumentoDto)
+        {
+            serviceProvider = Program.services.BuildServiceProvider();
+            CargarVariablesInstrumentos();
         }
 
         public void SetearValoresParaActualizar()
@@ -391,6 +425,52 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         private void btnAgregarClasificacion_MouseHover(object sender, EventArgs e)
         {
             toolTip1.SetToolTip(btnAgregarClasificacion, "Presione para ir la a pantalla que le permite agregar una nueva clasificación");
+        }
+
+        private void btnNuevaVinculacion_Click(object sender, EventArgs e)
+        {
+            if (TipoTransaccion == TipoTransaccion.Actualizar)
+            {
+                frmInstrumentoVariable frmInstrumentoVariable = new frmInstrumentoVariable(TipoTransaccion.Insertar, serviceProvider.GetService<InstrumentoService>(), serviceProvider.GetService<VariableMedicionService>());
+                frmInstrumentoVariable.InstrumentoId = NuevoInstrumento.InstrumentoId;
+                frmInstrumentoVariable.OnVariableInstrumentoAgregado += OnVariableInstrumentoAgregado;
+                frmInstrumentoVariable.ShowDialog();
+            }
+
+           
+        }
+
+        private void EstablecerColorBotonPorDefecto()
+        {
+            btnNuevaVinculacion.BackColor = ColorHelper.ObtenerColorEnRGB("Default");
+            btnNuevaVinculacion.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+            btnNuevaVinculacion.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+        }
+
+        private void OnVariableInstrumentoAgregado(VariableInstrumentoDto variableInstrumentoDto)
+        {
+            serviceProvider = Program.services.BuildServiceProvider();
+            CargarVariablesInstrumentos();
+        }
+
+        public void CargarVariablesInstrumentos()
+        {
+            var resultado = _instrumentoService.ObtenerVariablesInstrumentos(NuevoInstrumento.InstrumentoId);
+            if (resultado.Type != TypeResponse.Ok)
+            {
+                Notificaciones.MensajeError(resultado.Message);
+                return;
+            }
+
+            gcVariablesInstrumentos.DataSource = resultado.Data;
+            gcVariablesInstrumentos.RefreshDataSource();
+            
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            var frmNuevoCertificadoCalibracion = new frmNuevoCertificadoCalibracion();
+            frmNuevoCertificadoCalibracion.ShowDialog();
         }
     }
 }

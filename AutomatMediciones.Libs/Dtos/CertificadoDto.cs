@@ -10,6 +10,8 @@ namespace AutomatMediciones.Libs.Dtos
         public string NumeroCertificado { get; set; }
         public int InstrumentoId { get; set; }
         public string CondicionesAmbientales { get; set; }
-        public string Responsable { get; set; }
+        public int ResponsableId { get; set; }
+        public UsuarioDto Responsable { get; set; }
+        public InstrumentoDto Instrumento { get; set; }
     }
 }

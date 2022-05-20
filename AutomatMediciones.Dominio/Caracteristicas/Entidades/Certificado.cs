@@ -10,6 +10,9 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
         public string NumeroCertificado { get; set; }
         public int InstrumentoId { get; set; }
         public string CondicionesAmbientales { get; set; }
-        public string Responsable { get; set; }
+        public int ResponsableId { get; set; }
+
+        public Usuario Responsable { get; set; }
+        public Instrumento Intrumento { get; set; }
     }
 }

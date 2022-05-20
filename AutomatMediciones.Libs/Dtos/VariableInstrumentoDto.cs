@@ -10,5 +10,6 @@
         public decimal? AlarmaAlta { get; set; }
         public decimal? AlarmaStel { get; set; }
         public decimal? AlarmaTwa { get; set; }
+        public VariableMedicionDto VariableDeMedicion { get; set; }
     }
 }

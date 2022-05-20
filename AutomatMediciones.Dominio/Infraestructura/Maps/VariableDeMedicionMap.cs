@@ -18,6 +18,7 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.Property(x => x.Tolerancia).HasColumnName("tolerancia").HasColumnType("DECIMAL").IsRequired();
 
             builder.HasMany(x => x.TiposDeInstrumentoVariables).WithOne(x => x.VariableDeMedicion).HasForeignKey(x => x.VariableMedicionId);
+            builder.HasMany(x => x.VariablesInstrumentos).WithOne(x => x.VariableDeMedicion).HasForeignKey(x => x.VariableMedicionId);
         }
     }
 }

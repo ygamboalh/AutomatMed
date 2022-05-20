@@ -33,6 +33,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
 
         }
 
+     
+
         private void OnSeleccionaVariableMedicionParaModificar(object sender, EventArgs e)
         {
             var VariableMedicion = gvVariablesDeMedicion.GetFocusedRow() as VariableMedicionDto;
