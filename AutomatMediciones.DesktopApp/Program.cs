@@ -1,6 +1,7 @@
 using AutoMapper;
 using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.DesktopApp.Pantallas;
+using AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion;
 using AutomatMediciones.DesktopApp.Pantallas.Clasificaciones;
 using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos;
 using AutomatMediciones.DesktopApp.Pantallas.Ingresos;
@@ -76,6 +77,7 @@ namespace AutomatMediciones.DesktopApp
             services.AddTransient<VariableMedicionService, VariableMedicionService>();
             services.AddTransient<ConfiguracionNotificacionService, ConfiguracionNotificacionService>();
             services.AddTransient<PatronService, PatronService>();
+            services.AddTransient<CertificadoCalibracionService, CertificadoCalibracionService>();
 
             services.AddScoped<frmPrincipal>();
 
@@ -106,6 +108,8 @@ namespace AutomatMediciones.DesktopApp
 
             services.AddScoped<frmPatrones>();
             services.AddScoped<frmNuevoPatron>();
+
+            services.AddScoped<frmNuevoCertificadoCalibracion>();
         }
     }
 }

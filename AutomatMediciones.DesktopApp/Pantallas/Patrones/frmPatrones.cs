@@ -1,18 +1,21 @@
 ﻿using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
+using DevExpress.XtraPdfViewer;
+using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
 {
     public partial class frmPatrones : DevExpress.XtraEditors.XtraForm
     {
         private readonly PatronService _patronService;
-        private readonly ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
+        private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
 
   
         ICollection<PatronDto> patrones = new List<PatronDto>();
@@ -22,6 +25,74 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             _patronService = patronService;
 
             CargarPatrones();
+
+            cmdEditar.Click += cmdEditarPatroClick;
+            cmdDesactivar.Click += cmdDesactivarPatronClick;
+            cmdVerPatron.Click += cmdVerPatronClick;
+
+            EstablecerColorBotonPorDefecto();
+        }
+
+        private void cmdVerPatronClick(object sender, EventArgs e)
+        {
+            var patronSeleccionado = gvPatrones.GetFocusedRow() as PatronDto;
+            if (patronSeleccionado == null) return;
+
+            SplashScreenManager.ShowForm(typeof(frmLoadingSave));
+            var frm = new frmVisualizadorPdf(patronSeleccionado.Link);
+            frm.Show();
+            SplashScreenManager.CloseForm();
+
+        }
+
+        private void EstablecerColorBotonPorDefecto()
+        {
+            btnAgregarNuevoPatron.BackColor = ColorHelper.ObtenerColorEnRGB("Default");
+            btnAgregarNuevoPatron.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+            btnAgregarNuevoPatron.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+        }
+
+        private void cmdDesactivarPatronClick(object sender, EventArgs e)
+        {
+            var patronSeleccionado = gvPatrones.GetFocusedRow() as PatronDto;
+
+            if (patronSeleccionado == null) return;
+
+            if (InactivarPatron(patronSeleccionado))
+            {
+                Notificaciones.MensajeConfirmacion("¡La desactivación del Patrón se ha realizado exitosamente!");
+                patrones = patrones.Where(x => x.PatronId != patronSeleccionado.PatronId).ToList();
+                gcPatrones.DataSource = patrones;
+                gcPatrones.RefreshDataSource();
+            }
+        }
+
+        private bool InactivarPatron(PatronDto patronDto)
+        {
+            try
+            {
+                var resultado = _patronService.DesactivarPatron(patronDto);
+                if (resultado.Type != TypeResponse.Ok) return false;
+
+                return true;
+            }
+            catch (Exception exc)
+            {
+                Notificaciones.MensajeError(ExceptionsHelper.ObtenerMensajeExcepcion(exc));
+                return false;
+            }
+        }
+
+        private void cmdEditarPatroClick(object sender, EventArgs e)
+        {
+            var patronSeleccionado = gvPatrones.GetFocusedRow() as PatronDto;
+
+            var frmNuevoPatron = new frmNuevoPatron(TipoTransaccion.Actualizar, serviceProvider.GetService<PatronService>(),
+                 serviceProvider.GetService<VariableMedicionService>());
+            frmNuevoPatron.OnPatronAgregado += OnPatronAgregado;
+            frmNuevoPatron.NuevoPatron = patronSeleccionado;
+            frmNuevoPatron.SetearValoresParaActualizar();
+            frmNuevoPatron.ShowDialog();
         }
 
         private void CargarPatrones()
@@ -53,7 +124,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
 
         private void OnPatronAgregado(PatronDto patron)
         {
-           
+            serviceProvider = Program.services.BuildServiceProvider();
+            CargarPatrones();
         }
     }
 }

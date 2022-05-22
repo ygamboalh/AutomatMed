@@ -469,7 +469,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
-            var frmNuevoCertificadoCalibracion = new frmNuevoCertificadoCalibracion();
+            
+            var frmNuevoCertificadoCalibracion = new frmNuevoCertificadoCalibracion(NuevoInstrumento.InstrumentoId, 
+                serviceProvider.GetService<CertificadoCalibracionService>(),
+                 serviceProvider.GetService<UsuarioService>()
+                );
             frmNuevoCertificadoCalibracion.ShowDialog();
         }
     }

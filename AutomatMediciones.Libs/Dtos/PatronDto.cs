@@ -11,5 +11,7 @@ namespace AutomatMediciones.Libs.Dtos
         public string Nombre { get; set; }
         public bool Activo { get; set; }
         public string Link { get; set; }
+
+        public ICollection<VariablePatronDto> VariablesPatrones { get; set; }
     }
 }

@@ -22,7 +22,11 @@ namespace AutomatMediciones.Dominio.Common
             CreateMap<Usuario, UsuarioDto>().ReverseMap();
             CreateMap<Empresa, EmpresaDto>().ReverseMap();
             CreateMap<ConfiguracionNotificacion, ConfiguracionNotificacionDto>().ReverseMap();
+            CreateMap<Patron, PatronDto>().ReverseMap();
             CreateMap<VariableInstrumento, VariableInstrumentoDto>().ReverseMap();
+            CreateMap<VariablePatron, VariablePatronDto>().ReverseMap();
+            CreateMap<Certificado, CertificadoDto>().ReverseMap();
+            CreateMap<VariableCertificado, VariableCertificadoDto>().ReverseMap();
         }
     }
 }

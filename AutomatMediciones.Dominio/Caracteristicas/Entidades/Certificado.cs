@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
 {
@@ -13,6 +14,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
         public int ResponsableId { get; set; }
 
         public Usuario Responsable { get; set; }
-        public Instrumento Intrumento { get; set; }
+        public Instrumento Instrumento { get; set; }
+        public ICollection<VariableCertificado> VariablesCertificado { get; set; }
     }
 }

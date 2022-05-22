@@ -16,6 +16,10 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.Property(x => x.PatronId).HasColumnName("patron_id").HasColumnType("INT").IsRequired();
             builder.Property(x => x.ValorPatron).HasColumnName("valor_patron").HasColumnType("DECIMAL").IsRequired();
             builder.Property(x => x.Tolerancia).HasColumnName("tolerancia").HasColumnType("DECIMAL").IsRequired();
+            builder.Property(x => x.Activo).HasColumnName("activo").HasColumnType("TINYINT").IsRequired();
+
+            builder.HasOne(x => x.Patron).WithMany(x => x.VariablesPatrones).HasForeignKey(x => x.PatronId);
+            builder.HasOne(x => x.VariableDeMedicion).WithMany(x => x.VariablesPatrones).HasForeignKey(x => x.VariableMeicionId);
         }
     }
 }

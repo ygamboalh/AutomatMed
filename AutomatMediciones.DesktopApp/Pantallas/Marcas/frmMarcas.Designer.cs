@@ -205,6 +205,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMarcas";
             this.Text = "Marcas";
+            this.Load += new System.EventHandler(this.frmMarcas_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcMarcas)).EndInit();

@@ -12,5 +12,6 @@ namespace AutomatMediciones.Libs.Dtos
         public decimal Tolerancia { get; set; }
         public ICollection<TipoInstrumentoVariableDto> TiposDeInstrumentoVariables { get; set; }
         public ICollection<VariableInstrumentoDto> VariablesInstrumentos { get; set; }
+        public ICollection<VariablePatronDto> VariablesPatrones { get; set; }
     }
 }

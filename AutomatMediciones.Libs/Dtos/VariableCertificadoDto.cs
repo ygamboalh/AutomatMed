@@ -7,5 +7,9 @@
         public int PatronId { get; set; }
         public decimal ValorMedido { get; set; }
         public int VariableInstrumentoId { get; set; }
+
+        public CertificadoDto Certificado { get; set; }
+        public PatronDto Patron { get; set; }
+        public VariableInstrumentoDto VariableInstrumento { get; set; }
     }
 }

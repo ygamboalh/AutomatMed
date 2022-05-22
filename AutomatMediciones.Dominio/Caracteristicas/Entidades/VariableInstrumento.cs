@@ -1,4 +1,6 @@
-﻿namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
+﻿using System.Collections.Generic;
+
+namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
 {
     public class VariableInstrumento
     {
@@ -12,6 +14,7 @@
         public decimal? AlarmaTwa { get; set; }
 
         public VariableDeMedicion VariableDeMedicion { get; set; }
+        public ICollection<VariableCertificado> VariablesCertificado { get; set; }
 
         public bool EsValido(out string mensaje)
         {

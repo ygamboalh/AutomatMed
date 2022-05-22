@@ -1,4 +1,6 @@
-﻿namespace AutomatMediciones.Libs.Dtos
+﻿using System.Collections.Generic;
+
+namespace AutomatMediciones.Libs.Dtos
 {
     public class VariableInstrumentoDto
     {
@@ -11,5 +13,6 @@
         public decimal? AlarmaStel { get; set; }
         public decimal? AlarmaTwa { get; set; }
         public VariableMedicionDto VariableDeMedicion { get; set; }
+        public ICollection<VariableCertificadoDto> VariableCertificadoDto { get; set; }
     }
 }

@@ -16,6 +16,9 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.Property(x => x.Nombre).HasColumnName("nombre").HasColumnType("VARCHAR(120)").IsRequired();
             builder.Property(x => x.Activo).HasColumnName("activo").HasColumnType("TINYINT").IsRequired();
             builder.Property(x => x.Link).HasColumnName("link").HasColumnType("VARCHAR(100)").IsRequired();
+
+            builder.HasMany(x => x.VariablesPatrones).WithOne(x => x.Patron).HasForeignKey(x => x.PatronId);
+            builder.HasMany(x => x.VariablesCertificado).WithOne(x => x.Patron).HasForeignKey(x => x.PatronId);
         }
     }
 }

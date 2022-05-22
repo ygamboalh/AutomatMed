@@ -44,9 +44,21 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
 
             EstablecerNombreYTituloPopupAgregarInstrumentos();
             EstablecerColorBotonGuardar();
+          
             CargarVariablesDeMedicion();
 
             btnEliminar.Click += btnEliminarClick;
+        }
+
+        public void SetearValoresParaActualizar()
+        {
+            txtNombreRango.Text = NuevoPatron.Nombre;
+            dateFechaCaducidad.Value = NuevoPatron.FechaCaducidad;
+            txtRutaArchivo.Text = NuevoPatron.Link;
+
+            VariablesPatrones = NuevoPatron.VariablesPatrones.ToList();
+            gcVariablesDeMedicion.DataSource = VariablesPatrones;
+            gcVariablesDeMedicion.RefreshDataSource();
         }
 
         private void btnEliminarClick(object sender, EventArgs e)
@@ -64,7 +76,30 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             }
             else
             {
-                //VariablesPatrones.FirstOrDefault(x => x.VariablePatronId == filaSeleccioanda.VariablePatronId).
+                if (filaSeleccioanda != null)
+                {
+                    var result = _patronService.DesactivarVariablePatron(filaSeleccioanda);
+                    if (result.Type != TypeResponse.Ok)
+                    {
+                        Notificaciones.MensajeError(result.Message);
+                        return;
+                    }
+                    VariablesPatrones = VariablesPatrones.Where(x => x.VariablePatronId != filaSeleccioanda.VariablePatronId).ToList();
+                    gcVariablesDeMedicion.DataSource = VariablesPatrones;
+                    gcVariablesDeMedicion.RefreshDataSource();
+
+                }
+                else
+                {
+                    VariablesPatrones = VariablesPatrones.Where(x => x.VariableMeicionId != filaSeleccioanda.VariableMeicionId &&
+                                                                 x.ValorPatron == filaSeleccioanda.ValorPatron &&
+                                                                 x.Tolerancia == filaSeleccioanda.Tolerancia).ToList();
+
+
+                    gcVariablesDeMedicion.DataSource = VariablesPatrones;
+                    gcVariablesDeMedicion.RefreshDataSource();
+                }
+               
             }
         }
 
@@ -97,12 +132,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
 
         private void btnVincularVariableMedicion_Click(object sender, EventArgs e)
         {
+            if (variableMedicionSeleccionada == null) return;
+           
+
             var variablePatron = new VariablePatronDto
             {
               VariableDeMedicion = variableMedicionSeleccionada,
                 Tolerancia = nmTolerancia.Value,
                 ValorPatron = nmValorPatron.Value,
-                VariableMeicionId = variableMedicionSeleccionada.VariableMedicionId
+                VariableMeicionId = variableMedicionSeleccionada.VariableMedicionId,
+                
             };
 
             if (ExiteVariableEnLista(variablePatron))
@@ -163,10 +202,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
                     OnPatronAgregado?.Invoke(NuevoPatron);
                     this.Close();
                 }
+             
             }
             else
             {
-
+                if (ActualizarPatron())
+                {
+                    Notificaciones.MensajeConfirmacion("¡El patrón se ha actualizado exitosamente!");
+                    OnPatronAgregado?.Invoke(NuevoPatron);
+                    this.Close();
+                }
             }
 
             SplashScreenManager.CloseForm();
@@ -188,12 +233,32 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             }
         }
 
+        private bool ActualizarPatron()
+        {
+            try
+            {
+                var resultado = _patronService.ActualizarPatron(NuevoPatron);
+                if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+                return true;
+            }
+            catch (Exception exc)
+            {
+                Notificaciones.MensajeError(ExceptionsHelper.ObtenerMensajeExcepcion(exc));
+                return false;
+            }
+        }
+
+
+     
+
+
         private void PrepararNuevoPatron()
         {
             NuevoPatron.Nombre = txtNombreRango.Text;
             NuevoPatron.FechaCaducidad = dateFechaCaducidad.Value;
             NuevoPatron.Link = txtRutaArchivo.Text;
-
+            NuevoPatron.VariablesPatrones = VariablesPatrones;
         }
 
         private void btnAdjunto_MouseHover(object sender, EventArgs e)
@@ -215,15 +280,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
         {
 
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "Text files | *.txt"; // file types, that will be allowed to upload
-            dialog.Multiselect = false; // allow/deny user to upload more than one file at a time
-            if (dialog.ShowDialog() == DialogResult.OK) // if user clicked OK
+            dialog.Filter = "PDF files | *.pdf"; 
+            dialog.Multiselect = false; 
+            if (dialog.ShowDialog() == DialogResult.OK) 
             {
-                String path = dialog.FileName; // get name of file
-                //using (StreamReader reader = new StreamReader(new FileStream(path, FileMode.Open), new UTF8Encoding())) // do anything you want, e.g. read it
-                //{
-                //    // ...
-                //}
+                String path = dialog.FileName; 
+                txtRutaArchivo.Text = path;
             }
         }
     }

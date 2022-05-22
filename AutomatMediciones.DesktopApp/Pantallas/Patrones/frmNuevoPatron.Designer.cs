@@ -31,7 +31,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
         {
             this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNuevoPatron));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -91,7 +90,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.btnGuardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardar.IconSize = 30;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(515, 653);
+            this.btnGuardar.Location = new System.Drawing.Point(592, 655);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(241, 52);
@@ -129,7 +128,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.dateFechaCaducidad.Location = new System.Drawing.Point(446, 124);
             this.dateFechaCaducidad.Margin = new System.Windows.Forms.Padding(4);
             this.dateFechaCaducidad.Name = "dateFechaCaducidad";
-            this.dateFechaCaducidad.Size = new System.Drawing.Size(310, 31);
+            this.dateFechaCaducidad.Size = new System.Drawing.Size(387, 31);
             this.dateFechaCaducidad.TabIndex = 130;
             // 
             // labelControl1
@@ -157,7 +156,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(731, 97);
+            this.groupBox1.Size = new System.Drawing.Size(808, 97);
             this.groupBox1.TabIndex = 132;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Variable de Medición para vincular al patrón";
@@ -172,7 +171,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.btnVincularVariableMedicion.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnVincularVariableMedicion.IconSize = 30;
             this.btnVincularVariableMedicion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVincularVariableMedicion.Location = new System.Drawing.Point(668, 44);
+            this.btnVincularVariableMedicion.Location = new System.Drawing.Point(746, 43);
             this.btnVincularVariableMedicion.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnVincularVariableMedicion.Name = "btnVincularVariableMedicion";
             this.btnVincularVariableMedicion.Size = new System.Drawing.Size(40, 32);
@@ -186,7 +185,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             // 
             this.nmTolerancia.DecimalPlaces = 2;
             this.nmTolerancia.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.nmTolerancia.Location = new System.Drawing.Point(482, 48);
+            this.nmTolerancia.Location = new System.Drawing.Point(560, 47);
             this.nmTolerancia.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.nmTolerancia.Maximum = new decimal(new int[] {
             10000,
@@ -201,7 +200,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(482, 27);
+            this.labelControl2.Location = new System.Drawing.Point(560, 26);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(60, 17);
@@ -212,7 +211,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             // 
             this.nmValorPatron.DecimalPlaces = 2;
             this.nmValorPatron.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.nmValorPatron.Location = new System.Drawing.Point(313, 48);
+            this.nmValorPatron.Location = new System.Drawing.Point(391, 47);
             this.nmValorPatron.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.nmValorPatron.Maximum = new decimal(new int[] {
             10000,
@@ -227,7 +226,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(313, 27);
+            this.labelControl3.Location = new System.Drawing.Point(391, 26);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(76, 17);
@@ -243,7 +242,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.glVariablesDeMedicion.Properties.AutoHeight = false;
             this.glVariablesDeMedicion.Properties.NullText = "";
             this.glVariablesDeMedicion.Properties.PopupView = this.gvVariableMedicion;
-            this.glVariablesDeMedicion.Size = new System.Drawing.Size(271, 31);
+            this.glVariablesDeMedicion.Size = new System.Drawing.Size(345, 31);
             this.glVariablesDeMedicion.TabIndex = 149;
             this.glVariablesDeMedicion.EditValueChanged += new System.EventHandler(this.glVariablesDeMedicion_EditValueChanged);
             // 
@@ -301,7 +300,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.panel1.Location = new System.Drawing.Point(24, 513);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(732, 27);
+            this.panel1.Size = new System.Drawing.Size(809, 27);
             this.panel1.TabIndex = 153;
             // 
             // lblTotalInstrumentos
@@ -326,7 +325,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.gcVariablesDeMedicion.Name = "gcVariablesDeMedicion";
             this.gcVariablesDeMedicion.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnEliminar});
-            this.gcVariablesDeMedicion.Size = new System.Drawing.Size(731, 199);
+            this.gcVariablesDeMedicion.Size = new System.Drawing.Size(808, 199);
             this.gcVariablesDeMedicion.TabIndex = 152;
             this.gcVariablesDeMedicion.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvVariablesDeMedicion});
@@ -404,7 +403,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             // btnEliminar
             // 
             this.btnEliminar.AutoHeight = false;
-            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
             this.btnEliminar.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "Quitar Vinculación", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEliminar.Name = "btnEliminar";
@@ -429,7 +427,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.txtRutaArchivo.Name = "txtRutaArchivo";
             this.txtRutaArchivo.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtRutaArchivo.Properties.Appearance.Options.UseFont = true;
-            this.txtRutaArchivo.Size = new System.Drawing.Size(683, 30);
+            this.txtRutaArchivo.Size = new System.Drawing.Size(760, 30);
             this.txtRutaArchivo.TabIndex = 156;
             // 
             // btnAdjunto
@@ -442,7 +440,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.btnAdjunto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAdjunto.IconSize = 30;
             this.btnAdjunto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdjunto.Location = new System.Drawing.Point(716, 587);
+            this.btnAdjunto.Location = new System.Drawing.Point(793, 592);
             this.btnAdjunto.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnAdjunto.Name = "btnAdjunto";
             this.btnAdjunto.Size = new System.Drawing.Size(40, 32);
@@ -460,7 +458,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(788, 730);
+            this.ClientSize = new System.Drawing.Size(862, 730);
             this.Controls.Add(this.btnAdjunto);
             this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.txtRutaArchivo);
@@ -476,7 +474,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmNuevoPatron";
-            this.Text = "Nuevo Patrón";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmNuevoPatron_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtNombreRango.Properties)).EndInit();
             this.groupBox1.ResumeLayout(false);

@@ -109,5 +109,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
 
             SetearTotales();
         }
+
+        private void frmMarcas_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

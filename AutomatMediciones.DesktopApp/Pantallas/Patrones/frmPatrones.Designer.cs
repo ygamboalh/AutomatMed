@@ -48,7 +48,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnAgregarNuevoPatron = new FontAwesome.Sharp.IconButton();
             this.gcPatrones = new DevExpress.XtraGrid.GridControl();
-            this.gvMarcas = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gvPatrones = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFechaCaducidad = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -63,7 +63,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.lblTotal = new DevExpress.XtraEditors.LabelControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcPatrones)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvMarcas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvPatrones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmdEditar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmdDesactivar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmdVerPatron)).BeginInit();
@@ -107,7 +107,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.gcPatrones.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcPatrones.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.gcPatrones.Location = new System.Drawing.Point(0, 53);
-            this.gcPatrones.MainView = this.gvMarcas;
+            this.gcPatrones.MainView = this.gvPatrones;
             this.gcPatrones.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.gcPatrones.Name = "gcPatrones";
             this.gcPatrones.Padding = new System.Windows.Forms.Padding(5);
@@ -118,11 +118,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.gcPatrones.Size = new System.Drawing.Size(957, 468);
             this.gcPatrones.TabIndex = 35;
             this.gcPatrones.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvMarcas});
+            this.gvPatrones});
             // 
-            // gvMarcas
+            // gvPatrones
             // 
-            this.gvMarcas.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gvPatrones.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colId,
             this.colDescripcion,
             this.colFechaCaducidad,
@@ -130,11 +130,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.colEditar,
             this.colDesactivar,
             this.colVerPatron});
-            this.gvMarcas.GridControl = this.gcPatrones;
-            this.gvMarcas.Name = "gvMarcas";
-            this.gvMarcas.OptionsView.ShowAutoFilterRow = true;
-            this.gvMarcas.OptionsView.ShowGroupPanel = false;
-            this.gvMarcas.OptionsView.ShowIndicator = false;
+            this.gvPatrones.GridControl = this.gcPatrones;
+            this.gvPatrones.Name = "gvPatrones";
+            this.gvPatrones.OptionsView.ShowAutoFilterRow = true;
+            this.gvPatrones.OptionsView.ShowGroupPanel = false;
+            this.gvPatrones.OptionsView.ShowIndicator = false;
             // 
             // colId
             // 
@@ -276,7 +276,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.Text = "Patrones";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcPatrones)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvMarcas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvPatrones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmdEditar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmdDesactivar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmdVerPatron)).EndInit();
@@ -291,7 +291,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
         private System.Windows.Forms.Panel panel1;
         private FontAwesome.Sharp.IconButton btnAgregarNuevoPatron;
         private DevExpress.XtraGrid.GridControl gcPatrones;
-        private DevExpress.XtraGrid.Views.Grid.GridView gvMarcas;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvPatrones;
         private DevExpress.XtraGrid.Columns.GridColumn colId;
         private DevExpress.XtraGrid.Columns.GridColumn colDescripcion;
         private DevExpress.XtraGrid.Columns.GridColumn colFechaCaducidad;
