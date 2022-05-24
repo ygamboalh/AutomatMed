@@ -59,7 +59,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.txtDescripcionInstrumento = new DevExpress.XtraEditors.TextEdit();
             this.dateFechaCompraFabricante = new System.Windows.Forms.DateTimePicker();
             this.dateFechaCompraCliente = new System.Windows.Forms.DateTimePicker();
-            this.txtGarantia = new DevExpress.XtraEditors.TextEdit();
             this.glMarcas = new DevExpress.XtraEditors.GridLookUpEdit();
             this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMarcaId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -89,12 +88,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.btnesactivar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.btnNuevaVinculacion = new FontAwesome.Sharp.IconButton();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.nmGarantia = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpresaInstrumento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroSerie.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumentoView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcionInstrumento.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGarantia.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glMarcas.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glModelos.Properties)).BeginInit();
@@ -104,6 +103,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             ((System.ComponentModel.ISupportInitialize)(this.gvVariablesInstrumentos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnesactivar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmGarantia)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl20
@@ -262,9 +262,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.labelControl18.Location = new System.Drawing.Point(30, 338);
             this.labelControl18.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl18.Name = "labelControl18";
-            this.labelControl18.Size = new System.Drawing.Size(52, 17);
+            this.labelControl18.Size = new System.Drawing.Size(99, 17);
             this.labelControl18.TabIndex = 107;
-            this.labelControl18.Text = "Garantía:";
+            this.labelControl18.Text = "Garantía (Meses)";
             // 
             // btnGuardarInstrumento
             // 
@@ -317,18 +317,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.dateFechaCompraCliente.Name = "dateFechaCompraCliente";
             this.dateFechaCompraCliente.Size = new System.Drawing.Size(328, 30);
             this.dateFechaCompraCliente.TabIndex = 118;
-            // 
-            // txtGarantia
-            // 
-            this.txtGarantia.EditValue = "";
-            this.txtGarantia.Location = new System.Drawing.Point(30, 359);
-            this.txtGarantia.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.txtGarantia.Name = "txtGarantia";
-            this.txtGarantia.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtGarantia.Properties.Appearance.Options.UseFont = true;
-            this.txtGarantia.Properties.UseReadOnlyAppearance = false;
-            this.txtGarantia.Size = new System.Drawing.Size(359, 30);
-            this.txtGarantia.TabIndex = 121;
             // 
             // glMarcas
             // 
@@ -670,11 +658,26 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.iconButton1.UseVisualStyleBackColor = true;
             this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
+            // nmGarantia
+            // 
+            this.nmGarantia.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.nmGarantia.Location = new System.Drawing.Point(30, 359);
+            this.nmGarantia.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.nmGarantia.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nmGarantia.Name = "nmGarantia";
+            this.nmGarantia.Size = new System.Drawing.Size(150, 30);
+            this.nmGarantia.TabIndex = 152;
+            // 
             // frmNuevoInstrumento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1141, 709);
+            this.Controls.Add(this.nmGarantia);
             this.Controls.Add(this.iconButton1);
             this.Controls.Add(this.btnNuevaVinculacion);
             this.Controls.Add(this.gcVariablesInstrumentos);
@@ -686,7 +689,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.glMarcas);
             this.Controls.Add(this.labelControl1);
-            this.Controls.Add(this.txtGarantia);
             this.Controls.Add(this.dateFechaCompraCliente);
             this.Controls.Add(this.dateFechaCompraFabricante);
             this.Controls.Add(this.labelControl20);
@@ -712,7 +714,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumento.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumentoView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcionInstrumento.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGarantia.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.glMarcas.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.glModelos.Properties)).EndInit();
@@ -722,6 +723,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             ((System.ComponentModel.ISupportInitialize)(this.gvVariablesInstrumentos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnesactivar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmGarantia)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -744,7 +746,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         private DevExpress.XtraEditors.TextEdit txtDescripcionInstrumento;
         private System.Windows.Forms.DateTimePicker dateFechaCompraFabricante;
         private System.Windows.Forms.DateTimePicker dateFechaCompraCliente;
-        private DevExpress.XtraEditors.TextEdit txtGarantia;
         private DevExpress.XtraEditors.GridLookUpEdit glMarcas;
         private DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit1View;
         private DevExpress.XtraEditors.LabelControl labelControl1;
@@ -776,5 +777,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEditar;
         private FontAwesome.Sharp.IconButton btnNuevaVinculacion;
         private FontAwesome.Sharp.IconButton iconButton1;
+        private System.Windows.Forms.NumericUpDown nmGarantia;
     }
 }

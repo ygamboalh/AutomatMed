@@ -102,7 +102,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             else
             {
                 SplashScreenManager.ShowForm(typeof(frmLoadingSave));
-                if (GuardarVinculacionVariableMedicion())
+                if (ActualizarVinculacionVariableMedicion())
                 {
                     Notificaciones.MensajeConfirmacion("¡La vinculación se actualizó exitosamente!");
                     OnVariableInstrumentoActualizada?.Invoke(NuevaVariableInstrumento);

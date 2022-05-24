@@ -387,6 +387,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "frmNuevaVariableMedicion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcion.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmPrimerValorRango)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmSegundoValorRango)).EndInit();

@@ -48,38 +48,43 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.colUsuarioId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNombreUsuario = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.gridLookUpEdit1 = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.btnVincularVariableMedicion = new FontAwesome.Sharp.IconButton();
-            this.nmValorPatron = new System.Windows.Forms.NumericUpDown();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.glVariablesDeMedicion = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.glVariablesDeMedicionView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colTipoInstrumentoId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.gcTiposDeInstrumento = new DevExpress.XtraGrid.GridControl();
-            this.gvTiposDeInstrumento = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gcVariablesCertificado = new DevExpress.XtraGrid.GridControl();
+            this.gvVariablesCertificado = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colDescripcionPatron = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colVariableMedicion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colValorMedido = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEliminar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEliminar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.glVariableInstrumento = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.glVariableInstrumentoView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colVariableInstrumentoId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colVariableDeMedicion = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTieneAlarma = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAlarmaAlta = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAlarmaBaja = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colStel = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAlarmaTwa = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.btnAgregarVariable = new FontAwesome.Sharp.IconButton();
+            this.nmValorMedido = new System.Windows.Forms.NumericUpDown();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.glPatrones = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.glPatronesView = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colPatronId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.memoCondicionesAmbientales.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glUsuariosResponsables.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glUsuariosResponsablesView)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nmValorPatron)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glVariablesDeMedicion.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glVariablesDeMedicionView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcTiposDeInstrumento)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvTiposDeInstrumento)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcVariablesCertificado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvVariablesCertificado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEliminar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glVariableInstrumento.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glVariableInstrumentoView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmValorMedido)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glPatrones.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glPatronesView)).BeginInit();
             this.SuspendLayout();
             // 
             // dateFechaCertificado
@@ -219,13 +224,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.gcTiposDeInstrumento);
-            this.groupBox1.Controls.Add(this.gridLookUpEdit1);
+            this.groupBox1.Controls.Add(this.gcVariablesCertificado);
+            this.groupBox1.Controls.Add(this.glVariableInstrumento);
             this.groupBox1.Controls.Add(this.labelControl2);
-            this.groupBox1.Controls.Add(this.btnVincularVariableMedicion);
-            this.groupBox1.Controls.Add(this.nmValorPatron);
+            this.groupBox1.Controls.Add(this.btnAgregarVariable);
+            this.groupBox1.Controls.Add(this.nmValorMedido);
             this.groupBox1.Controls.Add(this.labelControl5);
-            this.groupBox1.Controls.Add(this.glVariablesDeMedicion);
+            this.groupBox1.Controls.Add(this.glPatrones);
             this.groupBox1.Controls.Add(this.labelControl7);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox1.Location = new System.Drawing.Point(37, 265);
@@ -235,183 +240,44 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.groupBox1.Size = new System.Drawing.Size(872, 313);
             this.groupBox1.TabIndex = 136;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Variable de Certificado";
+            this.groupBox1.Text = "Variables de Certificado";
             // 
-            // gridLookUpEdit1
+            // gcVariablesCertificado
             // 
-            this.gridLookUpEdit1.EditValue = "";
-            this.gridLookUpEdit1.Location = new System.Drawing.Point(329, 49);
-            this.gridLookUpEdit1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.gridLookUpEdit1.Name = "gridLookUpEdit1";
-            this.gridLookUpEdit1.Properties.AutoHeight = false;
-            this.gridLookUpEdit1.Properties.NullText = "";
-            this.gridLookUpEdit1.Properties.PopupView = this.gridLookUpEdit1View;
-            this.gridLookUpEdit1.Size = new System.Drawing.Size(287, 31);
-            this.gridLookUpEdit1.TabIndex = 156;
-            // 
-            // gridLookUpEdit1View
-            // 
-            this.gridLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
-            this.gridColumn2});
-            this.gridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridLookUpEdit1View.Name = "gridLookUpEdit1View";
-            this.gridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "Id";
-            this.gridColumn1.FieldName = "TipoInstrumentoId";
-            this.gridColumn1.Name = "gridColumn1";
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "Descripcion";
-            this.gridColumn2.FieldName = "Descripcion";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.OptionsColumn.AllowEdit = false;
-            this.gridColumn2.OptionsColumn.ReadOnly = true;
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 0;
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(330, 28);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(38, 17);
-            this.labelControl2.TabIndex = 155;
-            this.labelControl2.Text = "Patrón";
-            // 
-            // btnVincularVariableMedicion
-            // 
-            this.btnVincularVariableMedicion.FlatAppearance.BorderSize = 0;
-            this.btnVincularVariableMedicion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVincularVariableMedicion.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnVincularVariableMedicion.IconChar = FontAwesome.Sharp.IconChar.Plus;
-            this.btnVincularVariableMedicion.IconColor = System.Drawing.Color.Black;
-            this.btnVincularVariableMedicion.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnVincularVariableMedicion.IconSize = 30;
-            this.btnVincularVariableMedicion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVincularVariableMedicion.Location = new System.Drawing.Point(806, 48);
-            this.btnVincularVariableMedicion.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.btnVincularVariableMedicion.Name = "btnVincularVariableMedicion";
-            this.btnVincularVariableMedicion.Size = new System.Drawing.Size(40, 32);
-            this.btnVincularVariableMedicion.TabIndex = 154;
-            this.btnVincularVariableMedicion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnVincularVariableMedicion.UseVisualStyleBackColor = true;
-            // 
-            // nmValorPatron
-            // 
-            this.nmValorPatron.DecimalPlaces = 2;
-            this.nmValorPatron.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.nmValorPatron.Location = new System.Drawing.Point(638, 49);
-            this.nmValorPatron.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.nmValorPatron.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.nmValorPatron.Name = "nmValorPatron";
-            this.nmValorPatron.Size = new System.Drawing.Size(150, 31);
-            this.nmValorPatron.TabIndex = 151;
-            // 
-            // labelControl5
-            // 
-            this.labelControl5.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(639, 29);
-            this.labelControl5.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(76, 17);
-            this.labelControl5.TabIndex = 150;
-            this.labelControl5.Text = "Valor Patrón:";
-            // 
-            // glVariablesDeMedicion
-            // 
-            this.glVariablesDeMedicion.EditValue = "";
-            this.glVariablesDeMedicion.Location = new System.Drawing.Point(23, 49);
-            this.glVariablesDeMedicion.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.glVariablesDeMedicion.Name = "glVariablesDeMedicion";
-            this.glVariablesDeMedicion.Properties.AutoHeight = false;
-            this.glVariablesDeMedicion.Properties.NullText = "";
-            this.glVariablesDeMedicion.Properties.PopupView = this.glVariablesDeMedicionView;
-            this.glVariablesDeMedicion.Size = new System.Drawing.Size(280, 31);
-            this.glVariablesDeMedicion.TabIndex = 149;
-            // 
-            // glVariablesDeMedicionView
-            // 
-            this.glVariablesDeMedicionView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colTipoInstrumentoId,
-            this.colDescripcion});
-            this.glVariablesDeMedicionView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.glVariablesDeMedicionView.Name = "glVariablesDeMedicionView";
-            this.glVariablesDeMedicionView.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.glVariablesDeMedicionView.OptionsView.ShowGroupPanel = false;
-            // 
-            // colTipoInstrumentoId
-            // 
-            this.colTipoInstrumentoId.Caption = "Id";
-            this.colTipoInstrumentoId.FieldName = "TipoInstrumentoId";
-            this.colTipoInstrumentoId.Name = "colTipoInstrumentoId";
-            // 
-            // colDescripcion
-            // 
-            this.colDescripcion.Caption = "Descripcion";
-            this.colDescripcion.FieldName = "Descripcion";
-            this.colDescripcion.Name = "colDescripcion";
-            this.colDescripcion.OptionsColumn.AllowEdit = false;
-            this.colDescripcion.OptionsColumn.ReadOnly = true;
-            this.colDescripcion.Visible = true;
-            this.colDescripcion.VisibleIndex = 0;
-            // 
-            // labelControl7
-            // 
-            this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(24, 28);
-            this.labelControl7.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(38, 17);
-            this.labelControl7.TabIndex = 148;
-            this.labelControl7.Text = "Patrón";
-            // 
-            // gcTiposDeInstrumento
-            // 
-            this.gcTiposDeInstrumento.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.gcTiposDeInstrumento.Location = new System.Drawing.Point(23, 94);
-            this.gcTiposDeInstrumento.MainView = this.gvTiposDeInstrumento;
-            this.gcTiposDeInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.gcTiposDeInstrumento.Name = "gcTiposDeInstrumento";
-            this.gcTiposDeInstrumento.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.gcVariablesCertificado.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.gcVariablesCertificado.Location = new System.Drawing.Point(23, 94);
+            this.gcVariablesCertificado.MainView = this.gvVariablesCertificado;
+            this.gcVariablesCertificado.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.gcVariablesCertificado.Name = "gcVariablesCertificado";
+            this.gcVariablesCertificado.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnEliminar});
-            this.gcTiposDeInstrumento.Size = new System.Drawing.Size(823, 199);
-            this.gcTiposDeInstrumento.TabIndex = 157;
-            this.gcTiposDeInstrumento.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvTiposDeInstrumento});
+            this.gcVariablesCertificado.Size = new System.Drawing.Size(823, 199);
+            this.gcVariablesCertificado.TabIndex = 157;
+            this.gcVariablesCertificado.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvVariablesCertificado});
             // 
-            // gvTiposDeInstrumento
+            // gvVariablesCertificado
             // 
-            this.gvTiposDeInstrumento.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gvVariablesCertificado.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colDescripcionPatron,
             this.colVariableMedicion,
             this.colValorMedido,
             this.colEliminar});
-            this.gvTiposDeInstrumento.GridControl = this.gcTiposDeInstrumento;
-            this.gvTiposDeInstrumento.Name = "gvTiposDeInstrumento";
-            this.gvTiposDeInstrumento.OptionsView.ShowAutoFilterRow = true;
-            this.gvTiposDeInstrumento.OptionsView.ShowGroupPanel = false;
-            this.gvTiposDeInstrumento.OptionsView.ShowIndicator = false;
+            this.gvVariablesCertificado.GridControl = this.gcVariablesCertificado;
+            this.gvVariablesCertificado.Name = "gvVariablesCertificado";
+            this.gvVariablesCertificado.OptionsView.ShowAutoFilterRow = true;
+            this.gvVariablesCertificado.OptionsView.ShowGroupPanel = false;
+            this.gvVariablesCertificado.OptionsView.ShowIndicator = false;
             // 
             // colDescripcionPatron
             // 
             this.colDescripcionPatron.Caption = "Patrón";
-            this.colDescripcionPatron.FieldName = "Descripcion";
+            this.colDescripcionPatron.FieldName = "Patron.Nombre";
             this.colDescripcionPatron.MinWidth = 25;
             this.colDescripcionPatron.Name = "colDescripcionPatron";
+            this.colDescripcionPatron.OptionsColumn.AllowEdit = false;
+            this.colDescripcionPatron.OptionsColumn.AllowFocus = false;
+            this.colDescripcionPatron.OptionsColumn.ReadOnly = true;
             this.colDescripcionPatron.Visible = true;
             this.colDescripcionPatron.VisibleIndex = 0;
             this.colDescripcionPatron.Width = 94;
@@ -419,9 +285,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // colVariableMedicion
             // 
             this.colVariableMedicion.Caption = "Variable de Medición";
-            this.colVariableMedicion.FieldName = "Descripcion";
+            this.colVariableMedicion.FieldName = "VariableInstrumento.VariableDeMedicion.Descripcion";
             this.colVariableMedicion.MinWidth = 25;
             this.colVariableMedicion.Name = "colVariableMedicion";
+            this.colVariableMedicion.OptionsColumn.AllowEdit = false;
+            this.colVariableMedicion.OptionsColumn.AllowFocus = false;
+            this.colVariableMedicion.OptionsColumn.ReadOnly = true;
             this.colVariableMedicion.Visible = true;
             this.colVariableMedicion.VisibleIndex = 1;
             this.colVariableMedicion.Width = 94;
@@ -432,6 +301,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.colValorMedido.FieldName = "ValorMedido";
             this.colValorMedido.MinWidth = 25;
             this.colValorMedido.Name = "colValorMedido";
+            this.colValorMedido.OptionsColumn.AllowEdit = false;
+            this.colValorMedido.OptionsColumn.AllowFocus = false;
+            this.colValorMedido.OptionsColumn.ReadOnly = true;
             this.colValorMedido.Visible = true;
             this.colValorMedido.VisibleIndex = 2;
             this.colValorMedido.Width = 94;
@@ -453,6 +325,216 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "Eliminar", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
+            // glVariableInstrumento
+            // 
+            this.glVariableInstrumento.EditValue = "";
+            this.glVariableInstrumento.Location = new System.Drawing.Point(329, 49);
+            this.glVariableInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.glVariableInstrumento.Name = "glVariableInstrumento";
+            this.glVariableInstrumento.Properties.AutoHeight = false;
+            this.glVariableInstrumento.Properties.NullText = "";
+            this.glVariableInstrumento.Properties.PopupView = this.glVariableInstrumentoView;
+            this.glVariableInstrumento.Size = new System.Drawing.Size(287, 31);
+            this.glVariableInstrumento.TabIndex = 156;
+            this.glVariableInstrumento.EditValueChanged += new System.EventHandler(this.glVariableInstrumento_EditValueChanged);
+            // 
+            // glVariableInstrumentoView
+            // 
+            this.glVariableInstrumentoView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colVariableInstrumentoId,
+            this.colVariableDeMedicion,
+            this.colTieneAlarma,
+            this.colAlarmaAlta,
+            this.colAlarmaBaja,
+            this.colStel,
+            this.colAlarmaTwa});
+            this.glVariableInstrumentoView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.glVariableInstrumentoView.Name = "glVariableInstrumentoView";
+            this.glVariableInstrumentoView.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.glVariableInstrumentoView.OptionsView.ShowGroupPanel = false;
+            // 
+            // colVariableInstrumentoId
+            // 
+            this.colVariableInstrumentoId.Caption = "Id";
+            this.colVariableInstrumentoId.FieldName = "VariableInstrumentoId";
+            this.colVariableInstrumentoId.Name = "colVariableInstrumentoId";
+            // 
+            // colVariableDeMedicion
+            // 
+            this.colVariableDeMedicion.Caption = "Variable de Medición";
+            this.colVariableDeMedicion.FieldName = "VariableDeMedicion.Descripcion";
+            this.colVariableDeMedicion.Name = "colVariableDeMedicion";
+            this.colVariableDeMedicion.OptionsColumn.AllowEdit = false;
+            this.colVariableDeMedicion.OptionsColumn.AllowFocus = false;
+            this.colVariableDeMedicion.OptionsColumn.ReadOnly = true;
+            this.colVariableDeMedicion.Visible = true;
+            this.colVariableDeMedicion.VisibleIndex = 0;
+            this.colVariableDeMedicion.Width = 200;
+            // 
+            // colTieneAlarma
+            // 
+            this.colTieneAlarma.Caption = "Tiene Alarma";
+            this.colTieneAlarma.FieldName = "TieneAlarma";
+            this.colTieneAlarma.Name = "colTieneAlarma";
+            this.colTieneAlarma.OptionsColumn.AllowEdit = false;
+            this.colTieneAlarma.OptionsColumn.AllowFocus = false;
+            this.colTieneAlarma.OptionsColumn.ReadOnly = true;
+            this.colTieneAlarma.Visible = true;
+            this.colTieneAlarma.VisibleIndex = 1;
+            this.colTieneAlarma.Width = 33;
+            // 
+            // colAlarmaAlta
+            // 
+            this.colAlarmaAlta.Caption = "Alta";
+            this.colAlarmaAlta.FieldName = "AlarmaAlta";
+            this.colAlarmaAlta.Name = "colAlarmaAlta";
+            this.colAlarmaAlta.OptionsColumn.AllowEdit = false;
+            this.colAlarmaAlta.OptionsColumn.AllowFocus = false;
+            this.colAlarmaAlta.OptionsColumn.ReadOnly = true;
+            this.colAlarmaAlta.Visible = true;
+            this.colAlarmaAlta.VisibleIndex = 2;
+            this.colAlarmaAlta.Width = 33;
+            // 
+            // colAlarmaBaja
+            // 
+            this.colAlarmaBaja.Caption = "Baja";
+            this.colAlarmaBaja.FieldName = "Alarma Baja";
+            this.colAlarmaBaja.Name = "colAlarmaBaja";
+            this.colAlarmaBaja.OptionsColumn.AllowEdit = false;
+            this.colAlarmaBaja.OptionsColumn.AllowFocus = false;
+            this.colAlarmaBaja.OptionsColumn.ReadOnly = true;
+            this.colAlarmaBaja.Visible = true;
+            this.colAlarmaBaja.VisibleIndex = 3;
+            this.colAlarmaBaja.Width = 33;
+            // 
+            // colStel
+            // 
+            this.colStel.Caption = "Stel";
+            this.colStel.FieldName = "AlarmaStel";
+            this.colStel.Name = "colStel";
+            this.colStel.OptionsColumn.AllowEdit = false;
+            this.colStel.OptionsColumn.AllowFocus = false;
+            this.colStel.OptionsColumn.ReadOnly = true;
+            this.colStel.Visible = true;
+            this.colStel.VisibleIndex = 4;
+            this.colStel.Width = 33;
+            // 
+            // colAlarmaTwa
+            // 
+            this.colAlarmaTwa.Caption = "Twa";
+            this.colAlarmaTwa.FieldName = "AlarmaTwa";
+            this.colAlarmaTwa.Name = "colAlarmaTwa";
+            this.colAlarmaTwa.OptionsColumn.AllowEdit = false;
+            this.colAlarmaTwa.OptionsColumn.AllowFocus = false;
+            this.colAlarmaTwa.OptionsColumn.ReadOnly = true;
+            this.colAlarmaTwa.Visible = true;
+            this.colAlarmaTwa.VisibleIndex = 5;
+            this.colAlarmaTwa.Width = 40;
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelControl2.Appearance.Options.UseFont = true;
+            this.labelControl2.Location = new System.Drawing.Point(330, 28);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(140, 17);
+            this.labelControl2.TabIndex = 155;
+            this.labelControl2.Text = "Variable de Instrumento";
+            // 
+            // btnAgregarVariable
+            // 
+            this.btnAgregarVariable.FlatAppearance.BorderSize = 0;
+            this.btnAgregarVariable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarVariable.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAgregarVariable.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            this.btnAgregarVariable.IconColor = System.Drawing.Color.Black;
+            this.btnAgregarVariable.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAgregarVariable.IconSize = 30;
+            this.btnAgregarVariable.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAgregarVariable.Location = new System.Drawing.Point(806, 48);
+            this.btnAgregarVariable.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnAgregarVariable.Name = "btnAgregarVariable";
+            this.btnAgregarVariable.Size = new System.Drawing.Size(40, 32);
+            this.btnAgregarVariable.TabIndex = 154;
+            this.btnAgregarVariable.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAgregarVariable.UseVisualStyleBackColor = true;
+            this.btnAgregarVariable.Click += new System.EventHandler(this.btnAgregarVariable_Click);
+            // 
+            // nmValorMedido
+            // 
+            this.nmValorMedido.DecimalPlaces = 2;
+            this.nmValorMedido.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.nmValorMedido.Location = new System.Drawing.Point(638, 49);
+            this.nmValorMedido.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.nmValorMedido.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.nmValorMedido.Name = "nmValorMedido";
+            this.nmValorMedido.Size = new System.Drawing.Size(150, 31);
+            this.nmValorMedido.TabIndex = 151;
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelControl5.Appearance.Options.UseFont = true;
+            this.labelControl5.Location = new System.Drawing.Point(639, 29);
+            this.labelControl5.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(84, 17);
+            this.labelControl5.TabIndex = 150;
+            this.labelControl5.Text = "Valor Medido:";
+            // 
+            // glPatrones
+            // 
+            this.glPatrones.EditValue = "";
+            this.glPatrones.Location = new System.Drawing.Point(23, 49);
+            this.glPatrones.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.glPatrones.Name = "glPatrones";
+            this.glPatrones.Properties.AutoHeight = false;
+            this.glPatrones.Properties.NullText = "";
+            this.glPatrones.Properties.PopupView = this.glPatronesView;
+            this.glPatrones.Size = new System.Drawing.Size(280, 31);
+            this.glPatrones.TabIndex = 149;
+            this.glPatrones.EditValueChanged += new System.EventHandler(this.glPatrones_EditValueChanged);
+            // 
+            // glPatronesView
+            // 
+            this.glPatronesView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colPatronId,
+            this.colDescripcion});
+            this.glPatronesView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.glPatronesView.Name = "glPatronesView";
+            this.glPatronesView.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.glPatronesView.OptionsView.ShowGroupPanel = false;
+            // 
+            // colPatronId
+            // 
+            this.colPatronId.Caption = "Descripción";
+            this.colPatronId.FieldName = "PatronId";
+            this.colPatronId.Name = "colPatronId";
+            // 
+            // colDescripcion
+            // 
+            this.colDescripcion.Caption = "Patrón";
+            this.colDescripcion.FieldName = "Nombre";
+            this.colDescripcion.Name = "colDescripcion";
+            this.colDescripcion.Visible = true;
+            this.colDescripcion.VisibleIndex = 0;
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelControl7.Appearance.Options.UseFont = true;
+            this.labelControl7.Location = new System.Drawing.Point(24, 28);
+            this.labelControl7.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(38, 17);
+            this.labelControl7.TabIndex = 148;
+            this.labelControl7.Text = "Patrón";
             // 
             // frmNuevoCertificadoCalibracion
             // 
@@ -478,14 +560,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             ((System.ComponentModel.ISupportInitialize)(this.glUsuariosResponsablesView)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nmValorPatron)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glVariablesDeMedicion.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glVariablesDeMedicionView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcTiposDeInstrumento)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvTiposDeInstrumento)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcVariablesCertificado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvVariablesCertificado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEliminar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glVariableInstrumento.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glVariableInstrumentoView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmValorMedido)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glPatrones.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glPatronesView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -506,25 +588,30 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
         private DevExpress.XtraGrid.Columns.GridColumn colUsuarioId;
         private DevExpress.XtraGrid.Columns.GridColumn colNombreUsuario;
         private System.Windows.Forms.GroupBox groupBox1;
-        private DevExpress.XtraEditors.GridLookUpEdit gridLookUpEdit1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit1View;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraEditors.GridLookUpEdit glVariableInstrumento;
+        private DevExpress.XtraGrid.Views.Grid.GridView glVariableInstrumentoView;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private FontAwesome.Sharp.IconButton btnVincularVariableMedicion;
-        private System.Windows.Forms.NumericUpDown nmValorPatron;
+        private FontAwesome.Sharp.IconButton btnAgregarVariable;
+        private System.Windows.Forms.NumericUpDown nmValorMedido;
         private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.GridLookUpEdit glVariablesDeMedicion;
-        private DevExpress.XtraGrid.Views.Grid.GridView glVariablesDeMedicionView;
-        private DevExpress.XtraGrid.Columns.GridColumn colTipoInstrumentoId;
-        private DevExpress.XtraGrid.Columns.GridColumn colDescripcion;
+        private DevExpress.XtraEditors.GridLookUpEdit glPatrones;
+        private DevExpress.XtraGrid.Views.Grid.GridView glPatronesView;
         private DevExpress.XtraEditors.LabelControl labelControl7;
-        private DevExpress.XtraGrid.GridControl gcTiposDeInstrumento;
-        private DevExpress.XtraGrid.Views.Grid.GridView gvTiposDeInstrumento;
+        private DevExpress.XtraGrid.GridControl gcVariablesCertificado;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvVariablesCertificado;
         private DevExpress.XtraGrid.Columns.GridColumn colDescripcionPatron;
         private DevExpress.XtraGrid.Columns.GridColumn colVariableMedicion;
         private DevExpress.XtraGrid.Columns.GridColumn colValorMedido;
         private DevExpress.XtraGrid.Columns.GridColumn colEliminar;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEliminar;
+        private DevExpress.XtraGrid.Columns.GridColumn colPatronId;
+        private DevExpress.XtraGrid.Columns.GridColumn colDescripcion;
+        private DevExpress.XtraGrid.Columns.GridColumn colVariableInstrumentoId;
+        private DevExpress.XtraGrid.Columns.GridColumn colVariableDeMedicion;
+        private DevExpress.XtraGrid.Columns.GridColumn colTieneAlarma;
+        private DevExpress.XtraGrid.Columns.GridColumn colAlarmaAlta;
+        private DevExpress.XtraGrid.Columns.GridColumn colAlarmaBaja;
+        private DevExpress.XtraGrid.Columns.GridColumn colStel;
+        private DevExpress.XtraGrid.Columns.GridColumn colAlarmaTwa;
     }
 }

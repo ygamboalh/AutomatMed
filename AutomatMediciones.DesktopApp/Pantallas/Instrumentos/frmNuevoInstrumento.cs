@@ -113,7 +113,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             txtNumeroSerie.Text = NuevoInstrumento.NumeroSerie;
             dateFechaCompraCliente.Value = NuevoInstrumento.FechaCompraCliente.Value;
             dateFechaCompraFabricante.Value = NuevoInstrumento.FechaCompraFabricante.Value;
-            txtGarantia.Text = NuevoInstrumento.Garantia;
+            nmGarantia.Value = NuevoInstrumento.Garantia;
 
             EmpresaSeleccionada = _empresaService.ObtenerEmpresaPorId(NuevoInstrumento.EmpresaId).Data;
 
@@ -344,7 +344,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             NuevoInstrumento.NumeroSerie = txtNumeroSerie.Text;
             NuevoInstrumento.FechaCompraFabricante = dateFechaCompraFabricante.Value;
             NuevoInstrumento.FechaCompraCliente = dateFechaCompraCliente.Value;
-            NuevoInstrumento.Garantia = txtGarantia.Text;
+            NuevoInstrumento.Garantia = (int)nmGarantia.Value;
 
             return true;
         }
@@ -470,9 +470,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         private void iconButton1_Click(object sender, EventArgs e)
         {
             
-            var frmNuevoCertificadoCalibracion = new frmNuevoCertificadoCalibracion(NuevoInstrumento.InstrumentoId, 
+            var frmNuevoCertificadoCalibracion = new frmNuevoCertificadoCalibracion(NuevoInstrumento.InstrumentoId,
                 serviceProvider.GetService<CertificadoCalibracionService>(),
-                 serviceProvider.GetService<UsuarioService>()
+                 serviceProvider.GetService<UsuarioService>(),
+                 serviceProvider.GetService<PatronService>(),
+                 serviceProvider.GetService<InstrumentoService>()
                 );
             frmNuevoCertificadoCalibracion.ShowDialog();
         }

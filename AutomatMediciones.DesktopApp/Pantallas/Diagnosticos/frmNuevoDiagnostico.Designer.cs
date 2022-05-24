@@ -107,9 +107,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.labelControl9.Location = new System.Drawing.Point(49, 444);
             this.labelControl9.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl9.Name = "labelControl9";
-            this.labelControl9.Size = new System.Drawing.Size(74, 17);
+            this.labelControl9.Size = new System.Drawing.Size(155, 17);
             this.labelControl9.TabIndex = 165;
-            this.labelControl9.Text = "Diagnóstico:";
+            this.labelControl9.Text = "Diagnóstico/Seguimiento:";
             // 
             // memoComentarios
             // 
@@ -128,9 +128,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.labelControl7.Location = new System.Drawing.Point(47, 347);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(152, 17);
+            this.labelControl7.Size = new System.Drawing.Size(162, 17);
             this.labelControl7.TabIndex = 161;
-            this.labelControl7.Text = "Comentarios Adicionales:";
+            this.labelControl7.Text = "Comentarios en el ingreso:";
             // 
             // labelControl8
             // 

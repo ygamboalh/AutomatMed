@@ -38,15 +38,40 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                    NumeroCertificado = ""
                 };
 
+                _automatDbContext.Database.BeginTransaction();
                 _automatDbContext.Certificados.Add(certificado);
                 _automatDbContext.SaveChanges();
+
+                List<VariableCertificado> variableCertificados = new List<VariableCertificado>();
+
+                certificadoDto.VariablesCertificado.ToList().ForEach(x =>
+                {
+                    VariableCertificado variableCertificado = new VariableCertificado
+                    {
+                        PatronId = x.PatronId,
+                        CertificadoId = certificado.CertificadoId,
+                        ValorMedido = x.ValorMedido,
+                        VariableInstrumentoId = x.VariableInstrumentoId
+                    };
+
+                    variableCertificados.Add(variableCertificado);
+
+                });
+
+                if (variableCertificados.Any())
+                {
+                    _automatDbContext.VariablesCertificados.AddRange(variableCertificados);
+                }
 
 
                 var certificadoDb = _automatDbContext.Certificados.AsQueryable().Include(x => x.Responsable)
                                                                                 .Include(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.Modelo)
                                                                                  .Include(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.Marca)
                                                                                   .Include(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
-                                                                                 
+                                                                                  .Include(x => x.VariablesCertificado).ThenInclude(x => x.VariableInstrumento).ThenInclude(x => x.VariableDeMedicion)
+                                                                                 .Include(x => x.VariablesCertificado).ThenInclude(x => x.Patron).ThenInclude(x => x.VariablesPatrones)
+
+
                                                         .FirstOrDefault(x => x.CertificadoId == certificado.CertificadoId);
                 if (certificadoDb != null)
                 {
@@ -54,6 +79,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 }
 
                 _automatDbContext.SaveChanges();
+                _automatDbContext.Database.CommitTransaction();
 
                 var certificadoConvertido = _mapper.Map<CertificadoDto>(certificadoDb);
 
@@ -61,6 +87,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
+                _automatDbContext.Database.RollbackTransaction();
                 return Response<CertificadoDto>.Error(MessageException.LanzarExcepcion(exc), null);
             }
         }

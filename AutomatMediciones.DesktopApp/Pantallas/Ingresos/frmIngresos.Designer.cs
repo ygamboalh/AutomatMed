@@ -310,9 +310,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.labelControl7.Location = new System.Drawing.Point(0, 0);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(220, 17);
+            this.labelControl7.Size = new System.Drawing.Size(97, 17);
             this.labelControl7.TabIndex = 19;
-            this.labelControl7.Text = "Mensaje para notificación de Ingreso:";
+            this.labelControl7.Text = "Cuerpo del Mail:";
             // 
             // btnGuardarIngreso
             // 

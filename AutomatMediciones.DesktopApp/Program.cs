@@ -92,7 +92,6 @@ namespace AutomatMediciones.DesktopApp
             services.AddScoped<frmModelos>();
             services.AddScoped<frmNuevoModelo>();
 
-
             services.AddScoped<frmNuevoTipoInstrumento>();
             services.AddScoped<frmTiposDeInstrumento>();
 

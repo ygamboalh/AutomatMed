@@ -26,24 +26,50 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
         public CertificadoDto Certificado { get; set; }
 
         UsuarioDto usuarioSeleccionado;
+        PatronDto patronSeleccionado;
+        VariableInstrumentoDto variableInstrumentoSeleccionado;
+
         private readonly CertificadoCalibracionService _certificadoCalibracionService;
         private readonly UsuarioService _usuarioService;
+        private readonly PatronService _patronService;
+        private readonly InstrumentoService _instrumentoService;
 
-        public frmNuevoCertificadoCalibracion(int instrumentoId, CertificadoCalibracionService certificadoCalibracionService, UsuarioService usuarioService)
+        List<VariableCertificadoDto> variablesCertificado;
+
+        public frmNuevoCertificadoCalibracion(int instrumentoId, CertificadoCalibracionService certificadoCalibracionService, UsuarioService usuarioService,
+            PatronService patronService, InstrumentoService instrumentoService)
         {
             InitializeComponent();
 
-
             _certificadoCalibracionService = certificadoCalibracionService;
             _usuarioService = usuarioService;
-            EstablecerNombreYTituloPopupAgregarInstrumentos();
-            EstablecerColorBotonGuardar();
-            CargarUsuarios();
+            _patronService = patronService;
+            _instrumentoService = instrumentoService;
 
             Certificado = new CertificadoDto();
             Certificado.InstrumentoId = instrumentoId;
 
-           
+            variablesCertificado = new List<VariableCertificadoDto>();
+
+            EstablecerNombreYTituloPopupAgregarInstrumentos();
+            EstablecerColorBotonGuardar();
+            CargarUsuarios();
+            CargarPatrones();
+            CargarVariablesInstrumentos();
+
+            btnEliminar.Click += btnEliminarClick;
+        }
+
+        private void btnEliminarClick(object sender, EventArgs e)
+        {
+            var filaSeleccionada = gvVariablesCertificado.GetFocusedRow() as VariableCertificadoDto;
+
+            if (filaSeleccionada != null)
+            {
+                variablesCertificado = variablesCertificado.Where(x => x.VariableInstrumentoId != filaSeleccionada.VariableInstrumentoId && x.PatronId != filaSeleccionada.PatronId).ToList();
+                gcVariablesCertificado.DataSource = variablesCertificado;
+                gcVariablesCertificado.RefreshDataSource();
+            }
         }
 
         private void CargarUsuarios()
@@ -57,6 +83,19 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             glUsuariosResponsables.Properties.DisplayMember = "Nombre";
             glUsuariosResponsables.Properties.ValueMember = "UsuarioId";
         }
+
+        private void CargarVariablesInstrumentos()
+        {
+            var resultado = _instrumentoService.ObtenerVariablesInstrumentos(Certificado.InstrumentoId);
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+            var variablesInstrumentos = resultado.Data;
+
+            glVariableInstrumento.Properties.DataSource = variablesInstrumentos;
+            glVariableInstrumento.Properties.DisplayMember = "VariableDeMedicion.Descripcion";
+            glVariableInstrumento.Properties.ValueMember = "VariableInstrumentoId";
+        }
+
 
         private void EstablecerColorBotonGuardar()
         {
@@ -87,6 +126,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             Certificado.FechaCaducidad = dateFechaCaducidad.Value;
             Certificado.Fecha = dateFechaCertificado.Value;
             Certificado.ResponsableId = usuarioSeleccionado.UsuarioId;
+            Certificado.VariablesCertificado = variablesCertificado;
 
             return true;
         }
@@ -141,6 +181,19 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
           
         }
 
+        private void CargarPatrones()
+        {
+            var resultado = _patronService.ObtenerPatrones();
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+            var patronesRespuesta = resultado.Data;
+            glPatrones.Properties.DataSource = patronesRespuesta;
+
+            glPatrones.Properties.DisplayMember = "Nombre";
+            glPatrones.Properties.ValueMember = "PatronId";
+        }
+
+
         private void frmNuevoCertificadoCalibracion_Load(object sender, EventArgs e)
         {
 
@@ -149,6 +202,52 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
         private void glUsuariosResponsables_EditValueChanged(object sender, EventArgs e)
         {
             usuarioSeleccionado = glUsuariosResponsablesView.GetFocusedRow() as UsuarioDto;
+        }
+
+        private void btnAgregarVariable_Click(object sender, EventArgs e)
+        {
+            if (patronSeleccionado == null) {
+                Notificaciones.MensajeAdvertencia("Es necesario que seleccione un patrón.");
+                return;
+            }
+
+
+            if (variableInstrumentoSeleccionado == null)
+            {
+                Notificaciones.MensajeAdvertencia("Es necesario que seleccione una variable.");
+                return;
+            }
+
+            VariableCertificadoDto variableCertificadoDto = new VariableCertificadoDto
+            {
+                PatronId = patronSeleccionado.PatronId,
+                VariableInstrumentoId = variableInstrumentoSeleccionado.VariableInstrumentoId,
+                ValorMedido = nmValorMedido.Value,
+                Patron = patronSeleccionado,
+                VariableInstrumento = variableInstrumentoSeleccionado
+            };
+
+            if (!variablesCertificado.Any(x => x.PatronId == patronSeleccionado.PatronId && x.VariableInstrumentoId == variableInstrumentoSeleccionado.VariableInstrumentoId))
+            {
+                variablesCertificado.Add(variableCertificadoDto);
+                gcVariablesCertificado.DataSource = variablesCertificado;
+                gcVariablesCertificado.RefreshDataSource();
+            }
+            else
+            {
+                Notificaciones.MensajeAdvertencia("Este registro ya fue agregado a lista de variables.");
+            }
+
+        }
+
+        private void glPatrones_EditValueChanged(object sender, EventArgs e)
+        {
+           patronSeleccionado  = glPatronesView.GetFocusedRow() as PatronDto;
+        }
+
+        private void glVariableInstrumento_EditValueChanged(object sender, EventArgs e)
+        {
+            variableInstrumentoSeleccionado = glVariableInstrumentoView.GetFocusedRow() as VariableInstrumentoDto;
         }
     }
 }

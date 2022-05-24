@@ -13,7 +13,7 @@ namespace AutomatMediciones.Libs.Dtos
         public DateTime? FechaUltimaCalibracion { get; set; }
         public int? PeriodoCalibracion { get; set; }
         public DateTime? FechaProximaCalibracion { get; set; }
-        public string Garantia { get; set; }
+        public int Garantia { get; set; }
         public string EmpresaId { get; set; }
         public string NombreEmpresa { get; set; }
         public string Comentarios { get; set; }

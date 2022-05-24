@@ -24,7 +24,7 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.Property(x => x.FechaRegistro).HasColumnName("fecha_registro").HasColumnType("DATETIME").IsRequired();
             builder.Property(x => x.UsuarioRegistro).HasColumnName("usuario_registro").HasColumnType("INT");
             builder.Property(x => x.Activo).HasColumnName("activo").HasColumnType("TINYINT").IsRequired();
-            builder.Property(x => x.Garantia).HasColumnName("garantia").HasColumnType("VARCHAR(50)");
+            builder.Property(x => x.Garantia).HasColumnName("garantia").HasColumnType("INT");
             builder.Property(x => x.Comentarios).HasColumnName("comentarios").HasColumnType("VARCHAR(3000)");
 
             builder.HasMany(x => x.IngresosInstrumentos).WithOne(x => x.Instrumento).HasForeignKey(x => x.InstrumentoId);

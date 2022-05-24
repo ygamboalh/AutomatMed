@@ -64,11 +64,18 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
                                                                             serviceProvider.GetService<TipoDeInstrumentoService>(),
                                                                             serviceProvider.GetService<EmpresaService>());
 
-            frmNuevoInstrumento.OnInstrumentoAgregado += OnInstrumentoAgregado;
+            frmNuevoInstrumento.OnInstrumentoModificado += onInstrumentoModificado;
             frmNuevoInstrumento.NuevoInstrumento = instrumento;
             frmNuevoInstrumento.CargarVariablesInstrumentos();
             frmNuevoInstrumento.SetearValoresParaActualizar();
             frmNuevoInstrumento.ShowDialog();
+        }
+
+        private void onInstrumentoModificado(InstrumentoDto instrumento)
+        {
+            serviceProvider = Program.services.BuildServiceProvider();
+            _instrumentoService = serviceProvider.GetService<InstrumentoService>();
+            CargarInstrumentos();
         }
 
         private void EstablecerNombreYTitulo()
@@ -124,6 +131,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             });
 
             gcInstrumentos.DataSource = instrumentosDeEmpresa;
+            gcInstrumentos.RefreshDataSource();
         }
 
         private void btnAgregarNuevoInstrumento_Click(object sender, EventArgs e)
