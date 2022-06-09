@@ -2,6 +2,7 @@
 using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
+using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
@@ -28,6 +29,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             EstablecerNombreYTitulo();
             EstablecerColorBotonPorDefecto();
             CargarVariablesDeMedicion();
+            EstablecerColorBotonExportarExcel();
 
             cmdEditar.Click += OnSeleccionaVariableMedicionParaModificar;
 
@@ -81,6 +83,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             btnAgregarNuevInstrumento.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
+        private void EstablecerColorBotonExportarExcel()
+        {
+            btnExportarExcel.BackColor = ColorHelper.ObtenerColorEnRGB("Sucess");
+            btnExportarExcel.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+            btnExportarExcel.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+        }
+
         private void CargarVariablesDeMedicion()
         {
             var resultado = _variableMedicionService.ObtenerVariablesDeMedicionActivas();
@@ -107,6 +116,39 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             gcVariablesDeMedicion.RefreshDataSource();
 
             SetearTotales();
+        }
+
+        private void btnExportarExcel_Click(object sender, EventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(frmSaving));
+            var nombreArchivo = "Listado Variables de Medición";
+            var filter = "Archivo de Microsoft Excel (*.xlsx)|*.xlsx";
+
+            saveFileDialog.Filter = filter;
+            saveFileDialog.FileName = nombreArchivo;
+
+            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+
+                nombreArchivo = saveFileDialog.FileName;
+
+                colEditar.Visible = false;
+               
+
+                gcVariablesDeMedicion.ExportToXlsx(nombreArchivo);
+                if (Notificaciones.PreguntaConfirmacion($"Archivo Guardado en: {nombreArchivo} ¿Desea abrir el archivo?") == System.Windows.Forms.DialogResult.Yes)
+                {
+                    FileHelper.AbrirArchivo(nombreArchivo);
+                }
+                SplashScreenManager.CloseForm();
+
+                colEditar.Visible = true;
+               
+            }
+            else
+            {
+                SplashScreenManager.CloseForm();
+            }
         }
     }
 }

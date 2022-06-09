@@ -66,12 +66,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             EstablecerNombreYTituloPopupAgregarInstrumentos();
             EstablecerColorBotonPorDefecto();
 
-            
-            
-            
-
             NuevoInstrumento = new InstrumentoDto();
-
 
             btnEditar.Click += btnEditarClick;
             btnesactivar.Click += btnDesactivarClick;
@@ -107,9 +102,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             memoComentarios.Text = NuevoInstrumento.Comentarios;
             txtDescripcionInstrumento.Text = NuevoInstrumento.Descripcion;
             txtEmpresaInstrumento.Text = NuevoInstrumento.NombreEmpresa;
-            glTipoInstrumento.EditValue = NuevoInstrumento.Clasificacion.TipoInstrumentoId;
-            glMarcas.EditValue = NuevoInstrumento.Clasificacion.MarcaId;
-            glModelos.EditValue = NuevoInstrumento.Clasificacion.ModeloId;
+            leTipoInstrumento.EditValue = NuevoInstrumento.Clasificacion.TipoInstrumentoId;
+            leMarcas.EditValue = NuevoInstrumento.Clasificacion.MarcaId;
+            leModelos.EditValue = NuevoInstrumento.Clasificacion.ModeloId;
             txtNumeroSerie.Text = NuevoInstrumento.NumeroSerie;
             dateFechaCompraCliente.Value = NuevoInstrumento.FechaCompraCliente.Value;
             dateFechaCompraFabricante.Value = NuevoInstrumento.FechaCompraFabricante.Value;
@@ -282,17 +277,17 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
         private void AsignarConfiguracionComboBoxes()
         {
-            glTipoInstrumento.Properties.DataSource = tiposInstrumentos;
-            glTipoInstrumento.Properties.ValueMember = "TipoInstrumentoId";
-            glTipoInstrumento.Properties.DisplayMember = "Descripcion";
+            leTipoInstrumento.Properties.DataSource = tiposInstrumentos;
+            leTipoInstrumento.Properties.ValueMember = "TipoInstrumentoId";
+            leTipoInstrumento.Properties.DisplayMember = "Descripcion";
 
-            glMarcas.Properties.DataSource = marcas;
-            glMarcas.Properties.ValueMember = "MarcaId";
-            glMarcas.Properties.DisplayMember = "Descripcion";
+            leMarcas.Properties.DataSource = marcas;
+            leMarcas.Properties.ValueMember = "MarcaId";
+            leMarcas.Properties.DisplayMember = "Descripcion";
 
-            glModelos.Properties.DataSource = modelos;
-            glModelos.Properties.ValueMember = "ModeloId";
-            glModelos.Properties.DisplayMember = "Descripcion";
+            leModelos.Properties.DataSource = modelos;
+            leModelos.Properties.ValueMember = "ModeloId";
+            leModelos.Properties.DisplayMember = "Descripcion";
         }
 
         private bool EsValidaLaInformacionIngresadaParaNuevoInstrumento(out string mensaje)
@@ -315,9 +310,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
         private bool PrepararNuevoInstrumentoParaGuardar()
         {
-            var tipoInstrumentoSeleccionado = glTipoInstrumento.GetSelectedDataRow() as TipoInstrumentoDto;
-            var marcaSeleccionada = glMarcas.GetSelectedDataRow() as MarcaDto;
-            var modeloSeleccionado = glModelos.GetSelectedDataRow() as ModeloDto;
+            var tipoInstrumentoSeleccionado = leTipoInstrumento.GetSelectedDataRow() as TipoInstrumentoDto;
+            var marcaSeleccionada = leMarcas.GetSelectedDataRow() as MarcaDto;
+            var modeloSeleccionado = leModelos.GetSelectedDataRow() as ModeloDto;
 
             if (tipoInstrumentoSeleccionado == null || marcaSeleccionada == null || modeloSeleccionado == null)
             {
@@ -351,21 +346,21 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
         private void glTipoInstrumento_EditValueChanged(object sender, EventArgs e)
         {
-            var tipoInstrumentoSeleccionado = glTipoInstrumento.GetSelectedDataRow() as TipoInstrumentoDto;
+            var tipoInstrumentoSeleccionado = leTipoInstrumento.GetSelectedDataRow() as TipoInstrumentoDto;
             if (tipoInstrumentoSeleccionado != null)
             {
                 marcas = clasificaciones.Where(x => x.TipoInstrumentoId.Equals(tipoInstrumentoSeleccionado.TipoInstrumentoId)).Select(x => x.Marca).ToList();
-                glMarcas.Properties.DataSource = marcas;
+                leMarcas.Properties.DataSource = marcas;
             }
         }
 
         private void glMarcas_EditValueChanged(object sender, EventArgs e)
         {
-            var marcaSeleccionada = glMarcas.GetSelectedDataRow() as MarcaDto;
+            var marcaSeleccionada = leMarcas.GetSelectedDataRow() as MarcaDto;
             if (marcaSeleccionada != null)
             {
                 modelos = clasificaciones.Where(x => x.MarcaId.Equals(marcaSeleccionada.MarcaId)).Select(x => x.Modelo).ToList();
-                glModelos.Properties.DataSource = modelos;
+                leModelos.Properties.DataSource = modelos;
             }
         }
 
@@ -477,6 +472,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
                  serviceProvider.GetService<InstrumentoService>()
                 );
             frmNuevoCertificadoCalibracion.ShowDialog();
+        }
+
+        private void dateFechaCompraFabricante_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Back || e.KeyCode == Keys.Delete)
+            {
+                dateFechaCompraFabricante.CustomFormat = "";
+            }
         }
     }
 }

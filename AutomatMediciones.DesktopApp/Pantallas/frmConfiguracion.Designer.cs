@@ -40,6 +40,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             this.variableMedicionMenu = new FontAwesome.Sharp.IconMenuItem();
             this.instrumentosMenu = new FontAwesome.Sharp.IconMenuItem();
             this.patronesMenu = new FontAwesome.Sharp.IconMenuItem();
+            this.certificadosPatrones = new FontAwesome.Sharp.IconMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu2)).BeginInit();
             this.tipoInstrumento.SuspendLayout();
@@ -64,7 +65,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             this.clasificacionInstrumentoMenu,
             this.variableMedicionMenu,
             this.instrumentosMenu,
-            this.patronesMenu});
+            this.patronesMenu,
+            this.certificadosPatrones});
             this.tipoInstrumento.Location = new System.Drawing.Point(0, 0);
             this.tipoInstrumento.Name = "tipoInstrumento";
             this.tipoInstrumento.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -143,6 +145,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             this.patronesMenu.Text = "Patrones";
             this.patronesMenu.Click += new System.EventHandler(this.patronesMenu_Click);
             // 
+            // certificadosPatrones
+            // 
+            this.certificadosPatrones.IconChar = FontAwesome.Sharp.IconChar.List;
+            this.certificadosPatrones.IconColor = System.Drawing.Color.Black;
+            this.certificadosPatrones.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.certificadosPatrones.Name = "certificadosPatrones";
+            this.certificadosPatrones.Size = new System.Drawing.Size(122, 24);
+            this.certificadosPatrones.Text = "Certificados";
+            this.certificadosPatrones.Click += new System.EventHandler(this.certificadosPatrones_Click);
+            // 
             // frmConfiguracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -175,5 +187,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas
         private FontAwesome.Sharp.IconMenuItem instrumentosMenu;
         private FontAwesome.Sharp.IconMenuItem variableMedicionMenu;
         private FontAwesome.Sharp.IconMenuItem patronesMenu;
+        private FontAwesome.Sharp.IconMenuItem certificadosPatrones;
     }
 }

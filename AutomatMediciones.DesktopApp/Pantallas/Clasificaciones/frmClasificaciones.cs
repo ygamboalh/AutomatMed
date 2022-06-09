@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using DevExpress.XtraSplashScreen;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
 {
@@ -39,6 +40,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
 
             EstablecerNombreYTitulo();
             EstablecerColorBotonPorDefecto();
+            EstablecerColorBotonExportarExcel();
 
             CargarClasificaciones();
             CargarMarcas();
@@ -195,6 +197,46 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             frmNuevaClasificacion.TiposDeInstrumento = tiposDeInstrumento;
             frmNuevaClasificacion.InicializarMaestros();
             frmNuevaClasificacion.ShowDialog();
+        }
+
+        private void EstablecerColorBotonExportarExcel()
+        {
+            btnExportarExcel.BackColor = ColorHelper.ObtenerColorEnRGB("Sucess");
+            btnExportarExcel.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+            btnExportarExcel.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+        }
+
+        private void btnExportarExcel_Click(object sender, EventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(frmSaving));
+            var nombreArchivo = "Clasificaciones de Instrumentos";
+            var filter = "Archivo de Microsoft Excel (*.xlsx)|*.xlsx";
+
+            saveFileDialog.Filter = filter;
+            saveFileDialog.FileName = nombreArchivo;
+
+            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+
+                nombreArchivo = saveFileDialog.FileName;
+
+                colEditar.Visible = false;
+                colInactivar.Visible = false;
+
+                gcClasificaciones.ExportToXlsx(nombreArchivo);
+                if (Notificaciones.PreguntaConfirmacion($"Archivo Guardado en: {nombreArchivo} ¿Desea abrir el archivo?") == System.Windows.Forms.DialogResult.Yes)
+                {
+                    FileHelper.AbrirArchivo(nombreArchivo);
+                }
+                SplashScreenManager.CloseForm();
+
+                colEditar.Visible = true;
+                colInactivar.Visible = true;
+            }
+            else
+            {
+                SplashScreenManager.CloseForm();
+            }
         }
     }
 }

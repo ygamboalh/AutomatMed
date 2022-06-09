@@ -53,10 +53,15 @@ namespace AutomatMediciones.DesktopApp
         private static void ConfigureServices()
         {
             services = new ServiceCollection();
-
+           
 
             string tacticaConneccionString = AplicacionHelper.ObtenerCadenaConexion("TacticaConnectionString");
             string automatConnectionString = AplicacionHelper.ObtenerCadenaConexion("AutomatConnectionString");
+
+
+
+           
+
             services.AddDbContext<TacticaDbContext>(options => options.UseMySql(tacticaConneccionString, ServerVersion.AutoDetect(tacticaConneccionString)));
             services.AddDbContext<AutomatMedicionesDbContext>(options => options.UseMySql(automatConnectionString, ServerVersion.AutoDetect(automatConnectionString)));
 

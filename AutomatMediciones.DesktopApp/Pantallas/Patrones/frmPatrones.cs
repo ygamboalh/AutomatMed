@@ -24,6 +24,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             InitializeComponent();
             _patronService = patronService;
 
+
+            EstablecerColorBotonExportarExcel();
             CargarPatrones();
 
             cmdEditar.Click += cmdEditarPatroClick;
@@ -108,6 +110,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             SetearTotales();
         }
 
+        private void EstablecerColorBotonExportarExcel()
+        {
+            btnExportarExcel.BackColor = ColorHelper.ObtenerColorEnRGB("Sucess");
+            btnExportarExcel.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+            btnExportarExcel.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+        }
+
         private void SetearTotales()
         {
             lblTotal.Text = $"Total Registros: {patrones.Count}";
@@ -126,6 +135,41 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
         {
             serviceProvider = Program.services.BuildServiceProvider();
             CargarPatrones();
+        }
+
+        private void btnExportarExcel_Click(object sender, EventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(frmSaving));
+            var nombreArchivo = "Listado de Patrónes";
+            var filter = "Archivo de Microsoft Excel (*.xlsx)|*.xlsx";
+
+            saveFileDialog.Filter = filter;
+            saveFileDialog.FileName = nombreArchivo;
+
+            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+
+                nombreArchivo = saveFileDialog.FileName;
+
+                colEditar.Visible = false;
+                colDesactivar.Visible = false;
+                colVerPatron.Visible = false;
+
+                gcPatrones.ExportToXlsx(nombreArchivo);
+                if (Notificaciones.PreguntaConfirmacion($"Archivo Guardado en: {nombreArchivo} ¿Desea abrir el archivo?") == System.Windows.Forms.DialogResult.Yes)
+                {
+                    FileHelper.AbrirArchivo(nombreArchivo);
+                }
+                SplashScreenManager.CloseForm();
+
+                colEditar.Visible = true;
+                colDesactivar.Visible = true;
+                colVerPatron.Visible = true;
+            }
+            else
+            {
+                SplashScreenManager.CloseForm();
+            }
         }
     }
 }

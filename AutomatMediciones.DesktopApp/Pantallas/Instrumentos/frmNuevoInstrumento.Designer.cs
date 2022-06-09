@@ -48,10 +48,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
-            this.glTipoInstrumento = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.glTipoInstrumentoView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colTipoInstrumentoId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDescripcionTipoInstrumento = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
@@ -59,15 +55,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.txtDescripcionInstrumento = new DevExpress.XtraEditors.TextEdit();
             this.dateFechaCompraFabricante = new System.Windows.Forms.DateTimePicker();
             this.dateFechaCompraCliente = new System.Windows.Forms.DateTimePicker();
-            this.glMarcas = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.gridLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colMarcaId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDescripcionMarca = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.glModelos = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.gridLookUpEdit2View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colModeloId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDescripcionModelo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btnAgregarClasificacion = new FontAwesome.Sharp.IconButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -89,21 +77,21 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.btnNuevaVinculacion = new FontAwesome.Sharp.IconButton();
             this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.nmGarantia = new System.Windows.Forms.NumericUpDown();
+            this.leTipoInstrumento = new DevExpress.XtraEditors.LookUpEdit();
+            this.leMarcas = new DevExpress.XtraEditors.LookUpEdit();
+            this.leModelos = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpresaInstrumento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroSerie.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumento.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumentoView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcionInstrumento.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glMarcas.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glModelos.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit2View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoComentarios.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcVariablesInstrumentos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvVariablesInstrumentos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnesactivar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmGarantia)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leTipoInstrumento.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leMarcas.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leModelos.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl20
@@ -192,47 +180,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.labelControl9.TabIndex = 99;
             this.labelControl9.Text = "Número de Serie:";
             // 
-            // glTipoInstrumento
-            // 
-            this.glTipoInstrumento.EditValue = "";
-            this.glTipoInstrumento.Location = new System.Drawing.Point(32, 131);
-            this.glTipoInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.glTipoInstrumento.Name = "glTipoInstrumento";
-            this.glTipoInstrumento.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.glTipoInstrumento.Properties.Appearance.Options.UseFont = true;
-            this.glTipoInstrumento.Properties.NullText = "";
-            this.glTipoInstrumento.Properties.PopupView = this.glTipoInstrumentoView;
-            this.glTipoInstrumento.Size = new System.Drawing.Size(357, 26);
-            this.glTipoInstrumento.TabIndex = 93;
-            this.glTipoInstrumento.EditValueChanged += new System.EventHandler(this.glTipoInstrumento_EditValueChanged);
-            // 
-            // glTipoInstrumentoView
-            // 
-            this.glTipoInstrumentoView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colTipoInstrumentoId,
-            this.colDescripcionTipoInstrumento});
-            this.glTipoInstrumentoView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.glTipoInstrumentoView.Name = "glTipoInstrumentoView";
-            this.glTipoInstrumentoView.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.glTipoInstrumentoView.OptionsView.ShowGroupPanel = false;
-            this.glTipoInstrumentoView.OptionsView.ShowIndicator = false;
-            // 
-            // colTipoInstrumentoId
-            // 
-            this.colTipoInstrumentoId.Caption = "Id";
-            this.colTipoInstrumentoId.FieldName = "TipoInstrumentoId";
-            this.colTipoInstrumentoId.MinWidth = 23;
-            this.colTipoInstrumentoId.Name = "colTipoInstrumentoId";
-            // 
-            // colDescripcionTipoInstrumento
-            // 
-            this.colDescripcionTipoInstrumento.Caption = "Descripción";
-            this.colDescripcionTipoInstrumento.FieldName = "Descripcion";
-            this.colDescripcionTipoInstrumento.MinWidth = 23;
-            this.colDescripcionTipoInstrumento.Name = "colDescripcionTipoInstrumento";
-            this.colDescripcionTipoInstrumento.Visible = true;
-            this.colDescripcionTipoInstrumento.VisibleIndex = 0;
-            // 
             // labelControl10
             // 
             this.labelControl10.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -307,6 +254,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.dateFechaCompraFabricante.Name = "dateFechaCompraFabricante";
             this.dateFechaCompraFabricante.Size = new System.Drawing.Size(346, 30);
             this.dateFechaCompraFabricante.TabIndex = 117;
+            this.dateFechaCompraFabricante.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateFechaCompraFabricante_KeyDown);
             // 
             // dateFechaCompraCliente
             // 
@@ -318,50 +266,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.dateFechaCompraCliente.Size = new System.Drawing.Size(328, 30);
             this.dateFechaCompraCliente.TabIndex = 118;
             // 
-            // glMarcas
-            // 
-            this.glMarcas.EditValue = "";
-            this.glMarcas.Location = new System.Drawing.Point(415, 131);
-            this.glMarcas.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.glMarcas.Name = "glMarcas";
-            this.glMarcas.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.glMarcas.Properties.Appearance.Options.UseFont = true;
-            this.glMarcas.Properties.NullText = "";
-            this.glMarcas.Properties.PopupView = this.gridLookUpEdit1View;
-            this.glMarcas.Size = new System.Drawing.Size(346, 26);
-            this.glMarcas.TabIndex = 123;
-            this.glMarcas.EditValueChanged += new System.EventHandler(this.glMarcas_EditValueChanged);
-            // 
-            // gridLookUpEdit1View
-            // 
-            this.gridLookUpEdit1View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colMarcaId,
-            this.colDescripcionMarca});
-            this.gridLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridLookUpEdit1View.Name = "gridLookUpEdit1View";
-            this.gridLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridLookUpEdit1View.OptionsView.ShowGroupPanel = false;
-            this.gridLookUpEdit1View.OptionsView.ShowIndicator = false;
-            // 
-            // colMarcaId
-            // 
-            this.colMarcaId.Caption = "Id";
-            this.colMarcaId.FieldName = "MarcaId";
-            this.colMarcaId.MinWidth = 23;
-            this.colMarcaId.Name = "colMarcaId";
-            this.colMarcaId.Width = 87;
-            // 
-            // colDescripcionMarca
-            // 
-            this.colDescripcionMarca.Caption = "Marca";
-            this.colDescripcionMarca.FieldName = "Descripcion";
-            this.colDescripcionMarca.MinWidth = 23;
-            this.colDescripcionMarca.Name = "colDescripcionMarca";
-            this.colDescripcionMarca.OptionsColumn.AllowEdit = false;
-            this.colDescripcionMarca.Visible = true;
-            this.colDescripcionMarca.VisibleIndex = 0;
-            this.colDescripcionMarca.Width = 87;
-            // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -372,49 +276,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.labelControl1.Size = new System.Drawing.Size(49, 17);
             this.labelControl1.TabIndex = 122;
             this.labelControl1.Text = "Marca *:";
-            // 
-            // glModelos
-            // 
-            this.glModelos.EditValue = "";
-            this.glModelos.Location = new System.Drawing.Point(786, 131);
-            this.glModelos.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.glModelos.Name = "glModelos";
-            this.glModelos.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.glModelos.Properties.Appearance.Options.UseFont = true;
-            this.glModelos.Properties.NullText = "";
-            this.glModelos.Properties.PopupView = this.gridLookUpEdit2View;
-            this.glModelos.Size = new System.Drawing.Size(290, 26);
-            this.glModelos.TabIndex = 125;
-            // 
-            // gridLookUpEdit2View
-            // 
-            this.gridLookUpEdit2View.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colModeloId,
-            this.colDescripcionModelo});
-            this.gridLookUpEdit2View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridLookUpEdit2View.Name = "gridLookUpEdit2View";
-            this.gridLookUpEdit2View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridLookUpEdit2View.OptionsView.ShowGroupPanel = false;
-            this.gridLookUpEdit2View.OptionsView.ShowIndicator = false;
-            // 
-            // colModeloId
-            // 
-            this.colModeloId.Caption = "Id";
-            this.colModeloId.FieldName = "ModeloId";
-            this.colModeloId.MinWidth = 23;
-            this.colModeloId.Name = "colModeloId";
-            this.colModeloId.Width = 87;
-            // 
-            // colDescripcionModelo
-            // 
-            this.colDescripcionModelo.Caption = "Descripción";
-            this.colDescripcionModelo.FieldName = "Descripcion";
-            this.colDescripcionModelo.MinWidth = 23;
-            this.colDescripcionModelo.Name = "colDescripcionModelo";
-            this.colDescripcionModelo.OptionsColumn.AllowEdit = false;
-            this.colDescripcionModelo.Visible = true;
-            this.colDescripcionModelo.VisibleIndex = 0;
-            this.colDescripcionModelo.Width = 87;
             // 
             // labelControl2
             // 
@@ -672,11 +533,60 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.nmGarantia.Size = new System.Drawing.Size(150, 30);
             this.nmGarantia.TabIndex = 152;
             // 
+            // leTipoInstrumento
+            // 
+            this.leTipoInstrumento.Location = new System.Drawing.Point(30, 131);
+            this.leTipoInstrumento.Name = "leTipoInstrumento";
+            this.leTipoInstrumento.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.leTipoInstrumento.Properties.Appearance.Options.UseFont = true;
+            this.leTipoInstrumento.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.leTipoInstrumento.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Descripcion", "Tipo de Instrumento"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TipoInstrumentoId", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.leTipoInstrumento.Properties.NullText = "";
+            this.leTipoInstrumento.Size = new System.Drawing.Size(359, 30);
+            this.leTipoInstrumento.TabIndex = 153;
+            this.leTipoInstrumento.EditValueChanged += new System.EventHandler(this.glTipoInstrumento_EditValueChanged);
+            // 
+            // leMarcas
+            // 
+            this.leMarcas.Location = new System.Drawing.Point(415, 129);
+            this.leMarcas.Name = "leMarcas";
+            this.leMarcas.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.leMarcas.Properties.Appearance.Options.UseFont = true;
+            this.leMarcas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.leMarcas.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Descripcion", "Tipo de Instrumento"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TipoInstrumentoId", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.leMarcas.Properties.NullText = "";
+            this.leMarcas.Size = new System.Drawing.Size(346, 30);
+            this.leMarcas.TabIndex = 154;
+            // 
+            // leModelos
+            // 
+            this.leModelos.Location = new System.Drawing.Point(786, 129);
+            this.leModelos.Name = "leModelos";
+            this.leModelos.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.leModelos.Properties.Appearance.Options.UseFont = true;
+            this.leModelos.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.leModelos.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Descripcion", "Tipo de Instrumento"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TipoInstrumentoId", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.leModelos.Properties.NullText = "";
+            this.leModelos.Size = new System.Drawing.Size(291, 30);
+            this.leModelos.TabIndex = 155;
+            // 
             // frmNuevoInstrumento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1141, 709);
+            this.Controls.Add(this.leModelos);
+            this.Controls.Add(this.leMarcas);
+            this.Controls.Add(this.leTipoInstrumento);
             this.Controls.Add(this.nmGarantia);
             this.Controls.Add(this.iconButton1);
             this.Controls.Add(this.btnNuevaVinculacion);
@@ -685,9 +595,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.Controls.Add(this.memoComentarios);
             this.Controls.Add(this.labelControl3);
             this.Controls.Add(this.btnAgregarClasificacion);
-            this.Controls.Add(this.glModelos);
             this.Controls.Add(this.labelControl2);
-            this.Controls.Add(this.glMarcas);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.dateFechaCompraCliente);
             this.Controls.Add(this.dateFechaCompraFabricante);
@@ -698,7 +606,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.Controls.Add(this.labelControl14);
             this.Controls.Add(this.labelControl15);
             this.Controls.Add(this.labelControl9);
-            this.Controls.Add(this.glTipoInstrumento);
             this.Controls.Add(this.labelControl10);
             this.Controls.Add(this.labelControl11);
             this.Controls.Add(this.labelControl18);
@@ -708,22 +615,19 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "frmNuevoInstrumento";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;          
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpresaInstrumento.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroSerie.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumento.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumentoView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcionInstrumento.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glMarcas.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit1View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glModelos.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridLookUpEdit2View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoComentarios.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcVariablesInstrumentos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvVariablesInstrumentos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnesactivar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmGarantia)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leTipoInstrumento.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leMarcas.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leModelos.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -737,8 +641,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         private DevExpress.XtraEditors.LabelControl labelControl14;
         private DevExpress.XtraEditors.LabelControl labelControl15;
         private DevExpress.XtraEditors.LabelControl labelControl9;
-        private DevExpress.XtraEditors.GridLookUpEdit glTipoInstrumento;
-        private DevExpress.XtraGrid.Views.Grid.GridView glTipoInstrumentoView;
         private DevExpress.XtraEditors.LabelControl labelControl10;
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.LabelControl labelControl18;
@@ -746,18 +648,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         private DevExpress.XtraEditors.TextEdit txtDescripcionInstrumento;
         private System.Windows.Forms.DateTimePicker dateFechaCompraFabricante;
         private System.Windows.Forms.DateTimePicker dateFechaCompraCliente;
-        private DevExpress.XtraEditors.GridLookUpEdit glMarcas;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit1View;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.GridLookUpEdit glModelos;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridLookUpEdit2View;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraGrid.Columns.GridColumn colTipoInstrumentoId;
-        private DevExpress.XtraGrid.Columns.GridColumn colDescripcionTipoInstrumento;
-        private DevExpress.XtraGrid.Columns.GridColumn colMarcaId;
-        private DevExpress.XtraGrid.Columns.GridColumn colDescripcionMarca;
-        private DevExpress.XtraGrid.Columns.GridColumn colModeloId;
-        private DevExpress.XtraGrid.Columns.GridColumn colDescripcionModelo;
         private FontAwesome.Sharp.IconButton btnAgregarClasificacion;
         private System.Windows.Forms.ToolTip toolTip1;
         private DevExpress.XtraEditors.LabelControl labelControl3;
@@ -778,5 +670,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         private FontAwesome.Sharp.IconButton btnNuevaVinculacion;
         private FontAwesome.Sharp.IconButton iconButton1;
         private System.Windows.Forms.NumericUpDown nmGarantia;
+        private DevExpress.XtraEditors.LookUpEdit leTipoInstrumento;
+        private DevExpress.XtraEditors.LookUpEdit leMarcas;
+        private DevExpress.XtraEditors.LookUpEdit leModelos;
     }
 }

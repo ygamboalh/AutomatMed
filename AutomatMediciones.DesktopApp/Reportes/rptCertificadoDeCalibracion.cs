@@ -6,9 +6,9 @@ using System.Drawing;
 
 namespace AutomatMediciones.DesktopApp.Reportes
 {
-    public partial class rptCertificadoDeCalibracion : DevExpress.XtraReports.UI.XtraReport
+    public partial class rptCertificadoCalibracion : DevExpress.XtraReports.UI.XtraReport
     {
-        public rptCertificadoDeCalibracion()
+        public rptCertificadoCalibracion()
         {
             InitializeComponent();
         }

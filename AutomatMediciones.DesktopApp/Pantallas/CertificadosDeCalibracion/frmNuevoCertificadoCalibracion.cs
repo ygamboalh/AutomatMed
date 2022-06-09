@@ -160,7 +160,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
         }
 
         private void btnGenerarCertificado_Click(object sender, EventArgs e)
-        {
+        {           
             if (!PrepararCertificado()) return;
 
             SplashScreenManager.ShowForm(typeof(frmLoadingSave));
@@ -168,7 +168,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             if (GuardarCertificadoCalibracion())
             {
                 Notificaciones.MensajeConfirmacion("¡El certificado se generó exitosamente!");
-                rptCertificadoDeCalibracion reporteCertificado = new rptCertificadoDeCalibracion();
+                rptCertificadoCalibracion reporteCertificado = new rptCertificadoCalibracion();
                 reporteCertificado.objectDataSource1.DataSource = Certificado;
 
                 ReportPrintTool printTool = new ReportPrintTool(reporteCertificado);

@@ -1,4 +1,5 @@
-﻿using AutomatMediciones.DesktopApp.Pantallas.Clasificaciones;
+﻿using AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion;
+using AutomatMediciones.DesktopApp.Pantallas.Clasificaciones;
 using AutomatMediciones.DesktopApp.Pantallas.Instrumentos;
 using AutomatMediciones.DesktopApp.Pantallas.Marcas;
 using AutomatMediciones.DesktopApp.Pantallas.Modelos;
@@ -106,6 +107,17 @@ namespace AutomatMediciones.DesktopApp.Pantallas
             XtraForm patrones = frmPatrones;
             AgregarPantalla(ref patrones);
             SplashScreenManager.CloseForm();
+        }
+
+        private void certificadosPatrones_Click(object sender, EventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(frmSaving));
+            serviceProvider = Program.services.BuildServiceProvider();
+            var frmCertificados = new frmCertificadosDeCalibracion(serviceProvider.GetService<CertificadoCalibracionService>());
+            XtraForm patrones = frmCertificados;
+            AgregarPantalla(ref patrones);
+            SplashScreenManager.CloseForm();
+
         }
     }
 }

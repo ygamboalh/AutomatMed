@@ -1,0 +1,129 @@
+﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
+using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.DesktopApp.Reportes;
+using AutomatMediciones.Dominio.Caracteristicas.Servicios;
+using AutomatMediciones.Libs.Dtos;
+using DevExpress.XtraEditors;
+using DevExpress.XtraReports.UI;
+using DevExpress.XtraSplashScreen;
+using Nagaira.Herramientas.Standard.Helpers.Responses;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
+{
+    public partial class frmCertificadosDeCalibracion : DevExpress.XtraEditors.XtraForm
+    {
+        private readonly CertificadoCalibracionService _certificadoCalibracionService;
+
+        public List<CertificadoDto> Certificados { get; set; }
+        public frmCertificadosDeCalibracion(CertificadoCalibracionService certificadoCalibracionService)
+        {
+            InitializeComponent();
+
+            EstablecerNombreYTituloPopupAgregarInstrumentos();
+            EstablecerColorBotonExportarExcel();
+            btnVerCertificado.Click += btnVerCertificado_Click;
+
+            _certificadoCalibracionService = certificadoCalibracionService;
+
+            CargarCertificadosDeCalibracion();
+        }
+
+        private void btnVerCertificado_Click(object sender, EventArgs e)
+        {
+            var certificadoSeleccionado = gvCertificados.GetFocusedRow() as CertificadoDto;
+            if (certificadoSeleccionado == null) return;
+
+            SplashScreenManager.ShowForm(typeof(frmSaving));
+
+            rptCertificadoCalibracion report1 = new rptCertificadoCalibracion();
+            report1.objectDataSource1.DataSource = certificadoSeleccionado;
+            report1.CreateDocument();
+
+            ReportPrintTool printTool = new ReportPrintTool(report1);
+            printTool.ShowRibbonPreview();
+
+            SplashScreenManager.CloseForm();
+        }
+
+        private void SetearTotales()
+        {
+            lblTotal.Text = $"Total Registros: {Certificados.Count}";
+            lblTotal.Visible = true;
+        }
+
+        private void EstablecerNombreYTituloPopupAgregarInstrumentos()
+        {
+            ctlEncabezadoPantalla ctlEncabezadoPantalla3 = new ctlEncabezadoPantalla();
+            ctlEncabezadoPantalla3.Parent = this;
+            ctlEncabezadoPantalla3.Height = 43;
+            ctlEncabezadoPantalla3.Dock = DockStyle.Top;
+            ctlEncabezadoPantalla3.lblTitulo.Text = "Certificados de Calibración";
+            ctlEncabezadoPantalla3.EstablecerColoresDeFondoYLetra();
+        }
+
+        private void CargarCertificadosDeCalibracion()
+        {
+            var resultado = _certificadoCalibracionService.ObtenerCertificados();
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+            Certificados = resultado.Data;
+
+            gcCertificados.DataSource = Certificados;
+            gcCertificados.RefreshDataSource();
+
+
+            SetearTotales();
+        }
+
+        private void EstablecerColorBotonExportarExcel()
+        {
+            btnExportarExcel.BackColor = ColorHelper.ObtenerColorEnRGB("Sucess");
+            btnExportarExcel.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+            btnExportarExcel.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+        }
+
+        private void btnExportarExcel_Click(object sender, EventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(frmSaving));
+            var nombreArchivo = "Listado de Certificados";
+            var filter = "Archivo de Microsoft Excel (*.xlsx)|*.xlsx";
+
+            saveFileDialog.Filter = filter;
+            saveFileDialog.FileName = nombreArchivo;
+
+            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+
+                nombreArchivo = saveFileDialog.FileName;
+
+                colVerCertificado.Visible = false;
+               
+
+                gcCertificados.ExportToXlsx(nombreArchivo);
+                if (Notificaciones.PreguntaConfirmacion($"Archivo Guardado en: {nombreArchivo} ¿Desea abrir el archivo?") == System.Windows.Forms.DialogResult.Yes)
+                {
+                    FileHelper.AbrirArchivo(nombreArchivo);
+                }
+                SplashScreenManager.CloseForm();
+
+               
+                colVerCertificado.Visible = true;
+            }
+            else
+            {
+                SplashScreenManager.CloseForm();
+            }
+        }
+    }
+
+
+}

@@ -29,6 +29,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDiagnosticos));
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -58,15 +59,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.colIngresoInstrumentoId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colVerReporte = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnVerReporteDeIngreso = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnExportarExcel = new FontAwesome.Sharp.IconButton();
             this.btnCliente = new FontAwesome.Sharp.IconButton();
             this.btnComercial = new FontAwesome.Sharp.IconButton();
             this.btnServicioTecnico = new FontAwesome.Sharp.IconButton();
             this.btnFiltroTodos = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotal = new DevExpress.XtraEditors.LabelControl();
+            this.saveFileDialog = new DevExpress.XtraEditors.XtraSaveFileDialog(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.btnIniciarDiagnostico)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcInstrumentos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvInstrumentos)).BeginInit();
@@ -96,7 +98,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.gcInstrumentos.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnIniciarDiagnostico,
             this.btnVerReporteDeIngreso});
-            this.gcInstrumentos.Size = new System.Drawing.Size(1348, 599);
+            this.gcInstrumentos.Size = new System.Drawing.Size(1243, 599);
             this.gcInstrumentos.TabIndex = 157;
             this.gcInstrumentos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvInstrumentos});
@@ -295,42 +297,49 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.btnVerReporteDeIngreso.Name = "btnVerReporteDeIngreso";
             this.btnVerReporteDeIngreso.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
-            // labelControl5
-            // 
-            this.labelControl5.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.labelControl5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.labelControl5.Location = new System.Drawing.Point(0, 0);
-            this.labelControl5.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.labelControl5.Size = new System.Drawing.Size(348, 58);
-            this.labelControl5.TabIndex = 152;
-            this.labelControl5.Text = "Instrumentos Ingresados";
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.labelControl5);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1348, 58);
+            this.panel1.Size = new System.Drawing.Size(1243, 58);
             this.panel1.TabIndex = 153;
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.btnExportarExcel);
             this.panel3.Controls.Add(this.btnCliente);
             this.panel3.Controls.Add(this.btnComercial);
             this.panel3.Controls.Add(this.btnServicioTecnico);
             this.panel3.Controls.Add(this.btnFiltroTodos);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(663, 0);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(685, 58);
+            this.panel3.Size = new System.Drawing.Size(1243, 58);
             this.panel3.TabIndex = 153;
+            // 
+            // btnExportarExcel
+            // 
+            this.btnExportarExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportarExcel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportarExcel.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnExportarExcel.IconChar = FontAwesome.Sharp.IconChar.FileExcel;
+            this.btnExportarExcel.IconColor = System.Drawing.Color.Black;
+            this.btnExportarExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnExportarExcel.IconSize = 30;
+            this.btnExportarExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportarExcel.Location = new System.Drawing.Point(1052, 10);
+            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnExportarExcel.Name = "btnExportarExcel";
+            this.btnExportarExcel.Size = new System.Drawing.Size(178, 37);
+            this.btnExportarExcel.TabIndex = 161;
+            this.btnExportarExcel.Text = "Exportar a Excel";
+            this.btnExportarExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExportarExcel.UseVisualStyleBackColor = true;
+            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
             // 
             // btnCliente
             // 
@@ -342,10 +351,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.btnCliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCliente.IconSize = 30;
             this.btnCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCliente.Location = new System.Drawing.Point(540, 11);
+            this.btnCliente.Location = new System.Drawing.Point(562, 10);
             this.btnCliente.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnCliente.Name = "btnCliente";
-            this.btnCliente.Size = new System.Drawing.Size(125, 37);
+            this.btnCliente.Size = new System.Drawing.Size(178, 37);
             this.btnCliente.TabIndex = 160;
             this.btnCliente.Text = "Cliente";
             this.btnCliente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -362,10 +371,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.btnComercial.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnComercial.IconSize = 30;
             this.btnComercial.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnComercial.Location = new System.Drawing.Point(376, 11);
+            this.btnComercial.Location = new System.Drawing.Point(376, 10);
             this.btnComercial.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnComercial.Name = "btnComercial";
-            this.btnComercial.Size = new System.Drawing.Size(144, 37);
+            this.btnComercial.Size = new System.Drawing.Size(178, 37);
             this.btnComercial.TabIndex = 159;
             this.btnComercial.Text = "Comercial";
             this.btnComercial.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -382,7 +391,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.btnServicioTecnico.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnServicioTecnico.IconSize = 30;
             this.btnServicioTecnico.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnServicioTecnico.Location = new System.Drawing.Point(179, 11);
+            this.btnServicioTecnico.Location = new System.Drawing.Point(190, 10);
             this.btnServicioTecnico.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnServicioTecnico.Name = "btnServicioTecnico";
             this.btnServicioTecnico.Size = new System.Drawing.Size(178, 37);
@@ -403,10 +412,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.btnFiltroTodos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnFiltroTodos.IconSize = 30;
             this.btnFiltroTodos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFiltroTodos.Location = new System.Drawing.Point(20, 11);
+            this.btnFiltroTodos.Location = new System.Drawing.Point(4, 10);
             this.btnFiltroTodos.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnFiltroTodos.Name = "btnFiltroTodos";
-            this.btnFiltroTodos.Size = new System.Drawing.Size(120, 37);
+            this.btnFiltroTodos.Size = new System.Drawing.Size(178, 37);
             this.btnFiltroTodos.TabIndex = 157;
             this.btnFiltroTodos.Text = "Todos";
             this.btnFiltroTodos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -420,7 +429,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.panel2.Location = new System.Drawing.Point(0, 657);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1348, 27);
+            this.panel2.Size = new System.Drawing.Size(1243, 27);
             this.panel2.TabIndex = 154;
             // 
             // lblTotal
@@ -440,7 +449,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1348, 684);
+            this.ClientSize = new System.Drawing.Size(1243, 684);
             this.Controls.Add(this.gcInstrumentos);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
@@ -463,8 +472,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
 
         #endregion
 
-  
-        private DevExpress.XtraEditors.LabelControl labelControl5;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private DevExpress.XtraEditors.LabelControl lblTotal;    
@@ -491,5 +498,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
         private FontAwesome.Sharp.IconButton btnComercial;
         private FontAwesome.Sharp.IconButton btnServicioTecnico;
         private FontAwesome.Sharp.IconButton btnFiltroTodos;
+        private FontAwesome.Sharp.IconButton btnExportarExcel;
+        private DevExpress.XtraEditors.XtraSaveFileDialog saveFileDialog;
     }
 }

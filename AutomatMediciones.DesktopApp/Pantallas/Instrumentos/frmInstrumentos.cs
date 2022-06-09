@@ -26,11 +26,25 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             _instrumentoService = instrumentoService;
             EstablecerNombreYTitulo();
             EstablecerColorBotonPorDefecto();
+            EstablecerColorBotonExportarExcel();
 
             CargarInstrumentos();
 
             btnEditar.Click += btnEditarClick;
             btnDesactivar.Click += btnDesactivarClick;
+        }
+
+        private void EstablecerColorBotonExportarExcel()
+        {
+            btnExportarExcel.BackColor = ColorHelper.ObtenerColorEnRGB("Sucess");
+            btnExportarExcel.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+            btnExportarExcel.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+        }
+
+        private void SetearTotales()
+        {
+            lblTotal.Text = $"Total Registros: {instrumentosDeEmpresa.Count}";
+            lblTotal.Visible = true;
         }
 
         private void btnDesactivarClick(object sender, EventArgs e)
@@ -57,6 +71,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         {
             var instrumento = gvInstrumentos.GetFocusedRow() as InstrumentoDto;
 
+            SplashScreenManager.ShowForm(typeof(frmSaving));
             var frmNuevoInstrumento = new frmNuevoInstrumento(TipoTransaccion.Actualizar, serviceProvider.GetService<ClasificacionInstrumentoService>(),
                                                                             serviceProvider.GetService<InstrumentoService>(),
                                                                             serviceProvider.GetService<MarcaService>(),
@@ -68,7 +83,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             frmNuevoInstrumento.NuevoInstrumento = instrumento;
             frmNuevoInstrumento.CargarVariablesInstrumentos();
             frmNuevoInstrumento.SetearValoresParaActualizar();
+            SplashScreenManager.CloseForm();
             frmNuevoInstrumento.ShowDialog();
+
+            
         }
 
         private void onInstrumentoModificado(InstrumentoDto instrumento)
@@ -102,6 +120,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
             EstablecerSeleccionDeInstrumentos(resultado.Data);
+
+            SetearTotales();
         }
 
         private void EstablecerSeleccionDeInstrumentos(List<InstrumentoDto> listaInstrumentos)
@@ -136,6 +156,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
         private void btnAgregarNuevoInstrumento_Click(object sender, EventArgs e)
         {
+            SplashScreenManager.ShowForm(typeof(frmSaving));
             var frmNuevoInstrumento = new frmNuevoInstrumento(TipoTransaccion.Insertar, serviceProvider.GetService<ClasificacionInstrumentoService>(),
                                                                            serviceProvider.GetService<InstrumentoService>(),
                                                                            serviceProvider.GetService<MarcaService>(),
@@ -144,7 +165,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
                                                                            serviceProvider.GetService<EmpresaService>());
 
             frmNuevoInstrumento.OnInstrumentoAgregado += OnInstrumentoAgregado;
+            SplashScreenManager.CloseForm();
             frmNuevoInstrumento.ShowDialog();
+           
         }
 
         private void OnInstrumentoAgregado(InstrumentoDto instrumento)
@@ -152,6 +175,39 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             serviceProvider = Program.services.BuildServiceProvider();
             _instrumentoService = serviceProvider.GetService<InstrumentoService>();
             CargarInstrumentos();
+        }
+
+        private void btnExportarExcel_Click(object sender, EventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(frmSaving));
+            var nombreArchivo = "Listado de Instrumentos";
+            var filter = "Archivo de Microsoft Excel (*.xlsx)|*.xlsx";
+
+            saveFileDialog.Filter = filter;
+            saveFileDialog.FileName = nombreArchivo;
+
+            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+
+                nombreArchivo = saveFileDialog.FileName;
+
+                colEditar.Visible = false;
+                colEliminar.Visible = false;
+
+                gcInstrumentos.ExportToXlsx(nombreArchivo);
+                if (Notificaciones.PreguntaConfirmacion($"Archivo Guardado en: {nombreArchivo} ¿Desea abrir el archivo?") == System.Windows.Forms.DialogResult.Yes)
+                {
+                    FileHelper.AbrirArchivo(nombreArchivo);
+                }
+                SplashScreenManager.CloseForm();
+
+                colEliminar.Visible = true;
+                colEditar.Visible = true;
+            }
+            else
+            {
+                SplashScreenManager.CloseForm();
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 
@@ -33,6 +34,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             EstablecerNombreYTitulo();
             CargarIngresos();
 
+            EstablecerColorBotonExportarExcel();
             btnIniciarDiagnostico.Click += btnIniciarDiagnosticoClick;
             btnVerReporteDeIngreso.Click += btnVerReporteIngresoClick;
 
@@ -42,6 +44,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             btnFiltroTodos.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
 
         }
+
+        private void EstablecerColorBotonExportarExcel()
+        {
+            btnExportarExcel.BackColor = ColorHelper.ObtenerColorEnRGB("Sucess");
+            btnExportarExcel.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+            btnExportarExcel.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+        }
+
 
         private void btnVerReporteIngresoClick(object sender, EventArgs e)
         {
@@ -291,6 +301,39 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             btnFiltroTodos.IconColor = Color.Black;
 
             FiltroSeleccionado = Filtros.Clientes;
+        }
+
+        private void btnExportarExcel_Click(object sender, EventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(frmSaving));
+            var nombreArchivo = "Listado de Ingresos";
+            var filter = "Archivo de Microsoft Excel (*.xlsx)|*.xlsx";
+
+            saveFileDialog.Filter = filter;
+            saveFileDialog.FileName = nombreArchivo;
+
+            if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+
+                nombreArchivo = saveFileDialog.FileName;
+
+                colIniciarDiagnostico.Visible = false;
+                colVerReporte.Visible = false;
+
+                gcInstrumentos.ExportToXlsx(nombreArchivo);
+                if (Notificaciones.PreguntaConfirmacion($"Archivo Guardado en: {nombreArchivo} ¿Desea abrir el archivo?") == System.Windows.Forms.DialogResult.Yes)
+                {
+                    FileHelper.AbrirArchivo(nombreArchivo);
+                }
+                SplashScreenManager.CloseForm();
+
+                colIniciarDiagnostico.Visible = true;
+                colVerReporte.Visible = true;
+            }
+            else
+            {
+                SplashScreenManager.CloseForm();
+            }
         }
     }
 
