@@ -36,13 +36,13 @@ namespace AutomatMediciones.DesktopApp.Helpers
             MailMessage message = new MailMessage();
             var body = correoDto.Body;
 
-            var listaDestinatarios = string.Join(",", correoDto.CorreoDestinatario);
+           
             var listaDestinatariosCopia = string.Join(",", correoDto.CopiasEnCorreo);
 
             try
             {
                 message.From = new MailAddress(correoDto.Configuracion.CorreoOrigen, correoDto.Configuracion.Nombre);
-                message.To.Add(listaDestinatarios);
+                message.To.Add(correoDto.CorreoDestinatario);
                 message.Subject = correoDto.Configuracion.Asunto;
                 message.SubjectEncoding = Encoding.UTF8;
                 message.Body = body;

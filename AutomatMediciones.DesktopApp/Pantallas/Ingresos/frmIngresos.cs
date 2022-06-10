@@ -1,4 +1,5 @@
 ﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
+using AutomatMediciones.DesktopApp.Enums;
 using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.DesktopApp.Pantallas.Ingresos.Dtos;
 using AutomatMediciones.DesktopApp.Pantallas.Instrumentos;
@@ -25,7 +26,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
     {
         ContactoDto contactoSeleccionado;
         EmpresaDto empresaSeleccionada;
-        CorreoElectronicoDto correoSeleccionado;
         UsuarioDto usuarioSeleccionado;
         EstadoDto estadoSeleccionado;
 
@@ -504,9 +504,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             LimpiarCorreos();
 
             if (contactoSeleccionado == null) return;
-            glCorreoElectronico.Properties.DataSource = contactoSeleccionado.CorreosElectronicos;
-            glCorreoElectronico.Properties.DisplayMember = "Direccion";
-            glCorreoElectronico.Properties.ValueMember = "RegistroId";
+
+            var correos = string.Join(",", contactoSeleccionado.CorreosElectronicos.Select(x => x.Direccion).ToList());
+
+            memoCorreos.Text = correos;
         }
 
         private void BusquedaCorreo()
@@ -530,8 +531,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
         private void LimpiarCorreos()
         {
-            glCorreoElectronico.Properties.DataSource = null;
-            txtCorreoNuevo.ResetText();
+            memoCorreos.ResetText();
         }
 
         private void btnAgregarNuevInstrumento_Click(object sender, EventArgs e)
@@ -592,8 +592,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             Ingreso.ContactoId = contactoSeleccionado.ContactoId;
             Ingreso.NombreContacto = contactoSeleccionado.Nombre;
             Ingreso.ApellidoContacto = contactoSeleccionado.Apellido;
-            Ingreso.CorreoElectronicoId = correoSeleccionado.RegistroId;
-            Ingreso.DireccionCorreoElectronico = correoSeleccionado.Direccion;
+            Ingreso.CorreoElectronicoId = "";
+            Ingreso.DireccionCorreoElectronico = memoCorreos.Text;
             Ingreso.IngresosInstrumentos = instrumentosSeleccionados;
             Ingreso.CuerpoCorreo = memoEmail.Text;
             Ingreso.UsuarioId = usuarioSeleccionado.UsuarioId;
@@ -603,12 +603,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             {
                 x.EstadoId = (int)glEstado.EditValue;
             });
-        }
-
-        private void glCorreoElectronico_EditValueChanged(object sender, EventArgs e)
-        {
-            correoSeleccionado = glCorreo.GetFocusedRow() as CorreoElectronicoDto;
-            txtCorreoNuevo.Text = correoSeleccionado.Direccion;
         }
 
         private bool SeLlenaronCamposObligatorios(out string mensaje)
@@ -626,9 +620,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 return false;
             }
 
-            if (correoSeleccionado == null)
+            if (string.IsNullOrEmpty(memoCorreos.Text))
             {
-                mensaje = "Es necesario que seleccione un correo para continuar";
+                mensaje = "Es necesario que ingrese una dirección de correo para continuar";
                 return false;
             }
 
@@ -771,7 +765,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             copiasEnCorreo.ForEach(x =>
             {
-
                 copias.Add(x.Correo);
             });
 
@@ -792,7 +785,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 Body = textoEmail,
                 NombreEmpresa = empresaSeleccionada.NombreEmpresa,
                 NombreDestinatario = contactoSeleccionado.Nombre,
-                CorreoDestinatario = correoSeleccionado.Direccion,
+                CorreoDestinatario = memoCorreos.Text,
                 CopiasEnCorreo = copias,
                 Configuracion = configuracionNotificacion,
                 IngresoId = Ingreso.IngresoId,
@@ -828,9 +821,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private void LimpiarFormulario()
         {
             txtEmpresa.ResetText();
-            txtCorreoNuevo.ResetText();
+            memoCorreos.ResetText();
             glContacto.EditValue = null;
-            glCorreoElectronico.EditValue = null;
             glUsuariosResponsables.EditValue = null;
             glEstado.EditValue = null;
             instrumentosSeleccionados.Clear();
@@ -842,7 +834,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             memoEmail.Text = "";
             empresaSeleccionada = null;
             contactoSeleccionado = null;
-            correoSeleccionado = null;
             Ingreso = new IngresoDto();
             memoEmail.Text = _textoEmail;
 
@@ -881,9 +872,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             memoEmail.Text = _textoEmail;
 
             contactoSeleccionado = empresaSeleccionada.Contactos.FirstOrDefault(x => x.ContactoId.Contains(glContacto.EditValue.ToString()));
-            string linea = $"{memoEmail.Lines[0]} {contactoSeleccionado.Nombre} {contactoSeleccionado.Apellido}.";
-            memoEmail.Lines[0] = linea;
-            memoEmail.Text = memoEmail.Text.Replace("Estimado", linea);
+
+            string saludo = contactoSeleccionado.Genero == (int)Generos.Masculino ? $"Estimado {contactoSeleccionado.Saludo}" : $"Estimada {contactoSeleccionado.Saludo}";
+
+            string textoEmailSaludo = $"{saludo} {contactoSeleccionado.Nombre} {contactoSeleccionado.Apellido}.";
+            memoEmail.Lines[0] = textoEmailSaludo;
+            memoEmail.Text = memoEmail.Text.Replace("Estimado", textoEmailSaludo);
 
             ObtenerCorreoElectronicoDeContacto();
         }
@@ -893,16 +887,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             estadoSeleccionado = glEstadoView.GetFocusedRow() as EstadoDto;
         }
    
-        private void txtCorreoNuevo_Click(object sender, EventArgs e)
-        {
-            glCorreoElectronico.ShowPopup();
-        }
-
-        private void txtCorreoNuevo_TextChanged(object sender, EventArgs e)
-        {
-            if (correoSeleccionado != null) correoSeleccionado.Direccion = txtCorreoNuevo.Text;
-        }
-
         private void txtEmpresa_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

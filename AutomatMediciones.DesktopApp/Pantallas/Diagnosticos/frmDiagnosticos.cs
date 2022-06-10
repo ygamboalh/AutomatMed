@@ -182,6 +182,24 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
                 gcInstrumentos.DataSource = ingresosInstrumentos;
                 gcInstrumentos.RefreshDataSource();
 
+                switch (FiltroSeleccionado)
+                {
+                    case Filtros.Todos:
+                        btnFiltroTodos_Click(new object(), new EventArgs());
+                        break;
+                    case Filtros.Clientes:
+                        btnCliente_Click(new object(), new EventArgs());
+                        break;
+                    case Filtros.ServicioTecnico:
+                        btnServicioTecnico_Click(new object(), new EventArgs());
+                        break;
+                    case Filtros.Comercial:
+                        btnComercial_Click(new object(), new EventArgs());
+                        break;
+                    
+                }
+
+
                 SetearTotales();
             }
             catch (Exception exc)
@@ -193,7 +211,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
 
         private void SetearTotales()
         {
-            lblTotal.Text = $"Total Registros: {ingresosInstrumentos.Count}";
+            lblTotal.Text = $"Total Registros: {gvInstrumentos.RowCount}";
             lblTotal.Visible = true;
         }
 
@@ -229,6 +247,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             btnServicioTecnico.IconColor = Color.Black;
 
             FiltroSeleccionado = Filtros.Todos;
+
+            SetearTotales();
+
         }
 
         private void btnServicioTecnico_Click(object sender, EventArgs e)
@@ -253,6 +274,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             btnFiltroTodos.IconColor = Color.Black;
 
             FiltroSeleccionado = Filtros.ServicioTecnico;
+
+
+            SetearTotales();
         }
 
         private void btnComercial_Click(object sender, EventArgs e)
@@ -277,6 +301,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             btnFiltroTodos.IconColor = Color.Black;
 
             FiltroSeleccionado = Filtros.Comercial;
+
+            SetearTotales();
         }
 
         private void btnCliente_Click(object sender, EventArgs e)
@@ -301,6 +327,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             btnFiltroTodos.IconColor = Color.Black;
 
             FiltroSeleccionado = Filtros.Clientes;
+
+            SetearTotales();
+
         }
 
         private void btnExportarExcel_Click(object sender, EventArgs e)

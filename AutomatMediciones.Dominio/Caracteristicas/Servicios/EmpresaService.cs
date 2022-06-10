@@ -40,6 +40,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                                              Apellido = y.Apellido,
                                              EmpresaId = y.EmpresaId,
                                              ContactoId = y.ContactoId,
+                                             Genero = y.Genero,
+                                             Saludo = y.Saludo,
                                              CorreosElectronicos = correosElectronicos.Where(p => p.ContactoId.Equals(y.ContactoId))
                                                                                       .Select(z => new CorreoElectronicoDto
                                                                                       {
