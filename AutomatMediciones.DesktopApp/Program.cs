@@ -89,7 +89,7 @@ namespace AutomatMediciones.DesktopApp
             services.AddScoped<frmClasificaciones>();
             services.AddScoped<frmNuevaClasificacion>();
 
-            services.AddScoped<frmDiagnosticos>();
+            services.AddScoped<frmIngresos>();
 
             services.AddScoped<frmMarcas>();
             services.AddScoped<frmNuevaMarca>();
@@ -105,7 +105,7 @@ namespace AutomatMediciones.DesktopApp
 
             services.AddScoped<frmConfiguracion>();
             services.AddScoped<frmEmpresas>();
-            services.AddScoped<frmIngresos>();
+            services.AddScoped<frmNuevoIngreso>();
 
             services.AddScoped<frmInstrumentos>();
             services.AddScoped<frmNuevoInstrumento>();

@@ -57,7 +57,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
             {
                 case IndiceMenu.Ingresos:
                     SplashScreenManager.ShowForm(typeof(frmSaving));
-                    var frmIngresos = new frmIngresos(serviceProvider.GetService<IngresoService>(),
+                    var frmIngresos = new frmNuevoIngreso(serviceProvider.GetService<IngresoService>(),
                                                        serviceProvider.GetService<InstrumentoService>(),
                                                        serviceProvider.GetService<UsuarioService>(),
                                                        serviceProvider.GetService<ConfiguracionNotificacionService>(),
@@ -69,7 +69,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
                     break;
                 case IndiceMenu.Diagnosticos:
                     SplashScreenManager.ShowForm(typeof(frmSaving));
-                    var frmDiagnosticos = new frmDiagnosticos(serviceProvider.GetService<IngresoService>());
+                    var frmDiagnosticos = new frmIngresos(serviceProvider.GetService<IngresoService>());
                     XtraForm diagnosticos = frmDiagnosticos;
                     AgregarPantalla(ref diagnosticos);
                     SplashScreenManager.CloseForm();
