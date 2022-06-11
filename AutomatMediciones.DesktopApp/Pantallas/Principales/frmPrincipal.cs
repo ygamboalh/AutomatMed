@@ -165,16 +165,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
                 pantalla.MdiParent = this;
                 pantalla.Show();
             }
-
-            //if (pantalla.Created)
-            //{
-            //    pantalla.Focus();
-            //}
-            //else
-            //{
-            //    pantalla.MdiParent = this;
-            //    pantalla.Show();
-            //}
         }
 
         private void EstablecerFondoMdiPantalla()
