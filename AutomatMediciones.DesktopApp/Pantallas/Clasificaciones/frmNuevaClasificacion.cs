@@ -1,15 +1,15 @@
 ﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
 using AutomatMediciones.DesktopApp.Helpers;
-using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.DesktopApp.Pantallas.Marcas;
+using AutomatMediciones.DesktopApp.Pantallas.Modelos;
+using AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento;
+using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
-using AutomatMediciones.DesktopApp.Pantallas.Modelos;
 using System;
-using AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento;
 using System.Collections.Generic;
 using System.Windows.Forms;
 

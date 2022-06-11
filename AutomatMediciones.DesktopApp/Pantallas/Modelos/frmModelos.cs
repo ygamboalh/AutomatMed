@@ -130,7 +130,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
 
                 nombreArchivo = saveFileDialog.FileName;
 
-             
+
                 colEditar.Visible = false;
 
                 gcModelos.ExportToXlsx(nombreArchivo);
@@ -140,7 +140,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
                 }
                 SplashScreenManager.CloseForm();
 
-                
+
                 colEditar.Visible = true;
             }
             else

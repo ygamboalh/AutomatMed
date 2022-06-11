@@ -2,16 +2,15 @@
 using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
+using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
-using AutomatMediciones.DesktopApp.Pantallas.Marcas;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-using DevExpress.XtraSplashScreen;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
 {

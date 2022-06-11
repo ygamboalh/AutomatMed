@@ -36,7 +36,7 @@ namespace AutomatMediciones.DesktopApp.Helpers
             MailMessage message = new MailMessage();
             var body = correoDto.Body;
 
-           
+
             var listaDestinatariosCopia = string.Join(",", correoDto.CopiasEnCorreo);
 
             try
@@ -94,7 +94,7 @@ namespace AutomatMediciones.DesktopApp.Helpers
             MailMessage message = new MailMessage();
             var body = correoDto.Body;
 
-            var listaDestinatarios = string.Join(",", correoDto.CorreoDestinatario); 
+            var listaDestinatarios = string.Join(",", correoDto.CorreoDestinatario);
             try
             {
                 message.From = new MailAddress(correoDto.Configuracion.CorreoOrigen, correoDto.Configuracion.Nombre);

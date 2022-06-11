@@ -3,19 +3,14 @@ using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.DesktopApp.Reportes;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
-using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
 using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
@@ -140,10 +135,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
                 var resultado = _certificadoCalibracionService.RegistrarCertificado(Certificado);
                 if (resultado.Type != TypeResponse.Ok)
                 {
-                   
+
                     Notificaciones.MensajeError(resultado.Message);
-                           
-                  
+
+
                     return false;
 
                 }
@@ -160,7 +155,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
         }
 
         private void btnGenerarCertificado_Click(object sender, EventArgs e)
-        {           
+        {
             if (!PrepararCertificado()) return;
 
             SplashScreenManager.ShowForm(typeof(frmLoadingSave));
@@ -174,11 +169,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
                 ReportPrintTool printTool = new ReportPrintTool(reporteCertificado);
                 printTool.ShowRibbonPreview();
             }
-            
-     
+
+
             SplashScreenManager.CloseForm();
 
-          
+
         }
 
         private void CargarPatrones()
@@ -206,7 +201,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
 
         private void btnAgregarVariable_Click(object sender, EventArgs e)
         {
-            if (patronSeleccionado == null) {
+            if (patronSeleccionado == null)
+            {
                 Notificaciones.MensajeAdvertencia("Es necesario que seleccione un patrón.");
                 return;
             }
@@ -242,7 +238,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
 
         private void glPatrones_EditValueChanged(object sender, EventArgs e)
         {
-           patronSeleccionado  = glPatronesView.GetFocusedRow() as PatronDto;
+            patronSeleccionado = glPatronesView.GetFocusedRow() as PatronDto;
         }
 
         private void glVariableInstrumento_EditValueChanged(object sender, EventArgs e)

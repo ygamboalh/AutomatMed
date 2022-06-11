@@ -2,13 +2,11 @@
 using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
-using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -44,7 +42,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
 
             EstablecerNombreYTituloPopupAgregarInstrumentos();
             EstablecerColorBotonGuardar();
-          
+
             CargarVariablesDeMedicion();
 
             btnEliminar.Click += btnEliminarClick;
@@ -66,11 +64,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             var filaSeleccioanda = gvVariablesDeMedicion.GetFocusedRow() as VariablePatronDto;
             if (TipoTransaccion == TipoTransaccion.Insertar)
             {
-                VariablesPatrones = VariablesPatrones.Where(x => x.VariableMeicionId != filaSeleccioanda.VariableMeicionId && 
+                VariablesPatrones = VariablesPatrones.Where(x => x.VariableMeicionId != filaSeleccioanda.VariableMeicionId &&
                                                                  x.ValorPatron == filaSeleccioanda.ValorPatron &&
                                                                  x.Tolerancia == filaSeleccioanda.Tolerancia).ToList();
 
-             
+
                 gcVariablesDeMedicion.DataSource = VariablesPatrones;
                 gcVariablesDeMedicion.RefreshDataSource();
             }
@@ -99,7 +97,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
                     gcVariablesDeMedicion.DataSource = VariablesPatrones;
                     gcVariablesDeMedicion.RefreshDataSource();
                 }
-               
+
             }
         }
 
@@ -133,20 +131,20 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
         private void btnVincularVariableMedicion_Click(object sender, EventArgs e)
         {
             if (variableMedicionSeleccionada == null) return;
-           
+
 
             var variablePatron = new VariablePatronDto
             {
-              VariableDeMedicion = variableMedicionSeleccionada,
+                VariableDeMedicion = variableMedicionSeleccionada,
                 Tolerancia = nmTolerancia.Value,
                 ValorPatron = nmValorPatron.Value,
                 VariableMeicionId = variableMedicionSeleccionada.VariableMedicionId,
-                
+
             };
 
             if (ExiteVariableEnLista(variablePatron))
             {
-               Notificaciones.MensajeAdvertencia("¡La variable ingresada ya existe!"); 
+                Notificaciones.MensajeAdvertencia("¡La variable ingresada ya existe!");
                 return;
             }
 
@@ -179,7 +177,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
                 return false;
             }
 
-         
+
             mensaje = "Ok";
             return true;
         }
@@ -202,7 +200,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
                     OnPatronAgregado?.Invoke(NuevoPatron);
                     this.Close();
                 }
-             
+
             }
             else
             {
@@ -250,7 +248,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
         }
 
 
-     
+
 
 
         private void PrepararNuevoPatron()
@@ -280,11 +278,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
         {
 
             OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "PDF files | *.pdf"; 
-            dialog.Multiselect = false; 
-            if (dialog.ShowDialog() == DialogResult.OK) 
+            dialog.Filter = "PDF files | *.pdf";
+            dialog.Multiselect = false;
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
-                String path = dialog.FileName; 
+                String path = dialog.FileName;
                 txtRutaArchivo.Text = path;
             }
         }

@@ -11,7 +11,6 @@ using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 
@@ -76,9 +75,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             if (diagnosticoSeleccionado == null) return;
 
             serviceProvider = Program.services.BuildServiceProvider();
-            var nuevoDiagnostico = new frmNuevoDiagnostico(diagnosticoSeleccionado, 
-                serviceProvider.GetService<UsuarioService>(), 
-                serviceProvider.GetService<EstadoService>(), 
+            var nuevoDiagnostico = new frmNuevoDiagnostico(diagnosticoSeleccionado,
+                serviceProvider.GetService<UsuarioService>(),
+                serviceProvider.GetService<EstadoService>(),
                 serviceProvider.GetService<IngresoService>(),
                 serviceProvider.GetService<ConfiguracionNotificacionService>()
               );
@@ -134,7 +133,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 gcInstrumentos.DataSource = ingresosInstrumentos;
                 gcInstrumentos.RefreshDataSource();
 
-               
+
                 SetearTotales();
             }
             catch (Exception exc)
@@ -198,7 +197,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                     case Filtros.Comercial:
                         btnComercial_Click(new object(), new EventArgs());
                         break;
-                    
+
                 }
 
 
@@ -372,7 +371,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
     {
         Todos = 1,
         Clientes = 2,
-        ServicioTecnico =3,
-        Comercial =4
+        ServicioTecnico = 3,
+        Comercial = 4
     }
 }

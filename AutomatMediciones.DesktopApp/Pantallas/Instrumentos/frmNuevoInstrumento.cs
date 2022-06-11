@@ -432,7 +432,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
                 frmInstrumentoVariable.ShowDialog();
             }
 
-           
+
         }
 
         private void EstablecerColorBotonPorDefecto()
@@ -459,12 +459,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
             gcVariablesInstrumentos.DataSource = resultado.Data;
             gcVariablesInstrumentos.RefreshDataSource();
-            
+
         }
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
-            
+
             var frmNuevoCertificadoCalibracion = new frmNuevoCertificadoCalibracion(NuevoInstrumento.InstrumentoId,
                 serviceProvider.GetService<CertificadoCalibracionService>(),
                  serviceProvider.GetService<UsuarioService>(),

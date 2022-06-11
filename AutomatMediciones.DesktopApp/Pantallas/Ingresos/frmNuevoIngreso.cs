@@ -17,7 +17,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Windows.Forms;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
@@ -105,7 +104,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             SplashScreenManager.CloseForm();
             frmNuevoInstrumento.ShowDialog();
 
-           
+
 
         }
 
@@ -173,7 +172,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         {
             var instrumento = gvInstrumentosDeEmpresa.GetFocusedRow() as Dtos.InstrumentoLista;
             if (instrumento == null) return;
-          
+
             var ingresoInstrumento = instrumentosSeleccionados.FirstOrDefault(x => x.InstrumentoId.Equals(instrumento.InstrumentoId));
             if (ingresoInstrumento == null)
             {
@@ -326,7 +325,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         {
             var instrumentosIds = instrumentosSeleccionados.Select(x => x.InstrumentoId);
             if (instrumentosIds.Contains(instrumentoId)) return true;
-           
+
             return false;
         }
 
@@ -549,7 +548,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             frmNuevoInstrumento.OnInstrumentoAgregado += OnInstrumentoAgregado;
             SplashScreenManager.CloseForm();
             frmNuevoInstrumento.ShowDialog();
-            
+
         }
 
         private void OnInstrumentoAgregado(InstrumentoDto instrumento)
@@ -663,13 +662,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 }
 
                 if (line.Contains("Automat Medición S.R.L.") || line.Contains("Whatsapp"))
-                {                  
+                {
                     string pararrafo = $"<strong> {line.Replace(Environment.NewLine, "<br />\r\n")} </strong><br>";
-                   
+
                     pararrafo = Regex.Replace(pararrafo, @"\[\[(.+)\]\[(.+)\]\]", "<a href=\"$2\">$1</a>");
                     pararrafo = Regex.Replace(pararrafo, @"\[\[(.+)\]\]", "<a href=\"$1\">$1</a>");
                     textoEmail.AppendLine(pararrafo);
-     
+
                 }
                 else if (string.IsNullOrEmpty(line))
                 {
@@ -724,7 +723,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                     var correoHelper = new CorreoHelper();
                     if (correoHelper.EnviarCorreo(PrepararCorreo()))
                     {
-                        Notificaciones.MensajeConfirmacion("¡El ingreso se ha guardado exitosamente!");         
+                        Notificaciones.MensajeConfirmacion("¡El ingreso se ha guardado exitosamente!");
                     }
                     else
                     {
@@ -886,7 +885,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         {
             estadoSeleccionado = glEstadoView.GetFocusedRow() as EstadoDto;
         }
-   
+
         private void txtEmpresa_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

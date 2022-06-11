@@ -139,7 +139,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
                 nombreArchivo = saveFileDialog.FileName;
 
                 colEditar.Visible = false;
-              
+
                 gcMarcas.ExportToXlsx(nombreArchivo);
                 if (Notificaciones.PreguntaConfirmacion($"Archivo Guardado en: {nombreArchivo} ¿Desea abrir el archivo?") == System.Windows.Forms.DialogResult.Yes)
                 {
@@ -147,7 +147,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
                 }
                 SplashScreenManager.CloseForm();
 
-          
+
                 colEditar.Visible = true;
             }
             else

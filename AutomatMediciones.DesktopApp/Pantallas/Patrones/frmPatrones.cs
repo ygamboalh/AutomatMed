@@ -1,7 +1,7 @@
-﻿using AutomatMediciones.DesktopApp.Helpers;
+﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
+using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
-using DevExpress.XtraPdfViewer;
 using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
@@ -17,14 +17,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
         private readonly PatronService _patronService;
         private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
 
-  
+
         ICollection<PatronDto> patrones = new List<PatronDto>();
         public frmPatrones(PatronService patronService)
         {
             InitializeComponent();
             _patronService = patronService;
 
-
+            EstablecerNombreYTitulo();
             EstablecerColorBotonExportarExcel();
             CargarPatrones();
 
@@ -33,6 +33,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             cmdVerPatron.Click += cmdVerPatronClick;
 
             EstablecerColorBotonPorDefecto();
+        }
+
+        private void EstablecerNombreYTitulo()
+        {
+            ctlEncabezadoPantalla ctlEncabezadoPantalla3 = new ctlEncabezadoPantalla();
+            ctlEncabezadoPantalla3.Parent = this;
+            ctlEncabezadoPantalla3.Height = 43;
+            ctlEncabezadoPantalla3.Dock = System.Windows.Forms.DockStyle.Top;
+            ctlEncabezadoPantalla3.lblTitulo.Text = "Patrones";
+            ctlEncabezadoPantalla3.EstablecerColoresDeFondoYLetra();
         }
 
         private void cmdVerPatronClick(object sender, EventArgs e)

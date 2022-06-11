@@ -30,13 +30,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmModelos));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnExportarExcel = new FontAwesome.Sharp.IconButton();
             this.btnAgregarNuevoModelo = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotal = new DevExpress.XtraEditors.LabelControl();
@@ -46,7 +47,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.colDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEditar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmdEditar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.btnExportarExcel = new FontAwesome.Sharp.IconButton();
             this.saveFileDialog = new DevExpress.XtraEditors.XtraSaveFileDialog(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -66,6 +66,27 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.panel1.Padding = new System.Windows.Forms.Padding(8, 7, 0, 7);
             this.panel1.Size = new System.Drawing.Size(659, 53);
             this.panel1.TabIndex = 37;
+            // 
+            // btnExportarExcel
+            // 
+            this.btnExportarExcel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnExportarExcel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportarExcel.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnExportarExcel.IconChar = FontAwesome.Sharp.IconChar.FileExcel;
+            this.btnExportarExcel.IconColor = System.Drawing.Color.Black;
+            this.btnExportarExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnExportarExcel.IconSize = 30;
+            this.btnExportarExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportarExcel.Location = new System.Drawing.Point(448, 7);
+            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnExportarExcel.Name = "btnExportarExcel";
+            this.btnExportarExcel.Size = new System.Drawing.Size(211, 39);
+            this.btnExportarExcel.TabIndex = 165;
+            this.btnExportarExcel.Text = "Exportar a Excel";
+            this.btnExportarExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnExportarExcel.UseVisualStyleBackColor = true;
+            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
             // 
             // btnAgregarNuevoModelo
             // 
@@ -173,32 +194,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             // cmdEditar
             // 
             this.cmdEditar.AutoHeight = false;
-            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
             this.cmdEditar.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.cmdEditar.Name = "cmdEditar";
             this.cmdEditar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            // 
-            // btnExportarExcel
-            // 
-            this.btnExportarExcel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnExportarExcel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExportarExcel.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnExportarExcel.IconChar = FontAwesome.Sharp.IconChar.FileExcel;
-            this.btnExportarExcel.IconColor = System.Drawing.Color.Black;
-            this.btnExportarExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnExportarExcel.IconSize = 30;
-            this.btnExportarExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportarExcel.Location = new System.Drawing.Point(448, 7);
-            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.btnExportarExcel.Name = "btnExportarExcel";
-            this.btnExportarExcel.Size = new System.Drawing.Size(211, 39);
-            this.btnExportarExcel.TabIndex = 165;
-            this.btnExportarExcel.Text = "Exportar a Excel";
-            this.btnExportarExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnExportarExcel.UseVisualStyleBackColor = true;
-            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
             // 
             // frmModelos
             // 

@@ -7,7 +7,6 @@ using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraSplashScreen;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
-using System.Collections.Generic;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
 {
@@ -174,7 +173,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
                     Notificaciones.MensajeConfirmacion("¡El diagnóstico se ha registrado exitosamente!");
                 }
 
-               
+
                 OnDiagnosticoAgregado?.Invoke(IngresoInstrumento);
                 timer1.Stop();
                 this.Close();
@@ -184,7 +183,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
         }
 
         private CorreoNotificacionCambioResponsableDto PrepararCorreo()
-        {          
+        {
             configuracionNotificacion.Asunto = $"Asignación de Servicio Técnico #{IngresoInstrumento.NumeroServicioTecnico}";
 
             string body = "";
@@ -202,7 +201,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             {
                 Body = body,
                 CorreoDestinatario = usuarioSeleccionado.Correo,
-                NombreDestinatario = usuarioSeleccionado.Nombre,   
+                NombreDestinatario = usuarioSeleccionado.Nombre,
                 Configuracion = configuracionNotificacion
             };
 

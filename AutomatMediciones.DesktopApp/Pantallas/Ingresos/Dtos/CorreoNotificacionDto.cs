@@ -20,7 +20,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos.Dtos
     public class CorreoNotificacionCambioResponsableDto
     {
         public ConfiguracionNotificacionDto Configuracion { get; set; }
-        public string Body { get; set; }     
+        public string Body { get; set; }
         public string CorreoDestinatario { get; set; }
         public string NombreDestinatario { get; set; }
     }

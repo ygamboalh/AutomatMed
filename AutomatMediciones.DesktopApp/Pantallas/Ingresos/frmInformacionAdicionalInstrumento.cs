@@ -97,7 +97,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             Instrumento.InformacionAdicional.FechaEntregaRequerida = dateFechaEntregaRequerida.Value;
             Instrumento.InformacionAdicional.TipoTrabajo = tipoTrabajoSeleccionado;
             Instrumento.InformacionAdicional.ComentariosAcercaInstrumento = memoComentariosAcercaInstrumento.Text;
-           
+
             if (TipoTransaccion == TipoTransaccion.Actualizar)
             {
                 OnInformacionAdicionalActualizada?.Invoke(Instrumento);
@@ -116,18 +116,18 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         {
             memoComentarios.Text = "";
             trackBarControl1.Value = 1;
-           
+
         }
 
         public void SetearInformacionAdicionalParaActualizar(IngresoInstrumentoDto ingresoInstrumentoDto, bool seleccionado, string comentariosInstrumento)
         {
             Instrumento = new InstrumentoLista();
             glTiposTrabajo.EditValue = ingresoInstrumentoDto.TipoTrabajoId;
-            tipoTrabajoSeleccionado = TiposDeTrabajo.FirstOrDefault(x => x.TipoTrabajoId == ingresoInstrumentoDto.TipoTrabajoId);       
-            memoComentarios.Text = ingresoInstrumentoDto.Comentarios;        
+            tipoTrabajoSeleccionado = TiposDeTrabajo.FirstOrDefault(x => x.TipoTrabajoId == ingresoInstrumentoDto.TipoTrabajoId);
+            memoComentarios.Text = ingresoInstrumentoDto.Comentarios;
             trackBarControl1.Value = ingresoInstrumentoDto.Prioridad;
             memoComentariosAcercaInstrumento.Text = comentariosInstrumento;
-           
+
             Instrumento.Seleccionado = seleccionado;
             Instrumento.InstrumentoId = ingresoInstrumentoDto.InstrumentoId;
         }

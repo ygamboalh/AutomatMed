@@ -35,7 +35,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
 
         }
 
-     
+
 
         private void OnSeleccionaVariableMedicionParaModificar(object sender, EventArgs e)
         {
@@ -133,7 +133,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
                 nombreArchivo = saveFileDialog.FileName;
 
                 colEditar.Visible = false;
-               
+
 
                 gcVariablesDeMedicion.ExportToXlsx(nombreArchivo);
                 if (Notificaciones.PreguntaConfirmacion($"Archivo Guardado en: {nombreArchivo} ¿Desea abrir el archivo?") == System.Windows.Forms.DialogResult.Yes)
@@ -143,7 +143,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
                 SplashScreenManager.CloseForm();
 
                 colEditar.Visible = true;
-               
+
             }
             else
             {

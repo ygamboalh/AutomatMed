@@ -123,7 +123,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
 
                 nombreArchivo = saveFileDialog.FileName;
 
-          
+
                 colEditar.Visible = false;
 
                 gcTipoInstrumento.ExportToXlsx(nombreArchivo);
@@ -133,7 +133,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
                 }
                 SplashScreenManager.CloseForm();
 
-              
+
                 colEditar.Visible = true;
             }
             else

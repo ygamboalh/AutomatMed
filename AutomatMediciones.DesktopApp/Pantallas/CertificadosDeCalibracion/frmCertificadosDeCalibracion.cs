@@ -3,18 +3,11 @@ using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.DesktopApp.Reportes;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
-using DevExpress.XtraEditors;
 using DevExpress.XtraReports.UI;
 using DevExpress.XtraSplashScreen;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
@@ -106,7 +99,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
                 nombreArchivo = saveFileDialog.FileName;
 
                 colVerCertificado.Visible = false;
-               
+
 
                 gcCertificados.ExportToXlsx(nombreArchivo);
                 if (Notificaciones.PreguntaConfirmacion($"Archivo Guardado en: {nombreArchivo} ¿Desea abrir el archivo?") == System.Windows.Forms.DialogResult.Yes)
@@ -115,7 +108,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
                 }
                 SplashScreenManager.CloseForm();
 
-               
+
                 colVerCertificado.Visible = true;
             }
             else

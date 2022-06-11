@@ -86,7 +86,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             SplashScreenManager.CloseForm();
             frmNuevoInstrumento.ShowDialog();
 
-            
+
         }
 
         private void onInstrumentoModificado(InstrumentoDto instrumento)
@@ -167,7 +167,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             frmNuevoInstrumento.OnInstrumentoAgregado += OnInstrumentoAgregado;
             SplashScreenManager.CloseForm();
             frmNuevoInstrumento.ShowDialog();
-           
+
         }
 
         private void OnInstrumentoAgregado(InstrumentoDto instrumento)

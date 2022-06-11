@@ -1,5 +1,6 @@
 ﻿using AutomatMediciones.DesktopApp.Enums;
 using AutomatMediciones.DesktopApp.Helpers;
+using Microsoft.Extensions.DependencyInjection;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -7,6 +8,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
 {
     public partial class cmpMenu : UserControl
     {
+        private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
         public cmpMenu()
         {
             InitializeComponent();
@@ -130,6 +132,58 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
         private void btnTiposDeInstrumetnos_Click(object sender, System.EventArgs e)
         {
             OnMenuSeleccionado?.Invoke(IndiceMenu.Configuracion);
+        }
+
+        private void btnCertificados_Click(object sender, System.EventArgs e)
+        {
+            OnMenuSeleccionado?.Invoke(IndiceMenu.Certificados);
+        }
+
+        public void AccionesBotonConfiguracion(bool activo)
+        {
+            pnlCertificados.Visible = activo;
+            pnlClasificacionInstrumentos.Visible = activo;
+            pnlMarcas.Visible = activo;
+            pnlModelos.Visible = activo;
+            pnlTiposDeInstrumento.Visible = activo;
+            pnlVariablesDeMedicion.Visible = activo;
+            pnlPatrones.Visible = activo;
+            pnlInstrumentos.Visible = activo;
+        }
+
+        private void cmdClasificacionInstrumentos_Click(object sender, System.EventArgs e)
+        {
+            OnMenuSeleccionado?.Invoke(IndiceMenu.Clasificaciones);
+        }
+
+        private void cmdMarcas_Click(object sender, System.EventArgs e)
+        {
+            OnMenuSeleccionado?.Invoke(IndiceMenu.Marcas);
+        }
+
+        private void cmdModelos_Click(object sender, System.EventArgs e)
+        {
+            OnMenuSeleccionado?.Invoke(IndiceMenu.Modelos);
+        }
+
+        private void cmdInstrumentos_Click(object sender, System.EventArgs e)
+        {
+            OnMenuSeleccionado?.Invoke(IndiceMenu.Instrumentos);
+        }
+
+        private void cmdPatrones_Click(object sender, System.EventArgs e)
+        {
+            OnMenuSeleccionado?.Invoke(IndiceMenu.Patrones);
+        }
+
+        private void btnTiposDeInstrumento_Click(object sender, System.EventArgs e)
+        {
+            OnMenuSeleccionado?.Invoke(IndiceMenu.TiposInstrumentos);
+        }
+
+        private void cmdVariablesDeMedicion_Click(object sender, System.EventArgs e)
+        {
+            OnMenuSeleccionado?.Invoke(IndiceMenu.VariablesMedicion);
         }
     }
 }
