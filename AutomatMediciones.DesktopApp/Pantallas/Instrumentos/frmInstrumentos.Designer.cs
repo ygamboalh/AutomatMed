@@ -329,7 +329,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             // 
             // colGarnatia
             // 
-            this.colGarnatia.Caption = "Garantía";
+            this.colGarnatia.Caption = "Garantía (Meses)";
             this.colGarnatia.FieldName = "Garantia";
             this.colGarnatia.MinWidth = 24;
             this.colGarnatia.Name = "colGarnatia";

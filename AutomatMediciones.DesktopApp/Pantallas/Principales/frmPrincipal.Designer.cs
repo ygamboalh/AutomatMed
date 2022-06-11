@@ -36,6 +36,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
             this.pnlStatus = new System.Windows.Forms.Panel();
             this.lblBaseDatos = new DevExpress.XtraEditors.LabelControl();
             this.lblVersion = new DevExpress.XtraEditors.LabelControl();
+            this.cmpMenu1 = new AutomatMediciones.DesktopApp.Componentes.Menu.cmpMenu();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.pnlStatus.SuspendLayout();
             this.SuspendLayout();
@@ -81,16 +82,32 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
             this.lblVersion.TabIndex = 2;
             this.lblVersion.Text = "labelControl1";
             // 
+            // cmpMenu1
+            // 
+            this.cmpMenu1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.cmpMenu1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.cmpMenu1.ExpandirMenu = false;
+            this.cmpMenu1.Location = new System.Drawing.Point(3, 3);
+            this.cmpMenu1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cmpMenu1.MaximumSize = new System.Drawing.Size(280, 0);
+            this.cmpMenu1.MinimumSize = new System.Drawing.Size(26, 416);
+            this.cmpMenu1.Name = "cmpMenu1";
+            this.cmpMenu1.Size = new System.Drawing.Size(280, 610);
+            this.cmpMenu1.TabIndex = 3;
+            // 
             // frmPrincipal
             // 
+            this.AllowMdiBar = true;
             this.Appearance.BackColor = System.Drawing.Color.White;
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1204, 645);
+            this.Controls.Add(this.cmpMenu1);
             this.Controls.Add(this.pnlStatus);
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.None;
             this.IconOptions.Icon = ((System.Drawing.Icon)(resources.GetObject("frmPrincipal.IconOptions.Icon")));
+            this.IsMdiContainer = true;
             this.Name = "frmPrincipal";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -104,11 +121,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
 
         #endregion
 
-        private Componentes.Menu.cmpMenu cmpMenu1;
         private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager xtraTabbedMdiManager1;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
         private System.Windows.Forms.Panel pnlStatus;
         private DevExpress.XtraEditors.LabelControl lblVersion;
         private DevExpress.XtraEditors.LabelControl lblBaseDatos;
+        private Componentes.Menu.cmpMenu cmpMenu1;
     }
 }

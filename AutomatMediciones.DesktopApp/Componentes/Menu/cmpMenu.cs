@@ -8,7 +8,6 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
 {
     public partial class cmpMenu : UserControl
     {
-        private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
         public cmpMenu()
         {
             InitializeComponent();
@@ -142,13 +141,13 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
         public void AccionesBotonConfiguracion(bool activo)
         {
             pnlCertificados.Visible = activo;
-            pnlClasificacionInstrumentos.Visible = activo;
+            pnlClasificaciones.Visible = activo;
             pnlMarcas.Visible = activo;
             pnlModelos.Visible = activo;
-            pnlTiposDeInstrumento.Visible = activo;
-            pnlVariablesDeMedicion.Visible = activo;
+            pnlTipoInstrumento.Visible = activo;
+            pnlVariableMedicion.Visible = activo;
             pnlPatrones.Visible = activo;
-            pnlInstrumentos.Visible = activo;
+            pnlInstrumento.Visible = activo;
         }
 
         private void cmdClasificacionInstrumentos_Click(object sender, System.EventArgs e)
