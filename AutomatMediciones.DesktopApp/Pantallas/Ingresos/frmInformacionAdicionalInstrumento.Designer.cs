@@ -237,7 +237,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(850, 671);
+            this.ClientSize = new System.Drawing.Size(824, 671);
             this.Controls.Add(this.memoComentariosAcercaInstrumento);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.dateFechaEntregaRequerida);

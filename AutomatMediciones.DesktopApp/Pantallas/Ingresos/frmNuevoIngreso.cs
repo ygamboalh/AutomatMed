@@ -77,8 +77,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             instrumentosSeleccionados = new List<IngresoInstrumentoDto>();
             instrumentosDeEmpresa = new List<InstrumentoLista>();
 
-            chkSeleccionarInstrumento.EditValueChanged += onSeleccionaInstrumento;
-            btnEditarComentario.Click += clickEditarComentario;
+            btnAgregarAListaSeleccionados.Click += onSeleccionaInstrumento;
             btnEditarInstrumento.Click += clickEditarInstrumento;
         }
 
@@ -189,105 +188,26 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
         private void OnInformacionAdicionalActualizada(InstrumentoLista instrumento)
         {
-            AccionPorRealizarDespuesDeSeleccion(instrumento);
+            //AccionPorRealizarDespuesDeSeleccion(instrumento);
         }
 
         private void onSeleccionaInstrumento(object sender, EventArgs e)
-        {
-            var checkSeleccionado = sender as DevExpress.XtraEditors.CheckEdit;
-            if (checkSeleccionado.EditValue == null) return;
-
-            var estaSeleccionadoElInstrumento = (bool)checkSeleccionado.EditValue;
-
+        {          
             var instrumento = gvInstrumentosDeEmpresa.GetFocusedRow() as InstrumentoLista;
             if (instrumento == null) return;
 
-            instrumento.Seleccionado = estaSeleccionadoElInstrumento;
-
-            if (instrumento.Seleccionado)
-            {
-                serviceProvider = Program.services.BuildServiceProvider();
-                frmInformacionAdicionalInstrumento frmComentarioInstrumento = new frmInformacionAdicionalInstrumento(TipoTransaccion.Insertar, serviceProvider.GetService<TipoTrabajoService>());
-                frmComentarioInstrumento.OnInformacionAdicionalAgregada += OnInformacionAgregada;
-                frmComentarioInstrumento.Instrumento = instrumento;
-                frmComentarioInstrumento.memoComentariosAcercaInstrumento.Text = instrumento.Comentarios;
-                frmComentarioInstrumento.Instrumento.InformacionAdicional = new InformacionAdicionalInstrumento();
-                frmComentarioInstrumento.ShowDialog();
-            }
-            else
-            {
-                AccionPorRealizarDespuesDeSeleccion(instrumento);
-            }
+            serviceProvider = Program.services.BuildServiceProvider();
+            frmInformacionAdicionalInstrumento frmComentarioInstrumento = new frmInformacionAdicionalInstrumento(TipoTransaccion.Insertar, serviceProvider.GetService<TipoTrabajoService>());
+            frmComentarioInstrumento.OnInformacionAdicionalAgregada += OnInformacionAgregada;
+            frmComentarioInstrumento.Instrumento = instrumento;
+            frmComentarioInstrumento.memoComentariosAcercaInstrumento.Text = instrumento.Comentarios;
+            frmComentarioInstrumento.Instrumento.InformacionAdicional = new InformacionAdicionalInstrumento();
+            frmComentarioInstrumento.ShowDialog();         
         }
 
         private void OnInformacionAgregada(InstrumentoLista instrumento)
         {
-            AccionPorRealizarDespuesDeSeleccion(instrumento);
-        }
-
-        private void AccionPorRealizarDespuesDeSeleccion(InstrumentoLista instrumento)
-        {
-
-            var yaFueSeleccionado = YaFueSeleccionadoElInstrumento(instrumento.InstrumentoId);
-            if (!instrumento.Seleccionado && yaFueSeleccionado) QuitarInstrumentoDeListaDeSeleccionados(instrumento.InstrumentoId);
-
-            if (instrumento.Seleccionado && !yaFueSeleccionado) AgregarInstrumentoEnListaDeSeleccionados(instrumento);
-
-            if (instrumento.Seleccionado && yaFueSeleccionado)
-            {
-                instrumentosSeleccionados.ToList().ForEach(x =>
-                {
-                    if (x.InstrumentoId == instrumento.InstrumentoId)
-                    {
-
-                        x.Instrumento.Comentarios = instrumento.InformacionAdicional.ComentariosAcercaInstrumento;
-                        x.Comentarios = instrumento.InformacionAdicional.Comentarios;
-                        x.Prioridad = instrumento.InformacionAdicional.Prioridad;
-                        x.TipoTrabajoId = instrumento.InformacionAdicional.TipoTrabajoId;
-                        x.FechaEntregaRequerida = instrumento.InformacionAdicional.FechaEntregaRequerida.Value;
-                        x.InstrumentoId = instrumento.InstrumentoId;
-                        x.Activo = true;
-                    }
-                });
-
-
-                instrumentosDeEmpresa.ForEach(x =>
-                {
-                    if (x.InstrumentoId == instrumento.InstrumentoId)
-                    {
-
-                        x.Comentarios = instrumento.InformacionAdicional.ComentariosAcercaInstrumento;
-
-                        if (x.InformacionAdicional == null)
-                        {
-                            x.InformacionAdicional = new InformacionAdicionalInstrumento
-                            {
-                                ComentariosAcercaInstrumento = instrumento.InformacionAdicional.ComentariosAcercaInstrumento,
-                                TipoTrabajo = instrumento.InformacionAdicional.TipoTrabajo,
-                                Comentarios = instrumento.InformacionAdicional.Comentarios,
-                                FechaEntregaRequerida = instrumento.InformacionAdicional.FechaEntregaRequerida,
-                                Prioridad = instrumento.InformacionAdicional.Prioridad,
-                                TipoTrabajoId = instrumento.InformacionAdicional.TipoTrabajoId
-                            };
-                        }
-                        else
-                        {
-
-                            x.InformacionAdicional.ComentariosAcercaInstrumento = instrumento.InformacionAdicional.ComentariosAcercaInstrumento;
-                            x.InformacionAdicional.TipoTrabajo = instrumento.InformacionAdicional.TipoTrabajo;
-                            x.InformacionAdicional.Comentarios = instrumento.InformacionAdicional.Comentarios;
-                            x.InformacionAdicional.FechaEntregaRequerida = instrumento.InformacionAdicional.FechaEntregaRequerida;
-                            x.InformacionAdicional.Prioridad = instrumento.InformacionAdicional.Prioridad;
-                            x.InformacionAdicional.TipoTrabajoId = instrumento.InformacionAdicional.TipoTrabajoId;
-                        }
-                    }
-                });
-
-                gcInstrumentosDeEmpresa.DataSource = instrumentosDeEmpresa;
-                gcInstrumentosDeEmpresa.RefreshDataSource();
-            }
-
-            lblInstrumentosSeleccionados.Text = $"Instrumentos Seleccionados: {instrumentosSeleccionados.Count}";
+            AgregarInstrumentoEnListaDeSeleccionados(instrumento);
         }
 
         private void AgregarInstrumentoEnListaDeSeleccionados(InstrumentoLista instrumento)
@@ -311,14 +231,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             };
 
             instrumentosSeleccionados.Add(ingresoInstrumento);
-
             ActualizarSeleccionDeInstrumento(instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumento.InstrumentoId));
+            SetearTotales();
         }
 
         private void QuitarInstrumentoDeListaDeSeleccionados(int instrumentoId)
         {
             instrumentosSeleccionados = instrumentosSeleccionados.Where(x => x.InstrumentoId != instrumentoId).ToList();
             ActualizarSeleccionDeInstrumento(instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoId));
+            SetearTotales();
         }
 
         private bool YaFueSeleccionadoElInstrumento(int instrumentoId)
@@ -339,35 +260,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
         private void ActualizarSeleccionDeInstrumento(InstrumentoLista instrumentoLista)
         {
-            instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId).Seleccionado = instrumentoLista.Seleccionado;
-            instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId).InformacionAdicional = instrumentoLista.InformacionAdicional;
-
-            if (!instrumentoLista.Seleccionado)
-            {
-                var instrumento = _instrumentoService.ObtenerInstrumento(instrumentoLista.InstrumentoId);
-
-                if (instrumento.Type != TypeResponse.Ok)
-                {
-                    instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId).Comentarios = "";
-                }
-                else
-                {
-                    instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId).Comentarios = instrumento.Data.Comentarios;
-                }
-            }
-            else
-            {
-                instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId).Comentarios = instrumentoLista.InformacionAdicional.ComentariosAcercaInstrumento;
-            }
-
             instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId).ClasificacionConcatenada = $"{instrumentoLista.Clasificacion.TipoInstrumento.Descripcion}/{instrumentoLista.Clasificacion.Marca.Descripcion}/{instrumentoLista.Clasificacion.Modelo.Descripcion}";
-            instrumentosDeEmpresa.ForEach(x =>
-            {
-                if (!x.Seleccionado)
-                {
-                    x.InformacionAdicional = new InformacionAdicionalInstrumento();
-                }
-            });
+
+            gcInstrumentosSeleccionados.DataSource = instrumentosSeleccionados;
+            gcInstrumentosSeleccionados.RefreshDataSource();
 
             gcInstrumentosDeEmpresa.DataSource = instrumentosDeEmpresa;
             gcInstrumentosDeEmpresa.RefreshDataSource();
@@ -462,10 +358,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             gcInstrumentosDeEmpresa.DataSource = null;
             gcInstrumentosDeEmpresa.DataSource = instrumentosDeEmpresa;
+
+            SetearTotales();
+        }
+
+        private void SetearTotales()
+        {
             lblTotalInstrumentos.Visible = true;
             lblInstrumentosSeleccionados.Visible = true;
-            lblTotalInstrumentos.Text = $"Total Instrumentos: {instrumentos.Count}";
-            lblInstrumentosSeleccionados.Text = $"Instrumentos Seleccionados: {instrumentosSeleccionados.Count}";
+            lblTotalInstrumentos.Text = $"Total Instrumentos: {gvInstrumentosDeEmpresa.DataRowCount}";
+            lblInstrumentosSeleccionados.Text = $"Instrumentos Seleccionados: {gvInstrumentosSeleccionados.DataRowCount}";
         }
 
         private void ObtenerContactosDeEmpresaSeleccionada()
@@ -897,6 +799,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 frmEmpresas.CargarDatosDeEmpresas();
                 frmEmpresas.ShowDialog();
             }
+        }
+
+        private void frmNuevoIngreso_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelControl8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

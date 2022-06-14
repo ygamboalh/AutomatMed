@@ -62,6 +62,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             _empresaService = empresaService;
             CargarClasificacionesDeInstrumentos();
 
+            dateFechaCompraCliente.CustomFormat = "";
+            dateFechaCompraCliente.CustomFormat = dateFechaCompraCliente.CustomFormat;
+
+            dateFechaCompraFabricante.CustomFormat = "";
+
             EstablecerColorBotonGuardar();
             EstablecerNombreYTituloPopupAgregarInstrumentos();
             EstablecerColorBotonPorDefecto();
