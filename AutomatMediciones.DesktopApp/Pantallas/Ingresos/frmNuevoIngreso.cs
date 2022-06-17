@@ -37,6 +37,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private readonly EstadoService _estadoService;
         private readonly string _textoEmail;
 
+        ICollection<InstrumentoLista> instrumentosListaSeleccionados;
         ICollection<IngresoInstrumentoDto> instrumentosSeleccionados;
 
         List<UsuarioDto> copiasEnCorreo;
@@ -74,11 +75,25 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             Ingreso = new IngresoDto();
 
+
+            instrumentosListaSeleccionados = new List<InstrumentoLista>();
             instrumentosSeleccionados = new List<IngresoInstrumentoDto>();
             instrumentosDeEmpresa = new List<InstrumentoLista>();
 
             btnAgregarAListaSeleccionados.Click += onSeleccionaInstrumento;
             btnEditarInstrumento.Click += clickEditarInstrumento;
+
+
+            bntBorrarInstrumento.Click += clickBorrarInstrumento;
+            btnEditarComentario.Click += clickEditarComentario;
+        }
+
+        private void clickBorrarInstrumento(object sender, EventArgs e)
+        {
+            var instrumento = gvInstrumentosSeleccionados.GetFocusedRow() as Dtos.InstrumentoLista;
+            if (instrumento == null) return;
+
+            QuitarInstrumentoDeListaDeSeleccionados(instrumento.InstrumentoId);
         }
 
         private void clickEditarInstrumento(object sender, EventArgs e)
@@ -169,13 +184,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
         private void clickEditarComentario(object sender, EventArgs e)
         {
-            var instrumento = gvInstrumentosDeEmpresa.GetFocusedRow() as Dtos.InstrumentoLista;
+            var instrumento = gvInstrumentosSeleccionados.GetFocusedRow() as Dtos.InstrumentoLista;
             if (instrumento == null) return;
 
             var ingresoInstrumento = instrumentosSeleccionados.FirstOrDefault(x => x.InstrumentoId.Equals(instrumento.InstrumentoId));
             if (ingresoInstrumento == null)
             {
-                Notificaciones.MensajeAdvertencia("El instrumento que intenta editar no ha sido seleccionado.");
                 return;
             }
 
@@ -188,7 +202,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
         private void OnInformacionAdicionalActualizada(InstrumentoLista instrumento)
         {
-            //AccionPorRealizarDespuesDeSeleccion(instrumento);
+            instrumentosListaSeleccionados = instrumentosListaSeleccionados.Where(x => x.InstrumentoId != instrumento.InstrumentoId).ToList();
+            instrumentosSeleccionados = instrumentosSeleccionados.Where(x => x.InstrumentoId != instrumento.InstrumentoId).ToList();
+
+            AgregarInstrumentoEnListaDeSeleccionados(instrumento);
+          
         }
 
         private void onSeleccionaInstrumento(object sender, EventArgs e)
@@ -220,16 +238,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 FechaEntregaRequerida = instrumento.InformacionAdicional.FechaEntregaRequerida.Value,
                 InstrumentoId = instrumento.InstrumentoId,
                 Activo = true,
-                Instrumento = new InstrumentoDto
-                {
-                    InstrumentoId = instrumento.InstrumentoId,
-                    Comentarios = instrumento.InformacionAdicional.ComentariosAcercaInstrumento,
-                    NumeroSerie = instrumento.NumeroSerie,
-                    EmpresaId = instrumento.EmpresaId
-                }
-
+                Instrumento = instrumento
             };
 
+         
             instrumentosSeleccionados.Add(ingresoInstrumento);
             ActualizarSeleccionDeInstrumento(instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumento.InstrumentoId));
             SetearTotales();
@@ -238,7 +250,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private void QuitarInstrumentoDeListaDeSeleccionados(int instrumentoId)
         {
             instrumentosSeleccionados = instrumentosSeleccionados.Where(x => x.InstrumentoId != instrumentoId).ToList();
-            ActualizarSeleccionDeInstrumento(instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoId));
+            instrumentosListaSeleccionados = instrumentosListaSeleccionados.Where(x => x.InstrumentoId != instrumentoId).ToList();
+
+            gcInstrumentosSeleccionados.DataSource = instrumentosListaSeleccionados;
+            gcInstrumentosSeleccionados.RefreshDataSource();
             SetearTotales();
         }
 
@@ -260,9 +275,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
         private void ActualizarSeleccionDeInstrumento(InstrumentoLista instrumentoLista)
         {
-            instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId).ClasificacionConcatenada = $"{instrumentoLista.Clasificacion.TipoInstrumento.Descripcion}/{instrumentoLista.Clasificacion.Marca.Descripcion}/{instrumentoLista.Clasificacion.Modelo.Descripcion}";
+            var instrumento = instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId);
+            instrumento.ClasificacionConcatenada = $"{instrumentoLista.Clasificacion.TipoInstrumento.Descripcion}/{instrumentoLista.Clasificacion.Marca.Descripcion}/{instrumentoLista.Clasificacion.Modelo.Descripcion}";
 
-            gcInstrumentosSeleccionados.DataSource = instrumentosSeleccionados;
+            instrumentosListaSeleccionados.Add(instrumento);
+            gcInstrumentosSeleccionados.DataSource = instrumentosListaSeleccionados;
             gcInstrumentosSeleccionados.RefreshDataSource();
 
             gcInstrumentosDeEmpresa.DataSource = instrumentosDeEmpresa;
@@ -759,11 +776,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             if (correoHelper.EnviarCorreo(PrepararCorreo()))
             {
                 Notificaciones.MensajeConfirmacion("¡El ingreso se ha guardado exitosamente!");
+                return;
             }
-            else
-            {
-                Notificaciones.MensajeConfirmacion("El ingreso se ha guardado exitosamente, pero hubo una falla en el momento de enviar la notificación por correo electrónico.");
-            }
+          
+            Notificaciones.MensajeConfirmacion("El ingreso se ha guardado exitosamente, pero hubo una falla en el momento de enviar la notificación por correo electrónico.");
+            return;
+            
         }
 
         private void glContacto_TextChanged(object sender, EventArgs e)
@@ -799,16 +817,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 frmEmpresas.CargarDatosDeEmpresas();
                 frmEmpresas.ShowDialog();
             }
-        }
-
-        private void frmNuevoIngreso_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelControl8_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
