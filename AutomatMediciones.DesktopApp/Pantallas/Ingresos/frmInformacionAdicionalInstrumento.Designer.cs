@@ -61,7 +61,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.memoComentarios.Location = new System.Drawing.Point(35, 468);
             this.memoComentarios.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.memoComentarios.Name = "memoComentarios";
-            this.memoComentarios.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.memoComentarios.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.memoComentarios.Properties.Appearance.Options.UseFont = true;
             this.memoComentarios.Size = new System.Drawing.Size(742, 113);
             this.memoComentarios.TabIndex = 26;
@@ -207,9 +207,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             // dateFechaEntregaRequerida
             // 
+            this.dateFechaEntregaRequerida.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.dateFechaEntregaRequerida.Location = new System.Drawing.Point(35, 159);
             this.dateFechaEntregaRequerida.Name = "dateFechaEntregaRequerida";
-            this.dateFechaEntregaRequerida.Size = new System.Drawing.Size(438, 23);
+            this.dateFechaEntregaRequerida.Size = new System.Drawing.Size(438, 27);
             this.dateFechaEntregaRequerida.TabIndex = 33;
             // 
             // memoComentariosAcercaInstrumento
@@ -217,8 +218,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.memoComentariosAcercaInstrumento.Location = new System.Drawing.Point(35, 324);
             this.memoComentariosAcercaInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.memoComentariosAcercaInstrumento.Name = "memoComentariosAcercaInstrumento";
-            this.memoComentariosAcercaInstrumento.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.memoComentariosAcercaInstrumento.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.memoComentariosAcercaInstrumento.Properties.Appearance.Options.UseFont = true;
+            this.memoComentariosAcercaInstrumento.Properties.ReadOnly = true;
+            this.memoComentariosAcercaInstrumento.Properties.UseReadOnlyAppearance = false;
             this.memoComentariosAcercaInstrumento.Size = new System.Drawing.Size(742, 113);
             this.memoComentariosAcercaInstrumento.TabIndex = 35;
             // 
@@ -237,7 +240,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(824, 671);
+            this.ClientSize = new System.Drawing.Size(813, 671);
             this.Controls.Add(this.memoComentariosAcercaInstrumento);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.dateFechaEntregaRequerida);

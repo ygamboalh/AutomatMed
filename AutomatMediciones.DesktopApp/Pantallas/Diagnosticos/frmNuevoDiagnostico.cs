@@ -74,6 +74,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             var modelo = IngresoInstrumento.Instrumento.Clasificacion.Modelo.Descripcion;
             var serie = IngresoInstrumento.Instrumento.NumeroSerie;
 
+            txtContactoACargo.Text = $"{IngresoInstrumento.Ingreso.NombreContacto} {IngresoInstrumento.Ingreso.ApellidoContacto}";  
+            txtCliente.Text = IngresoInstrumento.Ingreso.NombreEmpresa;
+            txtNumeroServicioTecnico.Text = IngresoInstrumento.NumeroServicioTecnico;
             glUsuariosResponsables.EditValue = IngresoInstrumento.ResponsableId;
             usuarioSeleccionado = IngresoInstrumento.Ingreso.Responsable;
             txtClasificacion.Text = $"{tipoInstrumento} / {marca} / {modelo} - Serie: {serie}";
@@ -94,8 +97,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             }
             else
             {
-
-
                 v_segundos = Convert.ToInt32(IngresoInstrumento.TiempoConsumido.Value.Seconds);
                 v_minutos = Convert.ToInt32(IngresoInstrumento.TiempoConsumido.Value.Minutes);
                 v_hora = Convert.ToInt32(IngresoInstrumento.TiempoConsumido.Value.Hours);
