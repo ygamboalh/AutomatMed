@@ -43,6 +43,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         List<MarcaDto> marcas = new List<MarcaDto>();
         List<ModeloDto> modelos = new List<ModeloDto>();
 
+        ctlEncabezadoPantalla ctlEncabezadoPantalla3;
+
         public frmNuevoInstrumento(TipoTransaccion tipoTransaccion,
                                    ClasificacionInstrumentoService clasificacionInstrumentoService,
                                    InstrumentoService instrumentoService,
@@ -61,11 +63,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             _tipoDeInstrumentoService = tipoDeInstrumentoService;
             _empresaService = empresaService;
             CargarClasificacionesDeInstrumentos();
-
-            dateFechaCompraCliente.CustomFormat = "";
-            dateFechaCompraCliente.CustomFormat = dateFechaCompraCliente.CustomFormat;
-
-            dateFechaCompraFabricante.CustomFormat = "";
 
             EstablecerColorBotonGuardar();
             EstablecerNombreYTituloPopupAgregarInstrumentos();
@@ -111,8 +108,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             leMarcas.EditValue = NuevoInstrumento.Clasificacion.MarcaId;
             leModelos.EditValue = NuevoInstrumento.Clasificacion.ModeloId;
             txtNumeroSerie.Text = NuevoInstrumento.NumeroSerie;
-            dateFechaCompraCliente.Value = NuevoInstrumento.FechaCompraCliente.Value;
-            dateFechaCompraFabricante.Value = NuevoInstrumento.FechaCompraFabricante.Value;
+            dateFechaCompraCliente.EditValue = NuevoInstrumento.FechaCompraCliente.HasValue ? NuevoInstrumento.FechaCompraCliente.Value : null;
+            dateFechaCompraFabricante.EditValue = NuevoInstrumento.FechaCompraFabricante.HasValue ? NuevoInstrumento.FechaCompraCliente.Value : null;
             nmGarantia.Value = NuevoInstrumento.Garantia;
 
             EmpresaSeleccionada = _empresaService.ObtenerEmpresaPorId(NuevoInstrumento.EmpresaId).Data;
@@ -121,7 +118,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
         private void EstablecerNombreYTituloPopupAgregarInstrumentos()
         {
-            ctlEncabezadoPantalla ctlEncabezadoPantalla3 = new ctlEncabezadoPantalla();
+            ctlEncabezadoPantalla3 = new ctlEncabezadoPantalla();
             ctlEncabezadoPantalla3.Parent = this;
             ctlEncabezadoPantalla3.Height = 43;
             ctlEncabezadoPantalla3.Dock = DockStyle.Top;
@@ -158,8 +155,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
             if (TipoTransaccion == TipoTransaccion.Insertar)
             {
-
-
                 CargarClasificacionesDeInstrumentos();
                 NuevoInstrumento.Clasificacion = clasificaciones.FirstOrDefault(x => x.ClasificacionId == NuevoInstrumento.ClasificacionId);
 
@@ -170,7 +165,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
                     OnInstrumentoAgregado?.Invoke(NuevoInstrumento);
                     this.Close();
                 }
-
                 SplashScreenManager.CloseForm();
             }
             else
@@ -264,7 +258,23 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             try
             {
                 var resultado = _instrumentoService.RegistrarInstrumento(NuevoInstrumento);
-                if (resultado.Type != TypeResponse.Ok)
+                if (resultado.Type == TypeResponse.ErrorValidation)
+                {
+                    if (Notificaciones.PreguntaConfirmacion($"{resultado.Message} ¿Desea actualizar la empresa vinculada al instrumento?") == DialogResult.Yes)
+                    {
+                        var instrumento = _instrumentoService.ObtenerInstrumento(NuevoInstrumento.Clasificacion.MarcaId, NuevoInstrumento.Clasificacion.ModeloId,
+                                                                                 NuevoInstrumento.Clasificacion.TipoInstrumentoId, NuevoInstrumento.NumeroSerie);
+
+                        TipoTransaccion = TipoTransaccion.Actualizar;
+                        ctlEncabezadoPantalla3.lblTitulo.Text = "Editar Instrumento";
+
+                        NuevoInstrumento = instrumento.Data;
+                        CargarVariablesInstrumentos();
+                        SetearValoresParaActualizar();
+                    }
+                    return false;
+                }
+                if (resultado.Type != TypeResponse.Ok && resultado.Type != TypeResponse.ErrorValidation)
                 {
                     Notificaciones.MensajeError(resultado.Message);
                     return false;
@@ -342,8 +352,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             NuevoInstrumento.NombreEmpresa = EmpresaSeleccionada.NombreEmpresa;
             NuevoInstrumento.ClasificacionId = clasificacionSegunFiltrosSeleccionados.ClasificacionId;
             NuevoInstrumento.NumeroSerie = txtNumeroSerie.Text;
-            NuevoInstrumento.FechaCompraFabricante = dateFechaCompraFabricante.Value;
-            NuevoInstrumento.FechaCompraCliente = dateFechaCompraCliente.Value;
+            NuevoInstrumento.FechaCompraFabricante = dateFechaCompraFabricante.EditValue != null ? (DateTime)dateFechaCompraFabricante.EditValue : null;
+            NuevoInstrumento.FechaCompraCliente = dateFechaCompraCliente.EditValue != null ? (DateTime)dateFechaCompraCliente.EditValue : null;
             NuevoInstrumento.Garantia = (int)nmGarantia.Value;
 
             return true;
@@ -445,6 +455,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             btnNuevaVinculacion.BackColor = ColorHelper.ObtenerColorEnRGB("Default");
             btnNuevaVinculacion.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
             btnNuevaVinculacion.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+
+            btnPrepararCertificado.BackColor = ColorHelper.ObtenerColorEnRGB("Default");
+            btnPrepararCertificado.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+            btnPrepararCertificado.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
         private void OnVariableInstrumentoAgregado(VariableInstrumentoDto variableInstrumentoDto)
@@ -479,11 +493,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             frmNuevoCertificadoCalibracion.ShowDialog();
         }
 
-        private void dateFechaCompraFabricante_KeyDown(object sender, KeyEventArgs e)
+        private void txtEmpresaInstrumento_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Back || e.KeyCode == Keys.Delete)
+            if (e.KeyCode == Keys.Enter)
             {
-                dateFechaCompraFabricante.CustomFormat = "";
+                serviceProvider = Program.services.BuildServiceProvider();
+                var frmEmpresas = new frmEmpresas(serviceProvider.GetService<EmpresaService>());
+                frmEmpresas.OnSeleccionaEmpresa += OnEmpresaSeleccionada;
+                frmEmpresas.txtBusqueda.Text = txtEmpresaInstrumento.Text;
+                frmEmpresas.CargarDatosDeEmpresas();
+                frmEmpresas.ShowDialog();
             }
         }
     }

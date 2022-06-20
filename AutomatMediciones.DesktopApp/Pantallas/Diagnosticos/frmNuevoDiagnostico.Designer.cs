@@ -58,7 +58,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.memoComentariosInstrumento = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.btnPrepararCertificado = new FontAwesome.Sharp.IconButton();
             this.txtCliente = new DevExpress.XtraEditors.TextEdit();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.txtNumeroServicioTecnico = new DevExpress.XtraEditors.TextEdit();
@@ -390,24 +390,25 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.labelControl1.TabIndex = 180;
             this.labelControl1.Text = "Comentarios sobre el instrumento";
             // 
-            // iconButton1
+            // btnPrepararCertificado
             // 
-            this.iconButton1.FlatAppearance.BorderSize = 0;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Save;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 30;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(47, 840);
-            this.iconButton1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(237, 52);
-            this.iconButton1.TabIndex = 181;
-            this.iconButton1.Text = "Guardar Diagnóstico";
-            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.iconButton1.UseVisualStyleBackColor = true;
+            this.btnPrepararCertificado.FlatAppearance.BorderSize = 0;
+            this.btnPrepararCertificado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrepararCertificado.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnPrepararCertificado.IconChar = FontAwesome.Sharp.IconChar.Save;
+            this.btnPrepararCertificado.IconColor = System.Drawing.Color.Black;
+            this.btnPrepararCertificado.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnPrepararCertificado.IconSize = 30;
+            this.btnPrepararCertificado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrepararCertificado.Location = new System.Drawing.Point(47, 840);
+            this.btnPrepararCertificado.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnPrepararCertificado.Name = "btnPrepararCertificado";
+            this.btnPrepararCertificado.Size = new System.Drawing.Size(237, 52);
+            this.btnPrepararCertificado.TabIndex = 181;
+            this.btnPrepararCertificado.Text = "Preparar Certificado";
+            this.btnPrepararCertificado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrepararCertificado.UseVisualStyleBackColor = true;
+            this.btnPrepararCertificado.Click += new System.EventHandler(this.btnPrepararCertificado_Click);
             // 
             // txtCliente
             // 
@@ -489,7 +490,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.txtCliente);
             this.Controls.Add(this.labelControl13);
-            this.Controls.Add(this.iconButton1);
+            this.Controls.Add(this.btnPrepararCertificado);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.memoComentariosInstrumento);
             this.Controls.Add(this.lblTiempo);
@@ -565,7 +566,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
         private System.Windows.Forms.Timer timer1;
         private DevExpress.XtraEditors.MemoEdit memoComentariosInstrumento;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton btnPrepararCertificado;
         private DevExpress.XtraEditors.TextEdit txtCliente;
         private DevExpress.XtraEditors.LabelControl labelControl13;
         private DevExpress.XtraEditors.TextEdit txtNumeroServicioTecnico;

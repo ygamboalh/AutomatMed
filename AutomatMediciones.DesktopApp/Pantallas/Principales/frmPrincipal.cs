@@ -1,6 +1,8 @@
 ﻿using AutomatMediciones.DesktopApp.Enums;
 using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.DesktopApp.Pantallas.Celdas;
 using AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion;
+using AutomatMediciones.DesktopApp.Pantallas.Clasificaciones;
 using AutomatMediciones.DesktopApp.Pantallas.Ingresos;
 using AutomatMediciones.DesktopApp.Pantallas.Instrumentos;
 using AutomatMediciones.DesktopApp.Pantallas.Marcas;
@@ -10,7 +12,6 @@ using AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento;
 using AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using DevExpress.XtraEditors;
-using AutomatMediciones.DesktopApp.Pantallas.Clasificaciones;
 using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
 using System.Drawing;
@@ -153,6 +154,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
                     var frmInstrumentos = new frmInstrumentos(serviceProvider.GetService<InstrumentoService>());
                     XtraForm nuevoInstrumento = frmInstrumentos;
                     AgregarPantalla(ref nuevoInstrumento);
+                    SplashScreenManager.CloseForm();
+                    break;
+                case IndiceMenu.Celdas:
+                    SplashScreenManager.ShowForm(typeof(frmSaving));
+                    serviceProvider = Program.services.BuildServiceProvider();
+                    var frmCeldas = new frmCeldas(serviceProvider.GetService<CeldaService>());
+                    XtraForm celda = frmCeldas;
+                    AgregarPantalla(ref celda);
                     SplashScreenManager.CloseForm();
                     break;
             }

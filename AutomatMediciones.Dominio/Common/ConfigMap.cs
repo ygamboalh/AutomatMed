@@ -27,6 +27,10 @@ namespace AutomatMediciones.Dominio.Common
             CreateMap<VariablePatron, VariablePatronDto>().ReverseMap();
             CreateMap<Certificado, CertificadoDto>().ReverseMap();
             CreateMap<VariableCertificado, VariableCertificadoDto>().ReverseMap();
+            CreateMap<TipoCelda, TipoCeldaDto>().ReverseMap();
+            CreateMap<Celda, CeldaDto>().ReverseMap();
+            CreateMap<TipoCeldaModelo, TipoCeldaModeloDto>().ReverseMap();
+            CreateMap<CeldaInstrumento, CeldaInstrumentoDto>().ReverseMap();
         }
     }
 }

@@ -53,8 +53,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.labelControl18 = new DevExpress.XtraEditors.LabelControl();
             this.btnGuardarInstrumento = new FontAwesome.Sharp.IconButton();
             this.txtDescripcionInstrumento = new DevExpress.XtraEditors.TextEdit();
-            this.dateFechaCompraFabricante = new System.Windows.Forms.DateTimePicker();
-            this.dateFechaCompraCliente = new System.Windows.Forms.DateTimePicker();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btnAgregarClasificacion = new FontAwesome.Sharp.IconButton();
@@ -75,11 +73,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.btnEditar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.btnesactivar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.btnNuevaVinculacion = new FontAwesome.Sharp.IconButton();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.btnPrepararCertificado = new FontAwesome.Sharp.IconButton();
             this.nmGarantia = new System.Windows.Forms.NumericUpDown();
             this.leTipoInstrumento = new DevExpress.XtraEditors.LookUpEdit();
             this.leMarcas = new DevExpress.XtraEditors.LookUpEdit();
             this.leModelos = new DevExpress.XtraEditors.LookUpEdit();
+            this.dateFechaCompraFabricante = new DevExpress.XtraEditors.DateEdit();
+            this.dateFechaCompraCliente = new DevExpress.XtraEditors.DateEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpresaInstrumento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroSerie.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcionInstrumento.Properties)).BeginInit();
@@ -92,6 +92,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             ((System.ComponentModel.ISupportInitialize)(this.leTipoInstrumento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leMarcas.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leModelos.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateFechaCompraFabricante.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateFechaCompraFabricante.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateFechaCompraCliente.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateFechaCompraCliente.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl20
@@ -113,10 +117,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.txtEmpresaInstrumento.Name = "txtEmpresaInstrumento";
             this.txtEmpresaInstrumento.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtEmpresaInstrumento.Properties.Appearance.Options.UseFont = true;
-            this.txtEmpresaInstrumento.Properties.ReadOnly = true;
             this.txtEmpresaInstrumento.Properties.UseReadOnlyAppearance = false;
             this.txtEmpresaInstrumento.Size = new System.Drawing.Size(499, 30);
             this.txtEmpresaInstrumento.TabIndex = 115;
+            this.txtEmpresaInstrumento.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtEmpresaInstrumento_KeyDown);
             // 
             // btnAbrirPopupEmpresaPorInstrumento
             // 
@@ -244,27 +248,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.txtDescripcionInstrumento.Properties.UseReadOnlyAppearance = false;
             this.txtDescripcionInstrumento.Size = new System.Drawing.Size(528, 30);
             this.txtDescripcionInstrumento.TabIndex = 94;
-            // 
-            // dateFechaCompraFabricante
-            // 
-            this.dateFechaCompraFabricante.CalendarFont = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dateFechaCompraFabricante.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dateFechaCompraFabricante.Location = new System.Drawing.Point(415, 195);
-            this.dateFechaCompraFabricante.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.dateFechaCompraFabricante.Name = "dateFechaCompraFabricante";
-            this.dateFechaCompraFabricante.Size = new System.Drawing.Size(346, 30);
-            this.dateFechaCompraFabricante.TabIndex = 117;
-            this.dateFechaCompraFabricante.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dateFechaCompraFabricante_KeyDown);
-            // 
-            // dateFechaCompraCliente
-            // 
-            this.dateFechaCompraCliente.CalendarFont = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dateFechaCompraCliente.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dateFechaCompraCliente.Location = new System.Drawing.Point(786, 195);
-            this.dateFechaCompraCliente.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.dateFechaCompraCliente.Name = "dateFechaCompraCliente";
-            this.dateFechaCompraCliente.Size = new System.Drawing.Size(328, 30);
-            this.dateFechaCompraCliente.TabIndex = 118;
             // 
             // labelControl1
             // 
@@ -499,25 +482,25 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.btnNuevaVinculacion.UseVisualStyleBackColor = true;
             this.btnNuevaVinculacion.Click += new System.EventHandler(this.btnNuevaVinculacion_Click);
             // 
-            // iconButton1
+            // btnPrepararCertificado
             // 
-            this.iconButton1.FlatAppearance.BorderSize = 0;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.ListAlt;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 30;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(30, 637);
-            this.iconButton1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(220, 52);
-            this.iconButton1.TabIndex = 132;
-            this.iconButton1.Text = "Preparar Certificado";
-            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.iconButton1.UseVisualStyleBackColor = true;
-            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            this.btnPrepararCertificado.FlatAppearance.BorderSize = 0;
+            this.btnPrepararCertificado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrepararCertificado.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnPrepararCertificado.IconChar = FontAwesome.Sharp.IconChar.ListAlt;
+            this.btnPrepararCertificado.IconColor = System.Drawing.Color.Black;
+            this.btnPrepararCertificado.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnPrepararCertificado.IconSize = 30;
+            this.btnPrepararCertificado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrepararCertificado.Location = new System.Drawing.Point(30, 637);
+            this.btnPrepararCertificado.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnPrepararCertificado.Name = "btnPrepararCertificado";
+            this.btnPrepararCertificado.Size = new System.Drawing.Size(220, 52);
+            this.btnPrepararCertificado.TabIndex = 132;
+            this.btnPrepararCertificado.Text = "Preparar Certificado";
+            this.btnPrepararCertificado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrepararCertificado.UseVisualStyleBackColor = true;
+            this.btnPrepararCertificado.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // nmGarantia
             // 
@@ -579,16 +562,44 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.leModelos.Size = new System.Drawing.Size(291, 30);
             this.leModelos.TabIndex = 155;
             // 
+            // dateFechaCompraFabricante
+            // 
+            this.dateFechaCompraFabricante.EditValue = null;
+            this.dateFechaCompraFabricante.Location = new System.Drawing.Point(415, 196);
+            this.dateFechaCompraFabricante.Name = "dateFechaCompraFabricante";
+            this.dateFechaCompraFabricante.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dateFechaCompraFabricante.Properties.Appearance.Options.UseFont = true;
+            this.dateFechaCompraFabricante.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateFechaCompraFabricante.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateFechaCompraFabricante.Size = new System.Drawing.Size(346, 30);
+            this.dateFechaCompraFabricante.TabIndex = 156;
+            // 
+            // dateFechaCompraCliente
+            // 
+            this.dateFechaCompraCliente.EditValue = null;
+            this.dateFechaCompraCliente.Location = new System.Drawing.Point(786, 196);
+            this.dateFechaCompraCliente.Name = "dateFechaCompraCliente";
+            this.dateFechaCompraCliente.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dateFechaCompraCliente.Properties.Appearance.Options.UseFont = true;
+            this.dateFechaCompraCliente.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dateFechaCompraCliente.Size = new System.Drawing.Size(291, 30);
+            this.dateFechaCompraCliente.TabIndex = 157;
+            // 
             // frmNuevoInstrumento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1141, 709);
+            this.Controls.Add(this.dateFechaCompraCliente);
+            this.Controls.Add(this.dateFechaCompraFabricante);
             this.Controls.Add(this.leModelos);
             this.Controls.Add(this.leMarcas);
             this.Controls.Add(this.leTipoInstrumento);
             this.Controls.Add(this.nmGarantia);
-            this.Controls.Add(this.iconButton1);
+            this.Controls.Add(this.btnPrepararCertificado);
             this.Controls.Add(this.btnNuevaVinculacion);
             this.Controls.Add(this.gcVariablesInstrumentos);
             this.Controls.Add(this.labelControl4);
@@ -597,8 +608,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.Controls.Add(this.btnAgregarClasificacion);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.labelControl1);
-            this.Controls.Add(this.dateFechaCompraCliente);
-            this.Controls.Add(this.dateFechaCompraFabricante);
             this.Controls.Add(this.labelControl20);
             this.Controls.Add(this.txtEmpresaInstrumento);
             this.Controls.Add(this.btnAbrirPopupEmpresaPorInstrumento);
@@ -615,7 +624,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.IconOptions.ShowIcon = false;
             this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "frmNuevoInstrumento";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;          
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpresaInstrumento.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroSerie.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcionInstrumento.Properties)).EndInit();
@@ -628,6 +637,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             ((System.ComponentModel.ISupportInitialize)(this.leTipoInstrumento.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leMarcas.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leModelos.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateFechaCompraFabricante.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateFechaCompraFabricante.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateFechaCompraCliente.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dateFechaCompraCliente.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -646,8 +659,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         private DevExpress.XtraEditors.LabelControl labelControl18;
         private FontAwesome.Sharp.IconButton btnGuardarInstrumento;
         private DevExpress.XtraEditors.TextEdit txtDescripcionInstrumento;
-        private System.Windows.Forms.DateTimePicker dateFechaCompraFabricante;
-        private System.Windows.Forms.DateTimePicker dateFechaCompraCliente;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private FontAwesome.Sharp.IconButton btnAgregarClasificacion;
@@ -668,10 +679,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         private DevExpress.XtraGrid.Columns.GridColumn colEditar;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEditar;
         private FontAwesome.Sharp.IconButton btnNuevaVinculacion;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton btnPrepararCertificado;
         private System.Windows.Forms.NumericUpDown nmGarantia;
         private DevExpress.XtraEditors.LookUpEdit leTipoInstrumento;
         private DevExpress.XtraEditors.LookUpEdit leMarcas;
         private DevExpress.XtraEditors.LookUpEdit leModelos;
+        private DevExpress.XtraEditors.DateEdit dateFechaCompraFabricante;
+        private DevExpress.XtraEditors.DateEdit dateFechaCompraCliente;
     }
 }

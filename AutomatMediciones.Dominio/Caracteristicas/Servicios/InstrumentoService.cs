@@ -57,6 +57,26 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
+        public Response<InstrumentoDto> ObtenerInstrumento(int marcaId, int modeloId, int tipoInstrumentoId, string serie)
+        {
+            try
+            {
+                var instrumentos = _automatMedicionesDbContext.Instrumentos.AsQueryable()
+                                                                              .Include(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
+                                                                             .Include(x => x.Clasificacion).ThenInclude(x => x.Marca)
+                                                                             .Include(x => x.Clasificacion).ThenInclude(x => x.Modelo)
+                                                                             .FirstOrDefault(x => x.NumeroSerie == serie &&
+                                                                                                  x.Clasificacion.MarcaId == marcaId &&
+                                                                                                  x.Clasificacion.ModeloId == modeloId &&
+                                                                                                  x.Clasificacion.TipoInstrumentoId == tipoInstrumentoId);
+                return Response<InstrumentoDto>.Ok("Ok", _mapper.Map<InstrumentoDto>(instrumentos));
+            }
+            catch (Exception exc)
+            {
+                return Response<InstrumentoDto>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
         public Response<List<InstrumentoDto>> ObtenerInstrumentos(string nombreEmpresa)
         {
             try
@@ -81,11 +101,16 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
         {
             try
             {
-                var existeConMismaDescripcion = _automatMedicionesDbContext.Instrumentos.Any(x => x.Descripcion == instrumentoDto.Descripcion && x.EmpresaId == instrumentoDto.EmpresaId && x.Activo);
-                if (existeConMismaDescripcion) return Response<InstrumentoDto>.Error($"Ya existe un instrumento para la empresa {instrumentoDto.NombreEmpresa} con esta misma descripción.", null);
+                var instrumentoDb = _automatMedicionesDbContext.Instrumentos.Include(x => x.Clasificacion).ThenInclude(x => x.Marca)
+                                                                                  .Include(x => x.Clasificacion).ThenInclude(x => x.Modelo)
+                                                                                  .Include(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
+                                                                                  .FirstOrDefault(x => x.Activo && 
+                                                                                                        x.NumeroSerie == instrumentoDto.NumeroSerie &&
+                                                                                                        x.Clasificacion.ModeloId == instrumentoDto.Clasificacion.ModeloId &&
+                                                                                                        x.Clasificacion.MarcaId == instrumentoDto.Clasificacion.MarcaId &&
+                                                                                                        x.Clasificacion.TipoInstrumentoId == instrumentoDto.Clasificacion.TipoInstrumentoId);
 
-                var existeConMismaSerie = _automatMedicionesDbContext.Instrumentos.Any(x => x.NumeroSerie == instrumentoDto.NumeroSerie && x.EmpresaId == instrumentoDto.EmpresaId && x.Activo);
-                if (existeConMismaSerie) return Response<InstrumentoDto>.Error($"Ya existe un instrumento para la empresa {instrumentoDto.NombreEmpresa} con esta misma serie.", null);
+                if (instrumentoDb != null) return Response<InstrumentoDto>.ErrorValidation($"Ya existe un instrumento para la empresa {instrumentoDb.NombreEmpresa} con estas mismas características.", null);
 
                 Instrumento instrumento = new Instrumento
                 {

@@ -1,10 +1,12 @@
 ﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
 using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion;
 using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos.Dtos;
 using AutomatMediciones.DesktopApp.Pantallas.Ingresos.Dtos;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraSplashScreen;
+using Microsoft.Extensions.DependencyInjection;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 
@@ -12,6 +14,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
 {
     public partial class frmNuevoDiagnostico : DevExpress.XtraEditors.XtraForm
     {
+        ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
+
         private readonly UsuarioService _usuarioService;
         private readonly EstadoService _estadoService;
         private readonly IngresoService _ingresoService;
@@ -40,6 +44,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             _configuracionNotificacionService = configuracionNotificacionService;
             EstablecerNombreYTitulo();
             EstablecerColorBotonGuardar();
+            EstablecerColorBotonPorDefecto();
 
             CargarUsuarios();
             CargarEstados();
@@ -74,7 +79,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             var modelo = IngresoInstrumento.Instrumento.Clasificacion.Modelo.Descripcion;
             var serie = IngresoInstrumento.Instrumento.NumeroSerie;
 
-            txtContactoACargo.Text = $"{IngresoInstrumento.Ingreso.NombreContacto} {IngresoInstrumento.Ingreso.ApellidoContacto}";  
+            txtContactoACargo.Text = $"{IngresoInstrumento.Ingreso.NombreContacto} {IngresoInstrumento.Ingreso.ApellidoContacto}";
             txtCliente.Text = IngresoInstrumento.Ingreso.NombreEmpresa;
             txtNumeroServicioTecnico.Text = IngresoInstrumento.NumeroServicioTecnico;
             glUsuariosResponsables.EditValue = IngresoInstrumento.ResponsableId;
@@ -101,6 +106,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
                 v_minutos = Convert.ToInt32(IngresoInstrumento.TiempoConsumido.Value.Minutes);
                 v_hora = Convert.ToInt32(IngresoInstrumento.TiempoConsumido.Value.Hours);
             }
+        }
+
+        private void EstablecerColorBotonPorDefecto()
+        {
+            btnPrepararCertificado.BackColor = ColorHelper.ObtenerColorEnRGB("Default");
+            btnPrepararCertificado.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+            btnPrepararCertificado.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
         private void EstablecerColorBotonGuardar()
@@ -324,6 +336,18 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             IngresoInstrumento.TiempoConsumido = new TimeSpan(v_hora, v_minutos, v_segundos);
             _ingresoService.ActualizarFechaUltimoIngreso(IngresoInstrumento);
             OnDiagnosticoAgregado?.Invoke(IngresoInstrumento);
+        }
+
+        private void btnPrepararCertificado_Click(object sender, EventArgs e)
+        {
+            serviceProvider = Program.services.BuildServiceProvider();
+            var frmNuevoCertificadoCalibracion = new frmNuevoCertificadoCalibracion(IngresoInstrumento.InstrumentoId,
+                serviceProvider.GetService<CertificadoCalibracionService>(),
+                 serviceProvider.GetService<UsuarioService>(),
+                 serviceProvider.GetService<PatronService>(),
+                 serviceProvider.GetService<InstrumentoService>()
+                );
+            frmNuevoCertificadoCalibracion.ShowDialog();
         }
     }
 }

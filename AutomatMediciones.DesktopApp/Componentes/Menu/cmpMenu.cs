@@ -1,6 +1,5 @@
 ﻿using AutomatMediciones.DesktopApp.Enums;
 using AutomatMediciones.DesktopApp.Helpers;
-using Microsoft.Extensions.DependencyInjection;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -148,6 +147,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             pnlVariableMedicion.Visible = activo;
             pnlPatrones.Visible = activo;
             pnlInstrumento.Visible = activo;
+            pnlCeldas.Visible = activo;
         }
 
         private void cmdClasificacionInstrumentos_Click(object sender, System.EventArgs e)
@@ -183,6 +183,11 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
         private void cmdVariablesDeMedicion_Click(object sender, System.EventArgs e)
         {
             OnMenuSeleccionado?.Invoke(IndiceMenu.VariablesMedicion);
+        }
+
+        private void btnCeldas_Click(object sender, System.EventArgs e)
+        {
+            OnMenuSeleccionado?.Invoke(IndiceMenu.Celdas);
         }
     }
 }

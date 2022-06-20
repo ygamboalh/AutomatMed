@@ -674,7 +674,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.btnAgregarNuevInstrumento.Text = "Nuevo Instrumento";
             this.btnAgregarNuevInstrumento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAgregarNuevInstrumento.UseVisualStyleBackColor = true;
-           
             // 
             // panel3
             // 

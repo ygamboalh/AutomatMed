@@ -12,6 +12,7 @@
         TiposInstrumentos = 8,
         VariablesMedicion = 9,
         Patrones = 10,
-        Instrumentos = 11
+        Instrumentos = 11,
+        Celdas = 12
     }
 }

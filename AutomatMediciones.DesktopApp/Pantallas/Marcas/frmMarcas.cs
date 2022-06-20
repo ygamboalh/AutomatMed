@@ -106,7 +106,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
         private void OnMarcaAgregada(MarcaDto marca)
         {
             marcas.Add(marca);
-            gcMarcas.DataSource = marca;
+            gcMarcas.DataSource = marcas;
             gcMarcas.RefreshDataSource();
 
             SetearTotales();

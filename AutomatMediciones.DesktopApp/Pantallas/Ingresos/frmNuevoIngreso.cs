@@ -206,11 +206,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             instrumentosSeleccionados = instrumentosSeleccionados.Where(x => x.InstrumentoId != instrumento.InstrumentoId).ToList();
 
             AgregarInstrumentoEnListaDeSeleccionados(instrumento);
-          
+
         }
 
         private void onSeleccionaInstrumento(object sender, EventArgs e)
-        {          
+        {
             var instrumento = gvInstrumentosDeEmpresa.GetFocusedRow() as InstrumentoLista;
             if (instrumento == null) return;
 
@@ -220,7 +220,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             frmComentarioInstrumento.Instrumento = instrumento;
             frmComentarioInstrumento.memoComentariosAcercaInstrumento.Text = instrumento.Comentarios;
             frmComentarioInstrumento.Instrumento.InformacionAdicional = new InformacionAdicionalInstrumento();
-            frmComentarioInstrumento.ShowDialog();         
+            frmComentarioInstrumento.ShowDialog();
         }
 
         private void OnInformacionAgregada(InstrumentoLista instrumento)
@@ -241,7 +241,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 Instrumento = instrumento
             };
 
-         
+
             instrumentosSeleccionados.Add(ingresoInstrumento);
             ActualizarSeleccionDeInstrumento(instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumento.InstrumentoId));
             SetearTotales();
@@ -778,10 +778,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 Notificaciones.MensajeConfirmacion("¡El ingreso se ha guardado exitosamente!");
                 return;
             }
-          
+
             Notificaciones.MensajeConfirmacion("El ingreso se ha guardado exitosamente, pero hubo una falla en el momento de enviar la notificación por correo electrónico.");
             return;
-            
+
         }
 
         private void glContacto_TextChanged(object sender, EventArgs e)
