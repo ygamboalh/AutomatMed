@@ -1,5 +1,6 @@
 ﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
 using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion.Dtos;
 using AutomatMediciones.DesktopApp.Reportes;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
@@ -68,9 +69,31 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             var resultado = _certificadoCalibracionService.ObtenerCertificados();
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
+            var lista = new List<CertificadoView>();
+
+            resultado.Data.ForEach(x =>
+            {
+                var certificadoView = new CertificadoView
+                {
+                    CertificadoId = x.CertificadoId,
+                    CondicionesAmbientales = x.CondicionesAmbientales,
+                    Fecha = x.Fecha,
+                    FechaCaducidad = x.FechaCaducidad,
+                    Instrumento = x.Instrumento,
+                    InstrumentoId = x.InstrumentoId,
+                    NumeroCertificado = x.NumeroCertificado,
+                    Responsable = x.Responsable,
+                    ResponsableId = x.ResponsableId,
+                    ClasificacionConcatenada = $"{x.Instrumento.Clasificacion.TipoInstrumento.Descripcion}/{x.Instrumento.Clasificacion.Marca.Descripcion}/{x.Instrumento.Clasificacion.Modelo.Descripcion}"
+            };
+                lista.Add(certificadoView);
+            });
+
+          
+
             Certificados = resultado.Data;
 
-            gcCertificados.DataSource = Certificados;
+            gcCertificados.DataSource = lista;
             gcCertificados.RefreshDataSource();
 
 

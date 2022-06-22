@@ -6,6 +6,8 @@ using DevExpress.XtraSplashScreen;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
@@ -24,6 +26,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
         public TipoTransaccion TipoTransaccion { get; set; }
         public CeldaDto NuevaCelda { get; set; }
 
+        List<EstadoCeldaDto> estados = new List<EstadoCeldaDto>();
+        List<TipoCeldaDto> tiposDeCelda = new List<TipoCeldaDto>();
+
         public frmNuevaCelda(TipoTransaccion tipoTransaccion, CeldaService celdaService)
         {
             InitializeComponent();
@@ -33,16 +38,34 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
             EstablecerNombreYTituloPopupAgregarInstrumentos();
             EstablecerColorBotonGuardar();
 
+            estados.Clear();
+            tiposDeCelda.Clear();
+
             CargarTiposDeCeldas();
+            CargarEstados();
             NuevaCelda = new CeldaDto();
 
         }
+
+        private void CargarEstados()
+        {
+            var resultado = _celdaService.ObtenerEstadosDeCelda();
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+            estados = resultado.Data;
+            gleEstado.Properties.DataSource = resultado.Data;
+
+            gleEstado.Properties.DisplayMember = "Descripcion";
+            gleEstado.Properties.ValueMember = "Id";
+        }
+
 
         private void CargarTiposDeCeldas()
         {
             var resultado = _celdaService.ObtenerTiposDeCeldas();
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
+            tiposDeCelda = resultado.Data;
             glTipoCelda.Properties.DataSource = resultado.Data;
 
             glTipoCelda.Properties.DisplayMember = "Descripcion";
@@ -53,7 +76,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
         public void SetearValoresParaActualizar()
         {
             txtNumeroSerie.Text = NuevaCelda.NumeroSerie;
-            txtEstado.Text = NuevaCelda.Estado;
+            gleEstado.EditValue = NuevaCelda.EstadoId;
             glTipoCelda.EditValue = NuevaCelda.TipoCeldaId;
             dateFechaAdquisicion.EditValue = NuevaCelda.FechaAdquisicion.HasValue ? NuevaCelda.FechaAdquisicion.Value : null;
             dateFechaFabricacion.EditValue = NuevaCelda.FechaFabricacion.HasValue ? NuevaCelda.FechaFabricacion.Value : null;
@@ -66,7 +89,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
             NuevaCelda.NumeroSerie = txtNumeroSerie.Text;
             NuevaCelda.FechaFabricacion = dateFechaFabricacion.EditValue != null ? (DateTime)dateFechaFabricacion.EditValue : null;
             NuevaCelda.FechaAdquisicion = dateFechaAdquisicion.EditValue != null ? (DateTime)dateFechaAdquisicion.EditValue : null;
-            NuevaCelda.Estado = txtEstado.Text;
+            NuevaCelda.EstadoId = (int)gleEstado.EditValue;
         }
 
 
@@ -134,6 +157,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
                 if (GuardarCelda())
                 {
                     Notificaciones.MensajeConfirmacion("¡La celda se ha registrado exitosamente!");
+                    NuevaCelda.Estado = estados.FirstOrDefault(x => x.Id == (int)gleEstado.EditValue);
+                    NuevaCelda.TipoCelda = tiposDeCelda.FirstOrDefault(x => x.Id == (int)glTipoCelda.EditValue);
                     OnCeldaAgregada?.Invoke(NuevaCelda);
                     this.Close();
                 }
@@ -144,6 +169,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
                 {
 
                     Notificaciones.MensajeConfirmacion("¡La celda se ha actualizado exitosamente!");
+                    NuevaCelda.Estado = estados.FirstOrDefault(x => x.Id == (int)gleEstado.EditValue);
+                    NuevaCelda.TipoCelda = tiposDeCelda.FirstOrDefault(x => x.Id == (int)glTipoCelda.EditValue);
                     OnCeldaModificada?.Invoke(NuevaCelda);
                     this.Close();
                 }

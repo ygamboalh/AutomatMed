@@ -470,6 +470,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
             this.Name = "frmIngresos";
             this.Text = "Ingresos";
+            this.Load += new System.EventHandler(this.frmIngresos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.btnIniciarDiagnostico)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcInstrumentos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvInstrumentos)).EndInit();

@@ -31,6 +31,7 @@ namespace AutomatMediciones.Dominio.Common
             CreateMap<Celda, CeldaDto>().ReverseMap();
             CreateMap<TipoCeldaModelo, TipoCeldaModeloDto>().ReverseMap();
             CreateMap<CeldaInstrumento, CeldaInstrumentoDto>().ReverseMap();
+            CreateMap<EstadoCelda, EstadoCeldaDto>().ReverseMap();
         }
     }
 }

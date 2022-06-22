@@ -43,6 +43,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.colFechaCaducidad = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNumeroCertificado = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colResponsable = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colEmpresa = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colInstrumento = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colClasificacion = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNumeroSerie = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colVerCertificado = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnVerCertificado = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -81,9 +85,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.colFechaCaducidad,
             this.colNumeroCertificado,
             this.colResponsable,
+            this.colEmpresa,
+            this.colInstrumento,
+            this.colClasificacion,
+            this.colNumeroSerie,
             this.colVerCertificado});
             this.gvCertificados.GridControl = this.gcCertificados;
             this.gvCertificados.Name = "gvCertificados";
+            this.gvCertificados.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
             this.gvCertificados.OptionsView.ShowAutoFilterRow = true;
             this.gvCertificados.OptionsView.ShowGroupPanel = false;
             this.gvCertificados.OptionsView.ShowIndicator = false;
@@ -94,6 +103,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.colId.FieldName = "Ce";
             this.colId.MinWidth = 25;
             this.colId.Name = "colId";
+            this.colId.OptionsColumn.AllowEdit = false;
+            this.colId.OptionsColumn.AllowFocus = false;
+            this.colId.OptionsColumn.ReadOnly = true;
             this.colId.Width = 94;
             // 
             // colFecha
@@ -107,7 +119,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.colFecha.OptionsColumn.ReadOnly = true;
             this.colFecha.Visible = true;
             this.colFecha.VisibleIndex = 0;
-            this.colFecha.Width = 230;
             // 
             // colFechaCaducidad
             // 
@@ -120,7 +131,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.colFechaCaducidad.OptionsColumn.ReadOnly = true;
             this.colFechaCaducidad.Visible = true;
             this.colFechaCaducidad.VisibleIndex = 1;
-            this.colFechaCaducidad.Width = 230;
             // 
             // colNumeroCertificado
             // 
@@ -133,7 +143,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.colNumeroCertificado.OptionsColumn.ReadOnly = true;
             this.colNumeroCertificado.Visible = true;
             this.colNumeroCertificado.VisibleIndex = 2;
-            this.colNumeroCertificado.Width = 230;
+            this.colNumeroCertificado.Width = 177;
             // 
             // colResponsable
             // 
@@ -146,7 +156,59 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.colResponsable.OptionsColumn.ReadOnly = true;
             this.colResponsable.Visible = true;
             this.colResponsable.VisibleIndex = 3;
-            this.colResponsable.Width = 230;
+            this.colResponsable.Width = 177;
+            // 
+            // colEmpresa
+            // 
+            this.colEmpresa.Caption = "Empresa";
+            this.colEmpresa.FieldName = "Instrumento.NombreEmpresa";
+            this.colEmpresa.MinWidth = 25;
+            this.colEmpresa.Name = "colEmpresa";
+            this.colEmpresa.OptionsColumn.AllowEdit = false;
+            this.colEmpresa.OptionsColumn.AllowFocus = false;
+            this.colEmpresa.OptionsColumn.ReadOnly = true;
+            this.colEmpresa.Visible = true;
+            this.colEmpresa.VisibleIndex = 4;
+            this.colEmpresa.Width = 171;
+            // 
+            // colInstrumento
+            // 
+            this.colInstrumento.Caption = "Instrumento";
+            this.colInstrumento.FieldName = "Instrumento.Descripcion";
+            this.colInstrumento.MinWidth = 25;
+            this.colInstrumento.Name = "colInstrumento";
+            this.colInstrumento.OptionsColumn.AllowEdit = false;
+            this.colInstrumento.OptionsColumn.AllowFocus = false;
+            this.colInstrumento.OptionsColumn.ReadOnly = true;
+            this.colInstrumento.Visible = true;
+            this.colInstrumento.VisibleIndex = 5;
+            this.colInstrumento.Width = 127;
+            // 
+            // colClasificacion
+            // 
+            this.colClasificacion.Caption = "Clasificación";
+            this.colClasificacion.FieldName = "ClasificacionConcatenada";
+            this.colClasificacion.MinWidth = 25;
+            this.colClasificacion.Name = "colClasificacion";
+            this.colClasificacion.OptionsColumn.AllowEdit = false;
+            this.colClasificacion.OptionsColumn.AllowFocus = false;
+            this.colClasificacion.OptionsColumn.ReadOnly = true;
+            this.colClasificacion.Visible = true;
+            this.colClasificacion.VisibleIndex = 6;
+            this.colClasificacion.Width = 177;
+            // 
+            // colNumeroSerie
+            // 
+            this.colNumeroSerie.Caption = "N° Serie";
+            this.colNumeroSerie.FieldName = "Instrumento.NumeroSerie";
+            this.colNumeroSerie.MinWidth = 25;
+            this.colNumeroSerie.Name = "colNumeroSerie";
+            this.colNumeroSerie.OptionsColumn.AllowEdit = false;
+            this.colNumeroSerie.OptionsColumn.AllowFocus = false;
+            this.colNumeroSerie.OptionsColumn.ReadOnly = true;
+            this.colNumeroSerie.Visible = true;
+            this.colNumeroSerie.VisibleIndex = 7;
+            this.colNumeroSerie.Width = 134;
             // 
             // colVerCertificado
             // 
@@ -154,8 +216,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.colVerCertificado.MinWidth = 25;
             this.colVerCertificado.Name = "colVerCertificado";
             this.colVerCertificado.Visible = true;
-            this.colVerCertificado.VisibleIndex = 4;
-            this.colVerCertificado.Width = 25;
+            this.colVerCertificado.VisibleIndex = 8;
+            this.colVerCertificado.Width = 39;
             // 
             // btnVerCertificado
             // 
@@ -260,5 +322,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
         private DevExpress.XtraEditors.XtraSaveFileDialog saveFileDialog;
         private System.Windows.Forms.Panel panel3;
         private FontAwesome.Sharp.IconButton btnExportarExcel;
+        private DevExpress.XtraGrid.Columns.GridColumn colEmpresa;
+        private DevExpress.XtraGrid.Columns.GridColumn colInstrumento;
+        private DevExpress.XtraGrid.Columns.GridColumn colClasificacion;
+        private DevExpress.XtraGrid.Columns.GridColumn colNumeroSerie;
     }
 }

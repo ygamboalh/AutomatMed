@@ -42,7 +42,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btnGuardarCelda = new FontAwesome.Sharp.IconButton();
-            this.txtEstado = new DevExpress.XtraEditors.TextEdit();
+            this.gleEstado = new DevExpress.XtraEditors.GridLookUpEdit();
+            this.glevEstado = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.glTipoCelda.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumentoView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFechaAdquisicion.Properties.CalendarTimeProperties)).BeginInit();
@@ -50,7 +53,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroSerie.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFechaFabricacion.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFechaFabricacion.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEstado.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gleEstado.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glevEstado)).BeginInit();
             this.SuspendLayout();
             // 
             // glTipoCelda
@@ -203,24 +207,51 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
             this.btnGuardarCelda.UseVisualStyleBackColor = true;
             this.btnGuardarCelda.Click += new System.EventHandler(this.btnGuardarCelda_Click);
             // 
-            // txtEstado
+            // gleEstado
             // 
-            this.txtEstado.EditValue = "";
-            this.txtEstado.Location = new System.Drawing.Point(23, 267);
-            this.txtEstado.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.txtEstado.Name = "txtEstado";
-            this.txtEstado.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtEstado.Properties.Appearance.Options.UseFont = true;
-            this.txtEstado.Properties.UseReadOnlyAppearance = false;
-            this.txtEstado.Size = new System.Drawing.Size(346, 30);
-            this.txtEstado.TabIndex = 166;
+            this.gleEstado.EditValue = "";
+            this.gleEstado.Location = new System.Drawing.Point(23, 268);
+            this.gleEstado.Name = "gleEstado";
+            this.gleEstado.Properties.AutoHeight = false;
+            this.gleEstado.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.gleEstado.Properties.NullText = "";
+            this.gleEstado.Properties.PopupView = this.glevEstado;
+            this.gleEstado.Size = new System.Drawing.Size(346, 31);
+            this.gleEstado.TabIndex = 166;
+            // 
+            // glevEstado
+            // 
+            this.glevEstado.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn1,
+            this.gridColumn2});
+            this.glevEstado.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.glevEstado.Name = "glevEstado";
+            this.glevEstado.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.glevEstado.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn1
+            // 
+            this.gridColumn1.Caption = "Id";
+            this.gridColumn1.FieldName = "TipoInstrumentoId";
+            this.gridColumn1.Name = "gridColumn1";
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "Descripcion";
+            this.gridColumn2.FieldName = "Descripcion";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.OptionsColumn.AllowEdit = false;
+            this.gridColumn2.OptionsColumn.ReadOnly = true;
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 0;
             // 
             // frmNuevaCelda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(783, 414);
-            this.Controls.Add(this.txtEstado);
+            this.Controls.Add(this.gleEstado);
             this.Controls.Add(this.btnGuardarCelda);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.dateFechaFabricacion);
@@ -242,7 +273,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroSerie.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFechaFabricacion.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFechaFabricacion.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEstado.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gleEstado.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.glevEstado)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -263,6 +295,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private FontAwesome.Sharp.IconButton btnGuardarCelda;
-        private DevExpress.XtraEditors.TextEdit txtEstado;
+        private DevExpress.XtraEditors.GridLookUpEdit gleEstado;
+        private DevExpress.XtraGrid.Views.Grid.GridView glevEstado;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
     }
 }

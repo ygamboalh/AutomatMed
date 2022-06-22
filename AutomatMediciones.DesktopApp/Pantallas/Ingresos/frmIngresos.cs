@@ -365,6 +365,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 SplashScreenManager.CloseForm();
             }
         }
+
+        private void frmIngresos_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public enum Filtros

@@ -11,8 +11,9 @@ namespace AutomatMediciones.Libs.Dtos
         public DateTime? FechaAdquisicion { get; set; }
         public DateTime? FechaFabricacion { get; set; }
         public string NumeroSerie { get; set; }
-        public string Estado { get; set; }
+        public int EstadoId { get; set; }
 
         public TipoCeldaDto TipoCelda { get; set; }
+        public EstadoCeldaDto Estado { get; set; }
     }
 }

@@ -30,6 +30,7 @@ namespace AutomatMediciones.Dominio.Infraestructura
         public DbSet<TipoCeldaModelo> TiposDeCeldasModelos { get; set; }
         public DbSet<Celda> Celdas { get; set; }
         public DbSet<CeldaInstrumento> CeldasInstrumentos { get; set; }
+        public DbSet<EstadoCelda> EstadosCeldas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -56,6 +57,7 @@ namespace AutomatMediciones.Dominio.Infraestructura
             modelBuilder.ApplyConfiguration(new TipoCeldaModeloMap());
             modelBuilder.ApplyConfiguration(new CeldaMap());
             modelBuilder.ApplyConfiguration(new CeldaInstrumentoMap());
+            modelBuilder.ApplyConfiguration(new EstadoCeldaMap());
         }
     }
 }

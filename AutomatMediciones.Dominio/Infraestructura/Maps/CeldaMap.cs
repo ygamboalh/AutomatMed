@@ -20,7 +20,7 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.Property(x => x.NumeroSerie).HasColumnName("numero_serie").HasColumnType("VARCHAR(45)").IsRequired();
             builder.Property(x => x.FechaAdquisicion).HasColumnName("fecha_adquisicion").HasColumnType("DATETIME");
             builder.Property(x => x.FechaFabricacion).HasColumnName("fecha_fabricacion").HasColumnType("DATETIME");
-            builder.Property(x => x.Estado).HasColumnName("estado").HasColumnType("VARCHAR(45)");
+            builder.Property(x => x.EstadoId).HasColumnName("estado_id").HasColumnType("INT");
             builder.Property(x => x.TipoCeldaId).HasColumnName("tipo_celda_id").HasColumnType("INT").IsRequired();
           
         }

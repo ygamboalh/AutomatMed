@@ -39,11 +39,24 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
+        public Response<List<EstadoCeldaDto>> ObtenerEstadosDeCelda()
+        {
+            try
+            {
+                var estados = _automatDbContext.EstadosCeldas.AsQueryable().ToList();
+                return Response<List<EstadoCeldaDto>>.Ok("Ok", _mapper.Map<List<EstadoCeldaDto>>(estados));
+            }
+            catch (Exception exc)
+            {
+                return Response<List<EstadoCeldaDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
         public Response<List<CeldaDto>> ObtenerCeldas()
         {
             try
             {
-                var celdas = _automatDbContext.Celdas.AsQueryable().Include(x => x.TipoCelda).ToList();
+                var celdas = _automatDbContext.Celdas.AsQueryable().Include(x => x.TipoCelda).Include(x => x.Estado).ToList();
                 return Response<List<CeldaDto>>.Ok("Ok", _mapper.Map<List<CeldaDto>>(celdas));
             }
             catch (Exception exc)
@@ -60,9 +73,9 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 {
                     TipoCeldaId = celdaDto.TipoCeldaId,
                     NumeroSerie = celdaDto.NumeroSerie,
-                    FechaFabricacion = celdaDto.FechaFabricacion.Value,
-                    FechaAdquisicion = celdaDto.FechaAdquisicion.Value,
-                    Estado = celdaDto.Estado
+                    FechaFabricacion = celdaDto.FechaFabricacion,
+                    FechaAdquisicion = celdaDto.FechaAdquisicion,
+                    EstadoId = celdaDto.EstadoId
                 };
 
                 _automatDbContext.Celdas.Add(celda);

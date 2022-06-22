@@ -181,7 +181,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
             // colEstado
             // 
             this.colEstado.Caption = "Estado";
-            this.colEstado.FieldName = "Estado";
+            this.colEstado.FieldName = "Estado.Descripcion";
             this.colEstado.MinWidth = 25;
             this.colEstado.Name = "colEstado";
             this.colEstado.OptionsColumn.AllowEdit = false;
