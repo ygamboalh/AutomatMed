@@ -29,10 +29,22 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 var instrumentos = _automatMedicionesDbContext.Instrumentos.AsQueryable()
                                                                               .Include(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
                                                                              .Include(x => x.Clasificacion).ThenInclude(x => x.Marca)
-                                                                             .Include(x => x.Clasificacion).ThenInclude(x => x.Modelo)
-                                                                             .Include(x => x.CeldasInstrumentos)
+                                                                             .Include(x => x.Clasificacion).ThenInclude(x => x.Modelo)                                                                       
                                                                              .Where(x => x.Activo)
                                                                              .ToList();
+
+                var celdasInstrumentos = _automatMedicionesDbContext.CeldasInstrumentos.AsQueryable()
+                                                                                       .Include(x => x.Celda).ThenInclude(x => x.TipoCelda)
+                                                                                       .Where(x => x.Activo && instrumentos.Select(y => y.InstrumentoId)
+                                                                                                                           .Contains(x.InstrumentoId));
+
+
+                instrumentos.ForEach(x =>
+                {
+                    var celdas = celdasInstrumentos.Where(y => y.InstrumentoId == x.InstrumentoId).ToList();
+                    x.CeldasInstrumentos = celdas;
+                });
+
                 return Response<List<InstrumentoDto>>.Ok("Ok", _mapper.Map<List<InstrumentoDto>>(instrumentos));
             }
             catch (Exception exc)
@@ -149,8 +161,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         {
                             CeldaId = x.CeldaId,
                             FechaColocacion = x.FechaColocacion,
-                            InstrumentoId = instrumento.InstrumentoId
-
+                            InstrumentoId = instrumento.InstrumentoId,
+                            Activo = true
                         });
                     });
 

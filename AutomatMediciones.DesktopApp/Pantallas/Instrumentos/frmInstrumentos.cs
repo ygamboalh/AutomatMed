@@ -145,6 +145,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
                     InstrumentoId = x.InstrumentoId,
                     NombreEmpresa = x.NombreEmpresa,
                     NumeroSerie = x.NumeroSerie,
+                    CeldasInstrumentos = x.CeldasInstrumentos,
                     ClasificacionConcatenada = $"{x.Clasificacion.TipoInstrumento.Descripcion} / {x.Clasificacion.Marca.Descripcion} / {x.Clasificacion.Modelo.Descripcion}"
                 };
 

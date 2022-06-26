@@ -82,7 +82,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             NuevoInstrumento = new InstrumentoDto();
 
             btnEditar.Click += btnEditarClick;
-            btnesactivar.Click += btnDesactivarClick;
+            btnDesactivar.Click += btnDesactivarClick;
 
         }
 
@@ -140,6 +140,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             nmGarantia.Value = NuevoInstrumento.Garantia;
 
             EmpresaSeleccionada = _empresaService.ObtenerEmpresaPorId(NuevoInstrumento.EmpresaId).Data;
+
+            gcCeldasVinculadas.DataSource = NuevoInstrumento.CeldasInstrumentos;
+            gcCeldasVinculadas.RefreshDataSource();
 
         }
 

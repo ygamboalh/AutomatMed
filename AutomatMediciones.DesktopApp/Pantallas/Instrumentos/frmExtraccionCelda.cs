@@ -3,6 +3,7 @@ using AutomatMediciones.Dominio.Caracteristicas.Entidades;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraEditors;
+using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,7 +37,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             }
 
             CeldaInstrumento.FechaExtraccion = (DateTime) dateFechaExtraccion.EditValue;
-            _instrumentoService.DesactivarInstrumentoCelda(CeldaInstrumento)
+            var respuesta = _instrumentoService.DesactivarInstrumentoCelda(CeldaInstrumento);
+
+            if (respuesta.Type != TypeResponse.Ok)
+            {
+                Notificaciones.MensajeError(respuesta.Message);
+                return;
+            }
+
+            Notificaciones.MensajeConfirmacion("¡La extracción se guardó exitosamente!");
         }
     }
 }

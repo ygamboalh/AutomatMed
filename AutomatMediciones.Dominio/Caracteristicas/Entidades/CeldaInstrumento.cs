@@ -10,5 +10,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
         public DateTime? FechaColocacion { get; set; }
         public DateTime? FechaExtraccion { get; set; }
         public bool Activo { get; set; }
+
+        public Celda Celda { get; set; }
     }
 }
