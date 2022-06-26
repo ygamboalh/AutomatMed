@@ -59,9 +59,9 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 {
                     _automatMedicionesDbContext.VariablesPatrones.AddRange(variablesPatrones);
                 }
-               
+
                 _automatMedicionesDbContext.SaveChanges();
-    
+
                 _automatMedicionesDbContext.Database.CommitTransaction();
                 return Response<bool>.Ok("Ok", true);
             }
@@ -88,7 +88,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 foreach (var item in patronDto.VariablesPatrones)
                 {
                     var vairablePatronDb = _automatMedicionesDbContext.VariablesPatrones.FirstOrDefault(x => x.VariablePatronId == item.VariablePatronId);
-                    if(vairablePatronDb == null)
+                    if (vairablePatronDb == null)
                     {
                         var variablePatron = new VariablePatron
                         {

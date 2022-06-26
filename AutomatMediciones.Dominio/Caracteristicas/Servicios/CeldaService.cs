@@ -8,8 +8,6 @@ using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 {
@@ -65,7 +63,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
-        public Response<bool>RegistrarCelda(CeldaDto celdaDto)
+        public Response<bool> RegistrarCelda(CeldaDto celdaDto)
         {
             try
             {

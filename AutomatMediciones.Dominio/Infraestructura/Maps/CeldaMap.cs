@@ -1,11 +1,6 @@
 ﻿using AutomatMediciones.Dominio.Caracteristicas.Entidades;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AutomatMediciones.Dominio.Infraestructura.Maps
 {
@@ -23,7 +18,7 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.Property(x => x.EstadoId).HasColumnName("estado_id").HasColumnType("INT");
             builder.Property(x => x.TipoCeldaId).HasColumnName("tipo_celda_id").HasColumnType("INT").IsRequired();
 
-          
+
         }
     }
 }

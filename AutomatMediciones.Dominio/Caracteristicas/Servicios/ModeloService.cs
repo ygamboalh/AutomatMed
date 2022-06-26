@@ -89,7 +89,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     _automatMedicionesDbContext.TiposDeCeldasModelos.AddRange(listaTiposDeCeldaModelosParaRegistrar);
                     _automatMedicionesDbContext.SaveChanges();
                 }
-        
+
                 _automatMedicionesDbContext.Database.CommitTransaction();
 
                 return Response<bool>.Ok("Ok", true);
@@ -129,7 +129,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         });
                     });
 
-                    _automatMedicionesDbContext.TiposDeCeldasModelos.AddRange(listaTiposDeCeldaModelosParaRegistrar);                
+                    _automatMedicionesDbContext.TiposDeCeldasModelos.AddRange(listaTiposDeCeldaModelosParaRegistrar);
                 }
 
                 _automatMedicionesDbContext.SaveChanges();

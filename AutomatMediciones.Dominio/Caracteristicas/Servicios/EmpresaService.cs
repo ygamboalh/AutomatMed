@@ -66,7 +66,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             try
             {
                 var empresa = _tacticaDbContext.Empresas.FirstOrDefault(x => x.EmpresaId == empresaId);
-                
+
                 return Response<EmpresaDto>.Ok("Ok", _mapper.Map<EmpresaDto>(empresa));
             }
             catch (Exception exc)

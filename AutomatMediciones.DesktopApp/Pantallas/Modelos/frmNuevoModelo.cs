@@ -27,7 +27,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
         List<TipoCeldaDto> tiposDeCeldas = new List<TipoCeldaDto>();
         public ModeloDto NuevoModelo { get; set; }
 
-       
+
 
         public frmNuevoModelo(TipoTransaccion tipoTransaccion, ModeloService modeloService, CeldaService celdaService)
         {
@@ -72,13 +72,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
 
                 SetearTotales();
             }
-           
+
         }
 
         public void SetearValoresParaActualizar()
         {
             txtDescripcion.Text = NuevoModelo.Descripcion;
-           
+
             gcTiposDeCeldaModelo.DataSource = NuevoModelo.TipoCeldaModelo;
             gcTiposDeCeldaModelo.RefreshDataSource();
 
@@ -252,7 +252,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
                 return;
             }
 
-            NuevoModelo.TipoCeldaModelo.Add(new TipoCeldaModeloDto { 
+            NuevoModelo.TipoCeldaModelo.Add(new TipoCeldaModeloDto
+            {
                 TipoCeldaId = tipoCeldaSeleccionada.Id,
                 TipoDeCelda = tipoCeldaSeleccionada
             });
@@ -262,6 +263,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             SetearTotales();
         }
 
-       
+
     }
 }

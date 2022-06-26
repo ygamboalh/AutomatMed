@@ -48,12 +48,12 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             {
                 Certificado certificado = new Certificado
                 {
-                   CondicionesAmbientales = certificadoDto.CondicionesAmbientales,
-                   Fecha = certificadoDto.Fecha,
-                   FechaCaducidad = certificadoDto.FechaCaducidad,
-                   InstrumentoId = certificadoDto.InstrumentoId,
-                   ResponsableId = certificadoDto.ResponsableId,
-                   NumeroCertificado = ""
+                    CondicionesAmbientales = certificadoDto.CondicionesAmbientales,
+                    Fecha = certificadoDto.Fecha,
+                    FechaCaducidad = certificadoDto.FechaCaducidad,
+                    InstrumentoId = certificadoDto.InstrumentoId,
+                    ResponsableId = certificadoDto.ResponsableId,
+                    NumeroCertificado = ""
                 };
 
                 _automatDbContext.Database.BeginTransaction();

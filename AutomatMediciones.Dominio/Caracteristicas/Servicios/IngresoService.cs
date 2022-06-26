@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using AutomatMediciones.Dominio.Caracteristicas.Entidades;
-using AutomatMediciones.Dominio.Caracteristicas.Enums;
 using AutomatMediciones.Dominio.Infraestructura;
 using AutomatMediciones.Libs.Dtos;
 using Microsoft.EntityFrameworkCore;
@@ -116,7 +115,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         FechaFin = instrumento.FechaFin,
                         FechaInicio = instrumento.FechaInicio,
                         Prioridad = instrumento.Prioridad,
-                        EstadoId = instrumento.EstadoId,   
+                        EstadoId = instrumento.EstadoId,
                         ResponsableId = ingresoDto.UsuarioId,
                         FechaEntregaRequerida = instrumento.FechaEntregaRequerida
                     };

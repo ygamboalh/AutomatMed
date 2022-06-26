@@ -48,7 +48,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                                                                               .Include(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
                                                                              .Include(x => x.Clasificacion).ThenInclude(x => x.Marca)
                                                                              .Include(x => x.Clasificacion).ThenInclude(x => x.Modelo)
-                                                                             .FirstOrDefault(x => x.InstrumentoId == instrumentoId);                                                                             
+                                                                             .FirstOrDefault(x => x.InstrumentoId == instrumentoId);
                 return Response<InstrumentoDto>.Ok("Ok", _mapper.Map<InstrumentoDto>(instrumentos));
             }
             catch (Exception exc)
@@ -104,7 +104,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 var instrumentoDb = _automatMedicionesDbContext.Instrumentos.Include(x => x.Clasificacion).ThenInclude(x => x.Marca)
                                                                                   .Include(x => x.Clasificacion).ThenInclude(x => x.Modelo)
                                                                                   .Include(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
-                                                                                  .FirstOrDefault(x => x.Activo && 
+                                                                                  .FirstOrDefault(x => x.Activo &&
                                                                                                         x.NumeroSerie == instrumentoDto.NumeroSerie &&
                                                                                                         x.Clasificacion.ModeloId == instrumentoDto.Clasificacion.ModeloId &&
                                                                                                         x.Clasificacion.MarcaId == instrumentoDto.Clasificacion.MarcaId &&
@@ -181,7 +181,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 instrumentoBd.Garantia = instrumentoDto.Garantia;
                 instrumentoBd.NombreEmpresa = instrumentoDto.NombreEmpresa;
                 instrumentoBd.NumeroSerie = instrumentoDto.NumeroSerie;
-                
+
                 _automatMedicionesDbContext.SaveChanges();
 
                 return Response<bool>.Ok("Ok", true);
@@ -203,7 +203,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 }
 
                 instrumentoBd.Activo = false;
-               
+
 
                 _automatMedicionesDbContext.SaveChanges();
 
@@ -221,13 +221,13 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             {
                 VariableInstrumento variableInstrumento = new VariableInstrumento
                 {
-                   VariableMedicionId = variableInstrumentoDto.VariableMedicionId,
-                   TieneAlarma = variableInstrumentoDto.TieneAlarma,
-                   AlarmaAlta = variableInstrumentoDto.AlarmaAlta,
-                   AlarmaBaja = variableInstrumentoDto.AlarmaBaja,
-                   AlarmaStel = variableInstrumentoDto.AlarmaStel,
-                   AlarmaTwa = variableInstrumentoDto.AlarmaTwa,
-                   InstrumentoId = variableInstrumentoDto.InstrumentoId
+                    VariableMedicionId = variableInstrumentoDto.VariableMedicionId,
+                    TieneAlarma = variableInstrumentoDto.TieneAlarma,
+                    AlarmaAlta = variableInstrumentoDto.AlarmaAlta,
+                    AlarmaBaja = variableInstrumentoDto.AlarmaBaja,
+                    AlarmaStel = variableInstrumentoDto.AlarmaStel,
+                    AlarmaTwa = variableInstrumentoDto.AlarmaTwa,
+                    InstrumentoId = variableInstrumentoDto.InstrumentoId
                 };
 
                 if (!variableInstrumento.EsValido(out string mensaje))
@@ -279,7 +279,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
-      
+
         public Response<List<VariableInstrumentoDto>> ObtenerVariablesInstrumentos(int instrumentoId)
         {
             try
