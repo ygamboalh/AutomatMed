@@ -33,41 +33,39 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.txtDescripcion = new DevExpress.XtraEditors.TextEdit();
             this.btnGuardarModelo = new FontAwesome.Sharp.IconButton();
             this.btnAgregarTipoCelda = new FontAwesome.Sharp.IconButton();
-            this.glTipoInstrumento = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.glTipoInstrumentoView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colTipoInstrumentoId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gcTiposDeCelda = new DevExpress.XtraGrid.GridControl();
+            this.gvTiposDeCelda = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.leTipoCelda = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcion.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumento.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumentoView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcTiposDeCelda)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvTiposDeCelda)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leTipoCelda.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl11
             // 
             this.labelControl11.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl11.Appearance.Options.UseFont = true;
-            this.labelControl11.Location = new System.Drawing.Point(31, 70);
-            this.labelControl11.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl11.Location = new System.Drawing.Point(27, 57);
+            this.labelControl11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(68, 17);
+            this.labelControl11.Size = new System.Drawing.Size(51, 12);
             this.labelControl11.TabIndex = 125;
             this.labelControl11.Text = "Descripción";
             // 
             // txtDescripcion
             // 
             this.txtDescripcion.EditValue = "";
-            this.txtDescripcion.Location = new System.Drawing.Point(31, 94);
-            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txtDescripcion.Location = new System.Drawing.Point(27, 73);
+            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtDescripcion.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtDescripcion.Properties.Appearance.Options.UseFont = true;
-            this.txtDescripcion.Size = new System.Drawing.Size(513, 30);
+            this.txtDescripcion.Size = new System.Drawing.Size(440, 24);
             this.txtDescripcion.TabIndex = 126;
             // 
             // btnGuardarModelo
@@ -80,10 +78,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.btnGuardarModelo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardarModelo.IconSize = 30;
             this.btnGuardarModelo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardarModelo.Location = new System.Drawing.Point(287, 531);
-            this.btnGuardarModelo.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnGuardarModelo.Location = new System.Drawing.Point(246, 406);
+            this.btnGuardarModelo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGuardarModelo.Name = "btnGuardarModelo";
-            this.btnGuardarModelo.Size = new System.Drawing.Size(257, 52);
+            this.btnGuardarModelo.Size = new System.Drawing.Size(220, 42);
             this.btnGuardarModelo.TabIndex = 127;
             this.btnGuardarModelo.Text = "Guardar Modelo";
             this.btnGuardarModelo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -100,114 +98,113 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.btnAgregarTipoCelda.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAgregarTipoCelda.IconSize = 30;
             this.btnAgregarTipoCelda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarTipoCelda.Location = new System.Drawing.Point(504, 177);
-            this.btnAgregarTipoCelda.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnAgregarTipoCelda.Location = new System.Drawing.Point(432, 129);
+            this.btnAgregarTipoCelda.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAgregarTipoCelda.Name = "btnAgregarTipoCelda";
-            this.btnAgregarTipoCelda.Size = new System.Drawing.Size(40, 32);
+            this.btnAgregarTipoCelda.Size = new System.Drawing.Size(34, 26);
             this.btnAgregarTipoCelda.TabIndex = 151;
             this.btnAgregarTipoCelda.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAgregarTipoCelda.UseVisualStyleBackColor = true;
-            // 
-            // glTipoInstrumento
-            // 
-            this.glTipoInstrumento.EditValue = "";
-            this.glTipoInstrumento.Location = new System.Drawing.Point(31, 178);
-            this.glTipoInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.glTipoInstrumento.Name = "glTipoInstrumento";
-            this.glTipoInstrumento.Properties.AutoHeight = false;
-            this.glTipoInstrumento.Properties.NullText = "";
-            this.glTipoInstrumento.Properties.PopupView = this.glTipoInstrumentoView;
-            this.glTipoInstrumento.Size = new System.Drawing.Size(465, 31);
-            this.glTipoInstrumento.TabIndex = 150;
-            // 
-            // glTipoInstrumentoView
-            // 
-            this.glTipoInstrumentoView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colTipoInstrumentoId,
-            this.colDescripcion});
-            this.glTipoInstrumentoView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.glTipoInstrumentoView.Name = "glTipoInstrumentoView";
-            this.glTipoInstrumentoView.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.glTipoInstrumentoView.OptionsView.ShowGroupPanel = false;
-            // 
-            // colTipoInstrumentoId
-            // 
-            this.colTipoInstrumentoId.Caption = "Id";
-            this.colTipoInstrumentoId.FieldName = "TipoInstrumentoId";
-            this.colTipoInstrumentoId.Name = "colTipoInstrumentoId";
-            // 
-            // colDescripcion
-            // 
-            this.colDescripcion.Caption = "Descripcion";
-            this.colDescripcion.FieldName = "Descripcion";
-            this.colDescripcion.Name = "colDescripcion";
-            this.colDescripcion.OptionsColumn.AllowEdit = false;
-            this.colDescripcion.OptionsColumn.ReadOnly = true;
-            this.colDescripcion.Visible = true;
-            this.colDescripcion.VisibleIndex = 0;
+            this.btnAgregarTipoCelda.Click += new System.EventHandler(this.btnAgregarTipoCelda_Click);
             // 
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(31, 156);
-            this.labelControl4.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl4.Location = new System.Drawing.Point(27, 112);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(303, 17);
+            this.labelControl4.Size = new System.Drawing.Size(227, 12);
             this.labelControl4.TabIndex = 149;
             this.labelControl4.Text = "Seleccione un tipo de celda para vincular al Módelo";
             // 
-            // gridControl1
+            // gcTiposDeCelda
             // 
-            this.gridControl1.Location = new System.Drawing.Point(31, 263);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(513, 250);
-            this.gridControl1.TabIndex = 152;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.gcTiposDeCelda.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gcTiposDeCelda.Location = new System.Drawing.Point(27, 189);
+            this.gcTiposDeCelda.MainView = this.gvTiposDeCelda;
+            this.gcTiposDeCelda.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gcTiposDeCelda.Name = "gcTiposDeCelda";
+            this.gcTiposDeCelda.Size = new System.Drawing.Size(440, 203);
+            this.gcTiposDeCelda.TabIndex = 152;
+            this.gcTiposDeCelda.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvTiposDeCelda});
             // 
-            // gridView1
+            // gvTiposDeCelda
             // 
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            this.gridView1.OptionsView.ShowIndicator = false;
+            this.gvTiposDeCelda.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colDescripcion,
+            this.colId});
+            this.gvTiposDeCelda.DetailHeight = 284;
+            this.gvTiposDeCelda.GridControl = this.gcTiposDeCelda;
+            this.gvTiposDeCelda.Name = "gvTiposDeCelda";
+            this.gvTiposDeCelda.OptionsView.ShowGroupPanel = false;
+            this.gvTiposDeCelda.OptionsView.ShowIndicator = false;
+            // 
+            // colDescripcion
+            // 
+            this.colDescripcion.Caption = "Celda";
+            this.colDescripcion.FieldName = "Descripcion";
+            this.colDescripcion.Name = "colDescripcion";
+            this.colDescripcion.Visible = true;
+            this.colDescripcion.VisibleIndex = 0;
+            // 
+            // colId
+            // 
+            this.colId.Caption = "colId";
+            this.colId.FieldName = "Id";
+            this.colId.Name = "colId";
             // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(31, 241);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl1.Location = new System.Drawing.Point(27, 171);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(88, 17);
+            this.labelControl1.Size = new System.Drawing.Size(115, 12);
             this.labelControl1.TabIndex = 153;
-            this.labelControl1.Text = "Tipos de Celda";
+            this.labelControl1.Text = "Tipos de Celda Vinculados";
+            // 
+            // leTipoCelda
+            // 
+            this.leTipoCelda.EditValue = "";
+            this.leTipoCelda.Location = new System.Drawing.Point(27, 129);
+            this.leTipoCelda.Name = "leTipoCelda";
+            this.leTipoCelda.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
+            this.leTipoCelda.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.leTipoCelda.Properties.Appearance.Options.UseFont = true;
+            this.leTipoCelda.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.leTipoCelda.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Descripcion", "Descripción"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.leTipoCelda.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.leTipoCelda.Properties.NullText = "";
+            this.leTipoCelda.Size = new System.Drawing.Size(399, 24);
+            this.leTipoCelda.TabIndex = 154;
             // 
             // frmNuevoModelo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(577, 604);
+            this.ClientSize = new System.Drawing.Size(495, 462);
+            this.Controls.Add(this.leTipoCelda);
             this.Controls.Add(this.labelControl1);
-            this.Controls.Add(this.gridControl1);
+            this.Controls.Add(this.gcTiposDeCelda);
             this.Controls.Add(this.btnAgregarTipoCelda);
-            this.Controls.Add(this.glTipoInstrumento);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.btnGuardarModelo);
             this.Controls.Add(this.labelControl11);
             this.Controls.Add(this.txtDescripcion);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IconOptions.ShowIcon = false;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmNuevoModelo";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcion.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumento.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumentoView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcTiposDeCelda)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvTiposDeCelda)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leTipoCelda.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -218,13 +215,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
         private DevExpress.XtraEditors.TextEdit txtDescripcion;
         private FontAwesome.Sharp.IconButton btnGuardarModelo;
         private FontAwesome.Sharp.IconButton btnAgregarTipoCelda;
-        private DevExpress.XtraEditors.GridLookUpEdit glTipoInstrumento;
-        private DevExpress.XtraGrid.Views.Grid.GridView glTipoInstrumentoView;
-        private DevExpress.XtraGrid.Columns.GridColumn colTipoInstrumentoId;
-        private DevExpress.XtraGrid.Columns.GridColumn colDescripcion;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.GridControl gcTiposDeCelda;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvTiposDeCelda;
         private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LookUpEdit leTipoCelda;
+        private DevExpress.XtraGrid.Columns.GridColumn colDescripcion;
+        private DevExpress.XtraGrid.Columns.GridColumn colId;
     }
 }

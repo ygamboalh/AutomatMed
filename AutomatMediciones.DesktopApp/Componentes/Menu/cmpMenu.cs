@@ -47,7 +47,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.btnDiagnosticos.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
             this.btnDiagnosticosNoExpandido.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
 
-            this.btnTiposDeInstrumetnos.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
+            this.btnConfiguracion.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
             this.btnTipoInstrumentoSimplificado.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
         }
 
@@ -129,7 +129,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
 
         private void btnTiposDeInstrumetnos_Click(object sender, System.EventArgs e)
         {
-            OnMenuSeleccionado?.Invoke(IndiceMenu.Configuracion);
+            OnMenuSeleccionado?.Invoke(IndiceMenu.TiposInstrumentos);
         }
 
         private void btnCertificados_Click(object sender, System.EventArgs e)
@@ -188,6 +188,11 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
         private void btnCeldas_Click(object sender, System.EventArgs e)
         {
             OnMenuSeleccionado?.Invoke(IndiceMenu.Celdas);
+        }
+
+        private void btnConfiguracion_Click(object sender, System.EventArgs e)
+        {
+            OnMenuSeleccionado?.Invoke(IndiceMenu.Configuracion);
         }
     }
 }

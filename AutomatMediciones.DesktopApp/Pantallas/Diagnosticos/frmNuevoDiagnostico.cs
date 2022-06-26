@@ -126,7 +126,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
         {
             ctlEncabezadoPantalla ctlEncabezadoPantalla3 = new ctlEncabezadoPantalla();
             ctlEncabezadoPantalla3.Parent = this;
-            ctlEncabezadoPantalla3.Height = 43;
+            ctlEncabezadoPantalla3.Height = 40;
             ctlEncabezadoPantalla3.Dock = System.Windows.Forms.DockStyle.Top;
             ctlEncabezadoPantalla3.lblTitulo.Text = "Diagnóstico";
             ctlEncabezadoPantalla3.EstablecerColoresDeFondoYLetra();
@@ -348,6 +348,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
                  serviceProvider.GetService<InstrumentoService>()
                 );
             frmNuevoCertificadoCalibracion.ShowDialog();
+        }
+
+        private void frmNuevoDiagnostico_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -222,7 +222,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
 
         private void btnNuevoModelo_Click(object sender, EventArgs e)
         {
-            var frmNuevoModelo = new frmNuevoModelo(TipoTransaccion.Insertar, serviceProvider.GetService<ModeloService>());
+            var frmNuevoModelo = new frmNuevoModelo(TipoTransaccion.Insertar,
+                                                    serviceProvider.GetService<ModeloService>(),
+                                                    serviceProvider.GetService<CeldaService>());
 
             frmNuevoModelo.OnModeloAgregada += OnModeloAgregada;
             frmNuevoModelo.ShowDialog();

@@ -56,6 +56,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             InitializeComponent();
 
             TipoTransaccion = tipoTransaccion;
+
+            if (TipoTransaccion == TipoTransaccion.Actualizar)
+            {
+                btnNuevaVinculacion.Visible = true;
+            }
             _clasificacionInstrumentoService = clasificacionInstrumentoService;
             _instrumentoService = instrumentoService;
             _marcaService = marcaService;
@@ -446,8 +451,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
                 frmInstrumentoVariable.OnVariableInstrumentoAgregado += OnVariableInstrumentoAgregado;
                 frmInstrumentoVariable.ShowDialog();
             }
-
-
         }
 
         private void EstablecerColorBotonPorDefecto()

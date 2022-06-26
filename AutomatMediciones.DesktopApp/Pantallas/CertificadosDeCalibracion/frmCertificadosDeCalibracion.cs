@@ -85,11 +85,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
                     Responsable = x.Responsable,
                     ResponsableId = x.ResponsableId,
                     ClasificacionConcatenada = $"{x.Instrumento.Clasificacion.TipoInstrumento.Descripcion}/{x.Instrumento.Clasificacion.Marca.Descripcion}/{x.Instrumento.Clasificacion.Modelo.Descripcion}"
-            };
+                };
                 lista.Add(certificadoView);
             });
 
-          
+
 
             Certificados = resultado.Data;
 

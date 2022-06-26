@@ -9,5 +9,7 @@ namespace AutomatMediciones.Libs.Dtos
         public int Id { get; set; }
         public string Descripcion { get; set; }
         public int VariableMedicionId { get; set; }
+
+        public VariableMedicionDto VariableDeMedicion { get; set; }
     }
 }

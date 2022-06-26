@@ -85,10 +85,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.btnGuardarVariableMedicion.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardarVariableMedicion.IconSize = 30;
             this.btnGuardarVariableMedicion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardarVariableMedicion.Location = new System.Drawing.Point(332, 574);
-            this.btnGuardarVariableMedicion.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnGuardarVariableMedicion.Location = new System.Drawing.Point(285, 466);
+            this.btnGuardarVariableMedicion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGuardarVariableMedicion.Name = "btnGuardarVariableMedicion";
-            this.btnGuardarVariableMedicion.Size = new System.Drawing.Size(301, 52);
+            this.btnGuardarVariableMedicion.Size = new System.Drawing.Size(258, 42);
             this.btnGuardarVariableMedicion.TabIndex = 130;
             this.btnGuardarVariableMedicion.Text = "Guardar Variable de Medición";
             this.btnGuardarVariableMedicion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -99,109 +99,109 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // 
             this.labelControl11.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl11.Appearance.Options.UseFont = true;
-            this.labelControl11.Location = new System.Drawing.Point(29, 70);
-            this.labelControl11.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl11.Location = new System.Drawing.Point(25, 57);
+            this.labelControl11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(68, 17);
+            this.labelControl11.Size = new System.Drawing.Size(51, 12);
             this.labelControl11.TabIndex = 127;
             this.labelControl11.Text = "Descripción";
             // 
             // txtDescripcion
             // 
             this.txtDescripcion.EditValue = "";
-            this.txtDescripcion.Location = new System.Drawing.Point(29, 94);
-            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txtDescripcion.Location = new System.Drawing.Point(25, 76);
+            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtDescripcion.Properties.Appearance.Options.UseFont = true;
-            this.txtDescripcion.Size = new System.Drawing.Size(604, 30);
+            this.txtDescripcion.Size = new System.Drawing.Size(518, 26);
             this.txtDescripcion.TabIndex = 128;
             // 
             // nmPrimerValorRango
             // 
             this.nmPrimerValorRango.DecimalPlaces = 2;
-            this.nmPrimerValorRango.Location = new System.Drawing.Point(29, 161);
-            this.nmPrimerValorRango.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.nmPrimerValorRango.Location = new System.Drawing.Point(25, 131);
+            this.nmPrimerValorRango.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nmPrimerValorRango.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
             this.nmPrimerValorRango.Name = "nmPrimerValorRango";
-            this.nmPrimerValorRango.Size = new System.Drawing.Size(150, 23);
+            this.nmPrimerValorRango.Size = new System.Drawing.Size(129, 21);
             this.nmPrimerValorRango.TabIndex = 141;
             // 
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(29, 139);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl3.Location = new System.Drawing.Point(25, 113);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(115, 17);
+            this.labelControl3.Size = new System.Drawing.Size(85, 12);
             this.labelControl3.TabIndex = 140;
             this.labelControl3.Text = "Primer Valor Rango";
             // 
             // nmSegundoValorRango
             // 
             this.nmSegundoValorRango.DecimalPlaces = 2;
-            this.nmSegundoValorRango.Location = new System.Drawing.Point(257, 161);
-            this.nmSegundoValorRango.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.nmSegundoValorRango.Location = new System.Drawing.Point(220, 131);
+            this.nmSegundoValorRango.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nmSegundoValorRango.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
             this.nmSegundoValorRango.Name = "nmSegundoValorRango";
-            this.nmSegundoValorRango.Size = new System.Drawing.Size(150, 23);
+            this.nmSegundoValorRango.Size = new System.Drawing.Size(129, 21);
             this.nmSegundoValorRango.TabIndex = 143;
             // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(257, 139);
-            this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl1.Location = new System.Drawing.Point(220, 113);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(129, 17);
+            this.labelControl1.Size = new System.Drawing.Size(97, 12);
             this.labelControl1.TabIndex = 142;
             this.labelControl1.Text = "Segundo Valor Rango";
             // 
             // nmTolerancia
             // 
             this.nmTolerancia.DecimalPlaces = 2;
-            this.nmTolerancia.Location = new System.Drawing.Point(482, 161);
-            this.nmTolerancia.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.nmTolerancia.Location = new System.Drawing.Point(413, 131);
+            this.nmTolerancia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nmTolerancia.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
             this.nmTolerancia.Name = "nmTolerancia";
-            this.nmTolerancia.Size = new System.Drawing.Size(150, 23);
+            this.nmTolerancia.Size = new System.Drawing.Size(129, 21);
             this.nmTolerancia.TabIndex = 145;
             // 
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(482, 139);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl2.Location = new System.Drawing.Point(413, 113);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(60, 17);
+            this.labelControl2.Size = new System.Drawing.Size(44, 12);
             this.labelControl2.TabIndex = 144;
             this.labelControl2.Text = "Tolerancia";
             // 
             // glTipoInstrumento
             // 
             this.glTipoInstrumento.EditValue = "";
-            this.glTipoInstrumento.Location = new System.Drawing.Point(29, 239);
-            this.glTipoInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.glTipoInstrumento.Location = new System.Drawing.Point(25, 194);
+            this.glTipoInstrumento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.glTipoInstrumento.Name = "glTipoInstrumento";
             this.glTipoInstrumento.Properties.AutoHeight = false;
             this.glTipoInstrumento.Properties.NullText = "";
             this.glTipoInstrumento.Properties.PopupView = this.glTipoInstrumentoView;
-            this.glTipoInstrumento.Size = new System.Drawing.Size(453, 31);
+            this.glTipoInstrumento.Size = new System.Drawing.Size(388, 25);
             this.glTipoInstrumento.TabIndex = 147;
             // 
             // glTipoInstrumentoView
@@ -209,6 +209,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.glTipoInstrumentoView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colTipoInstrumentoId,
             this.colDescripcion});
+            this.glTipoInstrumentoView.DetailHeight = 284;
             this.glTipoInstrumentoView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
             this.glTipoInstrumentoView.Name = "glTipoInstrumentoView";
             this.glTipoInstrumentoView.OptionsSelection.EnableAppearanceFocusedCell = false;
@@ -218,26 +219,30 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // 
             this.colTipoInstrumentoId.Caption = "Id";
             this.colTipoInstrumentoId.FieldName = "TipoInstrumentoId";
+            this.colTipoInstrumentoId.MinWidth = 17;
             this.colTipoInstrumentoId.Name = "colTipoInstrumentoId";
+            this.colTipoInstrumentoId.Width = 64;
             // 
             // colDescripcion
             // 
             this.colDescripcion.Caption = "Descripcion";
             this.colDescripcion.FieldName = "Descripcion";
+            this.colDescripcion.MinWidth = 17;
             this.colDescripcion.Name = "colDescripcion";
             this.colDescripcion.OptionsColumn.AllowEdit = false;
             this.colDescripcion.OptionsColumn.ReadOnly = true;
             this.colDescripcion.Visible = true;
             this.colDescripcion.VisibleIndex = 0;
+            this.colDescripcion.Width = 64;
             // 
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(29, 217);
-            this.labelControl4.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl4.Location = new System.Drawing.Point(25, 176);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(118, 17);
+            this.labelControl4.Size = new System.Drawing.Size(90, 12);
             this.labelControl4.TabIndex = 146;
             this.labelControl4.Text = "Tipo de Instrumento";
             // 
@@ -251,10 +256,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.btnVincularVariableMedicion.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnVincularVariableMedicion.IconSize = 30;
             this.btnVincularVariableMedicion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVincularVariableMedicion.Location = new System.Drawing.Point(502, 238);
-            this.btnVincularVariableMedicion.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnVincularVariableMedicion.Location = new System.Drawing.Point(430, 193);
+            this.btnVincularVariableMedicion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnVincularVariableMedicion.Name = "btnVincularVariableMedicion";
-            this.btnVincularVariableMedicion.Size = new System.Drawing.Size(40, 32);
+            this.btnVincularVariableMedicion.Size = new System.Drawing.Size(34, 26);
             this.btnVincularVariableMedicion.TabIndex = 148;
             this.btnVincularVariableMedicion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnVincularVariableMedicion.UseVisualStyleBackColor = true;
@@ -264,10 +269,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // panel1
             // 
             this.panel1.Controls.Add(this.lblTotalInstrumentos);
-            this.panel1.Location = new System.Drawing.Point(28, 532);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel1.Location = new System.Drawing.Point(24, 432);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(604, 27);
+            this.panel1.Size = new System.Drawing.Size(518, 22);
             this.panel1.TabIndex = 150;
             // 
             // lblTotalInstrumentos
@@ -276,24 +281,24 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.lblTotalInstrumentos.Appearance.Options.UseFont = true;
             this.lblTotalInstrumentos.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblTotalInstrumentos.Location = new System.Drawing.Point(0, 0);
-            this.lblTotalInstrumentos.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.lblTotalInstrumentos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lblTotalInstrumentos.Name = "lblTotalInstrumentos";
-            this.lblTotalInstrumentos.Size = new System.Drawing.Size(7, 17);
+            this.lblTotalInstrumentos.Size = new System.Drawing.Size(6, 12);
             this.lblTotalInstrumentos.TabIndex = 27;
             this.lblTotalInstrumentos.Text = "0";
             this.lblTotalInstrumentos.Visible = false;
             // 
             // gcTiposDeInstrumento
             // 
-            this.gcTiposDeInstrumento.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.gcTiposDeInstrumento.Location = new System.Drawing.Point(29, 316);
+            this.gcTiposDeInstrumento.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gcTiposDeInstrumento.Location = new System.Drawing.Point(25, 257);
             this.gcTiposDeInstrumento.MainView = this.gvTiposDeInstrumento;
-            this.gcTiposDeInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.gcTiposDeInstrumento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gcTiposDeInstrumento.Name = "gcTiposDeInstrumento";
             this.gcTiposDeInstrumento.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.chkSeleccionarInstrumento,
             this.btnEliminar});
-            this.gcTiposDeInstrumento.Size = new System.Drawing.Size(604, 199);
+            this.gcTiposDeInstrumento.Size = new System.Drawing.Size(518, 162);
             this.gcTiposDeInstrumento.TabIndex = 149;
             this.gcTiposDeInstrumento.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvTiposDeInstrumento});
@@ -304,6 +309,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.colId,
             this.colDescripcionTipoInstrumento,
             this.colEliminar});
+            this.gvTiposDeInstrumento.DetailHeight = 284;
             this.gvTiposDeInstrumento.GridControl = this.gcTiposDeInstrumento;
             this.gvTiposDeInstrumento.Name = "gvTiposDeInstrumento";
             this.gvTiposDeInstrumento.OptionsView.ShowAutoFilterRow = true;
@@ -314,28 +320,28 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // 
             this.colId.Caption = "Id";
             this.colId.FieldName = "TipoInstrumentoId";
-            this.colId.MinWidth = 24;
+            this.colId.MinWidth = 21;
             this.colId.Name = "colId";
-            this.colId.Width = 94;
+            this.colId.Width = 81;
             // 
             // colDescripcionTipoInstrumento
             // 
             this.colDescripcionTipoInstrumento.Caption = "Descripción";
             this.colDescripcionTipoInstrumento.FieldName = "TipoInstrumento.Descripcion";
-            this.colDescripcionTipoInstrumento.MinWidth = 24;
+            this.colDescripcionTipoInstrumento.MinWidth = 21;
             this.colDescripcionTipoInstrumento.Name = "colDescripcionTipoInstrumento";
             this.colDescripcionTipoInstrumento.Visible = true;
             this.colDescripcionTipoInstrumento.VisibleIndex = 0;
-            this.colDescripcionTipoInstrumento.Width = 500;
+            this.colDescripcionTipoInstrumento.Width = 429;
             // 
             // colEliminar
             // 
             this.colEliminar.ColumnEdit = this.btnEliminar;
-            this.colEliminar.MinWidth = 24;
+            this.colEliminar.MinWidth = 21;
             this.colEliminar.Name = "colEliminar";
             this.colEliminar.Visible = true;
             this.colEliminar.VisibleIndex = 1;
-            this.colEliminar.Width = 40;
+            this.colEliminar.Width = 34;
             // 
             // btnEliminar
             // 
@@ -356,18 +362,18 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(29, 295);
-            this.labelControl5.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl5.Location = new System.Drawing.Point(25, 240);
+            this.labelControl5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(190, 17);
+            this.labelControl5.Size = new System.Drawing.Size(144, 12);
             this.labelControl5.TabIndex = 151;
             this.labelControl5.Text = "Tipos de Intrumento Asociados";
             // 
             // frmNuevaVariableMedicion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(676, 658);
+            this.ClientSize = new System.Drawing.Size(579, 535);
             this.Controls.Add(this.labelControl5);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.gcTiposDeInstrumento);
@@ -385,9 +391,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.Controls.Add(this.txtDescripcion);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IconOptions.ShowIcon = false;
-            this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmNuevaVariableMedicion";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcion.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmPrimerValorRango)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmSegundoValorRango)).EndInit();

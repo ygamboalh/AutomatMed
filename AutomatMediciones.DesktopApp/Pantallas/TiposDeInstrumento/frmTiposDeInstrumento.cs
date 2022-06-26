@@ -29,9 +29,18 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             EstablecerNombreYTitulo();
             EstablecerColorBotonPorDefecto();
             CargarTiposDeInstrumentos();
+            EstablecerColorBotonExportarExcel();
 
             repositoryItemButtonEdit1.Click += onSeleccionaTipoInstrumentoParaEditar;
 
+        }
+
+
+        private void EstablecerColorBotonExportarExcel()
+        {
+            btnExportarExcel.BackColor = ColorHelper.ObtenerColorEnRGB("Sucess");
+            btnExportarExcel.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+            btnExportarExcel.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
         private void onSeleccionaTipoInstrumentoParaEditar(object sender, EventArgs e)

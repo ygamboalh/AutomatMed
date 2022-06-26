@@ -6,14 +6,16 @@ using DevExpress.XtraSplashScreen;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
-using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
 {
     public partial class frmNuevoModelo : DevExpress.XtraEditors.XtraForm
     {
         private readonly ModeloService _modeloService;
+        private readonly CeldaService _celdaService;
 
         public delegate void ModeloAgregada(ModeloDto modelo);
         public event ModeloAgregada OnModeloAgregada;
@@ -22,23 +24,29 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
         public event ModeloModificada OnModeloModificada;
 
         public TipoTransaccion TipoTransaccion { get; set; }
-        public ModeloDto NuevaModelo { get; set; }
+        public ModeloDto NuevoModelo { get; set; }
 
-        public frmNuevoModelo(TipoTransaccion tipoTransaccion, ModeloService modeloService)
+        List<TipoCeldaDto> tiposDeCeldas = new List<TipoCeldaDto>();
+
+        public frmNuevoModelo(TipoTransaccion tipoTransaccion, ModeloService modeloService, CeldaService celdaService)
         {
             InitializeComponent();
+
             TipoTransaccion = tipoTransaccion;
             _modeloService = modeloService;
+            _celdaService = celdaService;
 
             EstablecerNombreYTituloPopupAgregarInstrumentos();
             EstablecerColorBotonGuardar();
+            CargarTiposDeCelda();
 
-            NuevaModelo = new ModeloDto();
+            NuevoModelo = new ModeloDto();
+
         }
 
         public void SetearValoresParaActualizar()
         {
-            txtDescripcion.Text = NuevaModelo.Descripcion;
+            txtDescripcion.Text = NuevoModelo.Descripcion;
         }
 
         private void EstablecerNombreYTituloPopupAgregarInstrumentos()
@@ -59,12 +67,25 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             btnGuardarModelo.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
+        private void CargarTiposDeCelda()
+        {
+            var resultado = _celdaService.ObtenerTiposDeCeldas();
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+            var tiposDeCeldaRespuesta = resultado.Data;
+            tiposDeCeldas = tiposDeCeldaRespuesta;
+
+            leTipoCelda.Properties.DataSource = tiposDeCeldas;
+            leTipoCelda.Properties.DisplayMember = "Descripcion";
+            leTipoCelda.Properties.ValueMember = "Id";
+
+        }
+
         private bool GuardarModelo()
         {
-
             try
             {
-                var resultado = _modeloService.RegistrarModelo(NuevaModelo);
+                var resultado = _modeloService.RegistrarModelo(NuevoModelo);
                 if (resultado.Type != TypeResponse.Ok) return false;
 
                 return true;
@@ -78,10 +99,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
 
         private bool ActualizarModelo()
         {
-
             try
             {
-                var resultado = _modeloService.ActualizarModelo(NuevaModelo);
+                var resultado = _modeloService.ActualizarModelo(NuevoModelo);
                 if (resultado.Type != TypeResponse.Ok) return false;
 
                 return true;
@@ -95,18 +115,17 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
 
         private void PrepararNuevaModelo()
         {
-            NuevaModelo.Descripcion = txtDescripcion.Text;
-
+            NuevoModelo.Descripcion = txtDescripcion.Text;
         }
-
 
         private bool EsValidaLaInformacionIngresadaParaNuevoModelo(out string mensaje)
         {
-            if (string.IsNullOrEmpty(NuevaModelo.Descripcion))
+            if (string.IsNullOrEmpty(NuevoModelo.Descripcion))
             {
                 mensaje = "Es necesario ingresar una descripción para el Modelo.";
                 return false;
             }
+
             mensaje = "Ok";
             return true;
         }
@@ -122,25 +141,47 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             }
 
             SplashScreenManager.ShowForm(typeof(frmLoadingSave));
-            if (TipoTransaccion == TipoTransaccion.Insertar)
+
+            if (TipoTransaccion == TipoTransaccion.Insertar && GuardarModelo())
             {
-                if (GuardarModelo())
-                {
-                    Notificaciones.MensajeConfirmacion("¡El Modelo se ha registrado exitosamente!");
-                    OnModeloAgregada?.Invoke(NuevaModelo);
-                    this.Close();
-                }
+                Notificaciones.MensajeConfirmacion("¡El Modelo se ha registrado exitosamente!");
+                OnModeloAgregada?.Invoke(NuevoModelo);
+                this.Close();
+
+                SplashScreenManager.CloseForm();
+                return;
             }
-            else
+
+            if (ActualizarModelo())
             {
-                if (ActualizarModelo())
-                {
-                    Notificaciones.MensajeConfirmacion("¡El Modelo se ha actualizado exitosamente!");
-                    OnModeloModificada?.Invoke(NuevaModelo);
-                    this.Close();
-                }
+                Notificaciones.MensajeConfirmacion("¡El Modelo se ha actualizado exitosamente!");
+                OnModeloModificada?.Invoke(NuevoModelo);
+                this.Close();
             }
+
             SplashScreenManager.CloseForm();
+        }
+
+        private void btnAgregarTipoCelda_Click(object sender, EventArgs e)
+        {
+
+
+            if (leTipoCelda.EditValue == null || string.IsNullOrEmpty(leTipoCelda.Text))
+            {
+                Notificaciones.MensajeAdvertencia("Es necesario que seleccione un Tipo de Celda para vincularlo al Modelo.");
+                return;
+            }
+
+            var tipoCeldaSeleccionada = tiposDeCeldas.FirstOrDefault(x => x.Id == (int)leTipoCelda.EditValue);
+            if (tipoCeldaSeleccionada == null)
+            {
+                Notificaciones.MensajeAdvertencia($"No fue posible encontrar un Tipo Celda en almacén de datos, que coincida con Tipo de Celda seleccionado: {leTipoCelda.EditValue}.");
+                return;
+            }
+
+            NuevoModelo.TiposDeCelda.Add(tipoCeldaSeleccionada);
+            gcTiposDeCelda.DataSource = NuevoModelo.TiposDeCelda;
+            gcTiposDeCelda.RefreshDataSource();
         }
     }
 }

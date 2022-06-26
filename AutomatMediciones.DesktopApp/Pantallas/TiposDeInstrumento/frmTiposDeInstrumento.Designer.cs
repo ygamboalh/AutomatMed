@@ -45,10 +45,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             this.colEditar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnExportarExcel = new FontAwesome.Sharp.IconButton();
             this.btnAgregarNuevInstrumento = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotal = new DevExpress.XtraEditors.LabelControl();
-            this.btnExportarExcel = new FontAwesome.Sharp.IconButton();
             this.saveFileDialog = new DevExpress.XtraEditors.XtraSaveFileDialog(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gcTipoInstrumento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTipoInstrumento)).BeginInit();
@@ -60,15 +60,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             // gcTipoInstrumento
             // 
             this.gcTipoInstrumento.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcTipoInstrumento.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.gcTipoInstrumento.Location = new System.Drawing.Point(0, 53);
+            this.gcTipoInstrumento.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gcTipoInstrumento.Location = new System.Drawing.Point(0, 43);
             this.gcTipoInstrumento.MainView = this.gvTipoInstrumento;
-            this.gcTipoInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.gcTipoInstrumento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gcTipoInstrumento.Name = "gcTipoInstrumento";
-            this.gcTipoInstrumento.Padding = new System.Windows.Forms.Padding(5);
+            this.gcTipoInstrumento.Padding = new System.Windows.Forms.Padding(4);
             this.gcTipoInstrumento.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit1});
-            this.gcTipoInstrumento.Size = new System.Drawing.Size(992, 570);
+            this.gcTipoInstrumento.Size = new System.Drawing.Size(850, 463);
             this.gcTipoInstrumento.TabIndex = 1;
             this.gcTipoInstrumento.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvTipoInstrumento});
@@ -81,6 +81,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             this.colResumen,
             this.colMetodologia,
             this.colEditar});
+            this.gvTipoInstrumento.DetailHeight = 284;
             this.gvTipoInstrumento.GridControl = this.gcTipoInstrumento;
             this.gvTipoInstrumento.Name = "gvTipoInstrumento";
             this.gvTipoInstrumento.OptionsView.ShowAutoFilterRow = true;
@@ -91,56 +92,56 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             // 
             this.colId.Caption = "Id";
             this.colId.FieldName = "TipoInstrumentoId";
-            this.colId.MinWidth = 24;
+            this.colId.MinWidth = 21;
             this.colId.Name = "colId";
             this.colId.OptionsColumn.AllowEdit = false;
             this.colId.OptionsColumn.ReadOnly = true;
-            this.colId.Width = 198;
+            this.colId.Width = 170;
             // 
             // colDescripcion
             // 
             this.colDescripcion.Caption = "Descripción";
             this.colDescripcion.FieldName = "Descripcion";
-            this.colDescripcion.MinWidth = 24;
+            this.colDescripcion.MinWidth = 21;
             this.colDescripcion.Name = "colDescripcion";
             this.colDescripcion.OptionsColumn.AllowEdit = false;
             this.colDescripcion.OptionsColumn.ReadOnly = true;
             this.colDescripcion.Visible = true;
             this.colDescripcion.VisibleIndex = 0;
-            this.colDescripcion.Width = 198;
+            this.colDescripcion.Width = 170;
             // 
             // colResumen
             // 
             this.colResumen.Caption = "Resumen";
             this.colResumen.FieldName = "Resumen";
-            this.colResumen.MinWidth = 24;
+            this.colResumen.MinWidth = 21;
             this.colResumen.Name = "colResumen";
             this.colResumen.OptionsColumn.AllowEdit = false;
             this.colResumen.OptionsColumn.ReadOnly = true;
             this.colResumen.Visible = true;
             this.colResumen.VisibleIndex = 1;
-            this.colResumen.Width = 198;
+            this.colResumen.Width = 170;
             // 
             // colMetodologia
             // 
             this.colMetodologia.Caption = "Metodología";
             this.colMetodologia.FieldName = "Metodologia";
-            this.colMetodologia.MinWidth = 24;
+            this.colMetodologia.MinWidth = 21;
             this.colMetodologia.Name = "colMetodologia";
             this.colMetodologia.OptionsColumn.AllowEdit = false;
             this.colMetodologia.OptionsColumn.ReadOnly = true;
             this.colMetodologia.Visible = true;
             this.colMetodologia.VisibleIndex = 2;
-            this.colMetodologia.Width = 198;
+            this.colMetodologia.Width = 170;
             // 
             // colEditar
             // 
             this.colEditar.ColumnEdit = this.repositoryItemButtonEdit1;
-            this.colEditar.MinWidth = 24;
+            this.colEditar.MinWidth = 21;
             this.colEditar.Name = "colEditar";
             this.colEditar.Visible = true;
             this.colEditar.VisibleIndex = 3;
-            this.colEditar.Width = 40;
+            this.colEditar.Width = 34;
             // 
             // repositoryItemButtonEdit1
             // 
@@ -157,55 +158,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             this.panel1.Controls.Add(this.btnAgregarNuevInstrumento);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(8, 7, 0, 7);
-            this.panel1.Size = new System.Drawing.Size(992, 53);
+            this.panel1.Padding = new System.Windows.Forms.Padding(7, 6, 0, 6);
+            this.panel1.Size = new System.Drawing.Size(850, 43);
             this.panel1.TabIndex = 2;
-            // 
-            // btnAgregarNuevInstrumento
-            // 
-            this.btnAgregarNuevInstrumento.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnAgregarNuevInstrumento.FlatAppearance.BorderSize = 0;
-            this.btnAgregarNuevInstrumento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregarNuevInstrumento.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAgregarNuevInstrumento.IconChar = FontAwesome.Sharp.IconChar.Plus;
-            this.btnAgregarNuevInstrumento.IconColor = System.Drawing.Color.Black;
-            this.btnAgregarNuevInstrumento.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAgregarNuevInstrumento.IconSize = 30;
-            this.btnAgregarNuevInstrumento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarNuevInstrumento.Location = new System.Drawing.Point(8, 7);
-            this.btnAgregarNuevInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.btnAgregarNuevInstrumento.Name = "btnAgregarNuevInstrumento";
-            this.btnAgregarNuevInstrumento.Size = new System.Drawing.Size(304, 39);
-            this.btnAgregarNuevInstrumento.TabIndex = 16;
-            this.btnAgregarNuevInstrumento.Text = "Nuevo Tipo de Instrumento";
-            this.btnAgregarNuevInstrumento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAgregarNuevInstrumento.UseVisualStyleBackColor = true;
-            this.btnAgregarNuevInstrumento.Click += new System.EventHandler(this.btnAgregarNuevInstrumento_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.lblTotal);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 623);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(992, 27);
-            this.panel2.TabIndex = 30;
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTotal.Appearance.Options.UseFont = true;
-            this.lblTotal.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblTotal.Location = new System.Drawing.Point(0, 0);
-            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(7, 17);
-            this.lblTotal.TabIndex = 27;
-            this.lblTotal.Text = "0";
-            this.lblTotal.Visible = false;
             // 
             // btnExportarExcel
             // 
@@ -218,27 +175,71 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento
             this.btnExportarExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnExportarExcel.IconSize = 30;
             this.btnExportarExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportarExcel.Location = new System.Drawing.Point(781, 7);
-            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnExportarExcel.Location = new System.Drawing.Point(669, 6);
+            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExportarExcel.Name = "btnExportarExcel";
-            this.btnExportarExcel.Size = new System.Drawing.Size(211, 39);
+            this.btnExportarExcel.Size = new System.Drawing.Size(181, 31);
             this.btnExportarExcel.TabIndex = 167;
             this.btnExportarExcel.Text = "Exportar a Excel";
             this.btnExportarExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExportarExcel.UseVisualStyleBackColor = true;
             this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
             // 
+            // btnAgregarNuevInstrumento
+            // 
+            this.btnAgregarNuevInstrumento.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnAgregarNuevInstrumento.FlatAppearance.BorderSize = 0;
+            this.btnAgregarNuevInstrumento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarNuevInstrumento.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAgregarNuevInstrumento.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            this.btnAgregarNuevInstrumento.IconColor = System.Drawing.Color.Black;
+            this.btnAgregarNuevInstrumento.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAgregarNuevInstrumento.IconSize = 30;
+            this.btnAgregarNuevInstrumento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAgregarNuevInstrumento.Location = new System.Drawing.Point(7, 6);
+            this.btnAgregarNuevInstrumento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAgregarNuevInstrumento.Name = "btnAgregarNuevInstrumento";
+            this.btnAgregarNuevInstrumento.Size = new System.Drawing.Size(261, 31);
+            this.btnAgregarNuevInstrumento.TabIndex = 16;
+            this.btnAgregarNuevInstrumento.Text = "Nuevo Tipo de Instrumento";
+            this.btnAgregarNuevInstrumento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAgregarNuevInstrumento.UseVisualStyleBackColor = true;
+            this.btnAgregarNuevInstrumento.Click += new System.EventHandler(this.btnAgregarNuevInstrumento_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.lblTotal);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 506);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(850, 22);
+            this.panel2.TabIndex = 30;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTotal.Appearance.Options.UseFont = true;
+            this.lblTotal.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblTotal.Location = new System.Drawing.Point(0, 0);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(6, 12);
+            this.lblTotal.TabIndex = 27;
+            this.lblTotal.Text = "0";
+            this.lblTotal.Visible = false;
+            // 
             // frmTiposDeInstrumento
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(992, 650);
+            this.ClientSize = new System.Drawing.Size(850, 528);
             this.Controls.Add(this.gcTipoInstrumento);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IconOptions.ShowIcon = false;
-            this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmTiposDeInstrumento";
             this.Text = "Tipos de Instrumento";
             ((System.ComponentModel.ISupportInitialize)(this.gcTipoInstrumento)).EndInit();

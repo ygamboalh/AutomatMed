@@ -28,9 +28,9 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
         {
             try
             {
-                var tiposDeCeldas = _automatDbContext.TiposDeCeldas.AsQueryable().ToList();
-
-
+                var tiposDeCeldas = _automatDbContext.TiposDeCeldas.AsQueryable()
+                                                                   .Include(x => x.VariableDeMedicion)
+                                                                   .ToList();
                 return Response<List<TipoCeldaDto>>.Ok("Ok", _mapper.Map<List<TipoCeldaDto>>(tiposDeCeldas));
             }
             catch (Exception exc)

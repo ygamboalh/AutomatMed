@@ -39,8 +39,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             var modelo = gvModelos.GetFocusedRow() as ModeloDto;
             if (modelo == null) return;
 
-            var frmNuevoModelo = new frmNuevoModelo(TipoTransaccion.Actualizar, serviceProvider.GetService<ModeloService>());
-            frmNuevoModelo.NuevaModelo = modelo;
+            var frmNuevoModelo = new frmNuevoModelo(TipoTransaccion.Actualizar,
+                                                    serviceProvider.GetService<ModeloService>(),
+                                                    serviceProvider.GetService<CeldaService>());
+            frmNuevoModelo.NuevoModelo = modelo;
             frmNuevoModelo.SetearValoresParaActualizar();
             frmNuevoModelo.OnModeloModificada += OnModeloModificada;
             frmNuevoModelo.ShowDialog();
@@ -94,7 +96,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
 
         private void btnAgregarNuevoModelo_Click(object sender, System.EventArgs e)
         {
-            var frmNuevoModelo = new frmNuevoModelo(TipoTransaccion.Insertar, serviceProvider.GetService<ModeloService>());
+            var frmNuevoModelo = new frmNuevoModelo(TipoTransaccion.Insertar,
+                                                    serviceProvider.GetService<ModeloService>(),
+                                                    serviceProvider.GetService<CeldaService>());
 
             frmNuevoModelo.OnModeloAgregada += OnModeloAgregada;
             frmNuevoModelo.ShowDialog();

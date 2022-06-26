@@ -818,6 +818,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 frmEmpresas.ShowDialog();
             }
         }
+
+
     }
 }
 
