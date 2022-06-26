@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace AutomatMediciones.Libs.Dtos
 {
@@ -11,5 +9,6 @@ namespace AutomatMediciones.Libs.Dtos
         public int VariableMedicionId { get; set; }
 
         public VariableMedicionDto VariableDeMedicion { get; set; }
+        public ICollection<TipoCeldaModeloDto> TiposDeCeldaModelo { get; set; }
     }
 }

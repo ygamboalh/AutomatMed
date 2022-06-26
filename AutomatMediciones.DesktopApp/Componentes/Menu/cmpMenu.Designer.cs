@@ -161,7 +161,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.cmdIngresos.IconChar = FontAwesome.Sharp.IconChar.Plus;
             this.cmdIngresos.IconColor = System.Drawing.Color.Black;
             this.cmdIngresos.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.cmdIngresos.IconSize = 25;
+            this.cmdIngresos.IconSize = 20;
             this.cmdIngresos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdIngresos.Location = new System.Drawing.Point(0, 0);
             this.cmdIngresos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -202,7 +202,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.pageMenuExtendido,
             this.pageMenuContraido});
             this.navigationMenus.SelectedPage = this.pageMenuExtendido;
-            this.navigationMenus.Size = new System.Drawing.Size(280, 332);
+            this.navigationMenus.Size = new System.Drawing.Size(280, 210);
             this.navigationMenus.TabIndex = 6;
             this.navigationMenus.Text = "navigationFrame1";
             this.navigationMenus.TransitionAnimationProperties.FrameCount = 500;
@@ -215,7 +215,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.pageMenuExtendido.Controls.Add(this.flowLayoutPanel1);
             this.pageMenuExtendido.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pageMenuExtendido.Name = "pageMenuExtendido";
-            this.pageMenuExtendido.Size = new System.Drawing.Size(280, 332);
+            this.pageMenuExtendido.Size = new System.Drawing.Size(280, 210);
             // 
             // flowLayoutPanel1
             // 
@@ -235,7 +235,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(280, 332);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(280, 210);
             this.flowLayoutPanel1.TabIndex = 7;
             // 
             // pnlIngresos
@@ -268,7 +268,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.btnDiagnosticos.IconChar = FontAwesome.Sharp.IconChar.FileContract;
             this.btnDiagnosticos.IconColor = System.Drawing.Color.Black;
             this.btnDiagnosticos.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnDiagnosticos.IconSize = 25;
+            this.btnDiagnosticos.IconSize = 20;
             this.btnDiagnosticos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDiagnosticos.Location = new System.Drawing.Point(0, 0);
             this.btnDiagnosticos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -299,7 +299,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.btnConfiguracion.IconChar = FontAwesome.Sharp.IconChar.Cogs;
             this.btnConfiguracion.IconColor = System.Drawing.Color.Black;
             this.btnConfiguracion.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnConfiguracion.IconSize = 25;
+            this.btnConfiguracion.IconSize = 20;
             this.btnConfiguracion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConfiguracion.Location = new System.Drawing.Point(0, 0);
             this.btnConfiguracion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -331,7 +331,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.btnCertificados.IconChar = FontAwesome.Sharp.IconChar.FileMedical;
             this.btnCertificados.IconColor = System.Drawing.Color.Black;
             this.btnCertificados.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCertificados.IconSize = 25;
+            this.btnCertificados.IconSize = 18;
             this.btnCertificados.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCertificados.Location = new System.Drawing.Point(10, 0);
             this.btnCertificados.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -372,7 +372,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.btnClasificaciones.IconChar = FontAwesome.Sharp.IconChar.Asterisk;
             this.btnClasificaciones.IconColor = System.Drawing.Color.Black;
             this.btnClasificaciones.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnClasificaciones.IconSize = 25;
+            this.btnClasificaciones.IconSize = 18;
             this.btnClasificaciones.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClasificaciones.Location = new System.Drawing.Point(10, 0);
             this.btnClasificaciones.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -413,7 +413,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.cmdMarcas.IconChar = FontAwesome.Sharp.IconChar.Copyright;
             this.cmdMarcas.IconColor = System.Drawing.Color.Black;
             this.cmdMarcas.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.cmdMarcas.IconSize = 25;
+            this.cmdMarcas.IconSize = 18;
             this.cmdMarcas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.cmdMarcas.Location = new System.Drawing.Point(10, 0);
             this.cmdMarcas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -454,7 +454,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.btnModelos.IconChar = FontAwesome.Sharp.IconChar.Chalkboard;
             this.btnModelos.IconColor = System.Drawing.Color.Black;
             this.btnModelos.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnModelos.IconSize = 25;
+            this.btnModelos.IconSize = 18;
             this.btnModelos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnModelos.Location = new System.Drawing.Point(10, 0);
             this.btnModelos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -495,7 +495,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.btnInstrumentos.IconChar = FontAwesome.Sharp.IconChar.Thermometer;
             this.btnInstrumentos.IconColor = System.Drawing.Color.Black;
             this.btnInstrumentos.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnInstrumentos.IconSize = 25;
+            this.btnInstrumentos.IconSize = 18;
             this.btnInstrumentos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInstrumentos.Location = new System.Drawing.Point(10, 0);
             this.btnInstrumentos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -536,7 +536,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.btnTipoInstrumento.IconChar = FontAwesome.Sharp.IconChar.Signature;
             this.btnTipoInstrumento.IconColor = System.Drawing.Color.Black;
             this.btnTipoInstrumento.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnTipoInstrumento.IconSize = 25;
+            this.btnTipoInstrumento.IconSize = 18;
             this.btnTipoInstrumento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnTipoInstrumento.Location = new System.Drawing.Point(10, 0);
             this.btnTipoInstrumento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -577,7 +577,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.btnVariableMedicion.IconChar = FontAwesome.Sharp.IconChar.BatteryHalf;
             this.btnVariableMedicion.IconColor = System.Drawing.Color.Black;
             this.btnVariableMedicion.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnVariableMedicion.IconSize = 25;
+            this.btnVariableMedicion.IconSize = 18;
             this.btnVariableMedicion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnVariableMedicion.Location = new System.Drawing.Point(10, 0);
             this.btnVariableMedicion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -618,7 +618,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.btnPatrones.IconChar = FontAwesome.Sharp.IconChar.FilePdf;
             this.btnPatrones.IconColor = System.Drawing.Color.Black;
             this.btnPatrones.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnPatrones.IconSize = 25;
+            this.btnPatrones.IconSize = 18;
             this.btnPatrones.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPatrones.Location = new System.Drawing.Point(10, 0);
             this.btnPatrones.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -659,7 +659,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.btnCeldas.IconChar = FontAwesome.Sharp.IconChar.Table;
             this.btnCeldas.IconColor = System.Drawing.Color.Black;
             this.btnCeldas.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCeldas.IconSize = 25;
+            this.btnCeldas.IconSize = 18;
             this.btnCeldas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCeldas.Location = new System.Drawing.Point(10, 0);
             this.btnCeldas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -687,7 +687,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.pageMenuContraido.Controls.Add(this.panel2);
             this.pageMenuContraido.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pageMenuContraido.Name = "pageMenuContraido";
-            this.pageMenuContraido.Size = new System.Drawing.Size(280, 332);
+            this.pageMenuContraido.Size = new System.Drawing.Size(280, 210);
             // 
             // panel5
             // 
@@ -772,7 +772,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.MaximumSize = new System.Drawing.Size(280, 0);
             this.MinimumSize = new System.Drawing.Size(26, 390);
             this.Name = "cmpMenu";
-            this.Size = new System.Drawing.Size(280, 512);
+            this.Size = new System.Drawing.Size(280, 390);
             this.pnlLogo.ResumeLayout(false);
             this.pnlExpandirMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navigationMenus)).EndInit();

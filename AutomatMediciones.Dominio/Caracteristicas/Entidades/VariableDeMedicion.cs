@@ -12,5 +12,6 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
         public ICollection<TipoInstrumentoVariable> TiposDeInstrumentoVariables { get; set; }
         public ICollection<VariableInstrumento> VariablesInstrumentos { get; set; }
         public ICollection<VariablePatron> VariablesPatrones { get; set; }
+        public ICollection<TipoCelda> TiposDeCeldas { get; set; }
     }
 }

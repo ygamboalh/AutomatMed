@@ -11,7 +11,7 @@ namespace AutomatMediciones.Libs.Dtos
         public int TipoTrabajoId { get; set; }
         public int EstadoId { get; set; }
         public int Prioridad { get; set; }
-        public string Comentarios { get; set; }     
+        public string Comentarios { get; set; }
         public string Diagnostico { get; set; }
         public DateTime? FechaInicio { get; set; }
         public DateTime? FechaFin { get; set; }

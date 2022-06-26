@@ -93,12 +93,34 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
         {
             try
             {
-                var marcaBd = _automatDbContext.Celdas.FirstOrDefault(x => x.Id == celdaDto.Id);
+                var celdaDb = _automatDbContext.Celdas.FirstOrDefault(x => x.Id == celdaDto.Id);
 
-                if (marcaBd == null)
+                if (celdaDb == null) return Response<bool>.Error("La celda no fue encontrado en almacén de datos", false);
+
+                celdaDb = _mapper.Map<Celda>(celdaDto);
+
+                _automatDbContext.SaveChanges();
+
+                return Response<bool>.Ok("Ok", true);
+            }
+            catch (Exception exc)
+            {
+                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+            }
+        }
+
+        public Response<bool> DesactivarTipoCeldaModelo(int tipoCeldaModeloId)
+        {
+            try
+            {
+                var tipoCeldaModeloDb = _automatDbContext.TiposDeCeldasModelos.FirstOrDefault(x => x.Id == tipoCeldaModeloId);
+
+                if (tipoCeldaModeloDb == null)
                 {
-                    return Response<bool>.Error("La celda no fue encontrado en almacén de datos", false);
+                    return Response<bool>.Error("El Tipo de Celda vinculado a este modelo no fue encontrado en almacén de datos", false);
                 }
+
+                tipoCeldaModeloDb.Activo = false;
 
                 _automatDbContext.SaveChanges();
 

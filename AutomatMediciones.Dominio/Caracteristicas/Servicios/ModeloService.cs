@@ -1,6 +1,8 @@
-﻿using AutomatMediciones.Dominio.Caracteristicas.Entidades;
+﻿using AutoMapper;
+using AutomatMediciones.Dominio.Caracteristicas.Entidades;
 using AutomatMediciones.Dominio.Infraestructura;
 using AutomatMediciones.Libs.Dtos;
+using Microsoft.EntityFrameworkCore;
 using Nagaira.Herramientas.Standard.Helpers.Exceptions;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
@@ -11,25 +13,44 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 {
     public class ModeloService
     {
-        private readonly AutomatMedicionesDbContext _AutomatMedicionesDbContext;
+        private readonly AutomatMedicionesDbContext _automatMedicionesDbContext;
+        private readonly IMapper _mapper;
 
-        public ModeloService(AutomatMedicionesDbContext AutomatMedicionesDbContext)
+        public ModeloService(AutomatMedicionesDbContext automatMedicionesDbContext, IMapper imapper)
         {
-            _AutomatMedicionesDbContext = AutomatMedicionesDbContext;
+            _automatMedicionesDbContext = automatMedicionesDbContext;
+            _mapper = imapper;
         }
 
         public Response<List<ModeloDto>> ObtenerModelos()
         {
             try
             {
-                var modelos = _AutomatMedicionesDbContext.Modelos.Select(x => new ModeloDto
-                {
+                var modelos = _automatMedicionesDbContext.Modelos.AsQueryable().ToList();
+                var tipoCeldaModelos = _automatMedicionesDbContext.TiposDeCeldasModelos.Where(y => modelos.Select(x => x.ModeloId).Contains(y.ModeloId) && y.Activo)
+                                                                                        .ToList();
+                var tiposDeCeldas = _automatMedicionesDbContext.TiposDeCeldas.AsQueryable().Include(y => y.VariableDeMedicion)
+                                                                                           .Where(y => tipoCeldaModelos.Select(x => x.TipoCeldaId).Contains(y.Id))
+                                                                                           .ToList();
 
+
+                var query = modelos.Select(x => new ModeloDto
+                {
                     Descripcion = x.Descripcion,
-                    ModeloId = x.ModeloId
+                    ModeloId = x.ModeloId,
+                    TipoCeldaModelo = tipoCeldaModelos.Where(y => y.ModeloId == x.ModeloId).Select(r => new TipoCeldaModeloDto
+                    {
+                        Id = r.Id,
+                        ModeloId = r.ModeloId,
+                        TipoCeldaId = r.TipoCeldaId,
+                        Activo = r.Activo,
+                        TipoDeCelda = _mapper.Map<TipoCeldaDto>(tiposDeCeldas.FirstOrDefault(d => d.Id == r.TipoCeldaId)),
+
+                    }).ToList()
                 }).ToList();
 
-                return Response<List<ModeloDto>>.Ok("Ok", modelos);
+
+                return Response<List<ModeloDto>>.Ok("Ok", query);
 
             }
             catch (Exception exc)
@@ -47,13 +68,35 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     Descripcion = modeloDto.Descripcion
                 };
 
-                _AutomatMedicionesDbContext.Modelos.Add(modelo);
-                _AutomatMedicionesDbContext.SaveChanges();
+                _automatMedicionesDbContext.Database.BeginTransaction();
+                _automatMedicionesDbContext.Modelos.Add(modelo);
+                _automatMedicionesDbContext.SaveChanges();
+
+                var tiposDeCeldaModelos = modeloDto.TipoCeldaModelo.Where(x => x.Id == 0).ToList();
+                if (tiposDeCeldaModelos.Any())
+                {
+                    List<TipoCeldaModelo> listaTiposDeCeldaModelosParaRegistrar = new List<TipoCeldaModelo>();
+                    tiposDeCeldaModelos.ForEach(x =>
+                    {
+                        listaTiposDeCeldaModelosParaRegistrar.Add(new TipoCeldaModelo
+                        {
+                            TipoCeldaId = x.TipoCeldaId,
+                            ModeloId = modelo.ModeloId,
+                            Activo = true
+                        });
+                    });
+
+                    _automatMedicionesDbContext.TiposDeCeldasModelos.AddRange(listaTiposDeCeldaModelosParaRegistrar);
+                    _automatMedicionesDbContext.SaveChanges();
+                }
+        
+                _automatMedicionesDbContext.Database.CommitTransaction();
 
                 return Response<bool>.Ok("Ok", true);
             }
             catch (Exception exc)
             {
+                _automatMedicionesDbContext.Database.RollbackTransaction();
                 return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
             }
         }
@@ -62,22 +105,41 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
         {
             try
             {
-                var tipoInstrumentoBd = _AutomatMedicionesDbContext.Modelos.FirstOrDefault(x => x.ModeloId == modeloDto.ModeloId);
+                var tipoInstrumentoBd = _automatMedicionesDbContext.Modelos.FirstOrDefault(x => x.ModeloId == modeloDto.ModeloId);
 
                 if (tipoInstrumentoBd == null)
                 {
                     return Response<bool>.Error("El modelo no fue encontrado en almacén de datos", false);
                 }
 
-
+                _automatMedicionesDbContext.Database.BeginTransaction();
                 tipoInstrumentoBd.Descripcion = modeloDto.Descripcion;
 
-                _AutomatMedicionesDbContext.SaveChanges();
+                var tiposDeCeldaModelos = modeloDto.TipoCeldaModelo.Where(x => x.Id == 0).ToList();
+                if (tiposDeCeldaModelos.Any())
+                {
+                    List<TipoCeldaModelo> listaTiposDeCeldaModelosParaRegistrar = new List<TipoCeldaModelo>();
+                    tiposDeCeldaModelos.ForEach(x =>
+                    {
+                        listaTiposDeCeldaModelosParaRegistrar.Add(new TipoCeldaModelo
+                        {
+                            TipoCeldaId = x.TipoCeldaId,
+                            ModeloId = tipoInstrumentoBd.ModeloId,
+                            Activo = true
+                        });
+                    });
+
+                    _automatMedicionesDbContext.TiposDeCeldasModelos.AddRange(listaTiposDeCeldaModelosParaRegistrar);                
+                }
+
+                _automatMedicionesDbContext.SaveChanges();
+                _automatMedicionesDbContext.Database.CommitTransaction();
 
                 return Response<bool>.Ok("Ok", true);
             }
             catch (Exception exc)
             {
+                _automatMedicionesDbContext.Database.RollbackTransaction();
                 return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
             }
         }

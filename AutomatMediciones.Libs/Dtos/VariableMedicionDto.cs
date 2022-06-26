@@ -13,5 +13,6 @@ namespace AutomatMediciones.Libs.Dtos
         public ICollection<TipoInstrumentoVariableDto> TiposDeInstrumentoVariables { get; set; }
         public ICollection<VariableInstrumentoDto> VariablesInstrumentos { get; set; }
         public ICollection<VariablePatronDto> VariablesPatrones { get; set; }
+        public ICollection<TipoCeldaDto> TiposDeCelda { get; set; }
     }
 }

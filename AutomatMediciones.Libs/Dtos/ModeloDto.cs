@@ -6,12 +6,12 @@ namespace AutomatMediciones.Libs.Dtos
     {
         public int ModeloId { get; set; }
         public string Descripcion { get; set; }
-        public ICollection<TipoCeldaDto> TiposDeCelda { get; set; }
+        public List<TipoCeldaModeloDto> TipoCeldaModelo { get; set; }
 
 
         public ModeloDto()
         {
-            TiposDeCelda = new List<TipoCeldaDto>();
+            TipoCeldaModelo = new List<TipoCeldaModeloDto>();
         }
     }
 }

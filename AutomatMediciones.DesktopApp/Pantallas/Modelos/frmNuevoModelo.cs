@@ -24,9 +24,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
         public event ModeloModificada OnModeloModificada;
 
         public TipoTransaccion TipoTransaccion { get; set; }
+        List<TipoCeldaDto> tiposDeCeldas = new List<TipoCeldaDto>();
         public ModeloDto NuevoModelo { get; set; }
 
-        List<TipoCeldaDto> tiposDeCeldas = new List<TipoCeldaDto>();
+       
 
         public frmNuevoModelo(TipoTransaccion tipoTransaccion, ModeloService modeloService, CeldaService celdaService)
         {
@@ -42,11 +43,46 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
 
             NuevoModelo = new ModeloDto();
 
+
+            btnEliminar.Click += btnEliminarClick;
+
+        }
+
+        private void btnEliminarClick(object sender, EventArgs e)
+        {
+            var filaSeleccionda = gvTiposDeCeldaModelo.GetFocusedRow() as TipoCeldaModeloDto;
+            if (filaSeleccionda == null) return;
+
+            if (filaSeleccionda.Id == 0)
+            {
+                NuevoModelo.TipoCeldaModelo = NuevoModelo.TipoCeldaModelo.Where(x => x.Id != filaSeleccionda.Id).ToList();
+                gcTiposDeCeldaModelo.DataSource = NuevoModelo.TipoCeldaModelo;
+                gcTiposDeCeldaModelo.RefreshDataSource();
+
+                SetearTotales();
+                return;
+            }
+
+
+            if (DesactivarTipoCeldaModelo(filaSeleccionda.Id))
+            {
+                NuevoModelo.TipoCeldaModelo = NuevoModelo.TipoCeldaModelo.Where(x => x.Id != filaSeleccionda.Id).ToList();
+                gcTiposDeCeldaModelo.DataSource = NuevoModelo.TipoCeldaModelo;
+                gcTiposDeCeldaModelo.RefreshDataSource();
+
+                SetearTotales();
+            }
+           
         }
 
         public void SetearValoresParaActualizar()
         {
             txtDescripcion.Text = NuevoModelo.Descripcion;
+           
+            gcTiposDeCeldaModelo.DataSource = NuevoModelo.TipoCeldaModelo;
+            gcTiposDeCeldaModelo.RefreshDataSource();
+
+            SetearTotales();
         }
 
         private void EstablecerNombreYTituloPopupAgregarInstrumentos()
@@ -78,7 +114,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             leTipoCelda.Properties.DataSource = tiposDeCeldas;
             leTipoCelda.Properties.DisplayMember = "Descripcion";
             leTipoCelda.Properties.ValueMember = "Id";
+        }
 
+        private void SetearTotales()
+        {
+            lblTotal.Text = $"Total Registros: {NuevoModelo.TipoCeldaModelo.Count}";
+            lblTotal.Visible = true;
         }
 
         private bool GuardarModelo()
@@ -86,7 +127,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             try
             {
                 var resultado = _modeloService.RegistrarModelo(NuevoModelo);
-                if (resultado.Type != TypeResponse.Ok) return false;
+                if (resultado.Type != TypeResponse.Ok)
+                {
+                    Notificaciones.MensajeError(resultado.Message);
+                    return false;
+                }
 
                 return true;
             }
@@ -102,7 +147,31 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             try
             {
                 var resultado = _modeloService.ActualizarModelo(NuevoModelo);
-                if (resultado.Type != TypeResponse.Ok) return false;
+                if (resultado.Type != TypeResponse.Ok)
+                {
+                    Notificaciones.MensajeError(resultado.Message);
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception exc)
+            {
+                Notificaciones.MensajeError(ExceptionsHelper.ObtenerMensajeExcepcion(exc));
+                return false;
+            }
+        }
+
+        private bool DesactivarTipoCeldaModelo(int tipoCeldaModeloId)
+        {
+            try
+            {
+                var resultado = _celdaService.DesactivarTipoCeldaModelo(tipoCeldaModeloId);
+                if (resultado.Type != TypeResponse.Ok)
+                {
+                    Notificaciones.MensajeError(resultado.Message);
+                    return false;
+                }
 
                 return true;
             }
@@ -164,8 +233,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
 
         private void btnAgregarTipoCelda_Click(object sender, EventArgs e)
         {
-
-
             if (leTipoCelda.EditValue == null || string.IsNullOrEmpty(leTipoCelda.Text))
             {
                 Notificaciones.MensajeAdvertencia("Es necesario que seleccione un Tipo de Celda para vincularlo al Modelo.");
@@ -179,9 +246,22 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
                 return;
             }
 
-            NuevoModelo.TiposDeCelda.Add(tipoCeldaSeleccionada);
-            gcTiposDeCelda.DataSource = NuevoModelo.TiposDeCelda;
-            gcTiposDeCelda.RefreshDataSource();
+            if (NuevoModelo.TipoCeldaModelo.Any(x => x.TipoCeldaId == tipoCeldaSeleccionada.Id))
+            {
+                Notificaciones.MensajeAdvertencia($"El tipo de celda seleccionado ya está vinculado a este Modelo.");
+                return;
+            }
+
+            NuevoModelo.TipoCeldaModelo.Add(new TipoCeldaModeloDto { 
+                TipoCeldaId = tipoCeldaSeleccionada.Id,
+                TipoDeCelda = tipoCeldaSeleccionada
+            });
+            gcTiposDeCeldaModelo.DataSource = NuevoModelo.TipoCeldaModelo;
+            gcTiposDeCeldaModelo.RefreshDataSource();
+
+            SetearTotales();
         }
+
+       
     }
 }

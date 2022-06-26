@@ -14,6 +14,6 @@ namespace AutomatMediciones.Libs.Dtos
         public int ResponsableId { get; set; }
         public UsuarioDto Responsable { get; set; }
         public InstrumentoDto Instrumento { get; set; }
-        public ICollection<VariableCertificadoDto>VariablesCertificado { get; set; }
+        public ICollection<VariableCertificadoDto> VariablesCertificado { get; set; }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AutomatMediciones.Libs.Dtos
+﻿namespace AutomatMediciones.Libs.Dtos
 {
     public class EstadoCeldaDto
     {

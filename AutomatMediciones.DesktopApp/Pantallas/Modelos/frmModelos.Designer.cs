@@ -61,10 +61,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.panel1.Controls.Add(this.btnAgregarNuevoModelo);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(8, 7, 0, 7);
-            this.panel1.Size = new System.Drawing.Size(659, 53);
+            this.panel1.Padding = new System.Windows.Forms.Padding(7, 6, 0, 6);
+            this.panel1.Size = new System.Drawing.Size(565, 43);
             this.panel1.TabIndex = 37;
             // 
             // btnExportarExcel
@@ -78,10 +78,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.btnExportarExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnExportarExcel.IconSize = 30;
             this.btnExportarExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportarExcel.Location = new System.Drawing.Point(448, 7);
-            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnExportarExcel.Location = new System.Drawing.Point(384, 6);
+            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExportarExcel.Name = "btnExportarExcel";
-            this.btnExportarExcel.Size = new System.Drawing.Size(211, 39);
+            this.btnExportarExcel.Size = new System.Drawing.Size(181, 31);
             this.btnExportarExcel.TabIndex = 165;
             this.btnExportarExcel.Text = "Exportar a Excel";
             this.btnExportarExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -99,10 +99,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.btnAgregarNuevoModelo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAgregarNuevoModelo.IconSize = 30;
             this.btnAgregarNuevoModelo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarNuevoModelo.Location = new System.Drawing.Point(8, 7);
-            this.btnAgregarNuevoModelo.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnAgregarNuevoModelo.Location = new System.Drawing.Point(7, 6);
+            this.btnAgregarNuevoModelo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAgregarNuevoModelo.Name = "btnAgregarNuevoModelo";
-            this.btnAgregarNuevoModelo.Size = new System.Drawing.Size(211, 39);
+            this.btnAgregarNuevoModelo.Size = new System.Drawing.Size(181, 31);
             this.btnAgregarNuevoModelo.TabIndex = 16;
             this.btnAgregarNuevoModelo.Text = "Nuevo Modelo";
             this.btnAgregarNuevoModelo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -113,10 +113,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             // 
             this.panel2.Controls.Add(this.lblTotal);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 358);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel2.Location = new System.Drawing.Point(0, 291);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(659, 27);
+            this.panel2.Size = new System.Drawing.Size(565, 22);
             this.panel2.TabIndex = 38;
             // 
             // lblTotal
@@ -125,9 +125,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.lblTotal.Appearance.Options.UseFont = true;
             this.lblTotal.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblTotal.Location = new System.Drawing.Point(0, 0);
-            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(7, 17);
+            this.lblTotal.Size = new System.Drawing.Size(6, 12);
             this.lblTotal.TabIndex = 27;
             this.lblTotal.Text = "0";
             this.lblTotal.Visible = false;
@@ -135,15 +135,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             // gcModelos
             // 
             this.gcModelos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcModelos.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.gcModelos.Location = new System.Drawing.Point(0, 53);
+            this.gcModelos.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gcModelos.Location = new System.Drawing.Point(0, 43);
             this.gcModelos.MainView = this.gvModelos;
-            this.gcModelos.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.gcModelos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gcModelos.Name = "gcModelos";
-            this.gcModelos.Padding = new System.Windows.Forms.Padding(5);
+            this.gcModelos.Padding = new System.Windows.Forms.Padding(4);
             this.gcModelos.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.cmdEditar});
-            this.gcModelos.Size = new System.Drawing.Size(659, 305);
+            this.gcModelos.Size = new System.Drawing.Size(565, 248);
             this.gcModelos.TabIndex = 39;
             this.gcModelos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvModelos});
@@ -154,8 +154,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.colId,
             this.colDescripcion,
             this.colEditar});
+            this.gvModelos.DetailHeight = 284;
             this.gvModelos.GridControl = this.gcModelos;
             this.gvModelos.Name = "gvModelos";
+            this.gvModelos.OptionsDetail.EnableMasterViewMode = false;
             this.gvModelos.OptionsView.ShowAutoFilterRow = true;
             this.gvModelos.OptionsView.ShowGroupPanel = false;
             this.gvModelos.OptionsView.ShowIndicator = false;
@@ -164,32 +166,32 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             // 
             this.colId.Caption = "Id";
             this.colId.FieldName = "ModeloId";
-            this.colId.MinWidth = 24;
+            this.colId.MinWidth = 21;
             this.colId.Name = "colId";
             this.colId.OptionsColumn.AllowEdit = false;
             this.colId.OptionsColumn.ReadOnly = true;
-            this.colId.Width = 198;
+            this.colId.Width = 170;
             // 
             // colDescripcion
             // 
             this.colDescripcion.Caption = "Descripción";
             this.colDescripcion.FieldName = "Descripcion";
-            this.colDescripcion.MinWidth = 24;
+            this.colDescripcion.MinWidth = 21;
             this.colDescripcion.Name = "colDescripcion";
             this.colDescripcion.OptionsColumn.AllowEdit = false;
             this.colDescripcion.OptionsColumn.ReadOnly = true;
             this.colDescripcion.Visible = true;
             this.colDescripcion.VisibleIndex = 0;
-            this.colDescripcion.Width = 198;
+            this.colDescripcion.Width = 469;
             // 
             // colEditar
             // 
             this.colEditar.ColumnEdit = this.cmdEditar;
-            this.colEditar.MinWidth = 24;
+            this.colEditar.MinWidth = 21;
             this.colEditar.Name = "colEditar";
             this.colEditar.Visible = true;
             this.colEditar.VisibleIndex = 1;
-            this.colEditar.Width = 40;
+            this.colEditar.Width = 30;
             // 
             // cmdEditar
             // 
@@ -202,15 +204,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             // 
             // frmModelos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(659, 385);
+            this.ClientSize = new System.Drawing.Size(565, 313);
             this.Controls.Add(this.gcModelos);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IconOptions.ShowIcon = false;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmModelos";
             this.Text = "Modelos";
             this.panel1.ResumeLayout(false);

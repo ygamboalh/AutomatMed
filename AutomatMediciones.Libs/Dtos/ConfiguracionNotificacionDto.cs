@@ -8,7 +8,7 @@
         public string CorreoOrigen { get; set; }
         public string Password { get; set; }
         public string Nombre { get; set; }
-        public string Asunto { get; set; }       
+        public string Asunto { get; set; }
         public bool Activo { get; set; }
     }
 }

@@ -29,21 +29,37 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNuevoModelo));
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.txtDescripcion = new DevExpress.XtraEditors.TextEdit();
             this.btnGuardarModelo = new FontAwesome.Sharp.IconButton();
             this.btnAgregarTipoCelda = new FontAwesome.Sharp.IconButton();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.gcTiposDeCelda = new DevExpress.XtraGrid.GridControl();
-            this.gvTiposDeCelda = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gcTiposDeCeldaModelo = new DevExpress.XtraGrid.GridControl();
+            this.gvTiposDeCeldaModelo = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colVariableDeMedicion = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPrimerValor = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSegundoValor = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTolerancia = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colEliminar = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnEliminar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.leTipoCelda = new DevExpress.XtraEditors.LookUpEdit();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblTotal = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcion.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcTiposDeCelda)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvTiposDeCelda)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcTiposDeCeldaModelo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvTiposDeCeldaModelo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEliminar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leTipoCelda.Properties)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelControl11
@@ -53,9 +69,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.labelControl11.Location = new System.Drawing.Point(27, 57);
             this.labelControl11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl11.Name = "labelControl11";
-            this.labelControl11.Size = new System.Drawing.Size(51, 12);
+            this.labelControl11.Size = new System.Drawing.Size(53, 12);
             this.labelControl11.TabIndex = 125;
-            this.labelControl11.Text = "Descripción";
+            this.labelControl11.Text = "Descripción:";
             // 
             // txtDescripcion
             // 
@@ -78,7 +94,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.btnGuardarModelo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardarModelo.IconSize = 30;
             this.btnGuardarModelo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardarModelo.Location = new System.Drawing.Point(246, 406);
+            this.btnGuardarModelo.Location = new System.Drawing.Point(556, 407);
             this.btnGuardarModelo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGuardarModelo.Name = "btnGuardarModelo";
             this.btnGuardarModelo.Size = new System.Drawing.Size(220, 42);
@@ -98,7 +114,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.btnAgregarTipoCelda.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAgregarTipoCelda.IconSize = 30;
             this.btnAgregarTipoCelda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarTipoCelda.Location = new System.Drawing.Point(432, 129);
+            this.btnAgregarTipoCelda.Location = new System.Drawing.Point(433, 122);
             this.btnAgregarTipoCelda.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAgregarTipoCelda.Name = "btnAgregarTipoCelda";
             this.btnAgregarTipoCelda.Size = new System.Drawing.Size(34, 26);
@@ -111,55 +127,134 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(27, 112);
+            this.labelControl4.Location = new System.Drawing.Point(28, 105);
             this.labelControl4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(227, 12);
             this.labelControl4.TabIndex = 149;
-            this.labelControl4.Text = "Seleccione un tipo de celda para vincular al Módelo";
+            this.labelControl4.Text = "Seleccione un tipo de celda para vincular al Modelo";
             // 
-            // gcTiposDeCelda
+            // gcTiposDeCeldaModelo
             // 
-            this.gcTiposDeCelda.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gcTiposDeCelda.Location = new System.Drawing.Point(27, 189);
-            this.gcTiposDeCelda.MainView = this.gvTiposDeCelda;
-            this.gcTiposDeCelda.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gcTiposDeCelda.Name = "gcTiposDeCelda";
-            this.gcTiposDeCelda.Size = new System.Drawing.Size(440, 203);
-            this.gcTiposDeCelda.TabIndex = 152;
-            this.gcTiposDeCelda.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvTiposDeCelda});
+            this.gcTiposDeCeldaModelo.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gcTiposDeCeldaModelo.Location = new System.Drawing.Point(27, 176);
+            this.gcTiposDeCeldaModelo.MainView = this.gvTiposDeCeldaModelo;
+            this.gcTiposDeCeldaModelo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gcTiposDeCeldaModelo.Name = "gcTiposDeCeldaModelo";
+            this.gcTiposDeCeldaModelo.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.btnEliminar});
+            this.gcTiposDeCeldaModelo.Size = new System.Drawing.Size(749, 189);
+            this.gcTiposDeCeldaModelo.TabIndex = 152;
+            this.gcTiposDeCeldaModelo.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvTiposDeCeldaModelo});
             // 
-            // gvTiposDeCelda
+            // gvTiposDeCeldaModelo
             // 
-            this.gvTiposDeCelda.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gvTiposDeCeldaModelo.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colDescripcion,
-            this.colId});
-            this.gvTiposDeCelda.DetailHeight = 284;
-            this.gvTiposDeCelda.GridControl = this.gcTiposDeCelda;
-            this.gvTiposDeCelda.Name = "gvTiposDeCelda";
-            this.gvTiposDeCelda.OptionsView.ShowGroupPanel = false;
-            this.gvTiposDeCelda.OptionsView.ShowIndicator = false;
+            this.colVariableDeMedicion,
+            this.colPrimerValor,
+            this.colSegundoValor,
+            this.colTolerancia,
+            this.colId,
+            this.colEliminar});
+            this.gvTiposDeCeldaModelo.DetailHeight = 284;
+            this.gvTiposDeCeldaModelo.GridControl = this.gcTiposDeCeldaModelo;
+            this.gvTiposDeCeldaModelo.Name = "gvTiposDeCeldaModelo";
+            this.gvTiposDeCeldaModelo.OptionsView.ShowGroupPanel = false;
+            this.gvTiposDeCeldaModelo.OptionsView.ShowIndicator = false;
             // 
             // colDescripcion
             // 
             this.colDescripcion.Caption = "Celda";
-            this.colDescripcion.FieldName = "Descripcion";
+            this.colDescripcion.FieldName = "TipoDeCelda.Descripcion";
             this.colDescripcion.Name = "colDescripcion";
+            this.colDescripcion.OptionsColumn.AllowEdit = false;
+            this.colDescripcion.OptionsColumn.AllowFocus = false;
+            this.colDescripcion.OptionsColumn.ReadOnly = true;
             this.colDescripcion.Visible = true;
             this.colDescripcion.VisibleIndex = 0;
+            this.colDescripcion.Width = 155;
+            // 
+            // colVariableDeMedicion
+            // 
+            this.colVariableDeMedicion.Caption = "Variable de Medición";
+            this.colVariableDeMedicion.FieldName = "TipoDeCelda.VariableDeMedicion.Descripcion";
+            this.colVariableDeMedicion.Name = "colVariableDeMedicion";
+            this.colVariableDeMedicion.OptionsColumn.AllowEdit = false;
+            this.colVariableDeMedicion.OptionsColumn.AllowFocus = false;
+            this.colVariableDeMedicion.OptionsColumn.ReadOnly = true;
+            this.colVariableDeMedicion.Visible = true;
+            this.colVariableDeMedicion.VisibleIndex = 1;
+            this.colVariableDeMedicion.Width = 154;
+            // 
+            // colPrimerValor
+            // 
+            this.colPrimerValor.Caption = "Primer Valor Rango";
+            this.colPrimerValor.FieldName = "TipoDeCelda.VariableDeMedicion.PrimerValorRango";
+            this.colPrimerValor.Name = "colPrimerValor";
+            this.colPrimerValor.OptionsColumn.AllowEdit = false;
+            this.colPrimerValor.OptionsColumn.AllowFocus = false;
+            this.colPrimerValor.OptionsColumn.ReadOnly = true;
+            this.colPrimerValor.Visible = true;
+            this.colPrimerValor.VisibleIndex = 2;
+            this.colPrimerValor.Width = 99;
+            // 
+            // colSegundoValor
+            // 
+            this.colSegundoValor.Caption = "Segundo Valor Rango";
+            this.colSegundoValor.FieldName = "TipoDeCelda.VariableDeMedicion.SegundoValorRango";
+            this.colSegundoValor.Name = "colSegundoValor";
+            this.colSegundoValor.OptionsColumn.AllowEdit = false;
+            this.colSegundoValor.OptionsColumn.AllowFocus = false;
+            this.colSegundoValor.OptionsColumn.ReadOnly = true;
+            this.colSegundoValor.Visible = true;
+            this.colSegundoValor.VisibleIndex = 3;
+            this.colSegundoValor.Width = 99;
+            // 
+            // colTolerancia
+            // 
+            this.colTolerancia.Caption = "Tolerancia";
+            this.colTolerancia.FieldName = "TipoDeCelda.VariableDeMedicion.Tolerancia";
+            this.colTolerancia.Name = "colTolerancia";
+            this.colTolerancia.OptionsColumn.AllowEdit = false;
+            this.colTolerancia.OptionsColumn.AllowFocus = false;
+            this.colTolerancia.OptionsColumn.ReadOnly = true;
+            this.colTolerancia.Visible = true;
+            this.colTolerancia.VisibleIndex = 4;
+            this.colTolerancia.Width = 69;
             // 
             // colId
             // 
             this.colId.Caption = "colId";
             this.colId.FieldName = "Id";
             this.colId.Name = "colId";
+            this.colId.OptionsColumn.AllowEdit = false;
+            this.colId.OptionsColumn.AllowFocus = false;
+            this.colId.OptionsColumn.ReadOnly = true;
+            // 
+            // colEliminar
+            // 
+            this.colEliminar.ColumnEdit = this.btnEliminar;
+            this.colEliminar.Name = "colEliminar";
+            this.colEliminar.Visible = true;
+            this.colEliminar.VisibleIndex = 5;
+            this.colEliminar.Width = 30;
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.AutoHeight = false;
+            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
+            this.btnEliminar.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(27, 171);
+            this.labelControl1.Location = new System.Drawing.Point(27, 158);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(115, 12);
@@ -169,7 +264,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             // leTipoCelda
             // 
             this.leTipoCelda.EditValue = "";
-            this.leTipoCelda.Location = new System.Drawing.Point(27, 129);
+            this.leTipoCelda.Location = new System.Drawing.Point(28, 122);
             this.leTipoCelda.Name = "leTipoCelda";
             this.leTipoCelda.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
             this.leTipoCelda.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -184,14 +279,37 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.leTipoCelda.Size = new System.Drawing.Size(399, 24);
             this.leTipoCelda.TabIndex = 154;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.lblTotal);
+            this.panel2.Location = new System.Drawing.Point(27, 369);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(749, 22);
+            this.panel2.TabIndex = 155;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTotal.Appearance.Options.UseFont = true;
+            this.lblTotal.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblTotal.Location = new System.Drawing.Point(0, 0);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(6, 12);
+            this.lblTotal.TabIndex = 27;
+            this.lblTotal.Text = "0";
+            this.lblTotal.Visible = false;
+            // 
             // frmNuevoModelo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(495, 462);
+            this.ClientSize = new System.Drawing.Size(800, 470);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.leTipoCelda);
             this.Controls.Add(this.labelControl1);
-            this.Controls.Add(this.gcTiposDeCelda);
+            this.Controls.Add(this.gcTiposDeCeldaModelo);
             this.Controls.Add(this.btnAgregarTipoCelda);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.btnGuardarModelo);
@@ -202,9 +320,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.Name = "frmNuevoModelo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcion.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcTiposDeCelda)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvTiposDeCelda)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcTiposDeCeldaModelo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvTiposDeCeldaModelo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEliminar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leTipoCelda.Properties)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,11 +337,19 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
         private FontAwesome.Sharp.IconButton btnGuardarModelo;
         private FontAwesome.Sharp.IconButton btnAgregarTipoCelda;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraGrid.GridControl gcTiposDeCelda;
-        private DevExpress.XtraGrid.Views.Grid.GridView gvTiposDeCelda;
+        private DevExpress.XtraGrid.GridControl gcTiposDeCeldaModelo;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvTiposDeCeldaModelo;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LookUpEdit leTipoCelda;
         private DevExpress.XtraGrid.Columns.GridColumn colDescripcion;
         private DevExpress.XtraGrid.Columns.GridColumn colId;
+        private DevExpress.XtraGrid.Columns.GridColumn colVariableDeMedicion;
+        private DevExpress.XtraGrid.Columns.GridColumn colPrimerValor;
+        private DevExpress.XtraGrid.Columns.GridColumn colSegundoValor;
+        private DevExpress.XtraGrid.Columns.GridColumn colTolerancia;
+        private System.Windows.Forms.Panel panel2;
+        private DevExpress.XtraEditors.LabelControl lblTotal;
+        private DevExpress.XtraGrid.Columns.GridColumn colEliminar;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEliminar;
     }
 }
