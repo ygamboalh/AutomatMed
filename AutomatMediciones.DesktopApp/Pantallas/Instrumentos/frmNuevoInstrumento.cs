@@ -31,6 +31,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         private readonly ModeloService _modeloService;
         private readonly TipoDeInstrumentoService _tipoDeInstrumentoService;
         private readonly EmpresaService _empresaService;
+        private readonly CeldaService _celdaService;
 
         public TipoTransaccion TipoTransaccion { get; set; }
 
@@ -42,6 +43,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         List<TipoInstrumentoDto> tiposInstrumentos = new List<TipoInstrumentoDto>();
         List<MarcaDto> marcas = new List<MarcaDto>();
         List<ModeloDto> modelos = new List<ModeloDto>();
+        List<CeldaDto> celdas = new List<CeldaDto>();
+
 
         ctlEncabezadoPantalla ctlEncabezadoPantalla3;
 
@@ -51,7 +54,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
                                    MarcaService marcaService,
                                    ModeloService modeloService,
                                    TipoDeInstrumentoService tipoDeInstrumentoService,
-                                   EmpresaService empresaService)
+                                   EmpresaService empresaService,
+                                   CeldaService celdaService)
         {
             InitializeComponent();
 
@@ -67,7 +71,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             _modeloService = modeloService;
             _tipoDeInstrumentoService = tipoDeInstrumentoService;
             _empresaService = empresaService;
+            _celdaService = celdaService;
             CargarClasificacionesDeInstrumentos();
+            CargarCeldas();
 
             EstablecerColorBotonGuardar();
             EstablecerNombreYTituloPopupAgregarInstrumentos();
@@ -82,7 +88,23 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
         private void btnDesactivarClick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            var celdaInstrumento = gvCeldasVinculadas.GetFocusedRow() as CeldaInstrumentoDto;
+            if (celdaInstrumento == null) return;
+
+            if (celdaInstrumento.Id == 0)
+            {
+                NuevoInstrumento.CeldasInstrumentos = NuevoInstrumento.CeldasInstrumentos.Where(x => x.CeldaId != celdaInstrumento.CeldaId).ToList();
+                gcCeldasVinculadas.DataSource = NuevoInstrumento.CeldasInstrumentos;
+                gcCeldasVinculadas.RefreshDataSource();
+                return;
+            }
+
+           
+            var frmExtraccion = new frmExtraccionCelda(serviceProvider.GetService<InstrumentoService>());
+            frmExtraccion.CeldaInstrumento = celdaInstrumento;
+            frmExtraccion.ShowDialog();
+            
+
         }
 
         private void btnEditarClick(object sender, EventArgs e)
@@ -188,6 +210,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
         }
 
+
+
         private bool ActualizarInstrumento()
         {
             try
@@ -225,6 +249,22 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             }
 
             PrepararDataSourceClasificaciones(resultado.Data);
+        }
+
+        private void CargarCeldas()
+        {
+            var resultado = _celdaService.ObtenerCeldas();
+            if (resultado.Type != TypeResponse.Ok)
+            {
+                Notificaciones.MensajeError(resultado.Message);
+                return;
+            }
+
+            celdas = resultado.Data;
+
+            leCelda.Properties.DataSource = celdas;
+            leCelda.Properties.DisplayMember = "TipoCelda.Descripcion";
+            leCelda.Properties.ValueMember = "Id";
         }
 
 
@@ -507,6 +547,45 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
                 frmEmpresas.CargarDatosDeEmpresas();
                 frmEmpresas.ShowDialog();
             }
+        }
+
+        private void btnAgregarCelda_Click(object sender, EventArgs e)
+        {
+            if (leCelda.EditValue == null || string.IsNullOrEmpty(leCelda.Text))
+            {
+                Notificaciones.MensajeAdvertencia("Es necesario que seleccione una celda para vincularla al instrumento.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(dateFechaColocacion.Text))
+            {
+                Notificaciones.MensajeAdvertencia("Es necesario que ingrese una fecha de colocación para la celda.");
+                return;
+            }
+
+            var celdaSeleccionada = celdas.FirstOrDefault(x => x.Id == (int)leCelda.EditValue);
+            if (celdaSeleccionada == null)
+            {
+                Notificaciones.MensajeAdvertencia($"No fue posible encontrar una Celda en almacén de datos, que coincida con Celda seleccionada: {leCelda.EditValue}.");
+                return;
+            }
+
+            if (NuevoInstrumento.CeldasInstrumentos.Any(x => x.CeldaId == celdaSeleccionada.Id))
+            {
+                Notificaciones.MensajeAdvertencia($"La celda seleccionada ya está vinculada a este instrumento.");
+                return;
+            }
+
+            NuevoInstrumento.CeldasInstrumentos.Add(new CeldaInstrumentoDto
+            {
+                CeldaId = celdaSeleccionada.Id,
+                FechaColocacion = (DateTime)dateFechaColocacion.EditValue,
+                Celda = celdaSeleccionada
+            });
+
+            gcCeldasVinculadas.DataSource = NuevoInstrumento.CeldasInstrumentos;
+            gcCeldasVinculadas.RefreshDataSource();
+
         }
     }
 }

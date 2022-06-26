@@ -22,6 +22,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
         public string Comentarios { get; set; }
         public ClasificacionInstrumento Clasificacion { get; set; }
         public ICollection<IngresoInstrumento> IngresosInstrumentos { get; set; }
+        public ICollection<CeldaInstrumento> CeldasInstrumentos { get; set; }
 
 
         public bool EsValido(out string mensaje)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AutomatMediciones.Libs.Dtos
 {
@@ -18,5 +19,11 @@ namespace AutomatMediciones.Libs.Dtos
         public string NombreEmpresa { get; set; }
         public string Comentarios { get; set; }
         public ClasificacionInstrumentoDto Clasificacion { get; set; }
+        public ICollection<CeldaInstrumentoDto> CeldasInstrumentos { get; set; }
+
+        public InstrumentoDto()
+        {
+            CeldasInstrumentos = new List<CeldaInstrumentoDto>();
+        }
     }
 }

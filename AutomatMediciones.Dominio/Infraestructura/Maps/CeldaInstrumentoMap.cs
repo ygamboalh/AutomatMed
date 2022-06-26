@@ -16,6 +16,7 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.Property(x => x.CeldaId).HasColumnName("celda_id").HasColumnType("INT").IsRequired();
             builder.Property(x => x.FechaColocacion).HasColumnName("fecha_colocacion").HasColumnType("DATETIME");
             builder.Property(x => x.FechaExtraccion).HasColumnName("fecha_extraccion").HasColumnType("DATETIME");
+            builder.Property(x => x.Activo).HasColumnName("activo").HasColumnType("TINYINT");
         }
     }
 }

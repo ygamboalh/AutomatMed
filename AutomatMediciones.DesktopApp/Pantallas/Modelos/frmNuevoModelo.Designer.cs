@@ -166,7 +166,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             // 
             // colDescripcion
             // 
-            this.colDescripcion.Caption = "Celda";
+            this.colDescripcion.Caption = "Tipo de Celda";
             this.colDescripcion.FieldName = "TipoDeCelda.Descripcion";
             this.colDescripcion.Name = "colDescripcion";
             this.colDescripcion.OptionsColumn.AllowEdit = false;

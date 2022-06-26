@@ -30,6 +30,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                                                                               .Include(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
                                                                              .Include(x => x.Clasificacion).ThenInclude(x => x.Marca)
                                                                              .Include(x => x.Clasificacion).ThenInclude(x => x.Modelo)
+                                                                             .Include(x => x.CeldasInstrumentos)
                                                                              .Where(x => x.Activo)
                                                                              .ToList();
                 return Response<List<InstrumentoDto>>.Ok("Ok", _mapper.Map<List<InstrumentoDto>>(instrumentos));
@@ -134,9 +135,30 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 {
                     return Response<InstrumentoDto>.ErrorValidation(mensaje, null);
                 }
-
+                _automatMedicionesDbContext.Database.BeginTransaction();
                 _automatMedicionesDbContext.Instrumentos.Add(instrumento);
                 _automatMedicionesDbContext.SaveChanges();
+
+                var celdasInstrumentos = instrumentoDto.CeldasInstrumentos.Where(x => x.Id == 0).ToList();
+                if (celdasInstrumentos.Any())
+                {
+                    List<CeldaInstrumento> listaTiposDeCeldaModelosParaRegistrar = new List<CeldaInstrumento>();
+                    celdasInstrumentos.ForEach(x =>
+                    {
+                        listaTiposDeCeldaModelosParaRegistrar.Add(new CeldaInstrumento
+                        {
+                            CeldaId = x.CeldaId,
+                            FechaColocacion = x.FechaColocacion,
+                            InstrumentoId = instrumento.InstrumentoId
+
+                        });
+                    });
+
+                    _automatMedicionesDbContext.CeldasInstrumentos.AddRange(listaTiposDeCeldaModelosParaRegistrar);
+                    _automatMedicionesDbContext.SaveChanges();
+                }
+
+                _automatMedicionesDbContext.Database.CommitTransaction();
 
                 var instrumentoIngresado = _automatMedicionesDbContext.Instrumentos.AsQueryable()
                                                                                    .Include(x => x.Clasificacion)
@@ -146,6 +168,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
+                _automatMedicionesDbContext.Database.RollbackTransaction(); 
                 return Response<InstrumentoDto>.Error(MessageException.LanzarExcepcion(exc), null);
             }
         }
@@ -172,6 +195,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     if (existeConMismaSerie) return Response<bool>.Error($"Ya existe un instrumento para la empresa {instrumentoDto.NombreEmpresa} con esta misma serie.", false);
                 }
 
+                _automatMedicionesDbContext.Database.BeginTransaction();
                 instrumentoBd.Comentarios = instrumentoDto.Comentarios;
                 instrumentoBd.ClasificacionId = instrumentoDto.ClasificacionId;
                 instrumentoBd.Descripcion = instrumentoDto.Descripcion;
@@ -181,6 +205,50 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 instrumentoBd.Garantia = instrumentoDto.Garantia;
                 instrumentoBd.NombreEmpresa = instrumentoDto.NombreEmpresa;
                 instrumentoBd.NumeroSerie = instrumentoDto.NumeroSerie;
+
+                var celdasInstrumentos = instrumentoDto.CeldasInstrumentos.Where(x => x.Id == 0).ToList();
+                if (celdasInstrumentos.Any())
+                {
+                    List<CeldaInstrumento> celdasInstrumentosParaRegistrar = new List<CeldaInstrumento>();
+                    celdasInstrumentos.ForEach(x =>
+                    {
+                        celdasInstrumentosParaRegistrar.Add(new CeldaInstrumento
+                        {
+                           CeldaId = x.CeldaId,
+                           InstrumentoId = instrumentoBd.InstrumentoId,
+                           FechaColocacion = x.FechaColocacion,
+                           
+                        });
+                    });
+
+                    _automatMedicionesDbContext.CeldasInstrumentos.AddRange(celdasInstrumentosParaRegistrar);
+                }
+
+                _automatMedicionesDbContext.SaveChanges();
+                _automatMedicionesDbContext.Database.CommitTransaction();
+
+                return Response<bool>.Ok("Ok", true);
+            }
+            catch (Exception exc)
+            {
+                _automatMedicionesDbContext.Database.RollbackTransaction();
+                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+            }
+        }
+
+        public Response<bool> DesactivarInstrumentoCelda(CeldaInstrumentoDto celdaInstrumentoDto)
+        {
+            try
+            {
+                var celdaInstrumentoBd = _automatMedicionesDbContext.CeldasInstrumentos.FirstOrDefault(x => x.Id == celdaInstrumentoDto.Id);
+
+                if (celdaInstrumentoBd == null)
+                {
+                    return Response<bool>.Error("La celda vinculada a este instrumento no fue encontrado en almacén de datos", false);
+                }
+
+                celdaInstrumentoBd.Activo = false;
+                celdaInstrumentoBd.FechaExtraccion = celdaInstrumentoDto.FechaExtraccion;
 
                 _automatMedicionesDbContext.SaveChanges();
 

@@ -109,7 +109,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                                                                            serviceProvider.GetService<MarcaService>(),
                                                                            serviceProvider.GetService<ModeloService>(),
                                                                            serviceProvider.GetService<TipoDeInstrumentoService>(),
-                                                                           serviceProvider.GetService<EmpresaService>());
+                                                                           serviceProvider.GetService<EmpresaService>(),
+                                                                            serviceProvider.GetService<CeldaService>());
 
             frmNuevoInstrumento.OnInstrumentoModificado += OnIntrumentoModificado;
             frmNuevoInstrumento.NuevoInstrumento = instrumento;
@@ -461,7 +462,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                                                                               serviceProvider.GetService<MarcaService>(),
                                                                               serviceProvider.GetService<ModeloService>(),
                                                                               serviceProvider.GetService<TipoDeInstrumentoService>(),
-                                                                              serviceProvider.GetService<EmpresaService>()
+                                                                              serviceProvider.GetService<EmpresaService>(),
+                                                                              serviceProvider.GetService<CeldaService>()
                                                                               );
             frmNuevoInstrumento.OnEmpresaSeleccionada(empresaSeleccionada);
             frmNuevoInstrumento.OnInstrumentoAgregado += OnInstrumentoAgregado;

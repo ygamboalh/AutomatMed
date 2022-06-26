@@ -77,7 +77,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
                                                                             serviceProvider.GetService<MarcaService>(),
                                                                             serviceProvider.GetService<ModeloService>(),
                                                                             serviceProvider.GetService<TipoDeInstrumentoService>(),
-                                                                            serviceProvider.GetService<EmpresaService>());
+                                                                            serviceProvider.GetService<EmpresaService>(),
+                                                                            serviceProvider.GetService<CeldaService>());
 
             frmNuevoInstrumento.OnInstrumentoModificado += onInstrumentoModificado;
             frmNuevoInstrumento.NuevoInstrumento = instrumento;
@@ -162,7 +163,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
                                                                            serviceProvider.GetService<MarcaService>(),
                                                                            serviceProvider.GetService<ModeloService>(),
                                                                            serviceProvider.GetService<TipoDeInstrumentoService>(),
-                                                                           serviceProvider.GetService<EmpresaService>());
+                                                                           serviceProvider.GetService<EmpresaService>(),
+                                                                           serviceProvider.GetService<CeldaService>());
 
             frmNuevoInstrumento.OnInstrumentoAgregado += OnInstrumentoAgregado;
             SplashScreenManager.CloseForm();
