@@ -13,20 +13,20 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 {
     public class IngresoService
     {
-        private readonly AutomatMedicionesDbContext _AutomatMedicionesDbContext;
+        private readonly AutomatMedicionesDbContext _automatMedicionesDbContext;
         private readonly IMapper _mapper;
 
-        public IngresoService(AutomatMedicionesDbContext AutomatMedicionesDbContext, IMapper mapper)
+        public IngresoService(AutomatMedicionesDbContext automatMedicionesDbContext, IMapper mapper)
         {
-            _AutomatMedicionesDbContext = AutomatMedicionesDbContext;
+            _automatMedicionesDbContext = automatMedicionesDbContext;
             _mapper = mapper;
         }
 
-        public Response<List<IngresoDto>> ObtenerIngresos()
+        public Response<IngresoDto> ObtenerIngreso(int ingresoId)
         {
             try
             {
-                var ingresos = _AutomatMedicionesDbContext.Ingresos.AsQueryable()
+                var ingresoDb = _automatMedicionesDbContext.Ingresos.AsQueryable()
                                                                                    .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.Marca)
                                                                                    .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.Modelo)
                                                                                    .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
@@ -34,6 +34,34 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                                                                                    .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.TipoTrabajo)
                                                                                    .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Ingreso)
                                                                                     .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Responsable)
+                                                                                    .FirstOrDefault(x => x.IngresoId == ingresoId);
+
+
+                if (ingresoDb == null)
+                {
+                    return Response<IngresoDto>.Error("No pudo ser obtenida la información de ingreso", null);                   
+                }
+                return Response<IngresoDto>.Ok("Ok", _mapper.Map<IngresoDto>(ingresoDb));
+            }
+            catch (Exception exc)
+            {
+                return Response<IngresoDto>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
+        public Response<List<IngresoDto>> ObtenerIngresos()
+        {
+            try
+            {
+                var ingresos = _automatMedicionesDbContext.Ingresos.AsQueryable()
+                                                                                   .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.Marca)
+                                                                                   .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.Modelo)
+                                                                                   .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
+                                                                                   .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Estado)
+                                                                                   .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.TipoTrabajo)
+                                                                                   .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Ingreso)
+                                                                                    .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Responsable)
+                                                                                   
                                                                                    .ToList();
 
                 ingresos = ingresos.OrderBy(y => y.IngresoId).ToList();
@@ -49,7 +77,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
         {
             try
             {
-                var ingreso = _AutomatMedicionesDbContext.IngresosInstrumentos.FirstOrDefault(x => x.IngresoInstrumentoId == ingresoInstrumentoId);
+                var ingreso = _automatMedicionesDbContext.IngresosInstrumentos.FirstOrDefault(x => x.IngresoInstrumentoId == ingresoInstrumentoId);
 
                 if (ingreso == null)
                 {
@@ -89,15 +117,15 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     return Response<IngresoDto>.ErrorValidation(mensaje, null);
                 }
 
-                _AutomatMedicionesDbContext.Database.BeginTransaction();
-                _AutomatMedicionesDbContext.Ingresos.Add(ingreso);
-                _AutomatMedicionesDbContext.SaveChanges();
+                _automatMedicionesDbContext.Database.BeginTransaction();
+                _automatMedicionesDbContext.Ingresos.Add(ingreso);
+                _automatMedicionesDbContext.SaveChanges();
 
                 int correlativoIntrumento = 1;
                 foreach (var instrumento in ingresoDto.IngresosInstrumentos)
                 {
 
-                    var instrumentoBd = _AutomatMedicionesDbContext.Instrumentos.FirstOrDefault(x => x.InstrumentoId == instrumento.InstrumentoId);
+                    var instrumentoBd = _automatMedicionesDbContext.Instrumentos.FirstOrDefault(x => x.InstrumentoId == instrumento.InstrumentoId);
 
                     if (instrumentoBd != null)
                     {
@@ -120,17 +148,17 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         FechaEntregaRequerida = instrumento.FechaEntregaRequerida
                     };
 
-                    _AutomatMedicionesDbContext.IngresosInstrumentos.Add(ingresoInstrumento);
+                    _automatMedicionesDbContext.IngresosInstrumentos.Add(ingresoInstrumento);
 
                     correlativoIntrumento++;
                 }
 
                 ingresoDto.IngresoId = ingreso.IngresoId;
 
-                _AutomatMedicionesDbContext.SaveChanges();
-                _AutomatMedicionesDbContext.Database.CommitTransaction();
+                _automatMedicionesDbContext.SaveChanges();
+                _automatMedicionesDbContext.Database.CommitTransaction();
 
-                var ingresoRegistrado = _AutomatMedicionesDbContext.Ingresos.Include(x => x.IngresosInstrumentos)
+                var ingresoRegistrado = _automatMedicionesDbContext.Ingresos.Include(x => x.IngresosInstrumentos)
                                                                             .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Instrumento)
                                                                             .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.TipoTrabajo)
                                                                   .Include(x => x.Responsable)
@@ -140,7 +168,70 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                _AutomatMedicionesDbContext.Database.RollbackTransaction();
+                _automatMedicionesDbContext.Database.RollbackTransaction();
+                return Response<IngresoDto>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
+        public Response<IngresoDto> ActualizarIngreso(IngresoDto ingresoDto)
+        {
+            try
+            {
+                var ingresoDb = _automatMedicionesDbContext.Ingresos.FirstOrDefault(x => x.IngresoId == ingresoDto.IngresoId);
+
+                if (ingresoDb == null) return Response<IngresoDto>.Error("No se encontró ningún registro en almacen de datos.", null);
+
+                _automatMedicionesDbContext.Database.BeginTransaction();
+
+                ingresoDb = _mapper.Map<Ingreso>(ingresoDto);
+
+                if (ingresoDto.IngresosInstrumentos.Any(x => x.IngresoId == 0))
+                {
+                    int correlativoIntrumento = ingresoDto.IngresosInstrumentos.Count;
+
+                    foreach (var instrumento in ingresoDto.IngresosInstrumentos.Where(x => x.IngresoId == 0))
+                    {
+                        var ingresoInstrumento = new IngresoInstrumento
+                        {
+                            NumeroServicioTecnico = $"{ingresoDb.IngresoId}-{correlativoIntrumento + 1}",
+                            Comentarios = instrumento.Comentarios,
+                            IngresoId = ingresoDb.IngresoId,
+                            Activo = true,
+                            InstrumentoId = instrumento.InstrumentoId,
+                            TipoTrabajoId = instrumento.TipoTrabajoId,
+                            FechaFin = instrumento.FechaFin,
+                            FechaInicio = instrumento.FechaInicio,
+                            Prioridad = instrumento.Prioridad,
+                            EstadoId = instrumento.EstadoId,
+                            ResponsableId = ingresoDto.UsuarioId,
+                            FechaEntregaRequerida = instrumento.FechaEntregaRequerida
+                        };
+
+                        _automatMedicionesDbContext.IngresosInstrumentos.Add(ingresoInstrumento);
+
+                        correlativoIntrumento++;
+                    }
+
+                }
+
+
+
+                ingresoDto.IngresoId = ingresoDb.IngresoId;
+
+                _automatMedicionesDbContext.SaveChanges();
+                _automatMedicionesDbContext.Database.CommitTransaction();
+
+                var ingresoRegistrado = _automatMedicionesDbContext.Ingresos.Include(x => x.IngresosInstrumentos)
+                                                                            .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Instrumento)
+                                                                            .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.TipoTrabajo)
+                                                                  .Include(x => x.Responsable)
+                                                                  .FirstOrDefault(x => x.IngresoId == ingresoDb.IngresoId);
+
+                return Response<IngresoDto>.Ok("¡El ingreso se guardó exitosamente!", _mapper.Map<IngresoDto>(ingresoRegistrado));
+            }
+            catch (Exception exc)
+            {
+                _automatMedicionesDbContext.Database.RollbackTransaction();
                 return Response<IngresoDto>.Error(MessageException.LanzarExcepcion(exc), null);
             }
         }
@@ -149,14 +240,14 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
         {
             try
             {
-                var diagnostico = _AutomatMedicionesDbContext.IngresosInstrumentos.FirstOrDefault(x => x.IngresoInstrumentoId.Equals(ingresoInstrumento.IngresoInstrumentoId));
+                var diagnostico = _automatMedicionesDbContext.IngresosInstrumentos.FirstOrDefault(x => x.IngresoInstrumentoId.Equals(ingresoInstrumento.IngresoInstrumentoId));
 
                 if (diagnostico == null)
                 {
                     return Response<bool>.Error("No se encontró ningún registro en almacen de datos.", true);
                 }
 
-                var instrumento = _AutomatMedicionesDbContext.Instrumentos.FirstOrDefault(x => x.InstrumentoId == ingresoInstrumento.InstrumentoId);
+                var instrumento = _automatMedicionesDbContext.Instrumentos.FirstOrDefault(x => x.InstrumentoId == ingresoInstrumento.InstrumentoId);
                 if (instrumento != null)
                 {
                     instrumento.Comentarios = ingresoInstrumento.Instrumento.Comentarios;
@@ -169,22 +260,45 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 diagnostico.TiempoConsumido = ingresoInstrumento.TiempoConsumido;
                 diagnostico.FechaInicio = ingresoInstrumento.FechaInicio;
 
-                _AutomatMedicionesDbContext.SaveChanges();
+                _automatMedicionesDbContext.SaveChanges();
 
                 return Response<bool>.Ok("¡El diagnóstico se guardó exitosamente!", true);
             }
             catch (Exception exc)
             {
-                _AutomatMedicionesDbContext.Database.RollbackTransaction();
+                _automatMedicionesDbContext.Database.RollbackTransaction();
                 return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
             }
         }
+
+        public Response<bool> QuitarInstrumentoDeListaIngreso(int instrumentoId)
+        {
+            try
+            {
+                var ingresoInstrumentoDb = _automatMedicionesDbContext.IngresosInstrumentos.FirstOrDefault(x => x.InstrumentoId == instrumentoId);
+
+                if (ingresoInstrumentoDb == null) return Response<bool>.Error("No se encontró ningún registro en almacen de datos.", true);
+
+                ingresoInstrumentoDb.Activo = false;
+              
+                _automatMedicionesDbContext.SaveChanges();
+
+                return Response<bool>.Ok("¡El instrumento se quitó de lista de ingreso!", true);
+            }
+            catch (Exception exc)
+            {
+              
+                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+            }
+        }
+
+
 
         public Response<bool> ActualizarFechaUltimoIngreso(IngresoInstrumentoDto ingresoInstrumento)
         {
             try
             {
-                var diagnostico = _AutomatMedicionesDbContext.IngresosInstrumentos.FirstOrDefault(x => x.IngresoInstrumentoId.Equals(ingresoInstrumento.IngresoInstrumentoId));
+                var diagnostico = _automatMedicionesDbContext.IngresosInstrumentos.FirstOrDefault(x => x.IngresoInstrumentoId.Equals(ingresoInstrumento.IngresoInstrumentoId));
 
                 if (diagnostico == null)
                 {
@@ -195,13 +309,13 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 diagnostico.TiempoConsumido = ingresoInstrumento.TiempoConsumido;
 
 
-                _AutomatMedicionesDbContext.SaveChanges();
+                _automatMedicionesDbContext.SaveChanges();
 
                 return Response<bool>.Ok("¡El diagnóstico se guardó exitosamente!", true);
             }
             catch (Exception exc)
             {
-                _AutomatMedicionesDbContext.Database.RollbackTransaction();
+                _automatMedicionesDbContext.Database.RollbackTransaction();
                 return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
             }
         }

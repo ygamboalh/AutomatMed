@@ -14,6 +14,7 @@ using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
+using Nagaira.Herramientas.Standard.Helpers.Enums;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -67,11 +68,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
             {
                 case IndiceMenu.Ingresos:
                     SplashScreenManager.ShowForm(typeof(frmSaving));
-                    var frmIngresos = new frmNuevoIngreso(serviceProvider.GetService<IngresoService>(),
+                    var frmIngresos = new frmNuevoIngreso(TipoTransaccion.Insertar,serviceProvider.GetService<IngresoService>(),
                                                        serviceProvider.GetService<InstrumentoService>(),
                                                        serviceProvider.GetService<UsuarioService>(),
                                                        serviceProvider.GetService<ConfiguracionNotificacionService>(),
-                                                       serviceProvider.GetService<EstadoService>()
+                                                       serviceProvider.GetService<EstadoService>(),
+                                                          serviceProvider.GetService<EmpresaService>()
                                                       );
                     XtraForm ingresos = frmIngresos;
                     AgregarPantalla(ref ingresos);

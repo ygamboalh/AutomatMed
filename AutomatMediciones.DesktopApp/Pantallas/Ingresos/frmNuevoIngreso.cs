@@ -35,6 +35,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private readonly UsuarioService _usuarioService;
         private readonly ConfiguracionNotificacionService _configuracionNotificacionService;
         private readonly EstadoService _estadoService;
+        private readonly EmpresaService _empresaService;
         private readonly string _textoEmail;
 
         ICollection<InstrumentoLista> instrumentosListaSeleccionados;
@@ -43,21 +44,30 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         List<UsuarioDto> copiasEnCorreo;
         List<InstrumentoLista> instrumentosDeEmpresa;
         ConfiguracionNotificacionDto configuracionNotificacion;
+        List<EstadoDto> estados = new List<EstadoDto>();
+        List<UsuarioDto> usuarios = new List<UsuarioDto>();
+
+        public delegate void IngresoActualizado(IngresoDto ingreso);
+        public event IngresoActualizado OnIngresoActualizado;
+
+        public TipoTransaccion TipoTransaccion { get; set; }
 
         public IngresoDto Ingreso { get; set; }
 
-        public frmNuevoIngreso(IngresoService ingresoService, InstrumentoService instrumentoService,
-                           UsuarioService usuarioService, ConfiguracionNotificacionService configuracionNotificacionService, EstadoService estadoService)
+        public frmNuevoIngreso(TipoTransaccion tipoTransaccion, IngresoService ingresoService, InstrumentoService instrumentoService,
+                           UsuarioService usuarioService, ConfiguracionNotificacionService configuracionNotificacionService, EstadoService estadoService, EmpresaService empresaService)
         {
             InitializeComponent();
 
             Cursor.Current = Cursors.WaitCursor;
 
+            TipoTransaccion = tipoTransaccion;
             _ingresoService = ingresoService;
             _instrumentoService = instrumentoService;
             _usuarioService = usuarioService;
             _configuracionNotificacionService = configuracionNotificacionService;
             _estadoService = estadoService;
+            _empresaService = empresaService;
             _textoEmail = memoEmail.Text;
 
             EstablecerNombreYTituloDePantalla();
@@ -93,6 +103,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             var instrumento = gvInstrumentosSeleccionados.GetFocusedRow() as Dtos.InstrumentoLista;
             if (instrumento == null) return;
 
+            if (instrumento.InstrumentoId != 0)
+            {
+                _ingresoService.QuitarInstrumentoDeListaIngreso(instrumento.InstrumentoId);
+                instrumentosListaSeleccionados = instrumentosListaSeleccionados.Where(x => x.InstrumentoId != instrumento.InstrumentoId).ToList();
+                gcInstrumentosSeleccionados.DataSource = instrumentosListaSeleccionados;
+                gcInstrumentosSeleccionados.RefreshDataSource();
+
+                return;
+            }
+
             QuitarInstrumentoDeListaDeSeleccionados(instrumento.InstrumentoId);
         }
 
@@ -118,9 +138,90 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             frmNuevoInstrumento.SetearValoresParaActualizar();
             SplashScreenManager.CloseForm();
             frmNuevoInstrumento.ShowDialog();
+        }
 
+        public void SetearVariablesParaActualizar()
+        {
+            var resultEmpresa = _empresaService.ObtenerEmpresaPorId(Ingreso.EmpresaId);
+            if (resultEmpresa.Type != TypeResponse.Ok)
+            {
+                Notificaciones.MensajeError(resultEmpresa.Message);
+                return;
+            }
 
+            empresaSeleccionada = new EmpresaDto();
+            empresaSeleccionada = resultEmpresa.Data;
 
+            txtEmpresa.Text = empresaSeleccionada.NombreEmpresa;
+            ObtenerContactosDeEmpresaSeleccionada();
+            var instrumentos = ObtenerInstrumentosParaEmpresaSeleccionada();
+
+            AsignarInstrumentosDeEmpresa(instrumentos);
+
+            instrumentosListaSeleccionados = ObtenerInstrumentosListasSeleccionados();
+            instrumentosSeleccionados = Ingreso.IngresosInstrumentos;
+
+           
+            var estadoId = Ingreso.IngresosInstrumentos.FirstOrDefault(y => y.IngresoId == Ingreso.IngresoId).EstadoId;
+
+            glEstado.EditValue =estadoId;
+            estadoSeleccionado = new EstadoDto();
+            estadoSeleccionado = estados.FirstOrDefault(x => x.EstadoId == estadoId);
+
+            var usuarioId = Ingreso.IngresosInstrumentos.FirstOrDefault(y => y.IngresoId == Ingreso.IngresoId).ResponsableId;
+            glUsuariosResponsables.EditValue = usuarioId;
+            usuarioSeleccionado = new UsuarioDto();
+            usuarioSeleccionado = usuarios.FirstOrDefault(x => x.UsuarioId == usuarioId);
+
+            glContacto.EditValue = Ingreso.ContactoId;
+            memoCorreos.Text = Ingreso.DireccionCorreoElectronico;
+            memoEmail.Text = Ingreso.CuerpoCorreo;
+            glUsuariosResponsables.EditValue = Ingreso.UsuarioId;
+
+            gcInstrumentosSeleccionados.DataSource = instrumentosListaSeleccionados;
+            gcInstrumentosSeleccionados.RefreshDataSource();
+
+            SetearTotales();
+
+            checkEnviarReporte.Visible = false;
+
+        }
+
+        private List<InstrumentoLista> ObtenerInstrumentosListasSeleccionados()
+        {
+            List<InstrumentoLista> lista = new List<InstrumentoLista>();
+            Ingreso.IngresosInstrumentos.ToList().ForEach(x =>
+            {
+                lista.Add(new InstrumentoLista
+                {
+                    InstrumentoId = x.InstrumentoId,
+                    ClasificacionId = x.Instrumento.ClasificacionId,
+                    Comentarios = x.Instrumento.Comentarios,
+                    EmpresaId = x.Instrumento.EmpresaId,
+                    NumeroSerie = x.Instrumento.NumeroSerie,
+                    Descripcion = x.Instrumento.Descripcion,
+                    FechaCompraCliente = x.Instrumento.FechaCompraCliente,
+                    FechaCompraFabricante = x.Instrumento.FechaCompraFabricante,
+                    Garantia = x.Instrumento.Garantia,
+                    NombreEmpresa = x.Instrumento.NombreEmpresa,
+                    FechaProximaCalibracion = x.Instrumento.FechaProximaCalibracion,
+                    FechaUltimaCalibracion = x.Instrumento.FechaUltimaCalibracion,
+                    PeriodoCalibracion = x.Instrumento.PeriodoCalibracion,
+                    Clasificacion = x.Instrumento.Clasificacion,
+                    InformacionAdicional = new InformacionAdicionalInstrumento
+                    {
+                       Comentarios = x.Comentarios,
+                       TipoTrabajoId = x.TipoTrabajoId,
+                       InstrumentoId = x.InstrumentoId,
+                       FechaEntregaRequerida = x.FechaEntregaRequerida,
+                       Prioridad = x.Prioridad,
+                       TipoTrabajo = x.TipoTrabajo
+                    },
+                    ClasificacionConcatenada = $"{x.Instrumento.Clasificacion.TipoInstrumento.Descripcion}/{x.Instrumento.Clasificacion.Marca.Descripcion}/{x.Instrumento.Clasificacion.Modelo.Descripcion}",
+                });
+            });
+
+            return lista;
         }
 
         private void OnIntrumentoModificado(InstrumentoDto instrumento)
@@ -162,7 +263,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             var resultado = _estadoService.ObtenerEstados();
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
-            var estados = resultado.Data;
+            estados= resultado.Data;
 
             glEstado.Properties.DataSource = estados;
             glEstado.Properties.DisplayMember = "Descripcion";
@@ -174,7 +275,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             var resultado = _usuarioService.ObtenerUsuariosActivos();
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
-            var usuarios = resultado.Data;
+            usuarios = resultado.Data;
 
             copiasEnCorreo = usuarios.Where(x => x.CopiaEnNotificaciones).ToList();
 
@@ -258,14 +359,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             SetearTotales();
         }
 
-        private bool YaFueSeleccionadoElInstrumento(int instrumentoId)
-        {
-            var instrumentosIds = instrumentosSeleccionados.Select(x => x.InstrumentoId);
-            if (instrumentosIds.Contains(instrumentoId)) return true;
-
-            return false;
-        }
-
         private List<InstrumentoDto> ObtenerInstrumentosParaEmpresaSeleccionada()
         {
             var resultado = _instrumentoService.ObtenerInstrumentos(empresaSeleccionada.NombreEmpresa);
@@ -342,7 +435,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             ctlEncabezadoPantalla3.Parent = this;
             ctlEncabezadoPantalla3.Height = 43;
             ctlEncabezadoPantalla3.Dock = DockStyle.Top;
-            ctlEncabezadoPantalla3.lblTitulo.Text = "Creación de Ingreso";
+            ctlEncabezadoPantalla3.lblTitulo.Text = TipoTransaccion == TipoTransaccion.Insertar ? "Creación de Ingreso":"Modificar Ingreso";
             ctlEncabezadoPantalla3.EstablecerColoresDeFondoYLetra();
         }
 
@@ -356,6 +449,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             var frmEmpresas = new frmEmpresas(serviceProvider.GetService<EmpresaService>());
             frmEmpresas.OnSeleccionaEmpresa += OnEmpresaSeleccionada;
             frmEmpresas.ShowDialog();
+           
         }
 
         private void OnEmpresaSeleccionada(EmpresaDto empresa)
@@ -636,47 +730,65 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             PrepararNuevoIngreso();
 
-            SplashScreenManager.ShowForm(typeof(frmLoadingSave));
-            if (GuardarIngreso())
+            if (TipoTransaccion == TipoTransaccion.Insertar)
             {
-                if (checkEnviarReporte.CheckState == CheckState.Checked)
+                SplashScreenManager.ShowForm(typeof(frmLoadingSave));
+                if (GuardarIngreso())
                 {
-                    var correoHelper = new CorreoHelper();
-                    if (correoHelper.EnviarCorreo(PrepararCorreo()))
+                    if (checkEnviarReporte.CheckState == CheckState.Checked)
                     {
-                        Notificaciones.MensajeConfirmacion("¡El ingreso se ha guardado exitosamente!");
+                        var correoHelper = new CorreoHelper();
+                        if (correoHelper.EnviarCorreo(PrepararCorreo()))
+                        {
+                            Notificaciones.MensajeConfirmacion("¡El ingreso se ha guardado exitosamente!");
+                        }
+                        else
+                        {
+                            Notificaciones.MensajeConfirmacion("El ingreso se ha guardado exitosamente, pero hubo una falla en el momento de enviar la notificación por correo electrónico.");
+                        }
+
+                        if (Notificaciones.PreguntaConfirmacion("¿Desea imprimir Reporte de Ingreso?") == DialogResult.Yes)
+                        {
+                            rptIngreso reporteIngreso = new rptIngreso();
+                            reporteIngreso.objectDataSource1.DataSource = Ingreso;
+                            reporteIngreso.DisplayName = $"Ingreso #{Ingreso.IngresoId}.pdf";
+                            ReportPrintTool printTool = new ReportPrintTool(reporteIngreso);
+                            printTool.ShowRibbonPreview();
+                        }
                     }
                     else
                     {
-                        Notificaciones.MensajeConfirmacion("El ingreso se ha guardado exitosamente, pero hubo una falla en el momento de enviar la notificación por correo electrónico.");
+                        Notificaciones.MensajeConfirmacion("¡El ingreso se ha guardado exitosamente!");
+
+                        if (Notificaciones.PreguntaConfirmacion("¿Desea imprimir reporte de Ingreso?") == DialogResult.Yes)
+                        {
+                            rptIngreso reporteIngreso = new rptIngreso();
+                            reporteIngreso.objectDataSource1.DataSource = Ingreso;
+                            reporteIngreso.DisplayName = $"Ingreso #{Ingreso.IngresoId}.pdf";
+                            ReportPrintTool printTool = new ReportPrintTool(reporteIngreso);
+                            printTool.ShowRibbonPreview();
+                        }
                     }
 
-                    if (Notificaciones.PreguntaConfirmacion("¿Desea imprimir Reporte de Ingreso?") == DialogResult.Yes)
-                    {
-                        rptIngreso reporteIngreso = new rptIngreso();
-                        reporteIngreso.objectDataSource1.DataSource = Ingreso;
-                        reporteIngreso.DisplayName = $"Ingreso #{Ingreso.IngresoId}.pdf";
-                        ReportPrintTool printTool = new ReportPrintTool(reporteIngreso);
-                        printTool.ShowRibbonPreview();
-                    }
-                }
-                else
-                {
-                    Notificaciones.MensajeConfirmacion("¡El ingreso se ha guardado exitosamente!");
-
-                    if (Notificaciones.PreguntaConfirmacion("¿Desea imprimir reporte de Ingreso?") == DialogResult.Yes)
-                    {
-                        rptIngreso reporteIngreso = new rptIngreso();
-                        reporteIngreso.objectDataSource1.DataSource = Ingreso;
-                        reporteIngreso.DisplayName = $"Ingreso #{Ingreso.IngresoId}.pdf";
-                        ReportPrintTool printTool = new ReportPrintTool(reporteIngreso);
-                        printTool.ShowRibbonPreview();
-                    }
+                    LimpiarFormulario();    
                 }
 
-                LimpiarFormulario();
+                SplashScreenManager.CloseForm();
+                return;
             }
+
+            SplashScreenManager.ShowForm(typeof(frmLoadingSave));
+            if (ActualizarIngreso())
+            {
+                Notificaciones.MensajeConfirmacion("¡El ingreso se actualizó exitosamente!");
+                LimpiarFormulario();
+                
+            }
+
+            
             SplashScreenManager.CloseForm();
+            this.Close();
+            OnIngresoActualizado?.Invoke(Ingreso);
         }
 
         private CorreoNotificacionDto PrepararCorreo()
@@ -738,6 +850,28 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             }
         }
 
+        private bool ActualizarIngreso()
+        {
+            try
+            {
+
+                var resultado = _ingresoService.ActualizarIngreso(Ingreso);
+                if (resultado.Type != TypeResponse.Ok)
+                {
+                    Notificaciones.MensajeError(resultado.Message);
+                    return false;
+                }
+
+                Ingreso = resultado.Data;
+                return true;
+            }
+            catch (Exception exc)
+            {
+                Notificaciones.MensajeError(ExceptionsHelper.ObtenerMensajeExcepcion(exc));
+                return false;
+            }
+        }
+
         private void LimpiarFormulario()
         {
             txtEmpresa.ResetText();
@@ -756,6 +890,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             contactoSeleccionado = null;
             Ingreso = new IngresoDto();
             memoEmail.Text = _textoEmail;
+
+            instrumentosListaSeleccionados.Clear();
+            instrumentosDeEmpresa.Clear();
+
+            gcInstrumentosSeleccionados.DataSource = null;
 
             LimpiarContactos();
             LimpiarCorreos();

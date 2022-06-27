@@ -4,9 +4,11 @@ using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos;
 using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos.Dtos;
 using AutomatMediciones.DesktopApp.Reportes;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
+using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraReports.UI;
 using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
+using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
@@ -37,12 +39,42 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             EstablecerColorBotonExportarExcel();
             btnIniciarDiagnostico.Click += btnIniciarDiagnosticoClick;
             btnVerReporteDeIngreso.Click += btnVerReporteIngresoClick;
+            btnEditarIngreso.Click += btnEditarIngresoClick;
 
             FiltroSeleccionado = Filtros.Todos;
             btnFiltroTodos.BackColor = ColorHelper.ObtenerColorEnRGB("Default");
             btnFiltroTodos.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
             btnFiltroTodos.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
 
+        }
+
+        private void btnEditarIngresoClick(object sender, EventArgs e)
+        {
+            var ingresoSeleccionao = gvInstrumentos.GetFocusedRow() as IngresoInstrumento;
+            if (ingresoSeleccionao == null) return;
+
+            var ingresoDb = _ingresoService.ObtenerIngreso(ingresoSeleccionao.IngresoId);
+
+            var frmIngresos = new frmNuevoIngreso(TipoTransaccion.Actualizar,
+                                                      serviceProvider.GetService<IngresoService>(),
+                                                       serviceProvider.GetService<InstrumentoService>(),
+                                                       serviceProvider.GetService<UsuarioService>(),
+                                                       serviceProvider.GetService<ConfiguracionNotificacionService>(),
+                                                       serviceProvider.GetService<EstadoService>(),
+                                                       serviceProvider.GetService<EmpresaService>()
+                                                      );
+            frmIngresos.Ingreso = ingresoDb.Data;
+            frmIngresos.SetearVariablesParaActualizar();
+            frmIngresos.OnIngresoActualizado += frmIngresosOnIngresoActualizado;
+            frmIngresos.MdiParent = this.ParentForm;
+            frmIngresos.Show();
+        }
+
+        private void frmIngresosOnIngresoActualizado(IngresoDto ingreso)
+        {
+            Program.services.BuildServiceProvider();
+            _ingresoService2 = serviceProvider.GetService<IngresoService>();
+            CargarIngresos();
         }
 
         private void EstablecerColorBotonExportarExcel()
@@ -130,7 +162,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                     ClasificacionConcatenada = $"{y.Instrumento.Clasificacion.TipoInstrumento.Descripcion} / {y.Instrumento.Clasificacion.Marca.Descripcion} / {y.Instrumento.Clasificacion.Modelo.Descripcion}"
                 }).OrderBy(y => y.Prioridad).ToList();
 
-                gcInstrumentos.DataSource = ingresosInstrumentos;
+                gcInstrumentos.DataSource = ingresosInstrumentos.Where(x => x.Activo);
                 gcInstrumentos.RefreshDataSource();
 
 
@@ -180,7 +212,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                     ClasificacionConcatenada = $"{y.Instrumento.Clasificacion.TipoInstrumento.Descripcion} / {y.Instrumento.Clasificacion.Marca.Descripcion} / {y.Instrumento.Clasificacion.Modelo.Descripcion}"
                 }).OrderBy(y => y.Prioridad).ToList();
 
-                gcInstrumentos.DataSource = ingresosInstrumentos;
+                gcInstrumentos.DataSource = ingresosInstrumentos.Where(x => x.Activo);
                 gcInstrumentos.RefreshDataSource();
 
                 switch (FiltroSeleccionado)
@@ -228,7 +260,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
         private void btnFiltroTodos_Click(object sender, EventArgs e)
         {
-            gcInstrumentos.DataSource = ingresosInstrumentos;
+            gcInstrumentos.DataSource = ingresosInstrumentos.Where(x => x.Activo);
             gcInstrumentos.RefreshDataSource();
 
             btnFiltroTodos.BackColor = ColorHelper.ObtenerColorEnRGB("Default");
@@ -255,7 +287,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
         private void btnServicioTecnico_Click(object sender, EventArgs e)
         {
-            gcInstrumentos.DataSource = ingresosInstrumentos.Where(x => x.EstadoId == 3 || x.EstadoId == 6);
+            gcInstrumentos.DataSource = ingresosInstrumentos.Where(x => x.Activo && (x.EstadoId == 3 || x.EstadoId == 6));
             gcInstrumentos.RefreshDataSource();
 
             btnServicioTecnico.BackColor = ColorHelper.ObtenerColorEnRGB("Default");
@@ -282,7 +314,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
         private void btnComercial_Click(object sender, EventArgs e)
         {
-            gcInstrumentos.DataSource = ingresosInstrumentos.Where(x => x.EstadoId == 2 || x.EstadoId == 4 || x.EstadoId == 7);
+            gcInstrumentos.DataSource = ingresosInstrumentos.Where(x => x.Activo && ( x.EstadoId == 2 || x.EstadoId == 4 || x.EstadoId == 7));
             gcInstrumentos.RefreshDataSource();
 
             btnComercial.BackColor = ColorHelper.ObtenerColorEnRGB("Default");
@@ -308,7 +340,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
         private void btnCliente_Click(object sender, EventArgs e)
         {
-            gcInstrumentos.DataSource = ingresosInstrumentos.Where(x => x.EstadoId == 5);
+            gcInstrumentos.DataSource = ingresosInstrumentos.Where(x => x.Activo && x.EstadoId == 5);
             gcInstrumentos.RefreshDataSource();
 
             btnCliente.BackColor = ColorHelper.ObtenerColorEnRGB("Default");

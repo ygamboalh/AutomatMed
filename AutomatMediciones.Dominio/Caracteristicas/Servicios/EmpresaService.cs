@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutomatMediciones.Dominio.Infraestructura;
 using AutomatMediciones.Libs.Dtos;
+using Microsoft.EntityFrameworkCore;
 using Nagaira.Herramientas.Standard.Helpers.Exceptions;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
@@ -65,9 +66,37 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
         {
             try
             {
-                var empresa = _tacticaDbContext.Empresas.FirstOrDefault(x => x.EmpresaId == empresaId);
+                var empresa = _tacticaDbContext.Empresas.AsQueryable()
+                                                        .FirstOrDefault(x => x.EmpresaId == empresaId);
 
-                return Response<EmpresaDto>.Ok("Ok", _mapper.Map<EmpresaDto>(empresa));
+                var contactos = _tacticaDbContext.Contactos.ToList();
+                var correosElectronicos = _tacticaDbContext.CorreosElectronicos.ToList();
+
+                var query = new EmpresaDto
+                {
+                    EmpresaId = empresa.EmpresaId,
+                    NombreEmpresa = empresa.NombreEmpresa,
+                    Contactos = contactos.Where(z => z.EmpresaId.Equals(empresa.EmpresaId))
+                                         .Select(y => new ContactoDto
+                                         {
+                                             Cargo = y.Cargo,
+                                             Nombre = y.Nombre,
+                                             Apellido = y.Apellido,
+                                             EmpresaId = y.EmpresaId,
+                                             ContactoId = y.ContactoId,
+                                             Genero = y.Genero,
+                                             Saludo = y.Saludo,
+                                             CorreosElectronicos = correosElectronicos.Where(p => p.ContactoId.Equals(y.ContactoId))
+                                                                                      .Select(z => new CorreoElectronicoDto
+                                                                                      {
+                                                                                          ContactoId = z.ContactoId,
+                                                                                          Direccion = z.Direccion,
+                                                                                          RegistroId = z.RegistroId
+                                                                                      }).ToList()
+                                         }).ToList()
+                };
+
+                return Response<EmpresaDto>.Ok("Ok", _mapper.Map<EmpresaDto>(query));
             }
             catch (Exception exc)
             {
