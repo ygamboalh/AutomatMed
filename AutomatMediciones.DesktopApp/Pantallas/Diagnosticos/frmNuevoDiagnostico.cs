@@ -8,7 +8,9 @@ using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
+using AutomatMediciones.DesktopApp.Pantallas.Instrumentos;
 using System;
+using Nagaira.Herramientas.Standard.Helpers.Enums;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
 {
@@ -353,6 +355,33 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
         private void frmNuevoDiagnostico_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnDetalleInstrumento_Click(object sender, EventArgs e)
+        {
+            SplashScreenManager.ShowForm(typeof(frmSaving));
+            var frmNuevoInstrumento = new frmNuevoInstrumento(TipoTransaccion.Actualizar, serviceProvider.GetService<ClasificacionInstrumentoService>(),
+                                                                            serviceProvider.GetService<InstrumentoService>(),
+                                                                            serviceProvider.GetService<MarcaService>(),
+                                                                            serviceProvider.GetService<ModeloService>(),
+                                                                            serviceProvider.GetService<TipoDeInstrumentoService>(),
+                                                                            serviceProvider.GetService<EmpresaService>(),
+                                                                            serviceProvider.GetService<CeldaService>());
+
+            //frmNuevoInstrumento.OnInstrumentoModificado += onInstrumentoModificado;
+            frmNuevoInstrumento.NuevoInstrumento = IngresoInstrumento.Instrumento;
+            frmNuevoInstrumento.CargarVariablesInstrumentos();
+            frmNuevoInstrumento.SetearValoresParaActualizar();
+            SplashScreenManager.CloseForm();
+            frmNuevoInstrumento.ShowDialog();
+        }
+
+        private void btnHistorialDeCertificados_Click(object sender, EventArgs e)
+        {
+            var frmHistorialCertificados = new frmCertificadosDeCalibracion(serviceProvider.GetService<CertificadoCalibracionService>());
+            frmHistorialCertificados.InstrumentoId = IngresoInstrumento.InstrumentoId;
+            frmHistorialCertificados.CargarCertificadosDeCalibracionPorInstrumento();
+            frmHistorialCertificados.ShowDialog();
         }
     }
 }

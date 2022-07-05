@@ -93,6 +93,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.leCelda = new DevExpress.XtraEditors.LookUpEdit();
             this.btnAgregarCelda = new FontAwesome.Sharp.IconButton();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.gridSplitContainer1 = new DevExpress.XtraGrid.GridSplitContainer();
             this.gcCeldasVinculadas = new DevExpress.XtraGrid.GridControl();
             this.gvCeldasVinculadas = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colCeldaId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -100,7 +101,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.colNumeroSerie = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDesactivar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDesactivar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.gridSplitContainer1 = new DevExpress.XtraGrid.GridSplitContainer();
+            this.btnHistorialDeCertificados = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpresaInstrumento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroSerie.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcionInstrumento.Properties)).BeginInit();
@@ -124,14 +125,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             ((System.ComponentModel.ISupportInitialize)(this.dateFechaColocacion.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFechaColocacion.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leCelda.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcCeldasVinculadas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCeldasVinculadas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDesactivar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridSplitContainer1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridSplitContainer1.Panel1)).BeginInit();
             this.gridSplitContainer1.Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridSplitContainer1.Panel2)).BeginInit();
             this.gridSplitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gcCeldasVinculadas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCeldasVinculadas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDesactivar)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl20
@@ -535,11 +536,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.btnPrepararCertificado.Location = new System.Drawing.Point(23, 503);
             this.btnPrepararCertificado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPrepararCertificado.Name = "btnPrepararCertificado";
-            this.btnPrepararCertificado.Size = new System.Drawing.Size(189, 42);
+            this.btnPrepararCertificado.Size = new System.Drawing.Size(175, 42);
             this.btnPrepararCertificado.TabIndex = 132;
             this.btnPrepararCertificado.Text = "Preparar Certificado";
             this.btnPrepararCertificado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPrepararCertificado.UseVisualStyleBackColor = true;
+            this.btnPrepararCertificado.Visible = false;
             this.btnPrepararCertificado.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // nmGarantia
@@ -748,6 +750,18 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.labelControl5.TabIndex = 155;
             this.labelControl5.Text = "Seleccione una Celda para vincular al instrumento";
             // 
+            // gridSplitContainer1
+            // 
+            this.gridSplitContainer1.Grid = this.gcCeldasVinculadas;
+            this.gridSplitContainer1.Location = new System.Drawing.Point(17, 47);
+            this.gridSplitContainer1.Name = "gridSplitContainer1";
+            // 
+            // gridSplitContainer1.Panel1
+            // 
+            this.gridSplitContainer1.Panel1.Controls.Add(this.gcCeldasVinculadas);
+            this.gridSplitContainer1.Size = new System.Drawing.Size(738, 175);
+            this.gridSplitContainer1.TabIndex = 160;
+            // 
             // gcCeldasVinculadas
             // 
             this.gcCeldasVinculadas.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -819,23 +833,33 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.btnDesactivar.Name = "btnDesactivar";
             this.btnDesactivar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
-            // gridSplitContainer1
+            // btnHistorialDeCertificados
             // 
-            this.gridSplitContainer1.Grid = this.gcCeldasVinculadas;
-            this.gridSplitContainer1.Location = new System.Drawing.Point(17, 47);
-            this.gridSplitContainer1.Name = "gridSplitContainer1";
-            // 
-            // gridSplitContainer1.Panel1
-            // 
-            this.gridSplitContainer1.Panel1.Controls.Add(this.gcCeldasVinculadas);
-            this.gridSplitContainer1.Size = new System.Drawing.Size(738, 175);
-            this.gridSplitContainer1.TabIndex = 160;
+            this.btnHistorialDeCertificados.FlatAppearance.BorderSize = 0;
+            this.btnHistorialDeCertificados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHistorialDeCertificados.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnHistorialDeCertificados.IconChar = FontAwesome.Sharp.IconChar.ListUl;
+            this.btnHistorialDeCertificados.IconColor = System.Drawing.Color.Black;
+            this.btnHistorialDeCertificados.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnHistorialDeCertificados.IconSize = 30;
+            this.btnHistorialDeCertificados.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHistorialDeCertificados.Location = new System.Drawing.Point(226, 503);
+            this.btnHistorialDeCertificados.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnHistorialDeCertificados.Name = "btnHistorialDeCertificados";
+            this.btnHistorialDeCertificados.Size = new System.Drawing.Size(193, 42);
+            this.btnHistorialDeCertificados.TabIndex = 191;
+            this.btnHistorialDeCertificados.Text = "Historial de Certificados";
+            this.btnHistorialDeCertificados.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnHistorialDeCertificados.UseVisualStyleBackColor = true;
+            this.btnHistorialDeCertificados.Visible = false;
+            this.btnHistorialDeCertificados.Click += new System.EventHandler(this.btnHistorialDeCertificados_Click);
             // 
             // frmNuevoInstrumento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(830, 556);
+            this.Controls.Add(this.btnHistorialDeCertificados);
             this.Controls.Add(this.tabPane1);
             this.Controls.Add(this.dateFechaCompraCliente);
             this.Controls.Add(this.dateFechaCompraFabricante);
@@ -891,14 +915,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             ((System.ComponentModel.ISupportInitialize)(this.dateFechaColocacion.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFechaColocacion.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leCelda.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gcCeldasVinculadas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCeldasVinculadas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDesactivar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridSplitContainer1.Panel1)).EndInit();
             this.gridSplitContainer1.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridSplitContainer1.Panel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridSplitContainer1)).EndInit();
             this.gridSplitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gcCeldasVinculadas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCeldasVinculadas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDesactivar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -961,5 +985,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         private DevExpress.XtraGrid.GridSplitContainer gridSplitContainer1;
         private DevExpress.XtraGrid.Columns.GridColumn colDesactivar;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDesactivar;
+        private FontAwesome.Sharp.IconButton btnHistorialDeCertificados;
     }
 }

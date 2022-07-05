@@ -64,6 +64,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             if (TipoTransaccion == TipoTransaccion.Actualizar)
             {
                 btnNuevaVinculacion.Visible = true;
+                btnPrepararCertificado.Visible = true;
+                btnHistorialDeCertificados.Visible = true;
             }
             _clasificacionInstrumentoService = clasificacionInstrumentoService;
             _instrumentoService = instrumentoService;
@@ -589,6 +591,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             gcCeldasVinculadas.DataSource = NuevoInstrumento.CeldasInstrumentos;
             gcCeldasVinculadas.RefreshDataSource();
 
+        }
+
+        private void btnHistorialDeCertificados_Click(object sender, EventArgs e)
+        {
+            
+            var frmHistorialCertificados = new frmCertificadosDeCalibracion(serviceProvider.GetService<CertificadoCalibracionService>());
+            frmHistorialCertificados.InstrumentoId = NuevoInstrumento.InstrumentoId;
+            frmHistorialCertificados.CargarCertificadosDeCalibracionPorInstrumento();
+            frmHistorialCertificados.ShowDialog();
         }
     }
 }

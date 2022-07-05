@@ -1,8 +1,10 @@
 ﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
 using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
+using AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion;
 using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraSplashScreen;
+using Microsoft.Extensions.DependencyInjection;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
@@ -12,6 +14,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 {
     public partial class frmInstrumentoVariable : DevExpress.XtraEditors.XtraForm
     {
+        private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
         public delegate void VariableInstrumentoAgregada(VariableInstrumentoDto variableInstrumentoDto);
         public event VariableInstrumentoAgregada OnVariableInstrumentoAgregado;
 
@@ -187,6 +190,20 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         private void glVariableDeMedicion_EditValueChanged(object sender, EventArgs e)
         {
             variableDeMedicionSeleccionada = glVariableDeMedicion.GetSelectedDataRow() as VariableMedicionDto;
+        }
+
+        private void btnNuevaVariableDeMedicion_Click(object sender, EventArgs e)
+        {
+            var frmNuevaVariableMedicion = new frmNuevaVariableMedicion(TipoTransaccion.Insertar, 
+                                                                        serviceProvider.GetService<VariableMedicionService>(), 
+                                                                        serviceProvider.GetService<TipoDeInstrumentoService>());
+            frmNuevaVariableMedicion.OnVariableMedicionAgregada += OnVariableMedicionAgregada;
+            frmNuevaVariableMedicion.ShowDialog();
+        }
+
+        private void OnVariableMedicionAgregada(VariableMedicionDto tipoInstrumento)
+        {
+            CargarVariablesDeMedicion();
         }
     }
 }

@@ -1033,8 +1033,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             // 
             this.xrLabel44.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel44.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VariablesCertificado].[Patron].[VariablesPatrones].[Patron].[VariablesPatrones]." +
-                    "[ValorPatron]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VariablesCertificado].[ValorMedido]")});
             this.xrLabel44.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrLabel44.LocationFloat = new DevExpress.Utils.PointFloat(283.3843F, 46.00006F);
             this.xrLabel44.Multiline = true;
@@ -1202,7 +1201,6 @@ namespace AutomatMediciones.DesktopApp.Reportes
             this.DataSource = this.objectDataSource1;
             this.Font = new System.Drawing.Font("Arial", 9.75F);
             this.Margins = new System.Drawing.Printing.Margins(100, 98, 7, 9);
-            this.Name = "rptCertificadoCalibracion";
             this.Version = "21.2";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();

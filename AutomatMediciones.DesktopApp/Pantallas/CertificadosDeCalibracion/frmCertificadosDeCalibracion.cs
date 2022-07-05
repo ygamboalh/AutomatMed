@@ -18,6 +18,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
         private readonly CertificadoCalibracionService _certificadoCalibracionService;
 
         public List<CertificadoDto> Certificados { get; set; }
+        public int InstrumentoId { get; set; }
         public frmCertificadosDeCalibracion(CertificadoCalibracionService certificadoCalibracionService)
         {
             InitializeComponent();
@@ -66,7 +67,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
 
         private void CargarCertificadosDeCalibracion()
         {
-            var resultado = _certificadoCalibracionService.ObtenerCertificados();
+            var resultado =  _certificadoCalibracionService.ObtenerCertificados();
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
             var lista = new List<CertificadoView>();
@@ -99,6 +100,43 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
 
             SetearTotales();
         }
+
+        public void CargarCertificadosDeCalibracionPorInstrumento()
+        {
+            var resultado =  _certificadoCalibracionService.ObtenerCertificadosPorInstrumento(InstrumentoId);
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+            var lista = new List<CertificadoView>();
+
+            resultado.Data.ForEach(x =>
+            {
+                var certificadoView = new CertificadoView
+                {
+                    CertificadoId = x.CertificadoId,
+                    CondicionesAmbientales = x.CondicionesAmbientales,
+                    Fecha = x.Fecha,
+                    FechaCaducidad = x.FechaCaducidad,
+                    Instrumento = x.Instrumento,
+                    InstrumentoId = x.InstrumentoId,
+                    NumeroCertificado = x.NumeroCertificado,
+                    Responsable = x.Responsable,
+                    ResponsableId = x.ResponsableId,
+                    ClasificacionConcatenada = $"{x.Instrumento.Clasificacion.TipoInstrumento.Descripcion}/{x.Instrumento.Clasificacion.Marca.Descripcion}/{x.Instrumento.Clasificacion.Modelo.Descripcion}"
+                };
+                lista.Add(certificadoView);
+            });
+
+
+
+            Certificados = resultado.Data;
+
+            gcCertificados.DataSource = lista;
+            gcCertificados.RefreshDataSource();
+
+
+            SetearTotales();
+        }
+
 
         private void EstablecerColorBotonExportarExcel()
         {

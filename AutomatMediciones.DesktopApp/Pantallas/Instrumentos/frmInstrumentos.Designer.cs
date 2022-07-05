@@ -77,10 +77,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.panel1.Controls.Add(this.btnAgregarNuevoInstrumento);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(8, 7, 0, 7);
-            this.panel1.Size = new System.Drawing.Size(1195, 53);
+            this.panel1.Padding = new System.Windows.Forms.Padding(7, 6, 0, 6);
+            this.panel1.Size = new System.Drawing.Size(893, 43);
             this.panel1.TabIndex = 34;
             // 
             // btnExportarExcel
@@ -94,10 +94,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.btnExportarExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnExportarExcel.IconSize = 30;
             this.btnExportarExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportarExcel.Location = new System.Drawing.Point(1004, 8);
-            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnExportarExcel.Location = new System.Drawing.Point(730, 6);
+            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExportarExcel.Name = "btnExportarExcel";
-            this.btnExportarExcel.Size = new System.Drawing.Size(178, 37);
+            this.btnExportarExcel.Size = new System.Drawing.Size(153, 30);
             this.btnExportarExcel.TabIndex = 162;
             this.btnExportarExcel.Text = "Exportar a Excel";
             this.btnExportarExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -115,10 +115,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.btnAgregarNuevoInstrumento.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAgregarNuevoInstrumento.IconSize = 30;
             this.btnAgregarNuevoInstrumento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarNuevoInstrumento.Location = new System.Drawing.Point(8, 7);
-            this.btnAgregarNuevoInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnAgregarNuevoInstrumento.Location = new System.Drawing.Point(7, 6);
+            this.btnAgregarNuevoInstrumento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAgregarNuevoInstrumento.Name = "btnAgregarNuevoInstrumento";
-            this.btnAgregarNuevoInstrumento.Size = new System.Drawing.Size(211, 39);
+            this.btnAgregarNuevoInstrumento.Size = new System.Drawing.Size(181, 31);
             this.btnAgregarNuevoInstrumento.TabIndex = 16;
             this.btnAgregarNuevoInstrumento.Text = "Nuevo Instrumento";
             this.btnAgregarNuevoInstrumento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -129,10 +129,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             // 
             this.panel2.Controls.Add(this.lblTotal);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 579);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel2.Location = new System.Drawing.Point(0, 470);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1195, 27);
+            this.panel2.Size = new System.Drawing.Size(893, 22);
             this.panel2.TabIndex = 35;
             // 
             // lblTotal
@@ -141,9 +141,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.lblTotal.Appearance.Options.UseFont = true;
             this.lblTotal.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblTotal.Location = new System.Drawing.Point(0, 0);
-            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(7, 17);
+            this.lblTotal.Size = new System.Drawing.Size(6, 12);
             this.lblTotal.TabIndex = 27;
             this.lblTotal.Text = "0";
             this.lblTotal.Visible = false;
@@ -151,16 +151,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             // gcInstrumentos
             // 
             this.gcInstrumentos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcInstrumentos.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.gcInstrumentos.Location = new System.Drawing.Point(0, 53);
+            this.gcInstrumentos.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gcInstrumentos.Location = new System.Drawing.Point(0, 43);
             this.gcInstrumentos.MainView = this.gvInstrumentos;
-            this.gcInstrumentos.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.gcInstrumentos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gcInstrumentos.Name = "gcInstrumentos";
-            this.gcInstrumentos.Padding = new System.Windows.Forms.Padding(5);
+            this.gcInstrumentos.Padding = new System.Windows.Forms.Padding(4);
             this.gcInstrumentos.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnEditar,
             this.btnDesactivar});
-            this.gcInstrumentos.Size = new System.Drawing.Size(1195, 526);
+            this.gcInstrumentos.Size = new System.Drawing.Size(893, 427);
             this.gcInstrumentos.TabIndex = 36;
             this.gcInstrumentos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvInstrumentos});
@@ -180,6 +180,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.colFechaProximaCalibracion,
             this.colGarnatia,
             this.colEliminar});
+            this.gvInstrumentos.DetailHeight = 284;
             this.gvInstrumentos.GridControl = this.gcInstrumentos;
             this.gvInstrumentos.Name = "gvInstrumentos";
             this.gvInstrumentos.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
@@ -191,59 +192,59 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             // 
             this.colId.Caption = "Id";
             this.colId.FieldName = "InstrumentoId";
-            this.colId.MinWidth = 24;
+            this.colId.MinWidth = 21;
             this.colId.Name = "colId";
             this.colId.OptionsColumn.AllowEdit = false;
             this.colId.OptionsColumn.ReadOnly = true;
-            this.colId.Width = 198;
+            this.colId.Width = 170;
             // 
             // colDescripcion
             // 
             this.colDescripcion.Caption = "Descripción";
             this.colDescripcion.FieldName = "Descripcion";
-            this.colDescripcion.MinWidth = 24;
+            this.colDescripcion.MinWidth = 21;
             this.colDescripcion.Name = "colDescripcion";
             this.colDescripcion.OptionsColumn.AllowEdit = false;
             this.colDescripcion.OptionsColumn.AllowFocus = false;
             this.colDescripcion.OptionsColumn.ReadOnly = true;
             this.colDescripcion.Visible = true;
             this.colDescripcion.VisibleIndex = 0;
-            this.colDescripcion.Width = 220;
+            this.colDescripcion.Width = 189;
             // 
             // colClasificacion
             // 
             this.colClasificacion.Caption = "Clasificación";
             this.colClasificacion.FieldName = "ClasificacionConcatenada";
-            this.colClasificacion.MinWidth = 24;
+            this.colClasificacion.MinWidth = 21;
             this.colClasificacion.Name = "colClasificacion";
             this.colClasificacion.OptionsColumn.AllowEdit = false;
             this.colClasificacion.OptionsColumn.AllowFocus = false;
             this.colClasificacion.OptionsColumn.ReadOnly = true;
             this.colClasificacion.Visible = true;
             this.colClasificacion.VisibleIndex = 1;
-            this.colClasificacion.Width = 185;
+            this.colClasificacion.Width = 159;
             // 
             // colEmpresa
             // 
             this.colEmpresa.Caption = "Empresa";
             this.colEmpresa.FieldName = "NombreEmpresa";
-            this.colEmpresa.MinWidth = 24;
+            this.colEmpresa.MinWidth = 21;
             this.colEmpresa.Name = "colEmpresa";
             this.colEmpresa.OptionsColumn.AllowEdit = false;
             this.colEmpresa.OptionsColumn.AllowFocus = false;
             this.colEmpresa.OptionsColumn.ReadOnly = true;
             this.colEmpresa.Visible = true;
             this.colEmpresa.VisibleIndex = 2;
-            this.colEmpresa.Width = 93;
+            this.colEmpresa.Width = 80;
             // 
             // colEditar
             // 
             this.colEditar.ColumnEdit = this.btnEditar;
-            this.colEditar.MinWidth = 24;
+            this.colEditar.MinWidth = 21;
             this.colEditar.Name = "colEditar";
             this.colEditar.Visible = true;
             this.colEditar.VisibleIndex = 9;
-            this.colEditar.Width = 38;
+            this.colEditar.Width = 33;
             // 
             // btnEditar
             // 
@@ -258,14 +259,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             // 
             this.colSerie.Caption = "Serie";
             this.colSerie.FieldName = "NumeroSerie";
-            this.colSerie.MinWidth = 24;
+            this.colSerie.MinWidth = 21;
             this.colSerie.Name = "colSerie";
             this.colSerie.OptionsColumn.AllowEdit = false;
             this.colSerie.OptionsColumn.AllowFocus = false;
             this.colSerie.OptionsColumn.ReadOnly = true;
             this.colSerie.Visible = true;
             this.colSerie.VisibleIndex = 3;
-            this.colSerie.Width = 93;
+            this.colSerie.Width = 80;
             // 
             // colFechaCompraFabricante
             // 
@@ -273,14 +274,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.colFechaCompraFabricante.DisplayFormat.FormatString = "dd/MM/yyyy";
             this.colFechaCompraFabricante.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colFechaCompraFabricante.FieldName = "FechaCompraFabricante";
-            this.colFechaCompraFabricante.MinWidth = 24;
+            this.colFechaCompraFabricante.MinWidth = 21;
             this.colFechaCompraFabricante.Name = "colFechaCompraFabricante";
             this.colFechaCompraFabricante.OptionsColumn.AllowEdit = false;
             this.colFechaCompraFabricante.OptionsColumn.AllowFocus = false;
             this.colFechaCompraFabricante.OptionsColumn.ReadOnly = true;
             this.colFechaCompraFabricante.Visible = true;
             this.colFechaCompraFabricante.VisibleIndex = 4;
-            this.colFechaCompraFabricante.Width = 93;
+            this.colFechaCompraFabricante.Width = 80;
             // 
             // colFechaCompraCliente
             // 
@@ -288,14 +289,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.colFechaCompraCliente.DisplayFormat.FormatString = "dd/MM/yyyy";
             this.colFechaCompraCliente.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colFechaCompraCliente.FieldName = "FechaCompraCliente";
-            this.colFechaCompraCliente.MinWidth = 24;
+            this.colFechaCompraCliente.MinWidth = 21;
             this.colFechaCompraCliente.Name = "colFechaCompraCliente";
             this.colFechaCompraCliente.OptionsColumn.AllowEdit = false;
             this.colFechaCompraCliente.OptionsColumn.AllowFocus = false;
             this.colFechaCompraCliente.OptionsColumn.ReadOnly = true;
             this.colFechaCompraCliente.Visible = true;
             this.colFechaCompraCliente.VisibleIndex = 5;
-            this.colFechaCompraCliente.Width = 93;
+            this.colFechaCompraCliente.Width = 80;
             // 
             // colFechaCalibracion
             // 
@@ -303,14 +304,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.colFechaCalibracion.DisplayFormat.FormatString = "dd/MM/yyyy";
             this.colFechaCalibracion.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colFechaCalibracion.FieldName = "FechaUltiimaCalibracion";
-            this.colFechaCalibracion.MinWidth = 24;
+            this.colFechaCalibracion.MinWidth = 21;
             this.colFechaCalibracion.Name = "colFechaCalibracion";
             this.colFechaCalibracion.OptionsColumn.AllowEdit = false;
             this.colFechaCalibracion.OptionsColumn.AllowFocus = false;
             this.colFechaCalibracion.OptionsColumn.ReadOnly = true;
             this.colFechaCalibracion.Visible = true;
             this.colFechaCalibracion.VisibleIndex = 6;
-            this.colFechaCalibracion.Width = 93;
+            this.colFechaCalibracion.Width = 80;
             // 
             // colFechaProximaCalibracion
             // 
@@ -318,36 +319,36 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.colFechaProximaCalibracion.DisplayFormat.FormatString = "dd/MM/yyyy";
             this.colFechaProximaCalibracion.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colFechaProximaCalibracion.FieldName = "FechaProximaCalibracion";
-            this.colFechaProximaCalibracion.MinWidth = 24;
+            this.colFechaProximaCalibracion.MinWidth = 21;
             this.colFechaProximaCalibracion.Name = "colFechaProximaCalibracion";
             this.colFechaProximaCalibracion.OptionsColumn.AllowEdit = false;
             this.colFechaProximaCalibracion.OptionsColumn.AllowFocus = false;
             this.colFechaProximaCalibracion.OptionsColumn.ReadOnly = true;
             this.colFechaProximaCalibracion.Visible = true;
             this.colFechaProximaCalibracion.VisibleIndex = 7;
-            this.colFechaProximaCalibracion.Width = 93;
+            this.colFechaProximaCalibracion.Width = 80;
             // 
             // colGarnatia
             // 
             this.colGarnatia.Caption = "Garantía (Meses)";
             this.colGarnatia.FieldName = "Garantia";
-            this.colGarnatia.MinWidth = 24;
+            this.colGarnatia.MinWidth = 21;
             this.colGarnatia.Name = "colGarnatia";
             this.colGarnatia.OptionsColumn.AllowEdit = false;
             this.colGarnatia.OptionsColumn.AllowFocus = false;
             this.colGarnatia.OptionsColumn.ReadOnly = true;
             this.colGarnatia.Visible = true;
             this.colGarnatia.VisibleIndex = 8;
-            this.colGarnatia.Width = 98;
+            this.colGarnatia.Width = 84;
             // 
             // colEliminar
             // 
             this.colEliminar.ColumnEdit = this.btnDesactivar;
-            this.colEliminar.MinWidth = 24;
+            this.colEliminar.MinWidth = 21;
             this.colEliminar.Name = "colEliminar";
             this.colEliminar.Visible = true;
             this.colEliminar.VisibleIndex = 10;
-            this.colEliminar.Width = 43;
+            this.colEliminar.Width = 37;
             // 
             // btnDesactivar
             // 
@@ -360,14 +361,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             // 
             // frmInstrumentos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1195, 606);
+            this.ClientSize = new System.Drawing.Size(893, 492);
             this.Controls.Add(this.gcInstrumentos);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmInstrumentos";
             this.Text = "Instrumentos";
             this.panel1.ResumeLayout(false);

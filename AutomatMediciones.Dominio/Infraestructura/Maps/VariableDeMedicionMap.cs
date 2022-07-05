@@ -13,6 +13,8 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.HasKey(x => x.VariableMedicionId);
             builder.Property(x => x.VariableMedicionId).HasColumnName("variable_medicion_id").HasColumnType("INT").ValueGeneratedOnAdd();
             builder.Property(x => x.Descripcion).HasColumnName("descripcion").HasColumnType("VARCHAR(200)").IsRequired();
+            builder.Property(x => x.DescripcionCorta).HasColumnName("descripcion_corta").HasColumnType("VARCHAR(80)");
+            builder.Property(x => x.Nombre).HasColumnName("nombre").HasColumnType("VARCHAR(100)");
             builder.Property(x => x.PrimerValorRango).HasColumnName("primer_valor_rango").HasColumnType("DECIMAL").IsRequired();
             builder.Property(x => x.SegundoValorRango).HasColumnName("segundo_valor_rango").HasColumnType("DECIMAL").IsRequired();
             builder.Property(x => x.Tolerancia).HasColumnName("tolerancia").HasColumnType("DECIMAL").IsRequired();

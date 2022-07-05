@@ -94,6 +94,16 @@
         zQR+JeoKAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="editorButtonImageOptions4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABt0RVh0VGl0
+        bGUAUHJpbnQ7UHJpbnRTdGFydERhdGU7WHZTYAAAAOtJREFUOE+tkrEKwjAQhvsofSEX30WXbhKfwc3F
+        Qbp1FAcXoTgUV0F0chCn0kWKKOf9IVeSkEYKfvCTa3r353JtopSioWIS0X8MhKqqTNQfRw36+GkgCdP1
+        whGwiy3CHUgRsGMwmm06McMNgCkGrkHsCo/6Sfn+SpPlgcbzrV7ZKGOl/Do+RBSr/Eir3ZlOt5pe749e
+        8cwGBUwcA39gOBnJNpd7ozsxJll3BV8A7eJEQYqxYp8NymgHSEbbghQD7LNBGzXwO7BxOggJhGYgdDPg
+        uFeckLIKJOPE4FcIFdoyJvjuJas1q/kPKPkCHM43O+YT+VwAAAAASUVORK5CYII=
+</value>
+  </data>
   <metadata name="saveFileDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>

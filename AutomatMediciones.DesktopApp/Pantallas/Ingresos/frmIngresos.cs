@@ -1,5 +1,6 @@
 ﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
 using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion;
 using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos;
 using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos.Dtos;
 using AutomatMediciones.DesktopApp.Reportes;
@@ -40,12 +41,24 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             btnIniciarDiagnostico.Click += btnIniciarDiagnosticoClick;
             btnVerReporteDeIngreso.Click += btnVerReporteIngresoClick;
             btnEditarIngreso.Click += btnEditarIngresoClick;
+            cmdHistorialCertificados.Click += cmdHistorialCertificadosClick;
 
             FiltroSeleccionado = Filtros.Todos;
             btnFiltroTodos.BackColor = ColorHelper.ObtenerColorEnRGB("Default");
             btnFiltroTodos.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
             btnFiltroTodos.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
 
+        }
+
+        private void cmdHistorialCertificadosClick(object sender, EventArgs e)
+        {
+            var ingresoSeleccionao = gvInstrumentos.GetFocusedRow() as IngresoInstrumento;
+            if (ingresoSeleccionao == null) return;
+
+            var frmHistorialCertificados = new frmCertificadosDeCalibracion(serviceProvider.GetService<CertificadoCalibracionService>());
+            frmHistorialCertificados.InstrumentoId = ingresoSeleccionao.InstrumentoId;
+            frmHistorialCertificados.CargarCertificadosDeCalibracionPorInstrumento();
+            frmHistorialCertificados.ShowDialog();
         }
 
         private void btnEditarIngresoClick(object sender, EventArgs e)
@@ -67,7 +80,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             frmIngresos.SetearVariablesParaActualizar();
             frmIngresos.OnIngresoActualizado += frmIngresosOnIngresoActualizado;
             frmIngresos.MdiParent = this.ParentForm;
-            frmIngresos.Show();
+            frmIngresos.ShowDialog();
         }
 
         private void frmIngresosOnIngresoActualizado(IngresoDto ingreso)

@@ -64,10 +64,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.panel1.Controls.Add(this.btnAgregarNuevInstrumento);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(8, 7, 0, 7);
-            this.panel1.Size = new System.Drawing.Size(995, 53);
+            this.panel1.Padding = new System.Windows.Forms.Padding(7, 6, 0, 6);
+            this.panel1.Size = new System.Drawing.Size(853, 43);
             this.panel1.TabIndex = 37;
             // 
             // btnExportarExcel
@@ -81,10 +81,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.btnExportarExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnExportarExcel.IconSize = 30;
             this.btnExportarExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportarExcel.Location = new System.Drawing.Point(784, 7);
-            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnExportarExcel.Location = new System.Drawing.Point(672, 6);
+            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExportarExcel.Name = "btnExportarExcel";
-            this.btnExportarExcel.Size = new System.Drawing.Size(211, 39);
+            this.btnExportarExcel.Size = new System.Drawing.Size(181, 31);
             this.btnExportarExcel.TabIndex = 168;
             this.btnExportarExcel.Text = "Exportar a Excel";
             this.btnExportarExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -102,10 +102,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.btnAgregarNuevInstrumento.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAgregarNuevInstrumento.IconSize = 30;
             this.btnAgregarNuevInstrumento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarNuevInstrumento.Location = new System.Drawing.Point(8, 7);
-            this.btnAgregarNuevInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnAgregarNuevInstrumento.Location = new System.Drawing.Point(7, 6);
+            this.btnAgregarNuevInstrumento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAgregarNuevInstrumento.Name = "btnAgregarNuevInstrumento";
-            this.btnAgregarNuevInstrumento.Size = new System.Drawing.Size(305, 39);
+            this.btnAgregarNuevInstrumento.Size = new System.Drawing.Size(261, 31);
             this.btnAgregarNuevInstrumento.TabIndex = 16;
             this.btnAgregarNuevInstrumento.Text = "Nueva Variable de Medición";
             this.btnAgregarNuevInstrumento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -116,22 +116,22 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // 
             this.colDescripcion.Caption = "Descripción";
             this.colDescripcion.FieldName = "Descripcion";
-            this.colDescripcion.MinWidth = 24;
+            this.colDescripcion.MinWidth = 21;
             this.colDescripcion.Name = "colDescripcion";
             this.colDescripcion.OptionsColumn.AllowEdit = false;
             this.colDescripcion.OptionsColumn.ReadOnly = true;
             this.colDescripcion.Visible = true;
             this.colDescripcion.VisibleIndex = 0;
-            this.colDescripcion.Width = 198;
+            this.colDescripcion.Width = 170;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.lblTotal);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 683);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel2.Location = new System.Drawing.Point(0, 555);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(995, 27);
+            this.panel2.Size = new System.Drawing.Size(853, 22);
             this.panel2.TabIndex = 38;
             // 
             // lblTotal
@@ -140,9 +140,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.lblTotal.Appearance.Options.UseFont = true;
             this.lblTotal.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblTotal.Location = new System.Drawing.Point(0, 0);
-            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(7, 17);
+            this.lblTotal.Size = new System.Drawing.Size(6, 12);
             this.lblTotal.TabIndex = 27;
             this.lblTotal.Text = "0";
             this.lblTotal.Visible = false;
@@ -150,15 +150,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // gcVariablesDeMedicion
             // 
             this.gcVariablesDeMedicion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcVariablesDeMedicion.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.gcVariablesDeMedicion.Location = new System.Drawing.Point(0, 53);
+            this.gcVariablesDeMedicion.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gcVariablesDeMedicion.Location = new System.Drawing.Point(0, 43);
             this.gcVariablesDeMedicion.MainView = this.gvVariablesDeMedicion;
-            this.gcVariablesDeMedicion.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.gcVariablesDeMedicion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gcVariablesDeMedicion.Name = "gcVariablesDeMedicion";
-            this.gcVariablesDeMedicion.Padding = new System.Windows.Forms.Padding(5);
+            this.gcVariablesDeMedicion.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gcVariablesDeMedicion.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.cmdEditar});
-            this.gcVariablesDeMedicion.Size = new System.Drawing.Size(995, 630);
+            this.gcVariablesDeMedicion.Size = new System.Drawing.Size(853, 512);
             this.gcVariablesDeMedicion.TabIndex = 36;
             this.gcVariablesDeMedicion.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvVariablesDeMedicion});
@@ -172,6 +172,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.colSegundoValorRango,
             this.colTolerancia,
             this.colEditar});
+            this.gvVariablesDeMedicion.DetailHeight = 284;
             this.gvVariablesDeMedicion.GridControl = this.gcVariablesDeMedicion;
             this.gvVariablesDeMedicion.Name = "gvVariablesDeMedicion";
             this.gvVariablesDeMedicion.OptionsView.ShowAutoFilterRow = true;
@@ -182,56 +183,56 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // 
             this.colId.Caption = "Id";
             this.colId.FieldName = "MarcaId";
-            this.colId.MinWidth = 24;
+            this.colId.MinWidth = 21;
             this.colId.Name = "colId";
             this.colId.OptionsColumn.AllowEdit = false;
             this.colId.OptionsColumn.ReadOnly = true;
-            this.colId.Width = 198;
+            this.colId.Width = 170;
             // 
             // colPrimerValorRango
             // 
             this.colPrimerValorRango.Caption = "Primer Valor Rango";
             this.colPrimerValorRango.FieldName = "PrimerValorRango";
-            this.colPrimerValorRango.MinWidth = 25;
+            this.colPrimerValorRango.MinWidth = 21;
             this.colPrimerValorRango.Name = "colPrimerValorRango";
             this.colPrimerValorRango.OptionsColumn.AllowEdit = false;
             this.colPrimerValorRango.OptionsColumn.ReadOnly = true;
             this.colPrimerValorRango.Visible = true;
             this.colPrimerValorRango.VisibleIndex = 1;
-            this.colPrimerValorRango.Width = 94;
+            this.colPrimerValorRango.Width = 81;
             // 
             // colSegundoValorRango
             // 
             this.colSegundoValorRango.Caption = "Segundo Valor Rango";
             this.colSegundoValorRango.FieldName = "SegundoValorRango";
-            this.colSegundoValorRango.MinWidth = 25;
+            this.colSegundoValorRango.MinWidth = 21;
             this.colSegundoValorRango.Name = "colSegundoValorRango";
             this.colSegundoValorRango.OptionsColumn.AllowEdit = false;
             this.colSegundoValorRango.OptionsColumn.ReadOnly = true;
             this.colSegundoValorRango.Visible = true;
             this.colSegundoValorRango.VisibleIndex = 2;
-            this.colSegundoValorRango.Width = 94;
+            this.colSegundoValorRango.Width = 81;
             // 
             // colTolerancia
             // 
             this.colTolerancia.Caption = "Tolerancia";
             this.colTolerancia.FieldName = "Tolerancia";
-            this.colTolerancia.MinWidth = 25;
+            this.colTolerancia.MinWidth = 21;
             this.colTolerancia.Name = "colTolerancia";
             this.colTolerancia.OptionsColumn.AllowEdit = false;
             this.colTolerancia.OptionsColumn.ReadOnly = true;
             this.colTolerancia.Visible = true;
             this.colTolerancia.VisibleIndex = 3;
-            this.colTolerancia.Width = 94;
+            this.colTolerancia.Width = 81;
             // 
             // colEditar
             // 
             this.colEditar.ColumnEdit = this.cmdEditar;
-            this.colEditar.MinWidth = 24;
+            this.colEditar.MinWidth = 21;
             this.colEditar.Name = "colEditar";
             this.colEditar.Visible = true;
             this.colEditar.VisibleIndex = 4;
-            this.colEditar.Width = 40;
+            this.colEditar.Width = 34;
             // 
             // cmdEditar
             // 
@@ -244,14 +245,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // 
             // frmVariablesDeMedicion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(995, 710);
+            this.ClientSize = new System.Drawing.Size(853, 577);
             this.Controls.Add(this.gcVariablesDeMedicion);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IconOptions.ShowIcon = false;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmVariablesDeMedicion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Variables de Medición";

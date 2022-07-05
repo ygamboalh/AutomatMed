@@ -6,6 +6,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
     {
         public int VariableMedicionId { get; set; }
         public string Descripcion { get; set; }
+        public string Nombre { get; set; }
+        public string DescripcionCorta { get; set; }
         public decimal PrimerValorRango { get; set; }
         public decimal SegundoValorRango { get; set; }
         public decimal Tolerancia { get; set; }

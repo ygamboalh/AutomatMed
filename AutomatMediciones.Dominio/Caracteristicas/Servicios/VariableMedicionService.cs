@@ -46,7 +46,9 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     Descripcion = variableMedicionDto.Descripcion,
                     PrimerValorRango = variableMedicionDto.PrimerValorRango,
                     SegundoValorRango = variableMedicionDto.SegundoValorRango,
-                    Tolerancia = variableMedicionDto.Tolerancia
+                    Tolerancia = variableMedicionDto.Tolerancia,
+                    DescripcionCorta = variableMedicionDto.DescripcionCorta,
+                    Nombre = variableMedicionDto.Nombre
                 };
 
                 _tacticaDbContext.Database.BeginTransaction();
@@ -93,6 +95,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     return Response<bool>.Error("La Variable de medición no fue encontrada en almacén de datos", false);
                 }
 
+                variableMedicionBd.DescripcionCorta = variableMedicionDto.DescripcionCorta;
+                variableMedicionBd.Nombre = variableMedicionDto.Nombre;
                 variableMedicionBd.Tolerancia = variableMedicionDto.Tolerancia;
                 variableMedicionBd.PrimerValorRango = variableMedicionDto.PrimerValorRango;
                 variableMedicionBd.SegundoValorRango = variableMedicionDto.SegundoValorRango;

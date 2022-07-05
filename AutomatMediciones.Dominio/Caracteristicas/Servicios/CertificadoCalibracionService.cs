@@ -41,6 +41,27 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
+        public Response<List<CertificadoDto>> ObtenerCertificadosPorInstrumento(int instrumentoId)
+        {
+            try
+            {
+                var certificados = _automatDbContext.Certificados
+                                                            .Include(x => x.Responsable)
+                                                            .Include(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.Modelo)
+                                                            .Include(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.Marca)
+                                                            .Include(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
+                                                            .Include(x => x.VariablesCertificado).ThenInclude(x => x.VariableInstrumento).ThenInclude(x => x.VariableDeMedicion)
+                                                            .Include(x => x.VariablesCertificado).ThenInclude(x => x.Patron).ThenInclude(x => x.VariablesPatrones)
+                                                            .FirstOrDefault(x => x.InstrumentoId == instrumentoId);
+
+                return Response<List<CertificadoDto>>.Ok("Ok", _mapper.Map<List<CertificadoDto>>(certificados));
+            }
+            catch (Exception exc)
+            {
+                return Response<List<CertificadoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
 
         public Response<CertificadoDto> RegistrarCertificado(CertificadoDto certificadoDto)
         {

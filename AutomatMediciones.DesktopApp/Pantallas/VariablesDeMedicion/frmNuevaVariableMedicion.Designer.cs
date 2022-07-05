@@ -45,10 +45,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.nmTolerancia = new System.Windows.Forms.NumericUpDown();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.glTipoInstrumento = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.glTipoInstrumentoView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colTipoInstrumentoId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.btnVincularVariableMedicion = new FontAwesome.Sharp.IconButton();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -62,17 +58,23 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.chkSeleccionarInstrumento = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.txtDescripcionCorta = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.txtNombre = new DevExpress.XtraEditors.TextEdit();
+            this.leTipInstrumento = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcion.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmPrimerValorRango)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmSegundoValorRango)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmTolerancia)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumento.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumentoView)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcTiposDeInstrumento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTiposDeInstrumento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEliminar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkSeleccionarInstrumento)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDescripcionCorta.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNombre.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leTipInstrumento.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGuardarVariableMedicion
@@ -85,7 +87,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.btnGuardarVariableMedicion.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardarVariableMedicion.IconSize = 30;
             this.btnGuardarVariableMedicion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardarVariableMedicion.Location = new System.Drawing.Point(285, 466);
+            this.btnGuardarVariableMedicion.Location = new System.Drawing.Point(578, 414);
             this.btnGuardarVariableMedicion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGuardarVariableMedicion.Name = "btnGuardarVariableMedicion";
             this.btnGuardarVariableMedicion.Size = new System.Drawing.Size(258, 42);
@@ -99,7 +101,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // 
             this.labelControl11.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl11.Appearance.Options.UseFont = true;
-            this.labelControl11.Location = new System.Drawing.Point(25, 57);
+            this.labelControl11.Location = new System.Drawing.Point(326, 54);
             this.labelControl11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(51, 12);
@@ -109,18 +111,19 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // txtDescripcion
             // 
             this.txtDescripcion.EditValue = "";
-            this.txtDescripcion.Location = new System.Drawing.Point(25, 76);
+            this.txtDescripcion.Location = new System.Drawing.Point(326, 73);
             this.txtDescripcion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtDescripcion.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtDescripcion.Properties.Appearance.Options.UseFont = true;
-            this.txtDescripcion.Size = new System.Drawing.Size(518, 26);
+            this.txtDescripcion.Size = new System.Drawing.Size(291, 22);
             this.txtDescripcion.TabIndex = 128;
             // 
             // nmPrimerValorRango
             // 
             this.nmPrimerValorRango.DecimalPlaces = 2;
-            this.nmPrimerValorRango.Location = new System.Drawing.Point(25, 131);
+            this.nmPrimerValorRango.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.nmPrimerValorRango.Location = new System.Drawing.Point(25, 119);
             this.nmPrimerValorRango.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nmPrimerValorRango.Maximum = new decimal(new int[] {
             10000,
@@ -128,14 +131,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             0,
             0});
             this.nmPrimerValorRango.Name = "nmPrimerValorRango";
-            this.nmPrimerValorRango.Size = new System.Drawing.Size(129, 21);
+            this.nmPrimerValorRango.Size = new System.Drawing.Size(129, 23);
             this.nmPrimerValorRango.TabIndex = 141;
             // 
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(25, 113);
+            this.labelControl3.Location = new System.Drawing.Point(25, 101);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(85, 12);
@@ -145,7 +148,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // nmSegundoValorRango
             // 
             this.nmSegundoValorRango.DecimalPlaces = 2;
-            this.nmSegundoValorRango.Location = new System.Drawing.Point(220, 131);
+            this.nmSegundoValorRango.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.nmSegundoValorRango.Location = new System.Drawing.Point(177, 119);
             this.nmSegundoValorRango.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nmSegundoValorRango.Maximum = new decimal(new int[] {
             10000,
@@ -153,14 +157,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             0,
             0});
             this.nmSegundoValorRango.Name = "nmSegundoValorRango";
-            this.nmSegundoValorRango.Size = new System.Drawing.Size(129, 21);
+            this.nmSegundoValorRango.Size = new System.Drawing.Size(124, 23);
             this.nmSegundoValorRango.TabIndex = 143;
             // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(220, 113);
+            this.labelControl1.Location = new System.Drawing.Point(177, 101);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(97, 12);
@@ -170,7 +174,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // nmTolerancia
             // 
             this.nmTolerancia.DecimalPlaces = 2;
-            this.nmTolerancia.Location = new System.Drawing.Point(413, 131);
+            this.nmTolerancia.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.nmTolerancia.Location = new System.Drawing.Point(326, 119);
             this.nmTolerancia.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nmTolerancia.Maximum = new decimal(new int[] {
             10000,
@@ -178,68 +183,25 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             0,
             0});
             this.nmTolerancia.Name = "nmTolerancia";
-            this.nmTolerancia.Size = new System.Drawing.Size(129, 21);
+            this.nmTolerancia.Size = new System.Drawing.Size(129, 23);
             this.nmTolerancia.TabIndex = 145;
             // 
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(413, 113);
+            this.labelControl2.Location = new System.Drawing.Point(326, 101);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(44, 12);
             this.labelControl2.TabIndex = 144;
             this.labelControl2.Text = "Tolerancia";
             // 
-            // glTipoInstrumento
-            // 
-            this.glTipoInstrumento.EditValue = "";
-            this.glTipoInstrumento.Location = new System.Drawing.Point(25, 194);
-            this.glTipoInstrumento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.glTipoInstrumento.Name = "glTipoInstrumento";
-            this.glTipoInstrumento.Properties.AutoHeight = false;
-            this.glTipoInstrumento.Properties.NullText = "";
-            this.glTipoInstrumento.Properties.PopupView = this.glTipoInstrumentoView;
-            this.glTipoInstrumento.Size = new System.Drawing.Size(388, 25);
-            this.glTipoInstrumento.TabIndex = 147;
-            // 
-            // glTipoInstrumentoView
-            // 
-            this.glTipoInstrumentoView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colTipoInstrumentoId,
-            this.colDescripcion});
-            this.glTipoInstrumentoView.DetailHeight = 284;
-            this.glTipoInstrumentoView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.glTipoInstrumentoView.Name = "glTipoInstrumentoView";
-            this.glTipoInstrumentoView.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.glTipoInstrumentoView.OptionsView.ShowGroupPanel = false;
-            // 
-            // colTipoInstrumentoId
-            // 
-            this.colTipoInstrumentoId.Caption = "Id";
-            this.colTipoInstrumentoId.FieldName = "TipoInstrumentoId";
-            this.colTipoInstrumentoId.MinWidth = 17;
-            this.colTipoInstrumentoId.Name = "colTipoInstrumentoId";
-            this.colTipoInstrumentoId.Width = 64;
-            // 
-            // colDescripcion
-            // 
-            this.colDescripcion.Caption = "Descripcion";
-            this.colDescripcion.FieldName = "Descripcion";
-            this.colDescripcion.MinWidth = 17;
-            this.colDescripcion.Name = "colDescripcion";
-            this.colDescripcion.OptionsColumn.AllowEdit = false;
-            this.colDescripcion.OptionsColumn.ReadOnly = true;
-            this.colDescripcion.Visible = true;
-            this.colDescripcion.VisibleIndex = 0;
-            this.colDescripcion.Width = 64;
-            // 
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(25, 176);
+            this.labelControl4.Location = new System.Drawing.Point(25, 145);
             this.labelControl4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(90, 12);
@@ -256,7 +218,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.btnVincularVariableMedicion.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnVincularVariableMedicion.IconSize = 30;
             this.btnVincularVariableMedicion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVincularVariableMedicion.Location = new System.Drawing.Point(430, 193);
+            this.btnVincularVariableMedicion.Location = new System.Drawing.Point(326, 162);
             this.btnVincularVariableMedicion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnVincularVariableMedicion.Name = "btnVincularVariableMedicion";
             this.btnVincularVariableMedicion.Size = new System.Drawing.Size(34, 26);
@@ -269,10 +231,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // panel1
             // 
             this.panel1.Controls.Add(this.lblTotalInstrumentos);
-            this.panel1.Location = new System.Drawing.Point(24, 432);
+            this.panel1.Location = new System.Drawing.Point(25, 380);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(518, 22);
+            this.panel1.Size = new System.Drawing.Size(811, 22);
             this.panel1.TabIndex = 150;
             // 
             // lblTotalInstrumentos
@@ -291,14 +253,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // gcTiposDeInstrumento
             // 
             this.gcTiposDeInstrumento.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gcTiposDeInstrumento.Location = new System.Drawing.Point(25, 257);
+            this.gcTiposDeInstrumento.Location = new System.Drawing.Point(25, 215);
             this.gcTiposDeInstrumento.MainView = this.gvTiposDeInstrumento;
             this.gcTiposDeInstrumento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gcTiposDeInstrumento.Name = "gcTiposDeInstrumento";
             this.gcTiposDeInstrumento.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.chkSeleccionarInstrumento,
             this.btnEliminar});
-            this.gcTiposDeInstrumento.Size = new System.Drawing.Size(518, 162);
+            this.gcTiposDeInstrumento.Size = new System.Drawing.Size(811, 162);
             this.gcTiposDeInstrumento.TabIndex = 149;
             this.gcTiposDeInstrumento.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvTiposDeInstrumento});
@@ -362,23 +324,87 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(25, 240);
+            this.labelControl5.Location = new System.Drawing.Point(25, 198);
             this.labelControl5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(144, 12);
             this.labelControl5.TabIndex = 151;
             this.labelControl5.Text = "Tipos de Intrumento Asociados";
             // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelControl6.Appearance.Options.UseFont = true;
+            this.labelControl6.Location = new System.Drawing.Point(623, 54);
+            this.labelControl6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(77, 12);
+            this.labelControl6.TabIndex = 152;
+            this.labelControl6.Text = "Descripción Corta";
+            // 
+            // txtDescripcionCorta
+            // 
+            this.txtDescripcionCorta.EditValue = "";
+            this.txtDescripcionCorta.Location = new System.Drawing.Point(623, 73);
+            this.txtDescripcionCorta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtDescripcionCorta.Name = "txtDescripcionCorta";
+            this.txtDescripcionCorta.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtDescripcionCorta.Properties.Appearance.Options.UseFont = true;
+            this.txtDescripcionCorta.Size = new System.Drawing.Size(213, 22);
+            this.txtDescripcionCorta.TabIndex = 153;
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.labelControl7.Appearance.Options.UseFont = true;
+            this.labelControl7.Location = new System.Drawing.Point(25, 54);
+            this.labelControl7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(36, 12);
+            this.labelControl7.TabIndex = 154;
+            this.labelControl7.Text = "Nombre";
+            // 
+            // txtNombre
+            // 
+            this.txtNombre.EditValue = "";
+            this.txtNombre.Location = new System.Drawing.Point(25, 73);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtNombre.Properties.Appearance.Options.UseFont = true;
+            this.txtNombre.Size = new System.Drawing.Size(291, 22);
+            this.txtNombre.TabIndex = 155;
+            // 
+            // leTipInstrumento
+            // 
+            this.leTipInstrumento.Location = new System.Drawing.Point(25, 162);
+            this.leTipInstrumento.Name = "leTipInstrumento";
+            this.leTipInstrumento.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.leTipInstrumento.Properties.Appearance.Options.UseFont = true;
+            this.leTipInstrumento.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.leTipInstrumento.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Descripcion", "Tipo de Instrumento"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Metodologia", "Metodología"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Resumen", "Resumen")});
+            this.leTipInstrumento.Properties.NullText = "";
+            this.leTipInstrumento.Size = new System.Drawing.Size(291, 22);
+            this.leTipInstrumento.TabIndex = 156;
+            // 
             // frmNuevaVariableMedicion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(579, 535);
+            this.ClientSize = new System.Drawing.Size(868, 478);
+            this.Controls.Add(this.leTipInstrumento);
+            this.Controls.Add(this.labelControl7);
+            this.Controls.Add(this.txtNombre);
+            this.Controls.Add(this.labelControl6);
+            this.Controls.Add(this.txtDescripcionCorta);
             this.Controls.Add(this.labelControl5);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.gcTiposDeInstrumento);
             this.Controls.Add(this.btnVincularVariableMedicion);
-            this.Controls.Add(this.glTipoInstrumento);
             this.Controls.Add(this.labelControl4);
             this.Controls.Add(this.nmTolerancia);
             this.Controls.Add(this.labelControl2);
@@ -398,14 +424,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             ((System.ComponentModel.ISupportInitialize)(this.nmPrimerValorRango)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmSegundoValorRango)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmTolerancia)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumento.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumentoView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcTiposDeInstrumento)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTiposDeInstrumento)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEliminar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkSeleccionarInstrumento)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDescripcionCorta.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNombre.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leTipInstrumento.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -423,10 +450,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private System.Windows.Forms.NumericUpDown nmTolerancia;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.GridLookUpEdit glTipoInstrumento;
-        private DevExpress.XtraGrid.Views.Grid.GridView glTipoInstrumentoView;
-        private DevExpress.XtraGrid.Columns.GridColumn colTipoInstrumentoId;
-        private DevExpress.XtraGrid.Columns.GridColumn colDescripcion;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private FontAwesome.Sharp.IconButton btnVincularVariableMedicion;
         private System.Windows.Forms.Panel panel1;
@@ -440,5 +463,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEliminar;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private System.Windows.Forms.ToolTip toolTip1;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.TextEdit txtDescripcionCorta;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.TextEdit txtNombre;
+        private DevExpress.XtraEditors.LookUpEdit leTipInstrumento;
     }
 }

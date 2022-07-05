@@ -104,9 +104,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             var resultado = _tipoinstrumentoService.ObtenerTiposDeInstrumento();
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
-            glTipoInstrumento.Properties.DataSource = resultado.Data;
-            glTipoInstrumento.Properties.DisplayMember = "Descripcion";
-            glTipoInstrumento.Properties.ValueMember = "TipoInstrumentoId";
+            leTipInstrumento.Properties.DataSource = resultado.Data;
+            leTipInstrumento.Properties.DisplayMember = "Descripcion";
+            leTipInstrumento.Properties.ValueMember = "TipoInstrumentoId";
         }
 
         private bool ActualizarVariableMedicion()
@@ -132,6 +132,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             NuevaVariableMedicion.PrimerValorRango = nmPrimerValorRango.Value;
             NuevaVariableMedicion.SegundoValorRango = nmSegundoValorRango.Value;
             NuevaVariableMedicion.Tolerancia = nmTolerancia.Value;
+            NuevaVariableMedicion.DescripcionCorta = txtDescripcionCorta.Text;
+            NuevaVariableMedicion.Nombre = txtNombre.Text;
         }
 
 
@@ -181,7 +183,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
 
         private void btnAgregarTipoDeInstrumento_Click(object sender, EventArgs e)
         {
-            if (glTipoInstrumento.EditValue == null)
+            if (leTipInstrumento.EditValue == null)
             {
                 Notificaciones.MensajeAdvertencia("Es necesario que seleccione un tipo de instrumento para continuar.");
                 return;
@@ -192,7 +194,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
                 NuevaVariableMedicion.TiposDeInstrumentoVariables = new List<TipoInstrumentoVariableDto>();
             }
 
-            var tipoInstrumentoSeleccionado = glTipoInstrumentoView.GetFocusedRow() as TipoInstrumentoDto;
+            var tipoInstrumentoSeleccionado = leTipInstrumento.GetSelectedDataRow() as TipoInstrumentoDto;
             var existeEnLista = NuevaVariableMedicion.TiposDeInstrumentoVariables.Any(x => x.TipoInstrumentoId == tipoInstrumentoSeleccionado.TipoInstrumentoId);
 
             if (existeEnLista)

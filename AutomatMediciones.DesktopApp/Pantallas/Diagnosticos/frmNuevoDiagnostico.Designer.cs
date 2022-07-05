@@ -65,6 +65,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtContactoACargo = new DevExpress.XtraEditors.TextEdit();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
+            this.btnDetalleInstrumento = new FontAwesome.Sharp.IconButton();
+            this.btnHistorialDeCertificados = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.memoDiagnostico.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoComentarios.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClasificacion.Properties)).BeginInit();
@@ -90,10 +92,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.btnGuardarDiagnostico.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardarDiagnostico.IconSize = 30;
             this.btnGuardarDiagnostico.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardarDiagnostico.Location = new System.Drawing.Point(637, 398);
+            this.btnGuardarDiagnostico.Location = new System.Drawing.Point(658, 398);
             this.btnGuardarDiagnostico.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGuardarDiagnostico.Name = "btnGuardarDiagnostico";
-            this.btnGuardarDiagnostico.Size = new System.Drawing.Size(203, 42);
+            this.btnGuardarDiagnostico.Size = new System.Drawing.Size(182, 42);
             this.btnGuardarDiagnostico.TabIndex = 167;
             this.btnGuardarDiagnostico.Text = "Guardar Diagnóstico";
             this.btnGuardarDiagnostico.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -410,10 +412,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.btnPrepararCertificado.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnPrepararCertificado.IconSize = 30;
             this.btnPrepararCertificado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrepararCertificado.Location = new System.Drawing.Point(421, 398);
+            this.btnPrepararCertificado.Location = new System.Drawing.Point(465, 398);
             this.btnPrepararCertificado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPrepararCertificado.Name = "btnPrepararCertificado";
-            this.btnPrepararCertificado.Size = new System.Drawing.Size(203, 42);
+            this.btnPrepararCertificado.Size = new System.Drawing.Size(174, 42);
             this.btnPrepararCertificado.TabIndex = 181;
             this.btnPrepararCertificado.Text = "Preparar Certificado";
             this.btnPrepararCertificado.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -489,10 +491,52 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.labelControl14.TabIndex = 187;
             this.labelControl14.Text = "Contacto a cargo:";
             // 
+            // btnDetalleInstrumento
+            // 
+            this.btnDetalleInstrumento.FlatAppearance.BorderSize = 0;
+            this.btnDetalleInstrumento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDetalleInstrumento.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnDetalleInstrumento.IconChar = FontAwesome.Sharp.IconChar.Edit;
+            this.btnDetalleInstrumento.IconColor = System.Drawing.Color.Black;
+            this.btnDetalleInstrumento.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnDetalleInstrumento.IconSize = 30;
+            this.btnDetalleInstrumento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDetalleInstrumento.Location = new System.Drawing.Point(28, 398);
+            this.btnDetalleInstrumento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnDetalleInstrumento.Name = "btnDetalleInstrumento";
+            this.btnDetalleInstrumento.Size = new System.Drawing.Size(193, 42);
+            this.btnDetalleInstrumento.TabIndex = 189;
+            this.btnDetalleInstrumento.Text = "Detalle de Instrumento";
+            this.btnDetalleInstrumento.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnDetalleInstrumento.UseVisualStyleBackColor = true;
+            this.btnDetalleInstrumento.Click += new System.EventHandler(this.btnDetalleInstrumento_Click);
+            // 
+            // btnHistorialDeCertificados
+            // 
+            this.btnHistorialDeCertificados.FlatAppearance.BorderSize = 0;
+            this.btnHistorialDeCertificados.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHistorialDeCertificados.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnHistorialDeCertificados.IconChar = FontAwesome.Sharp.IconChar.ListUl;
+            this.btnHistorialDeCertificados.IconColor = System.Drawing.Color.Black;
+            this.btnHistorialDeCertificados.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnHistorialDeCertificados.IconSize = 30;
+            this.btnHistorialDeCertificados.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHistorialDeCertificados.Location = new System.Drawing.Point(227, 398);
+            this.btnHistorialDeCertificados.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnHistorialDeCertificados.Name = "btnHistorialDeCertificados";
+            this.btnHistorialDeCertificados.Size = new System.Drawing.Size(193, 42);
+            this.btnHistorialDeCertificados.TabIndex = 190;
+            this.btnHistorialDeCertificados.Text = "Historial de Certificados";
+            this.btnHistorialDeCertificados.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnHistorialDeCertificados.UseVisualStyleBackColor = true;
+            this.btnHistorialDeCertificados.Click += new System.EventHandler(this.btnHistorialDeCertificados_Click);
+            // 
             // frmNuevoDiagnostico
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(879, 461);
+            this.Controls.Add(this.btnHistorialDeCertificados);
+            this.Controls.Add(this.btnDetalleInstrumento);
             this.Controls.Add(this.txtContactoACargo);
             this.Controls.Add(this.labelControl14);
             this.Controls.Add(this.txtNumeroServicioTecnico);
@@ -583,5 +627,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.TextEdit txtContactoACargo;
         private DevExpress.XtraEditors.LabelControl labelControl14;
+        private FontAwesome.Sharp.IconButton btnDetalleInstrumento;
+        private FontAwesome.Sharp.IconButton btnHistorialDeCertificados;
     }
 }
