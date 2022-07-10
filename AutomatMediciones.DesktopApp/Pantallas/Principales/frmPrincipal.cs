@@ -9,6 +9,7 @@ using AutomatMediciones.DesktopApp.Pantallas.Marcas;
 using AutomatMediciones.DesktopApp.Pantallas.Modelos;
 using AutomatMediciones.DesktopApp.Pantallas.Patrones;
 using AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento;
+using AutomatMediciones.DesktopApp.Pantallas.Usuarios;
 using AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using DevExpress.XtraEditors;
@@ -68,7 +69,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
             {
                 case IndiceMenu.Ingresos:
                     SplashScreenManager.ShowForm(typeof(frmSaving));
-                    var frmIngresos = new frmNuevoIngreso(TipoTransaccion.Insertar,serviceProvider.GetService<IngresoService>(),
+                    var frmIngresos = new frmNuevoIngreso(TipoTransaccion.Insertar, serviceProvider.GetService<IngresoService>(),
                                                        serviceProvider.GetService<InstrumentoService>(),
                                                        serviceProvider.GetService<UsuarioService>(),
                                                        serviceProvider.GetService<ConfiguracionNotificacionService>(),
@@ -164,6 +165,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
                     var frmCeldas = new frmCeldas(serviceProvider.GetService<CeldaService>());
                     XtraForm celda = frmCeldas;
                     AgregarPantalla(ref celda);
+                    SplashScreenManager.CloseForm();
+                    break;
+                case IndiceMenu.Usuarios:
+                    SplashScreenManager.ShowForm(typeof(frmSaving));
+                    serviceProvider = Program.services.BuildServiceProvider();
+                    var frmUsuarios = new frmUsuarios(serviceProvider.GetService<UsuarioService>());
+                    XtraForm usuario = frmUsuarios;
+                    AgregarPantalla(ref usuario);
                     SplashScreenManager.CloseForm();
                     break;
             }

@@ -327,7 +327,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
         private void btnComercial_Click(object sender, EventArgs e)
         {
-            gcInstrumentos.DataSource = ingresosInstrumentos.Where(x => x.Activo && ( x.EstadoId == 2 || x.EstadoId == 4 || x.EstadoId == 7));
+            gcInstrumentos.DataSource = ingresosInstrumentos.Where(x => x.Activo && (x.EstadoId == 2 || x.EstadoId == 4 || x.EstadoId == 7));
             gcInstrumentos.RefreshDataSource();
 
             btnComercial.BackColor = ColorHelper.ObtenerColorEnRGB("Default");

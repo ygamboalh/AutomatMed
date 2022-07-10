@@ -11,6 +11,7 @@ using AutomatMediciones.DesktopApp.Pantallas.Modelos;
 using AutomatMediciones.DesktopApp.Pantallas.Patrones;
 using AutomatMediciones.DesktopApp.Pantallas.Principales;
 using AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento;
+using AutomatMediciones.DesktopApp.Pantallas.Usuarios;
 using AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Dominio.Common;
@@ -58,14 +59,8 @@ namespace AutomatMediciones.DesktopApp
             string tacticaConneccionString = AplicacionHelper.ObtenerCadenaConexion("TacticaConnectionString");
             string automatConnectionString = AplicacionHelper.ObtenerCadenaConexion("AutomatConnectionString");
 
-
-
-
-
             services.AddDbContext<TacticaDbContext>(options => options.UseMySql(tacticaConneccionString, ServerVersion.AutoDetect(tacticaConneccionString)));
             services.AddDbContext<AutomatMedicionesDbContext>(options => options.UseMySql(automatConnectionString, ServerVersion.AutoDetect(automatConnectionString)));
-
-
 
             services.AddAutoMapper(options => options.AddProfile(new ConfigMap()));
 
@@ -104,6 +99,7 @@ namespace AutomatMediciones.DesktopApp
             services.AddScoped<frmNuevaVariableMedicion>();
             services.AddScoped<frmVariablesDeMedicion>();
 
+            services.AddScoped<frmUsuarios>();
 
             services.AddScoped<frmEmpresas>();
             services.AddScoped<frmNuevoIngreso>();

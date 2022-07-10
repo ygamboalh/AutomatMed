@@ -101,11 +101,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
                 return;
             }
 
-           
+
             var frmExtraccion = new frmExtraccionCelda(serviceProvider.GetService<InstrumentoService>());
             frmExtraccion.CeldaInstrumento = celdaInstrumento;
             frmExtraccion.ShowDialog();
-            
+
 
         }
 
@@ -595,7 +595,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
         private void btnHistorialDeCertificados_Click(object sender, EventArgs e)
         {
-            
+
             var frmHistorialCertificados = new frmCertificadosDeCalibracion(serviceProvider.GetService<CertificadoCalibracionService>());
             frmHistorialCertificados.InstrumentoId = NuevoInstrumento.InstrumentoId;
             frmHistorialCertificados.CargarCertificadosDeCalibracionPorInstrumento();

@@ -161,10 +161,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             instrumentosListaSeleccionados = ObtenerInstrumentosListasSeleccionados();
             instrumentosSeleccionados = Ingreso.IngresosInstrumentos;
 
-           
+
             var estadoId = Ingreso.IngresosInstrumentos.FirstOrDefault(y => y.IngresoId == Ingreso.IngresoId).EstadoId;
 
-            glEstado.EditValue =estadoId;
+            glEstado.EditValue = estadoId;
             estadoSeleccionado = new EstadoDto();
             estadoSeleccionado = estados.FirstOrDefault(x => x.EstadoId == estadoId);
 
@@ -210,12 +210,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                     Clasificacion = x.Instrumento.Clasificacion,
                     InformacionAdicional = new InformacionAdicionalInstrumento
                     {
-                       Comentarios = x.Comentarios,
-                       TipoTrabajoId = x.TipoTrabajoId,
-                       InstrumentoId = x.InstrumentoId,
-                       FechaEntregaRequerida = x.FechaEntregaRequerida,
-                       Prioridad = x.Prioridad,
-                       TipoTrabajo = x.TipoTrabajo
+                        Comentarios = x.Comentarios,
+                        TipoTrabajoId = x.TipoTrabajoId,
+                        InstrumentoId = x.InstrumentoId,
+                        FechaEntregaRequerida = x.FechaEntregaRequerida,
+                        Prioridad = x.Prioridad,
+                        TipoTrabajo = x.TipoTrabajo
                     },
                     ClasificacionConcatenada = $"{x.Instrumento.Clasificacion.TipoInstrumento.Descripcion}/{x.Instrumento.Clasificacion.Marca.Descripcion}/{x.Instrumento.Clasificacion.Modelo.Descripcion}",
                 });
@@ -263,7 +263,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             var resultado = _estadoService.ObtenerEstados();
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
-            estados= resultado.Data;
+            estados = resultado.Data;
 
             glEstado.Properties.DataSource = estados;
             glEstado.Properties.DisplayMember = "Descripcion";
@@ -435,7 +435,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             ctlEncabezadoPantalla3.Parent = this;
             ctlEncabezadoPantalla3.Height = 43;
             ctlEncabezadoPantalla3.Dock = DockStyle.Top;
-            ctlEncabezadoPantalla3.lblTitulo.Text = TipoTransaccion == TipoTransaccion.Insertar ? "Creación de Ingreso":"Modificar Ingreso";
+            ctlEncabezadoPantalla3.lblTitulo.Text = TipoTransaccion == TipoTransaccion.Insertar ? "Creación de Ingreso" : "Modificar Ingreso";
             ctlEncabezadoPantalla3.EstablecerColoresDeFondoYLetra();
         }
 
@@ -449,7 +449,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             var frmEmpresas = new frmEmpresas(serviceProvider.GetService<EmpresaService>());
             frmEmpresas.OnSeleccionaEmpresa += OnEmpresaSeleccionada;
             frmEmpresas.ShowDialog();
-           
+
         }
 
         private void OnEmpresaSeleccionada(EmpresaDto empresa)
@@ -770,7 +770,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                         }
                     }
 
-                    LimpiarFormulario();    
+                    LimpiarFormulario();
                 }
 
                 SplashScreenManager.CloseForm();
@@ -782,10 +782,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             {
                 Notificaciones.MensajeConfirmacion("¡El ingreso se actualizó exitosamente!");
                 LimpiarFormulario();
-                
+
             }
 
-            
+
             SplashScreenManager.CloseForm();
             this.Close();
             OnIngresoActualizado?.Invoke(Ingreso);

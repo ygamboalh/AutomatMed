@@ -1,7 +1,7 @@
 ﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
 using AutomatMediciones.DesktopApp.Helpers;
-using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion;
+using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
@@ -194,8 +194,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
         private void btnNuevaVariableDeMedicion_Click(object sender, EventArgs e)
         {
-            var frmNuevaVariableMedicion = new frmNuevaVariableMedicion(TipoTransaccion.Insertar, 
-                                                                        serviceProvider.GetService<VariableMedicionService>(), 
+            var frmNuevaVariableMedicion = new frmNuevaVariableMedicion(TipoTransaccion.Insertar,
+                                                                        serviceProvider.GetService<VariableMedicionService>(),
                                                                         serviceProvider.GetService<TipoDeInstrumentoService>());
             frmNuevaVariableMedicion.OnVariableMedicionAgregada += OnVariableMedicionAgregada;
             frmNuevaVariableMedicion.ShowDialog();

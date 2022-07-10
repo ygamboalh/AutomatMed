@@ -67,7 +67,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
 
         private void CargarCertificadosDeCalibracion()
         {
-            var resultado =  _certificadoCalibracionService.ObtenerCertificados();
+            var resultado = _certificadoCalibracionService.ObtenerCertificados();
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
             var lista = new List<CertificadoView>();
@@ -103,7 +103,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
 
         public void CargarCertificadosDeCalibracionPorInstrumento()
         {
-            var resultado =  _certificadoCalibracionService.ObtenerCertificadosPorInstrumento(InstrumentoId);
+            var resultado = _certificadoCalibracionService.ObtenerCertificadosPorInstrumento(InstrumentoId);
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
             var lista = new List<CertificadoView>();

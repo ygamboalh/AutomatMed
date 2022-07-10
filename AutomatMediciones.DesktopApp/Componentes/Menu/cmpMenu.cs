@@ -148,6 +148,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             pnlPatrones.Visible = activo;
             pnlInstrumento.Visible = activo;
             pnlCeldas.Visible = activo;
+            pnlUsuarios.Visible = activo;
         }
 
         private void cmdClasificacionInstrumentos_Click(object sender, System.EventArgs e)
@@ -193,6 +194,11 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
         private void btnConfiguracion_Click(object sender, System.EventArgs e)
         {
             OnMenuSeleccionado?.Invoke(IndiceMenu.Configuracion);
+        }
+
+        private void cmdUsuarios_Click(object sender, System.EventArgs e)
+        {
+            OnMenuSeleccionado?.Invoke(IndiceMenu.Usuarios);
         }
     }
 }

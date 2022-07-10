@@ -13,6 +13,7 @@
         VariablesMedicion = 9,
         Patrones = 10,
         Instrumentos = 11,
-        Celdas = 12
+        Celdas = 12,
+        Usuarios = 13
     }
 }

@@ -3,14 +3,14 @@ using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion;
 using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos.Dtos;
 using AutomatMediciones.DesktopApp.Pantallas.Ingresos.Dtos;
+using AutomatMediciones.DesktopApp.Pantallas.Instrumentos;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
-using Nagaira.Herramientas.Standard.Helpers.Responses;
-using AutomatMediciones.DesktopApp.Pantallas.Instrumentos;
-using System;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
+using Nagaira.Herramientas.Standard.Helpers.Responses;
+using System;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
 {

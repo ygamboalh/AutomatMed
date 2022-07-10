@@ -14,7 +14,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
 {
     public partial class frmPatrones : DevExpress.XtraEditors.XtraForm
     {
-        private readonly PatronService _patronService;
+        private PatronService _patronService;
         private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
 
 
@@ -144,6 +144,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
         private void OnPatronAgregado(PatronDto patron)
         {
             serviceProvider = Program.services.BuildServiceProvider();
+            _patronService = serviceProvider.GetService<PatronService>();
             CargarPatrones();
         }
 
