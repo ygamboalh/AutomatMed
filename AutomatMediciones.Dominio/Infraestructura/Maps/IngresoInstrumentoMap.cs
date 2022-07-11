@@ -26,6 +26,7 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.Property(x => x.TiempoConsumido).HasColumnName("tiempo_consumido").HasColumnType("TIME)");
             builder.Property(x => x.ResponsableId).HasColumnName("responsable_diagnostico_id").HasColumnType("INT");
             builder.Property(x => x.Activo).HasColumnName("activo").HasColumnType("TINYINT").IsRequired();
+            builder.Property(x => x.FechaQueEstaraDisponible).HasColumnName("fecha_estara_disponible").HasColumnType("datetime");
         }
     }
 }

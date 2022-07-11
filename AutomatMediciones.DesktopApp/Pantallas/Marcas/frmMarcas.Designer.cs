@@ -160,11 +160,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Marcas
             // colEditar
             // 
             this.colEditar.ColumnEdit = this.cmdEditar;
+            this.colEditar.MaxWidth = 30;
             this.colEditar.MinWidth = 24;
             this.colEditar.Name = "colEditar";
             this.colEditar.Visible = true;
             this.colEditar.VisibleIndex = 1;
-            this.colEditar.Width = 40;
+            this.colEditar.Width = 30;
             // 
             // cmdEditar
             // 

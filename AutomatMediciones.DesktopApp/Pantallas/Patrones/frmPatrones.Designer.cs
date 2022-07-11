@@ -213,11 +213,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             // colEditar
             // 
             this.colEditar.ColumnEdit = this.cmdEditar;
+            this.colEditar.MaxWidth = 30;
             this.colEditar.MinWidth = 25;
             this.colEditar.Name = "colEditar";
             this.colEditar.Visible = true;
             this.colEditar.VisibleIndex = 3;
-            this.colEditar.Width = 46;
+            this.colEditar.Width = 30;
             // 
             // cmdEditar
             // 
@@ -231,11 +232,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             // colDesactivar
             // 
             this.colDesactivar.ColumnEdit = this.cmdDesactivar;
+            this.colDesactivar.MaxWidth = 30;
             this.colDesactivar.MinWidth = 25;
             this.colDesactivar.Name = "colDesactivar";
             this.colDesactivar.Visible = true;
             this.colDesactivar.VisibleIndex = 4;
-            this.colDesactivar.Width = 46;
+            this.colDesactivar.Width = 30;
             // 
             // cmdDesactivar
             // 
@@ -249,11 +251,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             // colVerPatron
             // 
             this.colVerPatron.ColumnEdit = this.cmdVerPatron;
+            this.colVerPatron.MaxWidth = 30;
             this.colVerPatron.MinWidth = 25;
             this.colVerPatron.Name = "colVerPatron";
             this.colVerPatron.Visible = true;
             this.colVerPatron.VisibleIndex = 5;
-            this.colVerPatron.Width = 40;
+            this.colVerPatron.Width = 30;
             // 
             // cmdVerPatron
             // 

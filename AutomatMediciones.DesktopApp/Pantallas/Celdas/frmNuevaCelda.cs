@@ -129,7 +129,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
         {
             try
             {
-                var resultado = _celdaService.ActualizarMarca(NuevaCelda);
+                var resultado = _celdaService.ActualizarCelda(NuevaCelda);
                 if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
                 return true;

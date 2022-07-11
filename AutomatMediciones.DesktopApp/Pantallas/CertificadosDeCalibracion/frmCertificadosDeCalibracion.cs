@@ -40,6 +40,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             SplashScreenManager.ShowForm(typeof(frmSaving));
 
             rptCertificadoCalibracion report1 = new rptCertificadoCalibracion();
+            report1.xrPictureBox2.ImageUrl = certificadoSeleccionado.Responsable.EnlaceFirmaDigital;
             report1.objectDataSource1.DataSource = certificadoSeleccionado;
             report1.CreateDocument();
 

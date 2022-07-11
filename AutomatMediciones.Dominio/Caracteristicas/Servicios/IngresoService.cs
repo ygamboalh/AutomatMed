@@ -259,6 +259,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 diagnostico.ResponsableId = ingresoInstrumento.ResponsableId;
                 diagnostico.TiempoConsumido = ingresoInstrumento.TiempoConsumido;
                 diagnostico.FechaInicio = ingresoInstrumento.FechaInicio;
+                diagnostico.FechaQueEstaraDisponible = ingresoInstrumento.FechaQueEstaraDisponible;
 
                 _automatMedicionesDbContext.SaveChanges();
 

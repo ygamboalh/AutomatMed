@@ -87,7 +87,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
-        public Response<bool> ActualizarMarca(CeldaDto celdaDto)
+        public Response<bool> ActualizarCelda(CeldaDto celdaDto)
         {
             try
             {
@@ -119,6 +119,48 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 }
 
                 tipoCeldaModeloDb.Activo = false;
+
+                _automatDbContext.SaveChanges();
+
+                return Response<bool>.Ok("Ok", true);
+            }
+            catch (Exception exc)
+            {
+                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+            }
+        }
+
+        public Response<bool> RegistrarTipoDeCelda(TipoCeldaDto tipoCeldaDto)
+        {
+            try
+            {
+                TipoCelda tipoCelda = new TipoCelda
+                {
+                    Descripcion = tipoCeldaDto.Descripcion,
+                    VariableMedicionId = tipoCeldaDto.VariableMedicionId
+                };
+
+                _automatDbContext.TiposDeCeldas.Add(tipoCelda);
+                _automatDbContext.SaveChanges();
+
+                return Response<bool>.Ok("Ok", true);
+            }
+            catch (Exception exc)
+            {
+                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+            }
+        }
+
+
+        public Response<bool> ActualizarTipoDeCelda(TipoCeldaDto tipoCeldaDto)
+        {
+            try
+            {
+                var tipoCeldaDb = _automatDbContext.TiposDeCeldas.FirstOrDefault(x => x.Id == tipoCeldaDto.Id);
+
+                if (tipoCeldaDb == null) return Response<bool>.Error("El tipo de celda no fue encontrado en almacén de datos", false);
+
+                tipoCeldaDb = _mapper.Map<TipoCelda>(tipoCeldaDto);
 
                 _automatDbContext.SaveChanges();
 

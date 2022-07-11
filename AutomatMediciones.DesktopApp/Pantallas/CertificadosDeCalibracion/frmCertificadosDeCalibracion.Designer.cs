@@ -64,15 +64,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // gcCertificados
             // 
             this.gcCertificados.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcCertificados.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gcCertificados.Location = new System.Drawing.Point(0, 42);
+            this.gcCertificados.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.gcCertificados.Location = new System.Drawing.Point(0, 52);
             this.gcCertificados.MainView = this.gvCertificados;
-            this.gcCertificados.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gcCertificados.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.gcCertificados.Name = "gcCertificados";
-            this.gcCertificados.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gcCertificados.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.gcCertificados.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnVerCertificado});
-            this.gcCertificados.Size = new System.Drawing.Size(893, 488);
+            this.gcCertificados.Size = new System.Drawing.Size(1042, 600);
             this.gcCertificados.TabIndex = 36;
             this.gcCertificados.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCertificados});
@@ -90,7 +90,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.colClasificacion,
             this.colNumeroSerie,
             this.colVerCertificado});
-            this.gvCertificados.DetailHeight = 284;
             this.gvCertificados.GridControl = this.gcCertificados;
             this.gvCertificados.Name = "gvCertificados";
             this.gvCertificados.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
@@ -102,125 +101,124 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             this.colId.Caption = "Id";
             this.colId.FieldName = "Ce";
-            this.colId.MinWidth = 21;
+            this.colId.MinWidth = 24;
             this.colId.Name = "colId";
             this.colId.OptionsColumn.AllowEdit = false;
             this.colId.OptionsColumn.AllowFocus = false;
             this.colId.OptionsColumn.ReadOnly = true;
-            this.colId.Width = 81;
+            this.colId.Width = 94;
             // 
             // colFecha
             // 
             this.colFecha.Caption = "Fecha";
             this.colFecha.FieldName = "Fecha";
-            this.colFecha.MinWidth = 21;
+            this.colFecha.MinWidth = 24;
             this.colFecha.Name = "colFecha";
             this.colFecha.OptionsColumn.AllowEdit = false;
             this.colFecha.OptionsColumn.AllowFocus = false;
             this.colFecha.OptionsColumn.ReadOnly = true;
             this.colFecha.Visible = true;
             this.colFecha.VisibleIndex = 0;
-            this.colFecha.Width = 64;
             // 
             // colFechaCaducidad
             // 
             this.colFechaCaducidad.Caption = "Fecha de Caducidad";
             this.colFechaCaducidad.FieldName = "FechaCaducidad";
-            this.colFechaCaducidad.MinWidth = 21;
+            this.colFechaCaducidad.MinWidth = 24;
             this.colFechaCaducidad.Name = "colFechaCaducidad";
             this.colFechaCaducidad.OptionsColumn.AllowEdit = false;
             this.colFechaCaducidad.OptionsColumn.AllowFocus = false;
             this.colFechaCaducidad.OptionsColumn.ReadOnly = true;
             this.colFechaCaducidad.Visible = true;
             this.colFechaCaducidad.VisibleIndex = 1;
-            this.colFechaCaducidad.Width = 64;
             // 
             // colNumeroCertificado
             // 
             this.colNumeroCertificado.Caption = "N° Certificado";
             this.colNumeroCertificado.FieldName = "NumeroCertificado";
-            this.colNumeroCertificado.MinWidth = 21;
+            this.colNumeroCertificado.MinWidth = 24;
             this.colNumeroCertificado.Name = "colNumeroCertificado";
             this.colNumeroCertificado.OptionsColumn.AllowEdit = false;
             this.colNumeroCertificado.OptionsColumn.AllowFocus = false;
             this.colNumeroCertificado.OptionsColumn.ReadOnly = true;
             this.colNumeroCertificado.Visible = true;
             this.colNumeroCertificado.VisibleIndex = 2;
-            this.colNumeroCertificado.Width = 152;
+            this.colNumeroCertificado.Width = 177;
             // 
             // colResponsable
             // 
             this.colResponsable.Caption = "Responsable";
             this.colResponsable.FieldName = "Responsable.Nombre";
-            this.colResponsable.MinWidth = 21;
+            this.colResponsable.MinWidth = 24;
             this.colResponsable.Name = "colResponsable";
             this.colResponsable.OptionsColumn.AllowEdit = false;
             this.colResponsable.OptionsColumn.AllowFocus = false;
             this.colResponsable.OptionsColumn.ReadOnly = true;
             this.colResponsable.Visible = true;
             this.colResponsable.VisibleIndex = 3;
-            this.colResponsable.Width = 152;
+            this.colResponsable.Width = 177;
             // 
             // colEmpresa
             // 
             this.colEmpresa.Caption = "Empresa";
             this.colEmpresa.FieldName = "Instrumento.NombreEmpresa";
-            this.colEmpresa.MinWidth = 21;
+            this.colEmpresa.MinWidth = 24;
             this.colEmpresa.Name = "colEmpresa";
             this.colEmpresa.OptionsColumn.AllowEdit = false;
             this.colEmpresa.OptionsColumn.AllowFocus = false;
             this.colEmpresa.OptionsColumn.ReadOnly = true;
             this.colEmpresa.Visible = true;
             this.colEmpresa.VisibleIndex = 4;
-            this.colEmpresa.Width = 147;
+            this.colEmpresa.Width = 171;
             // 
             // colInstrumento
             // 
             this.colInstrumento.Caption = "Instrumento";
             this.colInstrumento.FieldName = "Instrumento.Descripcion";
-            this.colInstrumento.MinWidth = 21;
+            this.colInstrumento.MinWidth = 24;
             this.colInstrumento.Name = "colInstrumento";
             this.colInstrumento.OptionsColumn.AllowEdit = false;
             this.colInstrumento.OptionsColumn.AllowFocus = false;
             this.colInstrumento.OptionsColumn.ReadOnly = true;
             this.colInstrumento.Visible = true;
             this.colInstrumento.VisibleIndex = 5;
-            this.colInstrumento.Width = 109;
+            this.colInstrumento.Width = 127;
             // 
             // colClasificacion
             // 
             this.colClasificacion.Caption = "Clasificación";
             this.colClasificacion.FieldName = "ClasificacionConcatenada";
-            this.colClasificacion.MinWidth = 21;
+            this.colClasificacion.MinWidth = 24;
             this.colClasificacion.Name = "colClasificacion";
             this.colClasificacion.OptionsColumn.AllowEdit = false;
             this.colClasificacion.OptionsColumn.AllowFocus = false;
             this.colClasificacion.OptionsColumn.ReadOnly = true;
             this.colClasificacion.Visible = true;
             this.colClasificacion.VisibleIndex = 6;
-            this.colClasificacion.Width = 152;
+            this.colClasificacion.Width = 177;
             // 
             // colNumeroSerie
             // 
             this.colNumeroSerie.Caption = "N° Serie";
             this.colNumeroSerie.FieldName = "Instrumento.NumeroSerie";
-            this.colNumeroSerie.MinWidth = 21;
+            this.colNumeroSerie.MinWidth = 24;
             this.colNumeroSerie.Name = "colNumeroSerie";
             this.colNumeroSerie.OptionsColumn.AllowEdit = false;
             this.colNumeroSerie.OptionsColumn.AllowFocus = false;
             this.colNumeroSerie.OptionsColumn.ReadOnly = true;
             this.colNumeroSerie.Visible = true;
             this.colNumeroSerie.VisibleIndex = 7;
-            this.colNumeroSerie.Width = 115;
+            this.colNumeroSerie.Width = 134;
             // 
             // colVerCertificado
             // 
             this.colVerCertificado.ColumnEdit = this.btnVerCertificado;
-            this.colVerCertificado.MinWidth = 21;
+            this.colVerCertificado.MaxWidth = 30;
+            this.colVerCertificado.MinWidth = 24;
             this.colVerCertificado.Name = "colVerCertificado";
             this.colVerCertificado.Visible = true;
             this.colVerCertificado.VisibleIndex = 8;
-            this.colVerCertificado.Width = 33;
+            this.colVerCertificado.Width = 30;
             // 
             // btnVerCertificado
             // 
@@ -235,10 +233,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             this.panel2.Controls.Add(this.lblTotal);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 530);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel2.Location = new System.Drawing.Point(0, 652);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(893, 22);
+            this.panel2.Size = new System.Drawing.Size(1042, 27);
             this.panel2.TabIndex = 37;
             // 
             // lblTotal
@@ -247,9 +245,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.lblTotal.Appearance.Options.UseFont = true;
             this.lblTotal.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblTotal.Location = new System.Drawing.Point(0, 0);
-            this.lblTotal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(6, 12);
+            this.lblTotal.Size = new System.Drawing.Size(7, 17);
             this.lblTotal.TabIndex = 27;
             this.lblTotal.Text = "0";
             this.lblTotal.Visible = false;
@@ -259,10 +257,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.panel3.Controls.Add(this.btnExportarExcel);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(7, 6, 0, 6);
-            this.panel3.Size = new System.Drawing.Size(893, 42);
+            this.panel3.Padding = new System.Windows.Forms.Padding(8, 7, 0, 7);
+            this.panel3.Size = new System.Drawing.Size(1042, 52);
             this.panel3.TabIndex = 39;
             // 
             // btnExportarExcel
@@ -276,10 +274,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.btnExportarExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnExportarExcel.IconSize = 30;
             this.btnExportarExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportarExcel.Location = new System.Drawing.Point(740, 6);
-            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnExportarExcel.Location = new System.Drawing.Point(864, 7);
+            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnExportarExcel.Name = "btnExportarExcel";
-            this.btnExportarExcel.Size = new System.Drawing.Size(153, 30);
+            this.btnExportarExcel.Size = new System.Drawing.Size(178, 38);
             this.btnExportarExcel.TabIndex = 163;
             this.btnExportarExcel.Text = "Exportar a Excel";
             this.btnExportarExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -288,14 +286,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             // frmCertificadosDeCalibracion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(893, 552);
+            this.ClientSize = new System.Drawing.Size(1042, 679);
             this.Controls.Add(this.gcCertificados);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "frmCertificadosDeCalibracion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Certificados de Calibración";

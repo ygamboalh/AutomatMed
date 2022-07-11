@@ -107,10 +107,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // gcInstrumentos
             // 
             this.gcInstrumentos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcInstrumentos.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gcInstrumentos.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
             this.gcInstrumentos.Location = new System.Drawing.Point(0, 58);
             this.gcInstrumentos.MainView = this.gvInstrumentos;
-            this.gcInstrumentos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gcInstrumentos.Margin = new System.Windows.Forms.Padding(4);
             this.gcInstrumentos.Name = "gcInstrumentos";
             this.gcInstrumentos.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnIniciarDiagnostico,
@@ -295,6 +295,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // colIniciarDiagnostico
             // 
             this.colIniciarDiagnostico.ColumnEdit = this.btnIniciarDiagnostico;
+            this.colIniciarDiagnostico.MaxWidth = 30;
             this.colIniciarDiagnostico.MinWidth = 24;
             this.colIniciarDiagnostico.Name = "colIniciarDiagnostico";
             this.colIniciarDiagnostico.OptionsColumn.AllowIncrementalSearch = false;
@@ -314,6 +315,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // colVerReporte
             // 
             this.colVerReporte.ColumnEdit = this.btnVerReporteDeIngreso;
+            this.colVerReporte.MaxWidth = 30;
             this.colVerReporte.MinWidth = 24;
             this.colVerReporte.Name = "colVerReporte";
             this.colVerReporte.Visible = true;
@@ -332,11 +334,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // colEditar
             // 
             this.colEditar.ColumnEdit = this.btnEditarIngreso;
+            this.colEditar.MaxWidth = 30;
             this.colEditar.MinWidth = 24;
             this.colEditar.Name = "colEditar";
             this.colEditar.Visible = true;
             this.colEditar.VisibleIndex = 13;
-            this.colEditar.Width = 87;
+            this.colEditar.Width = 30;
             // 
             // btnEditarIngreso
             // 
@@ -350,10 +353,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // colHistorialCertificados
             // 
             this.colHistorialCertificados.ColumnEdit = this.cmdHistorialCertificados;
+            this.colHistorialCertificados.MaxWidth = 30;
             this.colHistorialCertificados.MinWidth = 23;
             this.colHistorialCertificados.Name = "colHistorialCertificados";
             this.colHistorialCertificados.Visible = true;
             this.colHistorialCertificados.VisibleIndex = 14;
+            this.colHistorialCertificados.Width = 30;
             // 
             // cmdHistorialCertificados
             // 

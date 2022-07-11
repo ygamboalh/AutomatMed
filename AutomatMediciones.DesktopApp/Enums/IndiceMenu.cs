@@ -14,6 +14,7 @@
         Patrones = 10,
         Instrumentos = 11,
         Celdas = 12,
-        Usuarios = 13
+        Usuarios = 13,
+        TiposDeCelda = 14
     }
 }

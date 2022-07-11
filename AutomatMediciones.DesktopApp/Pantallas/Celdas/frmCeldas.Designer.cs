@@ -220,6 +220,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
             // colEditar
             // 
             this.colEditar.ColumnEdit = this.btnEditar;
+            this.colEditar.MaxWidth = 30;
             this.colEditar.MinWidth = 25;
             this.colEditar.Name = "colEditar";
             this.colEditar.Visible = true;

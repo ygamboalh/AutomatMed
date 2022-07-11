@@ -79,6 +79,9 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnDiagnosticosNoExpandido = new FontAwesome.Sharp.IconButton();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pnlTipoCelda = new System.Windows.Forms.Panel();
+            this.cmdTipoCelda = new FontAwesome.Sharp.IconButton();
+            this.panel17 = new System.Windows.Forms.Panel();
             this.pnlLogo.SuspendLayout();
             this.pnlExpandirMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navigationMenus)).BeginInit();
@@ -102,6 +105,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.pnlTipoCelda.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmpLogo1
@@ -228,6 +232,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.flowLayoutPanel1.Controls.Add(this.pnlPatrones);
             this.flowLayoutPanel1.Controls.Add(this.pnlCeldas);
             this.flowLayoutPanel1.Controls.Add(this.pnlUsuarios);
+            this.flowLayoutPanel1.Controls.Add(this.pnlTipoCelda);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -756,6 +761,44 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.panel2.Size = new System.Drawing.Size(320, 43);
             this.panel2.TabIndex = 4;
             // 
+            // pnlTipoCelda
+            // 
+            this.pnlTipoCelda.Controls.Add(this.cmdTipoCelda);
+            this.pnlTipoCelda.Controls.Add(this.panel17);
+            this.pnlTipoCelda.Location = new System.Drawing.Point(3, 694);
+            this.pnlTipoCelda.Name = "pnlTipoCelda";
+            this.pnlTipoCelda.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.pnlTipoCelda.Size = new System.Drawing.Size(320, 47);
+            this.pnlTipoCelda.TabIndex = 17;
+            // 
+            // cmdTipoCelda
+            // 
+            this.cmdTipoCelda.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.cmdTipoCelda.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cmdTipoCelda.FlatAppearance.BorderSize = 0;
+            this.cmdTipoCelda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmdTipoCelda.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.cmdTipoCelda.IconChar = FontAwesome.Sharp.IconChar.LifeRing;
+            this.cmdTipoCelda.IconColor = System.Drawing.Color.Black;
+            this.cmdTipoCelda.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.cmdTipoCelda.IconSize = 18;
+            this.cmdTipoCelda.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdTipoCelda.Location = new System.Drawing.Point(11, 0);
+            this.cmdTipoCelda.Name = "cmdTipoCelda";
+            this.cmdTipoCelda.Size = new System.Drawing.Size(309, 42);
+            this.cmdTipoCelda.TabIndex = 3;
+            this.cmdTipoCelda.Text = "Tipos de Celda";
+            this.cmdTipoCelda.UseVisualStyleBackColor = false;
+            this.cmdTipoCelda.Click += new System.EventHandler(this.cmdTipoCelda_Click);
+            // 
+            // panel17
+            // 
+            this.panel17.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel17.Location = new System.Drawing.Point(0, 0);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(11, 42);
+            this.panel17.TabIndex = 4;
+            // 
             // cmpMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -791,6 +834,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.panel5.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.pnlTipoCelda.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -847,5 +891,8 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
         private System.Windows.Forms.Panel pnlUsuarios;
         private FontAwesome.Sharp.IconButton cmdUsuarios;
         private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.Panel pnlTipoCelda;
+        private FontAwesome.Sharp.IconButton cmdTipoCelda;
+        private System.Windows.Forms.Panel panel17;
     }
 }

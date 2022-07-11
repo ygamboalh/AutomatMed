@@ -8,6 +8,7 @@ using AutomatMediciones.DesktopApp.Pantallas.Instrumentos;
 using AutomatMediciones.DesktopApp.Pantallas.Marcas;
 using AutomatMediciones.DesktopApp.Pantallas.Modelos;
 using AutomatMediciones.DesktopApp.Pantallas.Patrones;
+using AutomatMediciones.DesktopApp.Pantallas.TiposDeCelda;
 using AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento;
 using AutomatMediciones.DesktopApp.Pantallas.Usuarios;
 using AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion;
@@ -173,6 +174,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
                     var frmUsuarios = new frmUsuarios(serviceProvider.GetService<UsuarioService>());
                     XtraForm usuario = frmUsuarios;
                     AgregarPantalla(ref usuario);
+                    SplashScreenManager.CloseForm();
+                    break;
+                case IndiceMenu.TiposDeCelda:
+                    SplashScreenManager.ShowForm(typeof(frmSaving));
+                    serviceProvider = Program.services.BuildServiceProvider();
+                    var frmTiposDeCelda = new frmTiposDeCelda(serviceProvider.GetService<CeldaService>());
+                    XtraForm tipoCelda = frmTiposDeCelda;
+                    AgregarPantalla(ref tipoCelda);
                     SplashScreenManager.CloseForm();
                     break;
             }

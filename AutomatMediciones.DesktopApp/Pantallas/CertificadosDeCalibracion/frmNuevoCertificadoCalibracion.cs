@@ -164,6 +164,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             {
                 Notificaciones.MensajeConfirmacion("¡El certificado se generó exitosamente!");
                 rptCertificadoCalibracion reporteCertificado = new rptCertificadoCalibracion();
+                reporteCertificado.xrPictureBox2.ImageUrl = Certificado.Responsable.EnlaceFirmaDigital;
                 reporteCertificado.objectDataSource1.DataSource = Certificado;
 
                 ReportPrintTool printTool = new ReportPrintTool(reporteCertificado);

@@ -15,6 +15,7 @@ namespace AutomatMediciones.Libs.Dtos
         public string Diagnostico { get; set; }
         public DateTime? FechaInicio { get; set; }
         public DateTime? FechaFin { get; set; }
+        public DateTime? FechaQueEstaraDisponible { get; set; }
         public DateTime FechaEntregaRequerida { get; set; }
         public TimeSpan? TiempoConsumido { get; set; }
         public int? ResponsableId { get; set; }

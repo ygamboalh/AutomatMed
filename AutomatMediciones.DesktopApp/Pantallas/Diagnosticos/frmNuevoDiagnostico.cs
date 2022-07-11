@@ -159,6 +159,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             var responsableActual = resultIngresoActual.Data.ResponsableId;
 
             IngresoInstrumento.Instrumento.Comentarios = memoComentariosInstrumento.Text;
+            IngresoInstrumento.FechaQueEstaraDisponible = dateFechaDisponible.EditValue != null ? (DateTime)dateFechaDisponible.EditValue : null;
             IngresoInstrumento.Comentarios = memoComentarios.Text;
             IngresoInstrumento.Diagnostico = memoDiagnostico.Text;
             IngresoInstrumento.EstadoId = estadoSeleccionado == null ? IngresoInstrumento.EstadoId : estadoSeleccionado.EstadoId;
