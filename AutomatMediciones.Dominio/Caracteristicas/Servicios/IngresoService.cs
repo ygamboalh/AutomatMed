@@ -39,7 +39,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                 if (ingresoDb == null)
                 {
-                    return Response<IngresoDto>.Error("No pudo ser obtenida la información de ingreso", null);                   
+                    return Response<IngresoDto>.Error("No pudo ser obtenida la información de ingreso", null);
                 }
                 return Response<IngresoDto>.Ok("Ok", _mapper.Map<IngresoDto>(ingresoDb));
             }
@@ -61,7 +61,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                                                                                    .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.TipoTrabajo)
                                                                                    .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Ingreso)
                                                                                     .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Responsable)
-                                                                                   
+
                                                                                    .ToList();
 
                 ingresos = ingresos.OrderBy(y => y.IngresoId).ToList();
@@ -281,14 +281,14 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 if (ingresoInstrumentoDb == null) return Response<bool>.Error("No se encontró ningún registro en almacen de datos.", true);
 
                 ingresoInstrumentoDb.Activo = false;
-              
+
                 _automatMedicionesDbContext.SaveChanges();
 
                 return Response<bool>.Ok("¡El instrumento se quitó de lista de ingreso!", true);
             }
             catch (Exception exc)
             {
-              
+
                 return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
             }
         }

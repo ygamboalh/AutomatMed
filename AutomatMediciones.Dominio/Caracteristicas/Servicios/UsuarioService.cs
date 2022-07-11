@@ -62,12 +62,12 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                 _automatMedicionesDbContext.Usuarios.Add(usuario);
                 _automatMedicionesDbContext.SaveChanges();
-         
+
                 return Response<bool>.Ok("Ok", true);
             }
             catch (Exception exc)
             {
-               
+
                 return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
             }
         }

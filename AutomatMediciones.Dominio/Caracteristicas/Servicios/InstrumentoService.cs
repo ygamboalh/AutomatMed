@@ -29,7 +29,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 var instrumentos = _automatMedicionesDbContext.Instrumentos.AsQueryable()
                                                                               .Include(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
                                                                              .Include(x => x.Clasificacion).ThenInclude(x => x.Marca)
-                                                                             .Include(x => x.Clasificacion).ThenInclude(x => x.Modelo)                                                                       
+                                                                             .Include(x => x.Clasificacion).ThenInclude(x => x.Modelo)
                                                                              .Where(x => x.Activo)
                                                                              .ToList();
 
@@ -180,7 +180,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                _automatMedicionesDbContext.Database.RollbackTransaction(); 
+                _automatMedicionesDbContext.Database.RollbackTransaction();
                 return Response<InstrumentoDto>.Error(MessageException.LanzarExcepcion(exc), null);
             }
         }
@@ -226,10 +226,10 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     {
                         celdasInstrumentosParaRegistrar.Add(new CeldaInstrumento
                         {
-                           CeldaId = x.CeldaId,
-                           InstrumentoId = instrumentoBd.InstrumentoId,
-                           FechaColocacion = x.FechaColocacion,
-                           
+                            CeldaId = x.CeldaId,
+                            InstrumentoId = instrumentoBd.InstrumentoId,
+                            FechaColocacion = x.FechaColocacion,
+
                         });
                     });
 
