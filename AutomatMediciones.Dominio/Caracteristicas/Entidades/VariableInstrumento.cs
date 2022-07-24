@@ -12,7 +12,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
         public decimal? AlarmaAlta { get; set; }
         public decimal? AlarmaStel { get; set; }
         public decimal? AlarmaTwa { get; set; }
-
+        public bool Activo { get; set; }
         public VariableDeMedicion VariableDeMedicion { get; set; }
         public ICollection<VariableCertificado> VariablesCertificado { get; set; }
 

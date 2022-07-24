@@ -85,7 +85,24 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
             btnEditar.Click += btnEditarClick;
             btnDesactivar.Click += btnDesactivarClick;
+            btnDesactivarRegistro.Click += btnDesactivarRegistroVariable;
 
+        }
+
+        private void btnDesactivarRegistroVariable(object sender, EventArgs e)
+        {
+            var variableInstrumento = gvVariablesInstrumentos.GetFocusedRow() as VariableInstrumentoDto;
+            if (variableInstrumento == null) return;
+
+            var respuesta = _instrumentoService.DesactivarVariableInstrumento(variableInstrumento.VariableInstrumentoId);
+            if (respuesta.Type != TypeResponse.Ok) 
+            {
+                Notificaciones.MensajeError(respuesta.Message);
+                return;
+            }
+
+            CargarVariablesInstrumentos();
+            Notificaciones.MensajeConfirmacion("¡La vinculación se eliminó exitosamente!");
         }
 
         private void btnDesactivarClick(object sender, EventArgs e)

@@ -140,7 +140,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.gcModelos.MainView = this.gvModelos;
             this.gcModelos.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.gcModelos.Name = "gcModelos";
-            this.gcModelos.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.gcModelos.Padding = new System.Windows.Forms.Padding(5);
             this.gcModelos.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.cmdEditar});
             this.gcModelos.Size = new System.Drawing.Size(659, 305);
@@ -212,7 +212,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Modelos
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IconOptions.ShowIcon = false;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmModelos";
             this.Text = "Modelos";
             this.panel1.ResumeLayout(false);

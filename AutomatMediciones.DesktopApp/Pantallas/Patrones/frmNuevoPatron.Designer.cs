@@ -126,7 +126,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             // 
             this.dateFechaCaducidad.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.dateFechaCaducidad.Location = new System.Drawing.Point(446, 124);
-            this.dateFechaCaducidad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateFechaCaducidad.Margin = new System.Windows.Forms.Padding(4);
             this.dateFechaCaducidad.Name = "dateFechaCaducidad";
             this.dateFechaCaducidad.Size = new System.Drawing.Size(387, 31);
             this.dateFechaCaducidad.TabIndex = 130;
@@ -153,9 +153,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.groupBox1.Controls.Add(this.labelControl4);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.groupBox1.Location = new System.Drawing.Point(24, 174);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(808, 97);
             this.groupBox1.TabIndex = 132;
             this.groupBox1.TabStop = false;
@@ -472,7 +472,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.Controls.Add(this.txtNombreRango);
             this.Controls.Add(this.btnGuardar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmNuevoPatron";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.frmNuevoPatron_Load);

@@ -272,6 +272,30 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
+        public Response<bool> DesactivarVariableInstrumento(int variableInstrumentoId)
+        {
+            try
+            {
+                var variableInstrumentoBd = _automatMedicionesDbContext.VariablesInstrumentos.FirstOrDefault(x => x.VariableInstrumentoId == variableInstrumentoId);
+
+                if (variableInstrumentoBd == null)
+                {
+                    return Response<bool>.Error("La variable vinculada a este instrumento no fue encontrado en almacén de datos", false);
+                }
+
+                variableInstrumentoBd.Activo = false;
+              
+
+                _automatMedicionesDbContext.SaveChanges();
+
+                return Response<bool>.Ok("Ok", true);
+            }
+            catch (Exception exc)
+            {
+                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+            }
+        }
+
         public Response<bool> DesactivarInstrumento(InstrumentoDto instrumentoDto)
         {
             try
@@ -299,6 +323,15 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
         {
             try
             {
+                var existeVariableVinculada = _automatMedicionesDbContext.VariablesInstrumentos.Any(x => x.Activo && 
+                                                                                                         x.InstrumentoId == variableInstrumentoDto.InstrumentoId && 
+                                                                                                         x.VariableMedicionId == variableInstrumentoDto.VariableMedicionId);
+
+                if (existeVariableVinculada) return Response<VariableInstrumentoDto>.ErrorValidation("Esta variable de medición ya está vinculada a este instrumento.", null);
+               
+                
+
+
                 VariableInstrumento variableInstrumento = new VariableInstrumento
                 {
                     VariableMedicionId = variableInstrumentoDto.VariableMedicionId,
@@ -307,7 +340,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     AlarmaBaja = variableInstrumentoDto.AlarmaBaja,
                     AlarmaStel = variableInstrumentoDto.AlarmaStel,
                     AlarmaTwa = variableInstrumentoDto.AlarmaTwa,
-                    InstrumentoId = variableInstrumentoDto.InstrumentoId
+                    InstrumentoId = variableInstrumentoDto.InstrumentoId,
+                    Activo = true
                 };
 
                 if (!variableInstrumento.EsValido(out string mensaje))
@@ -364,7 +398,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
         {
             try
             {
-                var variablesInstrumentos = _automatMedicionesDbContext.VariablesInstrumentos.AsQueryable().Where(x => x.InstrumentoId == instrumentoId).Include(x => x.VariableDeMedicion).ToList();
+                var variablesInstrumentos = _automatMedicionesDbContext.VariablesInstrumentos.AsQueryable().Where(x => x.InstrumentoId == instrumentoId && x.Activo).Include(x => x.VariableDeMedicion).ToList();
                 return Response<List<VariableInstrumentoDto>>.Ok("Ok", _mapper.Map<List<VariableInstrumentoDto>>(variablesInstrumentos));
             }
             catch (Exception exc)

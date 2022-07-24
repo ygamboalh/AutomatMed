@@ -20,6 +20,7 @@ namespace AutomatMediciones.Libs.Dtos
         public string Comentarios { get; set; }
         public ClasificacionInstrumentoDto Clasificacion { get; set; }
         public ICollection<CeldaInstrumentoDto> CeldasInstrumentos { get; set; }
+        public ICollection<VariableInstrumentoDto> VariablesInstrumentos { get; set; }
 
         public InstrumentoDto()
         {

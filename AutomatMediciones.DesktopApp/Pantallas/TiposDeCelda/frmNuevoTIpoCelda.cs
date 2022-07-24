@@ -1,12 +1,14 @@
 ﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
 using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
+using AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion;
 using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraSplashScreen;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Windows.Forms;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeCelda
 {
@@ -20,6 +22,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeCelda
 
         public delegate void MarcaModificada(MarcaDto tipoInstrumento);
         public event MarcaModificada OnTipoCeldaModificada;
+
+        private  ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
 
         public TipoTransaccion TipoTransaccion { get; set; }
         public TipoCeldaDto NuevoTipoCelda { get; set; }
@@ -151,6 +155,18 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeCelda
             }
 
             SplashScreenManager.CloseForm();
+        }
+
+        private void btnNuevaVariableMedicion_Click(object sender, EventArgs e)
+        {
+            var frmNuevaVariableMedicion = new frmNuevaVariableMedicion(TipoTransaccion.Insertar, serviceProvider.GetService<VariableMedicionService>(), serviceProvider.GetService<TipoDeInstrumentoService>());
+            frmNuevaVariableMedicion.OnVariableMedicionAgregada += OnVariableMedicionAgregada;
+            frmNuevaVariableMedicion.ShowDialog();
+        }
+
+        private void OnVariableMedicionAgregada(VariableMedicionDto tipoInstrumento)
+        {
+            CargarVariablesDeMedicion();
         }
     }
 }
