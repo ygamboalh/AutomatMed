@@ -28,7 +28,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeCelda
 
             EstablecerColorBotonPorDefecto();
 
-            cmdEditar.Click += cmdEditarClick;
+            btnEditar.Click += cmdEditarClick;
         }
 
         private void cmdEditarClick(object sender, EventArgs e)

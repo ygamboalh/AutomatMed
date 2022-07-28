@@ -132,14 +132,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
         {
             if (variableMedicionSeleccionada == null) return;
 
-
             var variablePatron = new VariablePatronDto
             {
                 VariableDeMedicion = variableMedicionSeleccionada,
                 Tolerancia = nmTolerancia.Value,
                 ValorPatron = nmValorPatron.Value,
                 VariableMeicionId = variableMedicionSeleccionada.VariableMedicionId,
-
             };
 
             if (ExiteVariableEnLista(variablePatron))
@@ -158,9 +156,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             var resultado = _variableMedicionService.ObtenerVariablesDeMedicionActivas();
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
-            glVariablesDeMedicion.Properties.DataSource = resultado.Data;
-            glVariablesDeMedicion.Properties.DisplayMember = "Descripcion";
-            glVariablesDeMedicion.Properties.ValueMember = "VariableMedicionId";
+            lookupVariableMedicion.Properties.DataSource = resultado.Data;
+            lookupVariableMedicion.Properties.DisplayMember = "Descripcion";
+            lookupVariableMedicion.Properties.ValueMember = "VariableMedicionId";
         }
 
         private bool EsValidaLaInformacionIngresadaParaNuevoPatron(out string mensaje)
@@ -247,10 +245,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             }
         }
 
-
-
-
-
         private void PrepararNuevoPatron()
         {
             NuevoPatron.Nombre = txtNombreRango.Text;
@@ -266,7 +260,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
 
         private void glVariablesDeMedicion_EditValueChanged(object sender, EventArgs e)
         {
-            variableMedicionSeleccionada = gvVariableMedicion.GetFocusedRow() as VariableMedicionDto;
+            variableMedicionSeleccionada = lookupVariableMedicion.GetSelectedDataRow() as VariableMedicionDto;
         }
 
         private void frmNuevoPatron_Load(object sender, EventArgs e)

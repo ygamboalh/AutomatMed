@@ -53,10 +53,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
             estados = resultado.Data;
-            gleEstado.Properties.DataSource = resultado.Data;
+            lookupEstado.Properties.DataSource = resultado.Data;
 
-            gleEstado.Properties.DisplayMember = "Descripcion";
-            gleEstado.Properties.ValueMember = "Id";
+            lookupEstado.Properties.DisplayMember = "Descripcion";
+            lookupEstado.Properties.ValueMember = "Id";
         }
 
 
@@ -66,18 +66,18 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
             tiposDeCelda = resultado.Data;
-            glTipoCelda.Properties.DataSource = resultado.Data;
+            lookupTipoCelda.Properties.DataSource = resultado.Data;
 
-            glTipoCelda.Properties.DisplayMember = "Descripcion";
-            glTipoCelda.Properties.ValueMember = "Id";
+            lookupTipoCelda.Properties.DisplayMember = "Descripcion";
+            lookupTipoCelda.Properties.ValueMember = "Id";
         }
 
 
         public void SetearValoresParaActualizar()
         {
             txtNumeroSerie.Text = NuevaCelda.NumeroSerie;
-            gleEstado.EditValue = NuevaCelda.EstadoId;
-            glTipoCelda.EditValue = NuevaCelda.TipoCeldaId;
+            lookupEstado.EditValue = NuevaCelda.EstadoId;
+            lookupTipoCelda.EditValue = NuevaCelda.TipoCeldaId;
             dateFechaAdquisicion.EditValue = NuevaCelda.FechaAdquisicion.HasValue ? NuevaCelda.FechaAdquisicion.Value : null;
             dateFechaFabricacion.EditValue = NuevaCelda.FechaFabricacion.HasValue ? NuevaCelda.FechaFabricacion.Value : null;
 
@@ -85,11 +85,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
 
         private void PrepararNuevaCelda()
         {
-            NuevaCelda.TipoCeldaId = (int)glTipoCelda.EditValue;
+            NuevaCelda.TipoCeldaId = (int)lookupTipoCelda.EditValue;
             NuevaCelda.NumeroSerie = txtNumeroSerie.Text;
             NuevaCelda.FechaFabricacion = dateFechaFabricacion.EditValue != null ? (DateTime)dateFechaFabricacion.EditValue : null;
             NuevaCelda.FechaAdquisicion = dateFechaAdquisicion.EditValue != null ? (DateTime)dateFechaAdquisicion.EditValue : null;
-            NuevaCelda.EstadoId = (int)gleEstado.EditValue;
+            NuevaCelda.EstadoId = (int)lookupEstado.EditValue;
         }
 
 
@@ -157,8 +157,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
                 if (GuardarCelda())
                 {
                     Notificaciones.MensajeConfirmacion("¡La celda se ha registrado exitosamente!");
-                    NuevaCelda.Estado = estados.FirstOrDefault(x => x.Id == (int)gleEstado.EditValue);
-                    NuevaCelda.TipoCelda = tiposDeCelda.FirstOrDefault(x => x.Id == (int)glTipoCelda.EditValue);
+                    NuevaCelda.Estado = estados.FirstOrDefault(x => x.Id == (int)lookupEstado.EditValue);
+                    NuevaCelda.TipoCelda = tiposDeCelda.FirstOrDefault(x => x.Id == (int)lookupTipoCelda.EditValue);
                     OnCeldaAgregada?.Invoke(NuevaCelda);
                     this.Close();
                 }
@@ -169,8 +169,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
                 {
 
                     Notificaciones.MensajeConfirmacion("¡La celda se ha actualizado exitosamente!");
-                    NuevaCelda.Estado = estados.FirstOrDefault(x => x.Id == (int)gleEstado.EditValue);
-                    NuevaCelda.TipoCelda = tiposDeCelda.FirstOrDefault(x => x.Id == (int)glTipoCelda.EditValue);
+                    NuevaCelda.Estado = estados.FirstOrDefault(x => x.Id == (int)lookupEstado.EditValue);
+                    NuevaCelda.TipoCelda = tiposDeCelda.FirstOrDefault(x => x.Id == (int)lookupTipoCelda.EditValue);
                     OnCeldaModificada?.Invoke(NuevaCelda);
                     this.Close();
                 }

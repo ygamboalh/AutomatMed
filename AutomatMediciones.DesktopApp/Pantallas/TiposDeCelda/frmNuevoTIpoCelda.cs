@@ -44,6 +44,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeCelda
         public void SetearValoresParaActualizar()
         {
             txtDescripcion.Text = NuevoTipoCelda.Descripcion;
+            glVariablesDeMedicion.EditValue = NuevoTipoCelda.VariableMedicionId;
         }
 
         private void EstablecerNombreYTituloPopupAgregarInstrumentos()

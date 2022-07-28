@@ -65,14 +65,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             this.gcCertificados.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcCertificados.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.gcCertificados.Location = new System.Drawing.Point(0, 52);
+            this.gcCertificados.Location = new System.Drawing.Point(10, 52);
             this.gcCertificados.MainView = this.gvCertificados;
             this.gcCertificados.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.gcCertificados.Name = "gcCertificados";
-            this.gcCertificados.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.gcCertificados.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
             this.gcCertificados.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnVerCertificado});
-            this.gcCertificados.Size = new System.Drawing.Size(1042, 600);
+            this.gcCertificados.Size = new System.Drawing.Size(1022, 600);
             this.gcCertificados.TabIndex = 36;
             this.gcCertificados.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvCertificados});
@@ -233,10 +233,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             this.panel2.Controls.Add(this.lblTotal);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 652);
+            this.panel2.Location = new System.Drawing.Point(10, 652);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1042, 27);
+            this.panel2.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.panel2.Size = new System.Drawing.Size(1022, 27);
             this.panel2.TabIndex = 37;
             // 
             // lblTotal
@@ -244,7 +245,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.lblTotal.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblTotal.Appearance.Options.UseFont = true;
             this.lblTotal.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lblTotal.Location = new System.Drawing.Point(0, 0);
+            this.lblTotal.Location = new System.Drawing.Point(10, 0);
             this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(7, 17);
@@ -256,11 +257,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             this.panel3.Controls.Add(this.btnExportarExcel);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Location = new System.Drawing.Point(10, 0);
             this.panel3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(8, 7, 0, 7);
-            this.panel3.Size = new System.Drawing.Size(1042, 52);
+            this.panel3.Padding = new System.Windows.Forms.Padding(8, 7, 10, 7);
+            this.panel3.Size = new System.Drawing.Size(1022, 52);
             this.panel3.TabIndex = 39;
             // 
             // btnExportarExcel
@@ -274,7 +275,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.btnExportarExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnExportarExcel.IconSize = 30;
             this.btnExportarExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportarExcel.Location = new System.Drawing.Point(864, 7);
+            this.btnExportarExcel.Location = new System.Drawing.Point(834, 7);
             this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnExportarExcel.Name = "btnExportarExcel";
             this.btnExportarExcel.Size = new System.Drawing.Size(178, 38);
@@ -295,9 +296,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "frmCertificadosDeCalibracion";
+            this.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Certificados de Calibración";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.gcCertificados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCertificados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnVerCertificado)).EndInit();

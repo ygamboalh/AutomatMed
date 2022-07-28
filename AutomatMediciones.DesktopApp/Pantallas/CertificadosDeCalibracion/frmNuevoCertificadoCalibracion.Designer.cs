@@ -29,12 +29,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNuevoCertificadoCalibracion));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.dateFechaCertificado = new System.Windows.Forms.DateTimePicker();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.memoCondicionesAmbientales = new DevExpress.XtraEditors.MemoEdit();
@@ -48,6 +48,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.colUsuarioId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNombreUsuario = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lookupVariableDeInstrumento = new DevExpress.XtraEditors.LookUpEdit();
+            this.lookUpPatron = new DevExpress.XtraEditors.LookUpEdit();
             this.gcVariablesCertificado = new DevExpress.XtraGrid.GridControl();
             this.gvVariablesCertificado = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colDescripcionPatron = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -55,36 +57,21 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.colValorMedido = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEliminar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEliminar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.glVariableInstrumento = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.glVariableInstrumentoView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colVariableInstrumentoId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colVariableDeMedicion = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTieneAlarma = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAlarmaAlta = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAlarmaBaja = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colStel = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colAlarmaTwa = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btnAgregarVariable = new FontAwesome.Sharp.IconButton();
             this.nmValorMedido = new System.Windows.Forms.NumericUpDown();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.glPatrones = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.glPatronesView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colPatronId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.memoCondicionesAmbientales.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glUsuariosResponsables.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glUsuariosResponsablesView)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lookupVariableDeInstrumento.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpPatron.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcVariablesCertificado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvVariablesCertificado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEliminar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glVariableInstrumento.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glVariableInstrumentoView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmValorMedido)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glPatrones.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glPatronesView)).BeginInit();
             this.SuspendLayout();
             // 
             // dateFechaCertificado
@@ -109,7 +96,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             // memoCondicionesAmbientales
             // 
-            this.memoCondicionesAmbientales.Location = new System.Drawing.Point(37, 164);
+            this.memoCondicionesAmbientales.Location = new System.Drawing.Point(37, 154);
             this.memoCondicionesAmbientales.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.memoCondicionesAmbientales.Name = "memoCondicionesAmbientales";
             this.memoCondicionesAmbientales.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -121,7 +108,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(37, 143);
+            this.labelControl3.Location = new System.Drawing.Point(37, 133);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(149, 17);
@@ -172,7 +159,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(37, 596);
+            this.labelControl6.Location = new System.Drawing.Point(37, 605);
             this.labelControl6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(127, 17);
@@ -181,7 +168,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             // glUsuariosResponsables
             // 
-            this.glUsuariosResponsables.Location = new System.Drawing.Point(37, 617);
+            this.glUsuariosResponsables.Location = new System.Drawing.Point(37, 626);
             this.glUsuariosResponsables.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.glUsuariosResponsables.Name = "glUsuariosResponsables";
             this.glUsuariosResponsables.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -224,23 +211,55 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lookupVariableDeInstrumento);
+            this.groupBox1.Controls.Add(this.lookUpPatron);
             this.groupBox1.Controls.Add(this.gcVariablesCertificado);
-            this.groupBox1.Controls.Add(this.glVariableInstrumento);
             this.groupBox1.Controls.Add(this.labelControl2);
             this.groupBox1.Controls.Add(this.btnAgregarVariable);
             this.groupBox1.Controls.Add(this.nmValorMedido);
             this.groupBox1.Controls.Add(this.labelControl5);
-            this.groupBox1.Controls.Add(this.glPatrones);
             this.groupBox1.Controls.Add(this.labelControl7);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox1.Location = new System.Drawing.Point(37, 265);
+            this.groupBox1.Location = new System.Drawing.Point(37, 241);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(872, 313);
+            this.groupBox1.Size = new System.Drawing.Size(872, 349);
             this.groupBox1.TabIndex = 136;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Variables de Certificado";
+            // 
+            // lookupVariableDeInstrumento
+            // 
+            this.lookupVariableDeInstrumento.Location = new System.Drawing.Point(329, 46);
+            this.lookupVariableDeInstrumento.Name = "lookupVariableDeInstrumento";
+            this.lookupVariableDeInstrumento.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lookupVariableDeInstrumento.Properties.Appearance.Options.UseFont = true;
+            this.lookupVariableDeInstrumento.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookupVariableDeInstrumento.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("VariableInstrumentoId", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("VariableDeMedicion.Descripcion", "Descripción")});
+            this.lookupVariableDeInstrumento.Properties.NullText = "";
+            this.lookupVariableDeInstrumento.Size = new System.Drawing.Size(279, 30);
+            this.lookupVariableDeInstrumento.TabIndex = 159;
+            this.lookupVariableDeInstrumento.EditValueChanged += new System.EventHandler(this.glVariableInstrumento_EditValueChanged);
+            // 
+            // lookUpPatron
+            // 
+            this.lookUpPatron.Location = new System.Drawing.Point(24, 46);
+            this.lookUpPatron.Name = "lookUpPatron";
+            this.lookUpPatron.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lookUpPatron.Properties.Appearance.Options.UseFont = true;
+            this.lookUpPatron.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpPatron.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PatronId", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Nombre", "Nombre de Patrón")});
+            this.lookUpPatron.Properties.NullText = "";
+            this.lookUpPatron.Size = new System.Drawing.Size(279, 30);
+            this.lookUpPatron.TabIndex = 158;
+            this.lookUpPatron.EditValueChanged += new System.EventHandler(this.glPatrones_EditValueChanged);
             // 
             // gcVariablesCertificado
             // 
@@ -251,7 +270,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.gcVariablesCertificado.Name = "gcVariablesCertificado";
             this.gcVariablesCertificado.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnEliminar});
-            this.gcVariablesCertificado.Size = new System.Drawing.Size(823, 199);
+            this.gcVariablesCertificado.Size = new System.Drawing.Size(823, 236);
             this.gcVariablesCertificado.TabIndex = 157;
             this.gcVariablesCertificado.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvVariablesCertificado});
@@ -320,117 +339,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // btnEliminar
             // 
             this.btnEliminar.AutoHeight = false;
-            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
             this.btnEliminar.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "Eliminar", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "Eliminar", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            // 
-            // glVariableInstrumento
-            // 
-            this.glVariableInstrumento.EditValue = "";
-            this.glVariableInstrumento.Location = new System.Drawing.Point(329, 49);
-            this.glVariableInstrumento.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.glVariableInstrumento.Name = "glVariableInstrumento";
-            this.glVariableInstrumento.Properties.AutoHeight = false;
-            this.glVariableInstrumento.Properties.NullText = "";
-            this.glVariableInstrumento.Properties.PopupView = this.glVariableInstrumentoView;
-            this.glVariableInstrumento.Size = new System.Drawing.Size(287, 31);
-            this.glVariableInstrumento.TabIndex = 156;
-            this.glVariableInstrumento.EditValueChanged += new System.EventHandler(this.glVariableInstrumento_EditValueChanged);
-            // 
-            // glVariableInstrumentoView
-            // 
-            this.glVariableInstrumentoView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colVariableInstrumentoId,
-            this.colVariableDeMedicion,
-            this.colTieneAlarma,
-            this.colAlarmaAlta,
-            this.colAlarmaBaja,
-            this.colStel,
-            this.colAlarmaTwa});
-            this.glVariableInstrumentoView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.glVariableInstrumentoView.Name = "glVariableInstrumentoView";
-            this.glVariableInstrumentoView.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.glVariableInstrumentoView.OptionsView.ShowGroupPanel = false;
-            // 
-            // colVariableInstrumentoId
-            // 
-            this.colVariableInstrumentoId.Caption = "Id";
-            this.colVariableInstrumentoId.FieldName = "VariableInstrumentoId";
-            this.colVariableInstrumentoId.Name = "colVariableInstrumentoId";
-            // 
-            // colVariableDeMedicion
-            // 
-            this.colVariableDeMedicion.Caption = "Variable de Medición";
-            this.colVariableDeMedicion.FieldName = "VariableDeMedicion.Descripcion";
-            this.colVariableDeMedicion.Name = "colVariableDeMedicion";
-            this.colVariableDeMedicion.OptionsColumn.AllowEdit = false;
-            this.colVariableDeMedicion.OptionsColumn.AllowFocus = false;
-            this.colVariableDeMedicion.OptionsColumn.ReadOnly = true;
-            this.colVariableDeMedicion.Visible = true;
-            this.colVariableDeMedicion.VisibleIndex = 0;
-            this.colVariableDeMedicion.Width = 200;
-            // 
-            // colTieneAlarma
-            // 
-            this.colTieneAlarma.Caption = "Tiene Alarma";
-            this.colTieneAlarma.FieldName = "TieneAlarma";
-            this.colTieneAlarma.Name = "colTieneAlarma";
-            this.colTieneAlarma.OptionsColumn.AllowEdit = false;
-            this.colTieneAlarma.OptionsColumn.AllowFocus = false;
-            this.colTieneAlarma.OptionsColumn.ReadOnly = true;
-            this.colTieneAlarma.Visible = true;
-            this.colTieneAlarma.VisibleIndex = 1;
-            this.colTieneAlarma.Width = 33;
-            // 
-            // colAlarmaAlta
-            // 
-            this.colAlarmaAlta.Caption = "Alta";
-            this.colAlarmaAlta.FieldName = "AlarmaAlta";
-            this.colAlarmaAlta.Name = "colAlarmaAlta";
-            this.colAlarmaAlta.OptionsColumn.AllowEdit = false;
-            this.colAlarmaAlta.OptionsColumn.AllowFocus = false;
-            this.colAlarmaAlta.OptionsColumn.ReadOnly = true;
-            this.colAlarmaAlta.Visible = true;
-            this.colAlarmaAlta.VisibleIndex = 2;
-            this.colAlarmaAlta.Width = 33;
-            // 
-            // colAlarmaBaja
-            // 
-            this.colAlarmaBaja.Caption = "Baja";
-            this.colAlarmaBaja.FieldName = "Alarma Baja";
-            this.colAlarmaBaja.Name = "colAlarmaBaja";
-            this.colAlarmaBaja.OptionsColumn.AllowEdit = false;
-            this.colAlarmaBaja.OptionsColumn.AllowFocus = false;
-            this.colAlarmaBaja.OptionsColumn.ReadOnly = true;
-            this.colAlarmaBaja.Visible = true;
-            this.colAlarmaBaja.VisibleIndex = 3;
-            this.colAlarmaBaja.Width = 33;
-            // 
-            // colStel
-            // 
-            this.colStel.Caption = "Stel";
-            this.colStel.FieldName = "AlarmaStel";
-            this.colStel.Name = "colStel";
-            this.colStel.OptionsColumn.AllowEdit = false;
-            this.colStel.OptionsColumn.AllowFocus = false;
-            this.colStel.OptionsColumn.ReadOnly = true;
-            this.colStel.Visible = true;
-            this.colStel.VisibleIndex = 4;
-            this.colStel.Width = 33;
-            // 
-            // colAlarmaTwa
-            // 
-            this.colAlarmaTwa.Caption = "Twa";
-            this.colAlarmaTwa.FieldName = "AlarmaTwa";
-            this.colAlarmaTwa.Name = "colAlarmaTwa";
-            this.colAlarmaTwa.OptionsColumn.AllowEdit = false;
-            this.colAlarmaTwa.OptionsColumn.AllowFocus = false;
-            this.colAlarmaTwa.OptionsColumn.ReadOnly = true;
-            this.colAlarmaTwa.Visible = true;
-            this.colAlarmaTwa.VisibleIndex = 5;
-            this.colAlarmaTwa.Width = 40;
             // 
             // labelControl2
             // 
@@ -466,7 +379,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             this.nmValorMedido.DecimalPlaces = 2;
             this.nmValorMedido.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.nmValorMedido.Location = new System.Drawing.Point(638, 49);
+            this.nmValorMedido.Location = new System.Drawing.Point(639, 45);
             this.nmValorMedido.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.nmValorMedido.Maximum = new decimal(new int[] {
             10000,
@@ -481,49 +394,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(639, 29);
+            this.labelControl5.Location = new System.Drawing.Point(639, 28);
             this.labelControl5.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(84, 17);
             this.labelControl5.TabIndex = 150;
             this.labelControl5.Text = "Valor Medido:";
-            // 
-            // glPatrones
-            // 
-            this.glPatrones.EditValue = "";
-            this.glPatrones.Location = new System.Drawing.Point(23, 49);
-            this.glPatrones.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.glPatrones.Name = "glPatrones";
-            this.glPatrones.Properties.AutoHeight = false;
-            this.glPatrones.Properties.NullText = "";
-            this.glPatrones.Properties.PopupView = this.glPatronesView;
-            this.glPatrones.Size = new System.Drawing.Size(280, 31);
-            this.glPatrones.TabIndex = 149;
-            this.glPatrones.EditValueChanged += new System.EventHandler(this.glPatrones_EditValueChanged);
-            // 
-            // glPatronesView
-            // 
-            this.glPatronesView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colPatronId,
-            this.colDescripcion});
-            this.glPatronesView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.glPatronesView.Name = "glPatronesView";
-            this.glPatronesView.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.glPatronesView.OptionsView.ShowGroupPanel = false;
-            // 
-            // colPatronId
-            // 
-            this.colPatronId.Caption = "Descripción";
-            this.colPatronId.FieldName = "PatronId";
-            this.colPatronId.Name = "colPatronId";
-            // 
-            // colDescripcion
-            // 
-            this.colDescripcion.Caption = "Patrón";
-            this.colDescripcion.FieldName = "Nombre";
-            this.colDescripcion.Name = "colDescripcion";
-            this.colDescripcion.Visible = true;
-            this.colDescripcion.VisibleIndex = 0;
             // 
             // labelControl7
             // 
@@ -560,14 +436,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             ((System.ComponentModel.ISupportInitialize)(this.glUsuariosResponsablesView)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lookupVariableDeInstrumento.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpPatron.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcVariablesCertificado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvVariablesCertificado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEliminar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glVariableInstrumento.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glVariableInstrumentoView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmValorMedido)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glPatrones.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glPatronesView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -588,14 +462,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
         private DevExpress.XtraGrid.Columns.GridColumn colUsuarioId;
         private DevExpress.XtraGrid.Columns.GridColumn colNombreUsuario;
         private System.Windows.Forms.GroupBox groupBox1;
-        private DevExpress.XtraEditors.GridLookUpEdit glVariableInstrumento;
-        private DevExpress.XtraGrid.Views.Grid.GridView glVariableInstrumentoView;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private FontAwesome.Sharp.IconButton btnAgregarVariable;
         private System.Windows.Forms.NumericUpDown nmValorMedido;
         private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.GridLookUpEdit glPatrones;
-        private DevExpress.XtraGrid.Views.Grid.GridView glPatronesView;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraGrid.GridControl gcVariablesCertificado;
         private DevExpress.XtraGrid.Views.Grid.GridView gvVariablesCertificado;
@@ -604,14 +474,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
         private DevExpress.XtraGrid.Columns.GridColumn colValorMedido;
         private DevExpress.XtraGrid.Columns.GridColumn colEliminar;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEliminar;
-        private DevExpress.XtraGrid.Columns.GridColumn colPatronId;
-        private DevExpress.XtraGrid.Columns.GridColumn colDescripcion;
-        private DevExpress.XtraGrid.Columns.GridColumn colVariableInstrumentoId;
-        private DevExpress.XtraGrid.Columns.GridColumn colVariableDeMedicion;
-        private DevExpress.XtraGrid.Columns.GridColumn colTieneAlarma;
-        private DevExpress.XtraGrid.Columns.GridColumn colAlarmaAlta;
-        private DevExpress.XtraGrid.Columns.GridColumn colAlarmaBaja;
-        private DevExpress.XtraGrid.Columns.GridColumn colStel;
-        private DevExpress.XtraGrid.Columns.GridColumn colAlarmaTwa;
+        private DevExpress.XtraEditors.LookUpEdit lookUpPatron;
+        private DevExpress.XtraEditors.LookUpEdit lookupVariableDeInstrumento;
     }
 }

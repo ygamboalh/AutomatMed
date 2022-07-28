@@ -36,16 +36,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
             this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
             this.txtEmpresaInstrumento = new DevExpress.XtraEditors.TextEdit();
             this.btnAbrirPopupEmpresaPorInstrumento = new FontAwesome.Sharp.IconButton();
@@ -76,6 +76,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.colTwa = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEditar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEditar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.colBorrar = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnDesactivarRegistro = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.btnNuevaVinculacion = new FontAwesome.Sharp.IconButton();
             this.btnPrepararCertificado = new FontAwesome.Sharp.IconButton();
             this.nmGarantia = new System.Windows.Forms.NumericUpDown();
@@ -101,8 +103,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.colDesactivar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDesactivar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.btnHistorialDeCertificados = new FontAwesome.Sharp.IconButton();
-            this.colBorrar = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.btnDesactivarRegistro = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEmpresaInstrumento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroSerie.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDescripcionInstrumento.Properties)).BeginInit();
@@ -110,6 +110,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             ((System.ComponentModel.ISupportInitialize)(this.gcVariablesInstrumentos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvVariablesInstrumentos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDesactivarRegistro)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmGarantia)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leTipoInstrumento.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leMarcas.Properties)).BeginInit();
@@ -133,7 +134,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             ((System.ComponentModel.ISupportInitialize)(this.gcCeldasVinculadas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCeldasVinculadas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDesactivar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDesactivarRegistro)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl20
@@ -494,6 +494,24 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
+            // colBorrar
+            // 
+            this.colBorrar.ColumnEdit = this.btnDesactivarRegistro;
+            this.colBorrar.MinWidth = 25;
+            this.colBorrar.Name = "colBorrar";
+            this.colBorrar.Visible = true;
+            this.colBorrar.VisibleIndex = 7;
+            this.colBorrar.Width = 30;
+            // 
+            // btnDesactivarRegistro
+            // 
+            this.btnDesactivarRegistro.AutoHeight = false;
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            this.btnDesactivarRegistro.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.btnDesactivarRegistro.Name = "btnDesactivarRegistro";
+            this.btnDesactivarRegistro.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
             // btnNuevaVinculacion
             // 
             this.btnNuevaVinculacion.FlatAppearance.BorderSize = 0;
@@ -651,6 +669,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.tabVariableDeMedicion.Controls.Add(this.btnNuevaVinculacion);
             this.tabVariableDeMedicion.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.tabVariableDeMedicion.Name = "tabVariableDeMedicion";
+            this.tabVariableDeMedicion.Properties.AppearanceCaption.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.tabVariableDeMedicion.Properties.AppearanceCaption.Options.UseFont = true;
             this.tabVariableDeMedicion.Size = new System.Drawing.Size(904, 291);
             // 
             // tabVinculacionCeldas
@@ -664,13 +684,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.tabVinculacionCeldas.Controls.Add(this.gridSplitContainer1);
             this.tabVinculacionCeldas.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.tabVinculacionCeldas.Name = "tabVinculacionCeldas";
-            this.tabVinculacionCeldas.Size = new System.Drawing.Size(904, 292);
+            this.tabVinculacionCeldas.Size = new System.Drawing.Size(904, 291);
             // 
             // dateFechaColocacion
             // 
             this.dateFechaColocacion.EditValue = null;
             this.dateFechaColocacion.Location = new System.Drawing.Point(503, 26);
-            this.dateFechaColocacion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateFechaColocacion.Margin = new System.Windows.Forms.Padding(4);
             this.dateFechaColocacion.Name = "dateFechaColocacion";
             this.dateFechaColocacion.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.dateFechaColocacion.Properties.Appearance.Options.UseFont = true;
@@ -696,7 +716,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             // 
             this.leCelda.EditValue = "";
             this.leCelda.Location = new System.Drawing.Point(20, 26);
-            this.leCelda.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.leCelda.Margin = new System.Windows.Forms.Padding(4);
             this.leCelda.Name = "leCelda";
             this.leCelda.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.False;
             this.leCelda.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -704,11 +724,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.leCelda.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.leCelda.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TipoCelda.Descripcion", "Tipo de Celda", 23, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NumeroSerie", "N° de Serie", 23, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TipoCelda.Descripcion", "Tipo de Celda", 30, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NumeroSerie", "N° de Serie", 30, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("FechaAdquisicion", "Fecha de Adquisición", 23, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("FechaFabricacion", "Fecha de Fabricación", 23, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Estado.Descripcion", "Estado", 23, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Estado.Descripcion", "Estado", 30, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.leCelda.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.leCelda.Properties.NullText = "";
             this.leCelda.Size = new System.Drawing.Size(465, 26);
@@ -748,7 +768,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             // 
             this.gridSplitContainer1.Grid = this.gcCeldasVinculadas;
             this.gridSplitContainer1.Location = new System.Drawing.Point(20, 58);
-            this.gridSplitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridSplitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.gridSplitContainer1.Name = "gridSplitContainer1";
             // 
             // gridSplitContainer1.Panel1
@@ -760,10 +780,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             // gcCeldasVinculadas
             // 
             this.gcCeldasVinculadas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcCeldasVinculadas.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gcCeldasVinculadas.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
             this.gcCeldasVinculadas.Location = new System.Drawing.Point(0, 0);
             this.gcCeldasVinculadas.MainView = this.gvCeldasVinculadas;
-            this.gcCeldasVinculadas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gcCeldasVinculadas.Margin = new System.Windows.Forms.Padding(4);
             this.gcCeldasVinculadas.Name = "gcCeldasVinculadas";
             this.gcCeldasVinculadas.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnDesactivar});
@@ -857,24 +877,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.btnHistorialDeCertificados.Visible = false;
             this.btnHistorialDeCertificados.Click += new System.EventHandler(this.btnHistorialDeCertificados_Click);
             // 
-            // colBorrar
-            // 
-            this.colBorrar.ColumnEdit = this.btnDesactivarRegistro;
-            this.colBorrar.MinWidth = 25;
-            this.colBorrar.Name = "colBorrar";
-            this.colBorrar.Visible = true;
-            this.colBorrar.VisibleIndex = 7;
-            this.colBorrar.Width = 30;
-            // 
-            // btnDesactivarRegistro
-            // 
-            this.btnDesactivarRegistro.AutoHeight = false;
-            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
-            this.btnDesactivarRegistro.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.btnDesactivarRegistro.Name = "btnDesactivarRegistro";
-            this.btnDesactivarRegistro.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            // 
             // frmNuevoInstrumento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -918,6 +920,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             ((System.ComponentModel.ISupportInitialize)(this.gcVariablesInstrumentos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvVariablesInstrumentos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDesactivarRegistro)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmGarantia)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leTipoInstrumento.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leMarcas.Properties)).EndInit();
@@ -943,7 +946,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             ((System.ComponentModel.ISupportInitialize)(this.gcCeldasVinculadas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCeldasVinculadas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDesactivar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDesactivarRegistro)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

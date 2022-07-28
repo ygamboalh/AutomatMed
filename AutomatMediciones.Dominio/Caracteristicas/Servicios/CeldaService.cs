@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutomatMediciones.Dominio.Caracteristicas.Entidades;
+using AutomatMediciones.Dominio.Caracteristicas.Enums;
 using AutomatMediciones.Dominio.Infraestructura;
 using AutomatMediciones.Libs.Dtos;
 using Microsoft.EntityFrameworkCore;
@@ -54,7 +55,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
         {
             try
             {
-                var celdas = _automatDbContext.Celdas.AsQueryable().Include(x => x.TipoCelda).Include(x => x.Estado).ToList();
+                var celdas = _automatDbContext.Celdas.AsQueryable().Include(x => x.TipoCelda)
+                                                                   .Include(x => x.Estado).ToList();
                 return Response<List<CeldaDto>>.Ok("Ok", _mapper.Map<List<CeldaDto>>(celdas));
             }
             catch (Exception exc)
@@ -62,6 +64,22 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 return Response<List<CeldaDto>>.Error(MessageException.LanzarExcepcion(exc), null);
             }
         }
+
+        public Response<List<CeldaDto>> ObtenerCeldasEnStock()
+        {
+            try
+            {
+                var celdas = _automatDbContext.Celdas.AsQueryable().Where(y => y.EstadoId == (int)CeldaEstado.EnStock)
+                                                                   .Include(x => x.TipoCelda)
+                                                                   .Include(x => x.Estado).ToList();
+                return Response<List<CeldaDto>>.Ok("Ok", _mapper.Map<List<CeldaDto>>(celdas));
+            }
+            catch (Exception exc)
+            {
+                return Response<List<CeldaDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
 
         public Response<bool> RegistrarCelda(CeldaDto celdaDto)
         {
@@ -73,7 +91,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     NumeroSerie = celdaDto.NumeroSerie,
                     FechaFabricacion = celdaDto.FechaFabricacion,
                     FechaAdquisicion = celdaDto.FechaAdquisicion,
-                    EstadoId = celdaDto.EstadoId
+                    EstadoId = (int)CeldaEstado.EnStock
                 };
 
                 _automatDbContext.Celdas.Add(celda);
@@ -95,7 +113,12 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                 if (celdaDb == null) return Response<bool>.Error("La celda no fue encontrado en almacén de datos", false);
 
-                celdaDb = _mapper.Map<Celda>(celdaDto);
+                celdaDb.EstadoId = celdaDto.EstadoId;
+                celdaDb.FechaAdquisicion = celdaDto.FechaAdquisicion;
+                celdaDb.FechaFabricacion = celdaDto.FechaFabricacion;
+                celdaDb.NumeroSerie = celdaDto.NumeroSerie;
+                celdaDb.TipoCeldaId = celdaDto.TipoCeldaId;
+              
 
                 _automatDbContext.SaveChanges();
 
@@ -160,7 +183,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                 if (tipoCeldaDb == null) return Response<bool>.Error("El tipo de celda no fue encontrado en almacén de datos", false);
 
-                tipoCeldaDb = _mapper.Map<TipoCelda>(tipoCeldaDto);
+                tipoCeldaDb.Descripcion = tipoCeldaDto.Descripcion;
+                tipoCeldaDb.VariableMedicionId = tipoCeldaDto.VariableMedicionId;
 
                 _automatDbContext.SaveChanges();
 

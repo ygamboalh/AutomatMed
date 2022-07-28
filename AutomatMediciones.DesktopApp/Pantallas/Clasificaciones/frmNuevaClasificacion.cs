@@ -56,25 +56,25 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
 
         public void InicializarMaestros()
         {
-            glMarca.Properties.DataSource = Marcas;
-            glModelo.Properties.DataSource = Modelos;
-            glTipoInstrumento.Properties.DataSource = TiposDeInstrumento;
+            lookupMarca.Properties.DataSource = Marcas;
+            lookupModelo.Properties.DataSource = Modelos;
+            lookupTipoInstrumento.Properties.DataSource = TiposDeInstrumento;
 
-            glMarca.Properties.DisplayMember = "Descripcion";
-            glMarca.Properties.ValueMember = "MarcaId";
+            lookupMarca.Properties.DisplayMember = "Descripcion";
+            lookupMarca.Properties.ValueMember = "MarcaId";
 
-            glModelo.Properties.DisplayMember = "Descripcion";
-            glModelo.Properties.ValueMember = "ModeloId";
+            lookupModelo.Properties.DisplayMember = "Descripcion";
+            lookupModelo.Properties.ValueMember = "ModeloId";
 
-            glTipoInstrumento.Properties.DisplayMember = "Descripcion";
-            glTipoInstrumento.Properties.ValueMember = "TipoInstrumentoId";
+            lookupTipoInstrumento.Properties.DisplayMember = "Descripcion";
+            lookupTipoInstrumento.Properties.ValueMember = "TipoInstrumentoId";
         }
 
         public void SetearValoresParaActualizar()
         {
-            glModelo.EditValue = NuevaClasificacion.ModeloId;
-            glMarca.EditValue = NuevaClasificacion.MarcaId;
-            glTipoInstrumento.EditValue = NuevaClasificacion.TipoInstrumentoId;
+            lookupModelo.EditValue = NuevaClasificacion.ModeloId;
+            lookupMarca.EditValue = NuevaClasificacion.MarcaId;
+            lookupTipoInstrumento.EditValue = NuevaClasificacion.TipoInstrumentoId;
             nmPeriodoCalibracion.Value = NuevaClasificacion.PeriodoDeCalibracion;
         }
 
@@ -130,9 +130,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
 
         private void PrepararNuevaClasificacionInstrumento()
         {
-            NuevaClasificacion.TipoInstrumentoId = (int)glTipoInstrumento.EditValue;
-            NuevaClasificacion.MarcaId = (int)glMarca.EditValue;
-            NuevaClasificacion.ModeloId = (int)glModelo.EditValue;
+            NuevaClasificacion.TipoInstrumentoId = (int)lookupTipoInstrumento.EditValue;
+            NuevaClasificacion.MarcaId = (int)lookupMarca.EditValue;
+            NuevaClasificacion.ModeloId = (int)lookupModelo.EditValue;
             NuevaClasificacion.PeriodoDeCalibracion = (int)nmPeriodoCalibracion.Value;
         }
 
@@ -201,7 +201,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
         {
             serviceProvider = Program.services.BuildServiceProvider();
             TiposDeInstrumento = _tipoDeInstrumentoService.ObtenerTiposDeInstrumento().Data;
-            glTipoInstrumento.Properties.DataSource = TiposDeInstrumento;
+            lookupTipoInstrumento.Properties.DataSource = TiposDeInstrumento;
             this.Focus();
         }
 
@@ -216,7 +216,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
         {
             serviceProvider = Program.services.BuildServiceProvider();
             Marcas = _marcaService.ObtenerMarcas().Data;
-            glMarca.Properties.DataSource = Marcas;
+            lookupMarca.Properties.DataSource = Marcas;
             this.Focus();
         }
 
@@ -234,7 +234,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
         {
             serviceProvider = Program.services.BuildServiceProvider();
             Modelos = _modeloService.ObtenerModelos().Data;
-            glModelo.Properties.DataSource = Modelos;
+            lookupModelo.Properties.DataSource = Modelos;
             this.Focus();
         }
     }

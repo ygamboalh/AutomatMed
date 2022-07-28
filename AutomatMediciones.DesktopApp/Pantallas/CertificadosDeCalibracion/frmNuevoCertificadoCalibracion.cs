@@ -86,9 +86,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
 
             var variablesInstrumentos = resultado.Data;
 
-            glVariableInstrumento.Properties.DataSource = variablesInstrumentos;
-            glVariableInstrumento.Properties.DisplayMember = "VariableDeMedicion.Descripcion";
-            glVariableInstrumento.Properties.ValueMember = "VariableInstrumentoId";
+            lookupVariableDeInstrumento.Properties.DataSource = variablesInstrumentos;
+            lookupVariableDeInstrumento.Properties.DisplayMember = "VariableDeMedicion.Descripcion";
+            lookupVariableDeInstrumento.Properties.ValueMember = "VariableInstrumentoId";
         }
 
 
@@ -183,10 +183,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
             var patronesRespuesta = resultado.Data;
-            glPatrones.Properties.DataSource = patronesRespuesta;
+            lookUpPatron.Properties.DataSource = patronesRespuesta;
 
-            glPatrones.Properties.DisplayMember = "Nombre";
-            glPatrones.Properties.ValueMember = "PatronId";
+            lookUpPatron.Properties.DisplayMember = "Nombre";
+            lookUpPatron.Properties.ValueMember = "PatronId";
         }
 
 
@@ -239,12 +239,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
 
         private void glPatrones_EditValueChanged(object sender, EventArgs e)
         {
-            patronSeleccionado = glPatronesView.GetFocusedRow() as PatronDto;
+            patronSeleccionado = lookUpPatron.GetSelectedDataRow() as PatronDto;
         }
 
         private void glVariableInstrumento_EditValueChanged(object sender, EventArgs e)
         {
-            variableInstrumentoSeleccionado = glVariableInstrumentoView.GetFocusedRow() as VariableInstrumentoDto;
+            variableInstrumentoSeleccionado = lookupVariableDeInstrumento.GetSelectedDataRow() as VariableInstrumentoDto;
         }
     }
 }

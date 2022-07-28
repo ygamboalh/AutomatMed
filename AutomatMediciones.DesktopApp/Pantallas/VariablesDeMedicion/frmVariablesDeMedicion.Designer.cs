@@ -50,6 +50,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.colTolerancia = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEditar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmdEditar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.colDescripcionCorta = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNombre = new DevExpress.XtraGrid.Columns.GridColumn();
             this.saveFileDialog = new DevExpress.XtraEditors.XtraSaveFileDialog(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -171,7 +173,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.colPrimerValorRango,
             this.colSegundoValorRango,
             this.colTolerancia,
-            this.colEditar});
+            this.colEditar,
+            this.colDescripcionCorta,
+            this.colNombre});
             this.gvVariablesDeMedicion.GridControl = this.gcVariablesDeMedicion;
             this.gvVariablesDeMedicion.Name = "gvVariablesDeMedicion";
             this.gvVariablesDeMedicion.OptionsView.ShowAutoFilterRow = true;
@@ -197,7 +201,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.colPrimerValorRango.OptionsColumn.AllowEdit = false;
             this.colPrimerValorRango.OptionsColumn.ReadOnly = true;
             this.colPrimerValorRango.Visible = true;
-            this.colPrimerValorRango.VisibleIndex = 1;
+            this.colPrimerValorRango.VisibleIndex = 3;
             this.colPrimerValorRango.Width = 94;
             // 
             // colSegundoValorRango
@@ -209,7 +213,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.colSegundoValorRango.OptionsColumn.AllowEdit = false;
             this.colSegundoValorRango.OptionsColumn.ReadOnly = true;
             this.colSegundoValorRango.Visible = true;
-            this.colSegundoValorRango.VisibleIndex = 2;
+            this.colSegundoValorRango.VisibleIndex = 4;
             this.colSegundoValorRango.Width = 94;
             // 
             // colTolerancia
@@ -221,7 +225,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.colTolerancia.OptionsColumn.AllowEdit = false;
             this.colTolerancia.OptionsColumn.ReadOnly = true;
             this.colTolerancia.Visible = true;
-            this.colTolerancia.VisibleIndex = 3;
+            this.colTolerancia.VisibleIndex = 5;
             this.colTolerancia.Width = 94;
             // 
             // colEditar
@@ -231,7 +235,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.colEditar.MinWidth = 24;
             this.colEditar.Name = "colEditar";
             this.colEditar.Visible = true;
-            this.colEditar.VisibleIndex = 4;
+            this.colEditar.VisibleIndex = 6;
             this.colEditar.Width = 30;
             // 
             // cmdEditar
@@ -242,6 +246,29 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "Editar", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.cmdEditar.Name = "cmdEditar";
             this.cmdEditar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
+            // colDescripcionCorta
+            // 
+            this.colDescripcionCorta.Caption = "Descripción Corta";
+            this.colDescripcionCorta.FieldName = "DescripcionCorta";
+            this.colDescripcionCorta.MinWidth = 25;
+            this.colDescripcionCorta.Name = "colDescripcionCorta";
+            this.colDescripcionCorta.OptionsColumn.AllowEdit = false;
+            this.colDescripcionCorta.OptionsColumn.AllowFocus = false;
+            this.colDescripcionCorta.OptionsColumn.ReadOnly = true;
+            this.colDescripcionCorta.Visible = true;
+            this.colDescripcionCorta.VisibleIndex = 2;
+            this.colDescripcionCorta.Width = 94;
+            // 
+            // colNombre
+            // 
+            this.colNombre.Caption = "Nombre";
+            this.colNombre.FieldName = "Nombre";
+            this.colNombre.MinWidth = 25;
+            this.colNombre.Name = "colNombre";
+            this.colNombre.Visible = true;
+            this.colNombre.VisibleIndex = 1;
+            this.colNombre.Width = 94;
             // 
             // frmVariablesDeMedicion
             // 
@@ -285,5 +312,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
         private DevExpress.XtraGrid.Columns.GridColumn colTolerancia;
         private FontAwesome.Sharp.IconButton btnExportarExcel;
         private DevExpress.XtraEditors.XtraSaveFileDialog saveFileDialog;
+        private DevExpress.XtraGrid.Columns.GridColumn colDescripcionCorta;
+        private DevExpress.XtraGrid.Columns.GridColumn colNombre;
     }
 }

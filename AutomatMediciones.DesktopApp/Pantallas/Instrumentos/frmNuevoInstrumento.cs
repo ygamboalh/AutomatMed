@@ -26,7 +26,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
         private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
         private readonly ClasificacionInstrumentoService _clasificacionInstrumentoService;
-        private readonly InstrumentoService _instrumentoService;
+        private InstrumentoService _instrumentoService;
         private readonly MarcaService _marcaService;
         private readonly ModeloService _modeloService;
         private readonly TipoDeInstrumentoService _tipoDeInstrumentoService;
@@ -142,6 +142,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         private void OnVariableMedicionModificada(VariableInstrumentoDto variableInstrumentoDto)
         {
             serviceProvider = Program.services.BuildServiceProvider();
+            _instrumentoService = serviceProvider.GetService<InstrumentoService>();
             CargarVariablesInstrumentos();
         }
 
@@ -275,7 +276,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
         private void CargarCeldas()
         {
-            var resultado = _celdaService.ObtenerCeldas();
+            var resultado = _celdaService.ObtenerCeldasEnStock();
             if (resultado.Type != TypeResponse.Ok)
             {
                 Notificaciones.MensajeError(resultado.Message);

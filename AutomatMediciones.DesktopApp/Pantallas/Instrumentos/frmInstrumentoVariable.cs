@@ -49,12 +49,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
         public void SetearValoresParaActualizar()
         {
-            glVariableDeMedicion.EditValue = NuevaVariableInstrumento.VariableMedicionId;
+            lookupVariableMedicion.EditValue = NuevaVariableInstrumento.VariableMedicionId;
             nmAlarmaAlta.Value = NuevaVariableInstrumento.AlarmaAlta.Value;
             nmAlarmaBaja.Value = NuevaVariableInstrumento.AlarmaBaja.Value;
             nmAlarmaStel.Value = NuevaVariableInstrumento.AlarmaStel.Value;
             nmAlarmaTwa.Value = NuevaVariableInstrumento.AlarmaTwa.Value;
+            toggleTieneAlarma.EditValue = NuevaVariableInstrumento.TieneAlarma;
             InstrumentoId = NuevaVariableInstrumento.InstrumentoId;
+
+            variableDeMedicionSeleccionada = NuevaVariableInstrumento.VariableDeMedicion;
         }
 
         private void EstablecerColorBotonGuardar()
@@ -114,9 +117,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
 
-            glVariableDeMedicion.Properties.DataSource = resultado.Data;
-            glVariableDeMedicion.Properties.ValueMember = "VariableMedicionId";
-            glVariableDeMedicion.Properties.DisplayMember = "Descripcion";
+            lookupVariableMedicion.Properties.DataSource = resultado.Data;
+            lookupVariableMedicion.Properties.ValueMember = "VariableMedicionId";
+            lookupVariableMedicion.Properties.DisplayMember = "Descripcion";
         }
 
         private bool GuardarVinculacionVariableMedicion()
@@ -146,7 +149,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
             try
             {
-                var resultado = _instrumentoService.GuardarVinculacionVariableDeMedicion(NuevaVariableInstrumento);
+                var resultado = _instrumentoService.ActualizarVinculacionVariableDeMedicion(NuevaVariableInstrumento);
                 if (resultado.Type != TypeResponse.Ok)
                 {
                     Notificaciones.MensajeError(resultado.Message);
@@ -182,14 +185,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             return true;
         }
 
-        private void glVariableDeMedicion_EditValueChanging(object sender, DevExpress.XtraEditors.Controls.ChangingEventArgs e)
-        {
-
-        }
-
+      
         private void glVariableDeMedicion_EditValueChanged(object sender, EventArgs e)
         {
-            variableDeMedicionSeleccionada = glVariableDeMedicion.GetSelectedDataRow() as VariableMedicionDto;
+            variableDeMedicionSeleccionada = lookupVariableMedicion.GetSelectedDataRow() as VariableMedicionDto;
         }
 
         private void btnNuevaVariableDeMedicion_Click(object sender, EventArgs e)

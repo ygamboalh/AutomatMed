@@ -76,11 +76,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                                                        serviceProvider.GetService<EstadoService>(),
                                                        serviceProvider.GetService<EmpresaService>()
                                                       );
+            frmIngresos.Text = "Editar Ingreso";
             frmIngresos.Ingreso = ingresoDb.Data;
             frmIngresos.SetearVariablesParaActualizar();
             frmIngresos.OnIngresoActualizado += frmIngresosOnIngresoActualizado;
             frmIngresos.MdiParent = this.ParentForm;
-            frmIngresos.ShowDialog();
+            frmIngresos.Show();
         }
 
         private void frmIngresosOnIngresoActualizado(IngresoDto ingreso)

@@ -1009,8 +1009,8 @@ namespace AutomatMediciones.DesktopApp.Reportes
             // 
             this.xrLabel42.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel42.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VariablesCertificado].[Patron].[VariablesPatrones].[Patron].[VariablesPatrones]." +
-                    "[ValorPatron]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Instrumento].[VariablesInstrumentos].[VariableDeMedicion].[VariablesPatrones].[V" +
+                    "alorPatron]")});
             this.xrLabel42.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrLabel42.LocationFloat = new DevExpress.Utils.PointFloat(25.83349F, 46.00006F);
             this.xrLabel42.Multiline = true;
@@ -1027,8 +1027,8 @@ namespace AutomatMediciones.DesktopApp.Reportes
             // 
             this.xrLabel43.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel43.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VariablesCertificado].[Patron].[VariablesPatrones].[Patron].[VariablesPatrones]." +
-                    "[Tolerancia]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Instrumento].[VariablesInstrumentos].[VariableDeMedicion].[VariablesPatrones].[T" +
+                    "olerancia]")});
             this.xrLabel43.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrLabel43.LocationFloat = new DevExpress.Utils.PointFloat(127.9421F, 46.00006F);
             this.xrLabel43.Multiline = true;
@@ -1045,7 +1045,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             // 
             this.xrLabel44.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel44.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VariablesCertificado].[ValorMedido]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Instrumento].[VariablesInstrumentos].[VariableCertificadoDto].[ValorMedido]")});
             this.xrLabel44.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrLabel44.LocationFloat = new DevExpress.Utils.PointFloat(283.3843F, 46.00006F);
             this.xrLabel44.Multiline = true;
@@ -1062,8 +1062,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             // 
             this.xrLabel45.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel45.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VariablesCertificado].[Patron].[VariablesPatrones].[Patron].[VariablesPatrones]." +
-                    "[VariableDeMedicion].[Tolerancia]")});
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Instrumento].[VariablesInstrumentos].[VariableDeMedicion].[Tolerancia]")});
             this.xrLabel45.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrLabel45.LocationFloat = new DevExpress.Utils.PointFloat(453.7246F, 46.00006F);
             this.xrLabel45.Multiline = true;
@@ -1175,7 +1174,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             // 
             this.GroupFooter1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrLabel54});
-            this.GroupFooter1.HeightF = 2F;
+            this.GroupFooter1.HeightF = 6.260986F;
             this.GroupFooter1.Name = "GroupFooter1";
             // 
             // xrLabel54

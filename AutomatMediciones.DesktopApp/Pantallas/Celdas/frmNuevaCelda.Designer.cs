@@ -29,10 +29,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
         /// </summary>
         private void InitializeComponent()
         {
-            this.glTipoCelda = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.glTipoInstrumentoView = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colTipoInstrumentoId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.dateFechaAdquisicion = new DevExpress.XtraEditors.DateEdit();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
@@ -42,59 +38,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btnGuardarCelda = new FontAwesome.Sharp.IconButton();
-            this.gleEstado = new DevExpress.XtraEditors.GridLookUpEdit();
-            this.glevEstado = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoCelda.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumentoView)).BeginInit();
+            this.lookupTipoCelda = new DevExpress.XtraEditors.LookUpEdit();
+            this.lookupEstado = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFechaAdquisicion.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFechaAdquisicion.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroSerie.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFechaFabricacion.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFechaFabricacion.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gleEstado.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glevEstado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookupTipoCelda.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookupEstado.Properties)).BeginInit();
             this.SuspendLayout();
-            // 
-            // glTipoCelda
-            // 
-            this.glTipoCelda.EditValue = "";
-            this.glTipoCelda.Location = new System.Drawing.Point(23, 119);
-            this.glTipoCelda.Name = "glTipoCelda";
-            this.glTipoCelda.Properties.AutoHeight = false;
-            this.glTipoCelda.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.glTipoCelda.Properties.NullText = "";
-            this.glTipoCelda.Properties.PopupView = this.glTipoInstrumentoView;
-            this.glTipoCelda.Size = new System.Drawing.Size(346, 31);
-            this.glTipoCelda.TabIndex = 138;
-            // 
-            // glTipoInstrumentoView
-            // 
-            this.glTipoInstrumentoView.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colTipoInstrumentoId,
-            this.colDescripcion});
-            this.glTipoInstrumentoView.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.glTipoInstrumentoView.Name = "glTipoInstrumentoView";
-            this.glTipoInstrumentoView.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.glTipoInstrumentoView.OptionsView.ShowGroupPanel = false;
-            // 
-            // colTipoInstrumentoId
-            // 
-            this.colTipoInstrumentoId.Caption = "Id";
-            this.colTipoInstrumentoId.FieldName = "TipoInstrumentoId";
-            this.colTipoInstrumentoId.Name = "colTipoInstrumentoId";
-            // 
-            // colDescripcion
-            // 
-            this.colDescripcion.Caption = "Descripcion";
-            this.colDescripcion.FieldName = "Descripcion";
-            this.colDescripcion.Name = "colDescripcion";
-            this.colDescripcion.OptionsColumn.AllowEdit = false;
-            this.colDescripcion.OptionsColumn.ReadOnly = true;
-            this.colDescripcion.Visible = true;
-            this.colDescripcion.VisibleIndex = 0;
             // 
             // labelControl11
             // 
@@ -207,51 +160,43 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
             this.btnGuardarCelda.UseVisualStyleBackColor = true;
             this.btnGuardarCelda.Click += new System.EventHandler(this.btnGuardarCelda_Click);
             // 
-            // gleEstado
+            // lookupTipoCelda
             // 
-            this.gleEstado.EditValue = "";
-            this.gleEstado.Location = new System.Drawing.Point(23, 268);
-            this.gleEstado.Name = "gleEstado";
-            this.gleEstado.Properties.AutoHeight = false;
-            this.gleEstado.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lookupTipoCelda.Location = new System.Drawing.Point(23, 121);
+            this.lookupTipoCelda.Name = "lookupTipoCelda";
+            this.lookupTipoCelda.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lookupTipoCelda.Properties.Appearance.Options.UseFont = true;
+            this.lookupTipoCelda.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.gleEstado.Properties.NullText = "";
-            this.gleEstado.Properties.PopupView = this.glevEstado;
-            this.gleEstado.Size = new System.Drawing.Size(346, 31);
-            this.gleEstado.TabIndex = 166;
+            this.lookupTipoCelda.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Descripcion", "Descripción")});
+            this.lookupTipoCelda.Properties.NullText = "";
+            this.lookupTipoCelda.Size = new System.Drawing.Size(346, 30);
+            this.lookupTipoCelda.TabIndex = 167;
             // 
-            // glevEstado
+            // lookupEstado
             // 
-            this.glevEstado.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
-            this.gridColumn2});
-            this.glevEstado.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.glevEstado.Name = "glevEstado";
-            this.glevEstado.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.glevEstado.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn1
-            // 
-            this.gridColumn1.Caption = "Id";
-            this.gridColumn1.FieldName = "TipoInstrumentoId";
-            this.gridColumn1.Name = "gridColumn1";
-            // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "Descripcion";
-            this.gridColumn2.FieldName = "Descripcion";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.OptionsColumn.AllowEdit = false;
-            this.gridColumn2.OptionsColumn.ReadOnly = true;
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 0;
+            this.lookupEstado.Location = new System.Drawing.Point(23, 268);
+            this.lookupEstado.Name = "lookupEstado";
+            this.lookupEstado.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lookupEstado.Properties.Appearance.Options.UseFont = true;
+            this.lookupEstado.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookupEstado.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Descripcion", "Descripción")});
+            this.lookupEstado.Properties.NullText = "";
+            this.lookupEstado.Size = new System.Drawing.Size(346, 30);
+            this.lookupEstado.TabIndex = 168;
             // 
             // frmNuevaCelda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(783, 414);
-            this.Controls.Add(this.gleEstado);
+            this.Controls.Add(this.lookupEstado);
+            this.Controls.Add(this.lookupTipoCelda);
             this.Controls.Add(this.btnGuardarCelda);
             this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.dateFechaFabricacion);
@@ -260,32 +205,24 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
             this.Controls.Add(this.labelControl9);
             this.Controls.Add(this.dateFechaAdquisicion);
             this.Controls.Add(this.labelControl15);
-            this.Controls.Add(this.glTipoCelda);
             this.Controls.Add(this.labelControl11);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmNuevaCelda";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nueva Celda";
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoCelda.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glTipoInstrumentoView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFechaAdquisicion.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFechaAdquisicion.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroSerie.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFechaFabricacion.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateFechaFabricacion.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gleEstado.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.glevEstado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookupTipoCelda.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookupEstado.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private DevExpress.XtraEditors.GridLookUpEdit glTipoCelda;
-        private DevExpress.XtraGrid.Views.Grid.GridView glTipoInstrumentoView;
-        private DevExpress.XtraGrid.Columns.GridColumn colTipoInstrumentoId;
-        private DevExpress.XtraGrid.Columns.GridColumn colDescripcion;
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.DateEdit dateFechaAdquisicion;
         private DevExpress.XtraEditors.LabelControl labelControl15;
@@ -295,9 +232,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Celdas
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private FontAwesome.Sharp.IconButton btnGuardarCelda;
-        private DevExpress.XtraEditors.GridLookUpEdit gleEstado;
-        private DevExpress.XtraGrid.Views.Grid.GridView glevEstado;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraEditors.LookUpEdit lookupTipoCelda;
+        private DevExpress.XtraEditors.LookUpEdit lookupEstado;
     }
 }

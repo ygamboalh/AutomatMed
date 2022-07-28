@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutomatMediciones.Dominio.Caracteristicas.Entidades;
+using AutomatMediciones.Dominio.Caracteristicas.Enums;
 using AutomatMediciones.Dominio.Infraestructura;
 using AutomatMediciones.Libs.Dtos;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +31,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                                                                               .Include(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
                                                                              .Include(x => x.Clasificacion).ThenInclude(x => x.Marca)
                                                                              .Include(x => x.Clasificacion).ThenInclude(x => x.Modelo)
+                                                                             .Include(x => x.CeldasInstrumentos)
                                                                              .Where(x => x.Activo)
                                                                              .ToList();
 
@@ -221,6 +223,9 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 var celdasInstrumentos = instrumentoDto.CeldasInstrumentos.Where(x => x.Id == 0).ToList();
                 if (celdasInstrumentos.Any())
                 {
+                    var celdasIds = celdasInstrumentos.Select(r => r.CeldaId);
+                    var celdas = _automatMedicionesDbContext.Celdas.Where(x => celdasIds.Contains(x.Id)).ToList();
+
                     List<CeldaInstrumento> celdasInstrumentosParaRegistrar = new List<CeldaInstrumento>();
                     celdasInstrumentos.ForEach(x =>
                     {
@@ -228,10 +233,13 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         {
                             CeldaId = x.CeldaId,
                             InstrumentoId = instrumentoBd.InstrumentoId,
-                            FechaColocacion = x.FechaColocacion,
-
+                            FechaColocacion = x.FechaColocacion,    
+                            Activo = true
                         });
                     });
+
+
+                    celdas.ForEach(y => y.EstadoId = (int)CeldaEstado.Colocada);
 
                     _automatMedicionesDbContext.CeldasInstrumentos.AddRange(celdasInstrumentosParaRegistrar);
                 }

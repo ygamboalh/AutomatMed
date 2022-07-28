@@ -36,21 +36,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeCelda
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnExportarExcel = new FontAwesome.Sharp.IconButton();
             this.btnNuevoTipoDeCelda = new FontAwesome.Sharp.IconButton();
@@ -62,18 +47,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeCelda
             this.colVariableDeMedicion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEditar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEditar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.cmdEditar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.cmdDesactivar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.cmdVerPatron = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.saveFileDialog = new DevExpress.XtraEditors.XtraSaveFileDialog(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcTiposDeCelda)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTipoDeCelda)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmdEditar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmdDesactivar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmdVerPatron)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -163,9 +142,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeCelda
             this.gcTiposDeCelda.Name = "gcTiposDeCelda";
             this.gcTiposDeCelda.Padding = new System.Windows.Forms.Padding(5);
             this.gcTiposDeCelda.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.cmdEditar,
-            this.cmdDesactivar,
-            this.cmdVerPatron,
             this.btnEditar});
             this.gcTiposDeCelda.Size = new System.Drawing.Size(1016, 401);
             this.gcTiposDeCelda.TabIndex = 38;
@@ -190,6 +166,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeCelda
             this.colTipoDeCelda.FieldName = "Descripcion";
             this.colTipoDeCelda.MinWidth = 25;
             this.colTipoDeCelda.Name = "colTipoDeCelda";
+            this.colTipoDeCelda.OptionsColumn.AllowEdit = false;
+            this.colTipoDeCelda.OptionsColumn.AllowFocus = false;
+            this.colTipoDeCelda.OptionsColumn.ReadOnly = true;
             this.colTipoDeCelda.Visible = true;
             this.colTipoDeCelda.VisibleIndex = 0;
             this.colTipoDeCelda.Width = 94;
@@ -200,6 +179,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeCelda
             this.colVariableDeMedicion.FieldName = "VariableDeMedicion.Descripcion";
             this.colVariableDeMedicion.MinWidth = 25;
             this.colVariableDeMedicion.Name = "colVariableDeMedicion";
+            this.colVariableDeMedicion.OptionsColumn.AllowEdit = false;
+            this.colVariableDeMedicion.OptionsColumn.AllowFocus = false;
+            this.colVariableDeMedicion.OptionsColumn.ReadOnly = true;
             this.colVariableDeMedicion.Visible = true;
             this.colVariableDeMedicion.VisibleIndex = 1;
             this.colVariableDeMedicion.Width = 94;
@@ -223,36 +205,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeCelda
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
-            // cmdEditar
-            // 
-            this.cmdEditar.AutoHeight = false;
-            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
-            this.cmdEditar.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "Editar", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.cmdEditar.Name = "cmdEditar";
-            this.cmdEditar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            // 
-            // cmdDesactivar
-            // 
-            this.cmdDesactivar.AutoHeight = false;
-            editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
-            this.cmdDesactivar.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "Desactivar", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.cmdDesactivar.Name = "cmdDesactivar";
-            this.cmdDesactivar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            // 
-            // cmdVerPatron
-            // 
-            this.cmdVerPatron.AutoHeight = false;
-            editorButtonImageOptions4.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions4.Image")));
-            this.cmdVerPatron.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(),
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "Ver Patrón", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.cmdVerPatron.Name = "cmdVerPatron";
-            this.cmdVerPatron.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            // 
             // frmTiposDeCelda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -270,9 +222,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeCelda
             ((System.ComponentModel.ISupportInitialize)(this.gcTiposDeCelda)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvTipoDeCelda)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmdEditar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmdDesactivar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmdVerPatron)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -286,9 +235,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeCelda
         private DevExpress.XtraEditors.LabelControl lblTotal;
         private DevExpress.XtraGrid.GridControl gcTiposDeCelda;
         private DevExpress.XtraGrid.Views.Grid.GridView gvTipoDeCelda;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit cmdEditar;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit cmdDesactivar;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit cmdVerPatron;
         private DevExpress.XtraGrid.Columns.GridColumn colTipoDeCelda;
         private DevExpress.XtraGrid.Columns.GridColumn colVariableDeMedicion;
         private DevExpress.XtraGrid.Columns.GridColumn colEditar;
