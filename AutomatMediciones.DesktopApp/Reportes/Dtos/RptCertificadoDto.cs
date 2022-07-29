@@ -12,14 +12,16 @@ namespace AutomatMediciones.DesktopApp.Reportes.Dtos
         public string TipoInstrumento { get; set; }
         public string Modelo { get; set; }
         public string Marca { get; set; }
-        public string Medicion { get; set; }
+        public List<string> Medicion { get; set; }
         public string Cliente { get; set; }
         public string Resumen { get; set; }
         public string Metodologia { get; set; }
         public List<string> Patrones { get; set; }
         public List<AlarmaDto> Alarmas { get; set; }
         public List<MedicionDto> Mediciones { get; set; }
-        public string CondicionesAmbientales { get; set; }
+        public string Observaciones { get; set; }
+        public string Resultado { get; set; }
+
         public string NombreResponsable { get; set; }
         public DateTime FechaCertificado { get; set; }
     }
@@ -35,6 +37,7 @@ namespace AutomatMediciones.DesktopApp.Reportes.Dtos
 
     public class MedicionDto
     {
+        public string CondicionesAmbientales { get; set; }
         public string NombreVariable { get; set; }
         public int VariableMedicionId { get; set; }
         public List<ValorMedicionDto> ValoresDeMedicion { get; set; }

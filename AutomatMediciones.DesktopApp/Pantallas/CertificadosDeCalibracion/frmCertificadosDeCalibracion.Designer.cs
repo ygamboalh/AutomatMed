@@ -94,6 +94,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.gvCertificados.Name = "gvCertificados";
             this.gvCertificados.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
             this.gvCertificados.OptionsView.ShowAutoFilterRow = true;
+            this.gvCertificados.OptionsView.ShowDetailButtons = false;
             this.gvCertificados.OptionsView.ShowGroupPanel = false;
             this.gvCertificados.OptionsView.ShowIndicator = false;
             // 

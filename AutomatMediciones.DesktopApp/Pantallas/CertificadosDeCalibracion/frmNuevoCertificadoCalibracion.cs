@@ -122,6 +122,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             Certificado.Fecha = dateFechaCertificado.Value;
             Certificado.ResponsableId = usuarioSeleccionado.UsuarioId;
             Certificado.VariablesCertificado = variablesCertificado;
+            Certificado.Resultado = memoResultado.Text;
+            Certificado.Observaciones = memoObservaciones.Text;
 
             return true;
         }

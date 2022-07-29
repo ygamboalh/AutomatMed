@@ -86,7 +86,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
                     Responsable = x.Responsable,
                     ResponsableId = x.ResponsableId,
                     ClasificacionConcatenada = $"{x.Instrumento.Clasificacion.TipoInstrumento.Descripcion}/{x.Instrumento.Clasificacion.Marca.Descripcion}/{x.Instrumento.Clasificacion.Modelo.Descripcion}",
-                    VariablesCertificado = x.VariablesCertificado
+                    VariablesCertificado = x.VariablesCertificado,
+                    Observaciones = x.Observaciones,
+                    Resultado = x.Resultado
                 };
                 lista.Add(certificadoView);
             });
@@ -123,7 +125,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
                     Responsable = x.Responsable,
                     ResponsableId = x.ResponsableId,
                     ClasificacionConcatenada = $"{x.Instrumento.Clasificacion.TipoInstrumento.Descripcion}/{x.Instrumento.Clasificacion.Marca.Descripcion}/{x.Instrumento.Clasificacion.Modelo.Descripcion}",
-                    VariablesCertificado = x.VariablesCertificado
+                    VariablesCertificado = x.VariablesCertificado,
+                    Observaciones = x.Observaciones,
+                    Resultado = x.Resultado
                 };
                 lista.Add(certificadoView);
             });

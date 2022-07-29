@@ -40,8 +40,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
                 Marca = certificadoDto.Instrumento.Clasificacion.Marca.Descripcion,
                 Resumen = certificadoDto.Instrumento.Clasificacion.TipoInstrumento.Resumen,
                 Metodologia = certificadoDto.Instrumento.Clasificacion.TipoInstrumento.Metodologia,
-                NombreResponsable = certificadoDto.Responsable.Nombre,
-                CondicionesAmbientales = certificadoDto.CondicionesAmbientales,
+                NombreResponsable = certificadoDto.Responsable.Nombre,        
                 Cliente = certificadoDto.Instrumento.NombreEmpresa,
                 Patrones = patrones,
                 FechaCertificado = certificadoDto.Fecha,
@@ -55,11 +54,14 @@ namespace AutomatMediciones.DesktopApp.Reportes
                 }).ToList(),
                 Mediciones = variablesDeMedicion.Select(y => new MedicionDto
                 {
+                    CondicionesAmbientales = certificadoDto.CondicionesAmbientales,
                     NombreVariable = y.Nombre,
                     VariableMedicionId = y.VariableMedicionId,
-                    ValoresDeMedicion = mediciones
-                }).ToList()
-                
+                    ValoresDeMedicion = mediciones.Where(x => x.VariableMedicionId == y.VariableMedicionId).ToList()
+                }).ToList(),
+                Medicion = variablesDeMedicion.Select(x => x.DescripcionCorta).ToList(),
+                Resultado = certificadoDto.Resultado,
+                Observaciones = certificadoDto.Observaciones
             };
 
             objectDataSource2.DataSource = reporte;

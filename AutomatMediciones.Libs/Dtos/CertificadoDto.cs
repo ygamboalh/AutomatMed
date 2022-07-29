@@ -12,6 +12,8 @@ namespace AutomatMediciones.Libs.Dtos
         public int InstrumentoId { get; set; }
         public string CondicionesAmbientales { get; set; }
         public int ResponsableId { get; set; }
+        public string Observaciones { get; set; }
+        public string Resultado { get; set; }
         public UsuarioDto Responsable { get; set; }
         public InstrumentoDto Instrumento { get; set; }
         public List<VariableCertificadoDto> VariablesCertificado { get; set; }

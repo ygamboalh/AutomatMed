@@ -74,7 +74,9 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     FechaCaducidad = certificadoDto.FechaCaducidad,
                     InstrumentoId = certificadoDto.InstrumentoId,
                     ResponsableId = certificadoDto.ResponsableId,
-                    NumeroCertificado = ""
+                    NumeroCertificado = "",
+                    Observaciones = certificadoDto.Observaciones,
+                    Resultado = certificadoDto.Resultado
                 };
 
                 _automatDbContext.Database.BeginTransaction();
