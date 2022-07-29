@@ -52,7 +52,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                                                             .Include(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
                                                             .Include(x => x.VariablesCertificado).ThenInclude(x => x.VariableInstrumento).ThenInclude(x => x.VariableDeMedicion)
                                                             .Include(x => x.VariablesCertificado).ThenInclude(x => x.Patron).ThenInclude(x => x.VariablesPatrones)
-                                                            .FirstOrDefault(x => x.InstrumentoId == instrumentoId);
+                                                            .Where(x => x.InstrumentoId == instrumentoId);
 
                 return Response<List<CertificadoDto>>.Ok("Ok", _mapper.Map<List<CertificadoDto>>(certificados));
             }

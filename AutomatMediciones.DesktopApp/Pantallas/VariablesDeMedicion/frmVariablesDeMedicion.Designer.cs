@@ -121,6 +121,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.colDescripcion.MinWidth = 24;
             this.colDescripcion.Name = "colDescripcion";
             this.colDescripcion.OptionsColumn.AllowEdit = false;
+            this.colDescripcion.OptionsColumn.AllowFocus = false;
             this.colDescripcion.OptionsColumn.ReadOnly = true;
             this.colDescripcion.Visible = true;
             this.colDescripcion.VisibleIndex = 0;
@@ -199,6 +200,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.colPrimerValorRango.MinWidth = 24;
             this.colPrimerValorRango.Name = "colPrimerValorRango";
             this.colPrimerValorRango.OptionsColumn.AllowEdit = false;
+            this.colPrimerValorRango.OptionsColumn.AllowFocus = false;
             this.colPrimerValorRango.OptionsColumn.ReadOnly = true;
             this.colPrimerValorRango.Visible = true;
             this.colPrimerValorRango.VisibleIndex = 3;
@@ -211,6 +213,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.colSegundoValorRango.MinWidth = 24;
             this.colSegundoValorRango.Name = "colSegundoValorRango";
             this.colSegundoValorRango.OptionsColumn.AllowEdit = false;
+            this.colSegundoValorRango.OptionsColumn.AllowFocus = false;
             this.colSegundoValorRango.OptionsColumn.ReadOnly = true;
             this.colSegundoValorRango.Visible = true;
             this.colSegundoValorRango.VisibleIndex = 4;
@@ -223,6 +226,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.colTolerancia.MinWidth = 24;
             this.colTolerancia.Name = "colTolerancia";
             this.colTolerancia.OptionsColumn.AllowEdit = false;
+            this.colTolerancia.OptionsColumn.AllowFocus = false;
             this.colTolerancia.OptionsColumn.ReadOnly = true;
             this.colTolerancia.Visible = true;
             this.colTolerancia.VisibleIndex = 5;
@@ -266,6 +270,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.colNombre.FieldName = "Nombre";
             this.colNombre.MinWidth = 25;
             this.colNombre.Name = "colNombre";
+            this.colNombre.OptionsColumn.AllowEdit = false;
+            this.colNombre.OptionsColumn.AllowFocus = false;
+            this.colNombre.OptionsColumn.ReadOnly = true;
             this.colNombre.Visible = true;
             this.colNombre.VisibleIndex = 1;
             this.colNombre.Width = 94;

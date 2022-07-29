@@ -41,9 +41,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
 
             rptCertificadoCalibracion report1 = new rptCertificadoCalibracion();
             report1.xrPictureBox2.ImageUrl = certificadoSeleccionado.Responsable.EnlaceFirmaDigital;
-            report1.objectDataSource1.DataSource = certificadoSeleccionado;
+            report1.PrepararCertificado(certificadoSeleccionado);
             report1.CreateDocument();
-
             ReportPrintTool printTool = new ReportPrintTool(report1);
             printTool.ShowRibbonPreview();
 
@@ -86,7 +85,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
                     NumeroCertificado = x.NumeroCertificado,
                     Responsable = x.Responsable,
                     ResponsableId = x.ResponsableId,
-                    ClasificacionConcatenada = $"{x.Instrumento.Clasificacion.TipoInstrumento.Descripcion}/{x.Instrumento.Clasificacion.Marca.Descripcion}/{x.Instrumento.Clasificacion.Modelo.Descripcion}"
+                    ClasificacionConcatenada = $"{x.Instrumento.Clasificacion.TipoInstrumento.Descripcion}/{x.Instrumento.Clasificacion.Marca.Descripcion}/{x.Instrumento.Clasificacion.Modelo.Descripcion}",
+                    VariablesCertificado = x.VariablesCertificado
                 };
                 lista.Add(certificadoView);
             });
@@ -122,7 +122,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
                     NumeroCertificado = x.NumeroCertificado,
                     Responsable = x.Responsable,
                     ResponsableId = x.ResponsableId,
-                    ClasificacionConcatenada = $"{x.Instrumento.Clasificacion.TipoInstrumento.Descripcion}/{x.Instrumento.Clasificacion.Marca.Descripcion}/{x.Instrumento.Clasificacion.Modelo.Descripcion}"
+                    ClasificacionConcatenada = $"{x.Instrumento.Clasificacion.TipoInstrumento.Descripcion}/{x.Instrumento.Clasificacion.Marca.Descripcion}/{x.Instrumento.Clasificacion.Modelo.Descripcion}",
+                    VariablesCertificado = x.VariablesCertificado
                 };
                 lista.Add(certificadoView);
             });

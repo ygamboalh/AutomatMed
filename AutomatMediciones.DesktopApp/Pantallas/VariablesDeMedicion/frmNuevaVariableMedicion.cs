@@ -57,6 +57,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             nmPrimerValorRango.Value = NuevaVariableMedicion.PrimerValorRango;
             nmSegundoValorRango.Value = NuevaVariableMedicion.SegundoValorRango;
             nmTolerancia.Value = NuevaVariableMedicion.Tolerancia;
+            txtDescripcionCorta.Text = NuevaVariableMedicion.DescripcionCorta;
+            txtNombre.Text = NuevaVariableMedicion.Nombre;
 
             if (NuevaVariableMedicion.TiposDeInstrumentoVariables.Any())
             {

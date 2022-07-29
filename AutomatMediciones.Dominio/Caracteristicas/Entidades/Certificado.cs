@@ -15,6 +15,6 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
 
         public Usuario Responsable { get; set; }
         public Instrumento Instrumento { get; set; }
-        public ICollection<VariableCertificado> VariablesCertificado { get; set; }
+        public List<VariableCertificado> VariablesCertificado { get; set; }
     }
 }
