@@ -13,22 +13,21 @@ namespace AutomatMediciones.DesktopApp.Reportes
 
         public void PrepararCertificado(CertificadoDto certificadoDto)
         {
-            var patrones = certificadoDto.VariablesCertificado.Select(y => y.Patron.Nombre).ToList();
-            var variablesInstrumentos = certificadoDto.VariablesCertificado.Select(x => x.VariableInstrumento).ToList();
+            var patrones = certificadoDto.VariablesCertificado.Where(x => x.Certificado.CertificadoId == certificadoDto.CertificadoId).Select(y => y.Patron.Nombre).ToList();
+            var variablesInstrumentos = certificadoDto.VariablesCertificado.Where(x => x.CertificadoId == certificadoDto.CertificadoId).Select(x => x.VariableInstrumento).ToList();
 
-            var variablesCertificados = certificadoDto.VariablesCertificado;
-            var variablesPatrones = variablesCertificados.Select(x => x.Patron).SelectMany(x => x.VariablesPatrones).ToList();
+            var variablesCertificados = certificadoDto.VariablesCertificado.Where(x => x.CertificadoId == certificadoDto.CertificadoId).ToList();
+            var variablesPatrones = variablesCertificados.Where(x => x.CertificadoId == certificadoDto.CertificadoId).Select(x => x.Patron).SelectMany(x => x.VariablesPatrones).ToList();
             var variablesDeMedicion = variablesInstrumentos.Select(x => x.VariableDeMedicion).ToList();
 
             var mediciones = (from variableCertificado in variablesCertificados
                                 join variableInstrumento in variablesInstrumentos on variableCertificado.VariableInstrumentoId equals variableInstrumento.VariableInstrumentoId
-                                join variableMedicion in variablesDeMedicion on variableInstrumento.VariableMedicionId equals variableMedicion.VariableMedicionId
-                                join variablePatron in variablesPatrones on variableCertificado.PatronId equals variablePatron.PatronId
+                                join variableMedicion in variablesDeMedicion on variableInstrumento.VariableMedicionId equals variableMedicion.VariableMedicionId                               
                                 select new ValorMedicionDto
                                 {
                                     VariableMedicionId = variableMedicion.VariableMedicionId,
-                                    ValorPatron = variablePatron.ValorPatron,
-                                    ToleranciaPatron = variablePatron.Tolerancia,
+                                    ValorPatron = variablesPatrones.FirstOrDefault(x => x.PatronId == variableCertificado.PatronId).ValorPatron,
+                                    ToleranciaPatron = variablesPatrones.FirstOrDefault(x => x.PatronId == variableCertificado.PatronId).Tolerancia,
                                     ToleranciaInstrumento = variableMedicion.Tolerancia,
                                     ValorMedido = variableCertificado.ValorMedido
                                 }).ToList();
@@ -63,7 +62,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
                 
             };
 
-            objectDataSource1.DataSource = reporte;
+            objectDataSource2.DataSource = reporte;
         }
     }
 }
