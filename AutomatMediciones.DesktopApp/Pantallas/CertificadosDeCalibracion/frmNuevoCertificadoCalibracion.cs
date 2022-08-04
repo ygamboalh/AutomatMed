@@ -29,6 +29,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
         private readonly PatronService _patronService;
         private readonly InstrumentoService _instrumentoService;
 
+        List<VariableInstrumentoDto> variablesInstrumentos = new List<VariableInstrumentoDto>();
+
         List<VariableCertificadoDto> variablesCertificado;
 
         public frmNuevoCertificadoCalibracion(int instrumentoId, CertificadoCalibracionService certificadoCalibracionService, UsuarioService usuarioService,
@@ -84,11 +86,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             var resultado = _instrumentoService.ObtenerVariablesInstrumentos(Certificado.InstrumentoId);
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
-            var variablesInstrumentos = resultado.Data;
+            variablesInstrumentos = resultado.Data;
 
-            lookupVariableDeInstrumento.Properties.DataSource = variablesInstrumentos;
-            lookupVariableDeInstrumento.Properties.DisplayMember = "VariableDeMedicion.Descripcion";
-            lookupVariableDeInstrumento.Properties.ValueMember = "VariableInstrumentoId";
         }
 
 
@@ -190,12 +189,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             lookUpPatron.Properties.ValueMember = "PatronId";
         }
 
-
-        private void frmNuevoCertificadoCalibracion_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void glUsuariosResponsables_EditValueChanged(object sender, EventArgs e)
         {
             usuarioSeleccionado = glUsuariosResponsablesView.GetFocusedRow() as UsuarioDto;
@@ -240,7 +233,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
 
         private void glPatrones_EditValueChanged(object sender, EventArgs e)
         {
+            lookupVariableDeInstrumento.Properties.DataSource = null;
+            lookupVariableDeInstrumento.EditValue = "";
+
             patronSeleccionado = lookUpPatron.GetSelectedDataRow() as PatronDto;
+            var variablesDeMedicion = patronSeleccionado.VariablesPatrones.Select(x => x.VariableDeMedicion).Select(x => x.VariableMedicionId);
+            var nuevasVariables = variablesInstrumentos.Where(x => variablesDeMedicion.Contains(x.VariableMedicionId)).ToList();
+
+            lookupVariableDeInstrumento.Properties.DataSource = nuevasVariables;
+            lookupVariableDeInstrumento.Properties.DisplayMember = "VariableDeMedicion.Descripcion";
+            lookupVariableDeInstrumento.Properties.ValueMember = "VariableInstrumentoId";
         }
 
         private void glVariableInstrumento_EditValueChanged(object sender, EventArgs e)

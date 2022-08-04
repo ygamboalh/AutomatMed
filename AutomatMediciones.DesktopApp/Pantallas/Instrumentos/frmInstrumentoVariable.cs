@@ -185,7 +185,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             return true;
         }
 
-      
+
         private void glVariableDeMedicion_EditValueChanged(object sender, EventArgs e)
         {
             variableDeMedicionSeleccionada = lookupVariableMedicion.GetSelectedDataRow() as VariableMedicionDto;

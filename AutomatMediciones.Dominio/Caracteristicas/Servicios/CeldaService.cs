@@ -118,7 +118,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 celdaDb.FechaFabricacion = celdaDto.FechaFabricacion;
                 celdaDb.NumeroSerie = celdaDto.NumeroSerie;
                 celdaDb.TipoCeldaId = celdaDto.TipoCeldaId;
-              
+
 
                 _automatDbContext.SaveChanges();
 

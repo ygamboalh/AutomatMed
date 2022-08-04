@@ -21,16 +21,16 @@ namespace AutomatMediciones.DesktopApp.Reportes
             var variablesDeMedicion = variablesInstrumentos.Select(x => x.VariableDeMedicion).ToList();
 
             var mediciones = (from variableCertificado in variablesCertificados
-                                join variableInstrumento in variablesInstrumentos on variableCertificado.VariableInstrumentoId equals variableInstrumento.VariableInstrumentoId
-                                join variableMedicion in variablesDeMedicion on variableInstrumento.VariableMedicionId equals variableMedicion.VariableMedicionId                               
-                                select new ValorMedicionDto
-                                {
-                                    VariableMedicionId = variableMedicion.VariableMedicionId,
-                                    ValorPatron = variablesPatrones.FirstOrDefault(x => x.PatronId == variableCertificado.PatronId).ValorPatron,
-                                    ToleranciaPatron = variablesPatrones.FirstOrDefault(x => x.PatronId == variableCertificado.PatronId).Tolerancia,
-                                    ToleranciaInstrumento = variableMedicion.Tolerancia,
-                                    ValorMedido = variableCertificado.ValorMedido
-                                }).ToList();
+                              join variableInstrumento in variablesInstrumentos on variableCertificado.VariableInstrumentoId equals variableInstrumento.VariableInstrumentoId
+                              join variableMedicion in variablesDeMedicion on variableInstrumento.VariableMedicionId equals variableMedicion.VariableMedicionId
+                              select new ValorMedicionDto
+                              {
+                                  VariableMedicionId = variableMedicion.VariableMedicionId,
+                                  ValorPatron = variablesPatrones.FirstOrDefault(x => x.PatronId == variableCertificado.PatronId).ValorPatron,
+                                  ToleranciaPatron = variablesPatrones.FirstOrDefault(x => x.PatronId == variableCertificado.PatronId).Tolerancia,
+                                  ToleranciaInstrumento = variableMedicion.Tolerancia,
+                                  ValorMedido = variableCertificado.ValorMedido
+                              }).ToList();
 
             var reporte = new RptCertificadoDto
             {
@@ -40,7 +40,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
                 Marca = certificadoDto.Instrumento.Clasificacion.Marca.Descripcion,
                 Resumen = certificadoDto.Instrumento.Clasificacion.TipoInstrumento.Resumen,
                 Metodologia = certificadoDto.Instrumento.Clasificacion.TipoInstrumento.Metodologia,
-                NombreResponsable = certificadoDto.Responsable.Nombre,        
+                NombreResponsable = certificadoDto.Responsable.Nombre,
                 Cliente = certificadoDto.Instrumento.NombreEmpresa,
                 Patrones = patrones,
                 FechaCertificado = certificadoDto.Fecha,

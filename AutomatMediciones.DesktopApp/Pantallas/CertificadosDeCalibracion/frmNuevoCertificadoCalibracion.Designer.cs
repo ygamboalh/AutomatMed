@@ -482,7 +482,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmNuevoCertificadoCalibracion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.frmNuevoCertificadoCalibracion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.memoCondicionesAmbientales.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.glUsuariosResponsables.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.glUsuariosResponsablesView)).EndInit();

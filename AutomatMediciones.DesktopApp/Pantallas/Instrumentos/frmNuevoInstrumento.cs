@@ -95,7 +95,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             if (variableInstrumento == null) return;
 
             var respuesta = _instrumentoService.DesactivarVariableInstrumento(variableInstrumento.VariableInstrumentoId);
-            if (respuesta.Type != TypeResponse.Ok) 
+            if (respuesta.Type != TypeResponse.Ok)
             {
                 Notificaciones.MensajeError(respuesta.Message);
                 return;

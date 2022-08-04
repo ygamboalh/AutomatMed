@@ -233,7 +233,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         {
                             CeldaId = x.CeldaId,
                             InstrumentoId = instrumentoBd.InstrumentoId,
-                            FechaColocacion = x.FechaColocacion,    
+                            FechaColocacion = x.FechaColocacion,
                             Activo = true
                         });
                     });
@@ -292,7 +292,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 }
 
                 variableInstrumentoBd.Activo = false;
-              
+
 
                 _automatMedicionesDbContext.SaveChanges();
 
@@ -331,13 +331,13 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
         {
             try
             {
-                var existeVariableVinculada = _automatMedicionesDbContext.VariablesInstrumentos.Any(x => x.Activo && 
-                                                                                                         x.InstrumentoId == variableInstrumentoDto.InstrumentoId && 
+                var existeVariableVinculada = _automatMedicionesDbContext.VariablesInstrumentos.Any(x => x.Activo &&
+                                                                                                         x.InstrumentoId == variableInstrumentoDto.InstrumentoId &&
                                                                                                          x.VariableMedicionId == variableInstrumentoDto.VariableMedicionId);
 
                 if (existeVariableVinculada) return Response<VariableInstrumentoDto>.ErrorValidation("Esta variable de medición ya está vinculada a este instrumento.", null);
-               
-                
+
+
 
 
                 VariableInstrumento variableInstrumento = new VariableInstrumento
