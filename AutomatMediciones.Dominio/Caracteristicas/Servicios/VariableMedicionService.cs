@@ -37,6 +37,21 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
+        public Response<List<VariableMedicionDto>> ObtenerVariablesDeMedicion(List<int> variablesPatronesVariablesMedicionIds, List<int> variablesInstrumentosVariablesMedicionIds)
+        {
+            try
+            {
+                var variablesDeMedicion = _tacticaDbContext.VariablesDeMedicion.Where(x => variablesPatronesVariablesMedicionIds.Contains(x.VariableMedicionId)).ToList();
+                variablesDeMedicion = variablesDeMedicion.Where(x => variablesInstrumentosVariablesMedicionIds.Contains(x.VariableMedicionId)).ToList();
+
+                return Response<List<VariableMedicionDto>>.Ok("Ok", _mapper.Map<List<VariableMedicionDto>>(variablesDeMedicion));
+            }
+            catch (Exception exc)
+            {
+                return Response<List<VariableMedicionDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
         public Response<bool> RegistrarVariableDeMedicion(VariableMedicionDto variableMedicionDto)
         {
             try

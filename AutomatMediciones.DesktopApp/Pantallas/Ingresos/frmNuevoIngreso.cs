@@ -812,6 +812,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             string textoEmail = ConvertirTextoPlanoEmailHaciaHtml();
 
+            configuracionNotificacion.Asunto = $"{configuracionNotificacion.Asunto} | Ingreso #{Ingreso.IngresoId}";
+
             CorreoNotificacionDto correoNotificacionDto = new CorreoNotificacionDto
             {
                 Body = textoEmail,
@@ -908,21 +910,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private void glUsuariosResponsables_EditValueChanged(object sender, EventArgs e)
         {
             usuarioSeleccionado = glUsuariosResponsablesView.GetFocusedRow() as UsuarioDto;
-        }
-
-        private void iconButton1_Click_1(object sender, EventArgs e)
-        {
-            var correoHelper = new CorreoHelper();
-
-            if (correoHelper.EnviarCorreo(PrepararCorreo()))
-            {
-                Notificaciones.MensajeConfirmacion("¡El ingreso se ha guardado exitosamente!");
-                return;
-            }
-
-            Notificaciones.MensajeConfirmacion("El ingreso se ha guardado exitosamente, pero hubo una falla en el momento de enviar la notificación por correo electrónico.");
-            return;
-
         }
 
         private void glContacto_TextChanged(object sender, EventArgs e)

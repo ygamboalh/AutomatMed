@@ -414,5 +414,18 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 return Response<List<VariableInstrumentoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
             }
         }
+
+        public Response<List<VariableInstrumentoDto>> ObtenerVariablesInstrumentos(List<int> variablesInstrumentosIds)
+        {
+            try
+            {
+                var variablesInstrumentos = _automatMedicionesDbContext.VariablesInstrumentos.Where(x => variablesInstrumentosIds.Contains(x.VariableInstrumentoId)).ToList();
+                return Response<List<VariableInstrumentoDto>>.Ok("Ok", _mapper.Map<List<VariableInstrumentoDto>>(variablesInstrumentos));
+            }
+            catch (Exception exc)
+            {
+                return Response<List<VariableInstrumentoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
     }
 }

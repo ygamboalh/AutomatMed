@@ -6,6 +6,7 @@ using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraReports.UI;
 using DevExpress.XtraSplashScreen;
+using Microsoft.Extensions.DependencyInjection;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
 {
     public partial class frmCertificadosDeCalibracion : DevExpress.XtraEditors.XtraForm
     {
+        private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
         private readonly CertificadoCalibracionService _certificadoCalibracionService;
 
         public List<CertificadoDto> Certificados { get; set; }
@@ -39,7 +41,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
 
             SplashScreenManager.ShowForm(typeof(frmSaving));
 
-            rptCertificadoCalibracion report1 = new rptCertificadoCalibracion();
+            rptCertificadoCalibracion report1 = new rptCertificadoCalibracion(serviceProvider.GetService<PatronService>(), serviceProvider.GetService<CertificadoCalibracionService>(),
+                serviceProvider.GetService<InstrumentoService>(), serviceProvider.GetService<VariableMedicionService>());
+
             report1.xrPictureBox2.ImageUrl = certificadoSeleccionado.Responsable.EnlaceFirmaDigital;
             report1.PrepararCertificado(certificadoSeleccionado);
             report1.CreateDocument();

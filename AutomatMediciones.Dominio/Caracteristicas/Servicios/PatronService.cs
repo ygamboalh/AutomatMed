@@ -177,6 +177,31 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
+        public Response<List<PatronDto>> ObtenerPatrones(List<int> patronesIds)
+        {
+            try
+            {
+                var patrones = _automatMedicionesDbContext.Patrones.Where(x => patronesIds.Contains(x.PatronId)).ToList();
+                return Response<List<PatronDto>>.Ok("Ok", _mapper.Map<List<PatronDto>>(patrones));
+            }
+            catch (Exception exc)
+            {
+                return Response<List<PatronDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
+        public Response<List<VariablePatronDto>> ObtenerVariablesPatrones(List<int> patronesIds)
+        {
+            try
+            {
+                var variablesPatrones = _automatMedicionesDbContext.VariablesPatrones.Where(x => patronesIds.Contains(x.PatronId)).ToList();
+                return Response<List<VariablePatronDto>>.Ok("Ok", _mapper.Map<List<VariablePatronDto>>(variablesPatrones));
+            }
+            catch (Exception exc)
+            {
+                return Response<List<VariablePatronDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
 
     }
 }

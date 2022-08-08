@@ -62,6 +62,19 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
+        public Response<List<VariableCertificadoDto>> ObtenerVariablesCertificados(int certificadoId)
+        {
+            try
+            {
+                var certificados = _automatDbContext.VariablesCertificados.Where(x => x.CertificadoId == certificadoId).ToList();
+                return Response<List<VariableCertificadoDto>>.Ok("Ok", _mapper.Map<List<VariableCertificadoDto>>(certificados));
+            }
+            catch (Exception exc)
+            {
+                return Response<List<VariableCertificadoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
 
         public Response<CertificadoDto> RegistrarCertificado(CertificadoDto certificadoDto)
         {

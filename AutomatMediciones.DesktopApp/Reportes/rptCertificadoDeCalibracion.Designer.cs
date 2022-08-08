@@ -121,14 +121,12 @@ namespace AutomatMediciones.DesktopApp.Reportes
             // 
             // BottomMargin
             // 
-            this.BottomMargin.HeightF = 9F;
+            this.BottomMargin.HeightF = 0F;
             this.BottomMargin.Name = "BottomMargin";
             // 
             // Detail
             // 
-            this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel28});
-            this.Detail.HeightF = 23.66526F;
+            this.Detail.HeightF = 0F;
             this.Detail.Name = "Detail";
             // 
             // xrLabel28
@@ -137,11 +135,11 @@ namespace AutomatMediciones.DesktopApp.Reportes
             this.xrLabel28.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Patrones]")});
             this.xrLabel28.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel28.LocationFloat = new DevExpress.Utils.PointFloat(25.83238F, 0F);
+            this.xrLabel28.LocationFloat = new DevExpress.Utils.PointFloat(144.4722F, 222.9263F);
             this.xrLabel28.Multiline = true;
             this.xrLabel28.Name = "xrLabel28";
             this.xrLabel28.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel28.SizeF = new System.Drawing.SizeF(600F, 23F);
+            this.xrLabel28.SizeF = new System.Drawing.SizeF(479.9974F, 23F);
             this.xrLabel28.StylePriority.UseBorders = false;
             this.xrLabel28.StylePriority.UseFont = false;
             this.xrLabel28.StylePriority.UseTextAlignment = false;
@@ -231,11 +229,11 @@ namespace AutomatMediciones.DesktopApp.Reportes
             // 
             this.xrLabel21.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel21.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel21.LocationFloat = new DevExpress.Utils.PointFloat(24.47217F, 226.093F);
+            this.xrLabel21.LocationFloat = new DevExpress.Utils.PointFloat(25.83383F, 199.9263F);
             this.xrLabel21.Multiline = true;
             this.xrLabel21.Name = "xrLabel21";
             this.xrLabel21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel21.SizeF = new System.Drawing.SizeF(600F, 23.00002F);
+            this.xrLabel21.SizeF = new System.Drawing.SizeF(118.6384F, 23.00003F);
             this.xrLabel21.StylePriority.UseBorders = false;
             this.xrLabel21.StylePriority.UseFont = false;
             this.xrLabel21.StylePriority.UseTextAlignment = false;
@@ -248,11 +246,11 @@ namespace AutomatMediciones.DesktopApp.Reportes
             this.xrLabel24.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Metodologia]")});
             this.xrLabel24.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel24.LocationFloat = new DevExpress.Utils.PointFloat(24.47217F, 249.0931F);
+            this.xrLabel24.LocationFloat = new DevExpress.Utils.PointFloat(144.4722F, 199.9263F);
             this.xrLabel24.Multiline = true;
             this.xrLabel24.Name = "xrLabel24";
             this.xrLabel24.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel24.SizeF = new System.Drawing.SizeF(599.9999F, 23F);
+            this.xrLabel24.SizeF = new System.Drawing.SizeF(479.9974F, 22.99998F);
             this.xrLabel24.StylePriority.UseBorders = false;
             this.xrLabel24.StylePriority.UseFont = false;
             this.xrLabel24.StylePriority.UseTextAlignment = false;
@@ -264,11 +262,11 @@ namespace AutomatMediciones.DesktopApp.Reportes
             this.xrLabel20.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Resumen]")});
             this.xrLabel20.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel20.LocationFloat = new DevExpress.Utils.PointFloat(24.47221F, 199.9263F);
+            this.xrLabel20.LocationFloat = new DevExpress.Utils.PointFloat(144.4722F, 176.9263F);
             this.xrLabel20.Multiline = true;
             this.xrLabel20.Name = "xrLabel20";
             this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel20.SizeF = new System.Drawing.SizeF(599.9999F, 23F);
+            this.xrLabel20.SizeF = new System.Drawing.SizeF(479.9974F, 23F);
             this.xrLabel20.StylePriority.UseBorders = false;
             this.xrLabel20.StylePriority.UseFont = false;
             this.xrLabel20.StylePriority.UseTextAlignment = false;
@@ -282,7 +280,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             this.xrLabel19.Multiline = true;
             this.xrLabel19.Name = "xrLabel19";
             this.xrLabel19.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel19.SizeF = new System.Drawing.SizeF(600F, 23.00002F);
+            this.xrLabel19.SizeF = new System.Drawing.SizeF(120F, 23.00002F);
             this.xrLabel19.StylePriority.UseBorders = false;
             this.xrLabel19.StylePriority.UseFont = false;
             this.xrLabel19.StylePriority.UseTextAlignment = false;
@@ -526,15 +524,15 @@ namespace AutomatMediciones.DesktopApp.Reportes
             this.xrPictureBox2.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "ImageUrl", "[Responsable].[EnlaceFirmaDigital]")});
             this.xrPictureBox2.ImageAlignment = DevExpress.XtraPrinting.ImageAlignment.MiddleRight;
-            this.xrPictureBox2.LocationFloat = new DevExpress.Utils.PointFloat(366.0006F, 3.333333F);
+            this.xrPictureBox2.LocationFloat = new DevExpress.Utils.PointFloat(366.0005F, 0F);
             this.xrPictureBox2.Name = "xrPictureBox2";
-            this.xrPictureBox2.SizeF = new System.Drawing.SizeF(258.4691F, 51.61519F);
+            this.xrPictureBox2.SizeF = new System.Drawing.SizeF(258.4691F, 44.94851F);
             this.xrPictureBox2.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
             // 
             // xrLabel46
             // 
             this.xrLabel46.Font = new System.Drawing.Font("Segoe UI", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel46.LocationFloat = new DevExpress.Utils.PointFloat(25.83369F, 92.61515F);
+            this.xrLabel46.LocationFloat = new DevExpress.Utils.PointFloat(25.83356F, 82.61513F);
             this.xrLabel46.Multiline = true;
             this.xrLabel46.Name = "xrLabel46";
             this.xrLabel46.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -547,7 +545,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             // xrLabel47
             // 
             this.xrLabel47.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel47.LocationFloat = new DevExpress.Utils.PointFloat(366.0006F, 73.78184F);
+            this.xrLabel47.LocationFloat = new DevExpress.Utils.PointFloat(366.0005F, 63.78182F);
             this.xrLabel47.Multiline = true;
             this.xrLabel47.Name = "xrLabel47";
             this.xrLabel47.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -562,7 +560,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             this.xrLabel48.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[NombreResponsable]")});
             this.xrLabel48.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel48.LocationFloat = new DevExpress.Utils.PointFloat(366.0006F, 54.94853F);
+            this.xrLabel48.LocationFloat = new DevExpress.Utils.PointFloat(366.0005F, 44.94852F);
             this.xrLabel48.Multiline = true;
             this.xrLabel48.Name = "xrLabel48";
             this.xrLabel48.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -576,7 +574,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             // 
             this.xrLabel6.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel6.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(439.5589F, 139.2818F);
+            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(439.5588F, 129.2818F);
             this.xrLabel6.Multiline = true;
             this.xrLabel6.Name = "xrLabel6";
             this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -591,7 +589,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             // 
             this.xrLabel4.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel4.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(242.8919F, 139.2818F);
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(242.8918F, 129.2818F);
             this.xrLabel4.Multiline = true;
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -606,7 +604,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             // 
             this.xrLabel3.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel3.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(94.55866F, 139.2818F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(94.55855F, 129.2818F);
             this.xrLabel3.Multiline = true;
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -626,11 +624,11 @@ namespace AutomatMediciones.DesktopApp.Reportes
             // 
             this.xrLabel25.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel25.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel25.LocationFloat = new DevExpress.Utils.PointFloat(24.47202F, 280.5937F);
+            this.xrLabel25.LocationFloat = new DevExpress.Utils.PointFloat(25.83383F, 222.9263F);
             this.xrLabel25.Multiline = true;
             this.xrLabel25.Name = "xrLabel25";
             this.xrLabel25.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel25.SizeF = new System.Drawing.SizeF(600F, 23.00002F);
+            this.xrLabel25.SizeF = new System.Drawing.SizeF(118.6384F, 23.00003F);
             this.xrLabel25.StylePriority.UseBorders = false;
             this.xrLabel25.StylePriority.UseFont = false;
             this.xrLabel25.StylePriority.UseTextAlignment = false;
@@ -640,6 +638,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             // GroupHeader1
             // 
             this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel28,
             this.xrLabel55,
             this.xrLabel52,
             this.xrLabel49,
@@ -659,7 +658,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             this.xrLabel10,
             this.xrLabel9,
             this.xrLabel11});
-            this.GroupHeader1.HeightF = 311.2604F;
+            this.GroupHeader1.HeightF = 246.7606F;
             this.GroupHeader1.Name = "GroupHeader1";
             // 
             // xrLabel55
@@ -908,7 +907,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             this.xrLabel44,
             this.xrLabel41,
             this.xrLabel37});
-            this.Detail2.HeightF = 72.48952F;
+            this.Detail2.HeightF = 70.67576F;
             this.Detail2.Name = "Detail2";
             // 
             // xrLabel38
@@ -1084,7 +1083,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             this.xrLabel26,
             this.xrLabel27,
             this.xrLabel5});
-            this.GroupHeader3.HeightF = 115.9804F;
+            this.GroupHeader3.HeightF = 110.553F;
             this.GroupHeader3.Name = "GroupHeader3";
             // 
             // xrLabel51
@@ -1093,7 +1092,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             this.xrLabel51.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel51.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrLabel51.ForeColor = System.Drawing.Color.White;
-            this.xrLabel51.LocationFloat = new DevExpress.Utils.PointFloat(23.11137F, 56.91879F);
+            this.xrLabel51.LocationFloat = new DevExpress.Utils.PointFloat(21.74749F, 47.75212F);
             this.xrLabel51.Multiline = true;
             this.xrLabel51.Name = "xrLabel51";
             this.xrLabel51.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -1112,7 +1111,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             this.xrLabel53.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel53.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrLabel53.ForeColor = System.Drawing.Color.White;
-            this.xrLabel53.LocationFloat = new DevExpress.Utils.PointFloat(23.11137F, 7.999979F);
+            this.xrLabel53.LocationFloat = new DevExpress.Utils.PointFloat(21.7475F, 0F);
             this.xrLabel53.Multiline = true;
             this.xrLabel53.Name = "xrLabel53";
             this.xrLabel53.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -1129,7 +1128,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             // 
             this.xrLabel26.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel26.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel26.LocationFloat = new DevExpress.Utils.PointFloat(23.11137F, 69.98052F);
+            this.xrLabel26.LocationFloat = new DevExpress.Utils.PointFloat(21.74749F, 60.81385F);
             this.xrLabel26.Multiline = true;
             this.xrLabel26.Name = "xrLabel26";
             this.xrLabel26.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -1146,7 +1145,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             this.xrLabel27.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[CondicionesAmbientales]")});
             this.xrLabel27.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel27.LocationFloat = new DevExpress.Utils.PointFloat(23.11137F, 92.9804F);
+            this.xrLabel27.LocationFloat = new DevExpress.Utils.PointFloat(21.74749F, 83.81373F);
             this.xrLabel27.Multiline = true;
             this.xrLabel27.Name = "xrLabel27";
             this.xrLabel27.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -1160,7 +1159,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             // xrLabel5
             // 
             this.xrLabel5.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(23.11137F, 19.72229F);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(21.75107F, 10F);
             this.xrLabel5.Multiline = true;
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -1175,7 +1174,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             // 
             this.GroupFooter1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrLabel54});
-            this.GroupFooter1.HeightF = 6.260986F;
+            this.GroupFooter1.HeightF = 11.05856F;
             this.GroupFooter1.Name = "GroupFooter1";
             // 
             // xrLabel54
@@ -1203,7 +1202,6 @@ namespace AutomatMediciones.DesktopApp.Reportes
             this.Detail3});
             this.DetailReport2.Level = 2;
             this.DetailReport2.Name = "DetailReport2";
-            this.DetailReport2.PageBreak = DevExpress.XtraReports.UI.PageBreak.BeforeBand;
             // 
             // Detail3
             // 
@@ -1212,18 +1210,18 @@ namespace AutomatMediciones.DesktopApp.Reportes
             this.xrLabel59,
             this.xrLabel56,
             this.xrLabel57});
-            this.Detail3.HeightF = 126.8063F;
+            this.Detail3.HeightF = 51.58513F;
             this.Detail3.Name = "Detail3";
             // 
             // xrLabel58
             // 
             this.xrLabel58.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel58.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel58.LocationFloat = new DevExpress.Utils.PointFloat(21.74864F, 72.37325F);
+            this.xrLabel58.LocationFloat = new DevExpress.Utils.PointFloat(21.74749F, 28.83331F);
             this.xrLabel58.Multiline = true;
             this.xrLabel58.Name = "xrLabel58";
             this.xrLabel58.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel58.SizeF = new System.Drawing.SizeF(275.8333F, 19.66667F);
+            this.xrLabel58.SizeF = new System.Drawing.SizeF(91.67023F, 19.66667F);
             this.xrLabel58.StylePriority.UseBorders = false;
             this.xrLabel58.StylePriority.UseFont = false;
             this.xrLabel58.StylePriority.UseTextAlignment = false;
@@ -1237,26 +1235,26 @@ namespace AutomatMediciones.DesktopApp.Reportes
             this.xrLabel59.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Observaciones]")});
             this.xrLabel59.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel59.LocationFloat = new DevExpress.Utils.PointFloat(21.74864F, 92.04F);
+            this.xrLabel59.LocationFloat = new DevExpress.Utils.PointFloat(113.4177F, 28.83331F);
             this.xrLabel59.Multiline = true;
             this.xrLabel59.Name = "xrLabel59";
             this.xrLabel59.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel59.SizeF = new System.Drawing.SizeF(602.721F, 20.52988F);
+            this.xrLabel59.SizeF = new System.Drawing.SizeF(512.4161F, 19.66665F);
             this.xrLabel59.StylePriority.UseBorders = false;
             this.xrLabel59.StylePriority.UseFont = false;
             this.xrLabel59.StylePriority.UseTextAlignment = false;
             this.xrLabel59.Text = "Certificado N°:";
-            this.xrLabel59.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            this.xrLabel59.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrLabel56
             // 
             this.xrLabel56.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel56.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel56.LocationFloat = new DevExpress.Utils.PointFloat(23.10875F, 14.16667F);
+            this.xrLabel56.LocationFloat = new DevExpress.Utils.PointFloat(21.75106F, 5.833333F);
             this.xrLabel56.Multiline = true;
             this.xrLabel56.Name = "xrLabel56";
             this.xrLabel56.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel56.SizeF = new System.Drawing.SizeF(275.8333F, 23.00001F);
+            this.xrLabel56.SizeF = new System.Drawing.SizeF(91.66666F, 23.00001F);
             this.xrLabel56.StylePriority.UseBorders = false;
             this.xrLabel56.StylePriority.UseFont = false;
             this.xrLabel56.StylePriority.UseTextAlignment = false;
@@ -1270,16 +1268,16 @@ namespace AutomatMediciones.DesktopApp.Reportes
             this.xrLabel57.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Resultado]")});
             this.xrLabel57.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel57.LocationFloat = new DevExpress.Utils.PointFloat(23.10875F, 37.16655F);
+            this.xrLabel57.LocationFloat = new DevExpress.Utils.PointFloat(113.4177F, 6.166415F);
             this.xrLabel57.Multiline = true;
             this.xrLabel57.Name = "xrLabel57";
             this.xrLabel57.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel57.SizeF = new System.Drawing.SizeF(602.721F, 22.66693F);
+            this.xrLabel57.SizeF = new System.Drawing.SizeF(512.4161F, 22.66693F);
             this.xrLabel57.StylePriority.UseBorders = false;
             this.xrLabel57.StylePriority.UseFont = false;
             this.xrLabel57.StylePriority.UseTextAlignment = false;
             this.xrLabel57.Text = "Certificado N°:";
-            this.xrLabel57.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            this.xrLabel57.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // ReportFooter
             // 
@@ -1291,7 +1289,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             this.xrLabel6,
             this.xrLabel4,
             this.xrPictureBox2});
-            this.ReportFooter.HeightF = 168.9485F;
+            this.ReportFooter.HeightF = 155.302F;
             this.ReportFooter.Name = "ReportFooter";
             this.ReportFooter.PrintAtBottom = true;
             // 
@@ -1312,7 +1310,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
             this.objectDataSource2});
             this.DataSource = this.objectDataSource2;
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(100, 98, 7, 9);
+            this.Margins = new System.Drawing.Printing.Margins(100, 98, 7, 0);
             this.Version = "21.2";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource2)).EndInit();

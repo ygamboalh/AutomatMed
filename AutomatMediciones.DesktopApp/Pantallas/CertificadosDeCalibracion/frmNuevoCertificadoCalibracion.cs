@@ -164,7 +164,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             if (GuardarCertificadoCalibracion())
             {
                 Notificaciones.MensajeConfirmacion("¡El certificado se generó exitosamente!");
-                rptCertificadoCalibracion reporteCertificado = new rptCertificadoCalibracion();
+                rptCertificadoCalibracion reporteCertificado = new rptCertificadoCalibracion(serviceProvider.GetService<PatronService>(), serviceProvider.GetService<CertificadoCalibracionService>(),
+                serviceProvider.GetService<InstrumentoService>(), serviceProvider.GetService<VariableMedicionService>());
                 reporteCertificado.xrPictureBox2.ImageUrl = Certificado.Responsable.EnlaceFirmaDigital;
                 reporteCertificado.PrepararCertificado(Certificado);
                 ReportPrintTool printTool = new ReportPrintTool(reporteCertificado);
@@ -173,8 +174,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
 
 
             SplashScreenManager.CloseForm();
-
-
         }
 
         private void CargarPatrones()
