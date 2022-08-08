@@ -36,6 +36,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
             this.gcCertificados = new DevExpress.XtraGrid.GridControl();
             this.gvCertificados = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -49,6 +59,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.colNumeroSerie = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colVerCertificado = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnVerCertificado = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.colEditar = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnEditar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.colVerCertificadoGuardado = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnVerCertificadoOriginal = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTotal = new DevExpress.XtraEditors.LabelControl();
             this.saveFileDialog = new DevExpress.XtraEditors.XtraSaveFileDialog(this.components);
@@ -57,6 +71,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             ((System.ComponentModel.ISupportInitialize)(this.gcCertificados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCertificados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnVerCertificado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEditar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnVerCertificadoOriginal)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
@@ -71,7 +87,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.gcCertificados.Name = "gcCertificados";
             this.gcCertificados.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
             this.gcCertificados.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.btnVerCertificado});
+            this.btnVerCertificado,
+            this.btnEditar,
+            this.btnVerCertificadoOriginal});
             this.gcCertificados.Size = new System.Drawing.Size(1022, 600);
             this.gcCertificados.TabIndex = 36;
             this.gcCertificados.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -89,7 +107,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.colInstrumento,
             this.colClasificacion,
             this.colNumeroSerie,
-            this.colVerCertificado});
+            this.colVerCertificado,
+            this.colEditar,
+            this.colVerCertificadoGuardado});
             this.gvCertificados.GridControl = this.gcCertificados;
             this.gvCertificados.Name = "gvCertificados";
             this.gvCertificados.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
@@ -230,6 +250,44 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.btnVerCertificado.Name = "btnVerCertificado";
             this.btnVerCertificado.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
+            // colEditar
+            // 
+            this.colEditar.ColumnEdit = this.btnEditar;
+            this.colEditar.MaxWidth = 30;
+            this.colEditar.MinWidth = 25;
+            this.colEditar.Name = "colEditar";
+            this.colEditar.Visible = true;
+            this.colEditar.VisibleIndex = 9;
+            this.colEditar.Width = 30;
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.AutoHeight = false;
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            this.btnEditar.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
+            // colVerCertificadoGuardado
+            // 
+            this.colVerCertificadoGuardado.ColumnEdit = this.btnVerCertificadoOriginal;
+            this.colVerCertificadoGuardado.MaxWidth = 30;
+            this.colVerCertificadoGuardado.MinWidth = 25;
+            this.colVerCertificadoGuardado.Name = "colVerCertificadoGuardado";
+            this.colVerCertificadoGuardado.Visible = true;
+            this.colVerCertificadoGuardado.VisibleIndex = 10;
+            this.colVerCertificadoGuardado.Width = 30;
+            // 
+            // btnVerCertificadoOriginal
+            // 
+            this.btnVerCertificadoOriginal.AutoHeight = false;
+            editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
+            this.btnVerCertificadoOriginal.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "Ver Certificado Guardado", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.btnVerCertificadoOriginal.Name = "btnVerCertificadoOriginal";
+            this.btnVerCertificadoOriginal.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.lblTotal);
@@ -303,6 +361,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             ((System.ComponentModel.ISupportInitialize)(this.gcCertificados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCertificados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnVerCertificado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEditar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnVerCertificadoOriginal)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -330,5 +390,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
         private DevExpress.XtraGrid.Columns.GridColumn colInstrumento;
         private DevExpress.XtraGrid.Columns.GridColumn colClasificacion;
         private DevExpress.XtraGrid.Columns.GridColumn colNumeroSerie;
+        private DevExpress.XtraGrid.Columns.GridColumn colEditar;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEditar;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnVerCertificadoOriginal;
+        private DevExpress.XtraGrid.Columns.GridColumn colVerCertificadoGuardado;
     }
 }

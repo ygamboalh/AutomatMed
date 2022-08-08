@@ -550,7 +550,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         private void iconButton1_Click(object sender, EventArgs e)
         {
 
-            var frmNuevoCertificadoCalibracion = new frmNuevoCertificadoCalibracion(NuevoInstrumento.InstrumentoId,
+            var frmNuevoCertificadoCalibracion = new frmNuevoCertificadoCalibracion(TipoTransaccion.Insertar,NuevoInstrumento.InstrumentoId,
                 serviceProvider.GetService<CertificadoCalibracionService>(),
                  serviceProvider.GetService<UsuarioService>(),
                  serviceProvider.GetService<PatronService>(),

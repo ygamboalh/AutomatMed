@@ -20,6 +20,7 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.Property(x => x.CondicionesAmbientales).HasColumnName("condiciones_ambientales").HasColumnType("VARCHAR(45)");
             builder.Property(x => x.Resultado).HasColumnName("resultado").HasColumnType("VARCHAR(3000)");
             builder.Property(x => x.Observaciones).HasColumnName("observaciones").HasColumnType("VARCHAR(3000)");
+            builder.Property(x => x.RutaCertificado).HasColumnName("ruta_certificado").HasColumnType("VARCHAR(100)");
 
             builder.HasMany(x => x.VariablesCertificado).WithOne(x => x.Certificado).HasForeignKey(x => x.CertificadoId);
         }

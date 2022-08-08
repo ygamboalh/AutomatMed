@@ -89,13 +89,15 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     ResponsableId = certificadoDto.ResponsableId,
                     NumeroCertificado = "",
                     Observaciones = certificadoDto.Observaciones,
-                    Resultado = certificadoDto.Resultado
+                    Resultado = certificadoDto.Resultado,
+                 
                 };
 
                 _automatDbContext.Database.BeginTransaction();
                 _automatDbContext.Certificados.Add(certificado);
                 _automatDbContext.SaveChanges();
 
+          
                 List<VariableCertificado> variableCertificados = new List<VariableCertificado>();
 
                 certificadoDto.VariablesCertificado.ToList().ForEach(x =>
@@ -130,6 +132,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 if (certificadoDb != null)
                 {
                     certificadoDb.NumeroCertificado = $"{certificado.CertificadoId}-AM-{certificadoDto.Fecha.ToString("dd/MM/yyyy")}";
+                    certificadoDb.RutaCertificado = $"{certificadoDto.RutaCertificado}/{certificado.CertificadoId}.pdf";
+
                 }
 
                 _automatDbContext.SaveChanges();
@@ -138,6 +142,32 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 var certificadoConvertido = _mapper.Map<CertificadoDto>(certificadoDb);
 
                 return Response<CertificadoDto>.Ok("Ok", certificadoConvertido);
+            }
+            catch (Exception exc)
+            {
+                _automatDbContext.Database.RollbackTransaction();
+                return Response<CertificadoDto>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
+        public Response<CertificadoDto> ActualizarCertificado(CertificadoDto certificadoDto)
+        {
+            try
+            {
+                var certificadoDb = _automatDbContext.Certificados.FirstOrDefault(x => x.CertificadoId == certificadoDto.CertificadoId);
+                if (certificadoDb == null) return Response<CertificadoDto>.Error("No se encontró el certificado solicitado.", null);
+
+                certificadoDb.CondicionesAmbientales = certificadoDto.CondicionesAmbientales;
+                certificadoDb.Fecha = certificadoDto.Fecha;
+                certificadoDb.FechaCaducidad = certificadoDto.FechaCaducidad;
+                certificadoDb.InstrumentoId = certificadoDto.InstrumentoId;
+                certificadoDb.NumeroCertificado = certificadoDto.NumeroCertificado;
+                certificadoDb.Observaciones = certificadoDto.Observaciones;
+                certificadoDb.ResponsableId = certificadoDto.ResponsableId;
+                certificadoDb.Resultado = certificadoDto.Resultado;
+             
+
+                return Response<CertificadoDto>.Ok("Ok", certificadoDto);
             }
             catch (Exception exc)
             {

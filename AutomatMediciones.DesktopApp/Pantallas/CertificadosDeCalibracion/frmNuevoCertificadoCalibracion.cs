@@ -3,9 +3,11 @@ using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.DesktopApp.Reportes;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
+using DevExpress.XtraPrinting;
 using DevExpress.XtraReports.UI;
 using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
+using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
@@ -18,12 +20,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
     public partial class frmNuevoCertificadoCalibracion : DevExpress.XtraEditors.XtraForm
     {
         private readonly ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
+
+        public delegate void CertificadoActualizado(CertificadoDto certificado);
+        public event CertificadoActualizado OnCertificadoActualizado;
         public CertificadoDto Certificado { get; set; }
+        public TipoTransaccion TipoTransaccion { get; set; }
 
         UsuarioDto usuarioSeleccionado;
         PatronDto patronSeleccionado;
         VariableInstrumentoDto variableInstrumentoSeleccionado;
-
+        
         private readonly CertificadoCalibracionService _certificadoCalibracionService;
         private readonly UsuarioService _usuarioService;
         private readonly PatronService _patronService;
@@ -33,11 +39,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
 
         List<VariableCertificadoDto> variablesCertificado;
 
-        public frmNuevoCertificadoCalibracion(int instrumentoId, CertificadoCalibracionService certificadoCalibracionService, UsuarioService usuarioService,
+        public frmNuevoCertificadoCalibracion(TipoTransaccion tipoTransaccion,int instrumentoId, CertificadoCalibracionService certificadoCalibracionService, UsuarioService usuarioService,
             PatronService patronService, InstrumentoService instrumentoService)
         {
             InitializeComponent();
-
+            TipoTransaccion = tipoTransaccion;
             _certificadoCalibracionService = certificadoCalibracionService;
             _usuarioService = usuarioService;
             _patronService = patronService;
@@ -45,6 +51,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
 
             Certificado = new CertificadoDto();
             Certificado.InstrumentoId = instrumentoId;
+
+            usuarioSeleccionado = new UsuarioDto();
 
             variablesCertificado = new List<VariableCertificadoDto>();
 
@@ -57,6 +65,29 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             btnEliminar.Click += btnEliminarClick;
         }
 
+        public void SetearValoresParaActualizar()
+        {
+            memoCondicionesAmbientales.Text = Certificado.CondicionesAmbientales;
+
+            dateFechaCaducidad.Value = Certificado.FechaCaducidad;
+            dateFechaCertificado.Value = Certificado.Fecha ;
+           
+            variablesCertificado = Certificado.VariablesCertificado;
+            memoResultado.Text =  Certificado.Resultado;
+            memoObservaciones.Text = Certificado.Observaciones;
+            txtRutaArchivo.Text = Certificado.RutaCertificado;
+            glUsuariosResponsables.EditValue = Certificado.ResponsableId;
+
+            usuarioSeleccionado = usuarios.FirstOrDefault(x => x.UsuarioId == Certificado.ResponsableId);
+            gcVariablesCertificado.DataSource = Certificado.VariablesCertificado;
+            gcVariablesCertificado.RefreshDataSource();
+
+            btnAdjunto.Visible = false;
+            txtRutaArchivo.Visible = false;
+            lblCertificado.Visible = false;
+        }
+
+        List<UsuarioDto> usuarios = new List<UsuarioDto>();
         private void btnEliminarClick(object sender, EventArgs e)
         {
             var filaSeleccionada = gvVariablesCertificado.GetFocusedRow() as VariableCertificadoDto;
@@ -74,7 +105,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             var resultado = _usuarioService.ObtenerUsuariosActivos();
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
-            var usuarios = resultado.Data;
+            usuarios = resultado.Data;
 
             glUsuariosResponsables.Properties.DataSource = usuarios;
             glUsuariosResponsables.Properties.DisplayMember = "Nombre";
@@ -116,6 +147,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
                 return false;
             }
 
+            if (string.IsNullOrEmpty(txtRutaArchivo.Text))
+            {
+                Notificaciones.MensajeAdvertencia("¡Es necesario que seleccione una ruta para guardar el certificado!");
+                return false;
+            }
+
             Certificado.CondicionesAmbientales = memoCondicionesAmbientales.Text;
             Certificado.FechaCaducidad = dateFechaCaducidad.Value;
             Certificado.Fecha = dateFechaCertificado.Value;
@@ -123,6 +160,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             Certificado.VariablesCertificado = variablesCertificado;
             Certificado.Resultado = memoResultado.Text;
             Certificado.Observaciones = memoObservaciones.Text;
+            Certificado.RutaCertificado =  txtRutaArchivo.Text;
 
             return true;
         }
@@ -155,21 +193,77 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             }
         }
 
+        private bool ActualizarCertificadoDeCalibracion()
+        {
+
+            try
+            {
+                var resultado = _certificadoCalibracionService.ActualizarCertificado(Certificado);
+                if (resultado.Type != TypeResponse.Ok)
+                {
+                    Notificaciones.MensajeError(resultado.Message);
+                    return false;
+                }
+
+                Certificado = resultado.Data;
+
+                return true;
+            }
+            catch (Exception exc)
+            {
+                Notificaciones.MensajeError(ExceptionsHelper.ObtenerMensajeExcepcion(exc));
+                return false;
+            }
+        }
+
         private void btnGenerarCertificado_Click(object sender, EventArgs e)
         {
             if (!PrepararCertificado()) return;
 
             SplashScreenManager.ShowForm(typeof(frmLoadingSave));
 
-            if (GuardarCertificadoCalibracion())
+            if (TipoTransaccion == TipoTransaccion.Insertar)
             {
-                Notificaciones.MensajeConfirmacion("¡El certificado se generó exitosamente!");
-                rptCertificadoCalibracion reporteCertificado = new rptCertificadoCalibracion(serviceProvider.GetService<PatronService>(), serviceProvider.GetService<CertificadoCalibracionService>(),
-                serviceProvider.GetService<InstrumentoService>(), serviceProvider.GetService<VariableMedicionService>());
-                reporteCertificado.xrPictureBox2.ImageUrl = Certificado.Responsable.EnlaceFirmaDigital;
-                reporteCertificado.PrepararCertificado(Certificado);
-                ReportPrintTool printTool = new ReportPrintTool(reporteCertificado);
-                printTool.ShowRibbonPreview();
+                if (GuardarCertificadoCalibracion())
+                {
+                    Notificaciones.MensajeConfirmacion("¡El certificado se generó exitosamente!");
+                    rptCertificadoCalibracion reporteCertificado = new rptCertificadoCalibracion(serviceProvider.GetService<PatronService>(), serviceProvider.GetService<CertificadoCalibracionService>(),
+                    serviceProvider.GetService<InstrumentoService>(), serviceProvider.GetService<VariableMedicionService>());
+                    reporteCertificado.xrPictureBox2.ImageUrl = Certificado.Responsable.EnlaceFirmaDigital;
+                    reporteCertificado.PrepararCertificado(Certificado);
+                    ReportPrintTool printTool = new ReportPrintTool(reporteCertificado);
+
+                    // Specify export options.
+                    PdfExportOptions pdfExportOptions = new PdfExportOptions()
+                    {
+                        PdfACompatibility = PdfACompatibility.PdfA1b
+                    };
+
+                    // Specify the path for the exported PDF file.  
+                    string pdfExportFile = $"{txtRutaArchivo.Text}/{Certificado.CertificadoId}.pdf";
+
+
+                    // Export the report.
+                    reporteCertificado.ExportToPdf(pdfExportFile, pdfExportOptions);
+
+                    printTool.ShowRibbonPreview();
+                }
+            }
+            else
+            {
+                if (ActualizarCertificadoDeCalibracion())
+                {
+                    Notificaciones.MensajeConfirmacion("¡El certificado se actualizó exitosamente!");
+                    OnCertificadoActualizado?.Invoke(Certificado);
+
+
+                    rptCertificadoCalibracion reporteCertificado = new rptCertificadoCalibracion(serviceProvider.GetService<PatronService>(), serviceProvider.GetService<CertificadoCalibracionService>(),
+                    serviceProvider.GetService<InstrumentoService>(), serviceProvider.GetService<VariableMedicionService>());
+                    reporteCertificado.xrPictureBox2.ImageUrl = Certificado.Responsable.EnlaceFirmaDigital;
+                    reporteCertificado.PrepararCertificado(Certificado);
+                    ReportPrintTool printTool = new ReportPrintTool(reporteCertificado);
+                    printTool.ShowRibbonPreview();
+                }
             }
 
 
@@ -247,6 +341,17 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
         private void glVariableInstrumento_EditValueChanged(object sender, EventArgs e)
         {
             variableInstrumentoSeleccionado = lookupVariableDeInstrumento.GetSelectedDataRow() as VariableInstrumentoDto;
+        }
+
+        private void btnAdjunto_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            
+           
+            if (fbd.ShowDialog() == DialogResult.OK)
+            {
+                txtRutaArchivo.Text = fbd.SelectedPath;
+            }
         }
     }
 }

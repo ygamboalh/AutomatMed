@@ -14,7 +14,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
         public int ResponsableId { get; set; }
         public string Observaciones { get; set; }
         public string Resultado { get; set; }
-
+        public string RutaCertificado { get; set; }
         public Usuario Responsable { get; set; }
         public Instrumento Instrumento { get; set; }
         public List<VariableCertificado> VariablesCertificado { get; set; }

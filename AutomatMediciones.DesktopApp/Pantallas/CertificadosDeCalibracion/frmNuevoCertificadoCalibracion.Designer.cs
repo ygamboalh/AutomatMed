@@ -29,12 +29,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            this.components = new System.ComponentModel.Container();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNuevoCertificadoCalibracion));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.dateFechaCertificado = new System.Windows.Forms.DateTimePicker();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.memoCondicionesAmbientales = new DevExpress.XtraEditors.MemoEdit();
@@ -66,6 +67,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.memoObservaciones = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.btnAdjunto = new FontAwesome.Sharp.IconButton();
+            this.lblCertificado = new DevExpress.XtraEditors.LabelControl();
+            this.txtRutaArchivo = new DevExpress.XtraEditors.TextEdit();
+            this.xtraSaveFileDialog1 = new DevExpress.XtraEditors.XtraSaveFileDialog(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.memoCondicionesAmbientales.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glUsuariosResponsables.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.glUsuariosResponsablesView)).BeginInit();
@@ -78,6 +83,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             ((System.ComponentModel.ISupportInitialize)(this.nmValorMedido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoResultado.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoObservaciones.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRutaArchivo.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // dateFechaCertificado
@@ -151,7 +157,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.btnGenerarCertificado.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGenerarCertificado.IconSize = 30;
             this.btnGenerarCertificado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGenerarCertificado.Location = new System.Drawing.Point(596, 666);
+            this.btnGenerarCertificado.Location = new System.Drawing.Point(596, 678);
             this.btnGenerarCertificado.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnGenerarCertificado.Name = "btnGenerarCertificado";
             this.btnGenerarCertificado.Size = new System.Drawing.Size(220, 52);
@@ -165,7 +171,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(510, 590);
+            this.labelControl6.Location = new System.Drawing.Point(513, 611);
             this.labelControl6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(127, 17);
@@ -174,7 +180,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             // glUsuariosResponsables
             // 
-            this.glUsuariosResponsables.Location = new System.Drawing.Point(510, 611);
+            this.glUsuariosResponsables.Location = new System.Drawing.Point(513, 632);
             this.glUsuariosResponsables.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.glUsuariosResponsables.Name = "glUsuariosResponsables";
             this.glUsuariosResponsables.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -226,18 +232,18 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.groupBox1.Controls.Add(this.labelControl5);
             this.groupBox1.Controls.Add(this.labelControl7);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox1.Location = new System.Drawing.Point(37, 241);
+            this.groupBox1.Location = new System.Drawing.Point(37, 314);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(779, 299);
+            this.groupBox1.Size = new System.Drawing.Size(779, 250);
             this.groupBox1.TabIndex = 136;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Variables de Certificado";
             // 
             // lookupVariableDeInstrumento
             // 
-            this.lookupVariableDeInstrumento.Location = new System.Drawing.Point(309, 46);
+            this.lookupVariableDeInstrumento.Location = new System.Drawing.Point(312, 40);
             this.lookupVariableDeInstrumento.Name = "lookupVariableDeInstrumento";
             this.lookupVariableDeInstrumento.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lookupVariableDeInstrumento.Properties.Appearance.Options.UseFont = true;
@@ -253,7 +259,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             // lookUpPatron
             // 
-            this.lookUpPatron.Location = new System.Drawing.Point(24, 46);
+            this.lookUpPatron.Location = new System.Drawing.Point(27, 40);
             this.lookUpPatron.Name = "lookUpPatron";
             this.lookUpPatron.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lookUpPatron.Properties.Appearance.Options.UseFont = true;
@@ -270,13 +276,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // gcVariablesCertificado
             // 
             this.gcVariablesCertificado.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.gcVariablesCertificado.Location = new System.Drawing.Point(23, 94);
+            this.gcVariablesCertificado.Location = new System.Drawing.Point(26, 75);
             this.gcVariablesCertificado.MainView = this.gvVariablesCertificado;
             this.gcVariablesCertificado.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.gcVariablesCertificado.Name = "gcVariablesCertificado";
             this.gcVariablesCertificado.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnEliminar});
-            this.gcVariablesCertificado.Size = new System.Drawing.Size(734, 190);
+            this.gcVariablesCertificado.Size = new System.Drawing.Size(734, 159);
             this.gcVariablesCertificado.TabIndex = 157;
             this.gcVariablesCertificado.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvVariablesCertificado});
@@ -345,9 +351,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // btnEliminar
             // 
             this.btnEliminar.AutoHeight = false;
-            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
+            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
             this.btnEliminar.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "Eliminar", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "Eliminar", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -355,7 +361,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(310, 28);
+            this.labelControl2.Location = new System.Drawing.Point(313, 22);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(140, 17);
@@ -372,7 +378,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             this.btnAgregarVariable.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAgregarVariable.IconSize = 30;
             this.btnAgregarVariable.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarVariable.Location = new System.Drawing.Point(717, 44);
+            this.btnAgregarVariable.Location = new System.Drawing.Point(720, 38);
             this.btnAgregarVariable.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnAgregarVariable.Name = "btnAgregarVariable";
             this.btnAgregarVariable.Size = new System.Drawing.Size(40, 32);
@@ -385,7 +391,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             this.nmValorMedido.DecimalPlaces = 2;
             this.nmValorMedido.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.nmValorMedido.Location = new System.Drawing.Point(595, 45);
+            this.nmValorMedido.Location = new System.Drawing.Point(598, 39);
             this.nmValorMedido.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.nmValorMedido.Maximum = new decimal(new int[] {
             10000,
@@ -400,7 +406,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(595, 28);
+            this.labelControl5.Location = new System.Drawing.Point(598, 22);
             this.labelControl5.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(84, 17);
@@ -411,7 +417,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(24, 28);
+            this.labelControl7.Location = new System.Drawing.Point(27, 22);
             this.labelControl7.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(38, 17);
@@ -441,7 +447,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             // memoObservaciones
             // 
-            this.memoObservaciones.Location = new System.Drawing.Point(37, 570);
+            this.memoObservaciones.Location = new System.Drawing.Point(40, 591);
             this.memoObservaciones.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.memoObservaciones.Name = "memoObservaciones";
             this.memoObservaciones.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -453,18 +459,66 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             // 
             this.labelControl9.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.labelControl9.Appearance.Options.UseFont = true;
-            this.labelControl9.Location = new System.Drawing.Point(37, 549);
+            this.labelControl9.Location = new System.Drawing.Point(40, 570);
             this.labelControl9.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(89, 17);
             this.labelControl9.TabIndex = 139;
             this.labelControl9.Text = "Observaciones:";
             // 
+            // btnAdjunto
+            // 
+            this.btnAdjunto.FlatAppearance.BorderSize = 0;
+            this.btnAdjunto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdjunto.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAdjunto.IconChar = FontAwesome.Sharp.IconChar.Paperclip;
+            this.btnAdjunto.IconColor = System.Drawing.Color.Black;
+            this.btnAdjunto.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAdjunto.IconSize = 30;
+            this.btnAdjunto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdjunto.Location = new System.Drawing.Point(776, 267);
+            this.btnAdjunto.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnAdjunto.Name = "btnAdjunto";
+            this.btnAdjunto.Size = new System.Drawing.Size(40, 32);
+            this.btnAdjunto.TabIndex = 160;
+            this.btnAdjunto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAdjunto.UseVisualStyleBackColor = true;
+            this.btnAdjunto.Click += new System.EventHandler(this.btnAdjunto_Click);
+            // 
+            // lblCertificado
+            // 
+            this.lblCertificado.Appearance.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCertificado.Appearance.Options.UseFont = true;
+            this.lblCertificado.Location = new System.Drawing.Point(37, 239);
+            this.lblCertificado.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.lblCertificado.Name = "lblCertificado";
+            this.lblCertificado.Size = new System.Drawing.Size(153, 17);
+            this.lblCertificado.TabIndex = 158;
+            this.lblCertificado.Text = "Dirección Archivo Adjunto:";
+            // 
+            // txtRutaArchivo
+            // 
+            this.txtRutaArchivo.EditValue = "";
+            this.txtRutaArchivo.Location = new System.Drawing.Point(37, 264);
+            this.txtRutaArchivo.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.txtRutaArchivo.Name = "txtRutaArchivo";
+            this.txtRutaArchivo.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtRutaArchivo.Properties.Appearance.Options.UseFont = true;
+            this.txtRutaArchivo.Size = new System.Drawing.Size(731, 30);
+            this.txtRutaArchivo.TabIndex = 159;
+            // 
+            // xtraSaveFileDialog1
+            // 
+            this.xtraSaveFileDialog1.FileName = "xtraSaveFileDialog1";
+            // 
             // frmNuevoCertificadoCalibracion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(850, 735);
+            this.ClientSize = new System.Drawing.Size(850, 741);
+            this.Controls.Add(this.btnAdjunto);
+            this.Controls.Add(this.lblCertificado);
+            this.Controls.Add(this.txtRutaArchivo);
             this.Controls.Add(this.memoObservaciones);
             this.Controls.Add(this.labelControl9);
             this.Controls.Add(this.memoResultado);
@@ -495,6 +549,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             ((System.ComponentModel.ISupportInitialize)(this.nmValorMedido)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoResultado.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoObservaciones.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRutaArchivo.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -533,5 +588,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.MemoEdit memoObservaciones;
         private DevExpress.XtraEditors.LabelControl labelControl9;
+        private FontAwesome.Sharp.IconButton btnAdjunto;
+        private DevExpress.XtraEditors.LabelControl lblCertificado;
+        private DevExpress.XtraEditors.TextEdit txtRutaArchivo;
+        private DevExpress.XtraEditors.XtraSaveFileDialog xtraSaveFileDialog1;
     }
 }

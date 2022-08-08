@@ -7,6 +7,7 @@ using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraReports.UI;
 using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
+using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
     public partial class frmCertificadosDeCalibracion : DevExpress.XtraEditors.XtraForm
     {
         private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
-        private readonly CertificadoCalibracionService _certificadoCalibracionService;
+        private  CertificadoCalibracionService _certificadoCalibracionService;
 
         public List<CertificadoDto> Certificados { get; set; }
         public int InstrumentoId { get; set; }
@@ -28,8 +29,53 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             EstablecerNombreYTituloPopupAgregarInstrumentos();
             EstablecerColorBotonExportarExcel();
             btnVerCertificado.Click += btnVerCertificado_Click;
+            btnEditar.Click += btnEditar_Click;
+            btnVerCertificadoOriginal.Click += btnVerCertificadoOriginalClick;
 
             _certificadoCalibracionService = certificadoCalibracionService;
+
+            CargarCertificadosDeCalibracion();
+        }
+
+        private void btnVerCertificadoOriginalClick(object sender, EventArgs e)
+        {
+            var certificadoSeleccionado = gvCertificados.GetFocusedRow() as CertificadoDto;
+            if (certificadoSeleccionado == null) return;
+
+            if (string.IsNullOrEmpty(certificadoSeleccionado.RutaCertificado))
+            {
+                Notificaciones.MensajeAdvertencia("Este certificado no está guardado en un directorio.");
+                return;
+            }
+
+            SplashScreenManager.ShowForm(typeof(frmLoadingSave));
+            var frm = new frmVisualizadorPdf(certificadoSeleccionado.RutaCertificado);
+            frm.Show();
+            SplashScreenManager.CloseForm();
+
+
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            var certificadoSeleccionado = gvCertificados.GetFocusedRow() as CertificadoDto;
+            if (certificadoSeleccionado == null) return;
+
+            var frmCertificadoCalibracion = new frmNuevoCertificadoCalibracion(TipoTransaccion.Actualizar, certificadoSeleccionado.InstrumentoId,
+                serviceProvider.GetService<CertificadoCalibracionService>(),
+                 serviceProvider.GetService<UsuarioService>(),
+                 serviceProvider.GetService<PatronService>(),
+                 serviceProvider.GetService<InstrumentoService>());
+            frmCertificadoCalibracion.Certificado = certificadoSeleccionado;
+            frmCertificadoCalibracion.OnCertificadoActualizado += frmCertificadoCalibracionCertificadoActualizado;
+            frmCertificadoCalibracion.SetearValoresParaActualizar();
+            frmCertificadoCalibracion.ShowDialog();
+        }
+
+        private void frmCertificadoCalibracionCertificadoActualizado(CertificadoDto certificado)
+        {
+            serviceProvider = Program.services.BuildServiceProvider();
+            _certificadoCalibracionService = serviceProvider.GetService<CertificadoCalibracionService>();
 
             CargarCertificadosDeCalibracion();
         }
@@ -92,7 +138,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
                     ClasificacionConcatenada = $"{x.Instrumento.Clasificacion.TipoInstrumento.Descripcion}/{x.Instrumento.Clasificacion.Marca.Descripcion}/{x.Instrumento.Clasificacion.Modelo.Descripcion}",
                     VariablesCertificado = x.VariablesCertificado,
                     Observaciones = x.Observaciones,
-                    Resultado = x.Resultado
+                    Resultado = x.Resultado,
+                    RutaCertificado = x.RutaCertificado
                 };
                 lista.Add(certificadoView);
             });

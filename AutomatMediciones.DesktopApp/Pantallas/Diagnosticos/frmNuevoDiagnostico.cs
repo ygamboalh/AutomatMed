@@ -344,7 +344,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
         private void btnPrepararCertificado_Click(object sender, EventArgs e)
         {
             serviceProvider = Program.services.BuildServiceProvider();
-            var frmNuevoCertificadoCalibracion = new frmNuevoCertificadoCalibracion(IngresoInstrumento.InstrumentoId,
+            var frmNuevoCertificadoCalibracion = new frmNuevoCertificadoCalibracion(TipoTransaccion.Insertar, IngresoInstrumento.InstrumentoId,
                 serviceProvider.GetService<CertificadoCalibracionService>(),
                  serviceProvider.GetService<UsuarioService>(),
                  serviceProvider.GetService<PatronService>(),
