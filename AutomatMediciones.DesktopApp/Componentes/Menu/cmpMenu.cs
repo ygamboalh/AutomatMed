@@ -48,7 +48,16 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.btnDiagnosticosNoExpandido.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
 
             this.btnConfiguracion.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
-            this.btnTipoInstrumentoSimplificado.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
+           
+            this.btnCertificados.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
+            this.btnCertificadosContraido.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
+
+            this.btnCeldas.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
+            this.btnCeldContraida.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
+
+            this.btnPatrones.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
+            this.btnPatronContraido.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
+
         }
 
         private void EstablecerColorFondoMenu()
@@ -139,17 +148,19 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
 
         public void AccionesBotonConfiguracion(bool activo)
         {
-            pnlCertificados.Visible = activo;
-            pnlClasificaciones.Visible = activo;
+            pnlTipoInstrumento.Visible = activo;
             pnlMarcas.Visible = activo;
             pnlModelos.Visible = activo;
-            pnlTipoInstrumento.Visible = activo;
-            pnlVariableMedicion.Visible = activo;
-            pnlPatrones.Visible = activo;
             pnlInstrumento.Visible = activo;
-            pnlCeldas.Visible = activo;
-            pnlUsuarios.Visible = activo;
+            pnlClasificaciones.Visible = activo;
+
+            pnlSeparador.Visible = activo;
+
             pnlTipoCelda.Visible = activo;
+            pnlVariableMedicion.Visible = activo;              
+            pnlUsuarios.Visible = activo;
+           
+         
         }
 
         private void cmdClasificacionInstrumentos_Click(object sender, System.EventArgs e)
@@ -205,6 +216,11 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
         private void cmdTipoCelda_Click(object sender, System.EventArgs e)
         {
             OnMenuSeleccionado?.Invoke(IndiceMenu.TiposDeCelda);
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
