@@ -35,14 +35,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
 
         }
 
-
-
         private void OnSeleccionaVariableMedicionParaModificar(object sender, EventArgs e)
         {
             var VariableMedicion = gvVariablesDeMedicion.GetFocusedRow() as VariableMedicionDto;
             if (variablesDeMedicion == null) return;
 
-            var frmNuevaVariableMedicion = new frmNuevaVariableMedicion(TipoTransaccion.Actualizar, serviceProvider.GetService<VariableMedicionService>(), serviceProvider.GetService<TipoDeInstrumentoService>());
+            var frmNuevaVariableMedicion = new frmNuevaVariableMedicion(TipoTransaccion.Actualizar, serviceProvider.GetService<VariableMedicionService>(), 
+                serviceProvider.GetService<TipoDeInstrumentoService>(), serviceProvider.GetService<UnidadMedidaService>());
 
             frmNuevaVariableMedicion.NuevaVariableMedicion = VariableMedicion;
             frmNuevaVariableMedicion.SetearValoresParaActualizar();
@@ -104,7 +103,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
 
         private void btnAgregarNuevInstrumento_Click(object sender, System.EventArgs e)
         {
-            var frmNuevaVariableMedicion = new frmNuevaVariableMedicion(TipoTransaccion.Insertar, serviceProvider.GetService<VariableMedicionService>(), serviceProvider.GetService<TipoDeInstrumentoService>());
+            var frmNuevaVariableMedicion = new frmNuevaVariableMedicion(TipoTransaccion.Insertar, serviceProvider.GetService<VariableMedicionService>(), 
+                serviceProvider.GetService<TipoDeInstrumentoService>(), serviceProvider.GetService<UnidadMedidaService>());
             frmNuevaVariableMedicion.OnVariableMedicionAgregada += OnVariableMedicionAgregada;
             frmNuevaVariableMedicion.ShowDialog();
         }

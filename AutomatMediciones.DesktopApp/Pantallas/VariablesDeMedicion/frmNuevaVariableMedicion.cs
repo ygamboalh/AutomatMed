@@ -16,6 +16,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
     {
         private readonly VariableMedicionService _variableMedicionService;
         private readonly TipoDeInstrumentoService _tipoinstrumentoService;
+        private readonly UnidadMedidaService _unidadMedidaService;
 
         public delegate void VariableMedicionAgregada(VariableMedicionDto tipoInstrumento);
         public event VariableMedicionAgregada OnVariableMedicionAgregada;
@@ -25,19 +26,23 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
 
         public TipoTransaccion TipoTransaccion { get; set; }
 
+        private UnidadMedidaDto UnidadMedidaSeleccionada { get; set; }
         public VariableMedicionDto NuevaVariableMedicion { get; set; }
-        public frmNuevaVariableMedicion(TipoTransaccion tipoTransaccion, VariableMedicionService variableMedicionService, TipoDeInstrumentoService tipoinstrumentoService)
+        public frmNuevaVariableMedicion(TipoTransaccion tipoTransaccion, VariableMedicionService variableMedicionService, TipoDeInstrumentoService tipoinstrumentoService, UnidadMedidaService unidadMedidaService)
         {
             InitializeComponent();
+
             TipoTransaccion = tipoTransaccion;
             _variableMedicionService = variableMedicionService;
             _tipoinstrumentoService = tipoinstrumentoService;
+            _unidadMedidaService = unidadMedidaService;
 
             EstablecerNombreYTituloPopupAgregarInstrumentos();
             EstablecerColorBotonGuardar();
 
             NuevaVariableMedicion = new VariableMedicionDto();
             CargarTiposDeInstrumentos();
+            CargarUnidadesDeMedida();
             btnEliminar.Click += onClickBotonEliminar;
 
         }
@@ -59,12 +64,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             nmTolerancia.Value = NuevaVariableMedicion.Tolerancia;
             txtDescripcionCorta.Text = NuevaVariableMedicion.DescripcionCorta;
             txtNombre.Text = NuevaVariableMedicion.Nombre;
+            leUnidadDeMedida.EditValue = NuevaVariableMedicion.UnidadMedidaId;
 
-            if (NuevaVariableMedicion.TiposDeInstrumentoVariables.Any())
-            {
-                gcTiposDeInstrumento.DataSource = NuevaVariableMedicion.TiposDeInstrumentoVariables;
-            }
+            UnidadMedidaSeleccionada = NuevaVariableMedicion.UnidadMedida;
 
+            if (NuevaVariableMedicion.TiposDeInstrumentoVariables.Any()) gcTiposDeInstrumento.DataSource = NuevaVariableMedicion.TiposDeInstrumentoVariables;
+       
         }
 
         private void EstablecerNombreYTituloPopupAgregarInstrumentos()
@@ -111,6 +116,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             leTipInstrumento.Properties.ValueMember = "TipoInstrumentoId";
         }
 
+        private void CargarUnidadesDeMedida()
+        {
+            var resultado = _unidadMedidaService.ObtenerUnidadesDeMedida();
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+            leUnidadDeMedida.Properties.DataSource = resultado.Data;
+            leUnidadDeMedida.Properties.DisplayMember = "Descripcion";
+            leUnidadDeMedida.Properties.ValueMember = "Id";
+        }
+
         private bool ActualizarVariableMedicion()
         {
 
@@ -136,6 +151,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             NuevaVariableMedicion.Tolerancia = nmTolerancia.Value;
             NuevaVariableMedicion.DescripcionCorta = txtDescripcionCorta.Text;
             NuevaVariableMedicion.Nombre = txtNombre.Text;
+            NuevaVariableMedicion.UnidadMedidaId = UnidadMedidaSeleccionada.Id;
+            NuevaVariableMedicion.UnidadMedida = UnidadMedidaSeleccionada;
         }
 
 
@@ -226,6 +243,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
         private void btnAgregarTipoDeInstrumento_MouseMove(object sender, MouseEventArgs e)
         {
             toolTip1.SetToolTip(btnVincularVariableMedicion, "Presione para agregar a lista de instrumentos asociados.");
+        }
+
+        private void leUnidadDeMedida_EditValueChanged(object sender, EventArgs e)
+        {
+            UnidadMedidaSeleccionada = leUnidadDeMedida.GetSelectedDataRow() as UnidadMedidaDto;
         }
     }
 }

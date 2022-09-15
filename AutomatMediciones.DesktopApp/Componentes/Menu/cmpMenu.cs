@@ -48,7 +48,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.btnDiagnosticosNoExpandido.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
 
             this.btnConfiguracion.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
-           
+
             this.btnCertificados.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
             this.btnCertificadosContraido.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
 
@@ -157,10 +157,10 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             pnlSeparador.Visible = activo;
 
             pnlTipoCelda.Visible = activo;
-            pnlVariableMedicion.Visible = activo;              
+            pnlVariableMedicion.Visible = activo;
             pnlUsuarios.Visible = activo;
-           
-         
+
+
         }
 
         private void cmdClasificacionInstrumentos_Click(object sender, System.EventArgs e)

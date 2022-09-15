@@ -52,6 +52,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.cmdEditar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colDescripcionCorta = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNombre = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUnidadMedida = new DevExpress.XtraGrid.Columns.GridColumn();
             this.saveFileDialog = new DevExpress.XtraEditors.XtraSaveFileDialog(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -176,7 +177,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.colTolerancia,
             this.colEditar,
             this.colDescripcionCorta,
-            this.colNombre});
+            this.colNombre,
+            this.colUnidadMedida});
             this.gvVariablesDeMedicion.GridControl = this.gcVariablesDeMedicion;
             this.gvVariablesDeMedicion.Name = "gvVariablesDeMedicion";
             this.gvVariablesDeMedicion.OptionsView.ShowAutoFilterRow = true;
@@ -239,7 +241,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.colEditar.MinWidth = 24;
             this.colEditar.Name = "colEditar";
             this.colEditar.Visible = true;
-            this.colEditar.VisibleIndex = 6;
+            this.colEditar.VisibleIndex = 7;
             this.colEditar.Width = 30;
             // 
             // cmdEditar
@@ -276,6 +278,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.colNombre.Visible = true;
             this.colNombre.VisibleIndex = 1;
             this.colNombre.Width = 94;
+            // 
+            // colUnidadMedida
+            // 
+            this.colUnidadMedida.Caption = "Unidad de Medida";
+            this.colUnidadMedida.FieldName = "UnidadMedida.Descripcion";
+            this.colUnidadMedida.MinWidth = 25;
+            this.colUnidadMedida.Name = "colUnidadMedida";
+            this.colUnidadMedida.Visible = true;
+            this.colUnidadMedida.VisibleIndex = 6;
+            this.colUnidadMedida.Width = 94;
             // 
             // frmVariablesDeMedicion
             // 
@@ -321,5 +333,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
         private DevExpress.XtraEditors.XtraSaveFileDialog saveFileDialog;
         private DevExpress.XtraGrid.Columns.GridColumn colDescripcionCorta;
         private DevExpress.XtraGrid.Columns.GridColumn colNombre;
+        private DevExpress.XtraGrid.Columns.GridColumn colUnidadMedida;
     }
 }

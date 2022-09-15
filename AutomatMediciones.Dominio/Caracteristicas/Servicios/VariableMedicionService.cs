@@ -27,8 +27,9 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             try
             {
                 var variablesDeMedicion = _tacticaDbContext.VariablesDeMedicion.AsQueryable()
-                                                                               .Include(x => x.TiposDeInstrumentoVariables)
-                                                                               .ThenInclude(x => x.TipoInstrumento).ToList();
+                                                                               .Include(x => x.TiposDeInstrumentoVariables)                                                                              
+                                                                               .ThenInclude(x => x.TipoInstrumento)
+                                                                               .Include(x => x.UnidadMedida).ToList();
                 return Response<List<VariableMedicionDto>>.Ok("Ok", _mapper.Map<List<VariableMedicionDto>>(variablesDeMedicion));
             }
             catch (Exception exc)
@@ -63,7 +64,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     SegundoValorRango = variableMedicionDto.SegundoValorRango,
                     Tolerancia = variableMedicionDto.Tolerancia,
                     DescripcionCorta = variableMedicionDto.DescripcionCorta,
-                    Nombre = variableMedicionDto.Nombre
+                    Nombre = variableMedicionDto.Nombre,
+                    UnidadMedidaId = variableMedicionDto.UnidadMedidaId
                 };
 
                 _tacticaDbContext.Database.BeginTransaction();
@@ -116,6 +118,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 variableMedicionBd.PrimerValorRango = variableMedicionDto.PrimerValorRango;
                 variableMedicionBd.SegundoValorRango = variableMedicionDto.SegundoValorRango;
                 variableMedicionBd.Descripcion = variableMedicionDto.Descripcion;
+                variableMedicionBd.UnidadMedidaId = variableMedicionDto.UnidadMedidaId;
 
                 _tacticaDbContext.SaveChanges();
 

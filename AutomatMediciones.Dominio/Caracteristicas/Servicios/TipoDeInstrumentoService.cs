@@ -30,7 +30,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     Descripcion = x.Descripcion,
                     Metodologia = x.Metodologia,
                     Resumen = x.Resumen
-                }).ToList();
+                }).OrderBy(x => x.Descripcion).ToList();
 
                 return Response<List<TipoInstrumentoDto>>.Ok("Ok", query);
             }

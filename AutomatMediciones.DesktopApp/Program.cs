@@ -64,6 +64,7 @@ namespace AutomatMediciones.DesktopApp
 
             services.AddAutoMapper(options => options.AddProfile(new ConfigMap()));
 
+            services.AddTransient<UnidadMedidaService, UnidadMedidaService>();
             services.AddTransient<EmpresaService, EmpresaService>();
             services.AddTransient<EstadoService, EstadoService>();
             services.AddTransient<TipoTrabajoService, TipoTrabajoService>();

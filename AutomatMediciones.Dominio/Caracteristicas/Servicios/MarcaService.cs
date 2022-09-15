@@ -24,15 +24,11 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
         {
             try
             {
-
-
                 var marcas = _AutomatMedicionesDbContext.Marcas.Select(x => new MarcaDto
                 {
                     MarcaId = x.MarcaId,
                     Descripcion = x.Descripcion,
-
-
-                }).ToList();
+                }).OrderBy(x => x.Descripcion).ToList();
 
                 return Response<List<MarcaDto>>.Ok("Ok", marcas);
             }

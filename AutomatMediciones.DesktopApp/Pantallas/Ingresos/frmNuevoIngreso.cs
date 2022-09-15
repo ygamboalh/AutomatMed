@@ -947,7 +947,54 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             }
         }
 
+        private void memoEmail_EditValueChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        private void toggleTipoVista_Toggled(object sender, EventArgs e)
+        {
+            if (toggleTipoVista.IsOn)
+            {
+                navigationFrame1.SelectedPage = pageAcordion;
+
+                pnlEmpresa.Dock = DockStyle.Fill;
+                pnlEmpresa.Parent = accordionContainerInfoBasica;
+                pnlEmpresa.BringToFront();
+
+                pnlInstrumentos.Dock = DockStyle.Fill;
+                pnlInstrumentos.Parent = accordionContainerInstrumentos;
+                pnlInstrumentos.BringToFront();
+
+                pnlFinal.Dock = DockStyle.Fill;
+                pnlFinal.Parent = accordionContainerFaseFinalIngreso;
+                pnlFinal.BringToFront();
+            }
+            else
+            {
+                navigationFrame1.SelectedPage = pagePestanias;
+
+
+                pnlEmpresa.Dock = DockStyle.Fill;
+                pnlEmpresa.Parent = tabInfoBasicaCliente;
+                pnlEmpresa.BringToFront();
+
+
+                pnlInstrumentos.Dock = DockStyle.Fill;
+                pnlInstrumentos.Parent = tabInstrumentos;
+                pnlInstrumentos.BringToFront();
+
+                pnlFinal.Dock = DockStyle.Fill;
+                pnlFinal.Parent = tabFaseFinal;
+                pnlFinal.BringToFront();
+
+            }
+        }
+
+        private void pnlEmpresa_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
 

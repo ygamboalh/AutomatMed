@@ -71,7 +71,7 @@ namespace AutomatMediciones.DesktopApp.Reportes
                 {
                     Alta = y.AlarmaAlta.Value,
                     Baja = y.AlarmaBaja.Value,
-                    Sensor =  variablesDeMedicion.FirstOrDefault(p => p.VariableMedicionId == y.VariableMedicionId).DescripcionCorta,
+                    Sensor = variablesDeMedicion.FirstOrDefault(p => p.VariableMedicionId == y.VariableMedicionId).DescripcionCorta,
                     Stel = y.AlarmaStel.Value,
                     Twa = y.AlarmaTwa.Value
                 }).ToList(),

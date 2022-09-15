@@ -47,7 +47,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         TipoDeCelda = _mapper.Map<TipoCeldaDto>(tiposDeCeldas.FirstOrDefault(d => d.Id == r.TipoCeldaId)),
 
                     }).ToList()
-                }).ToList();
+                }).OrderBy(x => x.Descripcion).ToList();
 
 
                 return Response<List<ModeloDto>>.Ok("Ok", query);

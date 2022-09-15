@@ -11,6 +11,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
         public decimal PrimerValorRango { get; set; }
         public decimal SegundoValorRango { get; set; }
         public decimal Tolerancia { get; set; }
+        public int? UnidadMedidaId { get; set; }
+        public UnidadMedida UnidadMedida { get; set; }
         public ICollection<TipoInstrumentoVariable> TiposDeInstrumentoVariables { get; set; }
         public ICollection<VariableInstrumento> VariablesInstrumentos { get; set; }
         public ICollection<VariablePatron> VariablesPatrones { get; set; }

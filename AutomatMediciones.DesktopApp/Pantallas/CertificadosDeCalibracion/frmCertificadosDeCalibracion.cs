@@ -18,7 +18,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
     public partial class frmCertificadosDeCalibracion : DevExpress.XtraEditors.XtraForm
     {
         private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
-        private  CertificadoCalibracionService _certificadoCalibracionService;
+        private CertificadoCalibracionService _certificadoCalibracionService;
 
         public List<CertificadoDto> Certificados { get; set; }
         public int InstrumentoId { get; set; }

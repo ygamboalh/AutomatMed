@@ -160,7 +160,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.TiposDeCelda
 
         private void btnNuevaVariableMedicion_Click(object sender, EventArgs e)
         {
-            var frmNuevaVariableMedicion = new frmNuevaVariableMedicion(TipoTransaccion.Insertar, serviceProvider.GetService<VariableMedicionService>(), serviceProvider.GetService<TipoDeInstrumentoService>());
+            var frmNuevaVariableMedicion = new frmNuevaVariableMedicion(TipoTransaccion.Insertar, serviceProvider.GetService<VariableMedicionService>(), 
+                serviceProvider.GetService<TipoDeInstrumentoService>(), serviceProvider.GetService<UnidadMedidaService>());
             frmNuevaVariableMedicion.OnVariableMedicionAgregada += OnVariableMedicionAgregada;
             frmNuevaVariableMedicion.ShowDialog();
         }

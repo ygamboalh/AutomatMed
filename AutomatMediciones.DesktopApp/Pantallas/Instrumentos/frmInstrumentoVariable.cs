@@ -15,8 +15,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
     public partial class frmInstrumentoVariable : DevExpress.XtraEditors.XtraForm
     {
         private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
+
         public delegate void VariableInstrumentoAgregada(VariableInstrumentoDto variableInstrumentoDto);
         public event VariableInstrumentoAgregada OnVariableInstrumentoAgregado;
+
+        public delegate void VariableInstrumentoAgregadaSinTransaccion(VariableInstrumentoDto variableInstrumentoDto);
+        public event VariableInstrumentoAgregadaSinTransaccion OnVariableInstrumentoAgregadaSinTransaccion;
 
         public delegate void VariableInstrumentoActualizada(VariableInstrumentoDto variableInstrumentoDto);
         public event VariableInstrumentoActualizada OnVariableInstrumentoActualizada;
@@ -25,6 +29,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         private readonly InstrumentoService _instrumentoService;
         private readonly VariableMedicionService _variableMedicionService;
         private readonly TipoTransaccion _tipoTransaccion;
+        private readonly bool _sinTransaccion;
 
         public VariableInstrumentoDto NuevaVariableInstrumento { get; set; }
 
@@ -35,7 +40,26 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         {
             InitializeComponent();
 
+            _sinTransaccion = false;
             _tipoTransaccion = tipoTransaccion;
+            _instrumentoService = instrumentoService;
+            _variableMedicionService = variableMedicionService;
+
+            NuevaVariableInstrumento = new VariableInstrumentoDto();
+
+            EstablecerColorBotonGuardar();
+            EstablecerNombreYTituloPopupAgregarInstrumentos();
+
+            CargarVariablesDeMedicion();
+        }
+
+
+        public frmInstrumentoVariable(InstrumentoService instrumentoService, VariableMedicionService variableMedicionService)
+        {
+            InitializeComponent();
+
+            _sinTransaccion = true;
+            
             _instrumentoService = instrumentoService;
             _variableMedicionService = variableMedicionService;
 
@@ -79,8 +103,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
         private void btnGuardarVinculacion_Click(object sender, EventArgs e)
         {
-            if (!PrepararNuevaVinculacionDeVariable())
+            if (!PrepararNuevaVinculacionDeVariable()) return;
+
+            if (_sinTransaccion)
             {
+                NuevaVariableInstrumento.VariableDeMedicion = variableDeMedicionSeleccionada;
+                OnVariableInstrumentoAgregadaSinTransaccion?.Invoke(NuevaVariableInstrumento);
+                this.Close();
                 return;
             }
 
@@ -195,7 +224,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         {
             var frmNuevaVariableMedicion = new frmNuevaVariableMedicion(TipoTransaccion.Insertar,
                                                                         serviceProvider.GetService<VariableMedicionService>(),
-                                                                        serviceProvider.GetService<TipoDeInstrumentoService>());
+                                                                        serviceProvider.GetService<TipoDeInstrumentoService>(),
+                                                                        serviceProvider.GetService<UnidadMedidaService>());
             frmNuevaVariableMedicion.OnVariableMedicionAgregada += OnVariableMedicionAgregada;
             frmNuevaVariableMedicion.ShowDialog();
         }

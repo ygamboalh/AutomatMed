@@ -530,7 +530,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.btnNuevaVinculacion.Text = "Vincular Variable de Medición";
             this.btnNuevaVinculacion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnNuevaVinculacion.UseVisualStyleBackColor = true;
-            this.btnNuevaVinculacion.Visible = false;
             this.btnNuevaVinculacion.Click += new System.EventHandler(this.btnNuevaVinculacion_Click);
             // 
             // btnPrepararCertificado
@@ -600,6 +599,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             this.leMarcas.Properties.NullText = "";
             this.leMarcas.Size = new System.Drawing.Size(270, 24);
             this.leMarcas.TabIndex = 154;
+            this.leMarcas.EditValueChanged += new System.EventHandler(this.glMarcas_EditValueChanged);
             // 
             // leModelos
             // 

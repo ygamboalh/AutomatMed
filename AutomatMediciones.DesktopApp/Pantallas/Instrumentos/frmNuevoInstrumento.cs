@@ -45,6 +45,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         List<ModeloDto> modelos = new List<ModeloDto>();
         List<CeldaDto> celdas = new List<CeldaDto>();
 
+        TipoInstrumentoDto tipoInstrumentoSeleccionado;
+        MarcaDto marcaSeleccionada;
+        ModeloDto modeloSeleccionado;
+
+        List<VariableInstrumentoDto> variablesInstrumentos = new List<VariableInstrumentoDto>();
+
 
         ctlEncabezadoPantalla ctlEncabezadoPantalla3;
 
@@ -63,7 +69,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
             if (TipoTransaccion == TipoTransaccion.Actualizar)
             {
-                btnNuevaVinculacion.Visible = true;
                 btnPrepararCertificado.Visible = true;
                 btnHistorialDeCertificados.Visible = true;
             }
@@ -94,15 +99,25 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             var variableInstrumento = gvVariablesInstrumentos.GetFocusedRow() as VariableInstrumentoDto;
             if (variableInstrumento == null) return;
 
-            var respuesta = _instrumentoService.DesactivarVariableInstrumento(variableInstrumento.VariableInstrumentoId);
-            if (respuesta.Type != TypeResponse.Ok)
+            if (TipoTransaccion == TipoTransaccion.Actualizar)
             {
-                Notificaciones.MensajeError(respuesta.Message);
-                return;
-            }
+                var respuesta = _instrumentoService.DesactivarVariableInstrumento(variableInstrumento.VariableInstrumentoId);
+                if (respuesta.Type != TypeResponse.Ok)
+                {
+                    Notificaciones.MensajeError(respuesta.Message);
+                    return;
+                }
 
-            CargarVariablesInstrumentos();
-            Notificaciones.MensajeConfirmacion("¡La vinculación se eliminó exitosamente!");
+                CargarVariablesInstrumentos();
+                Notificaciones.MensajeConfirmacion("¡La vinculación se eliminó exitosamente!");
+            }
+            else
+            {
+                variablesInstrumentos = variablesInstrumentos.Where(x => x.VariableMedicionId != variableInstrumento.VariableMedicionId).ToList();
+                gcVariablesInstrumentos.DataSource = variablesInstrumentos;
+                gcVariablesInstrumentos.RefreshDataSource();
+            }
+        
         }
 
         private void btnDesactivarClick(object sender, EventArgs e)
@@ -313,9 +328,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
                 clasificaciones.Add(clasificacionDto);
             });
 
-            tiposInstrumentos = clasificaciones.GroupBy(y => y.TipoInstrumentoId).Select(x => x.First().TipoInstrumento).ToList();
-            marcas = clasificaciones.GroupBy(y => y.MarcaId).Select(x => x.First().Marca).Distinct().ToList();
-            modelos = clasificaciones.GroupBy(y => y.ModeloId).Select(x => x.First().Modelo).Distinct().ToList();
+            tiposInstrumentos = clasificaciones.GroupBy(y => y.TipoInstrumentoId).Select(x => x.First().TipoInstrumento).OrderBy(x => x.Descripcion).ToList();
+            marcas = clasificaciones.GroupBy(y => y.MarcaId).Select(x => x.First().Marca).Distinct().OrderBy(x => x.Descripcion).ToList();
+            modelos = clasificaciones.GroupBy(y => y.ModeloId).Select(x => x.First().Modelo).Distinct().OrderBy(x => x.Descripcion).ToList();
 
             AsignarConfiguracionComboBoxes();
         }
@@ -414,6 +429,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
                 return false;
             }
 
+
+            NuevoInstrumento.VariablesInstrumentos = variablesInstrumentos;
             NuevoInstrumento.Comentarios = memoComentarios.Text;
             NuevoInstrumento.Descripcion = txtDescripcionInstrumento.Text;
             NuevoInstrumento.EmpresaId = EmpresaSeleccionada.EmpresaId;
@@ -429,9 +446,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
         private void glTipoInstrumento_EditValueChanged(object sender, EventArgs e)
         {
-            var tipoInstrumentoSeleccionado = leTipoInstrumento.GetSelectedDataRow() as TipoInstrumentoDto;
+            tipoInstrumentoSeleccionado = leTipoInstrumento.GetSelectedDataRow() as TipoInstrumentoDto;
             if (tipoInstrumentoSeleccionado != null)
             {
+                marcas = new List<MarcaDto>();
                 marcas = clasificaciones.Where(x => x.TipoInstrumentoId.Equals(tipoInstrumentoSeleccionado.TipoInstrumentoId)).Select(x => x.Marca).ToList();
                 leMarcas.Properties.DataSource = marcas;
             }
@@ -439,10 +457,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
 
         private void glMarcas_EditValueChanged(object sender, EventArgs e)
         {
-            var marcaSeleccionada = leMarcas.GetSelectedDataRow() as MarcaDto;
+            marcaSeleccionada = leMarcas.GetSelectedDataRow() as MarcaDto;
             if (marcaSeleccionada != null)
             {
-                modelos = clasificaciones.Where(x => x.MarcaId.Equals(marcaSeleccionada.MarcaId)).Select(x => x.Modelo).ToList();
+                modelos = new List<ModeloDto>();
+                modelos = clasificaciones.Where(x => x.MarcaId.Equals(marcaSeleccionada.MarcaId) && x.TipoInstrumentoId.Equals(tipoInstrumentoSeleccionado.TipoInstrumentoId)).Select(x => x.Modelo).ToList();
                 leModelos.Properties.DataSource = modelos;
             }
         }
@@ -513,7 +532,21 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
                 frmInstrumentoVariable.InstrumentoId = NuevoInstrumento.InstrumentoId;
                 frmInstrumentoVariable.OnVariableInstrumentoAgregado += OnVariableInstrumentoAgregado;
                 frmInstrumentoVariable.ShowDialog();
+                return;
             }
+
+            frmInstrumentoVariable frmInstrumentosVariables = new frmInstrumentoVariable(serviceProvider.GetService<InstrumentoService>(), serviceProvider.GetService<VariableMedicionService>());
+            frmInstrumentosVariables.InstrumentoId = NuevoInstrumento.InstrumentoId;
+            frmInstrumentosVariables.OnVariableInstrumentoAgregadaSinTransaccion += OnVariableAgregadaSinTransaccion;
+            frmInstrumentosVariables.ShowDialog();
+        }
+
+        private void OnVariableAgregadaSinTransaccion(VariableInstrumentoDto variableInstrumentoDto)
+        {
+            variablesInstrumentos.Add(variableInstrumentoDto);
+            gcVariablesInstrumentos.DataSource = variablesInstrumentos;
+            gcVariablesInstrumentos.RefreshDataSource();
+
         }
 
         private void EstablecerColorBotonPorDefecto()
@@ -542,7 +575,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
                 return;
             }
 
-            gcVariablesInstrumentos.DataSource = resultado.Data;
+            variablesInstrumentos = resultado.Data;
+
+            gcVariablesInstrumentos.DataSource = variablesInstrumentos;
             gcVariablesInstrumentos.RefreshDataSource();
 
         }
@@ -550,7 +585,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
         private void iconButton1_Click(object sender, EventArgs e)
         {
 
-            var frmNuevoCertificadoCalibracion = new frmNuevoCertificadoCalibracion(TipoTransaccion.Insertar,NuevoInstrumento.InstrumentoId,
+            var frmNuevoCertificadoCalibracion = new frmNuevoCertificadoCalibracion(TipoTransaccion.Insertar, NuevoInstrumento.InstrumentoId,
                 serviceProvider.GetService<CertificadoCalibracionService>(),
                  serviceProvider.GetService<UsuarioService>(),
                  serviceProvider.GetService<PatronService>(),

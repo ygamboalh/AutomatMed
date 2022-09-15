@@ -18,11 +18,13 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.Property(x => x.PrimerValorRango).HasColumnName("primer_valor_rango").HasColumnType("DECIMAL").IsRequired();
             builder.Property(x => x.SegundoValorRango).HasColumnName("segundo_valor_rango").HasColumnType("DECIMAL").IsRequired();
             builder.Property(x => x.Tolerancia).HasColumnName("tolerancia").HasColumnType("DECIMAL").IsRequired();
+            builder.Property(x => x.UnidadMedidaId).HasColumnName("unidad_de_medida_id").HasColumnType("INT");
 
             builder.HasMany(x => x.TiposDeInstrumentoVariables).WithOne(x => x.VariableDeMedicion).HasForeignKey(x => x.VariableMedicionId);
             builder.HasMany(x => x.VariablesInstrumentos).WithOne(x => x.VariableDeMedicion).HasForeignKey(x => x.VariableMedicionId);
             builder.HasMany(x => x.VariablesPatrones).WithOne(x => x.VariableDeMedicion).HasForeignKey(x => x.VariableMeicionId);
             builder.HasMany(x => x.TiposDeCeldas).WithOne(x => x.VariableDeMedicion).HasForeignKey(x => x.VariableMedicionId);
+            builder.HasOne(x => x.UnidadMedida).WithMany(x => x.VariablesDeMedicion).HasForeignKey(x => x.UnidadMedidaId);
         }
     }
 }

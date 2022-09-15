@@ -120,7 +120,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             this.colTipoInstrumento.OptionsColumn.ReadOnly = true;
             this.colTipoInstrumento.Visible = true;
             this.colTipoInstrumento.VisibleIndex = 0;
-            this.colTipoInstrumento.Width = 210;
+            this.colTipoInstrumento.Width = 203;
             // 
             // colMarca
             // 
@@ -132,7 +132,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             this.colMarca.OptionsColumn.ReadOnly = true;
             this.colMarca.Visible = true;
             this.colMarca.VisibleIndex = 1;
-            this.colMarca.Width = 278;
+            this.colMarca.Width = 268;
             // 
             // colModelo
             // 
@@ -144,7 +144,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             this.colModelo.OptionsColumn.ReadOnly = true;
             this.colModelo.Visible = true;
             this.colModelo.VisibleIndex = 2;
-            this.colModelo.Width = 278;
+            this.colModelo.Width = 268;
             // 
             // colPeriodoCalibracion
             // 
@@ -155,17 +155,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             this.colPeriodoCalibracion.OptionsColumn.AllowEdit = false;
             this.colPeriodoCalibracion.Visible = true;
             this.colPeriodoCalibracion.VisibleIndex = 3;
-            this.colPeriodoCalibracion.Width = 132;
+            this.colPeriodoCalibracion.Width = 127;
             // 
             // colEditar
             // 
-            this.colEditar.Caption = "Editar";
             this.colEditar.ColumnEdit = this.cmdEditar;
             this.colEditar.MinWidth = 24;
             this.colEditar.Name = "colEditar";
             this.colEditar.Visible = true;
             this.colEditar.VisibleIndex = 4;
-            this.colEditar.Width = 64;
+            this.colEditar.Width = 30;
             // 
             // cmdEditar
             // 
@@ -178,13 +177,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Clasificaciones
             // 
             // colInactivar
             // 
-            this.colInactivar.Caption = "Desactivar";
             this.colInactivar.ColumnEdit = this.cmdInactivar;
             this.colInactivar.MinWidth = 25;
             this.colInactivar.Name = "colInactivar";
             this.colInactivar.Visible = true;
             this.colInactivar.VisibleIndex = 5;
-            this.colInactivar.Width = 94;
+            this.colInactivar.Width = 30;
             // 
             // cmdInactivar
             // 

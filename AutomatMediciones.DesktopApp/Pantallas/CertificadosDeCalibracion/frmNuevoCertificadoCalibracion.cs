@@ -29,7 +29,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
         UsuarioDto usuarioSeleccionado;
         PatronDto patronSeleccionado;
         VariableInstrumentoDto variableInstrumentoSeleccionado;
-        
+
         private readonly CertificadoCalibracionService _certificadoCalibracionService;
         private readonly UsuarioService _usuarioService;
         private readonly PatronService _patronService;
@@ -39,7 +39,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
 
         List<VariableCertificadoDto> variablesCertificado;
 
-        public frmNuevoCertificadoCalibracion(TipoTransaccion tipoTransaccion,int instrumentoId, CertificadoCalibracionService certificadoCalibracionService, UsuarioService usuarioService,
+        public frmNuevoCertificadoCalibracion(TipoTransaccion tipoTransaccion, int instrumentoId, CertificadoCalibracionService certificadoCalibracionService, UsuarioService usuarioService,
             PatronService patronService, InstrumentoService instrumentoService)
         {
             InitializeComponent();
@@ -70,10 +70,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             memoCondicionesAmbientales.Text = Certificado.CondicionesAmbientales;
 
             dateFechaCaducidad.Value = Certificado.FechaCaducidad;
-            dateFechaCertificado.Value = Certificado.Fecha ;
-           
+            dateFechaCertificado.Value = Certificado.Fecha;
+
             variablesCertificado = Certificado.VariablesCertificado;
-            memoResultado.Text =  Certificado.Resultado;
+            memoResultado.Text = Certificado.Resultado;
             memoObservaciones.Text = Certificado.Observaciones;
             txtRutaArchivo.Text = Certificado.RutaCertificado;
             glUsuariosResponsables.EditValue = Certificado.ResponsableId;
@@ -160,7 +160,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
             Certificado.VariablesCertificado = variablesCertificado;
             Certificado.Resultado = memoResultado.Text;
             Certificado.Observaciones = memoObservaciones.Text;
-            Certificado.RutaCertificado =  txtRutaArchivo.Text;
+            Certificado.RutaCertificado = txtRutaArchivo.Text;
 
             return true;
         }
@@ -346,8 +346,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion
         private void btnAdjunto_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
-            
-           
+
+
             if (fbd.ShowDialog() == DialogResult.OK)
             {
                 txtRutaArchivo.Text = fbd.SelectedPath;

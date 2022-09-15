@@ -28,7 +28,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             try
             {
                 var instrumentos = _automatMedicionesDbContext.Instrumentos.AsQueryable()
-                                                                              .Include(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
+                                                                             .Include(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
                                                                              .Include(x => x.Clasificacion).ThenInclude(x => x.Marca)
                                                                              .Include(x => x.Clasificacion).ThenInclude(x => x.Modelo)
                                                                              .Include(x => x.CeldasInstrumentos)
@@ -152,6 +152,29 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 _automatMedicionesDbContext.Database.BeginTransaction();
                 _automatMedicionesDbContext.Instrumentos.Add(instrumento);
                 _automatMedicionesDbContext.SaveChanges();
+
+                var variablesInstrumentos = instrumentoDto.VariablesInstrumentos.Where(x => x.VariableInstrumentoId == 0).ToList();
+                if (variablesInstrumentos.Any())
+                {
+                    List<VariableInstrumento> listaVariablesInstrumentos = new List<VariableInstrumento>();
+                    variablesInstrumentos.ForEach(x =>
+                    {
+                        listaVariablesInstrumentos.Add(new VariableInstrumento
+                        {
+                           Activo  = true,
+                           AlarmaStel = x.AlarmaStel,
+                           AlarmaBaja = x.AlarmaBaja,
+                           AlarmaAlta = x.AlarmaAlta,
+                           AlarmaTwa = x.AlarmaTwa,
+                           TieneAlarma = x.TieneAlarma,
+                           VariableMedicionId = x.VariableMedicionId,
+                           InstrumentoId = instrumento.InstrumentoId
+                        });
+                    });
+
+                    _automatMedicionesDbContext.VariablesInstrumentos.AddRange(listaVariablesInstrumentos);
+                    _automatMedicionesDbContext.SaveChanges();
+                }
 
                 var celdasInstrumentos = instrumentoDto.CeldasInstrumentos.Where(x => x.Id == 0).ToList();
                 if (celdasInstrumentos.Any())
@@ -309,11 +332,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             try
             {
                 var instrumentoBd = _automatMedicionesDbContext.Instrumentos.FirstOrDefault(x => x.InstrumentoId == instrumentoDto.InstrumentoId);
-                if (instrumentoBd == null)
-                {
-                    return Response<bool>.ErrorValidation("El instrumento no fue encontrado", false);
-                }
-
+                if (instrumentoBd == null) return Response<bool>.ErrorValidation("El instrumento no fue encontrado", false);
+               
                 instrumentoBd.Activo = false;
 
 
