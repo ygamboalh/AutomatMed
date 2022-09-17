@@ -10,7 +10,6 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
         public cmpMenu()
         {
             InitializeComponent();
-
         }
 
         public delegate void MenuSeleccionado(IndiceMenu indiceMenu);
@@ -57,6 +56,9 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
 
             this.btnPatrones.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
             this.btnPatronContraido.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
+
+            this.btnCreacionPreIngreso.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
+            this.cmdNuevoPreIngresoSimple.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
 
         }
 
@@ -119,11 +121,11 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             if (ExpandirMenu)
             {
                 AccionesConBotonExpandido();
+                return;
             }
-            else
-            {
-                AccionesConBotonContraido();
-            }
+
+            AccionesConBotonContraido();
+
         }
 
         private void cmdIngresos_Click(object sender, System.EventArgs e)
@@ -159,8 +161,6 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             pnlTipoCelda.Visible = activo;
             pnlVariableMedicion.Visible = activo;
             pnlUsuarios.Visible = activo;
-
-
         }
 
         private void cmdClasificacionInstrumentos_Click(object sender, System.EventArgs e)
@@ -218,9 +218,14 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             OnMenuSeleccionado?.Invoke(IndiceMenu.TiposDeCelda);
         }
 
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private void btnCreacionPreIngreso_Click(object sender, System.EventArgs e)
         {
+            OnMenuSeleccionado?.Invoke(IndiceMenu.PreIngreso);
+        }
 
+        private void cmdNuevoPreIngresoSimple_Click(object sender, System.EventArgs e)
+        {
+            OnMenuSeleccionado?.Invoke(IndiceMenu.PreIngreso);
         }
     }
 }

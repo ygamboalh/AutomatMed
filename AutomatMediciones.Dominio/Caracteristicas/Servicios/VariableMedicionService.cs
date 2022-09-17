@@ -27,7 +27,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             try
             {
                 var variablesDeMedicion = _tacticaDbContext.VariablesDeMedicion.AsQueryable()
-                                                                               .Include(x => x.TiposDeInstrumentoVariables)                                                                              
+                                                                               .Include(x => x.TiposDeInstrumentoVariables)
                                                                                .ThenInclude(x => x.TipoInstrumento)
                                                                                .Include(x => x.UnidadMedida).ToList();
                 return Response<List<VariableMedicionDto>>.Ok("Ok", _mapper.Map<List<VariableMedicionDto>>(variablesDeMedicion));

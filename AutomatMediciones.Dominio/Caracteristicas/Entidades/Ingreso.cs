@@ -18,6 +18,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
         public bool Activo { get; set; }
         public string ApellidoContacto { get; set; }
         public Usuario Responsable { get; set; }
+        public int TipoIngresoId { get; set; }
         public ICollection<IngresoInstrumento> IngresosInstrumentos { get; set; }
 
         public bool EsValido(out string mensaje)

@@ -161,14 +161,14 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     {
                         listaVariablesInstrumentos.Add(new VariableInstrumento
                         {
-                           Activo  = true,
-                           AlarmaStel = x.AlarmaStel,
-                           AlarmaBaja = x.AlarmaBaja,
-                           AlarmaAlta = x.AlarmaAlta,
-                           AlarmaTwa = x.AlarmaTwa,
-                           TieneAlarma = x.TieneAlarma,
-                           VariableMedicionId = x.VariableMedicionId,
-                           InstrumentoId = instrumento.InstrumentoId
+                            Activo = true,
+                            AlarmaStel = x.AlarmaStel,
+                            AlarmaBaja = x.AlarmaBaja,
+                            AlarmaAlta = x.AlarmaAlta,
+                            AlarmaTwa = x.AlarmaTwa,
+                            TieneAlarma = x.TieneAlarma,
+                            VariableMedicionId = x.VariableMedicionId,
+                            InstrumentoId = instrumento.InstrumentoId
                         });
                     });
 
@@ -333,7 +333,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             {
                 var instrumentoBd = _automatMedicionesDbContext.Instrumentos.FirstOrDefault(x => x.InstrumentoId == instrumentoDto.InstrumentoId);
                 if (instrumentoBd == null) return Response<bool>.ErrorValidation("El instrumento no fue encontrado", false);
-               
+
                 instrumentoBd.Activo = false;
 
 

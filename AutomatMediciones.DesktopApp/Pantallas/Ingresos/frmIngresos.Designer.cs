@@ -532,7 +532,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.MinimumSize = new System.Drawing.Size(815, 588);
             this.Name = "frmIngresos";
             this.Text = "Ingresos";
-            this.Load += new System.EventHandler(this.frmIngresos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.btnIniciarDiagnostico)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcInstrumentos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvInstrumentos)).EndInit();

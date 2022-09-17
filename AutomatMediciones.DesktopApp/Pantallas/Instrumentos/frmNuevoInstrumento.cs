@@ -117,7 +117,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
                 gcVariablesInstrumentos.DataSource = variablesInstrumentos;
                 gcVariablesInstrumentos.RefreshDataSource();
             }
-        
+
         }
 
         private void btnDesactivarClick(object sender, EventArgs e)
