@@ -1,12 +1,14 @@
 ﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
 using AutomatMediciones.DesktopApp.Enums;
 using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos.Dtos;
 using AutomatMediciones.DesktopApp.Pantallas.Ingresos.Dtos;
 using AutomatMediciones.DesktopApp.Pantallas.Ingresos.Enums;
 using AutomatMediciones.DesktopApp.Pantallas.Instrumentos;
 using AutomatMediciones.DesktopApp.Reportes;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
+using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraReports.UI;
 using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +16,7 @@ using Nagaira.Herramientas.Standard.Helpers.Enums;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -46,6 +49,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         ConfiguracionNotificacionDto configuracionNotificacion;
         List<EstadoDto> estados = new List<EstadoDto>();
         List<UsuarioDto> usuarios = new List<UsuarioDto>();
+        List<IngresoInstrumento> preIngresosDeEmpresa = new List<IngresoInstrumento>();
+
 
         public delegate void IngresoActualizado(IngresoDto ingreso);
         public event IngresoActualizado OnIngresoActualizado;
@@ -72,8 +77,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             _empresaService = empresaService;
             _textoEmail = memoEmail.Text;
 
-            btnGuardarIngreso.Text = $"Guardar {ObtenerDescripcionTipoIngreso()}";
-
             EstablecerNombreYTituloDePantalla();
             EstablecerColorBotonPorDefecto();
             EstablecerColorBotonGuardar();
@@ -83,6 +86,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             CargarUsuarios();
             CargarConfiguraciones();
             CargarEstados();
+
+            InicializarConfiguracionesSegunTipoDeIngreso();
 
             Cursor.Current = Cursors.Arrow;
             Ingreso = new IngresoDto();
@@ -96,6 +101,32 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             bntBorrarInstrumento.Click += clickBorrarInstrumento;
             btnEditarComentario.Click += clickEditarComentario;
+
+            gvInstrumentosSeleccionados.RowStyle += gvInstrumentosSeleccionadosRowStyle;
+        }
+
+        private void gvInstrumentosSeleccionadosRowStyle(object sender, RowStyleEventArgs e)
+        {
+            if (e.RowHandle < 0) return;
+
+            var columna = (TiposIngreso)gvInstrumentosSeleccionados.GetRowCellValue(e.RowHandle, "TipoIngreso");
+            if (columna == TiposIngreso.PreIngreso)
+            {
+                e.Appearance.BackColor = Color.Green;
+                e.Appearance.ForeColor = Color.White;
+            }
+        }
+
+        private void InicializarConfiguracionesSegunTipoDeIngreso()
+        {
+            bool esIngresoGeneral = (int)TipoIngreso == (int)TiposIngreso.IngresoGeneral ? true : false;
+            var tipoDeIngreso = ObtenerDescripcionTipoIngreso();
+
+            btnGuardarIngreso.Text = $"Guardar {tipoDeIngreso}";
+            lblEstado.Visible = esIngresoGeneral;
+            glEstado.Visible = esIngresoGeneral;
+            lblFechaIngreso.Text = $"Fecha de {tipoDeIngreso}";
+            checkEnviarReporte.Text = $"Enviar reporte de {tipoDeIngreso} en la notificación";
         }
 
         private void clickBorrarInstrumento(object sender, EventArgs e)
@@ -109,6 +140,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 instrumentosListaSeleccionados = instrumentosListaSeleccionados.Where(x => x.InstrumentoId != instrumento.InstrumentoId).ToList();
                 gcInstrumentosSeleccionados.DataSource = instrumentosListaSeleccionados;
                 gcInstrumentosSeleccionados.RefreshDataSource();
+
+                SetearTotales();
 
                 return;
             }
@@ -339,9 +372,23 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 Instrumento = instrumento
             };
 
+            var existeElInstrumentoEnListaSeleccionados = instrumentosSeleccionados.Any(x => x.InstrumentoId == instrumento.InstrumentoId);
+            if (existeElInstrumentoEnListaSeleccionados)
+            {
+                Notificaciones.MensajeAdvertencia("Este instrumento ya ha sido agregado a lista de selecciondos");
+                return;
+            }
 
             instrumentosSeleccionados.Add(ingresoInstrumento);
-            ActualizarSeleccionDeInstrumento(instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumento.InstrumentoId));
+            ActualizarSeleccionDeInstrumento(instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumento.InstrumentoId), TiposIngreso.IngresoGeneral);
+            SetearTotales();
+        }
+
+        private void AgregarInstrumentoEnListaDeSeleccionados(IngresoInstrumentoDto ingresoInstrumento)
+        {
+
+            instrumentosSeleccionados.Add(ingresoInstrumento);
+            ActualizarSeleccionDeInstrumento(instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == ingresoInstrumento.InstrumentoId), TiposIngreso.PreIngreso);
             SetearTotales();
         }
 
@@ -363,9 +410,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             return resultado.Data;
         }
 
-        private void ActualizarSeleccionDeInstrumento(InstrumentoLista instrumentoLista)
+        private void ActualizarSeleccionDeInstrumento(InstrumentoLista instrumentoLista, TiposIngreso tipoIngreso)
         {
             var instrumento = instrumentosDeEmpresa.FirstOrDefault(x => x.InstrumentoId == instrumentoLista.InstrumentoId);
+            instrumento.TipoIngreso = tipoIngreso;
             instrumento.ClasificacionConcatenada = $"{instrumentoLista.Clasificacion.TipoInstrumento.Descripcion}/{instrumentoLista.Clasificacion.Marca.Descripcion}/{instrumentoLista.Clasificacion.Modelo.Descripcion}";
 
             instrumentosListaSeleccionados.Add(instrumento);
@@ -452,12 +500,77 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         {
             if (empresa == null) return;
 
+            preIngresosDeEmpresa = new List<IngresoInstrumento>();
+
             empresaSeleccionada = empresa;
             txtEmpresa.Text = empresaSeleccionada.NombreEmpresa;
             var instrumentos = ObtenerInstrumentosParaEmpresaSeleccionada();
 
             AsignarInstrumentosDeEmpresa(instrumentos);
             ObtenerContactosDeEmpresaSeleccionada();
+
+            if (TipoIngreso == TiposIngreso.IngresoGeneral)
+            {
+                if (ExistePreIngresoParaEstaEmpresa(empresa.EmpresaId))
+                {
+                    if (Notificaciones.PreguntaConfirmacion($"La empresa {empresa.NombreEmpresa} tiene registros de Pre-Ingreso. ¿Le gustaría visualizar los registros de Pre-Ingreso?") == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        frmPreIngresos frmPreIngresos = new frmPreIngresos(preIngresosDeEmpresa);
+                        frmPreIngresos.OnIngresosAgregados += frmPreIngresosOnIngresosAgregados;
+                        frmPreIngresos.ShowDialog();
+                    }
+                }
+
+            }
+        }
+
+        private void frmPreIngresosOnIngresosAgregados(List<IngresoInstrumento> ingresos)
+        {
+            ingresos.ForEach(ingreso =>
+            {
+                AgregarInstrumentoEnListaDeSeleccionados(ingreso);
+            });
+        }
+
+        private bool ExistePreIngresoParaEstaEmpresa(string empresaId)
+        {
+            var preIngresosResult = _ingresoService.ObtenerPreIngresosPorEmpresa(empresaId);
+            if (preIngresosResult.Type != TypeResponse.Ok)
+            {
+                Notificaciones.MensajeError(preIngresosResult.Message);
+                return false;
+            }
+
+            if (!preIngresosResult.Data.Any()) return false;
+
+            preIngresosDeEmpresa = preIngresosResult.Data.SelectMany(x => x.IngresosInstrumentos).Select(y => new IngresoInstrumento
+            {
+                Activo = y.Activo,
+                IngresoId = y.IngresoId,
+                IngresoInstrumentoId = y.IngresoInstrumentoId,
+                InstrumentoId = y.InstrumentoId,
+                Comentarios = y.Comentarios,
+                Ingreso = y.Ingreso,
+                Instrumento = y.Instrumento,
+                EstadoId = y.EstadoId,
+                Estado = y.Estado,
+                TipoTrabajo = y.TipoTrabajo,
+                Prioridad = y.Prioridad,
+                TipoTrabajoId = y.TipoTrabajoId,
+                Diagnostico = y.Diagnostico,
+                FechaInicio = y.FechaInicio,
+                Responsable = y.Responsable,
+                FechaFin = y.FechaFin,
+                TiempoConsumido = y.TiempoConsumido,
+                ResponsableId = y.ResponsableId,
+                FechaEntregaRequerida = y.FechaEntregaRequerida,
+                NumeroServicioTecnico = y.NumeroServicioTecnico,
+                Seleccionado = false,
+                ClasificacionConcatenada = $"{y.Instrumento.Clasificacion.TipoInstrumento.Descripcion} / {y.Instrumento.Clasificacion.Marca.Descripcion} / {y.Instrumento.Clasificacion.Modelo.Descripcion}"
+            }).OrderBy(y => y.Prioridad).ToList();
+
+
+            return true;
         }
 
         private void AsignarInstrumentosDeEmpresa(List<InstrumentoDto> instrumentos)
@@ -614,10 +727,23 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             Ingreso.FechaRegistro = dateFechaIngreso.Value;
             Ingreso.TipoIngresoId = (int)TipoIngreso;
 
-            Ingreso.IngresosInstrumentos.ToList().ForEach(x =>
+
+            if (TipoIngreso == TiposIngreso.IngresoGeneral)
             {
-                x.EstadoId = (int)glEstado.EditValue;
-            });
+                Ingreso.IngresosInstrumentos.ToList().ForEach(x =>
+                {
+                    x.EstadoId = (int)glEstado.EditValue;
+                });
+            }
+            else
+            {
+                Ingreso.IngresosInstrumentos.ToList().ForEach(x =>
+                {
+                    
+                    x.EstadoId = (int)Estados.Ingresado;
+                });
+            }
+
         }
 
         private bool SeLlenaronCamposObligatorios(out string mensaje)
@@ -647,7 +773,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
                 return false;
             }
 
-            if (estadoSeleccionado == null)
+            if (estadoSeleccionado == null && TipoIngreso == TiposIngreso.IngresoGeneral)
             {
                 mensaje = "Es necesario que seleccione un estado inicial para guardar el ingreso.";
                 return false;
