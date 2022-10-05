@@ -80,6 +80,8 @@ namespace AutomatMediciones.DesktopApp
             services.AddTransient<PatronService, PatronService>();
             services.AddTransient<CertificadoCalibracionService, CertificadoCalibracionService>();
             services.AddTransient<CeldaService, CeldaService>();
+            services.AddTransient<ProductoService, ProductoService>();
+            services.AddTransient<PresupuestoService, PresupuestoService>();
 
             services.AddScoped<frmPrincipal>();
 

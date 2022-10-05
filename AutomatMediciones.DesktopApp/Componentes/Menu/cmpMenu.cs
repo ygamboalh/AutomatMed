@@ -60,6 +60,9 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.btnCreacionPreIngreso.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
             this.cmdNuevoPreIngresoSimple.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
 
+            this.btnPresupuestos.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
+            this.btnPresupuestos.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
+
         }
 
         private void EstablecerColorFondoMenu()
@@ -226,6 +229,16 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
         private void cmdNuevoPreIngresoSimple_Click(object sender, System.EventArgs e)
         {
             OnMenuSeleccionado?.Invoke(IndiceMenu.PreIngreso);
+        }
+
+        private void btnPresupuestos_Click(object sender, System.EventArgs e)
+        {
+            OnMenuSeleccionado?.Invoke(IndiceMenu.Presupuestos);
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

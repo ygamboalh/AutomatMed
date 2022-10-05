@@ -6,7 +6,7 @@ namespace AutomatMediciones.Dominio.Common
 {
     public class ConfigMap : Profile
     {
-        public ConfigMap() : base("TacticaProfile")
+        public ConfigMap() : base("AutomatProfile")
         {
             CreateMap<Estado, EstadoDto>().ReverseMap();
             CreateMap<Ingreso, IngresoDto>().ReverseMap();
@@ -33,7 +33,9 @@ namespace AutomatMediciones.Dominio.Common
             CreateMap<CeldaInstrumento, CeldaInstrumentoDto>().ReverseMap();
             CreateMap<EstadoCelda, EstadoCeldaDto>().ReverseMap();
             CreateMap<UnidadMedida, UnidadMedidaDto>().ReverseMap();
-
+            CreateMap<Producto, ProductoDto>().ReverseMap();
+            CreateMap<Presupuesto, PresupuestoDto>().ReverseMap();
+            CreateMap<PresupuestoItem, PresupuestoItemDto>().ReverseMap();
         }
     }
 }

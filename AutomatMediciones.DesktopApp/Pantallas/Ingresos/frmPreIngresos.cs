@@ -29,7 +29,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             {
                 PrepararDataSourcePreIngresos(preIngresos);
             }
-          
+
             SetearTotales();
 
             EstablecerNombreYTituloDePantalla();
@@ -47,7 +47,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             ingresoSeleccionao.PreIngresoId = ingresoSeleccionao.IngresoId;
             ingresoSeleccionao.Seleccionado = (bool)check.EditValue;
-          
+
             if (!ingresoSeleccionao.Seleccionado)
             {
                 preIngresosSeleccionados = preIngresosSeleccionados.Where(x => x.IngresoInstrumentoId != ingresoSeleccionao.IngresoInstrumentoId).ToList();

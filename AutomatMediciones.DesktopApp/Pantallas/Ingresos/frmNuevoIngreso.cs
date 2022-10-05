@@ -739,7 +739,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             {
                 Ingreso.IngresosInstrumentos.ToList().ForEach(x =>
                 {
-                    
+
                     x.EstadoId = (int)Estados.Ingresado;
                 });
             }

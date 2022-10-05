@@ -296,11 +296,11 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
-        public Response<List<IngresoDto>>ObtenerPreIngresosPorEmpresa(string empresaId)
+        public Response<List<IngresoDto>> ObtenerPreIngresosPorEmpresa(string empresaId)
         {
             try
             {
-                
+
 
                 var ingresos = _automatMedicionesDbContext.Ingresos.AsQueryable()
                     .Include(x => x.IngresosInstrumentos.Where(y => y.Activo)).ThenInclude(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.Marca)
@@ -311,7 +311,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                                                                 .Include(x => x.IngresosInstrumentos.Where(y => y.Activo)).ThenInclude(x => x.Ingreso)
                                                                 .Include(x => x.IngresosInstrumentos.Where(y => y.Activo)).ThenInclude(x => x.Responsable)
                                                                 .Where(x => x.Activo && x.EmpresaId == empresaId && x.TipoIngresoId == (int)TipoIngreso.PreIngreso)
-                                                                
+
 
                                                                 .ToList();
 

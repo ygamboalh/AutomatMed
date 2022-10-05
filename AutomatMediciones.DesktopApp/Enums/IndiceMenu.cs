@@ -16,6 +16,7 @@
         Celdas = 12,
         Usuarios = 13,
         TiposDeCelda = 14,
-        PreIngreso = 15
+        PreIngreso = 15,
+        Presupuestos = 16
     }
 }

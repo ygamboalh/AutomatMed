@@ -9,6 +9,7 @@ using AutomatMediciones.DesktopApp.Pantallas.Instrumentos;
 using AutomatMediciones.DesktopApp.Pantallas.Marcas;
 using AutomatMediciones.DesktopApp.Pantallas.Modelos;
 using AutomatMediciones.DesktopApp.Pantallas.Patrones;
+using AutomatMediciones.DesktopApp.Pantallas.Presupuestos;
 using AutomatMediciones.DesktopApp.Pantallas.TiposDeCelda;
 using AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento;
 using AutomatMediciones.DesktopApp.Pantallas.Usuarios;
@@ -195,6 +196,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
                                                       );
                     XtraForm preIngresos = frmPreIngreso;
                     AgregarPantalla(ref preIngresos);
+                    SplashScreenManager.CloseForm();
+                    break;
+                case IndiceMenu.Presupuestos:
+                    SplashScreenManager.ShowForm(typeof(frmSaving));
+                    var presupuestoForm = new frmPresupuestos(serviceProvider.GetService<ProductoService>(), serviceProvider.GetService<PresupuestoService>());
+                    XtraForm presupuesto = presupuestoForm;
+                    AgregarPantalla(ref presupuesto);
                     SplashScreenManager.CloseForm();
                     break;
 
