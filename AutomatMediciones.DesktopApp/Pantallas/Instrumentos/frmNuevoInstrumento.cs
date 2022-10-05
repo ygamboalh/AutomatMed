@@ -450,7 +450,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             if (tipoInstrumentoSeleccionado != null)
             {
                 marcas = new List<MarcaDto>();
-                marcas = clasificaciones.Where(x => x.TipoInstrumentoId.Equals(tipoInstrumentoSeleccionado.TipoInstrumentoId)).Select(x => x.Marca).ToList();
+
+                marcas = clasificaciones.Where(x => x.TipoInstrumentoId.Equals(tipoInstrumentoSeleccionado.TipoInstrumentoId))
+                                               .GroupBy(x => x.MarcaId)
+                                               .Select(x => x.First().Marca).ToList();
+
                 leMarcas.Properties.DataSource = marcas;
             }
         }
@@ -461,7 +465,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             if (marcaSeleccionada != null)
             {
                 modelos = new List<ModeloDto>();
-                modelos = clasificaciones.Where(x => x.MarcaId.Equals(marcaSeleccionada.MarcaId) && x.TipoInstrumentoId.Equals(tipoInstrumentoSeleccionado.TipoInstrumentoId)).Select(x => x.Modelo).ToList();
+                modelos = clasificaciones.Where(x => x.MarcaId.Equals(marcaSeleccionada.MarcaId) && x.TipoInstrumentoId.Equals(tipoInstrumentoSeleccionado.TipoInstrumentoId))
+                                         .GroupBy(x => x.ModeloId)
+                                         .Select(x => x.First().Modelo).ToList();
                 leModelos.Properties.DataSource = modelos;
             }
         }
