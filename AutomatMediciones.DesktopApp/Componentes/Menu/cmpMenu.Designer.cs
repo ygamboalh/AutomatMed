@@ -51,23 +51,23 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.btnPatrones = new FontAwesome.Sharp.IconButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnConfiguracion = new FontAwesome.Sharp.IconButton();
-            this.pnlTipoInstrumento = new System.Windows.Forms.Panel();
-            this.btnTipoInstrumento = new FontAwesome.Sharp.IconButton();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.pnlMarcas = new System.Windows.Forms.Panel();
-            this.cmdMarcas = new FontAwesome.Sharp.IconButton();
-            this.panel9 = new System.Windows.Forms.Panel();
             this.pnlModelos = new System.Windows.Forms.Panel();
             this.btnModelos = new FontAwesome.Sharp.IconButton();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.pnlInstrumento = new System.Windows.Forms.Panel();
-            this.btnInstrumentos = new FontAwesome.Sharp.IconButton();
-            this.panel11 = new System.Windows.Forms.Panel();
+            this.pnlMarcas = new System.Windows.Forms.Panel();
+            this.cmdMarcas = new FontAwesome.Sharp.IconButton();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.pnlTipoInstrumento = new System.Windows.Forms.Panel();
+            this.btnTipoInstrumento = new FontAwesome.Sharp.IconButton();
+            this.panel12 = new System.Windows.Forms.Panel();
             this.pnlClasificaciones = new System.Windows.Forms.Panel();
             this.btnClasificaciones = new FontAwesome.Sharp.IconButton();
             this.panel8 = new System.Windows.Forms.Panel();
             this.pnlSeparador = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.pnlInstrumento = new System.Windows.Forms.Panel();
+            this.btnInstrumentos = new FontAwesome.Sharp.IconButton();
+            this.panel11 = new System.Windows.Forms.Panel();
             this.pnlTipoCelda = new System.Windows.Forms.Panel();
             this.cmdTipoCelda = new FontAwesome.Sharp.IconButton();
             this.panel17 = new System.Windows.Forms.Panel();
@@ -89,8 +89,6 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
             this.cmdNuevoPreIngresoSimple = new FontAwesome.Sharp.IconButton();
-            this.pnlPresupuesto = new System.Windows.Forms.Panel();
-            this.btnPresupuestos = new FontAwesome.Sharp.IconButton();
             this.pnlLogo.SuspendLayout();
             this.pnlExpandirMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.navigationMenus)).BeginInit();
@@ -104,12 +102,12 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.pnlCeldas.SuspendLayout();
             this.pnlPatrones.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.pnlTipoInstrumento.SuspendLayout();
-            this.pnlMarcas.SuspendLayout();
             this.pnlModelos.SuspendLayout();
-            this.pnlInstrumento.SuspendLayout();
+            this.pnlMarcas.SuspendLayout();
+            this.pnlTipoInstrumento.SuspendLayout();
             this.pnlClasificaciones.SuspendLayout();
             this.pnlSeparador.SuspendLayout();
+            this.pnlInstrumento.SuspendLayout();
             this.pnlTipoCelda.SuspendLayout();
             this.pnlVariableMedicion.SuspendLayout();
             this.pnlUsuarios.SuspendLayout();
@@ -120,7 +118,6 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel18.SuspendLayout();
-            this.pnlPresupuesto.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmpLogo1
@@ -218,7 +215,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.pageMenuExtendido,
             this.pageMenuContraido});
             this.navigationMenus.SelectedPage = this.pageMenuExtendido;
-            this.navigationMenus.Size = new System.Drawing.Size(320, 280);
+            this.navigationMenus.Size = new System.Drawing.Size(320, 445);
             this.navigationMenus.TabIndex = 6;
             this.navigationMenus.Text = "navigationFrame1";
             this.navigationMenus.TransitionAnimationProperties.FrameCount = 500;
@@ -231,7 +228,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.pageMenuExtendido.Controls.Add(this.flowLayoutPanel1);
             this.pageMenuExtendido.MinimumSize = new System.Drawing.Size(320, 0);
             this.pageMenuExtendido.Name = "pageMenuExtendido";
-            this.pageMenuExtendido.Size = new System.Drawing.Size(320, 280);
+            this.pageMenuExtendido.Size = new System.Drawing.Size(320, 445);
             // 
             // flowLayoutPanel1
             // 
@@ -241,7 +238,6 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.flowLayoutPanel1.Controls.Add(this.pnlCertificados);
             this.flowLayoutPanel1.Controls.Add(this.pnlCeldas);
             this.flowLayoutPanel1.Controls.Add(this.pnlPatrones);
-            this.flowLayoutPanel1.Controls.Add(this.pnlPresupuesto);
             this.flowLayoutPanel1.Controls.Add(this.panel4);
             this.flowLayoutPanel1.Controls.Add(this.pnlModelos);
             this.flowLayoutPanel1.Controls.Add(this.pnlMarcas);
@@ -255,7 +251,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(320, 280);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(320, 445);
             this.flowLayoutPanel1.TabIndex = 7;
             this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
             // 
@@ -416,7 +412,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             // panel4
             // 
             this.panel4.Controls.Add(this.btnConfiguracion);
-            this.panel4.Location = new System.Drawing.Point(3, 377);
+            this.panel4.Location = new System.Drawing.Point(3, 324);
             this.panel4.Name = "panel4";
             this.panel4.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.panel4.Size = new System.Drawing.Size(320, 47);
@@ -442,87 +438,11 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.btnConfiguracion.UseVisualStyleBackColor = false;
             this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
             // 
-            // pnlTipoInstrumento
-            // 
-            this.pnlTipoInstrumento.Controls.Add(this.btnTipoInstrumento);
-            this.pnlTipoInstrumento.Controls.Add(this.panel12);
-            this.pnlTipoInstrumento.Location = new System.Drawing.Point(3, 536);
-            this.pnlTipoInstrumento.Name = "pnlTipoInstrumento";
-            this.pnlTipoInstrumento.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.pnlTipoInstrumento.Size = new System.Drawing.Size(320, 47);
-            this.pnlTipoInstrumento.TabIndex = 10;
-            // 
-            // btnTipoInstrumento
-            // 
-            this.btnTipoInstrumento.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnTipoInstrumento.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnTipoInstrumento.FlatAppearance.BorderSize = 0;
-            this.btnTipoInstrumento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTipoInstrumento.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnTipoInstrumento.IconChar = FontAwesome.Sharp.IconChar.Signature;
-            this.btnTipoInstrumento.IconColor = System.Drawing.Color.Black;
-            this.btnTipoInstrumento.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnTipoInstrumento.IconSize = 18;
-            this.btnTipoInstrumento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTipoInstrumento.Location = new System.Drawing.Point(11, 0);
-            this.btnTipoInstrumento.Name = "btnTipoInstrumento";
-            this.btnTipoInstrumento.Size = new System.Drawing.Size(309, 42);
-            this.btnTipoInstrumento.TabIndex = 3;
-            this.btnTipoInstrumento.Text = "Tipo de Instrumento";
-            this.btnTipoInstrumento.UseVisualStyleBackColor = false;
-            this.btnTipoInstrumento.Click += new System.EventHandler(this.btnTiposDeInstrumetnos_Click);
-            // 
-            // panel12
-            // 
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel12.Location = new System.Drawing.Point(0, 0);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(11, 42);
-            this.panel12.TabIndex = 4;
-            // 
-            // pnlMarcas
-            // 
-            this.pnlMarcas.Controls.Add(this.cmdMarcas);
-            this.pnlMarcas.Controls.Add(this.panel9);
-            this.pnlMarcas.Location = new System.Drawing.Point(3, 483);
-            this.pnlMarcas.Name = "pnlMarcas";
-            this.pnlMarcas.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.pnlMarcas.Size = new System.Drawing.Size(320, 47);
-            this.pnlMarcas.TabIndex = 11;
-            // 
-            // cmdMarcas
-            // 
-            this.cmdMarcas.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.cmdMarcas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cmdMarcas.FlatAppearance.BorderSize = 0;
-            this.cmdMarcas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmdMarcas.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.cmdMarcas.IconChar = FontAwesome.Sharp.IconChar.Copyright;
-            this.cmdMarcas.IconColor = System.Drawing.Color.Black;
-            this.cmdMarcas.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.cmdMarcas.IconSize = 18;
-            this.cmdMarcas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cmdMarcas.Location = new System.Drawing.Point(11, 0);
-            this.cmdMarcas.Name = "cmdMarcas";
-            this.cmdMarcas.Size = new System.Drawing.Size(309, 42);
-            this.cmdMarcas.TabIndex = 3;
-            this.cmdMarcas.Text = "Marcas";
-            this.cmdMarcas.UseVisualStyleBackColor = false;
-            this.cmdMarcas.Click += new System.EventHandler(this.cmdMarcas_Click);
-            // 
-            // panel9
-            // 
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel9.Location = new System.Drawing.Point(0, 0);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(11, 42);
-            this.panel9.TabIndex = 4;
-            // 
             // pnlModelos
             // 
             this.pnlModelos.Controls.Add(this.btnModelos);
             this.pnlModelos.Controls.Add(this.panel10);
-            this.pnlModelos.Location = new System.Drawing.Point(3, 430);
+            this.pnlModelos.Location = new System.Drawing.Point(3, 377);
             this.pnlModelos.Name = "pnlModelos";
             this.pnlModelos.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.pnlModelos.Size = new System.Drawing.Size(320, 47);
@@ -556,49 +476,87 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.panel10.Size = new System.Drawing.Size(11, 42);
             this.panel10.TabIndex = 4;
             // 
-            // pnlInstrumento
+            // pnlMarcas
             // 
-            this.pnlInstrumento.Controls.Add(this.btnInstrumentos);
-            this.pnlInstrumento.Controls.Add(this.panel11);
-            this.pnlInstrumento.Location = new System.Drawing.Point(3, 650);
-            this.pnlInstrumento.Name = "pnlInstrumento";
-            this.pnlInstrumento.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.pnlInstrumento.Size = new System.Drawing.Size(320, 47);
-            this.pnlInstrumento.TabIndex = 13;
+            this.pnlMarcas.Controls.Add(this.cmdMarcas);
+            this.pnlMarcas.Controls.Add(this.panel9);
+            this.pnlMarcas.Location = new System.Drawing.Point(3, 430);
+            this.pnlMarcas.Name = "pnlMarcas";
+            this.pnlMarcas.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.pnlMarcas.Size = new System.Drawing.Size(320, 47);
+            this.pnlMarcas.TabIndex = 11;
             // 
-            // btnInstrumentos
+            // cmdMarcas
             // 
-            this.btnInstrumentos.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnInstrumentos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnInstrumentos.FlatAppearance.BorderSize = 0;
-            this.btnInstrumentos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInstrumentos.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnInstrumentos.IconChar = FontAwesome.Sharp.IconChar.Thermometer;
-            this.btnInstrumentos.IconColor = System.Drawing.Color.Black;
-            this.btnInstrumentos.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnInstrumentos.IconSize = 18;
-            this.btnInstrumentos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInstrumentos.Location = new System.Drawing.Point(11, 0);
-            this.btnInstrumentos.Name = "btnInstrumentos";
-            this.btnInstrumentos.Size = new System.Drawing.Size(309, 42);
-            this.btnInstrumentos.TabIndex = 3;
-            this.btnInstrumentos.Text = "Instrumentos";
-            this.btnInstrumentos.UseVisualStyleBackColor = false;
-            this.btnInstrumentos.Click += new System.EventHandler(this.cmdInstrumentos_Click);
+            this.cmdMarcas.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.cmdMarcas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cmdMarcas.FlatAppearance.BorderSize = 0;
+            this.cmdMarcas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmdMarcas.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.cmdMarcas.IconChar = FontAwesome.Sharp.IconChar.Copyright;
+            this.cmdMarcas.IconColor = System.Drawing.Color.Black;
+            this.cmdMarcas.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.cmdMarcas.IconSize = 18;
+            this.cmdMarcas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmdMarcas.Location = new System.Drawing.Point(11, 0);
+            this.cmdMarcas.Name = "cmdMarcas";
+            this.cmdMarcas.Size = new System.Drawing.Size(309, 42);
+            this.cmdMarcas.TabIndex = 3;
+            this.cmdMarcas.Text = "Marcas";
+            this.cmdMarcas.UseVisualStyleBackColor = false;
+            this.cmdMarcas.Click += new System.EventHandler(this.cmdMarcas_Click);
             // 
-            // panel11
+            // panel9
             // 
-            this.panel11.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel11.Location = new System.Drawing.Point(0, 0);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(11, 42);
-            this.panel11.TabIndex = 4;
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel9.Location = new System.Drawing.Point(0, 0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(11, 42);
+            this.panel9.TabIndex = 4;
+            // 
+            // pnlTipoInstrumento
+            // 
+            this.pnlTipoInstrumento.Controls.Add(this.btnTipoInstrumento);
+            this.pnlTipoInstrumento.Controls.Add(this.panel12);
+            this.pnlTipoInstrumento.Location = new System.Drawing.Point(3, 483);
+            this.pnlTipoInstrumento.Name = "pnlTipoInstrumento";
+            this.pnlTipoInstrumento.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.pnlTipoInstrumento.Size = new System.Drawing.Size(320, 47);
+            this.pnlTipoInstrumento.TabIndex = 10;
+            // 
+            // btnTipoInstrumento
+            // 
+            this.btnTipoInstrumento.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnTipoInstrumento.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnTipoInstrumento.FlatAppearance.BorderSize = 0;
+            this.btnTipoInstrumento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTipoInstrumento.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnTipoInstrumento.IconChar = FontAwesome.Sharp.IconChar.Signature;
+            this.btnTipoInstrumento.IconColor = System.Drawing.Color.Black;
+            this.btnTipoInstrumento.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnTipoInstrumento.IconSize = 18;
+            this.btnTipoInstrumento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTipoInstrumento.Location = new System.Drawing.Point(11, 0);
+            this.btnTipoInstrumento.Name = "btnTipoInstrumento";
+            this.btnTipoInstrumento.Size = new System.Drawing.Size(309, 42);
+            this.btnTipoInstrumento.TabIndex = 3;
+            this.btnTipoInstrumento.Text = "Tipo de Instrumento";
+            this.btnTipoInstrumento.UseVisualStyleBackColor = false;
+            this.btnTipoInstrumento.Click += new System.EventHandler(this.btnTiposDeInstrumetnos_Click);
+            // 
+            // panel12
+            // 
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel12.Location = new System.Drawing.Point(0, 0);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(11, 42);
+            this.panel12.TabIndex = 4;
             // 
             // pnlClasificaciones
             // 
             this.pnlClasificaciones.Controls.Add(this.btnClasificaciones);
             this.pnlClasificaciones.Controls.Add(this.panel8);
-            this.pnlClasificaciones.Location = new System.Drawing.Point(3, 589);
+            this.pnlClasificaciones.Location = new System.Drawing.Point(3, 536);
             this.pnlClasificaciones.Name = "pnlClasificaciones";
             this.pnlClasificaciones.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.pnlClasificaciones.Size = new System.Drawing.Size(320, 47);
@@ -636,7 +594,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             // 
             this.pnlSeparador.BackColor = System.Drawing.Color.Black;
             this.pnlSeparador.Controls.Add(this.panel7);
-            this.pnlSeparador.Location = new System.Drawing.Point(3, 642);
+            this.pnlSeparador.Location = new System.Drawing.Point(3, 589);
             this.pnlSeparador.Name = "pnlSeparador";
             this.pnlSeparador.Size = new System.Drawing.Size(317, 2);
             this.pnlSeparador.TabIndex = 16;
@@ -650,11 +608,49 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.panel7.Size = new System.Drawing.Size(11, 2);
             this.panel7.TabIndex = 5;
             // 
+            // pnlInstrumento
+            // 
+            this.pnlInstrumento.Controls.Add(this.btnInstrumentos);
+            this.pnlInstrumento.Controls.Add(this.panel11);
+            this.pnlInstrumento.Location = new System.Drawing.Point(3, 597);
+            this.pnlInstrumento.Name = "pnlInstrumento";
+            this.pnlInstrumento.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.pnlInstrumento.Size = new System.Drawing.Size(320, 47);
+            this.pnlInstrumento.TabIndex = 13;
+            // 
+            // btnInstrumentos
+            // 
+            this.btnInstrumentos.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnInstrumentos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnInstrumentos.FlatAppearance.BorderSize = 0;
+            this.btnInstrumentos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInstrumentos.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnInstrumentos.IconChar = FontAwesome.Sharp.IconChar.Thermometer;
+            this.btnInstrumentos.IconColor = System.Drawing.Color.Black;
+            this.btnInstrumentos.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnInstrumentos.IconSize = 18;
+            this.btnInstrumentos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInstrumentos.Location = new System.Drawing.Point(11, 0);
+            this.btnInstrumentos.Name = "btnInstrumentos";
+            this.btnInstrumentos.Size = new System.Drawing.Size(309, 42);
+            this.btnInstrumentos.TabIndex = 3;
+            this.btnInstrumentos.Text = "Instrumentos";
+            this.btnInstrumentos.UseVisualStyleBackColor = false;
+            this.btnInstrumentos.Click += new System.EventHandler(this.cmdInstrumentos_Click);
+            // 
+            // panel11
+            // 
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel11.Location = new System.Drawing.Point(0, 0);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(11, 42);
+            this.panel11.TabIndex = 4;
+            // 
             // pnlTipoCelda
             // 
             this.pnlTipoCelda.Controls.Add(this.cmdTipoCelda);
             this.pnlTipoCelda.Controls.Add(this.panel17);
-            this.pnlTipoCelda.Location = new System.Drawing.Point(3, 703);
+            this.pnlTipoCelda.Location = new System.Drawing.Point(3, 650);
             this.pnlTipoCelda.Name = "pnlTipoCelda";
             this.pnlTipoCelda.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.pnlTipoCelda.Size = new System.Drawing.Size(320, 47);
@@ -692,7 +688,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             // 
             this.pnlVariableMedicion.Controls.Add(this.btnVariableMedicion);
             this.pnlVariableMedicion.Controls.Add(this.panel13);
-            this.pnlVariableMedicion.Location = new System.Drawing.Point(3, 756);
+            this.pnlVariableMedicion.Location = new System.Drawing.Point(3, 703);
             this.pnlVariableMedicion.Name = "pnlVariableMedicion";
             this.pnlVariableMedicion.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.pnlVariableMedicion.Size = new System.Drawing.Size(320, 47);
@@ -730,7 +726,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             // 
             this.pnlUsuarios.Controls.Add(this.cmdUsuarios);
             this.pnlUsuarios.Controls.Add(this.panel16);
-            this.pnlUsuarios.Location = new System.Drawing.Point(3, 809);
+            this.pnlUsuarios.Location = new System.Drawing.Point(3, 756);
             this.pnlUsuarios.Name = "pnlUsuarios";
             this.pnlUsuarios.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.pnlUsuarios.Size = new System.Drawing.Size(320, 47);
@@ -774,7 +770,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.pageMenuContraido.Controls.Add(this.panel2);
             this.pageMenuContraido.Controls.Add(this.panel18);
             this.pageMenuContraido.Name = "pageMenuContraido";
-            this.pageMenuContraido.Size = new System.Drawing.Size(320, 280);
+            this.pageMenuContraido.Size = new System.Drawing.Size(320, 445);
             // 
             // panel15
             // 
@@ -925,35 +921,6 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.cmdNuevoPreIngresoSimple.UseVisualStyleBackColor = false;
             this.cmdNuevoPreIngresoSimple.Click += new System.EventHandler(this.cmdNuevoPreIngresoSimple_Click);
             // 
-            // pnlPresupuesto
-            // 
-            this.pnlPresupuesto.Controls.Add(this.btnPresupuestos);
-            this.pnlPresupuesto.Location = new System.Drawing.Point(3, 324);
-            this.pnlPresupuesto.Name = "pnlPresupuesto";
-            this.pnlPresupuesto.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.pnlPresupuesto.Size = new System.Drawing.Size(320, 47);
-            this.pnlPresupuesto.TabIndex = 19;
-            // 
-            // btnPresupuestos
-            // 
-            this.btnPresupuestos.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnPresupuestos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnPresupuestos.FlatAppearance.BorderSize = 0;
-            this.btnPresupuestos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPresupuestos.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.btnPresupuestos.IconChar = FontAwesome.Sharp.IconChar.MoneyBillWave;
-            this.btnPresupuestos.IconColor = System.Drawing.Color.Black;
-            this.btnPresupuestos.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnPresupuestos.IconSize = 18;
-            this.btnPresupuestos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPresupuestos.Location = new System.Drawing.Point(0, 0);
-            this.btnPresupuestos.Name = "btnPresupuestos";
-            this.btnPresupuestos.Size = new System.Drawing.Size(320, 42);
-            this.btnPresupuestos.TabIndex = 3;
-            this.btnPresupuestos.Text = "Presupuestos";
-            this.btnPresupuestos.UseVisualStyleBackColor = false;
-            this.btnPresupuestos.Click += new System.EventHandler(this.btnPresupuestos_Click);
-            // 
             // cmpMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -965,7 +932,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.MaximumSize = new System.Drawing.Size(320, 0);
             this.MinimumSize = new System.Drawing.Size(320, 520);
             this.Name = "cmpMenu";
-            this.Size = new System.Drawing.Size(320, 520);
+            this.Size = new System.Drawing.Size(320, 685);
             this.pnlLogo.ResumeLayout(false);
             this.pnlExpandirMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.navigationMenus)).EndInit();
@@ -979,12 +946,12 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.pnlCeldas.ResumeLayout(false);
             this.pnlPatrones.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
-            this.pnlTipoInstrumento.ResumeLayout(false);
-            this.pnlMarcas.ResumeLayout(false);
             this.pnlModelos.ResumeLayout(false);
-            this.pnlInstrumento.ResumeLayout(false);
+            this.pnlMarcas.ResumeLayout(false);
+            this.pnlTipoInstrumento.ResumeLayout(false);
             this.pnlClasificaciones.ResumeLayout(false);
             this.pnlSeparador.ResumeLayout(false);
+            this.pnlInstrumento.ResumeLayout(false);
             this.pnlTipoCelda.ResumeLayout(false);
             this.pnlVariableMedicion.ResumeLayout(false);
             this.pnlUsuarios.ResumeLayout(false);
@@ -995,7 +962,6 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel18.ResumeLayout(false);
-            this.pnlPresupuesto.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1062,7 +1028,5 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
         private FontAwesome.Sharp.IconButton btnCreacionPreIngreso;
         private System.Windows.Forms.Panel panel18;
         private FontAwesome.Sharp.IconButton cmdNuevoPreIngresoSimple;
-        private System.Windows.Forms.Panel pnlPresupuesto;
-        private FontAwesome.Sharp.IconButton btnPresupuestos;
     }
 }

@@ -51,6 +51,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions5 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject17 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject18 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject19 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject20 = new DevExpress.Utils.SerializableAppearanceObject();
             this.btnIniciarDiagnostico = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gcInstrumentos = new DevExpress.XtraGrid.GridControl();
             this.gvInstrumentos = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -74,6 +79,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.btnEditarIngreso = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colHistorialCertificados = new DevExpress.XtraGrid.Columns.GridColumn();
             this.cmdHistorialCertificados = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.colPresupuesto = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnPresupuestos = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnExportarExcel = new FontAwesome.Sharp.IconButton();
@@ -90,6 +97,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             ((System.ComponentModel.ISupportInitialize)(this.btnVerReporteDeIngreso)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditarIngreso)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmdHistorialCertificados)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPresupuestos)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -116,7 +124,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.btnIniciarDiagnostico,
             this.btnVerReporteDeIngreso,
             this.btnEditarIngreso,
-            this.cmdHistorialCertificados});
+            this.cmdHistorialCertificados,
+            this.btnPresupuestos});
             this.gcInstrumentos.Size = new System.Drawing.Size(948, 599);
             this.gcInstrumentos.TabIndex = 157;
             this.gcInstrumentos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -141,7 +150,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.colIngresoInstrumentoId,
             this.colVerReporte,
             this.colEditar,
-            this.colHistorialCertificados});
+            this.colHistorialCertificados,
+            this.colPresupuesto});
             this.gvInstrumentos.DetailHeight = 351;
             this.gvInstrumentos.GridControl = this.gcInstrumentos;
             this.gvInstrumentos.Name = "gvInstrumentos";
@@ -250,6 +260,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.colResponsableDiagnostico.FieldName = "Responsable.Nombre";
             this.colResponsableDiagnostico.MinWidth = 107;
             this.colResponsableDiagnostico.Name = "colResponsableDiagnostico";
+            this.colResponsableDiagnostico.OptionsColumn.AllowEdit = false;
+            this.colResponsableDiagnostico.OptionsColumn.AllowFocus = false;
             this.colResponsableDiagnostico.Visible = true;
             this.colResponsableDiagnostico.VisibleIndex = 7;
             this.colResponsableDiagnostico.Width = 108;
@@ -320,7 +332,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.colVerReporte.Name = "colVerReporte";
             this.colVerReporte.Visible = true;
             this.colVerReporte.VisibleIndex = 12;
-            this.colVerReporte.Width = 28;
+            this.colVerReporte.Width = 24;
             // 
             // btnVerReporteDeIngreso
             // 
@@ -339,7 +351,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.colEditar.Name = "colEditar";
             this.colEditar.Visible = true;
             this.colEditar.VisibleIndex = 13;
-            this.colEditar.Width = 30;
+            this.colEditar.Width = 24;
             // 
             // btnEditarIngreso
             // 
@@ -357,8 +369,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.colHistorialCertificados.MinWidth = 23;
             this.colHistorialCertificados.Name = "colHistorialCertificados";
             this.colHistorialCertificados.Visible = true;
-            this.colHistorialCertificados.VisibleIndex = 14;
-            this.colHistorialCertificados.Width = 30;
+            this.colHistorialCertificados.VisibleIndex = 15;
+            this.colHistorialCertificados.Width = 23;
             // 
             // cmdHistorialCertificados
             // 
@@ -368,6 +380,25 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "Ver Historial de Certificados", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.cmdHistorialCertificados.Name = "cmdHistorialCertificados";
             this.cmdHistorialCertificados.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
+            // colPresupuesto
+            // 
+            this.colPresupuesto.ColumnEdit = this.btnPresupuestos;
+            this.colPresupuesto.MinWidth = 24;
+            this.colPresupuesto.Name = "colPresupuesto";
+            this.colPresupuesto.ToolTip = "Presupuestos";
+            this.colPresupuesto.Visible = true;
+            this.colPresupuesto.VisibleIndex = 14;
+            this.colPresupuesto.Width = 30;
+            // 
+            // btnPresupuestos
+            // 
+            this.btnPresupuestos.AutoHeight = false;
+            editorButtonImageOptions5.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions5.Image")));
+            this.btnPresupuestos.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions5, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject17, serializableAppearanceObject18, serializableAppearanceObject19, serializableAppearanceObject20, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.btnPresupuestos.Name = "btnPresupuestos";
+            this.btnPresupuestos.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // panel1
             // 
@@ -538,6 +569,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             ((System.ComponentModel.ISupportInitialize)(this.btnVerReporteDeIngreso)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditarIngreso)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmdHistorialCertificados)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPresupuestos)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -581,5 +613,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEditarIngreso;
         private DevExpress.XtraGrid.Columns.GridColumn colHistorialCertificados;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit cmdHistorialCertificados;
+        private DevExpress.XtraGrid.Columns.GridColumn colPresupuesto;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnPresupuestos;
     }
 }
