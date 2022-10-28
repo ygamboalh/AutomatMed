@@ -90,14 +90,14 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     NumeroCertificado = "",
                     Observaciones = certificadoDto.Observaciones,
                     Resultado = certificadoDto.Resultado,
-                 
+
                 };
 
                 _automatDbContext.Database.BeginTransaction();
                 _automatDbContext.Certificados.Add(certificado);
                 _automatDbContext.SaveChanges();
 
-          
+
                 List<VariableCertificado> variableCertificados = new List<VariableCertificado>();
 
                 certificadoDto.VariablesCertificado.ToList().ForEach(x =>
@@ -165,7 +165,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 certificadoDb.Observaciones = certificadoDto.Observaciones;
                 certificadoDb.ResponsableId = certificadoDto.ResponsableId;
                 certificadoDb.Resultado = certificadoDto.Resultado;
-             
+
 
                 return Response<CertificadoDto>.Ok("Ok", certificadoDto);
             }

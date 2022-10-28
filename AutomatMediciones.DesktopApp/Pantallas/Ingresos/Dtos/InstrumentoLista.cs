@@ -1,10 +1,12 @@
-﻿using AutomatMediciones.Libs.Dtos;
+﻿using AutomatMediciones.DesktopApp.Pantallas.Ingresos.Enums;
+using AutomatMediciones.Libs.Dtos;
 using System;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos.Dtos
 {
     public class InstrumentoLista : InstrumentoDto
     {
+        public TiposIngreso TipoIngreso { get; set; }
         public bool Seleccionado { get; set; }
         public string ClasificacionConcatenada { get; set; }
         public InformacionAdicionalInstrumento InformacionAdicional { get; set; }

@@ -3,6 +3,8 @@ using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion;
 using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos;
 using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos.Dtos;
+using AutomatMediciones.DesktopApp.Pantallas.Ingresos.Enums;
+using AutomatMediciones.DesktopApp.Pantallas.Presupuestos;
 using AutomatMediciones.DesktopApp.Reportes;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
@@ -42,12 +44,22 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             btnVerReporteDeIngreso.Click += btnVerReporteIngresoClick;
             btnEditarIngreso.Click += btnEditarIngresoClick;
             cmdHistorialCertificados.Click += cmdHistorialCertificadosClick;
+            btnPresupuestos.Click += btnPresupuestosClick;
 
             FiltroSeleccionado = Filtros.Todos;
             btnFiltroTodos.BackColor = ColorHelper.ObtenerColorEnRGB("Default");
             btnFiltroTodos.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
             btnFiltroTodos.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
 
+        }
+
+        private void btnPresupuestosClick(object sender, EventArgs e)
+        {
+            var ingresoSeleccionao = gvInstrumentos.GetFocusedRow() as IngresoInstrumento;
+            if (ingresoSeleccionao == null) return;
+
+            var frmPresupuestos = new frmCrearPresupuesto(ingresoSeleccionao);
+            frmPresupuestos.ShowDialog();
         }
 
         private void cmdHistorialCertificadosClick(object sender, EventArgs e)
@@ -68,14 +80,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             var ingresoDb = _ingresoService.ObtenerIngreso(ingresoSeleccionao.IngresoId);
 
-            var frmIngresos = new frmNuevoIngreso(TipoTransaccion.Actualizar,
-                                                      serviceProvider.GetService<IngresoService>(),
-                                                       serviceProvider.GetService<InstrumentoService>(),
-                                                       serviceProvider.GetService<UsuarioService>(),
-                                                       serviceProvider.GetService<ConfiguracionNotificacionService>(),
-                                                       serviceProvider.GetService<EstadoService>(),
-                                                       serviceProvider.GetService<EmpresaService>()
-                                                      );
+            var frmIngresos = new frmNuevoIngreso(TiposIngreso.IngresoGeneral, TipoTransaccion.Actualizar,
+                                                    serviceProvider.GetService<IngresoService>(),
+                                                    serviceProvider.GetService<InstrumentoService>(),
+                                                    serviceProvider.GetService<UsuarioService>(),
+                                                    serviceProvider.GetService<ConfiguracionNotificacionService>(),
+                                                    serviceProvider.GetService<EstadoService>(),
+                                                    serviceProvider.GetService<EmpresaService>()
+                                                    );
             frmIngresos.Text = "Editar Ingreso";
             frmIngresos.Ingreso = ingresoDb.Data;
             frmIngresos.SetearVariablesParaActualizar();
@@ -97,7 +109,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             btnExportarExcel.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
             btnExportarExcel.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
-
 
         private void btnVerReporteIngresoClick(object sender, EventArgs e)
         {
@@ -130,7 +141,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             nuevoDiagnostico.OnDiagnosticoAgregado += OnDiagnosticoAgregado;
             nuevoDiagnostico.ShowDialog();
         }
-
 
         private void OnDiagnosticoAgregado(IngresoInstrumento ingresoInstrumento)
         {
@@ -410,11 +420,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             {
                 SplashScreenManager.CloseForm();
             }
-        }
-
-        private void frmIngresos_Load(object sender, EventArgs e)
-        {
-
         }
     }
 

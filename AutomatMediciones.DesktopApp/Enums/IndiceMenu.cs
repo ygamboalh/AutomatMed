@@ -15,6 +15,8 @@
         Instrumentos = 11,
         Celdas = 12,
         Usuarios = 13,
-        TiposDeCelda = 14
+        TiposDeCelda = 14,
+        PreIngreso = 15,
+        Presupuestos = 16
     }
 }

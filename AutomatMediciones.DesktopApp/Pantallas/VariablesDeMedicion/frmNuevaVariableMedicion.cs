@@ -69,7 +69,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             UnidadMedidaSeleccionada = NuevaVariableMedicion.UnidadMedida;
 
             if (NuevaVariableMedicion.TiposDeInstrumentoVariables.Any()) gcTiposDeInstrumento.DataSource = NuevaVariableMedicion.TiposDeInstrumentoVariables;
-       
+
         }
 
         private void EstablecerNombreYTituloPopupAgregarInstrumentos()

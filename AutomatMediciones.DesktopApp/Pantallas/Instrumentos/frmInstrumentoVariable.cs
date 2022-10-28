@@ -59,7 +59,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             InitializeComponent();
 
             _sinTransaccion = true;
-            
+
             _instrumentoService = instrumentoService;
             _variableMedicionService = variableMedicionService;
 

@@ -20,6 +20,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
         public TimeSpan? TiempoConsumido { get; set; }
         public int? ResponsableId { get; set; }
         public bool Activo { get; set; }
+        public int? PreIngresoId { get; set; }
 
         public TipoTrabajo TipoTrabajo { get; set; }
         public Estado Estado { get; set; }

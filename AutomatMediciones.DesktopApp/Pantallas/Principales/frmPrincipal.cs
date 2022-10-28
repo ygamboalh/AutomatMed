@@ -4,10 +4,12 @@ using AutomatMediciones.DesktopApp.Pantallas.Celdas;
 using AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion;
 using AutomatMediciones.DesktopApp.Pantallas.Clasificaciones;
 using AutomatMediciones.DesktopApp.Pantallas.Ingresos;
+using AutomatMediciones.DesktopApp.Pantallas.Ingresos.Enums;
 using AutomatMediciones.DesktopApp.Pantallas.Instrumentos;
 using AutomatMediciones.DesktopApp.Pantallas.Marcas;
 using AutomatMediciones.DesktopApp.Pantallas.Modelos;
 using AutomatMediciones.DesktopApp.Pantallas.Patrones;
+using AutomatMediciones.DesktopApp.Pantallas.Presupuestos;
 using AutomatMediciones.DesktopApp.Pantallas.TiposDeCelda;
 using AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento;
 using AutomatMediciones.DesktopApp.Pantallas.Usuarios;
@@ -59,7 +61,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
 
         private void EstablecerEtiquetaNombreServidorBaseDatos()
         {
-
             lblBaseDatos.Text = AplicacionHelper.ObtenerDataBaseServer("AutomatConnectionString");
         }
 
@@ -70,12 +71,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
             {
                 case IndiceMenu.Ingresos:
                     SplashScreenManager.ShowForm(typeof(frmSaving));
-                    var frmIngresos = new frmNuevoIngreso(TipoTransaccion.Insertar, serviceProvider.GetService<IngresoService>(),
+                    var frmIngresos = new frmNuevoIngreso(TiposIngreso.IngresoGeneral, TipoTransaccion.Insertar, serviceProvider.GetService<IngresoService>(),
                                                        serviceProvider.GetService<InstrumentoService>(),
                                                        serviceProvider.GetService<UsuarioService>(),
                                                        serviceProvider.GetService<ConfiguracionNotificacionService>(),
                                                        serviceProvider.GetService<EstadoService>(),
-                                                          serviceProvider.GetService<EmpresaService>()
+                                                       serviceProvider.GetService<EmpresaService>()
                                                       );
                     XtraForm ingresos = frmIngresos;
                     AgregarPantalla(ref ingresos);
@@ -184,6 +185,27 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
                     AgregarPantalla(ref tipoCelda);
                     SplashScreenManager.CloseForm();
                     break;
+                case IndiceMenu.PreIngreso:
+                    SplashScreenManager.ShowForm(typeof(frmSaving));
+                    var frmPreIngreso = new frmNuevoIngreso(TiposIngreso.PreIngreso, TipoTransaccion.Insertar, serviceProvider.GetService<IngresoService>(),
+                                                       serviceProvider.GetService<InstrumentoService>(),
+                                                       serviceProvider.GetService<UsuarioService>(),
+                                                       serviceProvider.GetService<ConfiguracionNotificacionService>(),
+                                                       serviceProvider.GetService<EstadoService>(),
+                                                       serviceProvider.GetService<EmpresaService>()
+                                                      );
+                    XtraForm preIngresos = frmPreIngreso;
+                    AgregarPantalla(ref preIngresos);
+                    SplashScreenManager.CloseForm();
+                    break;
+                case IndiceMenu.Presupuestos:
+                    SplashScreenManager.ShowForm(typeof(frmSaving));
+                    var presupuestoForm = new frmPresupuestos(serviceProvider.GetService<ProductoService>(), serviceProvider.GetService<PresupuestoService>());
+                    XtraForm presupuesto = presupuestoForm;
+                    AgregarPantalla(ref presupuesto);
+                    SplashScreenManager.CloseForm();
+                    break;
+
             }
         }
 

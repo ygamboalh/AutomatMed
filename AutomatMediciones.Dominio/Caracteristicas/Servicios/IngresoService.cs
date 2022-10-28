@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutomatMediciones.Dominio.Caracteristicas.Entidades;
+using AutomatMediciones.Dominio.Caracteristicas.Enums;
 using AutomatMediciones.Dominio.Infraestructura;
 using AutomatMediciones.Libs.Dtos;
 using Microsoft.EntityFrameworkCore;
@@ -37,10 +38,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                                                                                     .FirstOrDefault(x => x.IngresoId == ingresoId);
 
 
-                if (ingresoDb == null)
-                {
-                    return Response<IngresoDto>.Error("No pudo ser obtenida la información de ingreso", null);
-                }
+                if (ingresoDb == null) return Response<IngresoDto>.Error("No pudo ser obtenida la información de ingreso", null);
+
                 return Response<IngresoDto>.Ok("Ok", _mapper.Map<IngresoDto>(ingresoDb));
             }
             catch (Exception exc)
@@ -78,13 +77,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             try
             {
                 var ingreso = _automatMedicionesDbContext.IngresosInstrumentos.FirstOrDefault(x => x.IngresoInstrumentoId == ingresoInstrumentoId);
-
-                if (ingreso == null)
-                {
-                    return Response<IngresoInstrumentoDto>.Error("No pudo ser obtenida la información de ingreso", null);
-                }
-
-
+                if (ingreso == null) return Response<IngresoInstrumentoDto>.Error("No pudo ser obtenida la información de ingreso", null);
                 return Response<IngresoInstrumentoDto>.Ok("Ok", _mapper.Map<IngresoInstrumentoDto>(ingreso));
             }
             catch (Exception exc)
@@ -109,13 +102,11 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     CuerpoCorreo = ingresoDto.CuerpoCorreo,
                     Activo = true,
                     FechaRegistro = ingresoDto.FechaRegistro,
-                    UsuarioId = ingresoDto.UsuarioId
+                    UsuarioId = ingresoDto.UsuarioId,
+                    TipoIngresoId = ingresoDto.TipoIngresoId
                 };
 
-                if (!ingreso.EsValido(out string mensaje))
-                {
-                    return Response<IngresoDto>.ErrorValidation(mensaje, null);
-                }
+                if (!ingreso.EsValido(out string mensaje)) return Response<IngresoDto>.ErrorValidation(mensaje, null);
 
                 _automatMedicionesDbContext.Database.BeginTransaction();
                 _automatMedicionesDbContext.Ingresos.Add(ingreso);
@@ -124,13 +115,9 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 int correlativoIntrumento = 1;
                 foreach (var instrumento in ingresoDto.IngresosInstrumentos)
                 {
-
                     var instrumentoBd = _automatMedicionesDbContext.Instrumentos.FirstOrDefault(x => x.InstrumentoId == instrumento.InstrumentoId);
 
-                    if (instrumentoBd != null)
-                    {
-                        instrumentoBd.Comentarios = instrumento.Instrumento.Comentarios;
-                    }
+                    if (instrumentoBd != null) instrumentoBd.Comentarios = instrumento.Instrumento.Comentarios;
 
                     var ingresoInstrumento = new IngresoInstrumento
                     {
@@ -145,7 +132,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         Prioridad = instrumento.Prioridad,
                         EstadoId = instrumento.EstadoId,
                         ResponsableId = ingresoDto.UsuarioId,
-                        FechaEntregaRequerida = instrumento.FechaEntregaRequerida
+                        FechaEntregaRequerida = instrumento.FechaEntregaRequerida,
+                        PreIngresoId = instrumento.PreIngresoId
                     };
 
                     _automatMedicionesDbContext.IngresosInstrumentos.Add(ingresoInstrumento);
@@ -179,7 +167,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             {
                 var ingresoDb = _automatMedicionesDbContext.Ingresos.FirstOrDefault(x => x.IngresoId == ingresoDto.IngresoId);
 
-                if (ingresoDb == null) return Response<IngresoDto>.Error("No se encontró ningún registro en almacen de datos.", null);
+                if (ingresoDb == null) return Response<IngresoDto>.Error("No se encontró ningún registro en almacén de datos.", null);
 
                 _automatMedicionesDbContext.Database.BeginTransaction();
 
@@ -204,7 +192,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                             Prioridad = instrumento.Prioridad,
                             EstadoId = instrumento.EstadoId,
                             ResponsableId = ingresoDto.UsuarioId,
-                            FechaEntregaRequerida = instrumento.FechaEntregaRequerida
+                            FechaEntregaRequerida = instrumento.FechaEntregaRequerida,
+                            PreIngresoId = instrumento.PreIngresoId
                         };
 
                         _automatMedicionesDbContext.IngresosInstrumentos.Add(ingresoInstrumento);
@@ -213,8 +202,6 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     }
 
                 }
-
-
 
                 ingresoDto.IngresoId = ingresoDb.IngresoId;
 
@@ -242,16 +229,10 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             {
                 var diagnostico = _automatMedicionesDbContext.IngresosInstrumentos.FirstOrDefault(x => x.IngresoInstrumentoId.Equals(ingresoInstrumento.IngresoInstrumentoId));
 
-                if (diagnostico == null)
-                {
-                    return Response<bool>.Error("No se encontró ningún registro en almacen de datos.", true);
-                }
+                if (diagnostico == null) return Response<bool>.Error("No se encontró ningún registro en almacén de datos.", true);
 
                 var instrumento = _automatMedicionesDbContext.Instrumentos.FirstOrDefault(x => x.InstrumentoId == ingresoInstrumento.InstrumentoId);
-                if (instrumento != null)
-                {
-                    instrumento.Comentarios = ingresoInstrumento.Instrumento.Comentarios;
-                }
+                if (instrumento != null) instrumento.Comentarios = ingresoInstrumento.Instrumento.Comentarios;
 
                 diagnostico.Comentarios = ingresoInstrumento.Comentarios;
                 diagnostico.Diagnostico = ingresoInstrumento.Diagnostico;
@@ -293,22 +274,16 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
-
-
         public Response<bool> ActualizarFechaUltimoIngreso(IngresoInstrumentoDto ingresoInstrumento)
         {
             try
             {
                 var diagnostico = _automatMedicionesDbContext.IngresosInstrumentos.FirstOrDefault(x => x.IngresoInstrumentoId.Equals(ingresoInstrumento.IngresoInstrumentoId));
 
-                if (diagnostico == null)
-                {
-                    return Response<bool>.Error("No se encontró ningún registro en almacen de datos.", true);
-                }
+                if (diagnostico == null) return Response<bool>.Error("No se encontró ningún registro en almacén de datos.", true);
 
                 diagnostico.FechaInicio = ingresoInstrumento.FechaInicio;
                 diagnostico.TiempoConsumido = ingresoInstrumento.TiempoConsumido;
-
 
                 _automatMedicionesDbContext.SaveChanges();
 
@@ -320,5 +295,36 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
             }
         }
+
+        public Response<List<IngresoDto>> ObtenerPreIngresosPorEmpresa(string empresaId)
+        {
+            try
+            {
+
+
+                var ingresos = _automatMedicionesDbContext.Ingresos.AsQueryable()
+                    .Include(x => x.IngresosInstrumentos.Where(y => y.Activo)).ThenInclude(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.Marca)
+                                                                .Include(x => x.IngresosInstrumentos.Where(y => y.Activo)).ThenInclude(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.Modelo)
+                                                                .Include(x => x.IngresosInstrumentos.Where(y => y.Activo)).ThenInclude(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
+                                                                .Include(x => x.IngresosInstrumentos.Where(y => y.Activo)).ThenInclude(x => x.Estado)
+                                                                .Include(x => x.IngresosInstrumentos.Where(y => y.Activo)).ThenInclude(x => x.TipoTrabajo)
+                                                                .Include(x => x.IngresosInstrumentos.Where(y => y.Activo)).ThenInclude(x => x.Ingreso)
+                                                                .Include(x => x.IngresosInstrumentos.Where(y => y.Activo)).ThenInclude(x => x.Responsable)
+                                                                .Where(x => x.Activo && x.EmpresaId == empresaId && x.TipoIngresoId == (int)TipoIngreso.PreIngreso)
+
+
+                                                                .ToList();
+
+                ingresos = ingresos.OrderBy(y => y.IngresoId).ToList();
+                return Response<List<IngresoDto>>.Ok("Ok", _mapper.Map<List<IngresoDto>>(ingresos));
+
+            }
+            catch (Exception exc)
+            {
+                string message = exc.InnerException == null ? exc.Message : exc.InnerException.Message;
+                return Response<List<IngresoDto>>.Error(message, null);
+            }
+        }
+
     }
 }
