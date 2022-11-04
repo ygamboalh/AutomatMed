@@ -1,6 +1,7 @@
 ﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
 using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
+using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraEditors;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
@@ -19,13 +20,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
     {
         private readonly ProductoService _productoService;
 
+        List<ArbolCarpetaDto> arbolCarpetas = new List<ArbolCarpetaDto>();
         public frmProductos(ProductoService productoService)
         {
             InitializeComponent();
             EstablecerNombreYTitulo();
             _productoService = productoService;
             CargarProductos();
-            
+            CargarArbolCarpetas();         
         }
 
         private void CargarProductos()
@@ -38,6 +40,45 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
             lblTotal.Text = $"Total Registros: {resultado.Data.Count()}";
 
         }
+
+        private void CargarArbolCarpetas()
+        {
+            var resultado = _productoService.ObtenerArbolCarpetas();
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+            arbolCarpetas = resultado.Data;
+
+            var arboles = arbolCarpetas.Where(x => x.Nivel == 0).ToList();
+            arboles.ForEach(x => {
+                TreeNode rootNode = new TreeNode();
+                rootNode.Text = x.Nombre;
+                rootNode.Name = x.RecId;
+                treeView1.Nodes.Add(rootNode);
+                ObtenerNiveles(x, treeView1);
+            });
+
+            arbolCarpetas = resultado.Data;
+           
+        }
+
+        public List<ArbolCarpetaDto> ObtenerNiveles(ArbolCarpetaDto arbolCarpetaDto, TreeView treeView)
+        {          
+            var arboles =  arbolCarpetas.Where(x => x.RecId == arbolCarpetaDto.RecId).ToList();
+            arboles.ForEach(x => {
+                var niveles = ObtenerNiveles(x, treeView);
+
+                niveles.ForEach(x =>
+                {
+                    TreeNode rootNode = new TreeNode();
+                    rootNode.Text = x.Nombre;
+                    rootNode.Name = x.RecId;
+                    treeView.Nodes.Add(rootNode);
+                });
+            });
+
+            return arboles;
+        }
+
 
         private void EstablecerNombreYTitulo()
         {

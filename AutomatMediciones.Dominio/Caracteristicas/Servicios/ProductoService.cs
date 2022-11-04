@@ -34,6 +34,22 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
+        public Response<List<ArbolCarpetaDto>> ObtenerArbolCarpetas()
+        {
+            try
+            {
+                var productos = _tacticaDbContext.ArbolCarpetas.AsQueryable().ToList();
 
+
+                return Response<List<ArbolCarpetaDto>>.Ok("Ok", _imapper.Map<List<ArbolCarpetaDto>>(productos));
+
+            }
+            catch (Exception exc)
+            {
+                return Response<List<ArbolCarpetaDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
+        
     }
 }
