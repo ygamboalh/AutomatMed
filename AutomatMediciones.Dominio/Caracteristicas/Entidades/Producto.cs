@@ -1,4 +1,6 @@
-﻿namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
+﻿using System.Collections.Generic;
+
+namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
 {
     public class Producto
     {
@@ -13,5 +15,7 @@
         public int? Estado { get; set; }
         public int? CodUnidad { get; set; }
         public string IdCarpeta { get; set; }
+
+        public List<ProductoPrecio> ProductoPrecios { get; set; }
     }
 }

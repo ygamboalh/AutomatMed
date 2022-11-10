@@ -1,4 +1,6 @@
-﻿namespace AutomatMediciones.Libs.Dtos
+﻿using System.Collections.Generic;
+
+namespace AutomatMediciones.Libs.Dtos
 {
     public class ProductoDto
     {
@@ -13,5 +15,6 @@
         public int? Estado { get; set; }
         public int? CodUnidad { get; set; }
         public string IdCarpeta { get; set; }
+        public List<ProductoPrecioDto> ProductoPrecios { get; set; }
     }
 }
