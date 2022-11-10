@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCrearPresupuesto));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.txtContactoACargo = new DevExpress.XtraEditors.TextEdit();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.txtNumeroServicioTecnico = new DevExpress.XtraEditors.TextEdit();
@@ -82,105 +82,105 @@
             // 
             // txtContactoACargo
             // 
-            this.txtContactoACargo.Location = new System.Drawing.Point(279, 47);
-            this.txtContactoACargo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtContactoACargo.Location = new System.Drawing.Point(326, 58);
+            this.txtContactoACargo.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtContactoACargo.Name = "txtContactoACargo";
             this.txtContactoACargo.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtContactoACargo.Properties.Appearance.Options.UseFont = true;
             this.txtContactoACargo.Properties.ReadOnly = true;
             this.txtContactoACargo.Properties.UseReadOnlyAppearance = false;
-            this.txtContactoACargo.Size = new System.Drawing.Size(267, 22);
+            this.txtContactoACargo.Size = new System.Drawing.Size(312, 26);
             this.txtContactoACargo.TabIndex = 201;
             // 
             // labelControl14
             // 
             this.labelControl14.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl14.Appearance.Options.UseFont = true;
-            this.labelControl14.Location = new System.Drawing.Point(279, 30);
-            this.labelControl14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelControl14.Location = new System.Drawing.Point(326, 37);
+            this.labelControl14.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(81, 12);
+            this.labelControl14.Size = new System.Drawing.Size(107, 17);
             this.labelControl14.TabIndex = 200;
             this.labelControl14.Text = "Contacto a cargo:";
             // 
             // txtNumeroServicioTecnico
             // 
-            this.txtNumeroServicioTecnico.Location = new System.Drawing.Point(552, 47);
-            this.txtNumeroServicioTecnico.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtNumeroServicioTecnico.Location = new System.Drawing.Point(644, 58);
+            this.txtNumeroServicioTecnico.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtNumeroServicioTecnico.Name = "txtNumeroServicioTecnico";
             this.txtNumeroServicioTecnico.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtNumeroServicioTecnico.Properties.Appearance.Options.UseFont = true;
             this.txtNumeroServicioTecnico.Properties.ReadOnly = true;
             this.txtNumeroServicioTecnico.Properties.UseReadOnlyAppearance = false;
-            this.txtNumeroServicioTecnico.Size = new System.Drawing.Size(156, 22);
+            this.txtNumeroServicioTecnico.Size = new System.Drawing.Size(182, 26);
             this.txtNumeroServicioTecnico.TabIndex = 199;
             // 
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(552, 33);
-            this.labelControl2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelControl2.Location = new System.Drawing.Point(644, 41);
+            this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(92, 12);
+            this.labelControl2.Size = new System.Drawing.Size(117, 17);
             this.labelControl2.TabIndex = 198;
             this.labelControl2.Text = "N° Servicio Técnico:";
             // 
             // txtCliente
             // 
-            this.txtCliente.Location = new System.Drawing.Point(13, 47);
-            this.txtCliente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtCliente.Location = new System.Drawing.Point(15, 58);
+            this.txtCliente.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtCliente.Name = "txtCliente";
             this.txtCliente.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtCliente.Properties.Appearance.Options.UseFont = true;
             this.txtCliente.Properties.ReadOnly = true;
             this.txtCliente.Properties.UseReadOnlyAppearance = false;
-            this.txtCliente.Size = new System.Drawing.Size(261, 22);
+            this.txtCliente.Size = new System.Drawing.Size(304, 26);
             this.txtCliente.TabIndex = 197;
             // 
             // labelControl13
             // 
             this.labelControl13.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl13.Appearance.Options.UseFont = true;
-            this.labelControl13.Location = new System.Drawing.Point(12, 33);
-            this.labelControl13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelControl13.Location = new System.Drawing.Point(14, 41);
+            this.labelControl13.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl13.Name = "labelControl13";
-            this.labelControl13.Size = new System.Drawing.Size(34, 12);
+            this.labelControl13.Size = new System.Drawing.Size(44, 17);
             this.labelControl13.TabIndex = 196;
             this.labelControl13.Text = "Cliente:";
             // 
             // txtTipoOrdenTrabajo
             // 
-            this.txtTipoOrdenTrabajo.Location = new System.Drawing.Point(12, 90);
-            this.txtTipoOrdenTrabajo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtTipoOrdenTrabajo.Location = new System.Drawing.Point(14, 111);
+            this.txtTipoOrdenTrabajo.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtTipoOrdenTrabajo.Name = "txtTipoOrdenTrabajo";
             this.txtTipoOrdenTrabajo.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtTipoOrdenTrabajo.Properties.Appearance.Options.UseFont = true;
             this.txtTipoOrdenTrabajo.Properties.ReadOnly = true;
             this.txtTipoOrdenTrabajo.Properties.UseReadOnlyAppearance = false;
-            this.txtTipoOrdenTrabajo.Size = new System.Drawing.Size(261, 22);
+            this.txtTipoOrdenTrabajo.Size = new System.Drawing.Size(304, 26);
             this.txtTipoOrdenTrabajo.TabIndex = 194;
             // 
             // txtClasificacion
             // 
-            this.txtClasificacion.Location = new System.Drawing.Point(279, 90);
-            this.txtClasificacion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtClasificacion.Location = new System.Drawing.Point(326, 111);
+            this.txtClasificacion.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtClasificacion.Name = "txtClasificacion";
             this.txtClasificacion.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtClasificacion.Properties.Appearance.Options.UseFont = true;
             this.txtClasificacion.Properties.ReadOnly = true;
             this.txtClasificacion.Properties.UseReadOnlyAppearance = false;
-            this.txtClasificacion.Size = new System.Drawing.Size(429, 22);
+            this.txtClasificacion.Size = new System.Drawing.Size(500, 26);
             this.txtClasificacion.TabIndex = 193;
             // 
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(11, 73);
-            this.labelControl4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelControl4.Location = new System.Drawing.Point(13, 90);
+            this.labelControl4.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(75, 12);
+            this.labelControl4.Size = new System.Drawing.Size(97, 17);
             this.labelControl4.TabIndex = 191;
             this.labelControl4.Text = "Tipo de Trabajo:";
             // 
@@ -188,10 +188,10 @@
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(10, 9);
-            this.labelControl3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelControl3.Location = new System.Drawing.Point(12, 11);
+            this.labelControl3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(108, 15);
+            this.labelControl3.Size = new System.Drawing.Size(138, 20);
             this.labelControl3.TabIndex = 190;
             this.labelControl3.Text = "Resumen de Ingreso";
             // 
@@ -199,24 +199,24 @@
             // 
             this.labelControl10.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Location = new System.Drawing.Point(279, 73);
-            this.labelControl10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.labelControl10.Location = new System.Drawing.Point(326, 90);
+            this.labelControl10.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(136, 12);
+            this.labelControl10.Size = new System.Drawing.Size(177, 17);
             this.labelControl10.TabIndex = 189;
             this.labelControl10.Text = "Clasificación del Instrumento:";
             // 
             // gcProductosPresupuesto
             // 
             this.gcProductosPresupuesto.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcProductosPresupuesto.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gcProductosPresupuesto.Location = new System.Drawing.Point(13, 38);
+            this.gcProductosPresupuesto.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.gcProductosPresupuesto.Location = new System.Drawing.Point(15, 47);
             this.gcProductosPresupuesto.MainView = this.gvProductosPresupuesto;
-            this.gcProductosPresupuesto.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gcProductosPresupuesto.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.gcProductosPresupuesto.Name = "gcProductosPresupuesto";
             this.gcProductosPresupuesto.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnEditar});
-            this.gcProductosPresupuesto.Size = new System.Drawing.Size(818, 327);
+            this.gcProductosPresupuesto.Size = new System.Drawing.Size(955, 403);
             this.gcProductosPresupuesto.TabIndex = 202;
             this.gcProductosPresupuesto.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvProductosPresupuesto});
@@ -231,7 +231,6 @@
             this.colMoneda,
             this.colTotal,
             this.colEliminar});
-            this.gvProductosPresupuesto.DetailHeight = 284;
             this.gvProductosPresupuesto.GridControl = this.gcProductosPresupuesto;
             this.gvProductosPresupuesto.Name = "gvProductosPresupuesto";
             this.gvProductosPresupuesto.OptionsView.ShowGroupPanel = false;
@@ -240,84 +239,84 @@
             // colCodigoProducto
             // 
             this.colCodigoProducto.Caption = "Código";
-            this.colCodigoProducto.MinWidth = 21;
+            this.colCodigoProducto.FieldName = "RecID";
+            this.colCodigoProducto.MinWidth = 24;
             this.colCodigoProducto.Name = "colCodigoProducto";
             this.colCodigoProducto.OptionsColumn.AllowEdit = false;
             this.colCodigoProducto.OptionsColumn.AllowFocus = false;
-            this.colCodigoProducto.Visible = true;
-            this.colCodigoProducto.VisibleIndex = 0;
-            this.colCodigoProducto.Width = 113;
+            this.colCodigoProducto.Width = 132;
             // 
             // colDescripcion
             // 
             this.colDescripcion.Caption = "Descripción";
-            this.colDescripcion.MinWidth = 21;
+            this.colDescripcion.FieldName = "Descripcion";
+            this.colDescripcion.MinWidth = 24;
             this.colDescripcion.Name = "colDescripcion";
             this.colDescripcion.OptionsColumn.AllowEdit = false;
             this.colDescripcion.OptionsColumn.AllowFocus = false;
             this.colDescripcion.Visible = true;
-            this.colDescripcion.VisibleIndex = 1;
-            this.colDescripcion.Width = 113;
+            this.colDescripcion.VisibleIndex = 0;
+            this.colDescripcion.Width = 132;
             // 
             // colCantidad
             // 
             this.colCantidad.Caption = "Cantidad";
-            this.colCantidad.MinWidth = 21;
+            this.colCantidad.MinWidth = 24;
             this.colCantidad.Name = "colCantidad";
             this.colCantidad.OptionsColumn.AllowEdit = false;
             this.colCantidad.OptionsColumn.AllowFocus = false;
             this.colCantidad.Visible = true;
-            this.colCantidad.VisibleIndex = 2;
-            this.colCantidad.Width = 113;
+            this.colCantidad.VisibleIndex = 1;
+            this.colCantidad.Width = 132;
             // 
             // colPrecio
             // 
             this.colPrecio.Caption = "Precio";
-            this.colPrecio.MinWidth = 21;
+            this.colPrecio.MinWidth = 24;
             this.colPrecio.Name = "colPrecio";
             this.colPrecio.OptionsColumn.AllowEdit = false;
             this.colPrecio.OptionsColumn.AllowFocus = false;
             this.colPrecio.Visible = true;
-            this.colPrecio.VisibleIndex = 3;
-            this.colPrecio.Width = 113;
+            this.colPrecio.VisibleIndex = 2;
+            this.colPrecio.Width = 132;
             // 
             // colMoneda
             // 
             this.colMoneda.Caption = "Moneda";
-            this.colMoneda.MinWidth = 21;
+            this.colMoneda.MinWidth = 24;
             this.colMoneda.Name = "colMoneda";
             this.colMoneda.OptionsColumn.AllowEdit = false;
             this.colMoneda.OptionsColumn.AllowFocus = false;
             this.colMoneda.Visible = true;
-            this.colMoneda.VisibleIndex = 4;
-            this.colMoneda.Width = 113;
+            this.colMoneda.VisibleIndex = 3;
+            this.colMoneda.Width = 132;
             // 
             // colTotal
             // 
             this.colTotal.Caption = "Total";
-            this.colTotal.MinWidth = 21;
+            this.colTotal.MinWidth = 24;
             this.colTotal.Name = "colTotal";
             this.colTotal.OptionsColumn.AllowEdit = false;
             this.colTotal.OptionsColumn.AllowFocus = false;
             this.colTotal.Visible = true;
-            this.colTotal.VisibleIndex = 5;
-            this.colTotal.Width = 113;
+            this.colTotal.VisibleIndex = 4;
+            this.colTotal.Width = 132;
             // 
             // colEliminar
             // 
             this.colEliminar.ColumnEdit = this.btnEditar;
-            this.colEliminar.MinWidth = 21;
+            this.colEliminar.MinWidth = 24;
             this.colEliminar.Name = "colEliminar";
             this.colEliminar.Visible = true;
-            this.colEliminar.VisibleIndex = 6;
-            this.colEliminar.Width = 26;
+            this.colEliminar.VisibleIndex = 5;
+            this.colEliminar.Width = 30;
             // 
             // btnEditar
             // 
             this.btnEditar.AutoHeight = false;
-            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
             this.btnEditar.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -336,9 +335,9 @@
             this.panel1.Controls.Add(this.txtCliente);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(844, 122);
+            this.panel1.Size = new System.Drawing.Size(985, 150);
             this.panel1.TabIndex = 203;
             // 
             // pnlProductosPresupuesto
@@ -348,21 +347,21 @@
             this.pnlProductosPresupuesto.Controls.Add(this.panel5);
             this.pnlProductosPresupuesto.Controls.Add(this.panel2);
             this.pnlProductosPresupuesto.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlProductosPresupuesto.Location = new System.Drawing.Point(0, 122);
-            this.pnlProductosPresupuesto.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pnlProductosPresupuesto.Location = new System.Drawing.Point(0, 150);
+            this.pnlProductosPresupuesto.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.pnlProductosPresupuesto.Name = "pnlProductosPresupuesto";
-            this.pnlProductosPresupuesto.Padding = new System.Windows.Forms.Padding(13, 0, 13, 0);
-            this.pnlProductosPresupuesto.Size = new System.Drawing.Size(844, 440);
+            this.pnlProductosPresupuesto.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
+            this.pnlProductosPresupuesto.Size = new System.Drawing.Size(985, 542);
             this.pnlProductosPresupuesto.TabIndex = 204;
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.lblTotal);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(13, 365);
-            this.panel3.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.panel3.Location = new System.Drawing.Point(15, 450);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(818, 22);
+            this.panel3.Size = new System.Drawing.Size(955, 27);
             this.panel3.TabIndex = 203;
             // 
             // lblTotal
@@ -371,9 +370,9 @@
             this.lblTotal.Appearance.Options.UseFont = true;
             this.lblTotal.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblTotal.Location = new System.Drawing.Point(0, 0);
-            this.lblTotal.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(6, 12);
+            this.lblTotal.Size = new System.Drawing.Size(7, 17);
             this.lblTotal.TabIndex = 27;
             this.lblTotal.Text = "0";
             this.lblTotal.Visible = false;
@@ -382,10 +381,11 @@
             // 
             this.panel5.Controls.Add(this.btnGuardar);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(13, 387);
+            this.panel5.Location = new System.Drawing.Point(15, 477);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
-            this.panel5.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.panel5.Size = new System.Drawing.Size(818, 53);
+            this.panel5.Padding = new System.Windows.Forms.Padding(0, 0, 0, 6);
+            this.panel5.Size = new System.Drawing.Size(955, 65);
             this.panel5.TabIndex = 206;
             // 
             // btnGuardar
@@ -399,10 +399,10 @@
             this.btnGuardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardar.IconSize = 30;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(611, 0);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnGuardar.Location = new System.Drawing.Point(714, 0);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(207, 48);
+            this.btnGuardar.Size = new System.Drawing.Size(241, 59);
             this.btnGuardar.TabIndex = 128;
             this.btnGuardar.Text = "Crear Presupuesto";
             this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -414,10 +414,10 @@
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.btnAgregarDesdeHistorialPresupuesto);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(13, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel2.Location = new System.Drawing.Point(15, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(818, 38);
+            this.panel2.Size = new System.Drawing.Size(955, 47);
             this.panel2.TabIndex = 205;
             // 
             // btnAgregarProductosDesdeArchivoMaestro
@@ -431,10 +431,10 @@
             this.btnAgregarProductosDesdeArchivoMaestro.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAgregarProductosDesdeArchivoMaestro.IconSize = 30;
             this.btnAgregarProductosDesdeArchivoMaestro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarProductosDesdeArchivoMaestro.Location = new System.Drawing.Point(418, 0);
-            this.btnAgregarProductosDesdeArchivoMaestro.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAgregarProductosDesdeArchivoMaestro.Location = new System.Drawing.Point(487, 0);
+            this.btnAgregarProductosDesdeArchivoMaestro.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnAgregarProductosDesdeArchivoMaestro.Name = "btnAgregarProductosDesdeArchivoMaestro";
-            this.btnAgregarProductosDesdeArchivoMaestro.Size = new System.Drawing.Size(342, 38);
+            this.btnAgregarProductosDesdeArchivoMaestro.Size = new System.Drawing.Size(399, 47);
             this.btnAgregarProductosDesdeArchivoMaestro.TabIndex = 205;
             this.btnAgregarProductosDesdeArchivoMaestro.Text = "Agregar productos desde archivo maestro";
             this.btnAgregarProductosDesdeArchivoMaestro.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -444,10 +444,10 @@
             // panel4
             // 
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel4.Location = new System.Drawing.Point(397, 0);
-            this.panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel4.Location = new System.Drawing.Point(463, 0);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(21, 38);
+            this.panel4.Size = new System.Drawing.Size(24, 47);
             this.panel4.TabIndex = 206;
             // 
             // btnAgregarDesdeHistorialPresupuesto
@@ -462,9 +462,9 @@
             this.btnAgregarDesdeHistorialPresupuesto.IconSize = 30;
             this.btnAgregarDesdeHistorialPresupuesto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAgregarDesdeHistorialPresupuesto.Location = new System.Drawing.Point(0, 0);
-            this.btnAgregarDesdeHistorialPresupuesto.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAgregarDesdeHistorialPresupuesto.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnAgregarDesdeHistorialPresupuesto.Name = "btnAgregarDesdeHistorialPresupuesto";
-            this.btnAgregarDesdeHistorialPresupuesto.Size = new System.Drawing.Size(397, 38);
+            this.btnAgregarDesdeHistorialPresupuesto.Size = new System.Drawing.Size(463, 47);
             this.btnAgregarDesdeHistorialPresupuesto.TabIndex = 204;
             this.btnAgregarDesdeHistorialPresupuesto.Text = "Agregar productos desde historial de presupuestos";
             this.btnAgregarDesdeHistorialPresupuesto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -473,13 +473,15 @@
             // 
             // frmCrearPresupuesto
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(844, 562);
+            this.ClientSize = new System.Drawing.Size(985, 692);
             this.Controls.Add(this.pnlProductosPresupuesto);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "frmCrearPresupuesto";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nuevo Presupuesto";
             ((System.ComponentModel.ISupportInitialize)(this.txtContactoACargo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroServicioTecnico.Properties)).EndInit();

@@ -2,16 +2,10 @@
 using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos.Dtos;
 using AutomatMediciones.DesktopApp.Pantallas.Productos;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
-using DevExpress.XtraEditors;
+using AutomatMediciones.Libs.Dtos;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
@@ -20,17 +14,20 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
     {
         private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
         public IngresoInstrumento IngresoInstrumento { get; set; }
+
+        public List<ProductoDto> ProductosEnPresupuesto { get; set; }
         public frmCrearPresupuesto(IngresoInstrumento ingresoInstrumento)
         {
             InitializeComponent();
             IngresoInstrumento = ingresoInstrumento;
+            ProductosEnPresupuesto = new List<ProductoDto>();
             EstablecerNombreYTituloDePantalla();
             PrecargarDatos();
         }
 
         private void EstablecerNombreYTituloDePantalla()
         {
-            
+
             ctlEncabezadoPantalla ctlEncabezadoPantalla3 = new ctlEncabezadoPantalla();
             ctlEncabezadoPantalla3.Parent = this;
             ctlEncabezadoPantalla3.Height = 43;
@@ -49,17 +46,31 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             txtContactoACargo.Text = $"{IngresoInstrumento.Ingreso.NombreContacto} {IngresoInstrumento.Ingreso.ApellidoContacto}";
             txtCliente.Text = IngresoInstrumento.Ingreso.NombreEmpresa;
             txtNumeroServicioTecnico.Text = IngresoInstrumento.NumeroServicioTecnico;
-          
+
             txtClasificacion.Text = $"{tipoInstrumento} / {marca} / {modelo} - Serie: {serie}";
             txtTipoOrdenTrabajo.Text = IngresoInstrumento.TipoTrabajo.Descripcion;
-           
+
             IngresoInstrumento.FechaInicio = IngresoInstrumento.FechaInicio == null ? DateTime.Now : IngresoInstrumento.FechaInicio;
         }
 
         private void btnAgregarProductosDesdeArchivoMaestro_Click(object sender, EventArgs e)
         {
             var frmMaestroProductos = new frmProductos(serviceProvider.GetService<ProductoService>());
+            frmMaestroProductos.OnListaProductosAgregados += frmMaestroProductosOnListaProductosAgregados;
+            frmMaestroProductos.ProductosEnPresupuesto = ProductosEnPresupuesto;
             frmMaestroProductos.ShowDialog();
+        }
+
+        private void AgregarProductosALista(List<ProductoDto> productos)
+        {
+            ProductosEnPresupuesto.AddRange(productos);
+            gcProductosPresupuesto.DataSource = ProductosEnPresupuesto;
+            gcProductosPresupuesto.RefreshDataSource();
+        }
+
+        private void frmMaestroProductosOnListaProductosAgregados(List<ProductoDto> productos)
+        {
+            AgregarProductosALista(productos);
         }
 
         private void btnAgregarDesdeHistorialPresupuesto_Click(object sender, EventArgs e)

@@ -12,5 +12,6 @@
         public string Codigo { get; set; }
         public int? Estado { get; set; }
         public int? CodUnidad { get; set; }
+        public string IdCarpeta { get; set; }
     }
 }

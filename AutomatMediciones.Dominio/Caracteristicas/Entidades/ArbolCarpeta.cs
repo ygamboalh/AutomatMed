@@ -7,5 +7,7 @@
         public int Tipo { get; set; }
         public int Orden { get; set; }
         public int Nivel { get; set; }
+        public string IdRef { get; set; }
+        public string IdPadre { get; set; }
     }
 }

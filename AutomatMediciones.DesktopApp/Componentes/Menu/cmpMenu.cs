@@ -60,7 +60,7 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             this.btnCreacionPreIngreso.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
             this.cmdNuevoPreIngresoSimple.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
 
-           
+
 
         }
 

@@ -16,6 +16,8 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.Property(x => x.Tipo).HasColumnName("Tipo").HasColumnType("tinyint");
             builder.Property(x => x.Orden).HasColumnName("Orden").HasColumnType("int");
             builder.Property(x => x.Nivel).HasColumnName("Nivel").HasColumnType("int");
+            builder.Property(x => x.IdRef).HasColumnName("IdRef").HasColumnType("varchar(12)");
+            builder.Property(x => x.IdPadre).HasColumnName("IdPadre").HasColumnType("varchar(12)");
         }
     }
 }

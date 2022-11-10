@@ -9,6 +9,8 @@ namespace AutomatMediciones.Libs.Dtos
         public int Tipo { get; set; }
         public int Orden { get; set; }
         public int Nivel { get; set; }
+        public string RefId { get; set; }
+        public string IdPadre { get; set; }
 
         public List<ArbolCarpetaDto> ArbolCarpetas { get; set; }
 

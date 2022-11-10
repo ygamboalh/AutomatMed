@@ -33,26 +33,35 @@
             this.colCodigoProducto = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSubfamilia = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSeleccionar = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.chkSeleccionar = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.lblTotal = new DevExpress.XtraEditors.LabelControl();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lblTotalSeleccionados = new DevExpress.XtraEditors.LabelControl();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnAgregarProductos = new FontAwesome.Sharp.IconButton();
             this.splitter1 = new System.Windows.Forms.Splitter();
             ((System.ComponentModel.ISupportInitialize)(this.gcProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvProductos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSeleccionar)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // gcProductos
             // 
             this.gcProductos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcProductos.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gcProductos.Location = new System.Drawing.Point(251, 0);
+            this.gcProductos.Location = new System.Drawing.Point(255, 0);
             this.gcProductos.MainView = this.gvProductos;
             this.gcProductos.Margin = new System.Windows.Forms.Padding(4);
             this.gcProductos.Name = "gcProductos";
-            this.gcProductos.Size = new System.Drawing.Size(971, 767);
+            this.gcProductos.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.chkSeleccionar});
+            this.gcProductos.Size = new System.Drawing.Size(967, 676);
             this.gcProductos.TabIndex = 130;
             this.gcProductos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvProductos});
@@ -62,7 +71,8 @@
             this.gvProductos.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colCodigoProducto,
             this.colDescripcion,
-            this.colSubfamilia});
+            this.colSubfamilia,
+            this.colSeleccionar});
             this.gvProductos.DetailHeight = 431;
             this.gvProductos.GridControl = this.gcProductos;
             this.gvProductos.Name = "gvProductos";
@@ -102,6 +112,23 @@
             this.colSubfamilia.VisibleIndex = 1;
             this.colSubfamilia.Width = 87;
             // 
+            // colSeleccionar
+            // 
+            this.colSeleccionar.Caption = " ";
+            this.colSeleccionar.ColumnEdit = this.chkSeleccionar;
+            this.colSeleccionar.FieldName = "Seleccionar";
+            this.colSeleccionar.MinWidth = 25;
+            this.colSeleccionar.Name = "colSeleccionar";
+            this.colSeleccionar.Visible = true;
+            this.colSeleccionar.VisibleIndex = 2;
+            this.colSeleccionar.Width = 30;
+            // 
+            // chkSeleccionar
+            // 
+            this.chkSeleccionar.AutoHeight = false;
+            this.chkSeleccionar.Name = "chkSeleccionar";
+            this.chkSeleccionar.NullStyle = DevExpress.XtraEditors.Controls.StyleIndeterminate.Unchecked;
+            // 
             // lblTotal
             // 
             this.lblTotal.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -117,13 +144,28 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.lblTotalSeleccionados);
             this.panel3.Controls.Add(this.lblTotal);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(251, 767);
+            this.panel3.Location = new System.Drawing.Point(255, 676);
             this.panel3.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(971, 27);
+            this.panel3.Size = new System.Drawing.Size(967, 27);
             this.panel3.TabIndex = 155;
+            // 
+            // lblTotalSeleccionados
+            // 
+            this.lblTotalSeleccionados.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTotalSeleccionados.Appearance.Options.UseFont = true;
+            this.lblTotalSeleccionados.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblTotalSeleccionados.Location = new System.Drawing.Point(950, 0);
+            this.lblTotalSeleccionados.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
+            this.lblTotalSeleccionados.Name = "lblTotalSeleccionados";
+            this.lblTotalSeleccionados.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.lblTotalSeleccionados.Size = new System.Drawing.Size(17, 17);
+            this.lblTotalSeleccionados.TabIndex = 28;
+            this.lblTotalSeleccionados.Text = "0";
+            this.lblTotalSeleccionados.Visible = false;
             // 
             // treeView1
             // 
@@ -132,12 +174,14 @@
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(251, 794);
             this.treeView1.TabIndex = 156;
+            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.splitter1);
             this.panel1.Controls.Add(this.gcProductos);
             this.panel1.Controls.Add(this.panel3);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.splitter1);
             this.panel1.Controls.Add(this.treeView1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -145,11 +189,42 @@
             this.panel1.Size = new System.Drawing.Size(1222, 794);
             this.panel1.TabIndex = 157;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.btnAgregarProductos);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(255, 703);
+            this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
+            this.panel2.Size = new System.Drawing.Size(967, 91);
+            this.panel2.TabIndex = 161;
+            // 
+            // btnAgregarProductos
+            // 
+            this.btnAgregarProductos.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnAgregarProductos.FlatAppearance.BorderSize = 0;
+            this.btnAgregarProductos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarProductos.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAgregarProductos.IconChar = FontAwesome.Sharp.IconChar.Save;
+            this.btnAgregarProductos.IconColor = System.Drawing.Color.Black;
+            this.btnAgregarProductos.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAgregarProductos.IconSize = 30;
+            this.btnAgregarProductos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAgregarProductos.Location = new System.Drawing.Point(613, 10);
+            this.btnAgregarProductos.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnAgregarProductos.Name = "btnAgregarProductos";
+            this.btnAgregarProductos.Size = new System.Drawing.Size(354, 81);
+            this.btnAgregarProductos.TabIndex = 160;
+            this.btnAgregarProductos.Text = "Agregar Productos Seleccionados";
+            this.btnAgregarProductos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAgregarProductos.UseVisualStyleBackColor = true;
+            this.btnAgregarProductos.Click += new System.EventHandler(this.btnAgregarProductos_Click);
+            // 
             // splitter1
             // 
             this.splitter1.Location = new System.Drawing.Point(251, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(4, 767);
+            this.splitter1.Size = new System.Drawing.Size(4, 794);
             this.splitter1.TabIndex = 157;
             this.splitter1.TabStop = false;
             // 
@@ -162,12 +237,15 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmProductos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Productos";
             ((System.ComponentModel.ISupportInitialize)(this.gcProductos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvProductos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkSeleccionar)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -183,5 +261,10 @@
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Splitter splitter1;
+        private DevExpress.XtraGrid.Columns.GridColumn colSeleccionar;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit chkSeleccionar;
+        private DevExpress.XtraEditors.LabelControl lblTotalSeleccionados;
+        private System.Windows.Forms.Panel panel2;
+        private FontAwesome.Sharp.IconButton btnAgregarProductos;
     }
 }

@@ -21,6 +21,7 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.Property(x => x.Codigo).HasColumnName("Codigo").HasColumnType("VARCHAR(255)");
             builder.Property(x => x.Estado).HasColumnName("Estado").HasColumnType("INT");
             builder.Property(x => x.CodUnidad).HasColumnName("CodUnidad").HasColumnType("TINYINT");
+            builder.Property(x => x.IdCarpeta).HasColumnName("IdCarpeta").HasColumnType("VARCHAR(12)");
         }
     }
 }
