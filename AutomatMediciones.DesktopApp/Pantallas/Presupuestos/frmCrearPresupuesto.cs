@@ -4,6 +4,7 @@ using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos.Dtos;
 using AutomatMediciones.DesktopApp.Pantallas.Productos;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
+using DevExpress.XtraEditors.Controls;
 using Microsoft.Extensions.DependencyInjection;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
@@ -19,8 +20,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
         private readonly ProductoService _productoService;
 
         public IngresoInstrumento IngresoInstrumento { get; set; }
-
         public List<ProductoDto> ProductosEnPresupuesto { get; set; }
+
         public frmCrearPresupuesto(IngresoInstrumento ingresoInstrumento, ProductoService productoService)
         {
             InitializeComponent();
@@ -36,6 +37,81 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             txtCantidad.KeyPress += txtCantidadKeyPress;
             btnEliminar.Click += btnEliminarClick;
             txtPrecio.KeyPress += txtCantidadKeyPress;
+            txtCantidad.EditValueChanging += txtCantidadEditValueChanging;
+            txtPrecio.EditValueChanging += txtPrecioEditValueChanging;
+            btnGuardar.Click += btnGuardarClick;
+        }
+
+        private void btnGuardarClick(object sender, EventArgs e)
+        {
+            if (ProductosEnPresupuesto.Count == 0)
+            {
+                Notificaciones.MensajeAdvertencia("Es necesario que agregue al menos un producto al presupuesto.");
+                return;
+            }
+        }
+
+        private void SetearSummary()
+        {
+            decimal cantidad = 0;
+            ProductosEnPresupuesto.ForEach(x => cantidad += x.Total);
+
+            lblSummary.Visible = true;
+            lblSummary.Text = $"Total: {cantidad}";
+        }
+
+        private void SetearTotales()
+        {
+            lblTotal.Text = $"Total Registros: {gvProductosPresupuesto.RowCount}";
+            lblTotal.Visible = true;
+        }
+
+        private void txtPrecioEditValueChanging(object sender, ChangingEventArgs e)
+        {
+            var filaSeleccionada = ObtenerProductoSeleccionado();
+            if (filaSeleccionada == null) return;
+
+            if (string.IsNullOrEmpty(e.NewValue.ToString())) return;
+            decimal precio = Decimal.Parse(e.NewValue.ToString());
+
+            if (!EsValidaLaCantidad(precio))
+            {
+                Notificaciones.MensajeAdvertencia("El precio no puede ser menor o igual que cero.");
+                return;
+            }
+
+            filaSeleccionada.Total = CalcularTotal(filaSeleccionada.Cantidad, precio);
+            SetearSummary();
+        }
+
+        private void txtCantidadEditValueChanging(object sender, ChangingEventArgs e)
+        {
+            var filaSeleccionada = ObtenerProductoSeleccionado();
+            if (filaSeleccionada == null) return;
+           
+            if (string.IsNullOrEmpty(e.NewValue.ToString())) return;
+            decimal cantidad = Decimal.Parse(e.NewValue.ToString());
+
+            if (!EsValidaLaCantidad(cantidad))
+            {
+                Notificaciones.MensajeAdvertencia("La cantidad no puede ser menor o igual que cero.");
+                return;
+            }
+
+            filaSeleccionada.Total = CalcularTotal(cantidad, filaSeleccionada.Precio);
+            SetearSummary();
+        }
+
+        private decimal CalcularTotal(decimal cantidad, decimal precio)
+        {
+            decimal total = precio * cantidad;
+            return total;
+        }
+
+        private bool EsValidaLaCantidad(decimal cantidad)
+        {
+            if (cantidad <= 0) return false;
+            return true;
         }
 
         private void txtCantidadKeyPress(object sender, KeyPressEventArgs e)
@@ -43,9 +119,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && !(e.KeyChar == ',' || e.KeyChar == '.');
         }
 
-        private void btnEliminarClick(object sender, EventArgs e)
+        private ProductoDto ObtenerProductoSeleccionado()
         {
             var filaSeleccionada = gvProductosPresupuesto.GetFocusedRow() as ProductoDto;
+            return filaSeleccionada;
+        }
+
+        private void btnEliminarClick(object sender, EventArgs e)
+        {
+            var filaSeleccionada = ObtenerProductoSeleccionado();
             if (filaSeleccionada == null) return;
             QuitarProductoDeLista(filaSeleccionada);
 
@@ -62,8 +144,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             leMonedas.ValueMember = "Numero";
             leMonedas.DisplayMember = "Descripcion";
 
-          
-
+            lookupMonedas.Properties.DataSource = monedas;
+            lookupMonedas.Properties.ValueMember = "Numero";
+            lookupMonedas.Properties.DisplayMember = "Descripcion";
         }
 
         private void EstablecerColorBotonGuardar()
@@ -124,6 +207,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             ProductosEnPresupuesto.AddRange(productos);
             gcProductosPresupuesto.DataSource = ProductosEnPresupuesto;
             gcProductosPresupuesto.RefreshDataSource();
+
+            SetearTotales();
         }
 
         private void QuitarProductoDeLista(ProductoDto producto)
@@ -131,6 +216,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             ProductosEnPresupuesto = ProductosEnPresupuesto.Where(x => x.RecID != producto.RecID).ToList();
             gcProductosPresupuesto.DataSource = ProductosEnPresupuesto;
             gcProductosPresupuesto.RefreshDataSource();
+
+            SetearTotales();
         }
 
         private void frmMaestroProductosOnListaProductosAgregados(List<ProductoDto> productos)
@@ -142,6 +229,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
         {
             var frmHistorial = new frmHistorialPresupuesto();
             frmHistorial.ShowDialog();
+        }
+
+        private void lblTotal_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

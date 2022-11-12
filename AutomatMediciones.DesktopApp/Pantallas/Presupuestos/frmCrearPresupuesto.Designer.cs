@@ -52,14 +52,18 @@
             this.colCantidad = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtCantidad = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.colPrecio = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMoneda = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.leMonedas = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.txtPrecio = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.colTotal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEliminar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEliminar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.leMonedas = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlProductosPresupuesto = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.lookupMonedas = new DevExpress.XtraEditors.LookUpEdit();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lblSummary = new DevExpress.XtraEditors.LabelControl();
             this.lblTotal = new DevExpress.XtraEditors.LabelControl();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btnGuardar = new FontAwesome.Sharp.IconButton();
@@ -67,7 +71,6 @@
             this.btnAgregarProductosDesdeArchivoMaestro = new FontAwesome.Sharp.IconButton();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnAgregarDesdeHistorialPresupuesto = new FontAwesome.Sharp.IconButton();
-            this.txtPrecio = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.txtContactoACargo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroServicioTecnico.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCliente.Properties)).BeginInit();
@@ -76,14 +79,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcProductosPresupuesto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvProductosPresupuesto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCantidad)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.leMonedas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEliminar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leMonedas)).BeginInit();
             this.panel1.SuspendLayout();
             this.pnlProductosPresupuesto.SuspendLayout();
+            this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lookupMonedas.Properties)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPrecio)).BeginInit();
             this.SuspendLayout();
             // 
             // txtContactoACargo
@@ -216,7 +221,7 @@
             // 
             this.gcProductosPresupuesto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcProductosPresupuesto.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.gcProductosPresupuesto.Location = new System.Drawing.Point(15, 47);
+            this.gcProductosPresupuesto.Location = new System.Drawing.Point(15, 93);
             this.gcProductosPresupuesto.MainView = this.gvProductosPresupuesto;
             this.gcProductosPresupuesto.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.gcProductosPresupuesto.Name = "gcProductosPresupuesto";
@@ -225,7 +230,7 @@
             this.txtCantidad,
             this.leMonedas,
             this.txtPrecio});
-            this.gcProductosPresupuesto.Size = new System.Drawing.Size(955, 403);
+            this.gcProductosPresupuesto.Size = new System.Drawing.Size(955, 357);
             this.gcProductosPresupuesto.TabIndex = 202;
             this.gcProductosPresupuesto.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvProductosPresupuesto});
@@ -237,7 +242,6 @@
             this.colDescripcion,
             this.colCantidad,
             this.colPrecio,
-            this.colMoneda,
             this.colTotal,
             this.colEliminar});
             this.gvProductosPresupuesto.GridControl = this.gcProductosPresupuesto;
@@ -265,10 +269,12 @@
             this.colDescripcion.OptionsColumn.AllowFocus = false;
             this.colDescripcion.Visible = true;
             this.colDescripcion.VisibleIndex = 0;
-            this.colDescripcion.Width = 132;
+            this.colDescripcion.Width = 280;
             // 
             // colCantidad
             // 
+            this.colCantidad.AppearanceCell.Options.UseTextOptions = true;
+            this.colCantidad.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.colCantidad.Caption = "Cantidad";
             this.colCantidad.ColumnEdit = this.txtCantidad;
             this.colCantidad.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -278,7 +284,7 @@
             this.colCantidad.UnboundDataType = typeof(decimal);
             this.colCantidad.Visible = true;
             this.colCantidad.VisibleIndex = 1;
-            this.colCantidad.Width = 132;
+            this.colCantidad.Width = 90;
             // 
             // txtCantidad
             // 
@@ -287,6 +293,8 @@
             // 
             // colPrecio
             // 
+            this.colPrecio.AppearanceCell.Options.UseTextOptions = true;
+            this.colPrecio.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.colPrecio.Caption = "Precio";
             this.colPrecio.ColumnEdit = this.txtPrecio;
             this.colPrecio.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
@@ -296,31 +304,17 @@
             this.colPrecio.UnboundDataType = typeof(decimal);
             this.colPrecio.Visible = true;
             this.colPrecio.VisibleIndex = 2;
-            this.colPrecio.Width = 132;
+            this.colPrecio.Width = 120;
             // 
-            // colMoneda
+            // txtPrecio
             // 
-            this.colMoneda.Caption = "Moneda";
-            this.colMoneda.ColumnEdit = this.leMonedas;
-            this.colMoneda.FieldName = "MonedaId";
-            this.colMoneda.MinWidth = 24;
-            this.colMoneda.Name = "colMoneda";
-            this.colMoneda.Visible = true;
-            this.colMoneda.VisibleIndex = 3;
-            this.colMoneda.Width = 132;
-            // 
-            // leMonedas
-            // 
-            this.leMonedas.AutoHeight = false;
-            this.leMonedas.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.leMonedas.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Descripcion", "Descripción")});
-            this.leMonedas.Name = "leMonedas";
-            this.leMonedas.NullText = "";
+            this.txtPrecio.AutoHeight = false;
+            this.txtPrecio.Name = "txtPrecio";
             // 
             // colTotal
             // 
+            this.colTotal.AppearanceCell.Options.UseTextOptions = true;
+            this.colTotal.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.colTotal.Caption = "Total";
             this.colTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colTotal.FieldName = "Total";
@@ -330,8 +324,8 @@
             this.colTotal.OptionsColumn.AllowFocus = false;
             this.colTotal.UnboundDataType = typeof(decimal);
             this.colTotal.Visible = true;
-            this.colTotal.VisibleIndex = 4;
-            this.colTotal.Width = 132;
+            this.colTotal.VisibleIndex = 3;
+            this.colTotal.Width = 150;
             // 
             // colEliminar
             // 
@@ -339,7 +333,7 @@
             this.colEliminar.MinWidth = 24;
             this.colEliminar.Name = "colEliminar";
             this.colEliminar.Visible = true;
-            this.colEliminar.VisibleIndex = 5;
+            this.colEliminar.VisibleIndex = 4;
             this.colEliminar.Width = 30;
             // 
             // btnEliminar
@@ -350,6 +344,16 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
+            // leMonedas
+            // 
+            this.leMonedas.AutoHeight = false;
+            this.leMonedas.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.leMonedas.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Descripcion", "Descripción")});
+            this.leMonedas.Name = "leMonedas";
+            this.leMonedas.NullText = "";
             // 
             // panel1
             // 
@@ -374,6 +378,7 @@
             // pnlProductosPresupuesto
             // 
             this.pnlProductosPresupuesto.Controls.Add(this.gcProductosPresupuesto);
+            this.pnlProductosPresupuesto.Controls.Add(this.panel6);
             this.pnlProductosPresupuesto.Controls.Add(this.panel3);
             this.pnlProductosPresupuesto.Controls.Add(this.panel5);
             this.pnlProductosPresupuesto.Controls.Add(this.panel2);
@@ -385,8 +390,42 @@
             this.pnlProductosPresupuesto.Size = new System.Drawing.Size(985, 542);
             this.pnlProductosPresupuesto.TabIndex = 204;
             // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.labelControl1);
+            this.panel6.Controls.Add(this.lookupMonedas);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(15, 47);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(955, 46);
+            this.panel6.TabIndex = 207;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Location = new System.Drawing.Point(4, 20);
+            this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(53, 17);
+            this.labelControl1.TabIndex = 197;
+            this.labelControl1.Text = "Moneda:";
+            // 
+            // lookupMonedas
+            // 
+            this.lookupMonedas.Location = new System.Drawing.Point(64, 15);
+            this.lookupMonedas.Name = "lookupMonedas";
+            this.lookupMonedas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookupMonedas.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Descripcion", "Descripción")});
+            this.lookupMonedas.Properties.NullText = "";
+            this.lookupMonedas.Size = new System.Drawing.Size(224, 22);
+            this.lookupMonedas.TabIndex = 0;
+            // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.lblSummary);
             this.panel3.Controls.Add(this.lblTotal);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(15, 450);
@@ -394,6 +433,19 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(955, 27);
             this.panel3.TabIndex = 203;
+            // 
+            // lblSummary
+            // 
+            this.lblSummary.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblSummary.Appearance.Options.UseFont = true;
+            this.lblSummary.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblSummary.Location = new System.Drawing.Point(946, 0);
+            this.lblSummary.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
+            this.lblSummary.Name = "lblSummary";
+            this.lblSummary.Size = new System.Drawing.Size(9, 23);
+            this.lblSummary.TabIndex = 28;
+            this.lblSummary.Text = "0";
+            this.lblSummary.Visible = false;
             // 
             // lblTotal
             // 
@@ -407,6 +459,7 @@
             this.lblTotal.TabIndex = 27;
             this.lblTotal.Text = "0";
             this.lblTotal.Visible = false;
+            this.lblTotal.Click += new System.EventHandler(this.lblTotal_Click);
             // 
             // panel5
             // 
@@ -503,11 +556,6 @@
             this.btnAgregarDesdeHistorialPresupuesto.UseVisualStyleBackColor = true;
             this.btnAgregarDesdeHistorialPresupuesto.Click += new System.EventHandler(this.btnAgregarDesdeHistorialPresupuesto_Click);
             // 
-            // txtPrecio
-            // 
-            this.txtPrecio.AutoHeight = false;
-            this.txtPrecio.Name = "txtPrecio";
-            // 
             // frmCrearPresupuesto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -528,16 +576,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcProductosPresupuesto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvProductosPresupuesto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCantidad)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.leMonedas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPrecio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEliminar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leMonedas)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.pnlProductosPresupuesto.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lookupMonedas.Properties)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.txtPrecio)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -565,7 +616,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colDescripcion;
         private DevExpress.XtraGrid.Columns.GridColumn colCantidad;
         private DevExpress.XtraGrid.Columns.GridColumn colPrecio;
-        private DevExpress.XtraGrid.Columns.GridColumn colMoneda;
         private DevExpress.XtraGrid.Columns.GridColumn colTotal;
         private DevExpress.XtraGrid.Columns.GridColumn colEliminar;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEliminar;
@@ -578,5 +628,9 @@
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtCantidad;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit leMonedas;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit txtPrecio;
+        private DevExpress.XtraEditors.LabelControl lblSummary;
+        private System.Windows.Forms.Panel panel6;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LookUpEdit lookupMonedas;
     }
 }

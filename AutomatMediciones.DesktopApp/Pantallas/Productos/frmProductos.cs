@@ -93,7 +93,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
                     RecID = producto.RecID,
                     SubFamilia = producto.SubFamilia,
                     TipoProducto = producto.TipoProducto,
-                    Seleccionar = false
+                    Seleccionar = false,
+                    Cantidad = 1
                 });
             });
 
@@ -107,6 +108,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
             lblTotal.Text = $"Total registros: {gvProductos.RowCount}";
             lblTotalSeleccionados.Text = $"Total seleccionados: {productosSeleccionados.Count}";
         }
+
+    
 
         private void CargarArbolCarpetas()
         {
