@@ -32,9 +32,7 @@ namespace AutomatMediciones.Dominio.Infraestructura
         public DbSet<CeldaInstrumento> CeldasInstrumentos { get; set; }
         public DbSet<EstadoCelda> EstadosCeldas { get; set; }
         public DbSet<UnidadMedida> UnidadesDeMedida { get; set; }
-        public DbSet<ProductoPrecio> ProductoPrecios { get; set; }
-
-
+      
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CertificadoMap());
@@ -62,7 +60,7 @@ namespace AutomatMediciones.Dominio.Infraestructura
             modelBuilder.ApplyConfiguration(new CeldaInstrumentoMap());
             modelBuilder.ApplyConfiguration(new EstadoCeldaMap());
             modelBuilder.ApplyConfiguration(new UnidadMedidaMap());
-            modelBuilder.ApplyConfiguration(new ProductoPrecioMap());
+          
         }
     }
 }

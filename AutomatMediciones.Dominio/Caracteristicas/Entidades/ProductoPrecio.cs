@@ -8,5 +8,6 @@
         public decimal Costo { get; set; }
         public int NroMonedaPrecio { get; set; }
         public int NroLista { get; set; }
+        public Producto Producto { get; set; }
     }
 }

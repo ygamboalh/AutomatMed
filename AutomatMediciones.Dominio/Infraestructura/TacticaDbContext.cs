@@ -6,10 +6,7 @@ namespace AutomatMediciones.Dominio.Infraestructura
 {
     public class TacticaDbContext : DbContext
     {
-        public TacticaDbContext(DbContextOptions<TacticaDbContext> options) : base(options)
-        {
-
-        }
+        public TacticaDbContext(DbContextOptions<TacticaDbContext> options) : base(options){}
 
         public DbSet<Empresa> Empresas { get; set; }
         public DbSet<Contacto> Contactos { get; set; }
@@ -18,7 +15,8 @@ namespace AutomatMediciones.Dominio.Infraestructura
         public DbSet<Presupuesto> Presupuestos { get; set; }
         public DbSet<PresupuestoItem> PresupuestosItems { get; set; }
         public DbSet<ArbolCarpeta> ArbolCarpetas { get; set; }
-
+        public DbSet<ProductoPrecio> ProductoPrecios { get; set; }
+        public DbSet<Moneda> Monedas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,6 +28,8 @@ namespace AutomatMediciones.Dominio.Infraestructura
             modelBuilder.ApplyConfiguration(new PresupuestoMap());
             modelBuilder.ApplyConfiguration(new PresupuestoItemMap());
             modelBuilder.ApplyConfiguration(new ArbolCarpetaMap());
+            modelBuilder.ApplyConfiguration(new MonedaMap());
+            modelBuilder.ApplyConfiguration(new ProductoPrecioMap());
         }
     }
 }

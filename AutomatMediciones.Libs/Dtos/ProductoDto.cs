@@ -15,6 +15,11 @@ namespace AutomatMediciones.Libs.Dtos
         public int? Estado { get; set; }
         public int? CodUnidad { get; set; }
         public string IdCarpeta { get; set; }
+        public decimal Precio { get; set; }
+        public int MonedaId { get; set; }
+        public decimal Cantidad { get; set; }
+        public decimal Total { get; set; }
+        public MonedaDto Moneda { get; set; }
         public List<ProductoPrecioDto> ProductoPrecios { get; set; }
     }
 }

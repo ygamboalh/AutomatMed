@@ -172,6 +172,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
 
         private void btnAgregarProductos_Click(object sender, EventArgs e)
         {
+            if (productosSeleccionados.Count == 0)
+            {
+                Notificaciones.MensajeAdvertencia("Es necesario que seleccione al menos un producto");
+                return;
+            }
+
             List<ProductoDto> productos = new List<ProductoDto>();
 
             productosSeleccionados.ForEach(x =>

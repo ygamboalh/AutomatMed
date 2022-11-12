@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutomatMediciones.Dominio.Infraestructura;
 using AutomatMediciones.Libs.Dtos;
+using Microsoft.EntityFrameworkCore;
 using Nagaira.Herramientas.Standard.Helpers.Exceptions;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
@@ -24,13 +25,37 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
         {
             try
             {
-                var productos = _tacticaDbContext.Productos.AsQueryable().ToList();
-                return Response<List<ProductoDto>>.Ok("Ok", _imapper.Map<List<ProductoDto>>(productos));
+                var productosDb = _tacticaDbContext.Productos.AsQueryable().Include(x => x.ProductoPrecios).ToList();
+
+                var productos = _imapper.Map<List<ProductoDto>>(productosDb);
+
+                productos.ForEach(producto =>
+                {
+                    var moneda = _tacticaDbContext.Monedas.FirstOrDefault(x => x.Numero == producto.MonedaId);
+                    var productoPrecio = producto.ProductoPrecios.OrderBy(x => x.NroLista).FirstOrDefault(x => x.IDProducto == producto.RecID);
+                    producto.Precio = productoPrecio.Precio;
+                    producto.MonedaId = productoPrecio.NroMonedaPrecio;
+                });
+
+                return Response<List<ProductoDto>>.Ok("Ok",productos);
 
             }
             catch (Exception exc)
             {
                 return Response<List<ProductoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
+        public Response<List<MonedaDto>> ObtenerMonedas()
+        {
+            try
+            {
+                var monedas = _tacticaDbContext.Monedas.AsQueryable();              
+                return Response<List<MonedaDto>>.Ok("Ok", _imapper.Map<List<MonedaDto>>(monedas));
+            }
+            catch (Exception exc)
+            {
+                return Response<List<MonedaDto>>.Error(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
