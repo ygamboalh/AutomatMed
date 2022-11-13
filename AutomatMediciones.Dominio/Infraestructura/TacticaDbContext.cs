@@ -6,7 +6,7 @@ namespace AutomatMediciones.Dominio.Infraestructura
 {
     public class TacticaDbContext : DbContext
     {
-        public TacticaDbContext(DbContextOptions<TacticaDbContext> options) : base(options){}
+        public TacticaDbContext(DbContextOptions<TacticaDbContext> options) : base(options) { }
 
         public DbSet<Empresa> Empresas { get; set; }
         public DbSet<Contacto> Contactos { get; set; }

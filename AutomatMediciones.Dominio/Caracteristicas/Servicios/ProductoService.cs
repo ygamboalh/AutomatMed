@@ -37,7 +37,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     producto.MonedaId = productoPrecio.NroMonedaPrecio;
                 });
 
-                return Response<List<ProductoDto>>.Ok("Ok",productos);
+                return Response<List<ProductoDto>>.Ok("Ok", productos);
 
             }
             catch (Exception exc)
@@ -50,7 +50,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
         {
             try
             {
-                var monedas = _tacticaDbContext.Monedas.AsQueryable();              
+                var monedas = _tacticaDbContext.Monedas.AsQueryable();
                 return Response<List<MonedaDto>>.Ok("Ok", _imapper.Map<List<MonedaDto>>(monedas));
             }
             catch (Exception exc)

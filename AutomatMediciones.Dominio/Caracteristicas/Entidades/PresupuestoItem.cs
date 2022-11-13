@@ -9,21 +9,21 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
         public string IDProducto { get; set; }
         public string IDPresupuesto { get; set; }
         public string IDUsuario { get; set; }
-        public double? Cantidad { get; set; }
-        public double? CantidadCerrada { get; set; }
-        public double? ImportePrecio1 { get; set; }
-        public double? ImportePrecio2 { get; set; }
-        public double? ImportePrecio3 { get; set; }
-        public double? ImportePrecio4 { get; set; }
-        public double? ImportePrecio5 { get; set; }
-        public double? ImportePrecio6 { get; set; }
-        public double? ImporteCosto1 { get; set; }
-        public double? ImporteCosto2 { get; set; }
-        public double? ImporteCosto3 { get; set; }
-        public double? ImporteCosto4 { get; set; }
-        public double? ImporteCosto5 { get; set; }
-        public double? ImporteCosto6 { get; set; }
-        public double? Probabilidad { get; set; }
+        public decimal Cantidad { get; set; }
+        public decimal CantidadCerrada { get; set; }
+        public decimal ImportePrecio1 { get; set; }
+        public decimal ImportePrecio2 { get; set; }
+        public decimal ImportePrecio3 { get; set; }
+        public decimal ImportePrecio4 { get; set; }
+        public decimal ImportePrecio5 { get; set; }
+        public decimal ImportePrecio6 { get; set; }
+        public decimal? ImporteCosto1 { get; set; }
+        public decimal? ImporteCosto2 { get; set; }
+        public decimal? ImporteCosto3 { get; set; }
+        public decimal? ImporteCosto4 { get; set; }
+        public decimal? ImporteCosto5 { get; set; }
+        public decimal? ImporteCosto6 { get; set; }
+        public decimal Probabilidad { get; set; }
         public DateTime? FechaSistema { get; set; }
         public DateTime? FechaCierre { get; set; }
         public DateTime? FechaEmision { get; set; }
@@ -38,35 +38,35 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
         public DateTime? FechaModificacion { get; set; }
         public string Codigo { get; set; }
         public string Fabricante { get; set; }
-        public double? Descuento { get; set; }
-        public double? SobrePrecio { get; set; }
-        public byte? NroPrecio { get; set; }
+        public decimal Descuento { get; set; }
+        public decimal SobrePrecio { get; set; }
+        public int NroPrecio { get; set; }
         public string IDProdOb { get; set; }
         public byte? ObligOp { get; set; }
         public string NroItem { get; set; }
-        public byte? PrecioOculto { get; set; }
+        public int PrecioOculto { get; set; }
         public string Notas { get; set; }
         public string PlazoEntrega { get; set; }
         public string FormaPago { get; set; }
-        public int? Validez { get; set; }
-        public int? NroFila { get; set; }
+        public int Validez { get; set; }
+        public int NroFila { get; set; }
         public string DescripcionDescuento { get; set; }
         public string Unidad { get; set; }
-        public byte? TipoUnidad { get; set; }
-        public double? Impuesto { get; set; }
+        public int TipoUnidad { get; set; }
+        public decimal Impuesto { get; set; }
         public string ImpuestoDescripcion { get; set; }
         public string IDCotizacionMoneda { get; set; }
-        public byte? TipoComision { get; set; }
-        public double? Comision { get; set; }
-        public byte? TipoComisionTerceros { get; set; }
-        public double? ComisionTerceros { get; set; }
-        public byte? NroMoneda { get; set; }
-        public double? ImporteUnitario1 { get; set; }
-        public double? ImporteUnitario2 { get; set; }
-        public double? ImporteUnitario3 { get; set; }
-        public double? ImporteUnitario4 { get; set; }
-        public double? ImporteUnitario5 { get; set; }
-        public double? ImporteUnitario6 { get; set; }
+        public int TipoComision { get; set; }
+        public decimal Comision { get; set; }
+        public int TipoComisionTerceros { get; set; }
+        public decimal ComisionTerceros { get; set; }
+        public int? NroMoneda { get; set; }
+        public decimal? ImporteUnitario1 { get; set; }
+        public decimal? ImporteUnitario2 { get; set; }
+        public decimal? ImporteUnitario3 { get; set; }
+        public decimal? ImporteUnitario4 { get; set; }
+        public decimal? ImporteUnitario5 { get; set; }
+        public decimal? ImporteUnitario6 { get; set; }
         public string IDUsuarioVendedor { get; set; }
         public string DescripcionGrupo { get; set; }
         public string NombreGrupo { get; set; }

@@ -58,7 +58,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             var ingresoSeleccionao = gvInstrumentos.GetFocusedRow() as IngresoInstrumento;
             if (ingresoSeleccionao == null) return;
 
-            var frmPresupuestos = new frmCrearPresupuesto(ingresoSeleccionao, serviceProvider.GetService<ProductoService>());
+            var frmPresupuestos = new frmCrearPresupuesto(ingresoSeleccionao, serviceProvider.GetService<ProductoService>(), serviceProvider.GetService<PresupuestoService>());
             frmPresupuestos.ShowDialog();
         }
 

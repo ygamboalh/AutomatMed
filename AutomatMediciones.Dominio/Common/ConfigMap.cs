@@ -39,6 +39,7 @@ namespace AutomatMediciones.Dominio.Common
             CreateMap<ArbolCarpeta, ArbolCarpetaDto>().ReverseMap();
             CreateMap<ProductoPrecio, ProductoPrecioDto>().ReverseMap();
             CreateMap<Moneda, MonedaDto>().ReverseMap();
+            CreateMap<ProductoIngreso, ProductoIngresoDto>().ReverseMap();
         }
     }
 }

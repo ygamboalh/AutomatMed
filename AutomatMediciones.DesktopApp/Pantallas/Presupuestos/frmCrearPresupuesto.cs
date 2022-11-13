@@ -18,16 +18,25 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
     {
         private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
         private readonly ProductoService _productoService;
+        private readonly PresupuestoService _presupuestoService;
 
         public IngresoInstrumento IngresoInstrumento { get; set; }
         public List<ProductoDto> ProductosEnPresupuesto { get; set; }
 
-        public frmCrearPresupuesto(IngresoInstrumento ingresoInstrumento, ProductoService productoService)
+        public PresupuestoDto Presupuesto { get; set; }
+
+        MonedaDto monedaSeleccionada = new MonedaDto();
+
+        public frmCrearPresupuesto(IngresoInstrumento ingresoInstrumento, ProductoService productoService, PresupuestoService presupuestoService)
         {
             InitializeComponent();
             IngresoInstrumento = ingresoInstrumento;
             _productoService = productoService;
+            _presupuestoService = presupuestoService;
+
+            Presupuesto = new PresupuestoDto();
             ProductosEnPresupuesto = new List<ProductoDto>();
+
             EstablecerNombreYTituloDePantalla();
             EstablecerColorBotonPorDefecto();
             EstablecerColorBotonGuardar();
@@ -40,6 +49,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             txtCantidad.EditValueChanging += txtCantidadEditValueChanging;
             txtPrecio.EditValueChanging += txtPrecioEditValueChanging;
             btnGuardar.Click += btnGuardarClick;
+
+
+            lookupMonedas.EditValueChanged += lookupMonedasEditValueChanged;
+        }
+
+        private void lookupMonedasEditValueChanged(object sender, EventArgs e)
+        {
+            monedaSeleccionada = lookupMonedas.GetSelectedDataRow() as MonedaDto;
         }
 
         private void btnGuardarClick(object sender, EventArgs e)
@@ -49,6 +66,47 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
                 Notificaciones.MensajeAdvertencia("Es necesario que agregue al menos un producto al presupuesto.");
                 return;
             }
+
+            PrepararNuevoPresupuesto();
+            var resultadoIngresoPresupuesto = _presupuestoService.RegistrarPresupuesto(Presupuesto);
+
+            if (resultadoIngresoPresupuesto.Type != TypeResponse.Ok)
+            {
+                Notificaciones.MensajeError(resultadoIngresoPresupuesto.Message);
+                return;
+            }
+
+            Notificaciones.MensajeConfirmacion("¡El presupuesto se regitró exitosamente!");
+
+            this.Close();
+
+        }
+
+        private void PrepararNuevoPresupuesto()
+        {
+            decimal total = 0;
+            decimal subtotal = 0;
+            decimal impuesto = 0;
+
+            subtotal = ProductosEnPresupuesto.Sum(x => x.SubTotal);
+            total = ProductosEnPresupuesto.Sum(x => x.Total);
+            impuesto = ProductosEnPresupuesto.Sum(x => x.Impuesto);
+
+            Presupuesto.Nombre = txtNombrePresupuesto.Text;
+            Presupuesto.Descripcion = memoDescripcion.Text;
+            Presupuesto.NroMoneda = monedaSeleccionada.Numero;
+            Presupuesto.IDRef = IngresoInstrumento.Ingreso.ContactoId;
+            Presupuesto.Total = total;
+            Presupuesto.Subtotal = subtotal;
+            Presupuesto.Impuesto = impuesto;
+            Presupuesto.Cierre = "";
+            Presupuesto.Introduccion = "";
+            Presupuesto.Descuento = 0;
+            Presupuesto.IDCampania = "";
+            Presupuesto.IDFormula = "";
+            Presupuesto.MotivoCierre = "";
+            Presupuesto.Productos = ProductosEnPresupuesto;
+            Presupuesto.IngresoId = IngresoInstrumento.IngresoId;
         }
 
         private void SetearSummary()
@@ -80,7 +138,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
                 return;
             }
 
-            filaSeleccionada.Total = CalcularTotal(filaSeleccionada.Cantidad, precio);
+            filaSeleccionada.SubTotal = CalculaSubTotal(filaSeleccionada.Cantidad, precio);
+            filaSeleccionada.Impuesto = CalcularImpuesto(filaSeleccionada.SubTotal);
+            filaSeleccionada.Total = CalcularTotal(filaSeleccionada.SubTotal, filaSeleccionada.Impuesto);
             SetearSummary();
         }
 
@@ -88,7 +148,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
         {
             var filaSeleccionada = ObtenerProductoSeleccionado();
             if (filaSeleccionada == null) return;
-           
+
             if (string.IsNullOrEmpty(e.NewValue.ToString())) return;
             decimal cantidad = Decimal.Parse(e.NewValue.ToString());
 
@@ -98,13 +158,29 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
                 return;
             }
 
-            filaSeleccionada.Total = CalcularTotal(cantidad, filaSeleccionada.Precio);
+            filaSeleccionada.SubTotal = CalculaSubTotal(cantidad, filaSeleccionada.Precio);
             SetearSummary();
         }
 
-        private decimal CalcularTotal(decimal cantidad, decimal precio)
+        private decimal CalculaSubTotal(decimal cantidad, decimal precio)
         {
-            decimal total = precio * cantidad;
+            decimal subtotal = precio * cantidad;
+            return subtotal;
+        }
+
+        private decimal CalcularImpuesto(decimal subtotal)
+        {
+            decimal porcentajeImpuesto = 0.21M;
+            decimal impuesto = subtotal * porcentajeImpuesto;
+
+            CalcularTotal(subtotal, impuesto);
+
+            return impuesto;
+        }
+
+        private decimal CalcularTotal(decimal subtotal, decimal impuesto)
+        {
+            decimal total = subtotal + impuesto;
             return total;
         }
 
@@ -232,6 +308,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
         }
 
         private void lblTotal_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtClasificacion_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
         {
 
         }

@@ -109,7 +109,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
             lblTotalSeleccionados.Text = $"Total seleccionados: {productosSeleccionados.Count}";
         }
 
-    
+
 
         private void CargarArbolCarpetas()
         {

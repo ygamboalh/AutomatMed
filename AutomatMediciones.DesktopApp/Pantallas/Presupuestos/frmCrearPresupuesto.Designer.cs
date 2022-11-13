@@ -53,13 +53,24 @@
             this.txtCantidad = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.colPrecio = new DevExpress.XtraGrid.Columns.GridColumn();
             this.txtPrecio = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.colSubtotal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTotal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colEliminar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEliminar = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.colImpuesto = new DevExpress.XtraGrid.Columns.GridColumn();
             this.leMonedas = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlProductosPresupuesto = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.memoDescripcion = new DevExpress.XtraEditors.MemoEdit();
+            this.txtNombrePresupuesto = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnAgregarProductosDesdeArchivoMaestro = new FontAwesome.Sharp.IconButton();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.btnAgregarDesdeHistorialPresupuesto = new FontAwesome.Sharp.IconButton();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.lookupMonedas = new DevExpress.XtraEditors.LookUpEdit();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -67,10 +78,6 @@
             this.lblTotal = new DevExpress.XtraEditors.LabelControl();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btnGuardar = new FontAwesome.Sharp.IconButton();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnAgregarProductosDesdeArchivoMaestro = new FontAwesome.Sharp.IconButton();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.btnAgregarDesdeHistorialPresupuesto = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.txtContactoACargo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumeroServicioTecnico.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCliente.Properties)).BeginInit();
@@ -85,52 +92,54 @@
             this.panel1.SuspendLayout();
             this.pnlProductosPresupuesto.SuspendLayout();
             this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.memoDescripcion.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNombrePresupuesto.Properties)).BeginInit();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lookupMonedas.Properties)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtContactoACargo
             // 
-            this.txtContactoACargo.Location = new System.Drawing.Point(326, 58);
+            this.txtContactoACargo.Location = new System.Drawing.Point(438, 32);
             this.txtContactoACargo.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtContactoACargo.Name = "txtContactoACargo";
             this.txtContactoACargo.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtContactoACargo.Properties.Appearance.Options.UseFont = true;
             this.txtContactoACargo.Properties.ReadOnly = true;
             this.txtContactoACargo.Properties.UseReadOnlyAppearance = false;
-            this.txtContactoACargo.Size = new System.Drawing.Size(312, 26);
+            this.txtContactoACargo.Size = new System.Drawing.Size(243, 26);
             this.txtContactoACargo.TabIndex = 201;
             // 
             // labelControl14
             // 
             this.labelControl14.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl14.Appearance.Options.UseFont = true;
-            this.labelControl14.Location = new System.Drawing.Point(326, 37);
+            this.labelControl14.Location = new System.Drawing.Point(372, 41);
             this.labelControl14.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(107, 17);
+            this.labelControl14.Size = new System.Drawing.Size(58, 17);
             this.labelControl14.TabIndex = 200;
-            this.labelControl14.Text = "Contacto a cargo:";
+            this.labelControl14.Text = "Contacto:";
             // 
             // txtNumeroServicioTecnico
             // 
-            this.txtNumeroServicioTecnico.Location = new System.Drawing.Point(644, 58);
+            this.txtNumeroServicioTecnico.Location = new System.Drawing.Point(826, 32);
             this.txtNumeroServicioTecnico.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtNumeroServicioTecnico.Name = "txtNumeroServicioTecnico";
             this.txtNumeroServicioTecnico.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtNumeroServicioTecnico.Properties.Appearance.Options.UseFont = true;
             this.txtNumeroServicioTecnico.Properties.ReadOnly = true;
             this.txtNumeroServicioTecnico.Properties.UseReadOnlyAppearance = false;
-            this.txtNumeroServicioTecnico.Size = new System.Drawing.Size(182, 26);
+            this.txtNumeroServicioTecnico.Size = new System.Drawing.Size(144, 26);
             this.txtNumeroServicioTecnico.TabIndex = 199;
             // 
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(644, 41);
+            this.labelControl2.Location = new System.Drawing.Point(701, 41);
             this.labelControl2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(117, 17);
@@ -139,21 +148,21 @@
             // 
             // txtCliente
             // 
-            this.txtCliente.Location = new System.Drawing.Point(15, 58);
+            this.txtCliente.Location = new System.Drawing.Point(78, 32);
             this.txtCliente.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtCliente.Name = "txtCliente";
             this.txtCliente.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtCliente.Properties.Appearance.Options.UseFont = true;
             this.txtCliente.Properties.ReadOnly = true;
             this.txtCliente.Properties.UseReadOnlyAppearance = false;
-            this.txtCliente.Size = new System.Drawing.Size(304, 26);
+            this.txtCliente.Size = new System.Drawing.Size(283, 26);
             this.txtCliente.TabIndex = 197;
             // 
             // labelControl13
             // 
             this.labelControl13.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl13.Appearance.Options.UseFont = true;
-            this.labelControl13.Location = new System.Drawing.Point(14, 41);
+            this.labelControl13.Location = new System.Drawing.Point(26, 41);
             this.labelControl13.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(44, 17);
@@ -162,33 +171,34 @@
             // 
             // txtTipoOrdenTrabajo
             // 
-            this.txtTipoOrdenTrabajo.Location = new System.Drawing.Point(14, 111);
+            this.txtTipoOrdenTrabajo.Location = new System.Drawing.Point(132, 70);
             this.txtTipoOrdenTrabajo.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtTipoOrdenTrabajo.Name = "txtTipoOrdenTrabajo";
             this.txtTipoOrdenTrabajo.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtTipoOrdenTrabajo.Properties.Appearance.Options.UseFont = true;
             this.txtTipoOrdenTrabajo.Properties.ReadOnly = true;
             this.txtTipoOrdenTrabajo.Properties.UseReadOnlyAppearance = false;
-            this.txtTipoOrdenTrabajo.Size = new System.Drawing.Size(304, 26);
+            this.txtTipoOrdenTrabajo.Size = new System.Drawing.Size(229, 26);
             this.txtTipoOrdenTrabajo.TabIndex = 194;
             // 
             // txtClasificacion
             // 
-            this.txtClasificacion.Location = new System.Drawing.Point(326, 111);
+            this.txtClasificacion.Location = new System.Drawing.Point(557, 70);
             this.txtClasificacion.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtClasificacion.Name = "txtClasificacion";
             this.txtClasificacion.Properties.Appearance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtClasificacion.Properties.Appearance.Options.UseFont = true;
             this.txtClasificacion.Properties.ReadOnly = true;
             this.txtClasificacion.Properties.UseReadOnlyAppearance = false;
-            this.txtClasificacion.Size = new System.Drawing.Size(500, 26);
+            this.txtClasificacion.Size = new System.Drawing.Size(413, 26);
             this.txtClasificacion.TabIndex = 193;
+            this.txtClasificacion.EditValueChanged += new System.EventHandler(this.txtClasificacion_EditValueChanged);
             // 
             // labelControl4
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(13, 90);
+            this.labelControl4.Location = new System.Drawing.Point(27, 79);
             this.labelControl4.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(97, 17);
@@ -199,7 +209,7 @@
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(12, 11);
+            this.labelControl3.Location = new System.Drawing.Point(26, 8);
             this.labelControl3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(138, 20);
@@ -210,7 +220,7 @@
             // 
             this.labelControl10.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Location = new System.Drawing.Point(326, 90);
+            this.labelControl10.Location = new System.Drawing.Point(372, 79);
             this.labelControl10.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(177, 17);
@@ -221,7 +231,7 @@
             // 
             this.gcProductosPresupuesto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcProductosPresupuesto.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.gcProductosPresupuesto.Location = new System.Drawing.Point(15, 93);
+            this.gcProductosPresupuesto.Location = new System.Drawing.Point(15, 165);
             this.gcProductosPresupuesto.MainView = this.gvProductosPresupuesto;
             this.gcProductosPresupuesto.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.gcProductosPresupuesto.Name = "gcProductosPresupuesto";
@@ -230,7 +240,7 @@
             this.txtCantidad,
             this.leMonedas,
             this.txtPrecio});
-            this.gcProductosPresupuesto.Size = new System.Drawing.Size(955, 357);
+            this.gcProductosPresupuesto.Size = new System.Drawing.Size(962, 329);
             this.gcProductosPresupuesto.TabIndex = 202;
             this.gcProductosPresupuesto.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvProductosPresupuesto});
@@ -242,8 +252,10 @@
             this.colDescripcion,
             this.colCantidad,
             this.colPrecio,
+            this.colSubtotal,
             this.colTotal,
-            this.colEliminar});
+            this.colEliminar,
+            this.colImpuesto});
             this.gvProductosPresupuesto.GridControl = this.gcProductosPresupuesto;
             this.gvProductosPresupuesto.Name = "gvProductosPresupuesto";
             this.gvProductosPresupuesto.OptionsView.ShowGroupPanel = false;
@@ -311,21 +323,35 @@
             this.txtPrecio.AutoHeight = false;
             this.txtPrecio.Name = "txtPrecio";
             // 
+            // colSubtotal
+            // 
+            this.colSubtotal.AppearanceCell.Options.UseTextOptions = true;
+            this.colSubtotal.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.colSubtotal.Caption = "SubTotal";
+            this.colSubtotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colSubtotal.FieldName = "SubTotal";
+            this.colSubtotal.MinWidth = 24;
+            this.colSubtotal.Name = "colSubtotal";
+            this.colSubtotal.OptionsColumn.AllowEdit = false;
+            this.colSubtotal.OptionsColumn.AllowFocus = false;
+            this.colSubtotal.UnboundDataType = typeof(decimal);
+            this.colSubtotal.Visible = true;
+            this.colSubtotal.VisibleIndex = 4;
+            this.colSubtotal.Width = 150;
+            // 
             // colTotal
             // 
             this.colTotal.AppearanceCell.Options.UseTextOptions = true;
             this.colTotal.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.colTotal.Caption = "Total";
-            this.colTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colTotal.FieldName = "Total";
-            this.colTotal.MinWidth = 24;
+            this.colTotal.MinWidth = 25;
             this.colTotal.Name = "colTotal";
             this.colTotal.OptionsColumn.AllowEdit = false;
             this.colTotal.OptionsColumn.AllowFocus = false;
-            this.colTotal.UnboundDataType = typeof(decimal);
             this.colTotal.Visible = true;
-            this.colTotal.VisibleIndex = 3;
-            this.colTotal.Width = 150;
+            this.colTotal.VisibleIndex = 5;
+            this.colTotal.Width = 94;
             // 
             // colEliminar
             // 
@@ -333,7 +359,7 @@
             this.colEliminar.MinWidth = 24;
             this.colEliminar.Name = "colEliminar";
             this.colEliminar.Visible = true;
-            this.colEliminar.VisibleIndex = 4;
+            this.colEliminar.VisibleIndex = 6;
             this.colEliminar.Width = 30;
             // 
             // btnEliminar
@@ -344,6 +370,20 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
+            // colImpuesto
+            // 
+            this.colImpuesto.AppearanceCell.Options.UseTextOptions = true;
+            this.colImpuesto.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.colImpuesto.Caption = "Impuesto";
+            this.colImpuesto.FieldName = "Impuesto";
+            this.colImpuesto.MinWidth = 25;
+            this.colImpuesto.Name = "colImpuesto";
+            this.colImpuesto.OptionsColumn.AllowEdit = false;
+            this.colImpuesto.OptionsColumn.AllowFocus = false;
+            this.colImpuesto.Visible = true;
+            this.colImpuesto.VisibleIndex = 3;
+            this.colImpuesto.Width = 94;
             // 
             // leMonedas
             // 
@@ -372,7 +412,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(985, 150);
+            this.panel1.Size = new System.Drawing.Size(992, 111);
             this.panel1.TabIndex = 203;
             // 
             // pnlProductosPresupuesto
@@ -381,30 +421,146 @@
             this.pnlProductosPresupuesto.Controls.Add(this.panel6);
             this.pnlProductosPresupuesto.Controls.Add(this.panel3);
             this.pnlProductosPresupuesto.Controls.Add(this.panel5);
-            this.pnlProductosPresupuesto.Controls.Add(this.panel2);
             this.pnlProductosPresupuesto.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlProductosPresupuesto.Location = new System.Drawing.Point(0, 150);
+            this.pnlProductosPresupuesto.Location = new System.Drawing.Point(0, 111);
             this.pnlProductosPresupuesto.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.pnlProductosPresupuesto.Name = "pnlProductosPresupuesto";
             this.pnlProductosPresupuesto.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.pnlProductosPresupuesto.Size = new System.Drawing.Size(985, 542);
+            this.pnlProductosPresupuesto.Size = new System.Drawing.Size(992, 581);
             this.pnlProductosPresupuesto.TabIndex = 204;
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.labelControl7);
+            this.panel6.Controls.Add(this.memoDescripcion);
+            this.panel6.Controls.Add(this.txtNombrePresupuesto);
+            this.panel6.Controls.Add(this.labelControl6);
+            this.panel6.Controls.Add(this.labelControl5);
+            this.panel6.Controls.Add(this.panel2);
             this.panel6.Controls.Add(this.labelControl1);
             this.panel6.Controls.Add(this.lookupMonedas);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(15, 47);
+            this.panel6.Location = new System.Drawing.Point(15, 0);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(955, 46);
+            this.panel6.Size = new System.Drawing.Size(962, 165);
             this.panel6.TabIndex = 207;
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelControl7.Appearance.Options.UseFont = true;
+            this.labelControl7.Location = new System.Drawing.Point(11, 10);
+            this.labelControl7.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(192, 20);
+            this.labelControl7.TabIndex = 206;
+            this.labelControl7.Text = "Información de presupuesto";
+            // 
+            // memoDescripcion
+            // 
+            this.memoDescripcion.Location = new System.Drawing.Point(88, 63);
+            this.memoDescripcion.Name = "memoDescripcion";
+            this.memoDescripcion.Size = new System.Drawing.Size(850, 50);
+            this.memoDescripcion.TabIndex = 202;
+            // 
+            // txtNombrePresupuesto
+            // 
+            this.txtNombrePresupuesto.Location = new System.Drawing.Point(88, 35);
+            this.txtNombrePresupuesto.Name = "txtNombrePresupuesto";
+            this.txtNombrePresupuesto.Size = new System.Drawing.Size(531, 22);
+            this.txtNombrePresupuesto.TabIndex = 201;
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelControl6.Appearance.Options.UseFont = true;
+            this.labelControl6.Location = new System.Drawing.Point(9, 40);
+            this.labelControl6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(53, 17);
+            this.labelControl6.TabIndex = 200;
+            this.labelControl6.Text = "Nombre:";
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelControl5.Appearance.Options.UseFont = true;
+            this.labelControl5.Location = new System.Drawing.Point(9, 64);
+            this.labelControl5.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(72, 17);
+            this.labelControl5.TabIndex = 198;
+            this.labelControl5.Text = "Descripción:";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.btnAgregarProductosDesdeArchivoMaestro);
+            this.panel2.Controls.Add(this.panel4);
+            this.panel2.Controls.Add(this.btnAgregarDesdeHistorialPresupuesto);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 123);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.panel2.Size = new System.Drawing.Size(962, 42);
+            this.panel2.TabIndex = 205;
+            // 
+            // btnAgregarProductosDesdeArchivoMaestro
+            // 
+            this.btnAgregarProductosDesdeArchivoMaestro.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnAgregarProductosDesdeArchivoMaestro.FlatAppearance.BorderSize = 0;
+            this.btnAgregarProductosDesdeArchivoMaestro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarProductosDesdeArchivoMaestro.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAgregarProductosDesdeArchivoMaestro.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            this.btnAgregarProductosDesdeArchivoMaestro.IconColor = System.Drawing.Color.Black;
+            this.btnAgregarProductosDesdeArchivoMaestro.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAgregarProductosDesdeArchivoMaestro.IconSize = 30;
+            this.btnAgregarProductosDesdeArchivoMaestro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAgregarProductosDesdeArchivoMaestro.Location = new System.Drawing.Point(373, 0);
+            this.btnAgregarProductosDesdeArchivoMaestro.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnAgregarProductosDesdeArchivoMaestro.Name = "btnAgregarProductosDesdeArchivoMaestro";
+            this.btnAgregarProductosDesdeArchivoMaestro.Size = new System.Drawing.Size(338, 32);
+            this.btnAgregarProductosDesdeArchivoMaestro.TabIndex = 205;
+            this.btnAgregarProductosDesdeArchivoMaestro.Text = "Agregar productos desde archivo maestro";
+            this.btnAgregarProductosDesdeArchivoMaestro.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAgregarProductosDesdeArchivoMaestro.UseVisualStyleBackColor = true;
+            this.btnAgregarProductosDesdeArchivoMaestro.Click += new System.EventHandler(this.btnAgregarProductosDesdeArchivoMaestro_Click);
+            // 
+            // panel4
+            // 
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel4.Location = new System.Drawing.Point(357, 0);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(16, 32);
+            this.panel4.TabIndex = 206;
+            // 
+            // btnAgregarDesdeHistorialPresupuesto
+            // 
+            this.btnAgregarDesdeHistorialPresupuesto.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnAgregarDesdeHistorialPresupuesto.FlatAppearance.BorderSize = 0;
+            this.btnAgregarDesdeHistorialPresupuesto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAgregarDesdeHistorialPresupuesto.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnAgregarDesdeHistorialPresupuesto.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            this.btnAgregarDesdeHistorialPresupuesto.IconColor = System.Drawing.Color.Black;
+            this.btnAgregarDesdeHistorialPresupuesto.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAgregarDesdeHistorialPresupuesto.IconSize = 30;
+            this.btnAgregarDesdeHistorialPresupuesto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAgregarDesdeHistorialPresupuesto.Location = new System.Drawing.Point(0, 0);
+            this.btnAgregarDesdeHistorialPresupuesto.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnAgregarDesdeHistorialPresupuesto.Name = "btnAgregarDesdeHistorialPresupuesto";
+            this.btnAgregarDesdeHistorialPresupuesto.Size = new System.Drawing.Size(357, 32);
+            this.btnAgregarDesdeHistorialPresupuesto.TabIndex = 204;
+            this.btnAgregarDesdeHistorialPresupuesto.Text = "Agregar productos desde historial de presupuestos";
+            this.btnAgregarDesdeHistorialPresupuesto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAgregarDesdeHistorialPresupuesto.UseVisualStyleBackColor = true;
+            this.btnAgregarDesdeHistorialPresupuesto.Click += new System.EventHandler(this.btnAgregarDesdeHistorialPresupuesto_Click);
             // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(4, 20);
+            this.labelControl1.Location = new System.Drawing.Point(654, 40);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(53, 17);
@@ -413,7 +569,7 @@
             // 
             // lookupMonedas
             // 
-            this.lookupMonedas.Location = new System.Drawing.Point(64, 15);
+            this.lookupMonedas.Location = new System.Drawing.Point(714, 35);
             this.lookupMonedas.Name = "lookupMonedas";
             this.lookupMonedas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -428,10 +584,10 @@
             this.panel3.Controls.Add(this.lblSummary);
             this.panel3.Controls.Add(this.lblTotal);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(15, 450);
+            this.panel3.Location = new System.Drawing.Point(15, 494);
             this.panel3.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(955, 27);
+            this.panel3.Size = new System.Drawing.Size(962, 27);
             this.panel3.TabIndex = 203;
             // 
             // lblSummary
@@ -439,7 +595,7 @@
             this.lblSummary.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblSummary.Appearance.Options.UseFont = true;
             this.lblSummary.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblSummary.Location = new System.Drawing.Point(946, 0);
+            this.lblSummary.Location = new System.Drawing.Point(953, 0);
             this.lblSummary.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
             this.lblSummary.Name = "lblSummary";
             this.lblSummary.Size = new System.Drawing.Size(9, 23);
@@ -465,11 +621,11 @@
             // 
             this.panel5.Controls.Add(this.btnGuardar);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(15, 477);
+            this.panel5.Location = new System.Drawing.Point(15, 521);
             this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Padding = new System.Windows.Forms.Padding(0, 0, 0, 6);
-            this.panel5.Size = new System.Drawing.Size(955, 65);
+            this.panel5.Size = new System.Drawing.Size(962, 60);
             this.panel5.TabIndex = 206;
             // 
             // btnGuardar
@@ -483,84 +639,21 @@
             this.btnGuardar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardar.IconSize = 30;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(714, 0);
+            this.btnGuardar.Location = new System.Drawing.Point(721, 0);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(241, 59);
+            this.btnGuardar.Size = new System.Drawing.Size(241, 54);
             this.btnGuardar.TabIndex = 128;
             this.btnGuardar.Text = "Crear Presupuesto";
             this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardar.UseVisualStyleBackColor = true;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.btnAgregarProductosDesdeArchivoMaestro);
-            this.panel2.Controls.Add(this.panel4);
-            this.panel2.Controls.Add(this.btnAgregarDesdeHistorialPresupuesto);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(15, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.panel2.Size = new System.Drawing.Size(955, 47);
-            this.panel2.TabIndex = 205;
-            // 
-            // btnAgregarProductosDesdeArchivoMaestro
-            // 
-            this.btnAgregarProductosDesdeArchivoMaestro.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnAgregarProductosDesdeArchivoMaestro.FlatAppearance.BorderSize = 0;
-            this.btnAgregarProductosDesdeArchivoMaestro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregarProductosDesdeArchivoMaestro.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAgregarProductosDesdeArchivoMaestro.IconChar = FontAwesome.Sharp.IconChar.Plus;
-            this.btnAgregarProductosDesdeArchivoMaestro.IconColor = System.Drawing.Color.Black;
-            this.btnAgregarProductosDesdeArchivoMaestro.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAgregarProductosDesdeArchivoMaestro.IconSize = 30;
-            this.btnAgregarProductosDesdeArchivoMaestro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarProductosDesdeArchivoMaestro.Location = new System.Drawing.Point(487, 0);
-            this.btnAgregarProductosDesdeArchivoMaestro.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.btnAgregarProductosDesdeArchivoMaestro.Name = "btnAgregarProductosDesdeArchivoMaestro";
-            this.btnAgregarProductosDesdeArchivoMaestro.Size = new System.Drawing.Size(399, 37);
-            this.btnAgregarProductosDesdeArchivoMaestro.TabIndex = 205;
-            this.btnAgregarProductosDesdeArchivoMaestro.Text = "Agregar productos desde archivo maestro";
-            this.btnAgregarProductosDesdeArchivoMaestro.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAgregarProductosDesdeArchivoMaestro.UseVisualStyleBackColor = true;
-            this.btnAgregarProductosDesdeArchivoMaestro.Click += new System.EventHandler(this.btnAgregarProductosDesdeArchivoMaestro_Click);
-            // 
-            // panel4
-            // 
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel4.Location = new System.Drawing.Point(463, 0);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(24, 37);
-            this.panel4.TabIndex = 206;
-            // 
-            // btnAgregarDesdeHistorialPresupuesto
-            // 
-            this.btnAgregarDesdeHistorialPresupuesto.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnAgregarDesdeHistorialPresupuesto.FlatAppearance.BorderSize = 0;
-            this.btnAgregarDesdeHistorialPresupuesto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAgregarDesdeHistorialPresupuesto.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnAgregarDesdeHistorialPresupuesto.IconChar = FontAwesome.Sharp.IconChar.Plus;
-            this.btnAgregarDesdeHistorialPresupuesto.IconColor = System.Drawing.Color.Black;
-            this.btnAgregarDesdeHistorialPresupuesto.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAgregarDesdeHistorialPresupuesto.IconSize = 30;
-            this.btnAgregarDesdeHistorialPresupuesto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarDesdeHistorialPresupuesto.Location = new System.Drawing.Point(0, 0);
-            this.btnAgregarDesdeHistorialPresupuesto.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.btnAgregarDesdeHistorialPresupuesto.Name = "btnAgregarDesdeHistorialPresupuesto";
-            this.btnAgregarDesdeHistorialPresupuesto.Size = new System.Drawing.Size(463, 37);
-            this.btnAgregarDesdeHistorialPresupuesto.TabIndex = 204;
-            this.btnAgregarDesdeHistorialPresupuesto.Text = "Agregar productos desde historial de presupuestos";
-            this.btnAgregarDesdeHistorialPresupuesto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAgregarDesdeHistorialPresupuesto.UseVisualStyleBackColor = true;
-            this.btnAgregarDesdeHistorialPresupuesto.Click += new System.EventHandler(this.btnAgregarDesdeHistorialPresupuesto_Click);
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // frmCrearPresupuesto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(985, 692);
+            this.ClientSize = new System.Drawing.Size(992, 692);
             this.Controls.Add(this.pnlProductosPresupuesto);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -584,11 +677,13 @@
             this.pnlProductosPresupuesto.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.memoDescripcion.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNombrePresupuesto.Properties)).EndInit();
+            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lookupMonedas.Properties)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel5.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -616,7 +711,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colDescripcion;
         private DevExpress.XtraGrid.Columns.GridColumn colCantidad;
         private DevExpress.XtraGrid.Columns.GridColumn colPrecio;
-        private DevExpress.XtraGrid.Columns.GridColumn colTotal;
+        private DevExpress.XtraGrid.Columns.GridColumn colSubtotal;
         private DevExpress.XtraGrid.Columns.GridColumn colEliminar;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEliminar;
         private System.Windows.Forms.Panel panel2;
@@ -632,5 +727,12 @@
         private System.Windows.Forms.Panel panel6;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LookUpEdit lookupMonedas;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.MemoEdit memoDescripcion;
+        private DevExpress.XtraEditors.TextEdit txtNombrePresupuesto;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraGrid.Columns.GridColumn colTotal;
+        private DevExpress.XtraGrid.Columns.GridColumn colImpuesto;
     }
 }

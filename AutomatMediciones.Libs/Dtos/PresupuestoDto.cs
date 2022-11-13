@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AutomatMediciones.Libs.Dtos
 {
@@ -10,40 +11,40 @@ namespace AutomatMediciones.Libs.Dtos
         public DateTime? FechaCreacion { get; set; }
         public string Nombre { get; set; }
         public int? ID { get; set; }
-        public int? Revision { get; set; }
-        public byte? Estado { get; set; }
-        public byte? NroMoneda { get; set; }
+        public int Revision { get; set; }
+        public int? Estado { get; set; }
+        public int NroMoneda { get; set; }
         public DateTime? FechaModificacion { get; set; }
         public string IDContrato { get; set; }
         public string Descripcion { get; set; }
-        public byte? MostrarImpuestos { get; set; }
+        public bool MostrarImpuestos { get; set; }
         public string MotivoCierre { get; set; }
         public string Introduccion { get; set; }
         public string Cierre { get; set; }
         public string IDConsulta { get; set; }
-        public double? Subtotal { get; set; }
-        public double? SubTotal2 { get; set; }
-        public double? Impuesto { get; set; }
-        public double? ImpuestosInternos { get; set; }
-        public double? Descuento { get; set; }
-        public double? Total { get; set; }
+        public decimal Subtotal { get; set; }
+        public decimal SubTotal2 { get; set; }
+        public decimal Impuesto { get; set; }
+        public decimal ImpuestosInternos { get; set; }
+        public decimal Descuento { get; set; }
+        public decimal Total { get; set; }
         public int? Validez { get; set; }
-        public double? EmbalajeIM { get; set; }
-        public double? EmbalajeIF { get; set; }
-        public double? GastosIM { get; set; }
-        public double? GastosIF { get; set; }
-        public double? TransPuertoIM { get; set; }
-        public double? TransPuertoIF { get; set; }
-        public double? FleteIntIM { get; set; }
-        public double? FleteIntIF { get; set; }
-        public double? SeguroIM { get; set; }
-        public double? SeguroIF { get; set; }
-        public byte? TipoEW { get; set; }
+        public decimal EmbalajeIM { get; set; }
+        public decimal EmbalajeIF { get; set; }
+        public decimal GastosIM { get; set; }
+        public decimal GastosIF { get; set; }
+        public decimal TransPuertoIM { get; set; }
+        public decimal TransPuertoIF { get; set; }
+        public decimal FleteIntIM { get; set; }
+        public decimal FleteIntIF { get; set; }
+        public decimal SeguroIM { get; set; }
+        public decimal SeguroIF { get; set; }
+        public int TipoEW { get; set; }
         public string IDFormula { get; set; }
-        public byte? TipoComision { get; set; }
-        public int? PorcentajeComision { get; set; }
-        public double? ImporteComision { get; set; }
-        public byte? NroMonedaComision { get; set; }
+        public int TipoComision { get; set; }
+        public int PorcentajeComision { get; set; }
+        public decimal ImporteComision { get; set; }
+        public int NroMonedaComision { get; set; }
         public string Escenario { get; set; }
         public DateTime? FechaCierre { get; set; }
         public byte? Origen { get; set; }
@@ -56,5 +57,8 @@ namespace AutomatMediciones.Libs.Dtos
         public string Auditoria { get; set; }
         public string CustomID { get; set; }
         public byte? ActualizarAuto { get; set; }
+
+        public int IngresoId { get; set; }
+        public List<ProductoDto> Productos { get; set; }
     }
 }

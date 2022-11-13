@@ -18,6 +18,8 @@ namespace AutomatMediciones.Libs.Dtos
         public decimal Precio { get; set; }
         public int MonedaId { get; set; }
         public decimal Cantidad { get; set; }
+        public decimal Impuesto { get; set; }
+        public decimal SubTotal { get; set; }
         public decimal Total { get; set; }
         public MonedaDto Moneda { get; set; }
         public List<ProductoPrecioDto> ProductoPrecios { get; set; }
