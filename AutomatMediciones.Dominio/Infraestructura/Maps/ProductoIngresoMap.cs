@@ -19,6 +19,11 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.Property(x => x.PresupuestoControlId).HasColumnName("presupuesto_control_id").HasColumnType("INT").IsRequired();
             builder.Property(x => x.IngresoId).HasColumnName("ingreso_id").HasColumnType("INT").IsRequired();
             builder.Property(x => x.Cantidad).HasColumnName("cantidad").HasColumnType("decimal(18,2)").IsRequired();
+            builder.Property(x => x.ModeloId).HasColumnName("modelo_id").HasColumnType("INT").IsRequired();
+            builder.Property(x => x.InstrumentoId).HasColumnName("instrumento_id").HasColumnType("INT").IsRequired();
+            builder.Property(x => x.ClienteId).HasColumnName("cliente_id").HasColumnType("VARCHAR(255)").IsRequired();
+            builder.Property(x => x.NombreCliente).HasColumnName("nombre_cliente").HasColumnType("VARCHAR(255)").IsRequired();
+            builder.Property(x => x.Precio).HasColumnName("precio").HasColumnType("DECIMAL(18,2)").IsRequired();
         }
     }
 }

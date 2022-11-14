@@ -46,6 +46,20 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
+        public Response<ProductoDto> ObtenerProductoPorId(string productoId)
+        {
+            try
+            {
+                var productoDb = _tacticaDbContext.Productos.AsQueryable().Include(x => x.ProductoPrecios).FirstOrDefault(x => x.RecID == productoId);
+                return Response<ProductoDto>.Ok("Ok", _imapper.Map<ProductoDto>(productoDb));
+
+            }
+            catch (Exception exc)
+            {
+                return Response<ProductoDto>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
         public Response<List<MonedaDto>> ObtenerMonedas()
         {
             try

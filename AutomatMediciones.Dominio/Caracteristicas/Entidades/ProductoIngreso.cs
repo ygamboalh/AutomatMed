@@ -12,5 +12,13 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
         public int PresupuestoControlId { get; set; }
         public int IngresoId { get; set; }
         public decimal Cantidad { get; set; }
+        public int InstrumentoId { get; set; }
+        public int ModeloId { get; set; }
+        public string ClienteId { get; set; }
+        public string NombreCliente { get; set; }
+        public decimal Precio { get; set; }
+
+        public Instrumento Instrumento { get; set; }
+        public Modelo Modelo { get; set; }   
     }
 }

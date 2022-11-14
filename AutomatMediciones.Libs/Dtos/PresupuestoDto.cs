@@ -59,6 +59,10 @@ namespace AutomatMediciones.Libs.Dtos
         public byte? ActualizarAuto { get; set; }
 
         public int IngresoId { get; set; }
+        public int InstrumentoId { get; set; }
+        public int ModeloId { get; set; }
+        public string NombreCliente { get; set; }
+
         public List<ProductoDto> Productos { get; set; }
     }
 }

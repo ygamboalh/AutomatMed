@@ -2,6 +2,7 @@
 using AutomatMediciones.Dominio.Caracteristicas.Entidades;
 using AutomatMediciones.Dominio.Infraestructura;
 using AutomatMediciones.Libs.Dtos;
+using Microsoft.EntityFrameworkCore;
 using Nagaira.Herramientas.Standard.Helpers.Exceptions;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
@@ -75,7 +76,12 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         ProductoId = producto.RecID,
                         PresupuestoControlId = presupuestoControl.Id,
                         IngresoId = presupuestoDto.IngresoId,
-                        Cantidad = producto.Cantidad
+                        Cantidad = producto.Cantidad,
+                        InstrumentoId = presupuestoDto.InstrumentoId,
+                        ModeloId = presupuestoDto.ModeloId,
+                        ClienteId = presupuestoDto.IDRef,
+                        NombreCliente = presupuestoDto.NombreCliente,
+                        Precio = producto.Precio
                     };
 
                     var presupuestoItemControl = new PresupuestoItemControl
@@ -149,6 +155,29 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             {
                 return Response<List<PresupuestoItemDto>>.Error(MessageException.LanzarExcepcion(exc), null);
             }
+        }
+
+        public Response<List<ProductoIngresoDto>> CargarHistorialPresupuesto(DateTime? desde, DateTime? hasta)
+        {
+            try
+            {
+                var historialPresupuestos = _automatMedicionesDbContext.ProductosIngresos.AsQueryable();
+
+                if (desde != null && hasta != null)
+                    historialPresupuestos = historialPresupuestos.Where(x => x.FechaRegistro.Date >= desde.Value.Date &&
+                                                                             x.FechaRegistro.Date <= hasta.Value.Date);
+
+                var historial = historialPresupuestos.Include(x => x.Modelo).Include(x => x.Instrumento).ToList();
+
+                return Response<List<ProductoIngresoDto>>.Ok("", _imapper.Map<List<ProductoIngresoDto>>(historial));
+            }
+            catch (Exception exc)
+            {
+               
+                return Response<List<ProductoIngresoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        
+            
         }
     }
 }

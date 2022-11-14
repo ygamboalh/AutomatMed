@@ -107,6 +107,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             Presupuesto.MotivoCierre = "";
             Presupuesto.Productos = ProductosEnPresupuesto;
             Presupuesto.IngresoId = IngresoInstrumento.IngresoId;
+            Presupuesto.ModeloId = IngresoInstrumento.Instrumento.Clasificacion.ModeloId;
+            Presupuesto.InstrumentoId = IngresoInstrumento.Instrumento.InstrumentoId;
+            Presupuesto.NombreCliente = IngresoInstrumento.Ingreso.NombreEmpresa;
         }
 
         private void SetearSummary()
@@ -303,8 +306,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
 
         private void btnAgregarDesdeHistorialPresupuesto_Click(object sender, EventArgs e)
         {
-            var frmHistorial = new frmHistorialPresupuesto();
+            var frmHistorial = new frmHistorialPresupuesto(serviceProvider.GetService<PresupuestoService>(), serviceProvider.GetService<ProductoService>());
+            frmHistorial.ProductosEnPresupuesto = ProductosEnPresupuesto;
+            frmHistorial.OnListaProductosAgregados += frmHistorialOnListaProductosAgregados;
             frmHistorial.ShowDialog();
+        }
+
+        private void frmHistorialOnListaProductosAgregados(List<ProductoDto> productos)
+        {
+            AgregarProductosALista(productos);
         }
 
         private void lblTotal_Click(object sender, EventArgs e)
