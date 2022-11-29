@@ -14,6 +14,7 @@ namespace AutomatMediciones.Libs.Dtos
         public int Revision { get; set; }
         public int? Estado { get; set; }
         public int NroMoneda { get; set; }
+        public string MonedaRecId { get; set; }
         public DateTime? FechaModificacion { get; set; }
         public string IDContrato { get; set; }
         public string Descripcion { get; set; }

@@ -77,7 +77,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
         {
             try
             {
-                var productos = _tacticaDbContext.ArbolCarpetas.AsQueryable().ToList();
+                var productos = _tacticaDbContext.ArbolCarpetas.AsQueryable().Where(x => x.Tipo == 1).ToList();
 
 
                 return Response<List<ArbolCarpetaDto>>.Ok("Ok", _imapper.Map<List<ArbolCarpetaDto>>(productos));
