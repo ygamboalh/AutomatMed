@@ -129,7 +129,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         FechaInclusion = DateTime.Now,
                         FechaModificacion= DateTime.Now,
                         ObligOp  = 0,
-                        ImporteUnitario1 = 0,
+                        ImporteUnitario1 = producto.Precio,
                         ImporteUnitario2 = 0,
                         ImporteUnitario3 = 0,
                         ImporteUnitario4 = 0,   
