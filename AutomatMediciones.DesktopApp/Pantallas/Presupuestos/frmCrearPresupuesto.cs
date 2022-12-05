@@ -168,6 +168,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             }
 
             filaSeleccionada.SubTotal = CalculaSubTotal(cantidad, filaSeleccionada.Precio);
+             filaSeleccionada.Impuesto = CalcularImpuesto(filaSeleccionada.SubTotal);
+            filaSeleccionada.Total = CalcularTotal(filaSeleccionada.SubTotal, filaSeleccionada.Impuesto);
             SetearSummary();
         }
 
