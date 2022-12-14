@@ -31,10 +31,12 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                 productos.ForEach(producto =>
                 {
-                    var moneda = _tacticaDbContext.Monedas.FirstOrDefault(x => x.Numero == producto.MonedaId);
-                    var productoPrecio = producto.ProductoPrecios.OrderBy(x => x.NroLista).FirstOrDefault(x => x.IDProducto == producto.RecID);
+                    
+                    var productoPrecio = producto.ProductoPrecios.OrderBy(x => x.NroLista).FirstOrDefault(x => x.IDProducto == producto.RecID && x.NroLista == 1);
+                    var moneda = _tacticaDbContext.Monedas.FirstOrDefault(x => x.Numero == productoPrecio.NroMonedaPrecio);
                     producto.Precio = productoPrecio.Precio;
                     producto.MonedaId = productoPrecio.NroMonedaPrecio;
+                    producto.Moneda = _imapper.Map<MonedaDto>(moneda);
                 });
 
                 return Response<List<ProductoDto>>.Ok("Ok", productos);

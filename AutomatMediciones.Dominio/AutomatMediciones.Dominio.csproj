@@ -13,6 +13,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.15" />
     <PackageReference Include="Nagaira.Herramientas.Standard.Helpers" Version="1.0.6" />
+  
   </ItemGroup>
 
   <ItemGroup>

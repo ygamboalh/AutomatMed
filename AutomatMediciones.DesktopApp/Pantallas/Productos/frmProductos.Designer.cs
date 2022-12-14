@@ -119,6 +119,8 @@
             // colPrecio
             // 
             this.colPrecio.Caption = "Precio";
+            this.colPrecio.DisplayFormat.FormatString = "F";
+            this.colPrecio.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colPrecio.FieldName = "Precio";
             this.colPrecio.MinWidth = 25;
             this.colPrecio.Name = "colPrecio";
