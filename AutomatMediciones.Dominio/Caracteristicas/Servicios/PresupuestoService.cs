@@ -16,12 +16,14 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
         private readonly TacticaDbContext _tacticaDbContext;
         private readonly AutomatMedicionesDbContext _automatMedicionesDbContext;
         private readonly IMapper _imapper;
+        private readonly MonedaService _monedaService;
 
-        public PresupuestoService(TacticaDbContext tacticaDbContext, AutomatMedicionesDbContext automatMedicionesDbContext, IMapper imapper)
+        public PresupuestoService(TacticaDbContext tacticaDbContext, AutomatMedicionesDbContext automatMedicionesDbContext, IMapper imapper, MonedaService monedaService)
         {
             _tacticaDbContext = tacticaDbContext;
             _automatMedicionesDbContext = automatMedicionesDbContext;
             _imapper = imapper;
+            _monedaService = monedaService;
         }
 
         public Response<List<PresupuestoDto>> ObtenerPresupuestos()
@@ -38,10 +40,21 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
+        private void ObtenerConfiguracionMonedaExtranjeraActual()
+        {
+
+        }
+
         public Response<PresupuestoDto> RegistrarPresupuesto(PresupuestoDto presupuestoDto)
         {
             try
             {
+                var configuracionMonedasResponse = _monedaService.ObtenerMonedaCotizacionActual();
+                if (configuracionMonedasResponse.Type != TypeResponse.Ok) return Response<PresupuestoDto>.Error("No se pudo obtener configuración de monedas extranjeras");
+              
+
+                var monedaCotizacionActual = DeterminarMonedaCotizacionActual(configuracionMonedasResponse.Data, 1);
+
                 _automatMedicionesDbContext.Database.BeginTransaction();
                 _tacticaDbContext.Database.BeginTransaction();
 

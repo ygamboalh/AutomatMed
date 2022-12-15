@@ -38,9 +38,12 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
         public Response<MonedaCotizacionDto> ObtenerMonedaCotizacionActual()
         {
             try
-            {
-                var monedas = _tacticaDbContext.MonedasCotizaciones.OrderByDescending(x => x.FechaHora).FirstOrDefault();
-                return Response<MonedaCotizacionDto>.Ok("Ok", _imapper.Map<MonedaCotizacionDto>(monedas));
+            {               
+                var ultimoRegistroDeCotizacion = _tacticaDbContext.MonedasCotizaciones.OrderByDescending(x => x.FechaHora).FirstOrDefault();
+
+                if (ultimoRegistroDeCotizacion == null) return Response<MonedaCotizacionDto>.Error("No se encontraron configuraciones de monedas extranjeras.", null);
+
+                return Response<MonedaCotizacionDto>.Ok("Ok", _imapper.Map<MonedaCotizacionDto>(ultimoRegistroDeCotizacion));
             }
             catch (Exception exc)
             {
