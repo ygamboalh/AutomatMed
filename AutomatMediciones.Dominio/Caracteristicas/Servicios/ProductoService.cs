@@ -26,7 +26,6 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             try
             {
                 var productosDb = _tacticaDbContext.Productos.AsQueryable().Include(x => x.ProductoPrecios).ToList();
-
                 var productos = _imapper.Map<List<ProductoDto>>(productosDb);
 
                 productos.ForEach(producto =>
@@ -40,7 +39,6 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 });
 
                 return Response<List<ProductoDto>>.Ok("Ok", productos);
-
             }
             catch (Exception exc)
             {
@@ -54,24 +52,10 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             {
                 var productoDb = _tacticaDbContext.Productos.AsQueryable().Include(x => x.ProductoPrecios).FirstOrDefault(x => x.RecID == productoId);
                 return Response<ProductoDto>.Ok("Ok", _imapper.Map<ProductoDto>(productoDb));
-
             }
             catch (Exception exc)
             {
                 return Response<ProductoDto>.Error(MessageException.LanzarExcepcion(exc), null);
-            }
-        }
-
-        public Response<List<MonedaDto>> ObtenerMonedas()
-        {
-            try
-            {
-                var monedas = _tacticaDbContext.Monedas.AsQueryable();
-                return Response<List<MonedaDto>>.Ok("Ok", _imapper.Map<List<MonedaDto>>(monedas));
-            }
-            catch (Exception exc)
-            {
-                return Response<List<MonedaDto>>.Error(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -80,17 +64,12 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             try
             {
                 var productos = _tacticaDbContext.ArbolCarpetas.AsQueryable().Where(x => x.Tipo == 1).ToList();
-
-
                 return Response<List<ArbolCarpetaDto>>.Ok("Ok", _imapper.Map<List<ArbolCarpetaDto>>(productos));
-
             }
             catch (Exception exc)
             {
                 return Response<List<ArbolCarpetaDto>>.Error(MessageException.LanzarExcepcion(exc), null);
             }
         }
-
-
     }
 }

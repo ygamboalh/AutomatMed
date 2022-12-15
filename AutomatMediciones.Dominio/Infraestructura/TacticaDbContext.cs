@@ -17,6 +17,7 @@ namespace AutomatMediciones.Dominio.Infraestructura
         public DbSet<ArbolCarpeta> ArbolCarpetas { get; set; }
         public DbSet<ProductoPrecio> ProductoPrecios { get; set; }
         public DbSet<Moneda> Monedas { get; set; }
+        public DbSet<MonedaCotizacion> MonedasCotizaciones { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,6 +31,7 @@ namespace AutomatMediciones.Dominio.Infraestructura
             modelBuilder.ApplyConfiguration(new ArbolCarpetaMap());
             modelBuilder.ApplyConfiguration(new MonedaMap());
             modelBuilder.ApplyConfiguration(new ProductoPrecioMap());
+            modelBuilder.ApplyConfiguration(new MonedaCotizacionMap());
         }
     }
 }

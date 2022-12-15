@@ -291,11 +291,26 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
 
         private void AgregarProductosALista(List<ProductoDto> productos)
         {
+            productos.ForEach(producto =>
+            {
+                if (!EsValidaLaCantidad(producto.Cantidad))
+                {
+                    Notificaciones.MensajeAdvertencia("La cantidad no puede ser menor o igual que cero.");
+                    return;
+                }
+
+                producto.SubTotal = CalculaSubTotal(producto.Cantidad, producto.Precio);
+                producto.Impuesto = CalcularImpuesto(producto.SubTotal);
+                producto.Total = CalcularTotal(producto.SubTotal, producto.Impuesto);
+               
+            });
+
             ProductosEnPresupuesto.AddRange(productos);
             gcProductosPresupuesto.DataSource = ProductosEnPresupuesto;
             gcProductosPresupuesto.RefreshDataSource();
 
             SetearTotales();
+            SetearSummary();
         }
 
         private void QuitarProductoDeLista(ProductoDto producto)
