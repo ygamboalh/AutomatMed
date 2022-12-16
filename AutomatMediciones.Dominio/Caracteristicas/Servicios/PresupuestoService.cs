@@ -40,9 +40,32 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
-        private void ObtenerConfiguracionMonedaExtranjeraActual()
+        private decimal ObtenerConfiguracionMonedaExtranjeraActual(int numeroMoneda, MonedaCotizacionDto monedaCotizacionDto)
         {
+            decimal monedaCotizacionActual = 0;
+            switch (numeroMoneda)
+            {
+                case 1:
+                    monedaCotizacionActual = monedaCotizacionDto.CotizacionMonedaDos;
+                    break;
+                case 2:
+                    monedaCotizacionActual = monedaCotizacionDto.CotizacionMonedaDos;
+                    break;
+                case 3:
+                    monedaCotizacionActual = monedaCotizacionDto.CotizacionMonedaTres;
+                    break;
+                case 4:
+                    monedaCotizacionActual = monedaCotizacionDto.CotizacionMonedaCuatro;
+                    break;
+                case 5:
+                    monedaCotizacionActual = monedaCotizacionDto.CotizacionMonedaCinco;
+                    break;
+                case 6:
+                    monedaCotizacionActual = monedaCotizacionDto.CotizacionMonedaSeis;
+                    break;
+            }
 
+            return monedaCotizacionActual;
         }
 
         public Response<PresupuestoDto> RegistrarPresupuesto(PresupuestoDto presupuestoDto)
@@ -50,10 +73,11 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             try
             {
                 var configuracionMonedasResponse = _monedaService.ObtenerMonedaCotizacionActual();
-                if (configuracionMonedasResponse.Type != TypeResponse.Ok) return Response<PresupuestoDto>.Error("No se pudo obtener configuración de monedas extranjeras");
-              
+                if (configuracionMonedasResponse.Type != TypeResponse.Ok) return Response<PresupuestoDto>.Error("No se pudo obtener configuración de monedas extranjeras", null);
 
-                var monedaCotizacionActual = DeterminarMonedaCotizacionActual(configuracionMonedasResponse.Data, 1);
+                var configuracionMonedaCotizacionActual = configuracionMonedasResponse.Data;
+
+                var monedaActual = ObtenerConfiguracionMonedaExtranjeraActual(presupuestoDto.NroMoneda, configuracionMonedaCotizacionActual);
 
                 _automatMedicionesDbContext.Database.BeginTransaction();
                 _tacticaDbContext.Database.BeginTransaction();
@@ -116,7 +140,12 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         Descripcion = producto.Descripcion,
                         FechaSistema = DateTime.Now,
                         NroMoneda = presupuesto.NroMoneda,
-                        ImportePrecio1 = producto.Precio,
+                        ImportePrecio1 = CalcularImporteUnitarioMonedaLocal(producto.Precio, presupuestoDto.NroMoneda == 1 ? true: false, monedaActual),
+                        ImportePrecio2 = CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaDos),
+                        ImportePrecio3 = CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaTres),
+                        ImportePrecio4 = CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaCuatro),
+                        ImportePrecio5 = CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaCinco),
+                        ImportePrecio6 = CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaSeis),
                         Fabricante = producto.Fabricante,
                         Notas = "",
                         NroFila = fila + 1,
@@ -142,12 +171,12 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         FechaInclusion = DateTime.Now,
                         FechaModificacion= DateTime.Now,
                         ObligOp  = 0,
-                        ImporteUnitario1 = producto.Precio,
-                        ImporteUnitario2 = 0,
-                        ImporteUnitario3 = 0,
-                        ImporteUnitario4 = 0,   
-                        ImporteUnitario5 = 0,
-                        ImporteUnitario6 = 0,
+                        ImporteUnitario1 = CalcularImporteUnitarioMonedaLocal(producto.Precio, presupuestoDto.NroMoneda == 1 ? true : false, monedaActual),
+                        ImporteUnitario2 = CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaDos),
+                        ImporteUnitario3 = CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaTres),
+                        ImporteUnitario4 = CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaCuatro),
+                        ImporteUnitario5 = CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaCinco),
+                        ImporteUnitario6 = CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaSeis),
                         ImpuestoDescripcion = "IVA 21%",
                         DescripcionGrupo = "",
                         NombreGrupo = "",
@@ -165,8 +194,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         TipoUnidad= 0,  
                         SobrePrecio= 0,
                         Probabilidad= 0,
-                        NroPrecio= 0
-                        
+                        NroPrecio= 0                       
                     };
 
                     _automatMedicionesDbContext.ProductosIngresos.Add(productoIngreso);
@@ -189,6 +217,18 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 string message = exc.InnerException == null ? exc.Message : exc.InnerException.Message;
                 return Response<PresupuestoDto>.Error(message, null);
             }
+        }
+
+        private decimal CalcularImporte(decimal precio, decimal configuracionMonedaActual, decimal monedaDestino)
+        {
+            var total = precio * configuracionMonedaActual / monedaDestino;
+            return total;
+        }
+
+        private decimal CalcularImporteUnitarioMonedaLocal(decimal precio, bool EsMonedaLocal, decimal configuracionMonedaActual)
+        {
+            if (EsMonedaLocal) return precio;
+            return precio * configuracionMonedaActual;
         }
 
         public Response<List<PresupuestoItemDto>> ObtenerPresupuestosDetalle()
