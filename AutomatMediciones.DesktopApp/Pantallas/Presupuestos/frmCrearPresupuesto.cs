@@ -19,6 +19,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
         private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
         private readonly ProductoService _productoService;
         private readonly PresupuestoService _presupuestoService;
+        private readonly MonedaService _monedaService;
 
         public IngresoInstrumento IngresoInstrumento { get; set; }
         public List<ProductoDto> ProductosEnPresupuesto { get; set; }
@@ -27,13 +28,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
 
         MonedaDto monedaSeleccionada = new MonedaDto();
 
-        public frmCrearPresupuesto(IngresoInstrumento ingresoInstrumento, ProductoService productoService, PresupuestoService presupuestoService)
+        public frmCrearPresupuesto(IngresoInstrumento ingresoInstrumento, ProductoService productoService, PresupuestoService presupuestoService,
+            MonedaService monedaService)
         {
             InitializeComponent();
             IngresoInstrumento = ingresoInstrumento;
             _productoService = productoService;
             _presupuestoService = presupuestoService;
-
+            _monedaService = monedaService;
             Presupuesto = new PresupuestoDto();
             ProductosEnPresupuesto = new List<ProductoDto>();
 
@@ -222,7 +224,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
 
         private void ObtenerMonedas()
         {
-            var resultado = _productoService.ObtenerMonedas();
+            var resultado = _monedaService.ObtenerMonedas();
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
             var monedas = resultado.Data;
@@ -288,36 +290,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             frmMaestroProductos.ProductosEnPresupuesto = ProductosEnPresupuesto;
             frmMaestroProductos.ShowDialog();
         }
-
-        private void DeterminarMonedaCotizacionActual(MonedaCotizacionDto configuracionMoneda, int numeroMoneda)
-        {
-            decimal monedaCotizacionActual = 0;
-
-            switch (numeroMoneda)
-            {
-                case 1:
-                    monedaCotizacionActual = configuracionMoneda.CotizacionMonedaDos;
-                    break;
-                case 2:
-                    monedaCotizacionActual = configuracionMoneda.CotizacionMonedaDos;
-                    break;
-                case 3:
-                    monedaCotizacionActual = configuracionMoneda.CotizacionMonedaTres;
-                    break;
-                case 4:
-                    monedaCotizacionActual = configuracionMoneda.CotizacionMonedaCuatro;
-                    break;
-                case 5:
-                    monedaCotizacionActual = configuracionMoneda.CotizacionMonedaCinco;
-                    break;
-                case 6:
-                    monedaCotizacionActual = configuracionMoneda.CotizacionMonedaSeis;
-                    break;
-            }
-
-            return monedaCotizacionActual;
-        }
-
+       
         private void AgregarProductosALista(List<ProductoDto> productos)
         {
 
@@ -343,7 +316,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             SetearSummary();
         }
 
-   
         private void QuitarProductoDeLista(ProductoDto producto)
         {
             ProductosEnPresupuesto = ProductosEnPresupuesto.Where(x => x.RecID != producto.RecID).ToList();

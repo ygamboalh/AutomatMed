@@ -49,11 +49,11 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
         {
             try
             {
-                var configuracionMonedasResponse = _monedaService.ObtenerMonedaCotizacionActual();
-                if (configuracionMonedasResponse.Type != TypeResponse.Ok) return Response<PresupuestoDto>.Error("No se pudo obtener configuración de monedas extranjeras");
+                //var configuracionMonedasResponse = _monedaService.ObtenerMonedaCotizacionActual();
+                //if (configuracionMonedasResponse.Type != TypeResponse.Ok) return Response<PresupuestoDto>.Error("No se pudo obtener configuración de monedas extranjeras");
               
 
-                var monedaCotizacionActual = DeterminarMonedaCotizacionActual(configuracionMonedasResponse.Data, 1);
+                //var monedaCotizacionActual = DeterminarMonedaCotizacionActual(configuracionMonedasResponse.Data, 1);
 
                 _automatMedicionesDbContext.Database.BeginTransaction();
                 _tacticaDbContext.Database.BeginTransaction();
@@ -220,8 +220,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 return Response<List<ProductoIngresoDto>>.Ok("", _imapper.Map<List<ProductoIngresoDto>>(historial));
             }
             catch (Exception exc)
-            {
-               
+            {          
                 return Response<List<ProductoIngresoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
             }
         
