@@ -72,6 +72,6 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
         public string NombreGrupo { get; set; }
         public byte? NroMonedaComisionTerceros { get; set; }
 
-
+        public Presupuesto Presupuesto { get; set; }
     }
 }

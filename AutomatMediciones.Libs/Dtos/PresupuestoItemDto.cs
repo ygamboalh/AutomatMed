@@ -71,5 +71,6 @@ namespace AutomatMediciones.Libs.Dtos
         public string NombreGrupo { get; set; }
         public byte? NroMonedaComisionTerceros { get; set; }
 
+        public PresupuestoDto Presupuesto { get; set; }
     }
 }

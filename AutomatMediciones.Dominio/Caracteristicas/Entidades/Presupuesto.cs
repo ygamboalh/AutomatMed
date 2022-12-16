@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
 {
@@ -56,5 +57,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
         public string Auditoria { get; set; }
         public string CustomID { get; set; }
         public byte? ActualizarAuto { get; set; }
+        public List<PresupuestoItem> PresupuestoItems { get; set; }
+        public Moneda Moneda { get; set; }
     }
 }

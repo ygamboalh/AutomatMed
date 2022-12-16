@@ -63,7 +63,10 @@ namespace AutomatMediciones.Libs.Dtos
         public int InstrumentoId { get; set; }
         public int ModeloId { get; set; }
         public string NombreCliente { get; set; }
+        public string ClienteId { get; set; }
 
+        public MonedaDto Moneda { get; set; }
         public List<ProductoDto> Productos { get; set; }
+        public List<PresupuestoItemDto> PresupuestoItems { get; set; }
     }
 }

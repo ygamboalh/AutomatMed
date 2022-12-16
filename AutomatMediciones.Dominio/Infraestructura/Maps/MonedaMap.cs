@@ -10,11 +10,14 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
         {
             builder.ToTable("moneda");
 
-            builder.HasKey(x => x.RecID);
+            builder.HasKey(x => x.Numero);
             builder.Property(x => x.RecID).HasColumnName("RecID").HasColumnType("varchar(12)");
             builder.Property(x => x.Numero).HasColumnName("Numero").HasColumnType("tinyint");
             builder.Property(x => x.Descripcion).HasColumnName("Moneda").HasColumnType("varchar(50)");
             builder.Property(x => x.Simbolo).HasColumnName("Simbolo").HasColumnType("varchar(50)");
+
+            builder.HasMany(x => x.Presupuestos).WithOne(x => x.Moneda).HasForeignKey(x => x.NroMoneda);
+
         }
     }
 }

@@ -77,6 +77,8 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.Property(x => x.DescripcionGrupo).HasColumnName("DescripcionGrupo").HasColumnType("MEDIUMTEXT");
             builder.Property(x => x.NombreGrupo).HasColumnName("NombreGrupo").HasColumnType("MEDIUMTEXT");
             builder.Property(x => x.NroMonedaComisionTerceros).HasColumnName("NroMonedaComisionTerceros").HasColumnType("TINYINT");
+
+            builder.HasOne(x => x.Presupuesto).WithMany(x => x.PresupuestoItems).HasForeignKey(x => x.IDPresupuesto);
         }
     }
 }

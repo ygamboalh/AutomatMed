@@ -40,6 +40,34 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
+        public Response<List<PresupuestoDto>> ObtenerPresupuestosPorInstrumentoClienteYmodelo(int instrumentoId, string clienteId, int modeloId)
+        {
+            try
+            {
+                char pad = 'a';
+                var productosIngresos = _automatMedicionesDbContext.ProductosIngresos.AsQueryable()
+                                                                                     .Where(x => x.InstrumentoId == instrumentoId &&
+                                                                                                 x.ModeloId == modeloId &&
+                                                                                                 x.ClienteId == clienteId)
+                                                                                     .Select(x => x.PresupuestoControlId).ToList();
+
+
+                var presupuestosIds = _automatMedicionesDbContext.PresupuestosControles.Where(x => productosIngresos.Contains(x.Id))
+                                                                                       .Select(x => x.Id.ToString().PadLeft(12, pad)).ToList();
+
+                var presupuestos = _tacticaDbContext.Presupuestos.AsQueryable().Include(x => x.PresupuestoItems).Include(x => x.Moneda)
+                                                                 .Where(x => presupuestosIds.Contains(x.RecID)).ToList();
+
+            
+                return Response<List<PresupuestoDto>>.Ok("Ok", _imapper.Map<List<PresupuestoDto>>(presupuestos));
+
+            }
+            catch (Exception exc)
+            {
+                return Response<List<PresupuestoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
         private decimal ObtenerConfiguracionMonedaExtranjeraActual(int numeroMoneda, MonedaCotizacionDto monedaCotizacionDto)
         {
             decimal monedaCotizacionActual = 0;
@@ -93,6 +121,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 var ultimoPresupuesto = _tacticaDbContext.Presupuestos.OrderByDescending(x => x.ID).FirstOrDefault().ID;
                 var presupuesto = _imapper.Map<Presupuesto>(presupuestoDto);
 
+                presupuesto.PresupuestoItems = null;
+
                 char pad = 'a';
                 string recId = presupuestoControl.Id.ToString().PadLeft(12, pad);
 
@@ -116,7 +146,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         Cantidad = producto.Cantidad,
                         InstrumentoId = presupuestoDto.InstrumentoId,
                         ModeloId = presupuestoDto.ModeloId,
-                        ClienteId = presupuestoDto.IDRef,
+                        ClienteId = presupuestoDto.ClienteId,
                         NombreCliente = presupuestoDto.NombreCliente,
                         Precio = producto.Precio,
                     };
@@ -140,7 +170,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         Descripcion = producto.Descripcion,
                         FechaSistema = DateTime.Now,
                         NroMoneda = presupuesto.NroMoneda,
-                        ImportePrecio1 = CalcularImporteUnitarioMonedaLocal(producto.Precio, presupuestoDto.NroMoneda == 1 ? true: false, monedaActual),
+                        ImportePrecio1 = CalcularImporteUnitarioMonedaLocal(producto.Precio, presupuestoDto.NroMoneda == 1 ? true : false, monedaActual),
                         ImportePrecio2 = CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaDos),
                         ImportePrecio3 = CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaTres),
                         ImportePrecio4 = CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaCuatro),
@@ -169,8 +199,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         Descripcion2 = "",
                         Descripcion3 = "",
                         FechaInclusion = DateTime.Now,
-                        FechaModificacion= DateTime.Now,
-                        ObligOp  = 0,
+                        FechaModificacion = DateTime.Now,
+                        ObligOp = 0,
                         ImporteUnitario1 = CalcularImporteUnitarioMonedaLocal(producto.Precio, presupuestoDto.NroMoneda == 1 ? true : false, monedaActual),
                         ImporteUnitario2 = CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaDos),
                         ImporteUnitario3 = CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaTres),
@@ -184,19 +214,20 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         IDUsuarioVendedor = presupuesto.IDUsuario,
                         IDProducto = producto.RecID,
                         CantidadCerrada = 0,
-                        Descuento= 0,
+                        Descuento = 0,
                         TipoComision = 0,
-                        Comision= 0,
-                        ComisionTerceros=0,
+                        Comision = 0,
+                        ComisionTerceros = 0,
                         IDUsuario = presupuesto.IDUsuario,
-                        TipoComisionTerceros=0,
+                        TipoComisionTerceros = 0,
                         Validez = 0,
-                        TipoUnidad= 0,  
-                        SobrePrecio= 0,
-                        Probabilidad= 0,
-                        NroPrecio= 0                       
+                        TipoUnidad = 0,
+                        SobrePrecio = 0,
+                        Probabilidad = 0,
+                        NroPrecio = 0
                     };
 
+                    presupuestoItem.Presupuesto = null;
                     _automatMedicionesDbContext.ProductosIngresos.Add(productoIngreso);
                     _tacticaDbContext.PresupuestosItems.Add(presupuestoItem);
 
@@ -261,11 +292,11 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-               
+
                 return Response<List<ProductoIngresoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
             }
-        
-            
+
+
         }
     }
 }
