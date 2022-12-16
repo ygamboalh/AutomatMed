@@ -4,6 +4,7 @@ using AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion;
 using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos.Dtos;
 using AutomatMediciones.DesktopApp.Pantallas.Ingresos.Dtos;
 using AutomatMediciones.DesktopApp.Pantallas.Instrumentos;
+using AutomatMediciones.DesktopApp.Pantallas.Presupuestos;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraSplashScreen;
@@ -383,6 +384,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             frmHistorialCertificados.InstrumentoId = IngresoInstrumento.InstrumentoId;
             frmHistorialCertificados.CargarCertificadosDeCalibracionPorInstrumento();
             frmHistorialCertificados.ShowDialog();
+        }
+
+        private void btnPresupuesto_Click(object sender, EventArgs e)
+        {
+            var ingresoSeleccionao = IngresoInstrumento;
+            if (ingresoSeleccionao == null) return;
+
+            var frmPresupuestos = new frmCrearPresupuesto(ingresoSeleccionao, serviceProvider.GetService<ProductoService>(),
+                                                          serviceProvider.GetService<PresupuestoService>(), serviceProvider.GetService<MonedaService>());
+            frmPresupuestos.ShowDialog();
         }
     }
 }

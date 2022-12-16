@@ -41,8 +41,6 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.gvPresupuestoDetalle = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colRecId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colProducto = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcHistorialPresupuesto = new DevExpress.XtraGrid.GridControl();
             this.gvHistorialPresupuesto = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colPresupuestoId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -136,31 +134,9 @@
             // 
             // gvPresupuestoDetalle
             // 
-            this.gvPresupuestoDetalle.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colRecId,
-            this.colProducto});
             this.gvPresupuestoDetalle.GridControl = this.gcHistorialPresupuesto;
             this.gvPresupuestoDetalle.Name = "gvPresupuestoDetalle";
-            // 
-            // colRecId
-            // 
-            this.colRecId.Caption = "Id";
-            this.colRecId.FieldName = "PresupuestoItems.RecID";
-            this.colRecId.MinWidth = 25;
-            this.colRecId.Name = "colRecId";
-            this.colRecId.Visible = true;
-            this.colRecId.VisibleIndex = 0;
-            this.colRecId.Width = 94;
-            // 
-            // colProducto
-            // 
-            this.colProducto.Caption = "Producto";
-            this.colProducto.FieldName = "PresupuestoItems.IDProducto";
-            this.colProducto.MinWidth = 25;
-            this.colProducto.Name = "colProducto";
-            this.colProducto.Visible = true;
-            this.colProducto.VisibleIndex = 1;
-            this.colProducto.Width = 94;
+            this.gvPresupuestoDetalle.OptionsBehavior.ReadOnly = true;
             // 
             // gcHistorialPresupuesto
             // 
@@ -211,6 +187,8 @@
             this.colNombrePresupuesto.FieldName = "Nombre";
             this.colNombrePresupuesto.MinWidth = 25;
             this.colNombrePresupuesto.Name = "colNombrePresupuesto";
+            this.colNombrePresupuesto.OptionsColumn.AllowEdit = false;
+            this.colNombrePresupuesto.OptionsColumn.AllowFocus = false;
             this.colNombrePresupuesto.Visible = true;
             this.colNombrePresupuesto.VisibleIndex = 0;
             this.colNombrePresupuesto.Width = 94;
@@ -221,6 +199,8 @@
             this.colFechaCreacion.FieldName = "FechaCreacion";
             this.colFechaCreacion.MinWidth = 25;
             this.colFechaCreacion.Name = "colFechaCreacion";
+            this.colFechaCreacion.OptionsColumn.AllowEdit = false;
+            this.colFechaCreacion.OptionsColumn.AllowFocus = false;
             this.colFechaCreacion.Visible = true;
             this.colFechaCreacion.VisibleIndex = 1;
             this.colFechaCreacion.Width = 94;
@@ -231,6 +211,8 @@
             this.colTotalPresupuesto.FieldName = "Total";
             this.colTotalPresupuesto.MinWidth = 25;
             this.colTotalPresupuesto.Name = "colTotalPresupuesto";
+            this.colTotalPresupuesto.OptionsColumn.AllowEdit = false;
+            this.colTotalPresupuesto.OptionsColumn.AllowFocus = false;
             this.colTotalPresupuesto.Visible = true;
             this.colTotalPresupuesto.VisibleIndex = 2;
             this.colTotalPresupuesto.Width = 94;
@@ -238,9 +220,11 @@
             // colMoneda
             // 
             this.colMoneda.Caption = "Moneda";
-            this.colMoneda.FieldName = "Moneda.Descripcion";
+            this.colMoneda.FieldName = "Moneda";
             this.colMoneda.MinWidth = 25;
             this.colMoneda.Name = "colMoneda";
+            this.colMoneda.OptionsColumn.AllowEdit = false;
+            this.colMoneda.OptionsColumn.AllowFocus = false;
             this.colMoneda.Visible = true;
             this.colMoneda.VisibleIndex = 3;
             this.colMoneda.Width = 94;
@@ -967,7 +951,5 @@
         private DevExpress.XtraGrid.Columns.GridColumn colTotalPresupuesto;
         private DevExpress.XtraGrid.Columns.GridColumn colMoneda;
         private DevExpress.XtraGrid.Views.Grid.GridView gvPresupuestoDetalle;
-        private DevExpress.XtraGrid.Columns.GridColumn colRecId;
-        private DevExpress.XtraGrid.Columns.GridColumn colProducto;
     }
 }

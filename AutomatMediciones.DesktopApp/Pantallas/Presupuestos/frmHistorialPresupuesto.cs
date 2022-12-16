@@ -1,5 +1,6 @@
 ﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
 using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos.Dtos;
 using AutomatMediciones.DesktopApp.Pantallas.Presupuestos.Dtos;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
@@ -17,6 +18,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
 
         public List<ProductoIngresoVista> ProductosIngresos { get; set; }
         public List<ProductoDto> ProductosEnPresupuesto { get; set; }
+
+        public int ModeloId { get; set; }
+        public string ClienteId { get; set; }
+        public int InstrumentoId { get; set; }
         List<ProductoIngresoVista> productosSeleccionados = new List<ProductoIngresoVista>();
 
         public delegate void AgregarListaProductos(List<ProductoDto> productos);
@@ -120,7 +125,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
           
             if (desde != null  && hasta != null)
             {
-                var resultado = _presupuestoService.CargarHistorialPresupuesto((DateTime)desde, (DateTime)hasta);
+                var resultado = _presupuestoService.CargarHistorialPresupuesto((DateTime)desde, (DateTime)hasta, ModeloId,
+                                                                                InstrumentoId, ClienteId);
 
                 if (resultado.Type != Nagaira.Herramientas.Standard.Helpers.Responses.TypeResponse.Ok)
                 {
@@ -135,7 +141,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             }
             else
             {
-                var resultado = _presupuestoService.CargarHistorialPresupuesto(null, null);
+                var resultado = _presupuestoService.CargarHistorialPresupuesto(null, null, ModeloId,
+                                                                                InstrumentoId, ClienteId);
 
                 if (resultado.Type != Nagaira.Herramientas.Standard.Helpers.Responses.TypeResponse.Ok)
                 {

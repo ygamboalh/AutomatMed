@@ -17,24 +17,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos.Dtos
     
     public class PresupuestoDetalleViewDto
     {
-        public string RecID { get; set; }
-        public string IDProducto { get; set; }
-        public string IDPresupuesto { get; set; }
-        public double? Cantidad { get; set; }
-        public double? ImportePrecio1 { get; set; }
-        public double? ImportePrecio2 { get; set; }
-        public double? ImportePrecio3 { get; set; }
-        public double? ImportePrecio4 { get; set; }
-        public double? ImportePrecio5 { get; set; }
-        public double? ImportePrecio6 { get; set; }
-        public double? ImporteCosto1 { get; set; }
-        public double? ImporteCosto2 { get; set; }
-        public double? ImporteCosto3 { get; set; }
-        public double? ImporteCosto4 { get; set; }
-        public double? ImporteCosto5 { get; set; }
-        public double? ImporteCosto6 { get; set; }
         public string Descripcion { get; set; }
-      
-        public PresupuestoViewDto Presupuesto { get; set; }
+        public double? Cantidad { get; set; }
+        public decimal Precio { get; set; }
+       
     }
 }

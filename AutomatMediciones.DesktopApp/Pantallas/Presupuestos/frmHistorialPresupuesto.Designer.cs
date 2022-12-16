@@ -51,10 +51,10 @@
             this.colSeleccionar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.chkSeleccionar = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lblTotalSeleccionados = new DevExpress.XtraEditors.LabelControl();
             this.lblTotal = new DevExpress.XtraEditors.LabelControl();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btnAgregarProductosSeleccionados = new FontAwesome.Sharp.IconButton();
-            this.lblTotalSeleccionados = new DevExpress.XtraEditors.LabelControl();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dateHasta.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateHasta.Properties)).BeginInit();
@@ -366,6 +366,20 @@
             this.panel3.Size = new System.Drawing.Size(822, 27);
             this.panel3.TabIndex = 208;
             // 
+            // lblTotalSeleccionados
+            // 
+            this.lblTotalSeleccionados.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTotalSeleccionados.Appearance.Options.UseFont = true;
+            this.lblTotalSeleccionados.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lblTotalSeleccionados.Location = new System.Drawing.Point(805, 0);
+            this.lblTotalSeleccionados.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
+            this.lblTotalSeleccionados.Name = "lblTotalSeleccionados";
+            this.lblTotalSeleccionados.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.lblTotalSeleccionados.Size = new System.Drawing.Size(17, 17);
+            this.lblTotalSeleccionados.TabIndex = 29;
+            this.lblTotalSeleccionados.Text = "0";
+            this.lblTotalSeleccionados.Visible = false;
+            // 
             // lblTotal
             // 
             this.lblTotal.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -410,20 +424,6 @@
             this.btnAgregarProductosSeleccionados.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAgregarProductosSeleccionados.UseVisualStyleBackColor = true;
             this.btnAgregarProductosSeleccionados.Click += new System.EventHandler(this.btnAgregarProductosSeleccionados_Click);
-            // 
-            // lblTotalSeleccionados
-            // 
-            this.lblTotalSeleccionados.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalSeleccionados.Appearance.Options.UseFont = true;
-            this.lblTotalSeleccionados.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lblTotalSeleccionados.Location = new System.Drawing.Point(805, 0);
-            this.lblTotalSeleccionados.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
-            this.lblTotalSeleccionados.Name = "lblTotalSeleccionados";
-            this.lblTotalSeleccionados.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            this.lblTotalSeleccionados.Size = new System.Drawing.Size(17, 17);
-            this.lblTotalSeleccionados.TabIndex = 29;
-            this.lblTotalSeleccionados.Text = "0";
-            this.lblTotalSeleccionados.Visible = false;
             // 
             // frmHistorialPresupuesto
             // 

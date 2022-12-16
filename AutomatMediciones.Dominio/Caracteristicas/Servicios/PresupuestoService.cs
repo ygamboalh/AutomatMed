@@ -276,7 +276,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
-        public Response<List<ProductoIngresoDto>> CargarHistorialPresupuesto(DateTime? desde, DateTime? hasta)
+        public Response<List<ProductoIngresoDto>> CargarHistorialPresupuesto(DateTime? desde, DateTime? hasta, int modeloId, int instrumentoId, string clienteId)
         {
             try
             {
@@ -284,9 +284,14 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                 if (desde != null && hasta != null)
                     historialPresupuestos = historialPresupuestos.Where(x => x.FechaRegistro.Date >= desde.Value.Date &&
-                                                                             x.FechaRegistro.Date <= hasta.Value.Date);
+                                                                             x.FechaRegistro.Date <= hasta.Value.Date && 
+                                                                             x.ModeloId == modeloId && 
+                                                                             x.InstrumentoId == instrumentoId && 
+                                                                             x.ClienteId == clienteId);
 
-                var historial = historialPresupuestos.Include(x => x.Modelo).Include(x => x.Instrumento).ToList();
+                var historial = historialPresupuestos.Where(x => x.ModeloId == modeloId && 
+                                                                 x.InstrumentoId == instrumentoId &&
+                                                                 x.ClienteId == clienteId).Include(x => x.Modelo).Include(x => x.Instrumento).ToList();
 
                 return Response<List<ProductoIngresoDto>>.Ok("", _imapper.Map<List<ProductoIngresoDto>>(historial));
             }

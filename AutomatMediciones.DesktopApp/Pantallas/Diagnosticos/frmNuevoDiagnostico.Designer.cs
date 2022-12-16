@@ -69,6 +69,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.btnHistorialDeCertificados = new FontAwesome.Sharp.IconButton();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
             this.dateFechaDisponible = new DevExpress.XtraEditors.DateEdit();
+            this.btnPresupuesto = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.memoDiagnostico.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoComentarios.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClasificacion.Properties)).BeginInit();
@@ -96,7 +97,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.btnGuardarDiagnostico.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnGuardarDiagnostico.IconSize = 30;
             this.btnGuardarDiagnostico.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardarDiagnostico.Location = new System.Drawing.Point(768, 449);
+            this.btnGuardarDiagnostico.Location = new System.Drawing.Point(768, 497);
             this.btnGuardarDiagnostico.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGuardarDiagnostico.Name = "btnGuardarDiagnostico";
             this.btnGuardarDiagnostico.Size = new System.Drawing.Size(235, 42);
@@ -416,7 +417,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.btnPrepararCertificado.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnPrepararCertificado.IconSize = 30;
             this.btnPrepararCertificado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrepararCertificado.Location = new System.Drawing.Point(526, 449);
+            this.btnPrepararCertificado.Location = new System.Drawing.Point(526, 497);
             this.btnPrepararCertificado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPrepararCertificado.Name = "btnPrepararCertificado";
             this.btnPrepararCertificado.Size = new System.Drawing.Size(213, 42);
@@ -505,7 +506,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.btnDetalleInstrumento.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnDetalleInstrumento.IconSize = 30;
             this.btnDetalleInstrumento.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDetalleInstrumento.Location = new System.Drawing.Point(29, 449);
+            this.btnDetalleInstrumento.Location = new System.Drawing.Point(29, 497);
             this.btnDetalleInstrumento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDetalleInstrumento.Name = "btnDetalleInstrumento";
             this.btnDetalleInstrumento.Size = new System.Drawing.Size(232, 42);
@@ -525,7 +526,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.btnHistorialDeCertificados.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnHistorialDeCertificados.IconSize = 30;
             this.btnHistorialDeCertificados.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHistorialDeCertificados.Location = new System.Drawing.Point(281, 449);
+            this.btnHistorialDeCertificados.Location = new System.Drawing.Point(281, 497);
             this.btnHistorialDeCertificados.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnHistorialDeCertificados.Name = "btnHistorialDeCertificados";
             this.btnHistorialDeCertificados.Size = new System.Drawing.Size(226, 42);
@@ -560,10 +561,31 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             this.dateFechaDisponible.Size = new System.Drawing.Size(270, 26);
             this.dateFechaDisponible.TabIndex = 192;
             // 
+            // btnPresupuesto
+            // 
+            this.btnPresupuesto.FlatAppearance.BorderSize = 0;
+            this.btnPresupuesto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPresupuesto.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnPresupuesto.IconChar = FontAwesome.Sharp.IconChar.Edit;
+            this.btnPresupuesto.IconColor = System.Drawing.Color.Black;
+            this.btnPresupuesto.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnPresupuesto.IconSize = 30;
+            this.btnPresupuesto.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPresupuesto.Location = new System.Drawing.Point(29, 442);
+            this.btnPresupuesto.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPresupuesto.Name = "btnPresupuesto";
+            this.btnPresupuesto.Size = new System.Drawing.Size(232, 42);
+            this.btnPresupuesto.TabIndex = 193;
+            this.btnPresupuesto.Text = "Presupuesto";
+            this.btnPresupuesto.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPresupuesto.UseVisualStyleBackColor = true;
+            this.btnPresupuesto.Click += new System.EventHandler(this.btnPresupuesto_Click);
+            // 
             // frmNuevoDiagnostico
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1057, 514);
+            this.ClientSize = new System.Drawing.Size(1057, 550);
+            this.Controls.Add(this.btnPresupuesto);
             this.Controls.Add(this.dateFechaDisponible);
             this.Controls.Add(this.labelControl15);
             this.Controls.Add(this.btnHistorialDeCertificados);
@@ -664,5 +686,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
         private FontAwesome.Sharp.IconButton btnHistorialDeCertificados;
         private DevExpress.XtraEditors.LabelControl labelControl15;
         private DevExpress.XtraEditors.DateEdit dateFechaDisponible;
+        private FontAwesome.Sharp.IconButton btnPresupuesto;
     }
 }

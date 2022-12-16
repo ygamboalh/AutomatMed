@@ -114,7 +114,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             Presupuesto.Revision = 1;
             Presupuesto.Auditoria = "";
             Presupuesto.ImpuestosInternos = 0;
-            Presupuesto.MotivoCierre = "";          
+            Presupuesto.MotivoCierre = "";
             Presupuesto.Productos = ProductosEnPresupuesto;
             Presupuesto.IngresoId = IngresoInstrumento.IngresoId;
             Presupuesto.ModeloId = IngresoInstrumento.Instrumento.Clasificacion.ModeloId;
@@ -173,7 +173,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             }
 
             filaSeleccionada.SubTotal = CalculaSubTotal(cantidad, filaSeleccionada.Precio);
-             filaSeleccionada.Impuesto = CalcularImpuesto(filaSeleccionada.SubTotal);
+            filaSeleccionada.Impuesto = CalcularImpuesto(filaSeleccionada.SubTotal);
             filaSeleccionada.Total = CalcularTotal(filaSeleccionada.SubTotal, filaSeleccionada.Impuesto);
             SetearSummary();
         }
@@ -296,11 +296,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             modeloId = IngresoInstrumento.Instrumento.Clasificacion.Modelo.ModeloId;
             instrumentoId = IngresoInstrumento.Instrumento.InstrumentoId;
             clienteId = IngresoInstrumento.Ingreso.EmpresaId;
-           
+
             var resultado = _presupuestoService.ObtenerPresupuestosPorInstrumentoClienteYmodelo(instrumentoId, clienteId, modeloId);
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
             var presupuestos = resultado.Data;
+
+            List<PresupuestoViewDto> listaDePresupuestos = new List<PresupuestoViewDto>();
 
             presupuestos.ForEach(x =>
             {
@@ -311,38 +313,56 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
                     Moneda = x.Moneda.Descripcion,
                     Nombre = x.Nombre,
                     NroMoneda = x.NroMoneda,
-                    Total = x.Total
+                    Total = x.Total,
+                    PresupuestoItems = new List<PresupuestoDetalleViewDto>()
                 };
 
                 x.PresupuestoItems.ForEach(y =>
                 {
                     var presupuestoItem = new PresupuestoDetalleViewDto
                     {
-                        Cantidad = y.Cantidad,
                         Descripcion = y.Descripcion,
-                        IDPresupuesto = y.IDPresupuesto,
-                        IDProducto = y.IDProducto,
-                        ImporteCosto1 = y.ImporteCosto1,
-                        ImporteCosto2 = y.ImporteCosto2,
-                        ImporteCosto3 = y.ImporteCosto3,
-                        ImporteCosto4 = y.ImporteCosto4,
-                        ImporteCosto5 = y.ImporteCosto5,
-                        ImporteCosto6 = y.ImporteCosto6,
-                        ImportePrecio1 = y.ImportePrecio1,
-                        ImportePrecio2 = y.ImportePrecio2,
-                        ImportePrecio3 = y.ImportePrecio3,
-                        ImportePrecio4 = y.ImportePrecio4,
-                        ImportePrecio5 = y.ImportePrecio5,
-                        ImportePrecio6 = y.ImportePrecio6,
-                        RecID = y.RecID
+                        Cantidad = y.Cantidad,
+                        Precio = ObtenerPrecioSegunMoneda(x.NroMoneda, y),
                     };
 
                     presupuesto.PresupuestoItems.Add(presupuestoItem);
                 });
+
+                listaDePresupuestos.Add(presupuesto);
             });
 
-            gcHistorialPresupuesto.DataSource = presupuestos;
+            gcHistorialPresupuesto.DataSource = listaDePresupuestos;
             gcHistorialPresupuesto.RefreshDataSource();
+
+        }
+
+        private decimal ObtenerPrecioSegunMoneda(int numeroMoneda, PresupuestoItemDto presupuestoDto)
+        {
+            double precio = 0;
+            switch (numeroMoneda)
+            {
+                case 1:
+                    precio = presupuestoDto.ImportePrecio1.Value;
+                    break;
+                case 2:
+                    precio = presupuestoDto.ImportePrecio2.Value;
+                    break;
+                case 3:
+                    precio = presupuestoDto.ImportePrecio3.Value;
+                    break;
+                case 4:
+                    precio = presupuestoDto.ImportePrecio4.Value;
+                    break;
+                case 5:
+                    precio = presupuestoDto.ImportePrecio5.Value;
+                    break;
+                case 6:
+                    precio = presupuestoDto.ImportePrecio6.Value;
+                    break;
+            }
+
+            return Convert.ToDecimal(precio);
         }
 
         private void btnAgregarProductosDesdeArchivoMaestro_Click(object sender, EventArgs e)
@@ -397,6 +417,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             var frmHistorial = new frmHistorialPresupuesto(serviceProvider.GetService<PresupuestoService>(), serviceProvider.GetService<ProductoService>());
             frmHistorial.ProductosEnPresupuesto = ProductosEnPresupuesto;
             frmHistorial.OnListaProductosAgregados += frmHistorialOnListaProductosAgregados;
+            frmHistorial.ModeloId = IngresoInstrumento.Instrumento.Clasificacion.ModeloId;
+            frmHistorial.InstrumentoId = IngresoInstrumento.Instrumento.InstrumentoId;
+            frmHistorial.ClienteId = IngresoInstrumento.Ingreso.EmpresaId;
             frmHistorial.ShowDialog();
         }
 
