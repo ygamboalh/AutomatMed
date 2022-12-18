@@ -244,8 +244,6 @@
             this.colCodigoPresupuesto.Name = "colCodigoPresupuesto";
             this.colCodigoPresupuesto.OptionsColumn.AllowEdit = false;
             this.colCodigoPresupuesto.OptionsColumn.AllowFocus = false;
-            this.colCodigoPresupuesto.Visible = true;
-            this.colCodigoPresupuesto.VisibleIndex = 0;
             this.colCodigoPresupuesto.Width = 133;
             // 
             // colFechaRegistro
@@ -259,7 +257,7 @@
             this.colFechaRegistro.OptionsColumn.AllowEdit = false;
             this.colFechaRegistro.OptionsColumn.AllowFocus = false;
             this.colFechaRegistro.Visible = true;
-            this.colFechaRegistro.VisibleIndex = 1;
+            this.colFechaRegistro.VisibleIndex = 0;
             this.colFechaRegistro.Width = 143;
             // 
             // colDescripcion
@@ -271,7 +269,7 @@
             this.colDescripcion.OptionsColumn.AllowEdit = false;
             this.colDescripcion.OptionsColumn.AllowFocus = false;
             this.colDescripcion.Visible = true;
-            this.colDescripcion.VisibleIndex = 2;
+            this.colDescripcion.VisibleIndex = 1;
             this.colDescripcion.Width = 133;
             // 
             // colCantidad
@@ -283,7 +281,7 @@
             this.colCantidad.OptionsColumn.AllowEdit = false;
             this.colCantidad.OptionsColumn.AllowFocus = false;
             this.colCantidad.Visible = true;
-            this.colCantidad.VisibleIndex = 3;
+            this.colCantidad.VisibleIndex = 2;
             this.colCantidad.Width = 133;
             // 
             // colPrecio
@@ -297,7 +295,7 @@
             this.colPrecio.OptionsColumn.AllowEdit = false;
             this.colPrecio.OptionsColumn.AllowFocus = false;
             this.colPrecio.Visible = true;
-            this.colPrecio.VisibleIndex = 4;
+            this.colPrecio.VisibleIndex = 3;
             this.colPrecio.Width = 133;
             // 
             // colModelo
@@ -346,7 +344,7 @@
             this.colSeleccionar.MinWidth = 25;
             this.colSeleccionar.Name = "colSeleccionar";
             this.colSeleccionar.Visible = true;
-            this.colSeleccionar.VisibleIndex = 5;
+            this.colSeleccionar.VisibleIndex = 4;
             this.colSeleccionar.Width = 30;
             // 
             // chkSeleccionar

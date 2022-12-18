@@ -280,6 +280,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
         {
             try
             {
+                char pad = 'a';
                 var historialPresupuestos = _automatMedicionesDbContext.ProductosIngresos.AsQueryable();
 
                 if (desde != null && hasta != null)
@@ -292,6 +293,17 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 var historial = historialPresupuestos.Where(x => x.ModeloId == modeloId && 
                                                                  x.InstrumentoId == instrumentoId &&
                                                                  x.ClienteId == clienteId).Include(x => x.Modelo).Include(x => x.Instrumento).ToList();
+
+                var productosIngresos = historial.Select(x => x.Id).ToList();
+
+                var presupuestosIds = _automatMedicionesDbContext.PresupuestosControles.Where(x => productosIngresos.Contains(x.Id))
+                                                                                     .Select(x => x.Id.ToString().PadLeft(12, pad)).ToList();
+
+                var presupuestos = _tacticaDbContext.Presupuestos.AsQueryable().Include(x => x.Moneda)
+                                                                 .Where(x => presupuestosIds.Contains(x.RecID)).ToList();
+
+
+            
 
                 return Response<List<ProductoIngresoDto>>.Ok("", _imapper.Map<List<ProductoIngresoDto>>(historial));
             }

@@ -1,12 +1,12 @@
 ﻿using AutomatMediciones.DesktopApp.Componentes.Encabezados;
 using AutomatMediciones.DesktopApp.Helpers;
-using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos.Dtos;
 using AutomatMediciones.DesktopApp.Pantallas.Presupuestos.Dtos;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraEditors.Controls;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
@@ -39,7 +39,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             ProductosIngresos = new List<ProductoIngresoVista>();
             EstablecerNombreYTitulo();
             EstablecerColorBotonGuardar();
-            CargarHistorial();
+            //CargarHistorial();
+
+          
         }
 
         private bool ExisteElProductoEnPresupuesto(string productoId)
@@ -91,6 +93,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
 
         private void ConvertirRegistrosALista(List<ProductoIngresoDto> productoIngresosDtos)
         {
+            ProductosIngresos.Clear();
             productoIngresosDtos.ForEach(producto =>
             {
                 ProductoIngresoVista productoIngresoVista = new ProductoIngresoVista
@@ -136,6 +139,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
 
                 ConvertirRegistrosALista(resultado.Data);
 
+                gcHistorialPresupuesto.DataSource = null;
                 gcHistorialPresupuesto.DataSource = ProductosIngresos;
                 gcHistorialPresupuesto.RefreshDataSource();
             }
@@ -151,6 +155,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
                 }
                 ConvertirRegistrosALista(resultado.Data);
 
+                gcHistorialPresupuesto.DataSource = null;
                 gcHistorialPresupuesto.DataSource = ProductosIngresos;
                 gcHistorialPresupuesto.RefreshDataSource();
             }
@@ -172,18 +177,59 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
         {
             ActivacionColumnas(3);
             CargarHistorial();
+
+            btnFiltroPorInstrumento.BackColor = Color.Transparent;
+            btnFiltroPorInstrumento.ForeColor = Color.Black;
+            btnFiltroPorInstrumento.IconColor = Color.Black;
+
+            btnFiltroPorCliente.BackColor = Color.Transparent;
+            btnFiltroPorCliente.ForeColor = Color.Black;
+            btnFiltroPorCliente.IconColor = Color.Black;
+
+            btnFiltroModelo.BackColor = ColorHelper.ObtenerColorEnRGB("Default");
+            btnFiltroModelo.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+            btnFiltroModelo.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
         private void btnFiltroPorCliente_Click(object sender, System.EventArgs e)
         {
             ActivacionColumnas(2);
             CargarHistorial();
+
+            btnFiltroModelo.BackColor = Color.Transparent;
+            btnFiltroModelo.ForeColor = Color.Black;
+            btnFiltroModelo.IconColor = Color.Black;
+
+            btnFiltroPorInstrumento.BackColor = Color.Transparent;
+            btnFiltroPorInstrumento.ForeColor = Color.Black;
+            btnFiltroPorInstrumento.IconColor = Color.Black;
+
+            btnFiltroPorCliente.BackColor = ColorHelper.ObtenerColorEnRGB("Default");
+            btnFiltroPorCliente.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+            btnFiltroPorCliente.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+        }
+
+        public void CargaInicial()
+        {
+            btnFiltroPorInstrumento_Click(new object(), new EventArgs());
         }
 
         private void btnFiltroPorInstrumento_Click(object sender, System.EventArgs e)
         {
             ActivacionColumnas(1);
             CargarHistorial();
+
+            btnFiltroModelo.BackColor = Color.Transparent;
+            btnFiltroModelo.ForeColor = Color.Black;
+            btnFiltroModelo.IconColor = Color.Black;
+
+            btnFiltroPorCliente.BackColor = Color.Transparent;
+            btnFiltroPorCliente.ForeColor = Color.Black;
+            btnFiltroPorCliente.IconColor = Color.Black;
+
+            btnFiltroPorInstrumento.BackColor = ColorHelper.ObtenerColorEnRGB("Default");
+            btnFiltroPorInstrumento.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+            btnFiltroPorInstrumento.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
         private void SetearTotales()

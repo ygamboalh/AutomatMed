@@ -116,6 +116,18 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Diagnosticos
             btnPrepararCertificado.BackColor = ColorHelper.ObtenerColorEnRGB("Default");
             btnPrepararCertificado.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
             btnPrepararCertificado.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+
+            btnDetalleInstrumento.BackColor = ColorHelper.ObtenerColorEnRGB("Default");
+            btnDetalleInstrumento.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+            btnDetalleInstrumento.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+
+            btnHistorialDeCertificados.BackColor = ColorHelper.ObtenerColorEnRGB("Default");
+            btnHistorialDeCertificados.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+            btnHistorialDeCertificados.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+
+            btnPresupuesto.BackColor = ColorHelper.ObtenerColorEnRGB("Default");
+            btnPresupuesto.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
+            btnPresupuesto.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
         private void EstablecerColorBotonGuardar()

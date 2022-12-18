@@ -71,6 +71,18 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
                 return;
             }
 
+            if (string.IsNullOrEmpty(txtNombrePresupuesto.Text))
+            {
+                Notificaciones.MensajeAdvertencia("Es necesario que agregue un nombre para el presupuesto.");
+                return;
+            }
+
+            if (monedaSeleccionada == null)
+            {
+                Notificaciones.MensajeAdvertencia("Es necesario que seleccione una moneda para el presupuesto.");
+                return;
+            }
+
             PrepararNuevoPresupuesto();
             var resultadoIngresoPresupuesto = _presupuestoService.RegistrarPresupuesto(Presupuesto);
 
@@ -420,6 +432,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             frmHistorial.ModeloId = IngresoInstrumento.Instrumento.Clasificacion.ModeloId;
             frmHistorial.InstrumentoId = IngresoInstrumento.Instrumento.InstrumentoId;
             frmHistorial.ClienteId = IngresoInstrumento.Ingreso.EmpresaId;
+            frmHistorial.CargaInicial();
             frmHistorial.ShowDialog();
         }
 

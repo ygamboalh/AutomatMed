@@ -302,7 +302,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion
             this.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.Name = "frmVariablesDeMedicion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Variables de Medición";
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
