@@ -315,7 +315,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             var presupuestos = resultado.Data;
 
             List<PresupuestoViewDto> listaDePresupuestos = new List<PresupuestoViewDto>();
-
+            if (presupuestos == null) return;
+          
+            if (!presupuestos.Any() ) return;
+         
             presupuestos.ForEach(x =>
             {
                 var presupuesto = new PresupuestoViewDto
@@ -329,17 +332,22 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
                     PresupuestoItems = new List<PresupuestoDetalleViewDto>()
                 };
 
-                x.PresupuestoItems.ForEach(y =>
+                if (x.PresupuestoItems.Any())
                 {
-                    var presupuestoItem = new PresupuestoDetalleViewDto
+                    x.PresupuestoItems.ForEach(y =>
                     {
-                        Descripcion = y.Descripcion,
-                        Cantidad = y.Cantidad,
-                        Precio = ObtenerPrecioSegunMoneda(x.NroMoneda, y),
-                    };
+                        var presupuestoItem = new PresupuestoDetalleViewDto
+                        {
+                            Descripcion = y.Descripcion,
+                            Cantidad = y.Cantidad,
+                            Precio = ObtenerPrecioSegunMoneda(x.NroMoneda, y),
+                        };
 
-                    presupuesto.PresupuestoItems.Add(presupuestoItem);
-                });
+                        presupuesto.PresupuestoItems.Add(presupuestoItem);
+                    });
+
+                }
+
 
                 listaDePresupuestos.Add(presupuesto);
             });

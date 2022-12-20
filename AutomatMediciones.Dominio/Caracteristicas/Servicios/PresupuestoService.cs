@@ -132,6 +132,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 presupuesto.ID = ultimoPresupuesto + 1;
                 presupuesto.FechaCreacion = DateTime.Now;
 
+                presupuesto.Moneda = null;
+
                 _tacticaDbContext.Presupuestos.Add(presupuesto);
 
                 int fila = 0;
