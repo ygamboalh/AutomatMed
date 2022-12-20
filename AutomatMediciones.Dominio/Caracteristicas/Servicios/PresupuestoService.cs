@@ -51,6 +51,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                                                                                                  x.ClienteId == clienteId)
                                                                                      .Select(x => x.PresupuestoControlId).ToList();
 
+                if (!productosIngresos.Any()) return Response<List<PresupuestoDto>>.Ok("Ok",new List<PresupuestoDto>());
+
 
                 var presupuestosIds = _automatMedicionesDbContext.PresupuestosControles.Where(x => productosIngresos.Contains(x.Id))
                                                                                        .Select(x => x.Id.ToString().PadLeft(12, pad)).ToList();
@@ -296,14 +298,14 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                 var productosIngresos = historial.Select(x => x.Id).ToList();
 
+                if (!productosIngresos.Any()) return Response<List<ProductoIngresoDto>>.Ok("", new List<ProductoIngresoDto>());
+
+
                 var presupuestosIds = _automatMedicionesDbContext.PresupuestosControles.Where(x => productosIngresos.Contains(x.Id))
                                                                                      .Select(x => x.Id.ToString().PadLeft(12, pad)).ToList();
 
                 var presupuestos = _tacticaDbContext.Presupuestos.AsQueryable().Include(x => x.Moneda)
                                                                  .Where(x => presupuestosIds.Contains(x.RecID)).ToList();
-
-
-            
 
                 return Response<List<ProductoIngresoDto>>.Ok("", _imapper.Map<List<ProductoIngresoDto>>(historial));
             }
