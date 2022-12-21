@@ -187,7 +187,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         Codigo = producto.Codigo,
                         DescripcionDescuento = "",
                         FormaPago = "",
-                        IDCotizacionMoneda = presupuestoDto.MonedaRecId,
+                        IDCotizacionMoneda = configuracionMonedaCotizacionActual.RecId,
                         IDProdOb = "",
                         NroItem = "",
                         PrecioOculto = 0,
