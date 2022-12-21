@@ -6,6 +6,7 @@ using AutomatMediciones.DesktopApp.Pantallas.Productos;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
@@ -22,8 +23,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
         private readonly PresupuestoService _presupuestoService;
         private readonly MonedaService _monedaService;
 
+        public delegate void ArbolCarpetasCreado(TreeView treeView);
+        public event ArbolCarpetasCreado OnArbolCarpetasCreado;
+
         public IngresoInstrumento IngresoInstrumento { get; set; }
         public List<ProductoDto> ProductosEnPresupuesto { get; set; }
+        public TreeView TreeView { get; set; }
 
         List<MonedaDto> monedas = new List<MonedaDto>();
 
@@ -35,6 +40,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             MonedaService monedaService)
         {
             InitializeComponent();
+            TreeView = new TreeView();
             IngresoInstrumento = ingresoInstrumento;
             _productoService = productoService;
             _presupuestoService = presupuestoService;
@@ -244,7 +250,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
 
             monedas = resultado.Data;
 
-
             leMonedas.DataSource = monedas;
             leMonedas.ValueMember = "Numero";
             leMonedas.DisplayMember = "Descripcion";
@@ -252,6 +257,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             lookupMonedas.Properties.DataSource = monedas;
             lookupMonedas.Properties.ValueMember = "Numero";
             lookupMonedas.Properties.DisplayMember = "Descripcion";
+
+            monedaSeleccionada = monedas.FirstOrDefault(x => x.Numero == 2);
+            lookupMonedas.EditValue = monedaSeleccionada.Numero;
         }
 
         private void EstablecerColorBotonGuardar()
@@ -316,9 +324,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
 
             List<PresupuestoViewDto> listaDePresupuestos = new List<PresupuestoViewDto>();
             if (presupuestos == null) return;
-          
-            if (!presupuestos.Any() ) return;
-         
+
+            if (!presupuestos.Any()) return;
+
             presupuestos.ForEach(x =>
             {
                 var presupuesto = new PresupuestoViewDto
@@ -387,12 +395,32 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
 
         private void btnAgregarProductosDesdeArchivoMaestro_Click(object sender, EventArgs e)
         {
+            SplashScreenManager.ShowForm(typeof(frmSaving));
             var frmMaestroProductos = new frmProductos(serviceProvider.GetService<ProductoService>());
+
             frmMaestroProductos.OnListaProductosAgregados += frmMaestroProductosOnListaProductosAgregados;
-            frmMaestroProductos.ProductosEnPresupuesto = ProductosEnPresupuesto;
+            frmMaestroProductos.OnArbolCarpetasCreado += frmMaestroProductosOnArbolCarpetaCreado;
+
+            if (TreeView.Nodes.Count > 0) {
+                foreach (TreeNode item in TreeView.Nodes)
+                {
+                    var itemParaAgregar = item.Clone() as TreeNode;
+                    frmMaestroProductos.treeView1.Nodes.Add(itemParaAgregar);
+                }
+            }
+            else frmMaestroProductos.CargarArbolCarpetas();
+            
+            frmMaestroProductos.ProductosEnPresupuesto = ProductosEnPresupuesto;     
             frmMaestroProductos.ShowDialog();
+            SplashScreenManager.CloseForm();
         }
-       
+
+        private void frmMaestroProductosOnArbolCarpetaCreado(TreeView treeView)
+        {
+            TreeView = treeView;
+            OnArbolCarpetasCreado?.Invoke(treeView);
+        }
+
         private void AgregarProductosALista(List<ProductoDto> productos)
         {
 

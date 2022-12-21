@@ -288,7 +288,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colSubfamilia;
         private DevExpress.XtraEditors.LabelControl lblTotal;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Splitter splitter1;
         private DevExpress.XtraGrid.Columns.GridColumn colSeleccionar;
@@ -298,5 +297,6 @@
         private FontAwesome.Sharp.IconButton btnAgregarProductos;
         private DevExpress.XtraGrid.Columns.GridColumn colPrecio;
         private DevExpress.XtraGrid.Columns.GridColumn colMoneda;
+        public System.Windows.Forms.TreeView treeView1;
     }
 }

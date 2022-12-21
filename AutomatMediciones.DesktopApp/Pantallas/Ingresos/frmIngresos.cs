@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 {
@@ -26,8 +27,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         private readonly IngresoService _ingresoService;
         private IngresoService _ingresoService2;
 
+        public TreeView TreeView { get; set; }
         public Filtros FiltroSeleccionado { get; set; }
         List<IngresoInstrumento> ingresosInstrumentos = new List<IngresoInstrumento>();
+
+        public delegate void ArbolCarpetasCreado(TreeView treeView);
+        public event ArbolCarpetasCreado OnArbolCarpetasCreado;
 
         private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
 
@@ -35,6 +40,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
         {
             InitializeComponent();
 
+            TreeView = new TreeView();
             _ingresoService = ingresoService;
             EstablecerNombreYTitulo();
             CargarIngresos();
@@ -50,7 +56,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             btnFiltroTodos.BackColor = ColorHelper.ObtenerColorEnRGB("Default");
             btnFiltroTodos.ForeColor = ColorHelper.ObtenerColorEnRGB("Primary50");
             btnFiltroTodos.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
-
         }
 
         private void btnPresupuestosClick(object sender, EventArgs e)
@@ -60,7 +65,16 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
             var frmPresupuestos = new frmCrearPresupuesto(ingresoSeleccionao, serviceProvider.GetService<ProductoService>(), 
                                                           serviceProvider.GetService<PresupuestoService>(), serviceProvider.GetService<MonedaService>());
+            frmPresupuestos.OnArbolCarpetasCreado += frmPresupuestosOnArbolCarpetasCreado;
+            if (TreeView.Nodes.Count > 0) frmPresupuestos.TreeView = TreeView;
+        
+           
             frmPresupuestos.ShowDialog();
+        }
+
+        private void frmPresupuestosOnArbolCarpetasCreado(TreeView treeView)
+        {
+            OnArbolCarpetasCreado?.Invoke(treeView);
         }
 
         private void cmdHistorialCertificadosClick(object sender, EventArgs e)

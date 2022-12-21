@@ -15,10 +15,12 @@ using AutomatMediciones.DesktopApp.Pantallas.TiposDeInstrumento;
 using AutomatMediciones.DesktopApp.Pantallas.Usuarios;
 using AutomatMediciones.DesktopApp.Pantallas.VariablesDeMedicion;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
+using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -29,9 +31,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
         private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
         private bool mostrarBotonesConfiguracion = false;
 
+        public TreeView TreeView { get; set; }
+
         public frmPrincipal()
         {
             InitializeComponent();
+            TreeView = new TreeView();
             this.cmpMenu1.OnMenuSeleccionado += cmpMenuOnMenuSeleccionado;
 
             EstablecerNombreAplicacion();
@@ -39,6 +44,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
             EstablecerEtiquetaVersionAplicacion();
             EstablecerEtiquetaNombreServidorBaseDatos();
             EstablecerColorFondoBarraEstado();
+
+            
 
             this.cmpMenu1.AccionesBotonConfiguracion(mostrarBotonesConfiguracion);
             this.cmpMenu1.InicializarControl();
@@ -85,6 +92,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
                 case IndiceMenu.Diagnosticos:
                     SplashScreenManager.ShowForm(typeof(frmSaving));
                     var frmDiagnosticos = new frmIngresos(serviceProvider.GetService<IngresoService>());
+                    frmDiagnosticos.OnArbolCarpetasCreado += frmDiagnosticosOnArbolCarpetasCreado;
+                    if (TreeView.Nodes.Count > 0) frmDiagnosticos.TreeView = TreeView;
+            
+                   
                     XtraForm diagnosticos = frmDiagnosticos;
                     AgregarPantalla(ref diagnosticos);
                     SplashScreenManager.CloseForm();
@@ -207,6 +218,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
                     break;
 
             }
+        }
+
+        private void frmDiagnosticosOnArbolCarpetasCreado(TreeView treeView)
+        {
+            TreeView = treeView;
         }
 
         private void AgregarPantalla(ref XtraForm pantalla)

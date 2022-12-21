@@ -26,6 +26,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
         public delegate void AgregarListaProductos(List<ProductoDto> productos);
         public event AgregarListaProductos OnListaProductosAgregados;
 
+        public delegate void ArbolCarpetasCreado(TreeView treeView);
+        public event ArbolCarpetasCreado OnArbolCarpetasCreado;
+
         public frmProductos(ProductoService productoService)
         {
             InitializeComponent();
@@ -36,7 +39,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
             EstablecerColorBotonGuardar();
             EstablecerNombreYTitulo();
             CargarProductos();
-            CargarArbolCarpetas();
+          
         }
 
         private void chkSeleccionarCheckedChanging(object sender, ChangingEventArgs e)
@@ -113,7 +116,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
 
 
 
-        private void CargarArbolCarpetas()
+        public void CargarArbolCarpetas()
         {
             var resultado = _productoService.ObtenerArbolCarpetas();
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
@@ -132,6 +135,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
             });
 
             arbolCarpetas = resultado.Data;
+
+            OnArbolCarpetasCreado?.Invoke(treeView1);
 
         }
 
