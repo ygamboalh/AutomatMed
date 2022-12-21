@@ -154,7 +154,7 @@
             this.repositoryItemTextEdit1,
             this.repositoryItemLookUpEdit1,
             this.repositoryItemTextEdit2});
-            this.gcHistorialPresupuesto.Size = new System.Drawing.Size(962, 494);
+            this.gcHistorialPresupuesto.Size = new System.Drawing.Size(962, 453);
             this.gcHistorialPresupuesto.TabIndex = 203;
             this.gcHistorialPresupuesto.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvHistorialPresupuesto,
@@ -207,6 +207,8 @@
             // colTotalPresupuesto
             // 
             this.colTotalPresupuesto.Caption = "Total";
+            this.colTotalPresupuesto.DisplayFormat.FormatString = "{0:#,##0.##}";
+            this.colTotalPresupuesto.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.colTotalPresupuesto.FieldName = "Total";
             this.colTotalPresupuesto.MinWidth = 25;
             this.colTotalPresupuesto.Name = "colTotalPresupuesto";
@@ -468,7 +470,8 @@
             this.colPrecio.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.colPrecio.Caption = "Precio";
             this.colPrecio.ColumnEdit = this.txtPrecio;
-            this.colPrecio.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colPrecio.DisplayFormat.FormatString = "{0:#,##0.##}";
+            this.colPrecio.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.colPrecio.FieldName = "Precio";
             this.colPrecio.MinWidth = 24;
             this.colPrecio.Name = "colPrecio";
@@ -487,7 +490,8 @@
             this.colSubtotal.AppearanceCell.Options.UseTextOptions = true;
             this.colSubtotal.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.colSubtotal.Caption = "SubTotal";
-            this.colSubtotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colSubtotal.DisplayFormat.FormatString = "{0:#,##0.##}";
+            this.colSubtotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.colSubtotal.FieldName = "SubTotal";
             this.colSubtotal.MinWidth = 24;
             this.colSubtotal.Name = "colSubtotal";
@@ -503,6 +507,8 @@
             this.colTotal.AppearanceCell.Options.UseTextOptions = true;
             this.colTotal.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.colTotal.Caption = "Total";
+            this.colTotal.DisplayFormat.FormatString = "{0:#,##0.##}";
+            this.colTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.colTotal.FieldName = "Total";
             this.colTotal.MinWidth = 25;
             this.colTotal.Name = "colTotal";
@@ -535,6 +541,8 @@
             this.colImpuesto.AppearanceCell.Options.UseTextOptions = true;
             this.colImpuesto.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.colImpuesto.Caption = "Impuesto";
+            this.colImpuesto.DisplayFormat.FormatString = "{0:#,##0.##}";
+            this.colImpuesto.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
             this.colImpuesto.FieldName = "Impuesto";
             this.colImpuesto.MinWidth = 25;
             this.colImpuesto.Name = "colImpuesto";
@@ -755,6 +763,7 @@
             this.lookupMonedas.Properties.NullText = "";
             this.lookupMonedas.Size = new System.Drawing.Size(238, 22);
             this.lookupMonedas.TabIndex = 0;
+            this.lookupMonedas.EditValueChanging += new DevExpress.XtraEditors.Controls.ChangingEventHandler(this.lookupMonedas_EditValueChanging);
             // 
             // tabHistorialPresupuesto
             // 
@@ -765,7 +774,7 @@
             this.tabHistorialPresupuesto.Name = "tabHistorialPresupuesto";
             this.tabHistorialPresupuesto.Properties.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tabHistorialPresupuesto.Properties.AppearanceCaption.Options.UseFont = true;
-            this.tabHistorialPresupuesto.Size = new System.Drawing.Size(962, 494);
+            this.tabHistorialPresupuesto.Size = new System.Drawing.Size(962, 453);
             // 
             // panel3
             // 

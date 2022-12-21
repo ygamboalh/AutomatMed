@@ -16,7 +16,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
     public partial class frmProductos : DevExpress.XtraEditors.XtraForm
     {
         private readonly ProductoService _productoService;
-
+        private readonly MonedaService _monedaService;
         List<ArbolCarpetaDto> arbolCarpetas = new List<ArbolCarpetaDto>();
         List<ProductoListaDto> productos = new List<ProductoListaDto>();
         List<ProductoListaDto> productosSeleccionados = new List<ProductoListaDto>();
@@ -29,17 +29,54 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
         public delegate void ArbolCarpetasCreado(TreeView treeView);
         public event ArbolCarpetasCreado OnArbolCarpetasCreado;
 
-        public frmProductos(ProductoService productoService)
+        public MonedaCotizacionDto MonedaCotizacionActual { get; set; }
+
+        public frmProductos(ProductoService productoService, MonedaService monedaService)
         {
             InitializeComponent();
             _productoService = productoService;
-
+            _monedaService = monedaService;
             chkSeleccionar.EditValueChanging += chkSeleccionarCheckedChanging;
 
             EstablecerColorBotonGuardar();
             EstablecerNombreYTitulo();
             CargarProductos();
+            CargarMonedaCotizacionActual();
           
+        }
+
+        private void CargarMonedaCotizacionActual()
+        {
+            var resultado = _monedaService.ObtenerMonedaCotizacionActual();
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+            MonedaCotizacionActual = resultado.Data;
+           
+        }
+
+        private decimal ObtenerCotizacionActualSegunMoneda(int numeroMoneda, MonedaCotizacionDto monedaCotizacionDto)
+        {
+            decimal precio = 0;
+            switch (numeroMoneda)
+            {
+                case 2:
+                    precio = monedaCotizacionDto.CotizacionMonedaDos;
+                    break;
+                case 3:
+                    precio = monedaCotizacionDto.CotizacionMonedaTres;
+                    break;
+                case 4:
+                    precio = monedaCotizacionDto.CotizacionMonedaCuatro;
+                    break;
+                case 5:
+                    precio = monedaCotizacionDto.CotizacionMonedaCinco;
+                    break;
+                case 6:
+                    precio = monedaCotizacionDto.CotizacionMonedaSeis;
+                    break;
+            }
+
+            return Convert.ToDecimal(precio);
         }
 
         private void chkSeleccionarCheckedChanging(object sender, ChangingEventArgs e)
@@ -61,6 +98,24 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
                     return;
                 }
 
+                if (filaSeleccionada.Moneda.Numero == 1)
+                {
+                    filaSeleccionada.ImportePrecio1 = filaSeleccionada.Precio;
+                    filaSeleccionada.ImporteUnitario1 = filaSeleccionada.Precio;
+                }
+                else
+                {
+                    var cotizacionSegunMoneda = ObtenerCotizacionActualSegunMoneda(filaSeleccionada.Moneda.Numero, MonedaCotizacionActual);
+                    filaSeleccionada.ImportePrecio1 = cotizacionSegunMoneda * filaSeleccionada.Precio;
+                    filaSeleccionada.ImporteUnitario1 = cotizacionSegunMoneda * filaSeleccionada.Precio;
+                }
+
+                filaSeleccionada.ImportePrecio2 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaDos;
+                filaSeleccionada.ImportePrecio3 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaTres;
+                filaSeleccionada.ImportePrecio4 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaCuatro;
+                filaSeleccionada.ImportePrecio5 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaCinco;
+                filaSeleccionada.ImportePrecio6 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaSeis;
+          
                 productosSeleccionados.Add(filaSeleccionada);
 
             }

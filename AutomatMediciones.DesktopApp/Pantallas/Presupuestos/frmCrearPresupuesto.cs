@@ -32,6 +32,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
 
         List<MonedaDto> monedas = new List<MonedaDto>();
 
+        public MonedaCotizacionDto MonedaCotizacionActual { get; set; }
+
         public PresupuestoDto Presupuesto { get; set; }
 
         MonedaDto monedaSeleccionada = new MonedaDto();
@@ -54,6 +56,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             ObtenerMonedas();
             PrecargarDatos();
 
+            MonedaCotizacionActual = CargarMonedaCotizacionActual();
+
             txtCantidad.KeyPress += txtCantidadKeyPress;
             btnEliminar.Click += btnEliminarClick;
             txtPrecio.KeyPress += txtCantidadKeyPress;
@@ -67,6 +71,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
         private void lookupMonedasEditValueChanged(object sender, EventArgs e)
         {
             monedaSeleccionada = lookupMonedas.GetSelectedDataRow() as MonedaDto;
+            if (monedaSeleccionada == null) return;
+            RecalcularPrecioSegunMonedaSeleccionada();
         }
 
         private void btnGuardarClick(object sender, EventArgs e)
@@ -147,7 +153,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             ProductosEnPresupuesto.ForEach(x => cantidad += x.Total);
 
             lblSummary.Visible = true;
-            lblSummary.Text = $"Total: {cantidad}";
+            lblSummary.Text = $"Total: {string.Format("{0:#,##0.##}",cantidad)}";
         }
 
         private void SetearTotales()
@@ -309,18 +315,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             CargarPresupuestos();
         }
 
-        private decimal ConvertirPrecioHaciaMonedaLocal(decimal precio, decimal monedaCotizacion)
-        {
-            return precio * monedaCotizacion;
-        }
-
-        private decimal ConvertirPrecioHaciaMonedaDestino(decimal precio, decimal monedaCotizacion, decimal monedaCotizacionDestino)
-        {
-            var precioEnMonedaLocal = ConvertirPrecioHaciaMonedaLocal(precio, monedaCotizacion);
-
-            return precioEnMonedaLocal / monedaCotizacionDestino;
-        }
-
         private void CargarPresupuestos()
         {
             int modeloId; int instrumentoId; string clienteId;
@@ -376,6 +370,33 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             gcHistorialPresupuesto.RefreshDataSource();
 
         }
+        private decimal ObtenerCotizacionActualSegunMoneda(int numeroMoneda, MonedaCotizacionDto monedaCotizacionDto)
+        {
+            decimal precio = 0;
+            switch (numeroMoneda)
+            {
+                case 1:
+                    precio = 1;
+                    break;
+                case 2:
+                    precio = monedaCotizacionDto.CotizacionMonedaDos;
+                    break;
+                case 3:
+                    precio = monedaCotizacionDto.CotizacionMonedaTres;
+                    break;
+                case 4:
+                    precio = monedaCotizacionDto.CotizacionMonedaCuatro;
+                    break;
+                case 5:
+                    precio = monedaCotizacionDto.CotizacionMonedaCinco;
+                    break;
+                case 6:
+                    precio = monedaCotizacionDto.CotizacionMonedaSeis;
+                    break;
+            }
+
+            return Convert.ToDecimal(precio);
+        }
 
         private decimal ObtenerPrecioSegunMoneda(int numeroMoneda, PresupuestoItemDto presupuestoDto)
         {
@@ -408,7 +429,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
         private void btnAgregarProductosDesdeArchivoMaestro_Click(object sender, EventArgs e)
         {
             SplashScreenManager.ShowForm(typeof(frmSaving));
-            var frmMaestroProductos = new frmProductos(serviceProvider.GetService<ProductoService>());
+            var frmMaestroProductos = new frmProductos(serviceProvider.GetService<ProductoService>(), serviceProvider.GetService<MonedaService>());
 
             frmMaestroProductos.OnListaProductosAgregados += frmMaestroProductosOnListaProductosAgregados;
             frmMaestroProductos.OnArbolCarpetasCreado += frmMaestroProductosOnArbolCarpetaCreado;
@@ -433,11 +454,24 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             OnArbolCarpetasCreado?.Invoke(treeView);
         }
 
+        private MonedaCotizacionDto CargarMonedaCotizacionActual()
+        {
+            var resultado = _monedaService.ObtenerMonedaCotizacionActual();
+            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
+
+            return resultado.Data;
+
+        }
+
         private void AgregarProductosALista(List<ProductoDto> productos)
         {
+            var monedaActual = ObtenerCotizacionActualSegunMoneda(monedaSeleccionada.Numero, MonedaCotizacionActual);
 
             productos.ForEach(producto =>
             {
+
+                producto.Precio = producto.ImportePrecio1 / monedaActual;
+
                 if (!EsValidaLaCantidad(producto.Cantidad))
                 {
                     Notificaciones.MensajeAdvertencia("La cantidad no puede ser menor o igual que cero.");
@@ -451,6 +485,35 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             });
 
             ProductosEnPresupuesto.AddRange(productos);
+            gcProductosPresupuesto.DataSource = ProductosEnPresupuesto;
+            gcProductosPresupuesto.RefreshDataSource();
+
+            SetearTotales();
+            SetearSummary();
+        }
+
+        private void RecalcularPrecioSegunMonedaSeleccionada()
+        {
+            var monedaActual = ObtenerCotizacionActualSegunMoneda(monedaSeleccionada.Numero, MonedaCotizacionActual);
+    
+            ProductosEnPresupuesto.ForEach(producto =>
+            {
+
+                producto.Precio = producto.ImportePrecio1 / monedaActual;
+
+                if (!EsValidaLaCantidad(producto.Cantidad))
+                {
+                    Notificaciones.MensajeAdvertencia("La cantidad no puede ser menor o igual que cero.");
+                    return;
+                }
+
+                producto.SubTotal = CalculaSubTotal(producto.Cantidad, producto.Precio);
+                producto.Impuesto = CalcularImpuesto(producto.SubTotal);
+                producto.Total = CalcularTotal(producto.SubTotal, producto.Impuesto);
+
+            });
+
+            gcProductosPresupuesto.DataSource = null;
             gcProductosPresupuesto.DataSource = ProductosEnPresupuesto;
             gcProductosPresupuesto.RefreshDataSource();
 
@@ -503,5 +566,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
         {
 
         }
+
+        private void lookupMonedas_EditValueChanging(object sender, ChangingEventArgs e)
+        {
+          
+        }
+
+
     }
 }
