@@ -309,6 +309,18 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             CargarPresupuestos();
         }
 
+        private decimal ConvertirPrecioHaciaMonedaLocal(decimal precio, decimal monedaCotizacion)
+        {
+            return precio * monedaCotizacion;
+        }
+
+        private decimal ConvertirPrecioHaciaMonedaDestino(decimal precio, decimal monedaCotizacion, decimal monedaCotizacionDestino)
+        {
+            var precioEnMonedaLocal = ConvertirPrecioHaciaMonedaLocal(precio, monedaCotizacion);
+
+            return precioEnMonedaLocal / monedaCotizacionDestino;
+        }
+
         private void CargarPresupuestos()
         {
             int modeloId; int instrumentoId; string clienteId;
