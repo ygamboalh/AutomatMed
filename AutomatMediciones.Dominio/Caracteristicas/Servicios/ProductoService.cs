@@ -59,12 +59,12 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
-        public Response<List<ArbolCarpetaDto>> ObtenerArbolCarpetas()
+         public Response<List<ArbolCarpetaDto>> ObtenerArbolCarpetas()
         {
             try
             {
-                var productos = _tacticaDbContext.ArbolCarpetas.AsQueryable().Where(x => x.Tipo == 1).ToList();
-                return Response<List<ArbolCarpetaDto>>.Ok("Ok", _imapper.Map<List<ArbolCarpetaDto>>(productos));
+                var productos = _tacticaDbContext.ArbolCarpetas.AsQueryable().AsNoTracking().Where(x => x.Tipo == 1);
+                return Response<List<ArbolCarpetaDto>>.Ok("Ok", _imapper.Map<List<ArbolCarpetaDto>>(productos.ToList()));
             }
             catch (Exception exc)
             {
