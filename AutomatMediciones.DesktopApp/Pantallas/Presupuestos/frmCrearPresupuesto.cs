@@ -83,12 +83,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
                 return;
             }
 
-            if (string.IsNullOrEmpty(txtNombrePresupuesto.Text))
-            {
-                Notificaciones.MensajeAdvertencia("Es necesario que agregue un nombre para el presupuesto.");
-                return;
-            }
-
             if (monedaSeleccionada == null)
             {
                 Notificaciones.MensajeAdvertencia("Es necesario que seleccione una moneda para el presupuesto.");
@@ -329,8 +323,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             var presupuestos = resultado.Data;
 
             List<PresupuestoViewDto> listaDePresupuestos = new List<PresupuestoViewDto>();
+            
             if (presupuestos == null) return;
-
             if (!presupuestos.Any()) return;
 
             presupuestos.ForEach(x =>
@@ -361,7 +355,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
                     });
 
                 }
-
 
                 listaDePresupuestos.Add(presupuesto);
             });

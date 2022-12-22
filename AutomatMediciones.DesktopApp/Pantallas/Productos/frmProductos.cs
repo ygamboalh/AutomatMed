@@ -110,12 +110,21 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
                     filaSeleccionada.ImporteUnitario1 = cotizacionSegunMoneda * filaSeleccionada.Precio;
                 }
 
+                filaSeleccionada.Impuesto = 21;
                 filaSeleccionada.ImportePrecio2 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaDos;
                 filaSeleccionada.ImportePrecio3 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaTres;
                 filaSeleccionada.ImportePrecio4 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaCuatro;
                 filaSeleccionada.ImportePrecio5 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaCinco;
                 filaSeleccionada.ImportePrecio6 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaSeis;
-          
+
+                filaSeleccionada.ImporteUnitario1 = filaSeleccionada.ImportePrecio1;
+                filaSeleccionada.ImporteUnitario2 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaTres;
+                filaSeleccionada.ImporteUnitario3 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaCuatro;
+                filaSeleccionada.ImporteUnitario4 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaCinco;
+                filaSeleccionada.ImporteUnitario5 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaSeis;
+                filaSeleccionada.ImporteUnitario6 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaSeis;
+
+
                 productosSeleccionados.Add(filaSeleccionada);
 
             }
@@ -136,6 +145,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
             var resultado = _productoService.ObtenerProductos();
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
+            if (!resultado.Data.Any()) return;
+            
             resultado.Data.ForEach(producto =>
             {
                 productos.Add(new ProductoListaDto

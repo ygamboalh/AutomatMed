@@ -174,12 +174,12 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         Descripcion = producto.Descripcion,
                         FechaSistema = DateTime.Now,
                         NroMoneda = presupuesto.NroMoneda,
-                        ImportePrecio1 = producto.ImportePrecio1, //CalcularImporteUnitarioMonedaLocal(producto.Precio, presupuestoDto.NroMoneda == 1 ? true : false, monedaActual),
-                        ImportePrecio2 = producto.ImportePrecio2,//CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaDos),
-                        ImportePrecio3 = producto.ImportePrecio3, //CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaTres),
-                        ImportePrecio4 = producto.ImportePrecio4,//CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaCuatro),
-                        ImportePrecio5 = producto.ImportePrecio5,//CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaCinco),
-                        ImportePrecio6 = producto.ImportePrecio6,//CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaSeis),
+                        ImportePrecio1 = producto.ImportePrecio1,
+                        ImportePrecio2 = producto.ImportePrecio2,
+                        ImportePrecio3 = producto.ImportePrecio3,
+                        ImportePrecio4 = producto.ImportePrecio4,
+                        ImportePrecio5 = producto.ImportePrecio5,
+                        ImportePrecio6 = producto.ImportePrecio6,
                         Fabricante = producto.Fabricante,
                         Notas = "",
                         NroFila = fila + 1,
@@ -189,7 +189,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         FormaPago = "",
                         IDCotizacionMoneda = configuracionMonedaCotizacionActual.RecId,
                         IDProdOb = "",
-                        NroItem = "",
+                        NroItem = (fila + 1).ToString(),
                         PrecioOculto = 0,
                         PlazoEntrega = "",
                         Unidad = "",
@@ -205,12 +205,12 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         FechaInclusion = DateTime.Now,
                         FechaModificacion = DateTime.Now,
                         ObligOp = 0,
-                        ImporteUnitario1 = producto.ImporteUnitario1,//CalcularImporteUnitarioMonedaLocal(producto.Precio, presupuestoDto.NroMoneda == 1 ? true : false, monedaActual),
-                        ImporteUnitario2 = producto.ImporteUnitario2,//CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaDos),
-                        ImporteUnitario3 = producto.ImporteUnitario3,//CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaTres),
-                        ImporteUnitario4 = producto.ImporteUnitario4,//CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaCuatro),
-                        ImporteUnitario5 = producto.ImporteUnitario5,//CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaCinco),
-                        ImporteUnitario6 = producto.ImporteUnitario6, //CalcularImporte(producto.Precio, monedaActual, configuracionMonedaCotizacionActual.CotizacionMonedaSeis),
+                        ImporteUnitario1 = producto.ImporteUnitario1,
+                        ImporteUnitario2 = producto.ImporteUnitario2,
+                        ImporteUnitario3 = producto.ImporteUnitario3,
+                        ImporteUnitario4 = producto.ImporteUnitario4,
+                        ImporteUnitario5 = producto.ImporteUnitario5,
+                        ImporteUnitario6 = producto.ImporteUnitario6,
                         ImpuestoDescripcion = "IVA 21%",
                         DescripcionGrupo = "",
                         NombreGrupo = "",
@@ -228,7 +228,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         TipoUnidad = 0,
                         SobrePrecio = 0,
                         Probabilidad = 0,
-                        NroPrecio = 0
+                        NroPrecio = 1,
+                        NroMonedaComisionTerceros = 1
                     };
 
                     presupuestoItem.Presupuesto = null;
@@ -254,18 +255,6 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
-        private decimal CalcularImporte(decimal precio, decimal configuracionMonedaActual, decimal monedaDestino)
-        {
-            var total = precio * configuracionMonedaActual / monedaDestino;
-            return total;
-        }
-
-        private decimal CalcularImporteUnitarioMonedaLocal(decimal precio, bool EsMonedaLocal, decimal configuracionMonedaActual)
-        {
-            if (EsMonedaLocal) return precio;
-            return precio * configuracionMonedaActual;
-        }
-
         public Response<List<PresupuestoItemDto>> ObtenerPresupuestosDetalle()
         {
             try
@@ -287,6 +276,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 char pad = 'a';
                 var historialPresupuestos = _automatMedicionesDbContext.ProductosIngresos.AsQueryable();
 
+                if (!historialPresupuestos.Any()) return Response<List<ProductoIngresoDto>>.Ok("", new List<ProductoIngresoDto>());
+                
                 if (desde != null && hasta != null)
                     historialPresupuestos = historialPresupuestos.Where(x => x.FechaRegistro.Date >= desde.Value.Date &&
                                                                              x.FechaRegistro.Date <= hasta.Value.Date && 
@@ -296,28 +287,26 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                 var historial = historialPresupuestos.Where(x => x.ModeloId == modeloId && 
                                                                  x.InstrumentoId == instrumentoId &&
-                                                                 x.ClienteId == clienteId).Include(x => x.Modelo).Include(x => x.Instrumento).ToList();
+                                                                 x.ClienteId == clienteId)
+                                                     .Include(x => x.Modelo)
+                                                     .Include(x => x.Instrumento).ToList();
 
                 var productosIngresos = historial.Select(x => x.Id).ToList();
 
                 if (!productosIngresos.Any()) return Response<List<ProductoIngresoDto>>.Ok("", new List<ProductoIngresoDto>());
-
-
                 var presupuestosIds = _automatMedicionesDbContext.PresupuestosControles.Where(x => productosIngresos.Contains(x.Id))
-                                                                                     .Select(x => x.Id.ToString().PadLeft(12, pad)).ToList();
+                                                                                       .Select(x => x.Id.ToString().PadLeft(12, pad)).ToList();
 
-                var presupuestos = _tacticaDbContext.Presupuestos.AsQueryable().Include(x => x.Moneda)
+                var presupuestos = _tacticaDbContext.Presupuestos.AsQueryable()
+                                                                 .Include(x => x.Moneda)
                                                                  .Where(x => presupuestosIds.Contains(x.RecID)).ToList();
 
                 return Response<List<ProductoIngresoDto>>.Ok("", _imapper.Map<List<ProductoIngresoDto>>(historial));
             }
             catch (Exception exc)
             {
-
                 return Response<List<ProductoIngresoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
             }
-
-
         }
     }
 }

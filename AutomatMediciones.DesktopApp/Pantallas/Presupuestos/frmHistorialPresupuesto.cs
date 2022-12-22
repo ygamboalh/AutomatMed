@@ -39,9 +39,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             ProductosIngresos = new List<ProductoIngresoVista>();
             EstablecerNombreYTitulo();
             EstablecerColorBotonGuardar();
-            //CargarHistorial();
-
-          
         }
 
         private bool ExisteElProductoEnPresupuesto(string productoId)
