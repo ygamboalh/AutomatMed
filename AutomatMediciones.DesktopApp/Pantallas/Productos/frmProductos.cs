@@ -118,10 +118,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
                 filaSeleccionada.ImportePrecio6 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaSeis;
 
                 filaSeleccionada.ImporteUnitario1 = filaSeleccionada.ImportePrecio1;
-                filaSeleccionada.ImporteUnitario2 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaTres;
-                filaSeleccionada.ImporteUnitario3 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaCuatro;
-                filaSeleccionada.ImporteUnitario4 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaCinco;
-                filaSeleccionada.ImporteUnitario5 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaSeis;
+                filaSeleccionada.ImporteUnitario2 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaDos;
+                filaSeleccionada.ImporteUnitario3 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaTres;
+                filaSeleccionada.ImporteUnitario4 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaCuatro;
+                filaSeleccionada.ImporteUnitario5 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaCinco;
                 filaSeleccionada.ImporteUnitario6 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaSeis;
 
 

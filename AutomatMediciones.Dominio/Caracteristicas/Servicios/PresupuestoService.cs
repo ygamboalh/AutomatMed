@@ -57,6 +57,8 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 var presupuestosIds = _automatMedicionesDbContext.PresupuestosControles.Where(x => productosIngresos.Contains(x.Id))
                                                                                        .Select(x => x.Id.ToString().PadLeft(12, pad)).ToList();
 
+                if (!presupuestosIds.Any()) return Response<List<PresupuestoDto>>.Ok("Ok", new List<PresupuestoDto>());
+             
                 var presupuestos = _tacticaDbContext.Presupuestos.AsQueryable().Include(x => x.PresupuestoItems).Include(x => x.Moneda)
                                                                  .Where(x => presupuestosIds.Contains(x.RecID)).ToList();
 
@@ -193,7 +195,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         PrecioOculto = 0,
                         PlazoEntrega = "",
                         Unidad = "",
-                        Impuesto = producto.Impuesto,
+                        Impuesto = 21,
                         ImporteCosto1 = 0,
                         ImporteCosto2 = 0,
                         ImporteCosto3 = 0,
@@ -229,7 +231,9 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         SobrePrecio = 0,
                         Probabilidad = 0,
                         NroPrecio = 1,
-                        NroMonedaComisionTerceros = 1
+                        NroMonedaComisionTerceros = 1,
+                        FechaCierre = DateTime.Now,
+                        FechaEmision = DateTime.Now                      
                     };
 
                     presupuestoItem.Presupuesto = null;
@@ -276,6 +280,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 char pad = 'a';
                 var historialPresupuestos = _automatMedicionesDbContext.ProductosIngresos.AsQueryable();
 
+                if(historialPresupuestos == null) return Response<List<ProductoIngresoDto>>.Ok("", new List<ProductoIngresoDto>());
                 if (!historialPresupuestos.Any()) return Response<List<ProductoIngresoDto>>.Ok("", new List<ProductoIngresoDto>());
                 
                 if (desde != null && hasta != null)
@@ -291,12 +296,20 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                                                      .Include(x => x.Modelo)
                                                      .Include(x => x.Instrumento).ToList();
 
+                if (historial == null) return Response<List<ProductoIngresoDto>>.Ok("", new List<ProductoIngresoDto>());              
+                if (!historial.Any()) return Response<List<ProductoIngresoDto>>.Ok("", new List<ProductoIngresoDto>());
+             
                 var productosIngresos = historial.Select(x => x.Id).ToList();
 
+                if (productosIngresos == null) return Response<List<ProductoIngresoDto>>.Ok("", new List<ProductoIngresoDto>());
                 if (!productosIngresos.Any()) return Response<List<ProductoIngresoDto>>.Ok("", new List<ProductoIngresoDto>());
+                
                 var presupuestosIds = _automatMedicionesDbContext.PresupuestosControles.Where(x => productosIngresos.Contains(x.Id))
                                                                                        .Select(x => x.Id.ToString().PadLeft(12, pad)).ToList();
 
+                if (presupuestosIds == null) return Response<List<ProductoIngresoDto>>.Ok("", new List<ProductoIngresoDto>());
+                if (!presupuestosIds.Any()) return Response<List<ProductoIngresoDto>>.Ok("", new List<ProductoIngresoDto>());
+              
                 var presupuestos = _tacticaDbContext.Presupuestos.AsQueryable()
                                                                  .Include(x => x.Moneda)
                                                                  .Where(x => presupuestosIds.Contains(x.RecID)).ToList();
