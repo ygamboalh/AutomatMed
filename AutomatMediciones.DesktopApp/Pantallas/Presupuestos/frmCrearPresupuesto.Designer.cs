@@ -844,7 +844,6 @@
             this.btnGuardar.Text = "Crear Presupuesto";
             this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnGuardar.UseVisualStyleBackColor = true;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardarClick);
             // 
             // frmCrearPresupuesto
             // 
