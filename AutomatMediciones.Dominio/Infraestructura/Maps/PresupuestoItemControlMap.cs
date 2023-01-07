@@ -13,7 +13,7 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).HasColumnName("id").HasColumnType("INT").ValueGeneratedOnAdd();
             builder.Property(x => x.FechaRegistro).HasColumnName("fecha_registro").HasColumnType("DATETIME").IsRequired();
-          
+            builder.Property(x => x.PresupuestoControlId).HasColumnName("presupuesto_control_id").HasColumnType("INT").IsRequired();
         }
     }
 }

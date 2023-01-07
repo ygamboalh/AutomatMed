@@ -39,15 +39,17 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.gcHistorialPresupuesto = new DevExpress.XtraGrid.GridControl();
             this.gvHistorialPresupuesto = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colCodigoPresupuesto = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colFechaRegistro = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDescripcion = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCantidad = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPresupuestoId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPresupuestoDetalleId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDescripcionProducto = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colProductoId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMoneda = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIdCotizacionMoneda = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPrecio = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCantidad = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCliente = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colModelo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colInstrumento = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCliente = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colClasificacion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSeleccionar = new DevExpress.XtraGrid.Columns.GridColumn();
             this.chkSeleccionar = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -220,15 +222,17 @@
             // gvHistorialPresupuesto
             // 
             this.gvHistorialPresupuesto.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colCodigoPresupuesto,
-            this.colFechaRegistro,
-            this.colDescripcion,
-            this.colCantidad,
+            this.colPresupuestoId,
+            this.colPresupuestoDetalleId,
+            this.colDescripcionProducto,
+            this.colProductoId,
+            this.colMoneda,
+            this.colIdCotizacionMoneda,
             this.colPrecio,
+            this.colCantidad,
+            this.colCliente,
             this.colModelo,
             this.colInstrumento,
-            this.colCliente,
-            this.colClasificacion,
             this.colSeleccionar});
             this.gvHistorialPresupuesto.DetailHeight = 431;
             this.gvHistorialPresupuesto.GridControl = this.gcHistorialPresupuesto;
@@ -236,115 +240,140 @@
             this.gvHistorialPresupuesto.OptionsView.ShowGroupPanel = false;
             this.gvHistorialPresupuesto.OptionsView.ShowIndicator = false;
             // 
-            // colCodigoPresupuesto
+            // colPresupuestoId
             // 
-            this.colCodigoPresupuesto.Caption = "Código Presupuesto";
-            this.colCodigoPresupuesto.FieldName = "Id";
-            this.colCodigoPresupuesto.MinWidth = 23;
-            this.colCodigoPresupuesto.Name = "colCodigoPresupuesto";
-            this.colCodigoPresupuesto.OptionsColumn.AllowEdit = false;
-            this.colCodigoPresupuesto.OptionsColumn.AllowFocus = false;
-            this.colCodigoPresupuesto.Width = 133;
+            this.colPresupuestoId.Caption = "PresupuestoId";
+            this.colPresupuestoId.FieldName = "PresupuestoId";
+            this.colPresupuestoId.MinWidth = 25;
+            this.colPresupuestoId.Name = "colPresupuestoId";
+            this.colPresupuestoId.OptionsColumn.AllowEdit = false;
+            this.colPresupuestoId.OptionsColumn.AllowFocus = false;
+            this.colPresupuestoId.Width = 94;
             // 
-            // colFechaRegistro
+            // colPresupuestoDetalleId
             // 
-            this.colFechaRegistro.Caption = "Fecha";
-            this.colFechaRegistro.DisplayFormat.FormatString = "dd/MM/yy";
-            this.colFechaRegistro.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
-            this.colFechaRegistro.FieldName = "FechaRegistro";
-            this.colFechaRegistro.MinWidth = 25;
-            this.colFechaRegistro.Name = "colFechaRegistro";
-            this.colFechaRegistro.OptionsColumn.AllowEdit = false;
-            this.colFechaRegistro.OptionsColumn.AllowFocus = false;
-            this.colFechaRegistro.Visible = true;
-            this.colFechaRegistro.VisibleIndex = 0;
-            this.colFechaRegistro.Width = 143;
+            this.colPresupuestoDetalleId.Caption = "Presupuesto Detalle Id";
+            this.colPresupuestoDetalleId.FieldName = "PresupuestoDetalleId";
+            this.colPresupuestoDetalleId.MinWidth = 25;
+            this.colPresupuestoDetalleId.Name = "colPresupuestoDetalleId";
+            this.colPresupuestoDetalleId.OptionsColumn.AllowEdit = false;
+            this.colPresupuestoDetalleId.OptionsColumn.AllowFocus = false;
+            this.colPresupuestoDetalleId.Width = 94;
             // 
-            // colDescripcion
+            // colDescripcionProducto
             // 
-            this.colDescripcion.Caption = "Descripción";
-            this.colDescripcion.FieldName = "Descripcion";
-            this.colDescripcion.MinWidth = 23;
-            this.colDescripcion.Name = "colDescripcion";
-            this.colDescripcion.OptionsColumn.AllowEdit = false;
-            this.colDescripcion.OptionsColumn.AllowFocus = false;
-            this.colDescripcion.Visible = true;
-            this.colDescripcion.VisibleIndex = 1;
-            this.colDescripcion.Width = 133;
+            this.colDescripcionProducto.Caption = "Descripción";
+            this.colDescripcionProducto.FieldName = "DescripcionProducto";
+            this.colDescripcionProducto.MinWidth = 25;
+            this.colDescripcionProducto.Name = "colDescripcionProducto";
+            this.colDescripcionProducto.OptionsColumn.AllowEdit = false;
+            this.colDescripcionProducto.OptionsColumn.AllowFocus = false;
+            this.colDescripcionProducto.Visible = true;
+            this.colDescripcionProducto.VisibleIndex = 3;
+            this.colDescripcionProducto.Width = 113;
+            // 
+            // colProductoId
+            // 
+            this.colProductoId.Caption = "Producto Id";
+            this.colProductoId.FieldName = "ProductoId";
+            this.colProductoId.MinWidth = 25;
+            this.colProductoId.Name = "colProductoId";
+            this.colProductoId.OptionsColumn.AllowEdit = false;
+            this.colProductoId.OptionsColumn.AllowFocus = false;
+            this.colProductoId.Width = 94;
+            // 
+            // colMoneda
+            // 
+            this.colMoneda.Caption = "Moneda";
+            this.colMoneda.FieldName = "Moneda";
+            this.colMoneda.MinWidth = 25;
+            this.colMoneda.Name = "colMoneda";
+            this.colMoneda.OptionsColumn.AllowEdit = false;
+            this.colMoneda.OptionsColumn.AllowFocus = false;
+            this.colMoneda.Visible = true;
+            this.colMoneda.VisibleIndex = 4;
+            this.colMoneda.Width = 113;
+            // 
+            // colIdCotizacionMoneda
+            // 
+            this.colIdCotizacionMoneda.Caption = "Id Cotizacion Moneda";
+            this.colIdCotizacionMoneda.FieldName = "IdCotizacionMoneda";
+            this.colIdCotizacionMoneda.MinWidth = 25;
+            this.colIdCotizacionMoneda.Name = "colIdCotizacionMoneda";
+            this.colIdCotizacionMoneda.OptionsColumn.AllowEdit = false;
+            this.colIdCotizacionMoneda.OptionsColumn.AllowFocus = false;
+            this.colIdCotizacionMoneda.Width = 94;
+            // 
+            // colPrecio
+            // 
+            this.colPrecio.Caption = "Precio";
+            this.colPrecio.DisplayFormat.FormatString = "{0:#,##0.##}";
+            this.colPrecio.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom;
+            this.colPrecio.FieldName = "Precio";
+            this.colPrecio.MinWidth = 25;
+            this.colPrecio.Name = "colPrecio";
+            this.colPrecio.OptionsColumn.AllowEdit = false;
+            this.colPrecio.OptionsColumn.AllowFocus = false;
+            this.colPrecio.Visible = true;
+            this.colPrecio.VisibleIndex = 5;
+            this.colPrecio.Width = 92;
             // 
             // colCantidad
             // 
             this.colCantidad.Caption = "Cantidad";
             this.colCantidad.FieldName = "Cantidad";
-            this.colCantidad.MinWidth = 23;
+            this.colCantidad.MinWidth = 25;
             this.colCantidad.Name = "colCantidad";
             this.colCantidad.OptionsColumn.AllowEdit = false;
             this.colCantidad.OptionsColumn.AllowFocus = false;
             this.colCantidad.Visible = true;
-            this.colCantidad.VisibleIndex = 2;
-            this.colCantidad.Width = 133;
-            // 
-            // colPrecio
-            // 
-            this.colPrecio.AppearanceCell.Options.UseTextOptions = true;
-            this.colPrecio.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.colPrecio.Caption = "Precio";
-            this.colPrecio.FieldName = "Precio";
-            this.colPrecio.MinWidth = 23;
-            this.colPrecio.Name = "colPrecio";
-            this.colPrecio.OptionsColumn.AllowEdit = false;
-            this.colPrecio.OptionsColumn.AllowFocus = false;
-            this.colPrecio.Visible = true;
-            this.colPrecio.VisibleIndex = 3;
-            this.colPrecio.Width = 133;
-            // 
-            // colModelo
-            // 
-            this.colModelo.Caption = "Modelo";
-            this.colModelo.FieldName = "Modelo.Descripcion";
-            this.colModelo.MinWidth = 25;
-            this.colModelo.Name = "colModelo";
-            this.colModelo.OptionsColumn.AllowEdit = false;
-            this.colModelo.OptionsColumn.AllowFocus = false;
-            this.colModelo.Width = 87;
-            // 
-            // colInstrumento
-            // 
-            this.colInstrumento.Caption = "Instrumento";
-            this.colInstrumento.FieldName = "Instrumento.Descripcion";
-            this.colInstrumento.MinWidth = 25;
-            this.colInstrumento.Name = "colInstrumento";
-            this.colInstrumento.OptionsColumn.AllowEdit = false;
-            this.colInstrumento.OptionsColumn.AllowFocus = false;
-            this.colInstrumento.Width = 87;
+            this.colCantidad.VisibleIndex = 6;
+            this.colCantidad.Width = 72;
             // 
             // colCliente
             // 
             this.colCliente.Caption = "Cliente";
-            this.colCliente.FieldName = "NombreCliente";
+            this.colCliente.FieldName = "Cliente";
             this.colCliente.MinWidth = 25;
             this.colCliente.Name = "colCliente";
             this.colCliente.OptionsColumn.AllowEdit = false;
             this.colCliente.OptionsColumn.AllowFocus = false;
-            this.colCliente.Width = 87;
+            this.colCliente.Visible = true;
+            this.colCliente.VisibleIndex = 0;
+            this.colCliente.Width = 113;
             // 
-            // colClasificacion
+            // colModelo
             // 
-            this.colClasificacion.Caption = "Clasificación";
-            this.colClasificacion.FieldName = "Clasificacion.ClasificacionConcatenada";
-            this.colClasificacion.MinWidth = 25;
-            this.colClasificacion.Name = "colClasificacion";
-            this.colClasificacion.Width = 94;
+            this.colModelo.Caption = "Modelo";
+            this.colModelo.FieldName = "Modelo";
+            this.colModelo.MinWidth = 25;
+            this.colModelo.Name = "colModelo";
+            this.colModelo.OptionsColumn.AllowEdit = false;
+            this.colModelo.OptionsColumn.AllowFocus = false;
+            this.colModelo.Visible = true;
+            this.colModelo.VisibleIndex = 1;
+            this.colModelo.Width = 113;
+            // 
+            // colInstrumento
+            // 
+            this.colInstrumento.Caption = "Instrumento";
+            this.colInstrumento.FieldName = "Instrumento";
+            this.colInstrumento.MinWidth = 25;
+            this.colInstrumento.Name = "colInstrumento";
+            this.colInstrumento.OptionsColumn.AllowEdit = false;
+            this.colInstrumento.OptionsColumn.AllowFocus = false;
+            this.colInstrumento.Visible = true;
+            this.colInstrumento.VisibleIndex = 2;
+            this.colInstrumento.Width = 113;
             // 
             // colSeleccionar
             // 
-            this.colSeleccionar.Caption = " ";
             this.colSeleccionar.ColumnEdit = this.chkSeleccionar;
             this.colSeleccionar.FieldName = "Seleccionar";
             this.colSeleccionar.MinWidth = 25;
             this.colSeleccionar.Name = "colSeleccionar";
             this.colSeleccionar.Visible = true;
-            this.colSeleccionar.VisibleIndex = 4;
+            this.colSeleccionar.VisibleIndex = 7;
             this.colSeleccionar.Width = 30;
             // 
             // chkSeleccionar
@@ -464,21 +493,23 @@
         private FontAwesome.Sharp.IconButton btnAgregarProductosSeleccionados;
         private System.Windows.Forms.Panel panel3;
         private DevExpress.XtraEditors.LabelControl lblTotal;
-        private DevExpress.XtraGrid.Columns.GridColumn colCodigoPresupuesto;
-        private DevExpress.XtraGrid.Columns.GridColumn colDescripcion;
-        private DevExpress.XtraGrid.Columns.GridColumn colCantidad;
-        private DevExpress.XtraGrid.Columns.GridColumn colPrecio;
-        private DevExpress.XtraGrid.Columns.GridColumn colModelo;
-        private DevExpress.XtraGrid.Columns.GridColumn colInstrumento;
-        private DevExpress.XtraGrid.Columns.GridColumn colCliente;
         private DevExpress.XtraEditors.DateEdit dateHasta;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.DateEdit dateDesde;
         private DevExpress.XtraEditors.LabelControl labelControl13;
-        private DevExpress.XtraGrid.Columns.GridColumn colFechaRegistro;
-        private DevExpress.XtraGrid.Columns.GridColumn colClasificacion;
-        private DevExpress.XtraGrid.Columns.GridColumn colSeleccionar;
         private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit chkSeleccionar;
         private DevExpress.XtraEditors.LabelControl lblTotalSeleccionados;
+        private DevExpress.XtraGrid.Columns.GridColumn colPresupuestoId;
+        private DevExpress.XtraGrid.Columns.GridColumn colPresupuestoDetalleId;
+        private DevExpress.XtraGrid.Columns.GridColumn colDescripcionProducto;
+        private DevExpress.XtraGrid.Columns.GridColumn colProductoId;
+        private DevExpress.XtraGrid.Columns.GridColumn colMoneda;
+        private DevExpress.XtraGrid.Columns.GridColumn colIdCotizacionMoneda;
+        private DevExpress.XtraGrid.Columns.GridColumn colPrecio;
+        private DevExpress.XtraGrid.Columns.GridColumn colCantidad;
+        private DevExpress.XtraGrid.Columns.GridColumn colCliente;
+        private DevExpress.XtraGrid.Columns.GridColumn colModelo;
+        private DevExpress.XtraGrid.Columns.GridColumn colInstrumento;
+        private DevExpress.XtraGrid.Columns.GridColumn colSeleccionar;
     }
 }

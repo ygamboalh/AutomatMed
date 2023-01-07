@@ -4,6 +4,7 @@ using AutomatMediciones.DesktopApp.Pantallas.Productos.Dtos;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraEditors.Controls;
+using DevExpress.XtraGrid.Views.Base;
 using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
@@ -37,12 +38,44 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
             _productoService = productoService;
             _monedaService = monedaService;
             chkSeleccionar.EditValueChanging += chkSeleccionarCheckedChanging;
-
+            gvProductos.CellValueChanged += gvProductosCellValueChanged;
+            
             EstablecerColorBotonGuardar();
             EstablecerNombreYTitulo();
             CargarProductos();
-            CargarMonedaCotizacionActual();
-          
+            CargarMonedaCotizacionActual();        
+        }
+
+        private void gvProductosCellValueChanged(object sender, CellValueChangedEventArgs e)
+        {
+            var filaSeleccionada = gvProductos.GetFocusedRow() as ProductoListaDto;
+            if (filaSeleccionada == null) return;
+
+            if (filaSeleccionada.Moneda.Numero == 1)
+            {
+                filaSeleccionada.ImportePrecio1 = filaSeleccionada.Precio;
+                filaSeleccionada.ImporteUnitario1 = filaSeleccionada.Precio;
+            }
+            else
+            {
+                var cotizacionSegunMoneda = ObtenerCotizacionActualSegunMoneda(filaSeleccionada.Moneda.Numero, MonedaCotizacionActual);
+                filaSeleccionada.ImportePrecio1 = cotizacionSegunMoneda * filaSeleccionada.Precio;
+                filaSeleccionada.ImporteUnitario1 = cotizacionSegunMoneda * filaSeleccionada.Precio;
+            }
+
+            filaSeleccionada.Impuesto = 21;
+            filaSeleccionada.ImportePrecio2 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaDos;
+            filaSeleccionada.ImportePrecio3 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaTres;
+            filaSeleccionada.ImportePrecio4 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaCuatro;
+            filaSeleccionada.ImportePrecio5 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaCinco;
+            filaSeleccionada.ImportePrecio6 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaSeis;
+
+            filaSeleccionada.ImporteUnitario1 = filaSeleccionada.ImportePrecio1;
+            filaSeleccionada.ImporteUnitario2 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaDos;
+            filaSeleccionada.ImporteUnitario3 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaTres;
+            filaSeleccionada.ImporteUnitario4 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaCuatro;
+            filaSeleccionada.ImporteUnitario5 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaCinco;
+            filaSeleccionada.ImporteUnitario6 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaSeis;
         }
 
         private void CargarMonedaCotizacionActual()
@@ -50,8 +83,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
             var resultado = _monedaService.ObtenerMonedaCotizacionActual();
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
-            MonedaCotizacionActual = resultado.Data;
-           
+            MonedaCotizacionActual = resultado.Data;           
         }
 
         private decimal ObtenerCotizacionActualSegunMoneda(int numeroMoneda, MonedaCotizacionDto monedaCotizacionDto)
@@ -124,7 +156,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
                 filaSeleccionada.ImporteUnitario5 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaCinco;
                 filaSeleccionada.ImporteUnitario6 = filaSeleccionada.ImportePrecio1 / MonedaCotizacionActual.CotizacionMonedaSeis;
 
-
                 productosSeleccionados.Add(filaSeleccionada);
 
             }
@@ -180,8 +211,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
             lblTotalSeleccionados.Text = $"Total seleccionados: {productosSeleccionados.Count}";
         }
 
-
-
         public void CargarArbolCarpetas()
         {
             var resultado = _productoService.ObtenerArbolCarpetas();
@@ -203,7 +232,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
             arbolCarpetas = resultado.Data;
 
             OnArbolCarpetasCreado?.Invoke(treeView1);
-
         }
 
         public List<ArbolCarpetaDto> ObtenerNiveles(ArbolCarpetaDto arbolCarpetaDto, TreeNode rootNodePadre)
@@ -228,7 +256,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
             var existe = ProductosEnPresupuesto.Any(x => x.RecID == productoId);
             return existe;
         }
-
 
         private void EstablecerNombreYTitulo()
         {
@@ -263,6 +290,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
 
             OnListaProductosAgregados?.Invoke(productos);
             this.Close();
+        }
+
+        private void gcProductos_DoubleClick(object sender, EventArgs e)
+        {
+            var filaSeleccionada = gvProductos.GetFocusedRow() as ProductoListaDto;
+            if (filaSeleccionada == null) return;
+
+            chkSeleccionarCheckedChanging(sender, new ChangingEventArgs(filaSeleccionada.Seleccionar, !filaSeleccionada.Seleccionar));
         }
     }
 }

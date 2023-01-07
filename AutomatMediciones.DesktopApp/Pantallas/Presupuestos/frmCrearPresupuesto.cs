@@ -114,8 +114,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             total = ProductosEnPresupuesto.Sum(x => x.Total);
             impuesto = ProductosEnPresupuesto.Sum(x => x.Impuesto);
 
-            Presupuesto.Nombre = txtNombrePresupuesto.Text;
-            Presupuesto.Descripcion = memoDescripcion.Text;
+            Presupuesto.Nombre = $"P-{IngresoInstrumento.IngresoId}";
+            Presupuesto.Descripcion = "";
             Presupuesto.NroMoneda = monedaSeleccionada.Numero;
             Presupuesto.MonedaRecId = monedaSeleccionada.RecID;
             Presupuesto.IDRef = IngresoInstrumento.Ingreso.ContactoId;
@@ -453,7 +453,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
 
             return resultado.Data;
-
         }
 
         private void AgregarProductosALista(List<ProductoDto> productos)

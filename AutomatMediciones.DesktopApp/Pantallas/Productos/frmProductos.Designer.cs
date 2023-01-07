@@ -67,6 +67,7 @@
             this.gcProductos.TabIndex = 130;
             this.gcProductos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvProductos});
+            this.gcProductos.DoubleClick += new System.EventHandler(this.gcProductos_DoubleClick);
             // 
             // gvProductos
             // 
@@ -98,8 +99,6 @@
             this.colDescripcion.FieldName = "Descripcion";
             this.colDescripcion.MinWidth = 23;
             this.colDescripcion.Name = "colDescripcion";
-            this.colDescripcion.OptionsColumn.AllowEdit = false;
-            this.colDescripcion.OptionsColumn.AllowFocus = false;
             this.colDescripcion.Visible = true;
             this.colDescripcion.VisibleIndex = 0;
             this.colDescripcion.Width = 87;
@@ -124,8 +123,6 @@
             this.colPrecio.FieldName = "Precio";
             this.colPrecio.MinWidth = 25;
             this.colPrecio.Name = "colPrecio";
-            this.colPrecio.OptionsColumn.AllowEdit = false;
-            this.colPrecio.OptionsColumn.AllowFocus = false;
             this.colPrecio.Visible = true;
             this.colPrecio.VisibleIndex = 2;
             this.colPrecio.Width = 94;

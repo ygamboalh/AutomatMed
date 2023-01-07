@@ -24,6 +24,7 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.Property(x => x.ClienteId).HasColumnName("cliente_id").HasColumnType("VARCHAR(255)").IsRequired();
             builder.Property(x => x.NombreCliente).HasColumnName("nombre_cliente").HasColumnType("VARCHAR(255)").IsRequired();
             builder.Property(x => x.Precio).HasColumnName("precio").HasColumnType("DECIMAL(18,2)").IsRequired();
+            builder.Property(x => x.PresupuestoItemControlId).HasColumnName("presupuesto_control_item_id").HasColumnType("INT").IsRequired();
         }
     }
 }

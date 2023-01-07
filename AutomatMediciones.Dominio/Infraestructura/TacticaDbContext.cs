@@ -21,17 +21,17 @@ namespace AutomatMediciones.Dominio.Infraestructura
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new EmpresaMap());
-            modelBuilder.ApplyConfiguration(new CorreoElectronicoMap());
-            modelBuilder.ApplyConfiguration(new ContactoMap());
-            modelBuilder.ApplyConfiguration(new EstadoMap());
-            modelBuilder.ApplyConfiguration(new ProductoMap());
-            modelBuilder.ApplyConfiguration(new PresupuestoMap());
-            modelBuilder.ApplyConfiguration(new PresupuestoItemMap());
-            modelBuilder.ApplyConfiguration(new ArbolCarpetaMap());
-            modelBuilder.ApplyConfiguration(new MonedaMap());
-            modelBuilder.ApplyConfiguration(new ProductoPrecioMap());
-            modelBuilder.ApplyConfiguration(new MonedaCotizacionMap());
+            modelBuilder.UseCollation("latin1_swedish_ci").ApplyConfiguration(new EmpresaMap());
+            modelBuilder.UseCollation("latin1_swedish_ci").ApplyConfiguration(new CorreoElectronicoMap());
+            modelBuilder.UseCollation("latin1_swedish_ci").ApplyConfiguration(new ContactoMap());
+            modelBuilder.UseCollation("latin1_swedish_ci").ApplyConfiguration(new EstadoMap());
+            modelBuilder.UseCollation("latin1_swedish_ci").ApplyConfiguration(new ProductoMap());
+            modelBuilder.UseCollation("latin1_swedish_ci").ApplyConfiguration(new PresupuestoMap());
+            modelBuilder.UseCollation("latin1_swedish_ci").ApplyConfiguration(new PresupuestoItemMap());
+            modelBuilder.UseCollation("latin1_swedish_ci").ApplyConfiguration(new ArbolCarpetaMap());
+            modelBuilder.UseCollation("latin1_swedish_ci").ApplyConfiguration(new MonedaMap());
+            modelBuilder.UseCollation("latin1_swedish_ci").ApplyConfiguration(new ProductoPrecioMap());
+            modelBuilder.UseCollation("latin1_swedish_ci").ApplyConfiguration(new MonedaCotizacionMap());
         }
     }
 }

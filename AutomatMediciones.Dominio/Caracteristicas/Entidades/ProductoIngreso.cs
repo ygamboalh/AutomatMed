@@ -17,6 +17,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
         public string ClienteId { get; set; }
         public string NombreCliente { get; set; }
         public decimal Precio { get; set; }
+        public int PresupuestoItemControlId { get; set; }
 
         public Instrumento Instrumento { get; set; }
         public Modelo Modelo { get; set; }   

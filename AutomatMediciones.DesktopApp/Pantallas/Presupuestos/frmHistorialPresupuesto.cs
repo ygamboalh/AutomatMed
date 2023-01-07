@@ -3,6 +3,7 @@ using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.DesktopApp.Pantallas.Presupuestos.Dtos;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
+using AutomatMediciones.Libs.Dtos.View;
 using DevExpress.XtraEditors.Controls;
 using System;
 using System.Collections.Generic;
@@ -18,11 +19,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
 
         public List<ProductoIngresoVista> ProductosIngresos { get; set; }
         public List<ProductoDto> ProductosEnPresupuesto { get; set; }
-
         public int ModeloId { get; set; }
         public string ClienteId { get; set; }
         public int InstrumentoId { get; set; }
-        List<ProductoIngresoVista> productosSeleccionados = new List<ProductoIngresoVista>();
+
+        List<PresupuestoHistorialDto> productosSeleccionados = new List<PresupuestoHistorialDto>();
 
         public delegate void AgregarListaProductos(List<ProductoDto> productos);
         public event AgregarListaProductos OnListaProductosAgregados;
@@ -49,7 +50,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
 
         private void chkSeleccionarEditValueChanging(object sender, ChangingEventArgs e)
         {
-            var filaSeleccionada = gvHistorialPresupuesto.GetFocusedRow() as ProductoIngresoVista;
+            var filaSeleccionada = gvHistorialPresupuesto.GetFocusedRow() as PresupuestoHistorialDto;
             if (filaSeleccionada == null) return;
 
             filaSeleccionada.Seleccionar = Convert.ToBoolean(e.NewValue);
@@ -88,34 +89,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             btnAgregarProductosSeleccionados.IconColor = ColorHelper.ObtenerColorEnRGB("Primary50");
         }
 
-        private void ConvertirRegistrosALista(List<ProductoIngresoDto> productoIngresosDtos)
-        {
-            ProductosIngresos.Clear();
-            productoIngresosDtos.ForEach(producto =>
-            {
-                ProductoIngresoVista productoIngresoVista = new ProductoIngresoVista
-                {
-                    Activo = producto.Activo,
-                    Cantidad = producto.Cantidad,
-                    ClienteId = producto.ClienteId,
-                    Descripcion = producto.Descripcion,
-                    FechaRegistro = producto.FechaRegistro,
-                    Id = producto.Id,
-                    IngresoId = producto.IngresoId,
-                    Instrumento = producto.Instrumento,
-                    InstrumentoId = producto.InstrumentoId,
-                    Modelo = producto.Modelo,
-                    ModeloId = producto.ModeloId,
-                    NombreCliente = producto.NombreCliente,
-                    Precio = producto.Precio,
-                    ProductoId = producto.ProductoId,
-                    Seleccionar = false
-                };
-
-
-                ProductosIngresos.Add(productoIngresoVista);
-            });
-        }
 
         private void CargarHistorial()
         {
@@ -134,10 +107,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
                     return;
                 }
 
-                ConvertirRegistrosALista(resultado.Data);
-
                 gcHistorialPresupuesto.DataSource = null;
-                gcHistorialPresupuesto.DataSource = ProductosIngresos;
+                gcHistorialPresupuesto.DataSource = resultado.Data;
                 gcHistorialPresupuesto.RefreshDataSource();
             }
             else
@@ -150,10 +121,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
                     Notificaciones.MensajeError(resultado.Message);
                     return;
                 }
-                ConvertirRegistrosALista(resultado.Data);
-
+                
                 gcHistorialPresupuesto.DataSource = null;
-                gcHistorialPresupuesto.DataSource = ProductosIngresos;
+                gcHistorialPresupuesto.DataSource = resultado.Data;
                 gcHistorialPresupuesto.RefreshDataSource();
             }
 

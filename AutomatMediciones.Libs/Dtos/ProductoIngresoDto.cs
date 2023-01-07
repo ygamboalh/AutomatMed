@@ -17,6 +17,7 @@ namespace AutomatMediciones.Libs.Dtos
         public string NombreCliente { get; set; }
         public decimal Precio { get; set; }
         public int MonedaId { get; set; }
+        public int PresupuestoItemControlId { get; set; }
 
         public InstrumentoDto Instrumento { get; set; }
         public ModeloDto Modelo { get; set; }

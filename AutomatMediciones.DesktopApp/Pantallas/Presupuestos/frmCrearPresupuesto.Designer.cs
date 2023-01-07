@@ -86,11 +86,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnAgregarDesdeHistorialPresupuesto = new FontAwesome.Sharp.IconButton();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.txtNombrePresupuesto = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.memoDescripcion = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.lookupMonedas = new DevExpress.XtraEditors.LookUpEdit();
             this.tabHistorialPresupuesto = new DevExpress.XtraBars.Navigation.TabNavigationPage();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -123,8 +119,6 @@
             this.tabInformacionPresupuesto.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNombrePresupuesto.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memoDescripcion.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookupMonedas.Properties)).BeginInit();
             this.tabHistorialPresupuesto.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -154,7 +148,7 @@
             this.repositoryItemTextEdit1,
             this.repositoryItemLookUpEdit1,
             this.repositoryItemTextEdit2});
-            this.gcHistorialPresupuesto.Size = new System.Drawing.Size(962, 453);
+            this.gcHistorialPresupuesto.Size = new System.Drawing.Size(962, 457);
             this.gcHistorialPresupuesto.TabIndex = 203;
             this.gcHistorialPresupuesto.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvHistorialPresupuesto,
@@ -392,7 +386,7 @@
             // 
             this.gcProductosPresupuesto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gcProductosPresupuesto.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.gcProductosPresupuesto.Location = new System.Drawing.Point(0, 147);
+            this.gcProductosPresupuesto.Location = new System.Drawing.Point(0, 100);
             this.gcProductosPresupuesto.MainView = this.gvProductosPresupuesto;
             this.gcProductosPresupuesto.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.gcProductosPresupuesto.Name = "gcProductosPresupuesto";
@@ -401,7 +395,7 @@
             this.txtCantidad,
             this.leMonedas,
             this.txtPrecio});
-            this.gcProductosPresupuesto.Size = new System.Drawing.Size(962, 306);
+            this.gcProductosPresupuesto.Size = new System.Drawing.Size(962, 357);
             this.gcProductosPresupuesto.TabIndex = 202;
             this.gcProductosPresupuesto.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvProductosPresupuesto});
@@ -579,7 +573,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(992, 111);
+            this.panel1.Size = new System.Drawing.Size(992, 107);
             this.panel1.TabIndex = 203;
             // 
             // pnlProductosPresupuesto
@@ -588,15 +582,19 @@
             this.pnlProductosPresupuesto.Controls.Add(this.panel3);
             this.pnlProductosPresupuesto.Controls.Add(this.panel5);
             this.pnlProductosPresupuesto.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlProductosPresupuesto.Location = new System.Drawing.Point(0, 111);
+            this.pnlProductosPresupuesto.Location = new System.Drawing.Point(0, 107);
             this.pnlProductosPresupuesto.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.pnlProductosPresupuesto.Name = "pnlProductosPresupuesto";
             this.pnlProductosPresupuesto.Padding = new System.Windows.Forms.Padding(15, 0, 15, 0);
-            this.pnlProductosPresupuesto.Size = new System.Drawing.Size(992, 581);
+            this.pnlProductosPresupuesto.Size = new System.Drawing.Size(992, 585);
             this.pnlProductosPresupuesto.TabIndex = 204;
             // 
             // tabPane1
             // 
+            this.tabPane1.AppearanceButton.Normal.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.tabPane1.AppearanceButton.Normal.Options.UseFont = true;
+            this.tabPane1.AppearanceButton.Pressed.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point);
+            this.tabPane1.AppearanceButton.Pressed.Options.UseFont = true;
             this.tabPane1.Controls.Add(this.tabInformacionPresupuesto);
             this.tabPane1.Controls.Add(this.tabHistorialPresupuesto);
             this.tabPane1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -606,9 +604,9 @@
             this.tabPane1.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] {
             this.tabInformacionPresupuesto,
             this.tabHistorialPresupuesto});
-            this.tabPane1.RegularSize = new System.Drawing.Size(962, 494);
+            this.tabPane1.RegularSize = new System.Drawing.Size(962, 498);
             this.tabPane1.SelectedPage = this.tabInformacionPresupuesto;
-            this.tabPane1.Size = new System.Drawing.Size(962, 494);
+            this.tabPane1.Size = new System.Drawing.Size(962, 498);
             this.tabPane1.TabIndex = 208;
             this.tabPane1.Text = "tabPane1";
             // 
@@ -624,7 +622,7 @@
             this.tabInformacionPresupuesto.Name = "tabInformacionPresupuesto";
             this.tabInformacionPresupuesto.Properties.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tabInformacionPresupuesto.Properties.AppearanceCaption.Options.UseFont = true;
-            this.tabInformacionPresupuesto.Size = new System.Drawing.Size(962, 453);
+            this.tabInformacionPresupuesto.Size = new System.Drawing.Size(962, 457);
             // 
             // panel2
             // 
@@ -632,7 +630,7 @@
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.btnAgregarDesdeHistorialPresupuesto);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 105);
+            this.panel2.Location = new System.Drawing.Point(0, 58);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
@@ -692,69 +690,29 @@
             // 
             // panel6
             // 
-            this.panel6.Controls.Add(this.txtNombrePresupuesto);
-            this.panel6.Controls.Add(this.labelControl5);
-            this.panel6.Controls.Add(this.memoDescripcion);
             this.panel6.Controls.Add(this.labelControl1);
-            this.panel6.Controls.Add(this.labelControl6);
             this.panel6.Controls.Add(this.lookupMonedas);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 0);
             this.panel6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(962, 105);
+            this.panel6.Size = new System.Drawing.Size(962, 58);
             this.panel6.TabIndex = 206;
-            // 
-            // txtNombrePresupuesto
-            // 
-            this.txtNombrePresupuesto.Location = new System.Drawing.Point(94, 14);
-            this.txtNombrePresupuesto.Name = "txtNombrePresupuesto";
-            this.txtNombrePresupuesto.Size = new System.Drawing.Size(531, 22);
-            this.txtNombrePresupuesto.TabIndex = 201;
-            // 
-            // labelControl5
-            // 
-            this.labelControl5.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(15, 43);
-            this.labelControl5.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(72, 17);
-            this.labelControl5.TabIndex = 198;
-            this.labelControl5.Text = "Descripción:";
-            // 
-            // memoDescripcion
-            // 
-            this.memoDescripcion.Location = new System.Drawing.Point(94, 46);
-            this.memoDescripcion.Name = "memoDescripcion";
-            this.memoDescripcion.Size = new System.Drawing.Size(864, 50);
-            this.memoDescripcion.TabIndex = 202;
             // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(660, 19);
+            this.labelControl1.Location = new System.Drawing.Point(3, 24);
             this.labelControl1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(53, 17);
             this.labelControl1.TabIndex = 197;
             this.labelControl1.Text = "Moneda:";
             // 
-            // labelControl6
-            // 
-            this.labelControl6.Appearance.Font = new System.Drawing.Font("Segoe UI Semibold", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(15, 19);
-            this.labelControl6.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(53, 17);
-            this.labelControl6.TabIndex = 200;
-            this.labelControl6.Text = "Nombre:";
-            // 
             // lookupMonedas
             // 
-            this.lookupMonedas.Location = new System.Drawing.Point(720, 14);
+            this.lookupMonedas.Location = new System.Drawing.Point(63, 19);
             this.lookupMonedas.Name = "lookupMonedas";
             this.lookupMonedas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -774,14 +732,14 @@
             this.tabHistorialPresupuesto.Name = "tabHistorialPresupuesto";
             this.tabHistorialPresupuesto.Properties.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tabHistorialPresupuesto.Properties.AppearanceCaption.Options.UseFont = true;
-            this.tabHistorialPresupuesto.Size = new System.Drawing.Size(962, 453);
+            this.tabHistorialPresupuesto.Size = new System.Drawing.Size(962, 457);
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.lblSummary);
             this.panel3.Controls.Add(this.lblTotal);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(15, 494);
+            this.panel3.Location = new System.Drawing.Point(15, 498);
             this.panel3.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(962, 27);
@@ -818,7 +776,7 @@
             // 
             this.panel5.Controls.Add(this.btnGuardar);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(15, 521);
+            this.panel5.Location = new System.Drawing.Point(15, 525);
             this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Padding = new System.Windows.Forms.Padding(0, 0, 0, 6);
@@ -883,8 +841,6 @@
             this.panel2.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNombrePresupuesto.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memoDescripcion.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookupMonedas.Properties)).EndInit();
             this.tabHistorialPresupuesto.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -932,10 +888,6 @@
         private DevExpress.XtraEditors.LabelControl lblSummary;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.LookUpEdit lookupMonedas;
-        private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.MemoEdit memoDescripcion;
-        private DevExpress.XtraEditors.TextEdit txtNombrePresupuesto;
-        private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraGrid.Columns.GridColumn colTotal;
         private DevExpress.XtraGrid.Columns.GridColumn colImpuesto;
         private DevExpress.XtraBars.Navigation.TabPane tabPane1;

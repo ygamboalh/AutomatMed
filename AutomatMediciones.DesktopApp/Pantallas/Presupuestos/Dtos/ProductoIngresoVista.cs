@@ -1,14 +1,11 @@
 ﻿using AutomatMediciones.Libs.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos.Dtos
 {
     public class ProductoIngresoVista : ProductoIngresoDto
     {
+        public int IdCotizacionMoneda { get; set; }
+        public string Moneda { get; set; }
         public bool Seleccionar { get; set; }
     }
 }
