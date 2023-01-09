@@ -28,33 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.SuspendLayout();
             // 
-            // simpleButton1
+            // labelControl10
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(364, 84);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(118, 36);
-            this.simpleButton1.TabIndex = 0;
-            this.simpleButton1.Text = "simpleButton1";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            this.labelControl10.Appearance.Font = new System.Drawing.Font("Segoe UI", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelControl10.Appearance.Options.UseFont = true;
+            this.labelControl10.Location = new System.Drawing.Point(173, 222);
+            this.labelControl10.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(602, 106);
+            this.labelControl10.TabIndex = 190;
+            this.labelControl10.Text = "En Construcción";
             // 
             // frmPresupuestos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(908, 566);
-            this.Controls.Add(this.simpleButton1);
+            this.Controls.Add(this.labelControl10);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmPresupuestos";
             this.Text = "Presupuestos";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraEditors.LabelControl labelControl10;
     }
 }

@@ -41,6 +41,7 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
             this.gvPresupuestoDetalle = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colCantidadDetalle = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gcHistorialPresupuesto = new DevExpress.XtraGrid.GridControl();
             this.gvHistorialPresupuesto = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colPresupuestoId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -127,9 +128,21 @@
             // 
             // gvPresupuestoDetalle
             // 
+            this.gvPresupuestoDetalle.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colCantidadDetalle});
             this.gvPresupuestoDetalle.GridControl = this.gcHistorialPresupuesto;
             this.gvPresupuestoDetalle.Name = "gvPresupuestoDetalle";
             this.gvPresupuestoDetalle.OptionsBehavior.ReadOnly = true;
+            // 
+            // colCantidadDetalle
+            // 
+            this.colCantidadDetalle.Caption = "Cantidad";
+            this.colCantidadDetalle.FieldName = "Cantidad";
+            this.colCantidadDetalle.MinWidth = 25;
+            this.colCantidadDetalle.Name = "colCantidadDetalle";
+            this.colCantidadDetalle.Visible = true;
+            this.colCantidadDetalle.VisibleIndex = 0;
+            this.colCantidadDetalle.Width = 94;
             // 
             // gcHistorialPresupuesto
             // 
@@ -413,6 +426,7 @@
             this.colImpuesto});
             this.gvProductosPresupuesto.GridControl = this.gcProductosPresupuesto;
             this.gvProductosPresupuesto.Name = "gvProductosPresupuesto";
+            this.gvProductosPresupuesto.OptionsView.ShowDetailButtons = false;
             this.gvProductosPresupuesto.OptionsView.ShowGroupPanel = false;
             this.gvProductosPresupuesto.OptionsView.ShowIndicator = false;
             // 
@@ -906,5 +920,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colMoneda;
         private DevExpress.XtraGrid.Views.Grid.GridView gvPresupuestoDetalle;
         private System.Windows.Forms.Panel panel6;
+        private DevExpress.XtraGrid.Columns.GridColumn colCantidadDetalle;
     }
 }

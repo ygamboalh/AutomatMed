@@ -35,6 +35,7 @@ namespace AutomatMediciones.Dominio.Infraestructura
         public DbSet<PresupuestoControl> PresupuestosControles { get; set; }
         public DbSet<ProductoIngreso> ProductosIngresos { get; set; }
         public DbSet<PresupuestoItemControl> PresupuestosItemsControles { get; set; }
+        public DbSet<Menu> Menus { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -66,6 +67,7 @@ namespace AutomatMediciones.Dominio.Infraestructura
             modelBuilder.ApplyConfiguration(new PresupuestoControlMap());
             modelBuilder.ApplyConfiguration(new ProductoIngresoMap());
             modelBuilder.ApplyConfiguration(new PresupuestoItemControlMap());
+            modelBuilder.ApplyConfiguration(new MenuMap());
         }
     }
 }

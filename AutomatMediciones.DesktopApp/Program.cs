@@ -83,6 +83,7 @@ namespace AutomatMediciones.DesktopApp
             services.AddTransient<ProductoService, ProductoService>();
             services.AddTransient<PresupuestoService, PresupuestoService>();
             services.AddTransient<MonedaService, MonedaService>();
+            services.AddTransient<MenuService, MenuService>();
 
             services.AddScoped<frmPrincipal>();
 

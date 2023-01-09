@@ -20,6 +20,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
 using Nagaira.Herramientas.Standard.Helpers.Enums;
+using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -30,6 +31,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
     {
         private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
         private bool mostrarBotonesConfiguracion = false;
+        private readonly MenuService _menuService;
 
         public TreeView TreeView { get; set; }
 
@@ -37,6 +39,14 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
         {
             InitializeComponent();
             TreeView = new TreeView();
+
+            _menuService = serviceProvider.GetService<MenuService>();
+           
+            var menuResponse = _menuService.ObtenerMenu();
+            if (menuResponse.Type != TypeResponse.Ok) return;
+
+            var menu = menuResponse.Data;
+            this.cmpMenu1.Menu = menu;
             this.cmpMenu1.OnMenuSeleccionado += cmpMenuOnMenuSeleccionado;
 
             EstablecerNombreAplicacion();
@@ -45,9 +55,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
             EstablecerEtiquetaNombreServidorBaseDatos();
             EstablecerColorFondoBarraEstado();
 
-            
-
-            this.cmpMenu1.AccionesBotonConfiguracion(mostrarBotonesConfiguracion);
             this.cmpMenu1.InicializarControl();
         }
 
@@ -71,7 +78,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
             lblBaseDatos.Text = AplicacionHelper.ObtenerDataBaseServer("AutomatConnectionString");
         }
 
-        private void cmpMenuOnMenuSeleccionado(IndiceMenu indiceMenu)
+        private void cmpMenuOnMenuSeleccionado(IndiceMenu indiceMenu, MenuDto menuDto, List<MenuDto> menuCompleto)
         {
             serviceProvider = Program.services.BuildServiceProvider();
             switch (indiceMenu)
@@ -102,7 +109,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
                     break;
                 case IndiceMenu.Configuracion:
                     mostrarBotonesConfiguracion = !mostrarBotonesConfiguracion;
-                    cmpMenu1.AccionesBotonConfiguracion(mostrarBotonesConfiguracion);
+                    cmpMenu1.AccionesBotonConfiguracion(mostrarBotonesConfiguracion, menuDto);
+
+
                     break;
                 case IndiceMenu.Certificados:
                     SplashScreenManager.ShowForm(typeof(frmSaving));

@@ -1,6 +1,10 @@
 ﻿using AutomatMediciones.DesktopApp.Enums;
 using AutomatMediciones.DesktopApp.Helpers;
+using AutomatMediciones.Libs.Dtos;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace AutomatMediciones.DesktopApp.Componentes.Menu
@@ -10,9 +14,12 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
         public cmpMenu()
         {
             InitializeComponent();
+            Menu = new List<MenuDto>();
         }
 
-        public delegate void MenuSeleccionado(IndiceMenu indiceMenu);
+        public List<MenuDto> Menu { get; set; }
+
+        public delegate void MenuSeleccionado(IndiceMenu indiceMenu, MenuDto menuDto = null, List<MenuDto> menuCompleto = null);
         public event MenuSeleccionado OnMenuSeleccionado;
 
         bool expandirMenu;
@@ -36,32 +43,32 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             EstablecerColorBotonesMenu();
 
             cmpLogo1.InicializarControl();
+
+            Menu.ForEach(itemMenu =>
+            {
+                cmpItemMenu item = new cmpItemMenu();
+                item.OnMenuClick += OnItemMenuClick;
+                item.Menu = itemMenu;
+                item.ConstruirControl();
+                item.Dock = DockStyle.Top;
+                item.TabIndex = itemMenu.Posicion - 1;
+                pnlItems.Controls.Add(item);
+            });
+        }
+
+        private void OnItemMenuClick(IndiceMenu indiceMenu, MenuDto menuDto)
+        {
+            OnMenuSeleccionado?.Invoke(indiceMenu, menuDto, Menu);
         }
 
         private void EstablecerColorBotonesMenu()
         {
-            this.cmdIngresos.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
             this.cmdIngresosSimple.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
-
-            this.btnDiagnosticos.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
             this.btnDiagnosticosNoExpandido.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
-
-            this.btnConfiguracion.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
-
-            this.btnCertificados.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
             this.btnCertificadosContraido.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
-
-            this.btnCeldas.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
             this.btnCeldContraida.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
-
-            this.btnPatrones.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
             this.btnPatronContraido.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
-
-            this.btnCreacionPreIngreso.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
             this.cmdNuevoPreIngresoSimple.BackColor = ColorHelper.ObtenerColorEnRGB("Primary300");
-
-
-
         }
 
         private void EstablecerColorFondoMenu()
@@ -140,64 +147,49 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             OnMenuSeleccionado?.Invoke(IndiceMenu.Diagnosticos);
         }
 
-        private void btnTiposDeInstrumetnos_Click(object sender, System.EventArgs e)
-        {
-            OnMenuSeleccionado?.Invoke(IndiceMenu.TiposInstrumentos);
-        }
-
         private void btnCertificados_Click(object sender, System.EventArgs e)
         {
             OnMenuSeleccionado?.Invoke(IndiceMenu.Certificados);
         }
 
-        public void AccionesBotonConfiguracion(bool activo)
+        public void AccionesBotonConfiguracion(bool activo, MenuDto menuPadre = null, List<MenuDto>menuCompleto = null)
         {
-            pnlTipoInstrumento.Visible = activo;
-            pnlMarcas.Visible = activo;
-            pnlModelos.Visible = activo;
-            pnlInstrumento.Visible = activo;
-            pnlClasificaciones.Visible = activo;
+            if (activo)
+            {          
+                    menuPadre.Items.ForEach(itemDetalle =>
+                    {
+                        cmpItemMenu itemDetail = new cmpItemMenu();
+                        itemDetail.OnMenuClick += OnItemMenuClick;
+                        itemDetail.Menu = itemDetalle;
+                        itemDetail.Name = itemDetalle.Descripcion;
+                        itemDetail.ConstruirControl();
+                        itemDetail.Dock = DockStyle.Top;
+                        itemDetail.TabIndex = pnlItems.Controls.Count + 1;
+                    
+                        pnlItems.Controls.Add(itemDetail);
+                        itemDetail.BringToFront();
 
-            pnlSeparador.Visible = activo;
+                    });           
+            }
+            else{
+                menuPadre.Items.ForEach(itemMenu =>
+                {
+                    cmpItemMenu item = new cmpItemMenu();
+                    item.OnMenuClick += OnItemMenuClick;
+                    item.Menu = itemMenu;
+                    item.Name = itemMenu.Descripcion;
+                    item.ConstruirControl();
 
-            pnlTipoCelda.Visible = activo;
-            pnlVariableMedicion.Visible = activo;
-            pnlUsuarios.Visible = activo;
+                    pnlItems.Controls.RemoveByKey(item.Name);
+
+                });
+            }
         }
 
-        private void cmdClasificacionInstrumentos_Click(object sender, System.EventArgs e)
-        {
-            OnMenuSeleccionado?.Invoke(IndiceMenu.Clasificaciones);
-        }
-
-        private void cmdMarcas_Click(object sender, System.EventArgs e)
-        {
-            OnMenuSeleccionado?.Invoke(IndiceMenu.Marcas);
-        }
-
-        private void cmdModelos_Click(object sender, System.EventArgs e)
-        {
-            OnMenuSeleccionado?.Invoke(IndiceMenu.Modelos);
-        }
-
-        private void cmdInstrumentos_Click(object sender, System.EventArgs e)
-        {
-            OnMenuSeleccionado?.Invoke(IndiceMenu.Instrumentos);
-        }
-
+    
         private void cmdPatrones_Click(object sender, System.EventArgs e)
         {
             OnMenuSeleccionado?.Invoke(IndiceMenu.Patrones);
-        }
-
-        private void btnTiposDeInstrumento_Click(object sender, System.EventArgs e)
-        {
-            OnMenuSeleccionado?.Invoke(IndiceMenu.TiposInstrumentos);
-        }
-
-        private void cmdVariablesDeMedicion_Click(object sender, System.EventArgs e)
-        {
-            OnMenuSeleccionado?.Invoke(IndiceMenu.VariablesMedicion);
         }
 
         private void btnCeldas_Click(object sender, System.EventArgs e)
@@ -205,37 +197,17 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             OnMenuSeleccionado?.Invoke(IndiceMenu.Celdas);
         }
 
-        private void btnConfiguracion_Click(object sender, System.EventArgs e)
-        {
-            OnMenuSeleccionado?.Invoke(IndiceMenu.Configuracion);
-        }
-
-        private void cmdUsuarios_Click(object sender, System.EventArgs e)
-        {
-            OnMenuSeleccionado?.Invoke(IndiceMenu.Usuarios);
-        }
-
-        private void cmdTipoCelda_Click(object sender, System.EventArgs e)
-        {
-            OnMenuSeleccionado?.Invoke(IndiceMenu.TiposDeCelda);
-        }
-
-        private void btnCreacionPreIngreso_Click(object sender, System.EventArgs e)
-        {
-            OnMenuSeleccionado?.Invoke(IndiceMenu.PreIngreso);
-        }
-
         private void cmdNuevoPreIngresoSimple_Click(object sender, System.EventArgs e)
         {
             OnMenuSeleccionado?.Invoke(IndiceMenu.PreIngreso);
         }
 
-        private void btnPresupuestos_Click(object sender, System.EventArgs e)
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
-            OnMenuSeleccionado?.Invoke(IndiceMenu.Presupuestos);
+
         }
 
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        private void navigationMenus_Click(object sender, EventArgs e)
         {
 
         }
