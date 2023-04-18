@@ -3,6 +3,7 @@ using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos.Dtos;
 using AutomatMediciones.DesktopApp.Pantallas.Presupuestos.Dtos;
 using AutomatMediciones.DesktopApp.Pantallas.Productos;
+using AutomatMediciones.DesktopApp.Pantallas.Productos.Dtos;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraEditors.Controls;
@@ -16,17 +17,17 @@ using System.Windows.Forms;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
 {
-    public partial class frmCrearPresupuesto : DevExpress.XtraEditors.XtraForm
+    public partial class frmEditarPresupuesto : DevExpress.XtraEditors.XtraForm
     {
         private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
         private readonly ProductoService _productoService;
         private readonly PresupuestoService _presupuestoService;
         private readonly MonedaService _monedaService;
+        private readonly IngresoService _ingresoService;
 
         public delegate void ArbolCarpetasCreado(TreeView treeView);
         public event ArbolCarpetasCreado OnArbolCarpetasCreado;
 
-        public IngresoInstrumento IngresoInstrumento { get; set; }
         public List<ProductoDto> ProductosEnPresupuesto { get; set; }
         public TreeView TreeView { get; set; }
 
@@ -37,25 +38,30 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
         public PresupuestoDto Presupuesto { get; set; }
 
         MonedaDto monedaSeleccionada = new MonedaDto();
+        public PresupuestoDto presupuestoSeleccionado = new PresupuestoDto();
+        public List<IngresoInstrumentoDto> ingresoInstrumentoDtos { get; set; }
 
-        public frmCrearPresupuesto(IngresoInstrumento ingresoInstrumento, ProductoService productoService, PresupuestoService presupuestoService,
+        public frmEditarPresupuesto(PresupuestoDto presupuestoDto,IngresoService ingresoService, ProductoService productoService, PresupuestoService presupuestoService,
             MonedaService monedaService)
         {
             InitializeComponent();
             TreeView = new TreeView();
-            
-            IngresoInstrumento = ingresoInstrumento;
+
             _productoService = productoService;
             _presupuestoService = presupuestoService;
             _monedaService = monedaService;
+            _ingresoService = ingresoService;
+            Presupuesto = presupuestoDto;
+            
             ProductosEnPresupuesto = new List<ProductoDto>();
             EstablecerNombreYTituloDePantalla();
             EstablecerColorBotonPorDefecto();
             EstablecerColorBotonGuardar();
             ObtenerMonedas();
-            PrecargarDatos();
-
+            ObtenerIngresoInstrumento();
+            ObtenerProductosIngresoId();
             MonedaCotizacionActual = CargarMonedaCotizacionActual();
+            PrecargarDatos();
 
             txtCantidad.KeyPress += txtCantidadKeyPress;
             btnEliminar.Click += btnEliminarClick;
@@ -74,9 +80,31 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             RecalcularPrecioSegunMonedaSeleccionada();
         }
 
+        public List<ProductoDto>  ObtenerProductosIngresoId() 
+        {
+            var productosIngreso = _ingresoService.ObtenerProductosIngresoId(Presupuesto.IngresoId);
+            List<string> productoIds = new List<string>();
+            List<ProductoDto> productosDto = new List<ProductoDto>();
+            for (int i = 0; i < productosIngreso.Data.Count; i++)
+            {
+               string id = productosIngreso.Data[i].ProductoId;
+               productoIds.Add(id);
+            }
+            if(productoIds.Count > 0) 
+            {
+                foreach (var productoId in productoIds)
+                {
+                    var producto = _productoService.ObtenerProductoPorId(productoId).Data;
+                    productosDto.Add(producto);
+                }
+            }
+            gcProductosPresupuesto.DataSource = productosDto;
+            gcProductosPresupuesto.RefreshDataSource();
+            return productosDto;
+        }
         private void btnGuardarClick(object sender, EventArgs e)
         {
-            if (ProductosEnPresupuesto.Count == 0)
+            if (ProductosEnPresupuesto.Count == 0 && gvProductosPresupuesto.RowCount == 0)
             {
                 Notificaciones.MensajeAdvertencia("Es necesario que agregue al menos un producto al presupuesto.");
                 return;
@@ -88,8 +116,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
                 return;
             }
 
-            PrepararNuevoPresupuesto();
-            var resultadoIngresoPresupuesto = _presupuestoService.RegistrarPresupuesto(Presupuesto);
+            PrepararPresupuesto();
+            var resultadoIngresoPresupuesto = _presupuestoService.ActualizarPresupuesto(Presupuesto);
 
             if (resultadoIngresoPresupuesto.Type != TypeResponse.Ok)
             {
@@ -103,8 +131,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
 
         }
 
-        private void PrepararNuevoPresupuesto()
+        private void PrepararPresupuesto()
         {
+            IngresoDto ingresoDto = _ingresoService.ObtenerIngreso(Presupuesto.IngresoId).Data;
+            Dominio.Caracteristicas.Entidades.IngresoInstrumento ingresoInstrumento = _ingresoService.ObtenerIngresoInstrumentoIdIngreso(ingresoDto.IngresoId).Data;
             decimal total = 0;
             decimal subtotal = 0;
             decimal impuesto = 0;
@@ -112,12 +142,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             subtotal = ProductosEnPresupuesto.Sum(x => x.SubTotal);
             total = ProductosEnPresupuesto.Sum(x => x.Total);
             impuesto = ProductosEnPresupuesto.Sum(x => x.Impuesto);
-
-            Presupuesto.Nombre = $"P-{IngresoInstrumento.IngresoId}";
-            Presupuesto.Descripcion = "";
+            Presupuesto.Nombre = $"P-{ingresoInstrumento.IngresoId}";
+            Presupuesto.Nombre = txtClienteId.Text;
+            Presupuesto.Descripcion = txtNombreCliente.Text;
             Presupuesto.NroMoneda = monedaSeleccionada.Numero;
             Presupuesto.MonedaRecId = monedaSeleccionada.RecID;
-            Presupuesto.IDRef = IngresoInstrumento.Ingreso.ContactoId;
+            Presupuesto.IDRef = ingresoInstrumento.Ingreso.ContactoId;
             Presupuesto.Total = total;
             Presupuesto.Subtotal = subtotal;
             Presupuesto.Impuesto = impuesto;
@@ -132,12 +162,23 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             Presupuesto.Auditoria = "";
             Presupuesto.ImpuestosInternos = 0;
             Presupuesto.MotivoCierre = "";
-            Presupuesto.Productos = ProductosEnPresupuesto;
-            Presupuesto.IngresoId = IngresoInstrumento.IngresoId;
-            Presupuesto.ModeloId = IngresoInstrumento.Instrumento.Clasificacion.ModeloId;
-            Presupuesto.InstrumentoId = IngresoInstrumento.Instrumento.InstrumentoId;
-            Presupuesto.NombreCliente = IngresoInstrumento.Ingreso.NombreEmpresa;
-            Presupuesto.ClienteId = IngresoInstrumento.Ingreso.EmpresaId;
+            Presupuesto.Productos = new List<ProductoDto>();
+            int contador = gvProductosPresupuesto.RowCount;
+            List<ProductoDto> productoDtos = new List<ProductoDto>();
+            for (int i = 0; i < contador; i++)
+            {
+                var productoActual = gvProductosPresupuesto.GetRow(i) as ProductoDto;
+                if (productoActual is ProductoListaDto)
+                {
+                    productoDtos.Add(productoActual);
+                }
+            }
+            Presupuesto.Productos = productoDtos;
+            Presupuesto.IngresoId = ingresoInstrumento.IngresoId; 
+            Presupuesto.ModeloId = ingresoInstrumento.Instrumento.Clasificacion.ModeloId;
+            Presupuesto.InstrumentoId = ingresoInstrumento.Instrumento.InstrumentoId;
+            Presupuesto.NombreCliente = ingresoInstrumento.Ingreso.NombreEmpresa;
+            Presupuesto.ClienteId = ingresoInstrumento.Ingreso.EmpresaId;
         }
 
         private void SetearSummary()
@@ -234,12 +275,44 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             return filaSeleccionada;
         }
 
+        private void QuitarProductoDeLista(ProductoDto producto)
+        {
+            int contador = gvProductosPresupuesto.RowCount;
+            List<ProductoDto> productoDtos = new List<ProductoDto>();
+            for (int i = 0; i < contador; i++)
+            {
+                var productoActual = gvProductosPresupuesto.GetRow(i) as ProductoDto;
+                if (productoActual.RecID != producto.RecID)
+                {
+                    productoDtos.Add(productoActual);
+                }
+            }
+
+            gcProductosPresupuesto.DataSource = productoDtos;
+            gcProductosPresupuesto.RefreshDataSource();
+
+            SetearTotales();
+        }
         private void btnEliminarClick(object sender, EventArgs e)
         {
             var filaSeleccionada = ObtenerProductoSeleccionado();
             if (filaSeleccionada == null) return;
             QuitarProductoDeLista(filaSeleccionada);
+            gcProductosPresupuesto.RefreshDataSource();
 
+        }
+        private void ObtenerIngresoInstrumento() 
+        {
+            var resultado = _ingresoService.ObtenerIngresos();
+            if (resultado.Type != TypeResponse.Ok)
+            {
+                Notificaciones.MensajeError(resultado.Message);
+                return;
+            }
+
+            var resultad = _ingresoService.ObtenerIngresoInstrumento();
+            if(resultado.Type!=TypeResponse.Ok) Notificaciones.MensajeError(resultad.Message);
+            ingresoInstrumentoDtos = resultad.Data;
         }
 
         private void ObtenerMonedas()
@@ -280,41 +353,35 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
 
         private void EstablecerNombreYTituloDePantalla()
         {
-
             ctlEncabezadoPantalla ctlEncabezadoPantalla3 = new ctlEncabezadoPantalla();
             ctlEncabezadoPantalla3.Parent = this;
             ctlEncabezadoPantalla3.Height = 43;
             ctlEncabezadoPantalla3.Dock = DockStyle.Top;
-            ctlEncabezadoPantalla3.lblTitulo.Text = "Crear Presupuesto";
+            ctlEncabezadoPantalla3.lblTitulo.Text = "Editar Presupuesto";
             ctlEncabezadoPantalla3.EstablecerColoresDeFondoYLetra();
         }
 
         private void PrecargarDatos()
         {
-            var tipoInstrumento = IngresoInstrumento.Instrumento.Clasificacion.TipoInstrumento.Descripcion;
-            var marca = IngresoInstrumento.Instrumento.Clasificacion.Marca.Descripcion;
-            var modelo = IngresoInstrumento.Instrumento.Clasificacion.Modelo.Descripcion;
-            var serie = IngresoInstrumento.Instrumento.NumeroSerie;
-
-            txtContactoACargo.Text = $"{IngresoInstrumento.Ingreso.NombreContacto} {IngresoInstrumento.Ingreso.ApellidoContacto}";
-            txtCliente.Text = IngresoInstrumento.Ingreso.NombreEmpresa;
-            txtNumeroServicioTecnico.Text = IngresoInstrumento.NumeroServicioTecnico;
-
-            txtClasificacion.Text = $"{tipoInstrumento} / {marca} / {modelo} - Serie: {serie}";
-            txtTipoOrdenTrabajo.Text = IngresoInstrumento.TipoTrabajo.Descripcion;
-
-            IngresoInstrumento.FechaInicio = IngresoInstrumento.FechaInicio == null ? DateTime.Now : IngresoInstrumento.FechaInicio;
-
-            CargarPresupuestos();
+            IngresoDto ingresoDto = _ingresoService.ObtenerIngreso(Presupuesto.IngresoId).Data;
+            Dominio.Caracteristicas.Entidades.IngresoInstrumento ingresoInstrumento = _ingresoService.ObtenerIngresoInstrumentoIdIngreso(ingresoDto.IngresoId).Data;
+            txtClienteId.Text = ingresoDto.NombreEmpresa;
+            txtNombreCliente.Text = ingresoDto.NombreContacto;
+            txtNoServicioTecnico.Text = ingresoInstrumento.NumeroServicioTecnico.ToString();
+            txtClasificacion.Text = ingresoInstrumento.Instrumento.Clasificacion.TipoInstrumento.Descripcion;
+            txtNombrePresupuesto.Text = Presupuesto.Nombre;
         }
 
         private void CargarPresupuestos()
         {
             int modeloId; int instrumentoId; string clienteId;
 
-            modeloId = IngresoInstrumento.Instrumento.Clasificacion.Modelo.ModeloId;
-            instrumentoId = IngresoInstrumento.Instrumento.InstrumentoId;
-            clienteId = IngresoInstrumento.Ingreso.EmpresaId;
+            //modeloId = IngresoInstrumento.Instrumento.Clasificacion.Modelo.ModeloId;
+            modeloId = 3;
+            //instrumentoId = IngresoInstrumento.Instrumento.InstrumentoId;
+            instrumentoId = 2;
+            //clienteId = IngresoInstrumento.Ingreso.EmpresaId;
+            clienteId = "Id de la empresa";
 
             var resultado = _presupuestoService.ObtenerPresupuestosPorInstrumentoClienteYmodelo(instrumentoId, clienteId, modeloId);
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
@@ -476,6 +543,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             });
 
             ProductosEnPresupuesto.AddRange(productos);
+            ProductosEnPresupuesto.AddRange(ObtenerProductosIngresoId());
             gcProductosPresupuesto.DataSource = ProductosEnPresupuesto;
             gcProductosPresupuesto.RefreshDataSource();
 
@@ -511,14 +579,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             SetearSummary();
         }
 
-        private void QuitarProductoDeLista(ProductoDto producto)
-        {
-            ProductosEnPresupuesto = ProductosEnPresupuesto.Where(x => x.RecID != producto.RecID).ToList();
-            gcProductosPresupuesto.DataSource = ProductosEnPresupuesto;
-            gcProductosPresupuesto.RefreshDataSource();
-
-            SetearTotales();
-        }
+        
 
         private void frmMaestroProductosOnListaProductosAgregados(List<ProductoDto> productos)
         {
@@ -530,9 +591,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             var frmHistorial = new frmHistorialPresupuesto(serviceProvider.GetService<PresupuestoService>(), serviceProvider.GetService<ProductoService>());
             frmHistorial.ProductosEnPresupuesto = ProductosEnPresupuesto;
             frmHistorial.OnListaProductosAgregados += frmHistorialOnListaProductosAgregados;
-            frmHistorial.ModeloId = IngresoInstrumento.Instrumento.Clasificacion.ModeloId;
-            frmHistorial.InstrumentoId = IngresoInstrumento.Instrumento.InstrumentoId;
-            frmHistorial.ClienteId = IngresoInstrumento.Ingreso.EmpresaId;
+            //frmHistorial.ModeloId = IngresoInstrumento.Instrumento.Clasificacion.ModeloId;
+            frmHistorial.ModeloId = 1;
+            //frmHistorial.InstrumentoId = IngresoInstrumento.Instrumento.InstrumentoId;
+            frmHistorial.InstrumentoId = 1;
+            //frmHistorial.ClienteId = IngresoInstrumento.Ingreso.EmpresaId;
+            frmHistorial.ClienteId = "Empresa";
             frmHistorial.CargaInicial();
             frmHistorial.ShowDialog();
         }

@@ -3,8 +3,8 @@ using AutomatMediciones.Dominio.Caracteristicas.Entidades;
 using AutomatMediciones.Dominio.Infraestructura;
 using AutomatMediciones.Libs.Dtos;
 using Microsoft.EntityFrameworkCore;
-using Nagaira.Herramientas.Standard.Helpers.Exceptions;
-using Nagaira.Herramientas.Standard.Helpers.Responses;
+using Nagaira.Core.Extentions.Exceptions;
+using Nagaira.Core.Extentions.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +34,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<VariableMedicionDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<VariableMedicionDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -49,7 +49,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<VariableMedicionDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<VariableMedicionDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -97,7 +97,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             catch (Exception exc)
             {
                 _tacticaDbContext.Database.RollbackTransaction();
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
 
@@ -109,7 +109,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                 if (variableMedicionBd == null)
                 {
-                    return Response<bool>.Error("La Variable de medición no fue encontrada en almacén de datos", false);
+                    return Response<bool>.Excepcion("La Variable de medición no fue encontrada en almacén de datos", false);
                 }
 
                 variableMedicionBd.DescripcionCorta = variableMedicionDto.DescripcionCorta;
@@ -126,7 +126,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
     }

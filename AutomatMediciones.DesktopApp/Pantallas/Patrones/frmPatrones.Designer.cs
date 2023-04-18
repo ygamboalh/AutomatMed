@@ -79,10 +79,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.panel1.Controls.Add(this.btnAgregarNuevoPatron);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(8, 7, 0, 7);
-            this.panel1.Size = new System.Drawing.Size(957, 53);
+            this.panel1.Padding = new System.Windows.Forms.Padding(14, 11, 0, 11);
+            this.panel1.Size = new System.Drawing.Size(1641, 83);
             this.panel1.TabIndex = 34;
             // 
             // btnExportarExcel
@@ -96,10 +96,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.btnExportarExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnExportarExcel.IconSize = 30;
             this.btnExportarExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportarExcel.Location = new System.Drawing.Point(746, 7);
-            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnExportarExcel.Location = new System.Drawing.Point(1279, 11);
+            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
             this.btnExportarExcel.Name = "btnExportarExcel";
-            this.btnExportarExcel.Size = new System.Drawing.Size(211, 39);
+            this.btnExportarExcel.Size = new System.Drawing.Size(362, 61);
             this.btnExportarExcel.TabIndex = 166;
             this.btnExportarExcel.Text = "Exportar a Excel";
             this.btnExportarExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -117,10 +117,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.btnAgregarNuevoPatron.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnAgregarNuevoPatron.IconSize = 30;
             this.btnAgregarNuevoPatron.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAgregarNuevoPatron.Location = new System.Drawing.Point(8, 7);
-            this.btnAgregarNuevoPatron.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnAgregarNuevoPatron.Location = new System.Drawing.Point(14, 11);
+            this.btnAgregarNuevoPatron.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
             this.btnAgregarNuevoPatron.Name = "btnAgregarNuevoPatron";
-            this.btnAgregarNuevoPatron.Size = new System.Drawing.Size(211, 39);
+            this.btnAgregarNuevoPatron.Size = new System.Drawing.Size(362, 61);
             this.btnAgregarNuevoPatron.TabIndex = 16;
             this.btnAgregarNuevoPatron.Text = "Nuevo Patrón";
             this.btnAgregarNuevoPatron.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -130,17 +130,17 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             // gcPatrones
             // 
             this.gcPatrones.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcPatrones.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.gcPatrones.Location = new System.Drawing.Point(0, 53);
+            this.gcPatrones.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
+            this.gcPatrones.Location = new System.Drawing.Point(0, 83);
             this.gcPatrones.MainView = this.gvPatrones;
-            this.gcPatrones.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.gcPatrones.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
             this.gcPatrones.Name = "gcPatrones";
-            this.gcPatrones.Padding = new System.Windows.Forms.Padding(5);
+            this.gcPatrones.Padding = new System.Windows.Forms.Padding(9, 8, 9, 8);
             this.gcPatrones.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.cmdEditar,
             this.cmdDesactivar,
             this.cmdVerPatron});
-            this.gcPatrones.Size = new System.Drawing.Size(957, 468);
+            this.gcPatrones.Size = new System.Drawing.Size(1641, 731);
             this.gcPatrones.TabIndex = 35;
             this.gcPatrones.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvPatrones});
@@ -155,6 +155,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.colEditar,
             this.colDesactivar,
             this.colVerPatron});
+            this.gvPatrones.DetailHeight = 547;
             this.gvPatrones.GridControl = this.gcPatrones;
             this.gvPatrones.Name = "gvPatrones";
             this.gvPatrones.OptionsView.ShowAutoFilterRow = true;
@@ -165,60 +166,60 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             // 
             this.colId.Caption = "Id";
             this.colId.FieldName = "PatronId";
-            this.colId.MinWidth = 24;
+            this.colId.MinWidth = 41;
             this.colId.Name = "colId";
             this.colId.OptionsColumn.AllowEdit = false;
             this.colId.OptionsColumn.ReadOnly = true;
-            this.colId.Width = 198;
+            this.colId.Width = 339;
             // 
             // colDescripcion
             // 
             this.colDescripcion.Caption = "Descripción";
             this.colDescripcion.FieldName = "Nombre";
-            this.colDescripcion.MinWidth = 24;
+            this.colDescripcion.MinWidth = 41;
             this.colDescripcion.Name = "colDescripcion";
             this.colDescripcion.OptionsColumn.AllowEdit = false;
             this.colDescripcion.OptionsColumn.AllowFocus = false;
             this.colDescripcion.OptionsColumn.ReadOnly = true;
             this.colDescripcion.Visible = true;
             this.colDescripcion.VisibleIndex = 0;
-            this.colDescripcion.Width = 385;
+            this.colDescripcion.Width = 660;
             // 
             // colFechaCaducidad
             // 
             this.colFechaCaducidad.Caption = "Fecha de Caducidad";
             this.colFechaCaducidad.FieldName = "FechaCaducidad";
-            this.colFechaCaducidad.MinWidth = 25;
+            this.colFechaCaducidad.MinWidth = 43;
             this.colFechaCaducidad.Name = "colFechaCaducidad";
             this.colFechaCaducidad.OptionsColumn.AllowEdit = false;
             this.colFechaCaducidad.OptionsColumn.AllowFocus = false;
             this.colFechaCaducidad.OptionsColumn.ReadOnly = true;
             this.colFechaCaducidad.Visible = true;
             this.colFechaCaducidad.VisibleIndex = 1;
-            this.colFechaCaducidad.Width = 182;
+            this.colFechaCaducidad.Width = 312;
             // 
             // colLink
             // 
             this.colLink.Caption = "Archivo Adjunto";
             this.colLink.FieldName = "Link";
-            this.colLink.MinWidth = 25;
+            this.colLink.MinWidth = 43;
             this.colLink.Name = "colLink";
             this.colLink.OptionsColumn.AllowEdit = false;
             this.colLink.OptionsColumn.AllowFocus = false;
             this.colLink.OptionsColumn.ReadOnly = true;
             this.colLink.Visible = true;
             this.colLink.VisibleIndex = 2;
-            this.colLink.Width = 182;
+            this.colLink.Width = 312;
             // 
             // colEditar
             // 
             this.colEditar.ColumnEdit = this.cmdEditar;
-            this.colEditar.MaxWidth = 30;
-            this.colEditar.MinWidth = 25;
+            this.colEditar.MaxWidth = 51;
+            this.colEditar.MinWidth = 43;
             this.colEditar.Name = "colEditar";
             this.colEditar.Visible = true;
             this.colEditar.VisibleIndex = 3;
-            this.colEditar.Width = 30;
+            this.colEditar.Width = 51;
             // 
             // cmdEditar
             // 
@@ -232,12 +233,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             // colDesactivar
             // 
             this.colDesactivar.ColumnEdit = this.cmdDesactivar;
-            this.colDesactivar.MaxWidth = 30;
-            this.colDesactivar.MinWidth = 25;
+            this.colDesactivar.MaxWidth = 51;
+            this.colDesactivar.MinWidth = 43;
             this.colDesactivar.Name = "colDesactivar";
             this.colDesactivar.Visible = true;
             this.colDesactivar.VisibleIndex = 4;
-            this.colDesactivar.Width = 30;
+            this.colDesactivar.Width = 51;
             // 
             // cmdDesactivar
             // 
@@ -251,12 +252,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             // colVerPatron
             // 
             this.colVerPatron.ColumnEdit = this.cmdVerPatron;
-            this.colVerPatron.MaxWidth = 30;
-            this.colVerPatron.MinWidth = 25;
+            this.colVerPatron.MaxWidth = 51;
+            this.colVerPatron.MinWidth = 43;
             this.colVerPatron.Name = "colVerPatron";
             this.colVerPatron.Visible = true;
             this.colVerPatron.VisibleIndex = 5;
-            this.colVerPatron.Width = 30;
+            this.colVerPatron.Width = 51;
             // 
             // cmdVerPatron
             // 
@@ -271,10 +272,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             // 
             this.panel2.Controls.Add(this.lblTotal);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 521);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel2.Location = new System.Drawing.Point(0, 814);
+            this.panel2.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(957, 27);
+            this.panel2.Size = new System.Drawing.Size(1641, 42);
             this.panel2.TabIndex = 36;
             // 
             // lblTotal
@@ -283,22 +284,23 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Patrones
             this.lblTotal.Appearance.Options.UseFont = true;
             this.lblTotal.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblTotal.Location = new System.Drawing.Point(0, 0);
-            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(7, 17);
+            this.lblTotal.Size = new System.Drawing.Size(12, 30);
             this.lblTotal.TabIndex = 27;
             this.lblTotal.Text = "0";
             this.lblTotal.Visible = false;
             // 
             // frmPatrones
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(957, 548);
+            this.ClientSize = new System.Drawing.Size(1641, 856);
             this.Controls.Add(this.gcPatrones);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "frmPatrones";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Patrónes";

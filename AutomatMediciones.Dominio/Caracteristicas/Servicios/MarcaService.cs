@@ -1,8 +1,8 @@
 ﻿using AutomatMediciones.Dominio.Caracteristicas.Entidades;
 using AutomatMediciones.Dominio.Infraestructura;
 using AutomatMediciones.Libs.Dtos;
-using Nagaira.Herramientas.Standard.Helpers.Exceptions;
-using Nagaira.Herramientas.Standard.Helpers.Responses;
+using Nagaira.Core.Extentions.Exceptions;
+using Nagaira.Core.Extentions.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +34,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<MarcaDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<MarcaDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -54,7 +54,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
 
@@ -66,7 +66,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                 if (marcaBd == null)
                 {
-                    return Response<bool>.Error("La marca no fue encontrado en almacén de datos", false);
+                    return Response<bool>.Excepcion("La marca no fue encontrado en almacén de datos", false);
                 }
 
 
@@ -78,7 +78,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
     }

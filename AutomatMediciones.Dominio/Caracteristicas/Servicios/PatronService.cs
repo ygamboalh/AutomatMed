@@ -3,8 +3,8 @@ using AutomatMediciones.Dominio.Caracteristicas.Entidades;
 using AutomatMediciones.Dominio.Infraestructura;
 using AutomatMediciones.Libs.Dtos;
 using Microsoft.EntityFrameworkCore;
-using Nagaira.Herramientas.Standard.Helpers.Exceptions;
-using Nagaira.Herramientas.Standard.Helpers.Responses;
+using Nagaira.Core.Extentions.Exceptions;
+using Nagaira.Core.Extentions.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,7 +68,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             catch (Exception exc)
             {
                 _automatMedicionesDbContext.Database.RollbackTransaction();
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
 
@@ -77,7 +77,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             try
             {
                 var patronDb = _automatMedicionesDbContext.Patrones.AsQueryable().FirstOrDefault(x => x.PatronId == patronDto.PatronId);
-                if (patronDb == null) return Response<bool>.Error("No se pudo encontrar este patrón en almacén de datos.", false);
+                if (patronDb == null) return Response<bool>.Excepcion("No se pudo encontrar este patrón en almacén de datos.", false);
 
                 patronDb.Nombre = patronDto.Nombre;
                 patronDb.Link = patronDto.Link;
@@ -119,7 +119,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             catch (Exception exc)
             {
                 _automatMedicionesDbContext.Database.RollbackTransaction();
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
 
@@ -128,7 +128,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             try
             {
                 var patronDb = _automatMedicionesDbContext.Patrones.FirstOrDefault(x => x.PatronId == patronDto.PatronId);
-                if (patronDb == null) return Response<bool>.Error("No se pudo encontrar este patrón en almacén de datos.", false);
+                if (patronDb == null) return Response<bool>.Excepcion("No se pudo encontrar este patrón en almacén de datos.", false);
 
                 patronDb.Activo = false;
 
@@ -138,7 +138,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
 
@@ -147,7 +147,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             try
             {
                 var variablePatronDb = _automatMedicionesDbContext.VariablesPatrones.FirstOrDefault(x => x.VariablePatronId == variablePatronDto.VariablePatronId);
-                if (variablePatronDb == null) return Response<bool>.Error("No se pudo encontrar esta vinculación en almacén de datos.", false);
+                if (variablePatronDb == null) return Response<bool>.Excepcion("No se pudo encontrar esta vinculación en almacén de datos.", false);
 
                 variablePatronDb.Activo = false;
 
@@ -157,7 +157,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
 
@@ -173,7 +173,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<ICollection<PatronDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<ICollection<PatronDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -186,7 +186,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<PatronDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<PatronDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -199,7 +199,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<VariablePatronDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<VariablePatronDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 

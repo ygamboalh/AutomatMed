@@ -7,8 +7,8 @@ using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
-using Nagaira.Herramientas.Standard.Helpers.Enums;
-using Nagaira.Herramientas.Standard.Helpers.Responses;
+using Nagaira.Core.Extentions.Enumeradores;
+using Nagaira.Core.Extentions.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -341,7 +341,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
             try
             {
                 var resultado = _instrumentoService.RegistrarInstrumento(NuevoInstrumento);
-                if (resultado.Type == TypeResponse.ErrorValidation)
+                if (resultado.Type == TypeResponse.Advertencia)
                 {
                     if (Notificaciones.PreguntaConfirmacion($"{resultado.Message} ¿Desea actualizar la empresa vinculada al instrumento?") == DialogResult.Yes)
                     {
@@ -357,7 +357,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos
                     }
                     return false;
                 }
-                if (resultado.Type != TypeResponse.Ok && resultado.Type != TypeResponse.ErrorValidation)
+                if (resultado.Type != TypeResponse.Ok && resultado.Type != TypeResponse.Excepcion)
                 {
                     Notificaciones.MensajeError(resultado.Message);
                     return false;

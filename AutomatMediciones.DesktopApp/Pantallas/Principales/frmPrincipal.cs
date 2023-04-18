@@ -3,6 +3,7 @@ using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.DesktopApp.Pantallas.Celdas;
 using AutomatMediciones.DesktopApp.Pantallas.CertificadosDeCalibracion;
 using AutomatMediciones.DesktopApp.Pantallas.Clasificaciones;
+using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos.Dtos;
 using AutomatMediciones.DesktopApp.Pantallas.Ingresos;
 using AutomatMediciones.DesktopApp.Pantallas.Ingresos.Enums;
 using AutomatMediciones.DesktopApp.Pantallas.Instrumentos;
@@ -19,8 +20,8 @@ using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
-using Nagaira.Herramientas.Standard.Helpers.Enums;
-using Nagaira.Herramientas.Standard.Helpers.Responses;
+using Nagaira.Core.Extentions.Enumeradores;
+using Nagaira.Core.Extentions.Responses;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -32,6 +33,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
         private ServiceProvider serviceProvider = Program.services.BuildServiceProvider();
         private bool mostrarBotonesConfiguracion = false;
         private readonly MenuService _menuService;
+        private readonly IngresoInstrumento IngresoInstrumento;
+        
 
         public TreeView TreeView { get; set; }
 
@@ -39,9 +42,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
         {
             InitializeComponent();
             TreeView = new TreeView();
-
+            
+            IngresoInstrumento = new IngresoInstrumento();
             _menuService = serviceProvider.GetService<MenuService>();
-           
             var menuResponse = _menuService.ObtenerMenu();
             if (menuResponse.Type != TypeResponse.Ok) return;
 
@@ -54,7 +57,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
             EstablecerEtiquetaVersionAplicacion();
             EstablecerEtiquetaNombreServidorBaseDatos();
             EstablecerColorFondoBarraEstado();
-
             this.cmpMenu1.InicializarControl();
         }
 
@@ -220,12 +222,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Principales
                     break;
                 case IndiceMenu.Presupuestos:
                     SplashScreenManager.ShowForm(typeof(frmSaving));
-                    var presupuestoForm = new frmPresupuestos(serviceProvider.GetService<ProductoService>(), serviceProvider.GetService<PresupuestoService>());
+                    var presupuestoForm = new frmPresupuestos(serviceProvider.GetService<IngresoService>(), serviceProvider.GetService<ProductoService>(), serviceProvider.GetService<PresupuestoService>());
                     XtraForm presupuesto = presupuestoForm;
                     AgregarPantalla(ref presupuesto);
                     SplashScreenManager.CloseForm();
                     break;
-
             }
         }
 

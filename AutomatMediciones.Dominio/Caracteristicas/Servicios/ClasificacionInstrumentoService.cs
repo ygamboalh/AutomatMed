@@ -2,9 +2,10 @@
 using AutomatMediciones.Dominio.Caracteristicas.Entidades;
 using AutomatMediciones.Dominio.Infraestructura;
 using AutomatMediciones.Libs.Dtos;
+
 using Microsoft.EntityFrameworkCore;
-using Nagaira.Herramientas.Standard.Helpers.Exceptions;
-using Nagaira.Herramientas.Standard.Helpers.Responses;
+using Nagaira.Core.Extentions.Exceptions;
+using Nagaira.Core.Extentions.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<ClasificacionInstrumentoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<ClasificacionInstrumentoDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -50,7 +51,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                                                                                                      x.Activo);
                 if (existeEstaClasificacion)
                 {
-                    return Response<bool>.Error("La clasificación que intenta registrar ya existe, por favor verifique la información ingresada e intente nuevamente.", false);
+                    return Response<bool>.Excepcion("La clasificación que intenta registrar ya existe, por favor verifique la información ingresada e intente nuevamente.", false);
                 }
 
                 ClasificacionInstrumento clasificacionInstrumento = new ClasificacionInstrumento
@@ -69,7 +70,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
 
@@ -81,7 +82,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                 if (clasificacionBd == null)
                 {
-                    return Response<bool>.Error("La clasificación no fue encontrado en almacén de datos", false);
+                    return Response<bool>.Excepcion("La clasificación no fue encontrado en almacén de datos", false);
                 }
 
                 clasificacionBd.TipoInstrumentoId = clasificacionInstrumentoDto.TipoInstrumentoId;
@@ -95,7 +96,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
 
@@ -107,7 +108,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                 if (clasificacionBd == null)
                 {
-                    return Response<bool>.Error("La clasificación no fue encontrado en almacén de datos", false);
+                    return Response<bool>.Excepcion("La clasificación no fue encontrado en almacén de datos", false);
                 }
 
                 clasificacionBd.Activo = false;
@@ -118,7 +119,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
     }

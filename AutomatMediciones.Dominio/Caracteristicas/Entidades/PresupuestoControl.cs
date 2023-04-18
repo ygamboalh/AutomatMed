@@ -6,5 +6,6 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Entidades
     {
         public int Id { get; set; }
         public DateTime FechaRegistro { get; set; }
+        public int Estado { get; set; }
     }
 }

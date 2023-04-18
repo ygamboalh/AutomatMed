@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using AutomatMediciones.Dominio.Infraestructura;
 using AutomatMediciones.Libs.Dtos;
-using Nagaira.Herramientas.Standard.Helpers.Exceptions;
-using Nagaira.Herramientas.Standard.Helpers.Responses;
+using Nagaira.Core.Extentions.Exceptions;
+using Nagaira.Core.Extentions.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,7 +57,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<EmpresaDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<EmpresaDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -99,7 +99,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<EmpresaDto>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<EmpresaDto>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
     }

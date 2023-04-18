@@ -4,8 +4,8 @@ using AutomatMediciones.Dominio.Infraestructura;
 using AutomatMediciones.Libs.Dtos;
 using AutomatMediciones.Libs.Dtos.View;
 using Microsoft.EntityFrameworkCore;
-using Nagaira.Herramientas.Standard.Helpers.Exceptions;
-using Nagaira.Herramientas.Standard.Helpers.Responses;
+using Nagaira.Core.Extentions.Exceptions;
+using Nagaira.Core.Extentions.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +37,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<PresupuestoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<PresupuestoDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -52,24 +52,24 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                                                                                                  x.ClienteId == clienteId)
                                                                                      .Select(x => x.PresupuestoControlId).ToList();
 
-                if (!productosIngresos.Any()) return Response<List<PresupuestoDto>>.Ok("Ok",new List<PresupuestoDto>());
+                if (!productosIngresos.Any()) return Response<List<PresupuestoDto>>.Ok("Ok", new List<PresupuestoDto>());
 
 
                 var presupuestosIds = _automatMedicionesDbContext.PresupuestosControles.Where(x => productosIngresos.Contains(x.Id))
                                                                                        .Select(x => x.Id.ToString().PadLeft(12, pad)).ToList();
 
                 if (!presupuestosIds.Any()) return Response<List<PresupuestoDto>>.Ok("Ok", new List<PresupuestoDto>());
-             
+
                 var presupuestos = _tacticaDbContext.Presupuestos.AsQueryable().Include(x => x.PresupuestoItems).Include(x => x.Moneda)
                                                                  .Where(x => presupuestosIds.Contains(x.RecID)).ToList();
 
-            
+
                 return Response<List<PresupuestoDto>>.Ok("Ok", _imapper.Map<List<PresupuestoDto>>(presupuestos));
 
             }
             catch (Exception exc)
             {
-                return Response<List<PresupuestoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<PresupuestoDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -106,7 +106,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             try
             {
                 var configuracionMonedasResponse = _monedaService.ObtenerMonedaCotizacionActual();
-                if (configuracionMonedasResponse.Type != TypeResponse.Ok) return Response<PresupuestoDto>.Error("No se pudo obtener configuración de monedas extranjeras", null);
+                if (configuracionMonedasResponse.Type != TypeResponse.Ok) return Response<PresupuestoDto>.Excepcion("No se pudo obtener configuración de monedas extranjeras", null);
 
                 var configuracionMonedaCotizacionActual = configuracionMonedasResponse.Data;
 
@@ -236,7 +236,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                         NroPrecio = 1,
                         NroMonedaComisionTerceros = 1,
                         FechaCierre = DateTime.Now,
-                        FechaEmision = DateTime.Now                      
+                        FechaEmision = DateTime.Now
                     };
 
                     presupuestoItem.Presupuesto = null;
@@ -258,7 +258,174 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 _automatMedicionesDbContext.Database.RollbackTransaction();
                 _tacticaDbContext.Database.RollbackTransaction();
                 string message = exc.InnerException == null ? exc.Message : exc.InnerException.Message;
-                return Response<PresupuestoDto>.Error(message, null);
+                return Response<PresupuestoDto>.Excepcion(message, null);
+            }
+        }
+
+        public string ObtenerPosicionesDeCadena(string cadena)
+        {
+            string numerosFinales = "";
+            int indice = cadena.Length - 1;
+            if (cadena.Length == 12 && cadena.StartsWith("a"))
+            {
+                while (indice >= 0 && Char.IsDigit(cadena[indice]))
+                {
+                    numerosFinales = cadena[indice] + numerosFinales;
+                    indice--;
+                }
+            }
+            if (numerosFinales.Length == 0)
+                return cadena;
+            return numerosFinales;
+        }
+
+        public Response<PresupuestoControl> EliminarPresupuestoControl(int presupuestoControlId) 
+        {
+            try
+            {
+                var presupuestoControlDb = _automatMedicionesDbContext.PresupuestosControles.FirstOrDefault(x => x.Id == presupuestoControlId);
+                _automatMedicionesDbContext.Database.BeginTransaction();
+                _automatMedicionesDbContext.Remove(presupuestoControlDb);
+                _automatMedicionesDbContext.SaveChanges();
+                _automatMedicionesDbContext.Database.CommitTransaction();
+                return Response<PresupuestoControl>.Ok("¡El presupuesto control se eliminó exitosamente!", null);
+            }
+            catch (Exception exc) 
+            {
+                _automatMedicionesDbContext.Database.RollbackTransaction();
+                return Response<PresupuestoControl>.Excepcion(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
+        public Response<List<ProductoIngresoDto>> EliminarProductosIngresos(int presupuestoControlId)
+        {
+            try
+            {
+                var productoIngresoDb = _automatMedicionesDbContext.ProductosIngresos.Where(x => x.PresupuestoControlId == presupuestoControlId);
+
+                _automatMedicionesDbContext.Database.BeginTransaction();
+                _automatMedicionesDbContext.RemoveRange(productoIngresoDb);
+                _automatMedicionesDbContext.SaveChanges();
+                _automatMedicionesDbContext.Database.CommitTransaction();
+                return Response<List<ProductoIngresoDto>>.Ok("¡Los productos ingresos se eliminaron exitosamente!", null);
+            }
+            catch (Exception exc)
+            {
+                _automatMedicionesDbContext.Database.RollbackTransaction();
+                return Response<List<ProductoIngresoDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
+        public Response<List<PresupuestoItemControl>> EliminarPresupuestoItemControles(int presupuestoControlId)
+        {
+            try
+            {
+                var presupuestoItemControlDb = _automatMedicionesDbContext.PresupuestosItemsControles.Where(x => x.PresupuestoControlId == presupuestoControlId);
+
+                _automatMedicionesDbContext.Database.BeginTransaction();
+                _automatMedicionesDbContext.RemoveRange(presupuestoItemControlDb);
+                _automatMedicionesDbContext.SaveChanges();
+                _automatMedicionesDbContext.Database.CommitTransaction();
+                return Response<List<PresupuestoItemControl>>.Ok("¡Los presupuestos item controles se eliminaron exitosamente!", null);
+            }
+            catch (Exception exc)
+            {
+                _automatMedicionesDbContext.Database.RollbackTransaction();
+                return Response<List<PresupuestoItemControl>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
+        public Response<Presupuesto> DesactivarPresupuesto(string presupuestoId)
+        {
+            try
+            {
+                var presupuestoDb = _tacticaDbContext.Presupuestos.FirstOrDefault(x => x.RecID == presupuestoId);
+
+                _automatMedicionesDbContext.Database.BeginTransaction();
+
+                string id = presupuestoDb.RecID;
+                int presupuestoIdControl = Int16.Parse(ObtenerPosicionesDeCadena(id));
+
+                var presupuestoControl = ObtenerPresupuestoControl(presupuestoIdControl);
+                var presupuestoControlDb = _automatMedicionesDbContext.PresupuestosControles.FirstOrDefault(x => x.Id == presupuestoControl.Data.Id);
+                presupuestoControlDb.Estado = 0;
+
+                
+                _automatMedicionesDbContext.SaveChanges();
+                _automatMedicionesDbContext.Database.CommitTransaction();
+
+                return Response<Presupuesto>.Ok("¡El presupuesto se desactivó exitosamente!", null);
+            }
+            catch (Exception exc)
+            {
+                _automatMedicionesDbContext.Database.RollbackTransaction();
+                return Response<Presupuesto>.Excepcion(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
+        public Response<PresupuestoDto> ActualizarPresupuesto(PresupuestoDto presupuestoDto)
+        {
+
+            try
+            {
+                var presupuestoDb = _tacticaDbContext.Presupuestos.FirstOrDefault(x => x.RecID == presupuestoDto.RecID);
+
+                if (presupuestoDb == null) return Response<PresupuestoDto>.Excepcion("No se encontró ningún registro en almacén de datos.", null);
+
+                _tacticaDbContext.Database.BeginTransaction();
+                _automatMedicionesDbContext.Database.BeginTransaction();
+
+                presupuestoDb = _imapper.Map<Presupuesto>(presupuestoDto);
+                int idPresupuesto = Int16.Parse(ObtenerPosicionesDeCadena(presupuestoDto.RecID));
+                var ingresoInstrumento = _automatMedicionesDbContext.IngresosInstrumentos.FirstOrDefault(x => x.IngresoId == presupuestoDto.IngresoId);
+                var presupuestoControlId = _automatMedicionesDbContext.PresupuestosControles.FirstOrDefault(x => x.Id == idPresupuesto);
+                var presupuestoItemControlId = _automatMedicionesDbContext.PresupuestosItemsControles
+                    .FirstOrDefault(x => x.PresupuestoControlId == presupuestoControlId.Id);
+                if (presupuestoDto.Productos.Any())
+                {
+                    int correlativoIntrumento = presupuestoDto.Productos.Count;
+
+                    foreach (var producto in presupuestoDto.Productos)
+                    {
+                        var productoingreso = new ProductoIngreso
+                        {
+                            ProductoId = producto.RecID,
+                            Descripcion = producto.Descripcion,
+                            FechaRegistro = DateTime.Now,
+                            IngresoId = presupuestoDto.IngresoId,
+                            Cantidad = producto.Cantidad,
+                            Precio = producto.Precio,
+                            ClienteId = ingresoInstrumento.Ingreso.EmpresaId,
+                            NombreCliente = ingresoInstrumento.Ingreso.NombreEmpresa,
+                            Activo = true,
+                            PresupuestoControlId = presupuestoControlId.Id,
+                            InstrumentoId = ingresoInstrumento.InstrumentoId,
+                            PresupuestoItemControlId = presupuestoItemControlId.Id,
+                        };
+
+                        _automatMedicionesDbContext.ProductosIngresos.Add(productoingreso);
+
+                        correlativoIntrumento++;
+                    }
+
+                }
+                presupuestoDto.RecID = presupuestoDb.RecID;
+
+                _tacticaDbContext.SaveChanges();
+                _automatMedicionesDbContext.SaveChanges();
+                _tacticaDbContext.Database.CommitTransaction();
+                _automatMedicionesDbContext.Database.CommitTransaction();
+
+                var presupuestoRegistrado = _tacticaDbContext.Presupuestos.FirstOrDefault(x => x.RecID == presupuestoDb.RecID);
+
+
+                return Response<PresupuestoDto>.Ok("¡El presupuesto se guardó exitosamente!", _imapper.Map<PresupuestoDto>(presupuestoRegistrado));
+            }
+            catch (Exception exc)
+            {
+                _tacticaDbContext.Database.RollbackTransaction();
+                _automatMedicionesDbContext.Database.RollbackTransaction();
+                return Response<PresupuestoDto>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -272,7 +439,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<PresupuestoItemDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<PresupuestoItemDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -286,24 +453,24 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                                                                                                  x.InstrumentoId == instrumentoId &&
                                                                                                  x.ClienteId == clienteId);
 
-                if(productosIngresos == null) return Response<List<PresupuestoHistorialDto>>.Ok("", new List<PresupuestoHistorialDto>());
+                if (productosIngresos == null) return Response<List<PresupuestoHistorialDto>>.Ok("", new List<PresupuestoHistorialDto>());
                 if (!productosIngresos.Any()) return Response<List<PresupuestoHistorialDto>>.Ok("", new List<PresupuestoHistorialDto>());
-                
+
                 if (desde != null && hasta != null)
                     productosIngresos = productosIngresos.Where(x => x.FechaRegistro.Date >= desde.Value.Date &&
                                                                      x.FechaRegistro.Date <= hasta.Value.Date);
 
                 var historialProductosIngresos = productosIngresos.Include(x => x.Modelo)
-                                                                  .Include(x => x.Instrumento)                                                              
+                                                                  .Include(x => x.Instrumento)
                                                                   .Include(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.Modelo)
                                                                   .Include(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.Marca)
                                                                   .Include(x => x.Instrumento).ThenInclude(x => x.Clasificacion).ThenInclude(x => x.TipoInstrumento)
                                                                   .ToList();
 
 
-                if (historialProductosIngresos == null) return Response<List<PresupuestoHistorialDto>>.Ok("", new List<PresupuestoHistorialDto>());              
+                if (historialProductosIngresos == null) return Response<List<PresupuestoHistorialDto>>.Ok("", new List<PresupuestoHistorialDto>());
                 if (!historialProductosIngresos.Any()) return Response<List<PresupuestoHistorialDto>>.Ok("", new List<PresupuestoHistorialDto>());
-             
+
                 var presupuestosControlesIds = historialProductosIngresos.Select(x => x.PresupuestoControlId).ToList();
 
                 if (presupuestosControlesIds == null) return Response<List<PresupuestoHistorialDto>>.Ok("", new List<PresupuestoHistorialDto>());
@@ -321,7 +488,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                 var presupuestosIds = presupuestosControlesIdsParaBuscarEnPresupuestos.Select(y => y.RecId);
 
-                var presupuestos = _tacticaDbContext.Presupuestos.AsQueryable()                                                              
+                var presupuestos = _tacticaDbContext.Presupuestos.AsQueryable()
                                                                  .Where(x => presupuestosIds.Contains(x.RecID))
                                                                  .Include(x => x.Moneda)
                                                                  .Include(x => x.PresupuestoItems)
@@ -336,7 +503,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 {
                     var control = presupuestosControlesIdsParaBuscarEnPresupuestos.FirstOrDefault(x => x.RecId == presupuesto.RecID);
                     var presupuestoControl = presupuestosControles.FirstOrDefault(x => x.Id == control.ControlId);
-                   
+
                     var presupuestoDetalle = presupuesto.PresupuestoItems;
 
                     presupuestoDetalle.ForEach(detalle =>
@@ -362,22 +529,101 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                             Instrumento = $"{productoIngresoDelDetalle.Instrumento.Clasificacion.TipoInstrumento.Descripcion} / {productoIngresoDelDetalle.Instrumento.Clasificacion.Marca.Descripcion} / {productoIngresoDelDetalle.Instrumento.Clasificacion.Modelo.Descripcion}",
                             Modelo = productoIngresoDelDetalle.Modelo.Descripcion,
                             Precio = productoIngresoDelDetalle.Precio,
-                            IdCotizacionMoneda =detalle.IDCotizacionMoneda,
-                            Moneda = presupuesto.Moneda.Descripcion  ,
+                            IdCotizacionMoneda = detalle.IDCotizacionMoneda,
+                            Moneda = presupuesto.Moneda.Descripcion,
                             Seleccionar = false
                         };
 
                         presupuestoHistorial.Add(historico);
                     });
 
-                    
+
                 });
 
                 return Response<List<PresupuestoHistorialDto>>.Ok("", _imapper.Map<List<PresupuestoHistorialDto>>(presupuestoHistorial));
             }
             catch (Exception exc)
             {
-                return Response<List<PresupuestoHistorialDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<PresupuestoHistorialDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
+        public Response<PresupuestoDto> ObtenerPresupuestoPorIngresoId(int ingresoId)
+        {
+            try
+            {
+                var ingreso = _automatMedicionesDbContext.Ingresos.FirstOrDefault(x => x.IngresoId == ingresoId);
+                var productoIngreso = _automatMedicionesDbContext.ProductosIngresos.FirstOrDefault(x => x.IngresoId == ingresoId);
+                var presupuestoControl = _automatMedicionesDbContext.PresupuestosControles.FirstOrDefault(x => x.Id == productoIngreso.PresupuestoItemControlId);
+                var presupuesto = _tacticaDbContext.Presupuestos.FirstOrDefault(x => x.RecID.Substring(9) == presupuestoControl.Id.ToString());
+                return Response<PresupuestoDto>.Ok("", _imapper.Map<PresupuestoDto>(presupuesto));
+            }
+            catch (Exception exc)
+            {
+                return Response<PresupuestoDto>.Excepcion(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
+        public Response<List<PresupuestoItemControl>> ObtenerPresupuestoControlItems(int presupuestoControlId)
+        {
+            try
+            {
+                var presupuestoItemControlDb = _automatMedicionesDbContext.PresupuestosItemsControles
+                    .Where(x => x.PresupuestoControlId == presupuestoControlId).ToList();
+                if(presupuestoItemControlDb != null)
+                    return Response<List<PresupuestoItemControl>>.Ok("", presupuestoItemControlDb);
+                return Response<List<PresupuestoItemControl>>.Excepcion("Presupuesto control item no encontrado", null);
+            }
+            catch (Exception exc)
+            {
+
+                return Response<List<PresupuestoItemControl>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
+        public Response<PresupuestoControl> ObtenerPresupuestoControl(int id)
+        {
+            try
+            {
+                var presupuestoControl = _automatMedicionesDbContext.PresupuestosControles.FirstOrDefault(x => x.Id == id);
+                if (presupuestoControl != null)
+                    return Response<PresupuestoControl>.Ok("", presupuestoControl);
+                return Response<PresupuestoControl>.Excepcion("Presupuesto Control no encontrado", null);
+            }
+            catch (Exception exc)
+            {
+
+                return Response<PresupuestoControl>.Excepcion(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
+        public Response<ProductoIngreso> ObtenerProductoIngreso(int id)
+        {
+            try
+            {
+                var productoIngreso = _automatMedicionesDbContext.ProductosIngresos.FirstOrDefault(x => x.PresupuestoControlId == id);
+                if(productoIngreso!=null)
+                    return Response<ProductoIngreso>.Ok("", productoIngreso);
+                return Response<ProductoIngreso>.Excepcion("Producto Ingreso no encontrado", null);
+            }
+            catch (Exception exc)
+            {
+                return Response<ProductoIngreso>.Excepcion(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
+        public Response<List<ProductoIngreso>> ObtenerProductosIngresos()
+        {
+            try
+            {
+                var productosIngresos = _automatMedicionesDbContext.ProductosIngresos.ToList();
+                if (productosIngresos != null)
+                    return Response<List<ProductoIngreso>>.Ok("", productosIngresos);
+                return Response<List<ProductoIngreso>>.Excepcion("Productos Ingresos no encontrados", null);
+            }
+            catch (Exception exc)
+            {
+                return Response<List<ProductoIngreso>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
     }

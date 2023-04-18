@@ -81,7 +81,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.cmdHistorialCertificados = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colPresupuesto = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnPresupuestos = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelIngresos = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnExportarExcel = new FontAwesome.Sharp.IconButton();
             this.btnCliente = new FontAwesome.Sharp.IconButton();
@@ -98,7 +98,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             ((System.ComponentModel.ISupportInitialize)(this.btnEditarIngreso)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmdHistorialCertificados)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPresupuestos)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.panelIngresos.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -115,10 +115,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // gcInstrumentos
             // 
             this.gcInstrumentos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcInstrumentos.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4);
-            this.gcInstrumentos.Location = new System.Drawing.Point(0, 58);
+            this.gcInstrumentos.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
+            this.gcInstrumentos.Location = new System.Drawing.Point(0, 91);
             this.gcInstrumentos.MainView = this.gvInstrumentos;
-            this.gcInstrumentos.Margin = new System.Windows.Forms.Padding(4);
+            this.gcInstrumentos.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.gcInstrumentos.Name = "gcInstrumentos";
             this.gcInstrumentos.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.btnIniciarDiagnostico,
@@ -126,7 +126,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.btnEditarIngreso,
             this.cmdHistorialCertificados,
             this.btnPresupuestos});
-            this.gcInstrumentos.Size = new System.Drawing.Size(948, 599);
+            this.gcInstrumentos.Size = new System.Drawing.Size(1625, 936);
             this.gcInstrumentos.TabIndex = 157;
             this.gcInstrumentos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvInstrumentos});
@@ -152,7 +152,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.colEditar,
             this.colHistorialCertificados,
             this.colPresupuesto});
-            this.gvInstrumentos.DetailHeight = 351;
+            this.gvInstrumentos.DetailHeight = 548;
             this.gvInstrumentos.GridControl = this.gcInstrumentos;
             this.gvInstrumentos.Name = "gvInstrumentos";
             this.gvInstrumentos.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
@@ -164,107 +164,107 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             this.colIngresoId.Caption = "Id";
             this.colIngresoId.FieldName = "IngresoId";
-            this.colIngresoId.MinWidth = 24;
+            this.colIngresoId.MinWidth = 41;
             this.colIngresoId.Name = "colIngresoId";
             this.colIngresoId.OptionsColumn.AllowEdit = false;
             this.colIngresoId.OptionsColumn.ReadOnly = true;
-            this.colIngresoId.Width = 94;
+            this.colIngresoId.Width = 161;
             // 
             // colNumeroServicioTecnico
             // 
             this.colNumeroServicioTecnico.Caption = "N° Servicio Técnico";
             this.colNumeroServicioTecnico.FieldName = "NumeroServicioTecnico";
-            this.colNumeroServicioTecnico.MinWidth = 24;
+            this.colNumeroServicioTecnico.MinWidth = 41;
             this.colNumeroServicioTecnico.Name = "colNumeroServicioTecnico";
             this.colNumeroServicioTecnico.OptionsColumn.AllowEdit = false;
             this.colNumeroServicioTecnico.OptionsColumn.ReadOnly = true;
             this.colNumeroServicioTecnico.Visible = true;
             this.colNumeroServicioTecnico.VisibleIndex = 0;
-            this.colNumeroServicioTecnico.Width = 82;
+            this.colNumeroServicioTecnico.Width = 141;
             // 
             // colEmpresa
             // 
             this.colEmpresa.Caption = "Empresa";
             this.colEmpresa.FieldName = "Ingreso.NombreEmpresa";
-            this.colEmpresa.MinWidth = 24;
+            this.colEmpresa.MinWidth = 41;
             this.colEmpresa.Name = "colEmpresa";
             this.colEmpresa.OptionsColumn.AllowEdit = false;
             this.colEmpresa.OptionsColumn.ReadOnly = true;
             this.colEmpresa.Visible = true;
             this.colEmpresa.VisibleIndex = 1;
-            this.colEmpresa.Width = 142;
+            this.colEmpresa.Width = 243;
             // 
             // colDescripcion
             // 
             this.colDescripcion.Caption = "Instrumento";
             this.colDescripcion.FieldName = "Instrumento.Descripcion";
-            this.colDescripcion.MinWidth = 24;
+            this.colDescripcion.MinWidth = 41;
             this.colDescripcion.Name = "colDescripcion";
             this.colDescripcion.OptionsColumn.AllowEdit = false;
             this.colDescripcion.OptionsColumn.ReadOnly = true;
             this.colDescripcion.Visible = true;
             this.colDescripcion.VisibleIndex = 2;
-            this.colDescripcion.Width = 142;
+            this.colDescripcion.Width = 243;
             // 
             // colClasificacion
             // 
             this.colClasificacion.Caption = "Clasificación";
             this.colClasificacion.FieldName = "ClasificacionConcatenada";
-            this.colClasificacion.MinWidth = 24;
+            this.colClasificacion.MinWidth = 41;
             this.colClasificacion.Name = "colClasificacion";
             this.colClasificacion.OptionsColumn.AllowEdit = false;
             this.colClasificacion.OptionsColumn.ReadOnly = true;
             this.colClasificacion.Visible = true;
             this.colClasificacion.VisibleIndex = 3;
-            this.colClasificacion.Width = 209;
+            this.colClasificacion.Width = 358;
             // 
             // colSerie
             // 
             this.colSerie.Caption = "N° Serie";
             this.colSerie.FieldName = "Instrumento.NumeroSerie";
-            this.colSerie.MinWidth = 24;
+            this.colSerie.MinWidth = 41;
             this.colSerie.Name = "colSerie";
             this.colSerie.OptionsColumn.AllowEdit = false;
             this.colSerie.OptionsColumn.AllowFocus = false;
             this.colSerie.Visible = true;
             this.colSerie.VisibleIndex = 4;
-            this.colSerie.Width = 136;
+            this.colSerie.Width = 233;
             // 
             // colPrioridad
             // 
             this.colPrioridad.Caption = "Prioridad";
             this.colPrioridad.FieldName = "Prioridad";
-            this.colPrioridad.MinWidth = 24;
+            this.colPrioridad.MinWidth = 41;
             this.colPrioridad.Name = "colPrioridad";
             this.colPrioridad.OptionsColumn.AllowEdit = false;
             this.colPrioridad.OptionsColumn.ReadOnly = true;
             this.colPrioridad.Visible = true;
             this.colPrioridad.VisibleIndex = 5;
-            this.colPrioridad.Width = 69;
+            this.colPrioridad.Width = 118;
             // 
             // colResponsable
             // 
             this.colResponsable.Caption = "Responsable de Ingreso";
             this.colResponsable.FieldName = "Ingreso.Responsable.Nombre";
-            this.colResponsable.MinWidth = 107;
+            this.colResponsable.MinWidth = 183;
             this.colResponsable.Name = "colResponsable";
             this.colResponsable.OptionsColumn.AllowEdit = false;
             this.colResponsable.OptionsColumn.AllowFocus = false;
             this.colResponsable.Visible = true;
             this.colResponsable.VisibleIndex = 6;
-            this.colResponsable.Width = 107;
+            this.colResponsable.Width = 183;
             // 
             // colResponsableDiagnostico
             // 
             this.colResponsableDiagnostico.Caption = "Responsable de Diagnóstico";
             this.colResponsableDiagnostico.FieldName = "Responsable.Nombre";
-            this.colResponsableDiagnostico.MinWidth = 107;
+            this.colResponsableDiagnostico.MinWidth = 183;
             this.colResponsableDiagnostico.Name = "colResponsableDiagnostico";
             this.colResponsableDiagnostico.OptionsColumn.AllowEdit = false;
             this.colResponsableDiagnostico.OptionsColumn.AllowFocus = false;
             this.colResponsableDiagnostico.Visible = true;
             this.colResponsableDiagnostico.VisibleIndex = 7;
-            this.colResponsableDiagnostico.Width = 108;
+            this.colResponsableDiagnostico.Width = 185;
             // 
             // colFecha
             // 
@@ -272,67 +272,67 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.colFecha.DisplayFormat.FormatString = "dd/MM/yy";
             this.colFecha.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.colFecha.FieldName = "Ingreso.FechaRegistro";
-            this.colFecha.MinWidth = 80;
+            this.colFecha.MinWidth = 137;
             this.colFecha.Name = "colFecha";
             this.colFecha.OptionsColumn.AllowEdit = false;
             this.colFecha.OptionsColumn.ReadOnly = true;
             this.colFecha.Visible = true;
             this.colFecha.VisibleIndex = 8;
-            this.colFecha.Width = 101;
+            this.colFecha.Width = 173;
             // 
             // colFechaEstimada
             // 
             this.colFechaEstimada.Caption = "Fecha de Entrega Requerida";
             this.colFechaEstimada.FieldName = "FechaEntregaRequerida";
-            this.colFechaEstimada.MinWidth = 24;
+            this.colFechaEstimada.MinWidth = 41;
             this.colFechaEstimada.Name = "colFechaEstimada";
             this.colFechaEstimada.OptionsColumn.AllowEdit = false;
             this.colFechaEstimada.OptionsColumn.ReadOnly = true;
             this.colFechaEstimada.Visible = true;
             this.colFechaEstimada.VisibleIndex = 9;
-            this.colFechaEstimada.Width = 94;
+            this.colFechaEstimada.Width = 161;
             // 
             // colEstado
             // 
             this.colEstado.Caption = "Estado";
             this.colEstado.FieldName = "Estado.Descripcion";
-            this.colEstado.MinWidth = 90;
+            this.colEstado.MinWidth = 154;
             this.colEstado.Name = "colEstado";
             this.colEstado.OptionsColumn.AllowEdit = false;
             this.colEstado.OptionsColumn.ReadOnly = true;
             this.colEstado.Visible = true;
             this.colEstado.VisibleIndex = 10;
-            this.colEstado.Width = 96;
+            this.colEstado.Width = 165;
             // 
             // colIniciarDiagnostico
             // 
             this.colIniciarDiagnostico.ColumnEdit = this.btnIniciarDiagnostico;
-            this.colIniciarDiagnostico.MaxWidth = 30;
-            this.colIniciarDiagnostico.MinWidth = 24;
+            this.colIniciarDiagnostico.MaxWidth = 51;
+            this.colIniciarDiagnostico.MinWidth = 41;
             this.colIniciarDiagnostico.Name = "colIniciarDiagnostico";
             this.colIniciarDiagnostico.OptionsColumn.AllowIncrementalSearch = false;
             this.colIniciarDiagnostico.OptionsFilter.AllowInHeaderSearch = DevExpress.Utils.DefaultBoolean.False;
             this.colIniciarDiagnostico.Visible = true;
             this.colIniciarDiagnostico.VisibleIndex = 11;
-            this.colIniciarDiagnostico.Width = 24;
+            this.colIniciarDiagnostico.Width = 41;
             // 
             // colIngresoInstrumentoId
             // 
             this.colIngresoInstrumentoId.Caption = "Ingreso Instrumento Id";
             this.colIngresoInstrumentoId.FieldName = "IngresoInstrumentoId";
-            this.colIngresoInstrumentoId.MinWidth = 24;
+            this.colIngresoInstrumentoId.MinWidth = 41;
             this.colIngresoInstrumentoId.Name = "colIngresoInstrumentoId";
-            this.colIngresoInstrumentoId.Width = 94;
+            this.colIngresoInstrumentoId.Width = 161;
             // 
             // colVerReporte
             // 
             this.colVerReporte.ColumnEdit = this.btnVerReporteDeIngreso;
-            this.colVerReporte.MaxWidth = 30;
-            this.colVerReporte.MinWidth = 24;
+            this.colVerReporte.MaxWidth = 51;
+            this.colVerReporte.MinWidth = 41;
             this.colVerReporte.Name = "colVerReporte";
             this.colVerReporte.Visible = true;
             this.colVerReporte.VisibleIndex = 12;
-            this.colVerReporte.Width = 24;
+            this.colVerReporte.Width = 41;
             // 
             // btnVerReporteDeIngreso
             // 
@@ -346,12 +346,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // colEditar
             // 
             this.colEditar.ColumnEdit = this.btnEditarIngreso;
-            this.colEditar.MaxWidth = 30;
-            this.colEditar.MinWidth = 24;
+            this.colEditar.MaxWidth = 51;
+            this.colEditar.MinWidth = 41;
             this.colEditar.Name = "colEditar";
             this.colEditar.Visible = true;
             this.colEditar.VisibleIndex = 13;
-            this.colEditar.Width = 24;
+            this.colEditar.Width = 41;
             // 
             // btnEditarIngreso
             // 
@@ -365,12 +365,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // colHistorialCertificados
             // 
             this.colHistorialCertificados.ColumnEdit = this.cmdHistorialCertificados;
-            this.colHistorialCertificados.MaxWidth = 30;
-            this.colHistorialCertificados.MinWidth = 23;
+            this.colHistorialCertificados.MaxWidth = 51;
+            this.colHistorialCertificados.MinWidth = 39;
             this.colHistorialCertificados.Name = "colHistorialCertificados";
             this.colHistorialCertificados.Visible = true;
             this.colHistorialCertificados.VisibleIndex = 15;
-            this.colHistorialCertificados.Width = 23;
+            this.colHistorialCertificados.Width = 39;
             // 
             // cmdHistorialCertificados
             // 
@@ -384,12 +384,12 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // colPresupuesto
             // 
             this.colPresupuesto.ColumnEdit = this.btnPresupuestos;
-            this.colPresupuesto.MinWidth = 24;
+            this.colPresupuesto.MinWidth = 41;
             this.colPresupuesto.Name = "colPresupuesto";
             this.colPresupuesto.ToolTip = "Presupuestos";
             this.colPresupuesto.Visible = true;
             this.colPresupuesto.VisibleIndex = 14;
-            this.colPresupuesto.Width = 30;
+            this.colPresupuesto.Width = 51;
             // 
             // btnPresupuestos
             // 
@@ -400,15 +400,15 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.btnPresupuestos.Name = "btnPresupuestos";
             this.btnPresupuestos.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
-            // panel1
+            // panelIngresos
             // 
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(948, 58);
-            this.panel1.TabIndex = 153;
+            this.panelIngresos.Controls.Add(this.panel3);
+            this.panelIngresos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelIngresos.Location = new System.Drawing.Point(0, 0);
+            this.panelIngresos.Margin = new System.Windows.Forms.Padding(7, 2, 7, 2);
+            this.panelIngresos.Name = "panelIngresos";
+            this.panelIngresos.Size = new System.Drawing.Size(1625, 91);
+            this.panelIngresos.TabIndex = 153;
             // 
             // panel3
             // 
@@ -419,9 +419,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.panel3.Controls.Add(this.btnFiltroTodos);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.panel3.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(948, 58);
+            this.panel3.Size = new System.Drawing.Size(1625, 91);
             this.panel3.TabIndex = 153;
             // 
             // btnExportarExcel
@@ -435,10 +435,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.btnExportarExcel.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnExportarExcel.IconSize = 20;
             this.btnExportarExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportarExcel.Location = new System.Drawing.Point(792, 10);
-            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnExportarExcel.Location = new System.Drawing.Point(1358, 16);
+            this.btnExportarExcel.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
             this.btnExportarExcel.Name = "btnExportarExcel";
-            this.btnExportarExcel.Size = new System.Drawing.Size(145, 37);
+            this.btnExportarExcel.Size = new System.Drawing.Size(249, 58);
             this.btnExportarExcel.TabIndex = 161;
             this.btnExportarExcel.Text = "Exportar a Excel";
             this.btnExportarExcel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -455,10 +455,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.btnCliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCliente.IconSize = 20;
             this.btnCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCliente.Location = new System.Drawing.Point(469, 10);
-            this.btnCliente.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnCliente.Location = new System.Drawing.Point(804, 16);
+            this.btnCliente.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
             this.btnCliente.Name = "btnCliente";
-            this.btnCliente.Size = new System.Drawing.Size(148, 37);
+            this.btnCliente.Size = new System.Drawing.Size(254, 58);
             this.btnCliente.TabIndex = 160;
             this.btnCliente.Text = "Cliente";
             this.btnCliente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -475,10 +475,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.btnComercial.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnComercial.IconSize = 20;
             this.btnComercial.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnComercial.Location = new System.Drawing.Point(314, 10);
-            this.btnComercial.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnComercial.Location = new System.Drawing.Point(538, 16);
+            this.btnComercial.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
             this.btnComercial.Name = "btnComercial";
-            this.btnComercial.Size = new System.Drawing.Size(148, 37);
+            this.btnComercial.Size = new System.Drawing.Size(254, 58);
             this.btnComercial.TabIndex = 159;
             this.btnComercial.Text = "Comercial";
             this.btnComercial.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -495,10 +495,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.btnServicioTecnico.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnServicioTecnico.IconSize = 20;
             this.btnServicioTecnico.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnServicioTecnico.Location = new System.Drawing.Point(159, 10);
-            this.btnServicioTecnico.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnServicioTecnico.Location = new System.Drawing.Point(273, 16);
+            this.btnServicioTecnico.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
             this.btnServicioTecnico.Name = "btnServicioTecnico";
-            this.btnServicioTecnico.Size = new System.Drawing.Size(148, 37);
+            this.btnServicioTecnico.Size = new System.Drawing.Size(254, 58);
             this.btnServicioTecnico.TabIndex = 158;
             this.btnServicioTecnico.Text = "Servicio Técnico";
             this.btnServicioTecnico.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -516,10 +516,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.btnFiltroTodos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnFiltroTodos.IconSize = 20;
             this.btnFiltroTodos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFiltroTodos.Location = new System.Drawing.Point(4, 10);
-            this.btnFiltroTodos.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.btnFiltroTodos.Location = new System.Drawing.Point(7, 16);
+            this.btnFiltroTodos.Margin = new System.Windows.Forms.Padding(7, 3, 7, 3);
             this.btnFiltroTodos.Name = "btnFiltroTodos";
-            this.btnFiltroTodos.Size = new System.Drawing.Size(148, 37);
+            this.btnFiltroTodos.Size = new System.Drawing.Size(254, 58);
             this.btnFiltroTodos.TabIndex = 157;
             this.btnFiltroTodos.Text = "Todos";
             this.btnFiltroTodos.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -530,10 +530,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             // 
             this.panel2.Controls.Add(this.lblTotal);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 657);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
+            this.panel2.Location = new System.Drawing.Point(0, 1027);
+            this.panel2.Margin = new System.Windows.Forms.Padding(7, 2, 7, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(948, 27);
+            this.panel2.Size = new System.Drawing.Size(1625, 42);
             this.panel2.TabIndex = 154;
             // 
             // lblTotal
@@ -542,24 +542,24 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             this.lblTotal.Appearance.Options.UseFont = true;
             this.lblTotal.Dock = System.Windows.Forms.DockStyle.Left;
             this.lblTotal.Location = new System.Drawing.Point(0, 0);
-            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(7, 2, 7, 2);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(7, 17);
+            this.lblTotal.Size = new System.Drawing.Size(12, 30);
             this.lblTotal.TabIndex = 27;
             this.lblTotal.Text = "0";
             this.lblTotal.Visible = false;
             // 
             // frmIngresos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(948, 684);
+            this.ClientSize = new System.Drawing.Size(1625, 1069);
             this.Controls.Add(this.gcInstrumentos);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelIngresos);
             this.Controls.Add(this.panel2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.IconOptions.ShowIcon = false;
-            this.Margin = new System.Windows.Forms.Padding(4, 1, 4, 1);
+            this.Margin = new System.Windows.Forms.Padding(7, 2, 7, 2);
             this.MinimumSize = new System.Drawing.Size(815, 588);
             this.Name = "frmIngresos";
             this.Text = "Ingresos";
@@ -570,7 +570,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
             ((System.ComponentModel.ISupportInitialize)(this.btnEditarIngreso)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmdHistorialCertificados)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPresupuestos)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.panelIngresos.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -580,7 +580,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Ingresos
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelIngresos;
         private System.Windows.Forms.Panel panel2;
         private DevExpress.XtraEditors.LabelControl lblTotal;    
         private DevExpress.XtraGrid.GridControl gcInstrumentos;

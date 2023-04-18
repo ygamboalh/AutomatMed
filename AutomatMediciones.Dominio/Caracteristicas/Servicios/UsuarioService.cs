@@ -2,8 +2,8 @@
 using AutomatMediciones.Dominio.Caracteristicas.Entidades;
 using AutomatMediciones.Dominio.Infraestructura;
 using AutomatMediciones.Libs.Dtos;
-using Nagaira.Herramientas.Standard.Helpers.Exceptions;
-using Nagaira.Herramientas.Standard.Helpers.Responses;
+using Nagaira.Core.Extentions.Exceptions;
+using Nagaira.Core.Extentions.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +30,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<UsuarioDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<UsuarioDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -43,7 +43,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<UsuarioDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<UsuarioDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -68,7 +68,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             catch (Exception exc)
             {
 
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
 
@@ -77,7 +77,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             try
             {
                 var usuarioDb = _automatMedicionesDbContext.Usuarios.AsQueryable().FirstOrDefault(x => x.UsuarioId == usuarioDto.UsuarioId);
-                if (usuarioDb == null) return Response<bool>.Error("No se pudo encontrar este usuario en almacén de datos.", false);
+                if (usuarioDb == null) return Response<bool>.Excepcion("No se pudo encontrar este usuario en almacén de datos.", false);
 
                 usuarioDb.Nombre = usuarioDto.Nombre;
                 usuarioDb.EnlaceFirmaDigital = usuarioDto.EnlaceFirmaDigital;
@@ -89,7 +89,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
 

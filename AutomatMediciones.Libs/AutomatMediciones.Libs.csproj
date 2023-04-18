@@ -10,4 +10,8 @@
     <Copyright>Automat Mediciones 2022</Copyright>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MassTransit" Version="8.0.15-develop.1206" />
+  </ItemGroup>
+
 </Project>

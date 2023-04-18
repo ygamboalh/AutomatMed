@@ -5,8 +5,8 @@ using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
-using Nagaira.Herramientas.Standard.Helpers.Enums;
-using Nagaira.Herramientas.Standard.Helpers.Responses;
+using Nagaira.Core.Extentions.Enumeradores;
+using Nagaira.Core.Extentions.Responses;
 using System;
 using System.Windows.Forms;
 

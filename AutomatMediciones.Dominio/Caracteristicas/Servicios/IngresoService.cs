@@ -4,8 +4,8 @@ using AutomatMediciones.Dominio.Caracteristicas.Enums;
 using AutomatMediciones.Dominio.Infraestructura;
 using AutomatMediciones.Libs.Dtos;
 using Microsoft.EntityFrameworkCore;
-using Nagaira.Herramientas.Standard.Helpers.Exceptions;
-using Nagaira.Herramientas.Standard.Helpers.Responses;
+using Nagaira.Core.Extentions.Exceptions;
+using Nagaira.Core.Extentions.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,13 +38,13 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                                                                                     .FirstOrDefault(x => x.IngresoId == ingresoId);
 
 
-                if (ingresoDb == null) return Response<IngresoDto>.Error("No pudo ser obtenida la información de ingreso", null);
+                if (ingresoDb == null) return Response<IngresoDto>.Excepcion("No pudo ser obtenida la información de ingreso", null);
 
-                return Response<IngresoDto>.Ok("Ok", _mapper.Map<IngresoDto>(ingresoDb));
+                return Response<IngresoDto>.Ok("", _mapper.Map<IngresoDto>(ingresoDb));
             }
             catch (Exception exc)
             {
-                return Response<IngresoDto>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<IngresoDto>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -68,7 +68,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<IngresoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<IngresoDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -77,12 +77,41 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             try
             {
                 var ingreso = _automatMedicionesDbContext.IngresosInstrumentos.FirstOrDefault(x => x.IngresoInstrumentoId == ingresoInstrumentoId);
-                if (ingreso == null) return Response<IngresoInstrumentoDto>.Error("No pudo ser obtenida la información de ingreso", null);
+                if (ingreso == null) return Response<IngresoInstrumentoDto>.Excepcion("No pudo ser obtenida la información de ingreso", null);
                 return Response<IngresoInstrumentoDto>.Ok("Ok", _mapper.Map<IngresoInstrumentoDto>(ingreso));
             }
             catch (Exception exc)
             {
-                return Response<IngresoInstrumentoDto>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<IngresoInstrumentoDto>.Excepcion(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+
+        public Response<List<IngresoInstrumentoDto>> ObtenerIngresoInstrumento()
+        {
+            try
+            {
+                var ingreso = _automatMedicionesDbContext.IngresosInstrumentos.ToList();
+                if (ingreso == null) return Response<List<IngresoInstrumentoDto>>.Excepcion("No pudo ser obtenida la información de ingreso", null);
+                return Response<List<IngresoInstrumentoDto>>.Ok("Ok", _mapper.Map<List<IngresoInstrumentoDto>>(ingreso));
+            }
+            catch (Exception exc)
+            {
+                return Response<List<IngresoInstrumentoDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
+        public Response<IngresoInstrumento> ObtenerIngresoInstrumentoIdIngreso(int ingresoId)
+        {
+            try
+            {
+                var ingresoIdP = _automatMedicionesDbContext.Ingresos.FirstOrDefault(x => x.IngresoId == ingresoId);
+                var ingreso = _automatMedicionesDbContext.IngresosInstrumentos.FirstOrDefault(x => x.IngresoId == ingresoIdP.IngresoId);
+                if (ingreso == null) return Response<IngresoInstrumento>.Excepcion("No pudo ser obtenida la información de ingreso", null);
+
+                return Response<IngresoInstrumento>.Ok("Ok", _mapper.Map<IngresoInstrumento>(ingreso));
+            }
+            catch (Exception exc)
+            {
+                return Response<IngresoInstrumento>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -106,7 +135,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                     TipoIngresoId = ingresoDto.TipoIngresoId
                 };
 
-                if (!ingreso.EsValido(out string mensaje)) return Response<IngresoDto>.ErrorValidation(mensaje, null);
+                if (!ingreso.EsValido(out string mensaje)) return Response<IngresoDto>.Excepcion(mensaje, null);
 
                 _automatMedicionesDbContext.Database.BeginTransaction();
                 _automatMedicionesDbContext.Ingresos.Add(ingreso);
@@ -157,7 +186,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             catch (Exception exc)
             {
                 _automatMedicionesDbContext.Database.RollbackTransaction();
-                return Response<IngresoDto>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<IngresoDto>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -167,7 +196,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             {
                 var ingresoDb = _automatMedicionesDbContext.Ingresos.FirstOrDefault(x => x.IngresoId == ingresoDto.IngresoId);
 
-                if (ingresoDb == null) return Response<IngresoDto>.Error("No se encontró ningún registro en almacén de datos.", null);
+                if (ingresoDb == null) return Response<IngresoDto>.Excepcion("No se encontró ningún registro en almacén de datos.", null);
 
                 _automatMedicionesDbContext.Database.BeginTransaction();
 
@@ -207,6 +236,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                 _automatMedicionesDbContext.SaveChanges();
                 _automatMedicionesDbContext.Database.CommitTransaction();
+                
 
                 var ingresoRegistrado = _automatMedicionesDbContext.Ingresos.Include(x => x.IngresosInstrumentos)
                                                                             .Include(x => x.IngresosInstrumentos).ThenInclude(x => x.Instrumento)
@@ -219,7 +249,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             catch (Exception exc)
             {
                 _automatMedicionesDbContext.Database.RollbackTransaction();
-                return Response<IngresoDto>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<IngresoDto>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -229,7 +259,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             {
                 var diagnostico = _automatMedicionesDbContext.IngresosInstrumentos.FirstOrDefault(x => x.IngresoInstrumentoId.Equals(ingresoInstrumento.IngresoInstrumentoId));
 
-                if (diagnostico == null) return Response<bool>.Error("No se encontró ningún registro en almacén de datos.", true);
+                if (diagnostico == null) return Response<bool>.Excepcion("No se encontró ningún registro en almacén de datos.", true);
 
                 var instrumento = _automatMedicionesDbContext.Instrumentos.FirstOrDefault(x => x.InstrumentoId == ingresoInstrumento.InstrumentoId);
                 if (instrumento != null) instrumento.Comentarios = ingresoInstrumento.Instrumento.Comentarios;
@@ -249,7 +279,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             catch (Exception exc)
             {
                 _automatMedicionesDbContext.Database.RollbackTransaction();
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
 
@@ -259,7 +289,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             {
                 var ingresoInstrumentoDb = _automatMedicionesDbContext.IngresosInstrumentos.FirstOrDefault(x => x.InstrumentoId == instrumentoId);
 
-                if (ingresoInstrumentoDb == null) return Response<bool>.Error("No se encontró ningún registro en almacen de datos.", true);
+                if (ingresoInstrumentoDb == null) return Response<bool>.Excepcion("No se encontró ningún registro en almacen de datos.", true);
 
                 ingresoInstrumentoDb.Activo = false;
 
@@ -270,7 +300,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             catch (Exception exc)
             {
 
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
 
@@ -280,7 +310,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             {
                 var diagnostico = _automatMedicionesDbContext.IngresosInstrumentos.FirstOrDefault(x => x.IngresoInstrumentoId.Equals(ingresoInstrumento.IngresoInstrumentoId));
 
-                if (diagnostico == null) return Response<bool>.Error("No se encontró ningún registro en almacén de datos.", true);
+                if (diagnostico == null) return Response<bool>.Excepcion("No se encontró ningún registro en almacén de datos.", true);
 
                 diagnostico.FechaInicio = ingresoInstrumento.FechaInicio;
                 diagnostico.TiempoConsumido = ingresoInstrumento.TiempoConsumido;
@@ -292,10 +322,25 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             catch (Exception exc)
             {
                 _automatMedicionesDbContext.Database.RollbackTransaction();
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
 
+        public Response<List<ProductoIngresoDto>> ObtenerProductosIngresoId(int ingresoId)
+        {
+            try
+            {
+                var productosIngresos = _automatMedicionesDbContext.ProductosIngresos.Where(x => x.IngresoId == ingresoId);
+                
+                if(productosIngresos != null)
+                    return Response<List<ProductoIngresoDto>>.Ok("Ok", _mapper.Map<List<ProductoIngresoDto>>(productosIngresos));
+                return Response<List<ProductoIngresoDto>>.Excepcion("", null);
+            }
+            catch (Exception exc)
+            {
+                return Response<List<ProductoIngresoDto>>.Excepcion(exc.Message, null);
+            }
+        }
         public Response<List<IngresoDto>> ObtenerPreIngresosPorEmpresa(string empresaId)
         {
             try
@@ -322,7 +367,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             catch (Exception exc)
             {
                 string message = exc.InnerException == null ? exc.Message : exc.InnerException.Message;
-                return Response<List<IngresoDto>>.Error(message, null);
+                return Response<List<IngresoDto>>.Excepcion(message, null);
             }
         }
 

@@ -3,9 +3,9 @@ using AutomatMediciones.Dominio.Caracteristicas.Entidades;
 using AutomatMediciones.Dominio.Caracteristicas.Enums;
 using AutomatMediciones.Dominio.Infraestructura;
 using AutomatMediciones.Libs.Dtos;
+using Nagaira.Core.Extentions.Exceptions;
+using Nagaira.Core.Extentions.Responses;
 using Microsoft.EntityFrameworkCore;
-using Nagaira.Herramientas.Standard.Helpers.Exceptions;
-using Nagaira.Herramientas.Standard.Helpers.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +34,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<TipoCeldaDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<TipoCeldaDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -47,7 +47,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<EstadoCeldaDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<EstadoCeldaDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -61,7 +61,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<CeldaDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<CeldaDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -76,7 +76,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<CeldaDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<CeldaDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -101,7 +101,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
 
@@ -111,7 +111,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             {
                 var celdaDb = _automatDbContext.Celdas.FirstOrDefault(x => x.Id == celdaDto.Id);
 
-                if (celdaDb == null) return Response<bool>.Error("La celda no fue encontrado en almacén de datos", false);
+                if (celdaDb == null) return Response<bool>.Excepcion("La celda no fue encontrado en almacén de datos", false);
 
                 celdaDb.EstadoId = celdaDto.EstadoId;
                 celdaDb.FechaAdquisicion = celdaDto.FechaAdquisicion;
@@ -126,7 +126,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
 
@@ -138,7 +138,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                 if (tipoCeldaModeloDb == null)
                 {
-                    return Response<bool>.Error("El Tipo de Celda vinculado a este modelo no fue encontrado en almacén de datos", false);
+                    return Response<bool>.Excepcion("El Tipo de Celda vinculado a este modelo no fue encontrado en almacén de datos", false);
                 }
 
                 tipoCeldaModeloDb.Activo = false;
@@ -149,7 +149,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
 
@@ -170,7 +170,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
 
@@ -181,7 +181,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             {
                 var tipoCeldaDb = _automatDbContext.TiposDeCeldas.FirstOrDefault(x => x.Id == tipoCeldaDto.Id);
 
-                if (tipoCeldaDb == null) return Response<bool>.Error("El tipo de celda no fue encontrado en almacén de datos", false);
+                if (tipoCeldaDb == null) return Response<bool>.Excepcion("El tipo de celda no fue encontrado en almacén de datos", false);
 
                 tipoCeldaDb.Descripcion = tipoCeldaDto.Descripcion;
                 tipoCeldaDb.VariableMedicionId = tipoCeldaDto.VariableMedicionId;
@@ -192,7 +192,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
     }

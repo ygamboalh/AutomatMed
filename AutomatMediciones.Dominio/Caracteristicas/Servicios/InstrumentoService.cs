@@ -4,8 +4,8 @@ using AutomatMediciones.Dominio.Caracteristicas.Enums;
 using AutomatMediciones.Dominio.Infraestructura;
 using AutomatMediciones.Libs.Dtos;
 using Microsoft.EntityFrameworkCore;
-using Nagaira.Herramientas.Standard.Helpers.Exceptions;
-using Nagaira.Herramientas.Standard.Helpers.Responses;
+using Nagaira.Core.Extentions.Exceptions;
+using Nagaira.Core.Extentions.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,7 +51,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<InstrumentoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<InstrumentoDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -68,7 +68,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<InstrumentoDto>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<InstrumentoDto>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -88,7 +88,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<InstrumentoDto>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<InstrumentoDto>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -108,7 +108,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<InstrumentoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<InstrumentoDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -125,7 +125,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                                                                                                         x.Clasificacion.MarcaId == instrumentoDto.Clasificacion.MarcaId &&
                                                                                                         x.Clasificacion.TipoInstrumentoId == instrumentoDto.Clasificacion.TipoInstrumentoId);
 
-                if (instrumentoDb != null) return Response<InstrumentoDto>.ErrorValidation($"Ya existe un instrumento para la empresa {instrumentoDb.NombreEmpresa} con estas mismas características.", null);
+                if (instrumentoDb != null) return Response<InstrumentoDto>.Advertencia($"Ya existe un instrumento para la empresa {instrumentoDb.NombreEmpresa} con estas mismas características.", null);
 
                 Instrumento instrumento = new Instrumento
                 {
@@ -147,7 +147,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                 if (!instrumento.EsValido(out string mensaje))
                 {
-                    return Response<InstrumentoDto>.ErrorValidation(mensaje, null);
+                    return Response<InstrumentoDto>.Advertencia(mensaje, null);
                 }
                 _automatMedicionesDbContext.Database.BeginTransaction();
                 _automatMedicionesDbContext.Instrumentos.Add(instrumento);
@@ -206,7 +206,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             catch (Exception exc)
             {
                 _automatMedicionesDbContext.Database.RollbackTransaction();
-                return Response<InstrumentoDto>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<InstrumentoDto>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -217,19 +217,19 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 var instrumentoBd = _automatMedicionesDbContext.Instrumentos.FirstOrDefault(x => x.InstrumentoId == instrumentoDto.InstrumentoId);
                 if (instrumentoBd == null)
                 {
-                    return Response<bool>.ErrorValidation("El instrumento no fue encontrado", false);
+                    return Response<bool>.Advertencia("El instrumento no fue encontrado", false);
                 }
 
                 if (instrumentoBd.Descripcion != instrumentoDto.Descripcion)
                 {
                     var existeConMismaDescripcion = _automatMedicionesDbContext.Instrumentos.Any(x => x.Descripcion == instrumentoDto.Descripcion && x.EmpresaId == instrumentoDto.EmpresaId && x.Activo);
-                    if (existeConMismaDescripcion) return Response<bool>.Error($"Ya existe un instrumento para la empresa {instrumentoDto.NombreEmpresa} con esta misma descripción.", false);
+                    if (existeConMismaDescripcion) return Response<bool>.Advertencia($"Ya existe un instrumento para la empresa {instrumentoDto.NombreEmpresa} con esta misma descripción.", false);
                 }
 
                 if (instrumentoBd.NumeroSerie != instrumentoDto.NumeroSerie)
                 {
                     var existeConMismaSerie = _automatMedicionesDbContext.Instrumentos.Any(x => x.NumeroSerie == instrumentoDto.NumeroSerie && x.EmpresaId == instrumentoDto.EmpresaId && x.Activo);
-                    if (existeConMismaSerie) return Response<bool>.Error($"Ya existe un instrumento para la empresa {instrumentoDto.NombreEmpresa} con esta misma serie.", false);
+                    if (existeConMismaSerie) return Response<bool>.Advertencia($"Ya existe un instrumento para la empresa {instrumentoDto.NombreEmpresa} con esta misma serie.", false);
                 }
 
                 _automatMedicionesDbContext.Database.BeginTransaction();
@@ -275,7 +275,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             catch (Exception exc)
             {
                 _automatMedicionesDbContext.Database.RollbackTransaction();
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
 
@@ -287,7 +287,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                 if (celdaInstrumentoBd == null)
                 {
-                    return Response<bool>.Error("La celda vinculada a este instrumento no fue encontrado en almacén de datos", false);
+                    return Response<bool>.Advertencia("La celda vinculada a este instrumento no fue encontrado en almacén de datos", false);
                 }
 
                 celdaInstrumentoBd.Activo = false;
@@ -299,7 +299,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
 
@@ -311,7 +311,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                 if (variableInstrumentoBd == null)
                 {
-                    return Response<bool>.Error("La variable vinculada a este instrumento no fue encontrado en almacén de datos", false);
+                    return Response<bool>.Advertencia("La variable vinculada a este instrumento no fue encontrado en almacén de datos", false);
                 }
 
                 variableInstrumentoBd.Activo = false;
@@ -323,7 +323,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
 
@@ -332,7 +332,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             try
             {
                 var instrumentoBd = _automatMedicionesDbContext.Instrumentos.FirstOrDefault(x => x.InstrumentoId == instrumentoDto.InstrumentoId);
-                if (instrumentoBd == null) return Response<bool>.ErrorValidation("El instrumento no fue encontrado", false);
+                if (instrumentoBd == null) return Response<bool>.Advertencia("El instrumento no fue encontrado", false);
 
                 instrumentoBd.Activo = false;
 
@@ -343,7 +343,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<bool>.Error(MessageException.LanzarExcepcion(exc), false);
+                return Response<bool>.Excepcion(MessageException.LanzarExcepcion(exc), false);
             }
         }
 
@@ -355,7 +355,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                                                                                                          x.InstrumentoId == variableInstrumentoDto.InstrumentoId &&
                                                                                                          x.VariableMedicionId == variableInstrumentoDto.VariableMedicionId);
 
-                if (existeVariableVinculada) return Response<VariableInstrumentoDto>.ErrorValidation("Esta variable de medición ya está vinculada a este instrumento.", null);
+                if (existeVariableVinculada) return Response<VariableInstrumentoDto>.Advertencia("Esta variable de medición ya está vinculada a este instrumento.", null);
 
 
 
@@ -374,7 +374,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                 if (!variableInstrumento.EsValido(out string mensaje))
                 {
-                    return Response<VariableInstrumentoDto>.ErrorValidation(mensaje, null);
+                    return Response<VariableInstrumentoDto>.Advertencia(mensaje, null);
                 }
 
                 _automatMedicionesDbContext.VariablesInstrumentos.Add(variableInstrumento);
@@ -387,7 +387,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<VariableInstrumentoDto>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<VariableInstrumentoDto>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -399,7 +399,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
 
                 if (variablesInstrumentoBd == null)
                 {
-                    return Response<VariableInstrumentoDto>.ErrorValidation("La vinculación para la variable de medición no fue encontrada", null);
+                    return Response<VariableInstrumentoDto>.Advertencia("La vinculación para la variable de medición no fue encontrada", null);
                 }
 
                 variablesInstrumentoBd.InstrumentoId = variableInstrumentoDto.InstrumentoId;
@@ -417,7 +417,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<VariableInstrumentoDto>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<VariableInstrumentoDto>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -431,7 +431,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<VariableInstrumentoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<VariableInstrumentoDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -444,7 +444,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<VariableInstrumentoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<VariableInstrumentoDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
     }

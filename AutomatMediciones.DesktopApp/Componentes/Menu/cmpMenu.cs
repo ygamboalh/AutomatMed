@@ -186,7 +186,6 @@ namespace AutomatMediciones.DesktopApp.Componentes.Menu
             }
         }
 
-    
         private void cmdPatrones_Click(object sender, System.EventArgs e)
         {
             OnMenuSeleccionado?.Invoke(IndiceMenu.Patrones);

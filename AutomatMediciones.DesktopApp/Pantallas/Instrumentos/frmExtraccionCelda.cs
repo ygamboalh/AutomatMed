@@ -1,7 +1,7 @@
 ﻿using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
-using Nagaira.Herramientas.Standard.Helpers.Responses;
+using Nagaira.Core.Extentions.Responses;
 using System;
 
 namespace AutomatMediciones.DesktopApp.Pantallas.Instrumentos

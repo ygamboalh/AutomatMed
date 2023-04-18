@@ -12,12 +12,18 @@
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.15" />
-    <PackageReference Include="Nagaira.Herramientas.Standard.Helpers" Version="1.0.6" />
+    <PackageReference Include="Nagaira.Core.Extentions" Version="1.0.0.5" />
   
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AutomatMediciones.Libs\AutomatMediciones.Libs.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DevExpress.DataAccess.v21.2">
+      <HintPath>..\..\..\..\..\Program Files (x86)\DevExpress 21.2\Components\Offline Packages\devexpress.win.design\21.2.6\lib\net5.0-windows\DevExpress.DataAccess.v21.2.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

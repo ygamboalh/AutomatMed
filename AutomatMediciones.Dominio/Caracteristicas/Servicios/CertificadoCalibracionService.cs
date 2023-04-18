@@ -2,9 +2,10 @@
 using AutomatMediciones.Dominio.Caracteristicas.Entidades;
 using AutomatMediciones.Dominio.Infraestructura;
 using AutomatMediciones.Libs.Dtos;
+
 using Microsoft.EntityFrameworkCore;
-using Nagaira.Herramientas.Standard.Helpers.Exceptions;
-using Nagaira.Herramientas.Standard.Helpers.Responses;
+using Nagaira.Core.Extentions.Exceptions;
+using Nagaira.Core.Extentions.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<CertificadoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<CertificadoDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -58,7 +59,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<CertificadoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<CertificadoDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -71,7 +72,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<VariableCertificadoDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<VariableCertificadoDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -146,7 +147,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             catch (Exception exc)
             {
                 _automatDbContext.Database.RollbackTransaction();
-                return Response<CertificadoDto>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<CertificadoDto>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -155,7 +156,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             try
             {
                 var certificadoDb = _automatDbContext.Certificados.FirstOrDefault(x => x.CertificadoId == certificadoDto.CertificadoId);
-                if (certificadoDb == null) return Response<CertificadoDto>.Error("No se encontró el certificado solicitado.", null);
+                if (certificadoDb == null) return Response<CertificadoDto>.Excepcion("No se encontró el certificado solicitado.", null);
 
                 certificadoDb.CondicionesAmbientales = certificadoDto.CondicionesAmbientales;
                 certificadoDb.Fecha = certificadoDto.Fecha;
@@ -172,7 +173,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             catch (Exception exc)
             {
                 _automatDbContext.Database.RollbackTransaction();
-                return Response<CertificadoDto>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<CertificadoDto>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
     }

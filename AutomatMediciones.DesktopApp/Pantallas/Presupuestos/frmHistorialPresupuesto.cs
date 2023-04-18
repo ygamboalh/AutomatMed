@@ -5,6 +5,7 @@ using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using AutomatMediciones.Libs.Dtos.View;
 using DevExpress.XtraEditors.Controls;
+using Nagaira.Core.Extentions.Responses;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -101,7 +102,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
                 var resultado = _presupuestoService.CargarHistorialPresupuesto((DateTime)desde, (DateTime)hasta, ModeloId,
                                                                                 InstrumentoId, ClienteId);
 
-                if (resultado.Type != Nagaira.Herramientas.Standard.Helpers.Responses.TypeResponse.Ok)
+                if (resultado.Type != Nagaira.Core.Extentions.Responses.TypeResponse.Ok)
                 {
                     Notificaciones.MensajeError(resultado.Message);
                     return;
@@ -116,7 +117,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
                 var resultado = _presupuestoService.CargarHistorialPresupuesto(null, null, ModeloId,
                                                                                 InstrumentoId, ClienteId);
 
-                if (resultado.Type != Nagaira.Herramientas.Standard.Helpers.Responses.TypeResponse.Ok)
+                if (resultado.Type != Nagaira.Core.Extentions.Responses.TypeResponse.Ok)
                 {
                     Notificaciones.MensajeError(resultado.Message);
                     return;

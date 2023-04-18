@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using AutomatMediciones.Dominio.Infraestructura;
 using AutomatMediciones.Libs.Dtos;
-using Nagaira.Herramientas.Standard.Helpers.Exceptions;
-using Nagaira.Herramientas.Standard.Helpers.Responses;
+using Nagaira.Core.Extentions.Exceptions;
+using Nagaira.Core.Extentions.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +31,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
             catch (Exception exc)
             {
-                return Response<List<MonedaDto>>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<List<MonedaDto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
 
@@ -40,13 +40,13 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             try
             {               
                 var ultimoRegistroDeCotizacion = _tacticaDbContext.MonedasCotizaciones.OrderByDescending(x => x.FechaHora).FirstOrDefault(x => x.Tipo == 0);
-                if (ultimoRegistroDeCotizacion == null) return Response<MonedaCotizacionDto>.Error("No se encontraron configuraciones de monedas extranjeras.", null);
+                if (ultimoRegistroDeCotizacion == null) return Response<MonedaCotizacionDto>.Excepcion("No se encontraron configuraciones de monedas extranjeras.", null);
 
                 return Response<MonedaCotizacionDto>.Ok("Ok", _imapper.Map<MonedaCotizacionDto>(ultimoRegistroDeCotizacion));
             }
             catch (Exception exc)
             {
-                return Response<MonedaCotizacionDto>.Error(MessageException.LanzarExcepcion(exc), null);
+                return Response<MonedaCotizacionDto>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
     }
