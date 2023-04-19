@@ -48,6 +48,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             _productoService = productoService;
             _presupuestoService = presupuestoService;
             _monedaService = monedaService;
+            Presupuesto = new PresupuestoDto();
             ProductosEnPresupuesto = new List<ProductoDto>();
             EstablecerNombreYTituloDePantalla();
             EstablecerColorBotonPorDefecto();

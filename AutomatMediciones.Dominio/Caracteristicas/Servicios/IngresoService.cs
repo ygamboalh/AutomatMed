@@ -331,7 +331,6 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             try
             {
                 var productosIngresos = _automatMedicionesDbContext.ProductosIngresos.Where(x => x.IngresoId == ingresoId);
-                
                 if(productosIngresos != null)
                     return Response<List<ProductoIngresoDto>>.Ok("Ok", _mapper.Map<List<ProductoIngresoDto>>(productosIngresos));
                 return Response<List<ProductoIngresoDto>>.Excepcion("", null);

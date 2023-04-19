@@ -83,6 +83,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
         public List<ProductoDto>  ObtenerProductosIngresoId() 
         {
             var productosIngreso = _ingresoService.ObtenerProductosIngresoId(Presupuesto.IngresoId);
+
             List<string> productoIds = new List<string>();
             List<ProductoDto> productosDto = new List<ProductoDto>();
             for (int i = 0; i < productosIngreso.Data.Count; i++)
