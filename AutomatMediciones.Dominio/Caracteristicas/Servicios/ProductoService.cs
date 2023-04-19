@@ -59,7 +59,7 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
-         public Response<List<ArbolCarpetaDto>> ObtenerArbolCarpetas()
+        public Response<List<ArbolCarpetaDto>> ObtenerArbolCarpetas()
         {
             try
             {

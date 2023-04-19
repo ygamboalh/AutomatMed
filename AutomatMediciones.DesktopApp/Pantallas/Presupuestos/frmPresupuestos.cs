@@ -57,9 +57,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
                     .Data.Where(x => x.PresupuestoControlId == presupustoControlId);
 
                 _presupuestoService.DesactivarPresupuesto(presupuestoSeleccionado.RecID);
-                //_presupuestoService.EliminarProductosIngresos(presupustoControlId);
-                //_presupuestoService.EliminarPresupuestoControl(presupustoControlId);
-                //_presupuestoService.EliminarPresupuestoItemControles(presupustoControlId);
                 CargarPresupuestos();
             }
             else { return; }

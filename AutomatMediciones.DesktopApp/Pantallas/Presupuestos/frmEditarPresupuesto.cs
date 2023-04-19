@@ -4,6 +4,7 @@ using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos.Dtos;
 using AutomatMediciones.DesktopApp.Pantallas.Presupuestos.Dtos;
 using AutomatMediciones.DesktopApp.Pantallas.Productos;
 using AutomatMediciones.DesktopApp.Pantallas.Productos.Dtos;
+using AutomatMediciones.Dominio.Caracteristicas.Entidades;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraEditors.Controls;
@@ -82,21 +83,32 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
 
         public List<ProductoDto>  ObtenerProductosIngresoId() 
         {
-            var productosIngreso = _ingresoService.ObtenerProductosIngresoId(Presupuesto.IngresoId);
-
-            List<string> productoIds = new List<string>();
+            int ingresoId = Presupuesto.IngresoId;
+            var productosIngreso = _presupuestoService.ObtenerProductosIngresos(ingresoId);
             List<ProductoDto> productosDto = new List<ProductoDto>();
-            for (int i = 0; i < productosIngreso.Data.Count; i++)
+
+            int contador = productosIngreso.Data.Count;
+            if (contador > 0)
             {
-               string id = productosIngreso.Data[i].ProductoId;
-               productoIds.Add(id);
-            }
-            if(productoIds.Count > 0) 
-            {
-                foreach (var productoId in productoIds)
+                for (int i = 0; i < productosIngreso.Data.Count; i++)
                 {
-                    var producto = _productoService.ObtenerProductoPorId(productoId).Data;
-                    productosDto.Add(producto);
+                    decimal precio = productosIngreso.Data[i].Precio;
+                    decimal cantidad = productosIngreso.Data[i].Cantidad;
+                    decimal subtotal = CalculaSubTotal(cantidad, precio);
+                    decimal impuesto = CalcularImpuesto(subtotal);
+                    decimal total = CalcularTotal(subtotal, impuesto);
+                    string recid = productosIngreso.Data[i].ProductoId.ToString();
+                    string descripcion = productosIngreso.Data[i].Descripcion;
+                    productosDto.Add(new ProductoDto
+                    {
+                        RecID = recid,
+                        Descripcion = descripcion,
+                        Precio = precio,
+                        Cantidad = cantidad,
+                        Impuesto = impuesto,
+                        SubTotal = subtotal,
+                        Total = total
+                    });
                 }
             }
             gcProductosPresupuesto.DataSource = productosDto;
@@ -164,15 +176,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             Presupuesto.ImpuestosInternos = 0;
             Presupuesto.MotivoCierre = "";
             Presupuesto.Productos = new List<ProductoDto>();
+            ProductosEnPresupuesto = new List<ProductoDto>();
             int contador = gvProductosPresupuesto.RowCount;
             List<ProductoDto> productoDtos = new List<ProductoDto>();
             for (int i = 0; i < contador; i++)
             {
                 var productoActual = gvProductosPresupuesto.GetRow(i) as ProductoDto;
-                if (productoActual is ProductoListaDto)
-                {
-                    productoDtos.Add(productoActual);
-                }
+                productoDtos.Add(productoActual);
             }
             Presupuesto.Productos = productoDtos;
             Presupuesto.IngresoId = ingresoInstrumento.IngresoId; 
@@ -579,8 +589,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             SetearTotales();
             SetearSummary();
         }
-
-        
 
         private void frmMaestroProductosOnListaProductosAgregados(List<ProductoDto> productos)
         {
