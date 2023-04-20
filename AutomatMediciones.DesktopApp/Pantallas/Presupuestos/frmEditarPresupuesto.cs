@@ -84,7 +84,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
         public List<ProductoDto>  ObtenerProductosIngresoId() 
         {
             int ingresoId = Presupuesto.IngresoId;
-            var productosIngreso = _presupuestoService.ObtenerProductosIngresos(ingresoId);
+            string recId = Presupuesto.RecID;
+            var productosIngreso = _presupuestoService.ObtenerProductosIngresos(ingresoId, recId);
             List<ProductoDto> productosDto = new List<ProductoDto>();
 
             int contador = productosIngreso.Data.Count;

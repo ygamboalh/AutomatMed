@@ -58,7 +58,8 @@ namespace AutomatMediciones.Libs.Dtos
         public string Auditoria { get; set; }
         public string CustomID { get; set; }
         public byte? ActualizarAuto { get; set; }
-
+        public string NoServicioTecnico { get; set; }
+        public string ClasificacionInstrumento{ get; set; }
         public int IngresoId { get; set; }
         public int InstrumentoId { get; set; }
         public int ModeloId { get; set; }

@@ -8,11 +8,14 @@ using AutomatMediciones.Dominio.Caracteristicas.Entidades;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Columns;
+using DevExpress.XtraGrid.Views.Base;
 using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
 using Nagaira.Core.Extentions.Responses;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Forms;
@@ -99,46 +102,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
                 return cadena;
             return numerosFinales;
         }
-        private List<PresupuestoDto> ObtenerPresupuestos() 
-        {
-            var resultado = _presupuestoService.ObtenerPresupuestos();
-            if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
-
-            var modelosRespuesta = resultado.Data;
-            List<PresupuestoDto> presupuestos = new List<PresupuestoDto>();
-            foreach (var presupuesto in modelosRespuesta)
-            {
-                string id = presupuesto.RecID;
-                PresupuestoControl presupuestoControl = null;
-                ProductoIngreso productoIngreso = null;
-                IngresoDto ingreso = null;
-                int presupuestoIdControl = 0;
-                short resultadoParse;
-                if ((Int16.TryParse(ObtenerPosicionesDeCadena(id), out resultadoParse) == true))
-                {
-                    presupuestoIdControl = Int16.Parse(ObtenerPosicionesDeCadena(id));
-                    if (_presupuestoService.ObtenerPresupuestoControl(presupuestoIdControl).Message == "" && _presupuestoService.ObtenerPresupuestoControl(presupuestoIdControl) != null)
-                    {
-                        presupuestoControl = _presupuestoService.ObtenerPresupuestoControl(presupuestoIdControl).Data;
-                        if (_presupuestoService.ObtenerProductoIngreso(presupuestoControl.Id).Message == "" && _presupuestoService.ObtenerProductoIngreso(presupuestoControl.Id) != null)
-                        {
-                            productoIngreso = _presupuestoService.ObtenerProductoIngreso(presupuestoControl.Id).Data;
-                            if (_ingresoService.ObtenerIngreso(productoIngreso.IngresoId).Message == "" && _presupuestoService.ObtenerProductoIngreso(presupuestoControl.Id) != null)
-                            {
-                                ingreso = _ingresoService.ObtenerIngresos().Data.FirstOrDefault(x => x.IngresoId == productoIngreso.IngresoId);
-                                presupuesto.IngresoId = ingreso.IngresoId;
-                                presupuesto.ClienteId = ingresosInstrumentos.FirstOrDefault(x => x.IngresoId == presupuesto.IngresoId).Ingreso.NombreEmpresa;
-                                presupuesto.NombreCliente = ingresosInstrumentos.FirstOrDefault(x => x.IngresoId == presupuesto.IngresoId).Ingreso.NombreContacto;
-                                var ClasificacionInstrumento = ingresosInstrumentos.FirstOrDefault(x => x.IngresoId == ingreso.IngresoId).Instrumento.Clasificacion.TipoInstrumento.Descripcion;
-                                presupuestos.Add(presupuesto);
-                            }
-                        }
-                    }
-                }
-            }
-            return presupuestos;
-        }
-        private void CargarPresupuestos()
+        
+        private List<PresupuestoDto> CargarPresupuestos()
         { 
             var resultado = _presupuestoService.ObtenerPresupuestos();
             if (resultado.Type != TypeResponse.Ok) Notificaciones.MensajeError(resultado.Message);
@@ -172,9 +137,18 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
                                 {
                                     ingreso = _ingresoService.ObtenerIngresos().Data.FirstOrDefault(x => x.IngresoId == productoIngreso.IngresoId);
                                     presupuesto.IngresoId = ingreso.IngresoId;
-                                    presupuesto.ClienteId = ingresosInstrumentos.FirstOrDefault(x => x.IngresoId == presupuesto.IngresoId).Ingreso.NombreEmpresa;
-                                    presupuesto.NombreCliente = ingresosInstrumentos.FirstOrDefault(x => x.IngresoId == presupuesto.IngresoId).Ingreso.NombreContacto;
-                                    var ClasificacionInstrumento = ingresosInstrumentos.FirstOrDefault(x => x.IngresoId == ingreso.IngresoId).Instrumento.Clasificacion.TipoInstrumento.Descripcion;
+                                    var ingresoInstrumento = ingresosInstrumentos.FirstOrDefault(x => x.IngresoId == presupuesto.IngresoId);
+                                    presupuesto.ClienteId = ingresoInstrumento.Ingreso.NombreEmpresa;
+                                    string nombreContacto = ingresoInstrumento.Ingreso.NombreContacto;
+                                    string apellidoContacto = ingresoInstrumento.Ingreso.ApellidoContacto;
+                                    presupuesto.NombreCliente = nombreContacto + " " + apellidoContacto;
+
+                                    
+                                    string numeroServiciosTecnicos = ingresoInstrumento.NumeroServicioTecnico;
+                                    string ClasificacionInstrumento = $"{ingresoInstrumento.Instrumento.Clasificacion.TipoInstrumento.Descripcion} / {ingresoInstrumento.Instrumento.Clasificacion.Marca.Descripcion} / {ingresoInstrumento.Instrumento.Clasificacion.Modelo.Descripcion}";
+
+                                    presupuesto.NoServicioTecnico = numeroServiciosTecnicos;
+                                    presupuesto.ClasificacionInstrumento = ClasificacionInstrumento;
                                     presupuestos.Add(presupuesto);
                                 }
                             }
@@ -183,8 +157,10 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             }
             gcPresupuestos.DataSource = presupuestos;
             gcPresupuestos.RefreshDataSource();
+            return presupuestos;
         }
 
+        
         private void EstablecerNombreYTitulo()
         {
             ctlEncabezadoPantalla ctlEncabezadoPantallaPres = new ctlEncabezadoPantalla();
@@ -238,8 +214,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
         {
             presupuestoSeleccionado = gvPresupuesto.GetFocusedRow() as PresupuestoDto;
             if (presupuestoSeleccionado == null) return;
-            var presupuestoDb = _presupuestoService.ObtenerPresupuestos().Data.FirstOrDefault(x => x.ID == presupuestoSeleccionado.ID);
-            presupuestoDb = ObtenerPresupuestos().Where(x => x.ID == presupuestoSeleccionado.ID).FirstOrDefault(x => x.ID == presupuestoSeleccionado.ID);
+            var presupuestoDb = CargarPresupuestos().Where(x => x.ID == presupuestoSeleccionado.ID).FirstOrDefault(x => x.ID == presupuestoSeleccionado.ID);
             var frmEditarPresupuesto = new frmEditarPresupuesto(presupuestoDb, serviceProvider.GetService<IngresoService>(),
                                                     serviceProvider.GetService<ProductoService>(),
                                                     serviceProvider.GetService<PresupuestoService>(),

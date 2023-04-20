@@ -488,21 +488,21 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
-        public Response<PresupuestoDto> ObtenerPresupuestoPorIngresoId(int ingresoId)
-        {
-            try
-            {
-                var ingreso = _automatMedicionesDbContext.Ingresos.FirstOrDefault(x => x.IngresoId == ingresoId);
-                var productoIngreso = _automatMedicionesDbContext.ProductosIngresos.FirstOrDefault(x => x.IngresoId == ingresoId);
-                var presupuestoControl = _automatMedicionesDbContext.PresupuestosControles.FirstOrDefault(x => x.Id == productoIngreso.PresupuestoItemControlId);
-                var presupuesto = _tacticaDbContext.Presupuestos.FirstOrDefault(x => x.RecID.Substring(9) == presupuestoControl.Id.ToString());
-                return Response<PresupuestoDto>.Ok("", _imapper.Map<PresupuestoDto>(presupuesto));
-            }
-            catch (Exception exc)
-            {
-                return Response<PresupuestoDto>.Excepcion(MessageException.LanzarExcepcion(exc), null);
-            }
-        }
+        //public Response<PresupuestoDto> ObtenerPresupuestoPorIngresoId(int ingresoId)
+        //{
+        //    try
+        //    {
+        //        var ingreso = _automatMedicionesDbContext.Ingresos.FirstOrDefault(x => x.IngresoId == ingresoId);
+        //        var productoIngreso = _automatMedicionesDbContext.ProductosIngresos.FirstOrDefault(x => x.IngresoId == ingresoId);
+        //        var presupuestoControl = _automatMedicionesDbContext.PresupuestosControles.FirstOrDefault(x => x.Id == productoIngreso.PresupuestoItemControlId);
+        //        var presupuesto = _tacticaDbContext.Presupuestos.FirstOrDefault(x => x.RecID.Substring(9) == presupuestoControl.Id.ToString());
+        //        return Response<PresupuestoDto>.Ok("", _imapper.Map<PresupuestoDto>(presupuesto));
+        //    }
+        //    catch (Exception exc)
+        //    {
+        //        return Response<PresupuestoDto>.Excepcion(MessageException.LanzarExcepcion(exc), null);
+        //    }
+        //}
 
         public Response<List<PresupuestoItemControl>> ObtenerPresupuestoControlItems(int presupuestoControlId)
         {
@@ -552,13 +552,31 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
             }
         }
 
-        public Response<List<ProductoIngreso>> ObtenerProductosIngresos(int ingresoId)
+        public Response<List<ProductoIngreso>> ObtenerProductosIngresos(int ingresoId, string recId)
         {
             try
             {
+                //string presupuestoIdstring = ObtenerPresupuestoPorIngresoId(ingresoId).Data.RecID;
+                string presupuestoIdstring = _tacticaDbContext.Presupuestos.FirstOrDefault(x => x.RecID == recId).RecID;
+
+                int presupuestoIdint = Int16.Parse(ObtenerPosicionesDeCadena(presupuestoIdstring));
+
                 var productosIngresos = _automatMedicionesDbContext.ProductosIngresos.Where(x => x.IngresoId == ingresoId).ToList();
-                if (productosIngresos != null)
-                    return Response<List<ProductoIngreso>>.Ok("", productosIngresos);
+                int presupuestosControlid = _automatMedicionesDbContext.PresupuestosControles.FirstOrDefault(x => x.Id == presupuestoIdint).Id;
+
+                List<ProductoIngreso> productosIngresosPresupuesto = new List<ProductoIngreso>();
+
+                for (int i = 0; i < productosIngresos.Count; i++)
+                {
+                    int presupuestoControlId = productosIngresos[i].PresupuestoControlId;
+                    if(presupuestoControlId == presupuestosControlid) 
+                    {
+                        productosIngresosPresupuesto.Add(productosIngresos[i]);
+                    }
+                }
+
+                if (productosIngresosPresupuesto != null)
+                    return Response<List<ProductoIngreso>>.Ok("", productosIngresosPresupuesto);
                 return Response<List<ProductoIngreso>>.Excepcion("Productos Ingresos no encontrados", null);
             }
             catch (Exception exc)

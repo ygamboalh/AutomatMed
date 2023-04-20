@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPresupuestos));
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions5 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject17 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject18 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject19 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject20 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions6 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject21 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject22 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject23 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject24 = new DevExpress.Utils.SerializableAppearanceObject();
             this.btnViewDetails = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gcPresupuestos = new DevExpress.XtraGrid.GridControl();
             this.gvPresupuesto = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -51,7 +51,6 @@
             this.colNombreCliente = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNumeroServicioTecnico = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colClasificacionInstrumento = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.Description = new DevExpress.XtraGrid.Columns.GridColumn();
             this.FechaCreacion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDetail = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnShowDetails = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
@@ -102,14 +101,15 @@
             this.colNombreCliente,
             this.colNumeroServicioTecnico,
             this.colClasificacionInstrumento,
-            this.Description,
             this.FechaCreacion,
             this.btnDetail,
             this.btnEdit,
             this.btnDelete});
             this.gvPresupuesto.GridControl = this.gcPresupuestos;
             this.gvPresupuesto.Name = "gvPresupuesto";
+            this.gvPresupuesto.OptionsView.ShowAutoFilterRow = true;
             this.gvPresupuesto.OptionsView.ShowGroupPanel = false;
+            this.gvPresupuesto.OptionsView.ShowIndicator = false;
             // 
             // colClienteId
             // 
@@ -159,17 +159,6 @@
             this.colClasificacionInstrumento.VisibleIndex = 3;
             this.colClasificacionInstrumento.Width = 243;
             // 
-            // Description
-            // 
-            this.Description.FieldName = "Descripcion";
-            this.Description.MinWidth = 40;
-            this.Description.Name = "Description";
-            this.Description.OptionsColumn.AllowEdit = false;
-            this.Description.OptionsColumn.ReadOnly = true;
-            this.Description.Visible = true;
-            this.Description.VisibleIndex = 4;
-            this.Description.Width = 243;
-            // 
             // FechaCreacion
             // 
             this.FechaCreacion.FieldName = "FechaCreacion";
@@ -178,7 +167,7 @@
             this.FechaCreacion.OptionsColumn.AllowEdit = false;
             this.FechaCreacion.OptionsColumn.ReadOnly = true;
             this.FechaCreacion.Visible = true;
-            this.FechaCreacion.VisibleIndex = 5;
+            this.FechaCreacion.VisibleIndex = 4;
             this.FechaCreacion.Width = 243;
             // 
             // btnDetail
@@ -188,7 +177,7 @@
             this.btnDetail.MinWidth = 41;
             this.btnDetail.Name = "btnDetail";
             this.btnDetail.Visible = true;
-            this.btnDetail.VisibleIndex = 6;
+            this.btnDetail.VisibleIndex = 5;
             this.btnDetail.Width = 51;
             // 
             // btnShowDetails
@@ -196,9 +185,9 @@
             this.btnShowDetails.Appearance.BackColor = System.Drawing.Color.White;
             this.btnShowDetails.Appearance.Options.UseBackColor = true;
             this.btnShowDetails.AutoHeight = false;
-            editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
+            editorButtonImageOptions4.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions4.Image")));
             this.btnShowDetails.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "Mostrar detalle del presupuesto", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "Mostrar detalle del presupuesto", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnShowDetails.Name = "btnShowDetails";
             this.btnShowDetails.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -209,7 +198,7 @@
             this.btnEdit.MinWidth = 41;
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Visible = true;
-            this.btnEdit.VisibleIndex = 7;
+            this.btnEdit.VisibleIndex = 6;
             this.btnEdit.Width = 51;
             // 
             // btnEditPresupuesto
@@ -217,9 +206,9 @@
             this.btnEditPresupuesto.Appearance.BackColor = System.Drawing.Color.White;
             this.btnEditPresupuesto.Appearance.Options.UseBackColor = true;
             this.btnEditPresupuesto.AutoHeight = false;
-            editorButtonImageOptions2.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions2.Image")));
+            editorButtonImageOptions5.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions5.Image")));
             this.btnEditPresupuesto.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "Editar presupuesto", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions5, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject17, serializableAppearanceObject18, serializableAppearanceObject19, serializableAppearanceObject20, "Editar presupuesto", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnEditPresupuesto.Name = "btnEditPresupuesto";
             this.btnEditPresupuesto.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -230,15 +219,15 @@
             this.btnDelete.MinWidth = 41;
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Visible = true;
-            this.btnDelete.VisibleIndex = 8;
+            this.btnDelete.VisibleIndex = 7;
             this.btnDelete.Width = 51;
             // 
             // btnDeletePresupuesto
             // 
             this.btnDeletePresupuesto.AutoHeight = false;
-            editorButtonImageOptions3.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions3.Image")));
+            editorButtonImageOptions6.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions6.Image")));
             this.btnDeletePresupuesto.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "Eliminar presupuesto", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions6, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject21, serializableAppearanceObject22, serializableAppearanceObject23, serializableAppearanceObject24, "Desactivar presupuesto", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDeletePresupuesto.Name = "btnDeletePresupuesto";
             this.btnDeletePresupuesto.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -306,7 +295,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colNombreCliente;
         private DevExpress.XtraGrid.Columns.GridColumn colNumeroServicioTecnico;
         private DevExpress.XtraGrid.Columns.GridColumn colClasificacionInstrumento;
-        private DevExpress.XtraGrid.Columns.GridColumn Description;
         private DevExpress.XtraGrid.Columns.GridColumn FechaCreacion;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnShowDetails;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEditPresupuesto;
