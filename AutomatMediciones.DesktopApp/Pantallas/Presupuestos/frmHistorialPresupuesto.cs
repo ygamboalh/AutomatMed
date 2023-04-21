@@ -8,6 +8,7 @@ using DevExpress.XtraEditors.Controls;
 using Nagaira.Core.Extentions.Responses;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 
@@ -34,7 +35,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             InitializeComponent();
 
             chkSeleccionar.EditValueChanging += chkSeleccionarEditValueChanging;
-
+            gcHistorialPresupuesto.DoubleClick += GcHistorialPresupuesto_DoubleClick;
             _presupuestoService = presupuestoService;
             _productoService = productoService;
 
@@ -43,12 +44,30 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             EstablecerColorBotonGuardar();
         }
 
+        
+        private void GcHistorialPresupuesto_DoubleClick(object sender, EventArgs e)
+        {
+            var filaSeleccionada = gvHistorialPresupuesto.GetFocusedRow() as PresupuestoHistorialDto;
+            if (filaSeleccionada == null) return;
+            if (productosSeleccionados.Count > 0 && productosSeleccionados.Contains(filaSeleccionada))
+            {
+                ChangingEventArgs changeEventArg = new ChangingEventArgs(true, false);
+                chkSeleccionarEditValueChanging(sender, changeEventArg);
+            }
+            else 
+            {
+                ChangingEventArgs changeEventArg = new ChangingEventArgs(false, true);
+                chkSeleccionarEditValueChanging(sender, changeEventArg);
+            }
+        }
+
         private bool ExisteElProductoEnPresupuesto(string productoId)
         {
             var existe = ProductosEnPresupuesto.Any(x => x.RecID == productoId);
             return existe;
         }
 
+        
         private void chkSeleccionarEditValueChanging(object sender, ChangingEventArgs e)
         {
             var filaSeleccionada = gvHistorialPresupuesto.GetFocusedRow() as PresupuestoHistorialDto;
@@ -67,15 +86,23 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
                     return;
                 }
 
-                productosSeleccionados.Add(filaSeleccionada);
-
+                decimal precio = 0;
+                string descripcionProducto = "";
+                    for (int i = 0; i < gvHistorialPresupuesto.GetSelectedRows().Length; i++)
+                    {
+                        precio = Decimal.Parse(gvHistorialPresupuesto.GetRowCellDisplayText(i, "Precio"));
+                        descripcionProducto = gvHistorialPresupuesto.GetRowCellDisplayText(i, "DescripcionProducto");
+                        if(!productosSeleccionados.Contains(filaSeleccionada))
+                        productosSeleccionados.Add(filaSeleccionada);
+                    }
             }
+
             else productosSeleccionados = productosSeleccionados.Where(x => x.ProductoId != filaSeleccionada.ProductoId).ToList();
 
-            CargarTotoales();
+            CargarTotales();
         }
 
-        private void CargarTotoales()
+        private void CargarTotales()
         {
             lblTotal.Visible = true;
             lblTotalSeleccionados.Visible = true;
@@ -247,7 +274,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
 
                 productoDb.Data.Cantidad = x.Cantidad;
                 productoDb.Data.Precio = x.Precio;
-
+                productoDb.Data.Descripcion = x.DescripcionProducto;
 
                 productos.Add(productoDb.Data);
             });

@@ -268,8 +268,6 @@
             this.colDescripcionProducto.FieldName = "DescripcionProducto";
             this.colDescripcionProducto.MinWidth = 43;
             this.colDescripcionProducto.Name = "colDescripcionProducto";
-            this.colDescripcionProducto.OptionsColumn.AllowEdit = false;
-            this.colDescripcionProducto.OptionsColumn.AllowFocus = false;
             this.colDescripcionProducto.Visible = true;
             this.colDescripcionProducto.VisibleIndex = 3;
             this.colDescripcionProducto.Width = 194;
@@ -314,8 +312,6 @@
             this.colPrecio.FieldName = "Precio";
             this.colPrecio.MinWidth = 43;
             this.colPrecio.Name = "colPrecio";
-            this.colPrecio.OptionsColumn.AllowEdit = false;
-            this.colPrecio.OptionsColumn.AllowFocus = false;
             this.colPrecio.Visible = true;
             this.colPrecio.VisibleIndex = 5;
             this.colPrecio.Width = 158;

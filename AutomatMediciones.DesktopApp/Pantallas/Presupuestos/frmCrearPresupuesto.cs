@@ -462,8 +462,6 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             productos.ForEach(producto =>
             {
 
-                producto.Precio = producto.ImportePrecio1 / monedaActual;
-
                 if (!EsValidaLaCantidad(producto.Cantidad))
                 {
                     Notificaciones.MensajeAdvertencia("La cantidad no puede ser menor o igual que cero.");

@@ -50,8 +50,9 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
 
         private void btnDeletePresupuestoClick(object sender, EventArgs e)
         {
-            if (XtraMessageBox.Show("¿Está seguro que desea desactivar el presupuesto?","Confirmación", MessageBoxButtons.OKCancel) == DialogResult.OK)
-            {
+            DialogResult resultado= Notificaciones.PreguntaConfirmacion("¿Está seguro que desea desactivar el presupuesto?");
+            if (resultado == DialogResult.Yes) { 
+            
                 var presupuestoSeleccionado = gvPresupuesto.GetFocusedRow() as PresupuestoDto;
                 int presupustoControlId = Int16.Parse(ObtenerPosicionesDeCadena(presupuestoSeleccionado.RecID));
                 var presupuestoControl = _presupuestoService.ObtenerPresupuestoControl(presupustoControlId);
