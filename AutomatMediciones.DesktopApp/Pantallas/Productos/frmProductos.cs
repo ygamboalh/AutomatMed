@@ -111,6 +111,7 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Productos
             return Convert.ToDecimal(precio);
         }
 
+        
         private void chkSeleccionarCheckedChanging(object sender, ChangingEventArgs e)
         {
             var filaSeleccionada = gvProductos.GetFocusedRow() as ProductoListaDto;

@@ -44,6 +44,11 @@
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
             this.btnViewDetails = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gcPresupuestos = new DevExpress.XtraGrid.GridControl();
             this.gvPresupuesto = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -53,20 +58,23 @@
             this.colClasificacionInstrumento = new DevExpress.XtraGrid.Columns.GridColumn();
             this.FechaCreacion = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDetail = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.btnShowDetails = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.btnVerReportePresupuesto = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.btnEdit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnEditPresupuesto = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.btnDelete = new DevExpress.XtraGrid.Columns.GridColumn();
             this.btnDeletePresupuesto = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.btnEnviarCorreo = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panelListadoPresupuesto = new System.Windows.Forms.Panel();
             this.panelFooter = new System.Windows.Forms.Panel();
             this.lblTotal = new DevExpress.XtraEditors.LabelControl();
+            this.btnCorreo = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.btnViewDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcPresupuestos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPresupuesto)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnShowDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnVerReportePresupuesto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditPresupuesto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeletePresupuesto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEnviarCorreo)).BeginInit();
             this.panelListadoPresupuesto.SuspendLayout();
             this.panelFooter.SuspendLayout();
             this.SuspendLayout();
@@ -86,9 +94,10 @@
             this.gcPresupuestos.MainView = this.gvPresupuesto;
             this.gcPresupuestos.Name = "gcPresupuestos";
             this.gcPresupuestos.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.btnShowDetails,
+            this.btnVerReportePresupuesto,
             this.btnEditPresupuesto,
-            this.btnDeletePresupuesto});
+            this.btnDeletePresupuesto,
+            this.btnEnviarCorreo});
             this.gcPresupuestos.Size = new System.Drawing.Size(1920, 1027);
             this.gcPresupuestos.TabIndex = 191;
             this.gcPresupuestos.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -104,7 +113,8 @@
             this.FechaCreacion,
             this.btnDetail,
             this.btnEdit,
-            this.btnDelete});
+            this.btnDelete,
+            this.btnCorreo});
             this.gvPresupuesto.GridControl = this.gcPresupuestos;
             this.gvPresupuesto.Name = "gvPresupuesto";
             this.gvPresupuesto.OptionsView.ShowAutoFilterRow = true;
@@ -172,24 +182,24 @@
             // 
             // btnDetail
             // 
-            this.btnDetail.ColumnEdit = this.btnShowDetails;
+            this.btnDetail.ColumnEdit = this.btnVerReportePresupuesto;
             this.btnDetail.MaxWidth = 51;
             this.btnDetail.MinWidth = 41;
             this.btnDetail.Name = "btnDetail";
             this.btnDetail.Visible = true;
-            this.btnDetail.VisibleIndex = 5;
+            this.btnDetail.VisibleIndex = 6;
             this.btnDetail.Width = 51;
             // 
-            // btnShowDetails
+            // btnVerReportePresupuesto
             // 
-            this.btnShowDetails.Appearance.BackColor = System.Drawing.Color.White;
-            this.btnShowDetails.Appearance.Options.UseBackColor = true;
-            this.btnShowDetails.AutoHeight = false;
+            this.btnVerReportePresupuesto.Appearance.BackColor = System.Drawing.Color.White;
+            this.btnVerReportePresupuesto.Appearance.Options.UseBackColor = true;
+            this.btnVerReportePresupuesto.AutoHeight = false;
             editorButtonImageOptions1.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions1.Image")));
-            this.btnShowDetails.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.btnVerReportePresupuesto.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "Mostrar detalle del presupuesto", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.btnShowDetails.Name = "btnShowDetails";
-            this.btnShowDetails.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.btnVerReportePresupuesto.Name = "btnVerReportePresupuesto";
+            this.btnVerReportePresupuesto.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // btnEdit
             // 
@@ -198,7 +208,7 @@
             this.btnEdit.MinWidth = 41;
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Visible = true;
-            this.btnEdit.VisibleIndex = 6;
+            this.btnEdit.VisibleIndex = 7;
             this.btnEdit.Width = 51;
             // 
             // btnEditPresupuesto
@@ -219,7 +229,7 @@
             this.btnDelete.MinWidth = 41;
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Visible = true;
-            this.btnDelete.VisibleIndex = 7;
+            this.btnDelete.VisibleIndex = 8;
             this.btnDelete.Width = 51;
             // 
             // btnDeletePresupuesto
@@ -230,6 +240,15 @@
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "Desactivar presupuesto", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.btnDeletePresupuesto.Name = "btnDeletePresupuesto";
             this.btnDeletePresupuesto.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
+            // btnEnviarCorreo
+            // 
+            this.btnEnviarCorreo.AutoHeight = false;
+            editorButtonImageOptions4.Image = ((System.Drawing.Image)(resources.GetObject("editorButtonImageOptions4.Image")));
+            this.btnEnviarCorreo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "Enviar reporte por correo", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.btnEnviarCorreo.Name = "btnEnviarCorreo";
+            this.btnEnviarCorreo.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
             // panelListadoPresupuesto
             // 
@@ -263,6 +282,16 @@
             this.lblTotal.Text = "0";
             this.lblTotal.Visible = false;
             // 
+            // btnCorreo
+            // 
+            this.btnCorreo.ColumnEdit = this.btnEnviarCorreo;
+            this.btnCorreo.MaxWidth = 51;
+            this.btnCorreo.MinWidth = 41;
+            this.btnCorreo.Name = "btnCorreo";
+            this.btnCorreo.Visible = true;
+            this.btnCorreo.VisibleIndex = 5;
+            this.btnCorreo.Width = 51;
+            // 
             // frmPresupuestos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -277,9 +306,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnViewDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcPresupuestos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPresupuesto)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnShowDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnVerReportePresupuesto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEditPresupuesto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeletePresupuesto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEnviarCorreo)).EndInit();
             this.panelListadoPresupuesto.ResumeLayout(false);
             this.panelFooter.ResumeLayout(false);
             this.panelFooter.PerformLayout();
@@ -296,7 +326,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colNumeroServicioTecnico;
         private DevExpress.XtraGrid.Columns.GridColumn colClasificacionInstrumento;
         private DevExpress.XtraGrid.Columns.GridColumn FechaCreacion;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnShowDetails;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnVerReportePresupuesto;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEditPresupuesto;
         private DevExpress.XtraGrid.Columns.GridColumn btnDetail;
         private DevExpress.XtraGrid.Columns.GridColumn btnEdit;
@@ -305,5 +335,7 @@
         private DevExpress.XtraEditors.LabelControl lblTotal;
         private DevExpress.XtraGrid.Columns.GridColumn btnDelete;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnDeletePresupuesto;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btnEnviarCorreo;
+        private DevExpress.XtraGrid.Columns.GridColumn btnCorreo;
     }
 }

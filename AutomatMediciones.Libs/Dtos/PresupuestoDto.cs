@@ -65,6 +65,8 @@ namespace AutomatMediciones.Libs.Dtos
         public int ModeloId { get; set; }
         public string NombreCliente { get; set; }
         public string ClienteId { get; set; }
+        public string CorreoUsuario { get; set; }
+        public decimal PrecioTotaldeProductos { get; set; }
 
         public MonedaDto Moneda { get; set; }
         public List<ProductoDto> Productos { get; set; }

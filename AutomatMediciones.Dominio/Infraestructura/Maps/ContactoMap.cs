@@ -18,6 +18,7 @@ namespace AutomatMediciones.Dominio.Infraestructura.Maps
             builder.Property(x => x.Apellido).HasColumnName("Apellido").HasColumnType("VARCHAR(255)");
             builder.Property(x => x.Saludo).HasColumnName("Saludo").HasColumnType("VARCHAR(255)");
             builder.Property(x => x.Genero).HasColumnName("Genero").HasColumnType("TINYINT");
+            builder.Property(x => x.Correo).HasColumnName("Correo").HasColumnType("VARCHAR(255)");
         }
     }
 }

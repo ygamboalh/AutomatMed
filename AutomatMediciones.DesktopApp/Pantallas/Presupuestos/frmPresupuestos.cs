@@ -2,20 +2,25 @@
 using AutomatMediciones.DesktopApp.Helpers;
 using AutomatMediciones.DesktopApp.Pantallas.Diagnosticos.Dtos;
 using AutomatMediciones.DesktopApp.Pantallas.Ingresos;
+using AutomatMediciones.DesktopApp.Pantallas.Ingresos.Dtos;
 using AutomatMediciones.DesktopApp.Pantallas.Ingresos.Enums;
-
+using AutomatMediciones.DesktopApp.Reportes;
+using AutomatMediciones.DesktopApp.Reportes.Dtos;
 using AutomatMediciones.Dominio.Caracteristicas.Entidades;
 using AutomatMediciones.Dominio.Caracteristicas.Servicios;
 using AutomatMediciones.Libs.Dtos;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Columns;
 using DevExpress.XtraGrid.Views.Base;
+using DevExpress.XtraPrinting;
+using DevExpress.XtraReports.UI;
 using DevExpress.XtraSplashScreen;
 using Microsoft.Extensions.DependencyInjection;
 using Nagaira.Core.Extentions.Responses;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Forms;
@@ -42,10 +47,122 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
 
             btnEditPresupuesto.Click += btnEditPresupuestoClick;
             btnDeletePresupuesto.Click += btnDeletePresupuestoClick;
+            btnVerReportePresupuesto.Click += btnVerReportePresupuesto_Click;
+            btnEnviarCorreo.Click += BtnEnviarCorreo_Click;
             ObtenerIngresoInstrumento();
             CargarPresupuestos();
             EstablecerNombreYTitulo();
             SetearTotales();
+        }
+
+        private void BtnEnviarCorreo_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = Notificaciones.PreguntaConfirmacion("¿Está seguro que desea enviar el reporte por correo electrónico?");
+           
+            if (resultado == DialogResult.Yes)
+            {
+              EnviarCorreoConReporte();
+              Notificaciones.MensajeInformativo("El reporte se envió por correo satisfactoriamente");
+            }
+            return;
+        }
+        private void EnviarCorreoConReporte() 
+        {
+            var reporte = CrearReporteDePresupuesto();
+            var presupuestoSeleccionado = gvPresupuesto.GetFocusedRow() as PresupuestoDto;
+            if (presupuestoSeleccionado == null) return;
+
+            string clienteId = presupuestoSeleccionado.ClienteId;
+            string[] nombreCompleto = presupuestoSeleccionado.NombreCliente.Split(" ");
+            string nombre = nombreCompleto[0];
+            string apellido = nombreCompleto[1];
+            var contacto = _presupuestoService.ObtenerListaContactos(clienteId).Data.Find(x => x.Nombre == nombre);
+            if (apellido == contacto.Apellido)
+            {
+                presupuestoSeleccionado.CorreoUsuario = contacto.Correo;
+            }
+
+            MemoryStream reportStream = new MemoryStream();
+            reporte.ExportToPdf(reportStream);
+
+            var diccionarioAdjuntos = new Dictionary<string, Stream>();
+            diccionarioAdjuntos.Add(reporte.DisplayName, reportStream);
+
+            var configuraciones = serviceProvider.GetRequiredService<ConfiguracionNotificacionService>().ObtenerConfiguraciones().Data;
+
+            CorreoNotificacionDto correoNotificacionDto = new CorreoNotificacionDto()
+            {
+                Body = "Se ha enviado un correo electronico",
+                NombreEmpresa = presupuestoSeleccionado.ClienteId,
+                IngresoId = presupuestoSeleccionado.IngresoId,
+                Adjuntos = diccionarioAdjuntos,
+                CopiasEnCorreo = new List<string> {
+                    configuraciones.CorreoOrigen
+                },
+                AdjuntoMediaType = "application/pdf",
+                NombreDestinatario = nombre + " " + apellido,
+                CorreoDestinatario = contacto.Correo,
+                Configuracion = new ConfiguracionNotificacionDto
+                {
+                    Puerto = configuraciones.Puerto,
+                    CorreoOrigen = configuraciones.CorreoOrigen,
+                    Servidor = configuraciones.Servidor,
+                    Asunto = "Reporte sobre presupuesto",
+                    Password = configuraciones.Password,
+
+                },
+            };
+            Helpers.CorreoHelper helper = new CorreoHelper();
+            helper.EnviarCorreo(correoNotificacionDto); 
+        }
+
+        private rptPresupuesto CrearReporteDePresupuesto()
+        {
+            var presupuestoSeleccionado = gvPresupuesto.GetFocusedRow() as PresupuestoDto;
+            if (presupuestoSeleccionado == null) return null;
+
+            rptPresupuesto rptPresupuesto = new rptPresupuesto();
+
+            int ingresoId = presupuestoSeleccionado.IngresoId;
+            string recId = presupuestoSeleccionado.RecID;
+            var productosIngreso = _presupuestoService.ObtenerProductosIngresos(ingresoId, recId);
+            string clienteId = presupuestoSeleccionado.ClienteId;
+            string[] nombreCompleto = presupuestoSeleccionado.NombreCliente.Split(" ");
+            string nombre = nombreCompleto[0];
+            string apellido = nombreCompleto[1];
+            decimal totalProductos = 0;
+            var contacto = _presupuestoService.ObtenerListaContactos(clienteId).Data.Find(x => x.Nombre == nombre);
+            if (apellido == contacto.Apellido)
+            {
+                presupuestoSeleccionado.CorreoUsuario = contacto.Correo;
+            }
+
+            for (int i = 0; i < productosIngreso.Data.Count; i++)
+            {
+                totalProductos += productosIngreso.Data[i].Precio;
+            }
+            presupuestoSeleccionado.PrecioTotaldeProductos = totalProductos;
+
+            rptPresupuesto.objectDataSource1.DataSource = presupuestoSeleccionado;
+            rptPresupuesto.objectDataSource2.DataSource = productosIngreso.Data;
+
+            return rptPresupuesto;
+        }
+
+        private void btnVerReportePresupuesto_Click(object sender, EventArgs e)
+        {
+            var presupuestoSeleccionado = gvPresupuesto.GetFocusedRow() as PresupuestoDto;
+            if (presupuestoSeleccionado == null) return;
+                
+            SplashScreenManager.ShowForm(typeof(frmSaving));
+
+            rptPresupuesto rptPresupuesto = CrearReporteDePresupuesto();
+                
+            rptPresupuesto.DisplayName = presupuestoSeleccionado.Nombre;
+            ReportPrintTool printTool = new ReportPrintTool(rptPresupuesto);
+            printTool.ShowRibbonPreview();
+                
+            SplashScreenManager.CloseForm();
         }
 
         private void btnDeletePresupuestoClick(object sender, EventArgs e)

@@ -9,5 +9,6 @@
         public string Apellido { get; set; }
         public string Saludo { get; set; }
         public int Genero { get; set; }
+        public string Correo { get; set; }
     }
 }

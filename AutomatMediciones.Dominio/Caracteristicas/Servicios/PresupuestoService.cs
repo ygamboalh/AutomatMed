@@ -599,5 +599,20 @@ namespace AutomatMediciones.Dominio.Caracteristicas.Servicios
                 return Response<List<ProductoIngreso>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
             }
         }
+        public Response<List<Contacto>> ObtenerListaContactos(string clienteId) 
+        {
+            try
+            {
+                var empresaId = _tacticaDbContext.Empresas.FirstOrDefault(x => x.NombreEmpresa == clienteId).EmpresaId;
+                var listaContactos = _tacticaDbContext.Contactos.Where(x => x.EmpresaId == empresaId).ToList();
+                if(listaContactos != null)
+                    return Response<List<Contacto>>.Ok("", listaContactos);
+                return Response<List<Contacto>>.Excepcion("Contactos no encontrados", null);
+            }
+            catch (Exception exc)
+            {
+                return Response<List<Contacto>>.Excepcion(MessageException.LanzarExcepcion(exc), null);
+            }
+        }
     }
 }
