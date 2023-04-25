@@ -22,6 +22,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using IngresoInstrumento = AutomatMediciones.DesktopApp.Pantallas.Diagnosticos.Dtos.IngresoInstrumento;
@@ -58,12 +60,13 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
         private void BtnEnviarCorreo_Click(object sender, EventArgs e)
         {
             DialogResult resultado = Notificaciones.PreguntaConfirmacion("¿Está seguro que desea enviar el reporte por correo electrónico?");
-           
+            SplashScreenManager.ShowForm(typeof(frmSaving));
             if (resultado == DialogResult.Yes)
             {
               EnviarCorreoConReporte();
               Notificaciones.MensajeInformativo("El reporte se envió por correo satisfactoriamente");
             }
+            SplashScreenManager.CloseForm();
             return;
         }
         private void EnviarCorreoConReporte() 
@@ -89,10 +92,11 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
             diccionarioAdjuntos.Add(reporte.DisplayName, reportStream);
 
             var configuraciones = serviceProvider.GetRequiredService<ConfiguracionNotificacionService>().ObtenerConfiguraciones().Data;
+            string cuerpoCorreo = ConvertirTextoPlanoEmailHaciaHtml(nombre+" "+apellido, presupuestoSeleccionado.Nombre);
 
             CorreoNotificacionDto correoNotificacionDto = new CorreoNotificacionDto()
             {
-                Body = "Se ha enviado un correo electronico",
+                Body = cuerpoCorreo,
                 NombreEmpresa = presupuestoSeleccionado.ClienteId,
                 IngresoId = presupuestoSeleccionado.IngresoId,
                 Adjuntos = diccionarioAdjuntos,
@@ -107,9 +111,8 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
                     Puerto = configuraciones.Puerto,
                     CorreoOrigen = configuraciones.CorreoOrigen,
                     Servidor = configuraciones.Servidor,
-                    Asunto = "Reporte sobre presupuesto",
+                    Asunto = $"Presupuesto para N° Servicio {presupuestoSeleccionado.Nombre}",
                     Password = configuraciones.Password,
-
                 },
             };
             Helpers.CorreoHelper helper = new CorreoHelper();
@@ -158,13 +161,80 @@ namespace AutomatMediciones.DesktopApp.Pantallas.Presupuestos
 
             rptPresupuesto rptPresupuesto = CrearReporteDePresupuesto();
                 
-            rptPresupuesto.DisplayName = presupuestoSeleccionado.Nombre;
+            rptPresupuesto.DisplayName = $"Presupuesto {presupuestoSeleccionado.Nombre}";
             ReportPrintTool printTool = new ReportPrintTool(rptPresupuesto);
             printTool.ShowRibbonPreview();
                 
             SplashScreenManager.CloseForm();
         }
 
+        public string ConvertirTextoPlanoEmailHaciaHtml(string persona, string servicio)
+        {
+            StringBuilder textoEmail = new StringBuilder();
+            bool yaInicioLasLineasDeFirmaParaElEmail = false;
+
+            List<string> cuerpoCorreo = new List<string>()
+            {
+                $"Estimado {persona}",
+                $"Le compartimos el presupuesto resultante para el número de servicio {servicio}.",
+                "Saludos Cordiales",
+                "Automat Medición S.R.L.",
+                "Dr.Rafael Bielsa 175 - C1427AZA - Buenos Aires",
+                "TEL: +54 11 4555 - 0055",
+                "Whatsapp + 54 9 11 2466 4500",
+                "Visite nuestra web: www.automat.com.ar",
+            };
+            textoEmail.AppendLine();
+            textoEmail.AppendLine($"<p style style={"line-height: 100%"}>");
+            foreach (var line in cuerpoCorreo)
+            {
+                if (line.Contains("Saludos Cordiales"))
+                {
+                    yaInicioLasLineasDeFirmaParaElEmail = true;
+                }
+
+                if (line.Contains("Automat Medición S.R.L.") || line.Contains("Whatsapp"))
+                {
+                    string pararrafo = $"<strong> {line.Replace(Environment.NewLine, "<br />\r\n")} </strong><br>";
+
+                    pararrafo = Regex.Replace(pararrafo, @"\[\[(.+)\]\[(.+)\]\]", "<a href=\"$2\">$1</a>");
+                    pararrafo = Regex.Replace(pararrafo, @"\[\[(.+)\]\]", "<a href=\"$1\">$1</a>");
+                    textoEmail.AppendLine(pararrafo);
+                }
+                else if (string.IsNullOrEmpty(line))
+                {
+                    textoEmail.AppendLine("<br>");
+                }
+                else
+                {
+                    if (yaInicioLasLineasDeFirmaParaElEmail)
+                    {
+                        string parrafo = line.Replace(Environment.NewLine, "<br />\r\n");
+
+                        parrafo = Regex.Replace(parrafo, @"\[\[(.+)\]\[(.+)\]\]", "<a href=\"$2\">$1</a>");
+                        parrafo = Regex.Replace(parrafo, @"\[\[(.+)\]\]", "<a href=\"$1\">$1</a>");
+                        textoEmail.AppendLine($"{parrafo}<br>");
+                    }
+                    else
+                    {
+                        string parrafo = line.Replace(Environment.NewLine, "<br />\r\n");
+
+                        parrafo = Regex.Replace(parrafo, @"\[\[(.+)\]\[(.+)\]\]", "<a href=\"$2\">$1</a>");
+                        parrafo = Regex.Replace(parrafo, @"\[\[(.+)\]\]", "<a href=\"$1\">$1</a>");
+
+                        if (line.Contains("."))
+                        {
+                            parrafo = $"{parrafo} <br>";
+                        }
+                        textoEmail.AppendLine(parrafo);
+                    }
+                }
+            }
+
+            textoEmail.AppendLine("</p>");
+
+            return textoEmail.ToString();
+        }
         private void btnDeletePresupuestoClick(object sender, EventArgs e)
         {
             DialogResult resultado= Notificaciones.PreguntaConfirmacion("¿Está seguro que desea desactivar el presupuesto?");
