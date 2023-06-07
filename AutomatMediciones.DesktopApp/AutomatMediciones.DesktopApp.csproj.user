@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="Componentes\Encabezados\ctlEncabezadoPantalla.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Componentes\Menu\cmpItemMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Componentes\Menu\cmpLogo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Componentes\Menu\cmpMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Celdas\frmCeldas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Celdas\frmNuevaCelda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\CertificadosDeCalibracion\frmCertificadosDeCalibracion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\CertificadosDeCalibracion\frmNuevoCertificadoCalibracion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Clasificaciones\frmClasificaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Clasificaciones\frmNuevaClasificacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Diagnosticos\frmNuevoDiagnostico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\frmEmpresas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\frmLoading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\frmLoadingSave.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\frmVisualizadorImagen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\frmVisualizadorPdf.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Ingresos\frmInformacionAdicionalInstrumento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Ingresos\frmIngresos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Ingresos\frmNuevoIngreso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Ingresos\frmPreIngresos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Instrumentos\frmExtraccionCelda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Instrumentos\frmInstrumentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Instrumentos\frmInstrumentoVariable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Instrumentos\frmNuevoInstrumento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Marcas\frmMarcas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Marcas\frmNuevaMarca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Modelos\frmModelos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Modelos\frmNuevoModelo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Patrones\frmNuevoPatron.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Patrones\frmPatrones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Presupuestos\frmCrearPresupuesto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Presupuestos\frmHistorialPresupuesto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Presupuestos\frmPresupuestos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Principales\frmPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Productos\frmProductos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\TiposDeCelda\frmNuevoTIpoCelda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\TiposDeCelda\frmTiposDeCelda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\TiposDeInstrumento\frmNuevoTipoInstrumento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\TiposDeInstrumento\frmTiposDeInstrumento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Usuarios\frmNuevoUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\Usuarios\frmUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\VariablesDeMedicion\frmNuevaVariableMedicion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Pantallas\VariablesDeMedicion\frmVariablesDeMedicion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Reportes\rptCertificadoDeCalibracion.cs">
+      <SubType>XtraReport</SubType>
+    </Compile>
+    <Compile Update="Reportes\rptIngreso.cs">
+      <SubType>XtraReport</SubType>
+    </Compile>
+    <Compile Update="Reportes\rptPresupuesto.cs">
+      <SubType>XtraReport</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Pantallas\Presupuestos\frmCrearPresupuesto.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

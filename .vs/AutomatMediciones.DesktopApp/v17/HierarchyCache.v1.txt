@@ -1,0 +1,781 @@
+﻿++Solution 'AutomatMediciones.DesktopApp' ‎(3 of 3 projects)
+i:{00000000-0000-0000-0000-000000000000}:AutomatMediciones.DesktopApp.sln
+++AutomatMediciones.Dominio
+i:{00000000-0000-0000-0000-000000000000}:AutomatMediciones.Dominio
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\automatmediciones.dominio.csproj
+++Dependencies
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:>1663
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:>1662
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:>1664
+++Analyzers
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:analyzers
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:analyzers
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:analyzers
+++Assemblies
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:assemblies
+++Frameworks
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:frameworks
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:frameworks
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:frameworks
+++Packages
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:packages
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:packages
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:packages
+++AutoMapper (10.1.1)
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:>1699
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:>1678
+++Microsoft.EntityFrameworkCore (5.0.15)
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:>1696
+++Microsoft.EntityFrameworkCore.Relational (5.0.15)
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:>1698
+++Nagaira.Core.Extentions (1.0.0.5)
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:>1697
+++Projects
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:projects
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:projects
+++Caracteristicas
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\
+++Entidades
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\
+++Enums
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\enums\
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\enums\
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\ingresos\enums\
+++Servicios
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\servicios\
+++CeldaService.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\servicios\celdaservice.cs
+++CertificadoCalibracionService.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\servicios\certificadocalibracionservice.cs
+++ClasificacionInstrumentoService.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\servicios\clasificacioninstrumentoservice.cs
+++ConfiguracionNotificacionService.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\servicios\configuracionnotificacionservice.cs
+++EmpresaService.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\servicios\empresaservice.cs
+++EstadoService.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\servicios\estadoservice.cs
+++IngresoService.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\servicios\ingresoservice.cs
+++InstrumentoService.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\servicios\instrumentoservice.cs
+++MarcaService.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\servicios\marcaservice.cs
+++MenuService.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\servicios\menuservice.cs
+++ModeloService.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\servicios\modeloservice.cs
+++MonedaService.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\servicios\monedaservice.cs
+++PatronService.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\servicios\patronservice.cs
+++PresupuestoService.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\servicios\presupuestoservice.cs
+++ProductoService.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\servicios\productoservice.cs
+++TipoDeInstrumentoService.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\servicios\tipodeinstrumentoservice.cs
+++TipoTrabajoService.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\servicios\tipotrabajoservice.cs
+++UnidadMedidaService.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\servicios\unidadmedidaservice.cs
+++UsuarioService.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\servicios\usuarioservice.cs
+++VariableMedicionService.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\servicios\variablemedicionservice.cs
+++Common
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\common\
+++Infraestructura
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\
+++Microsoft.CodeAnalysis.CSharp.NetAnalyzers
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+++Microsoft.CodeAnalysis.NetAnalyzers
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\program files\dotnet\sdk\6.0.101\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+++Microsoft.EntityFrameworkCore.Analyzers
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\.nuget\packages\microsoft.entityframeworkcore.analyzers\5.0.15\analyzers\dotnet\cs\microsoft.entityframeworkcore.analyzers.dll
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\.nuget\packages\microsoft.entityframeworkcore.analyzers\5.0.15\analyzers\dotnet\cs\microsoft.entityframeworkcore.analyzers.dll
+++Microsoft.Extensions.Logging.Generators
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\.nuget\packages\microsoft.extensions.logging.abstractions\6.0.1\analyzers\dotnet\roslyn4.0\cs\microsoft.extensions.logging.generators.dll
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\.nuget\packages\microsoft.extensions.logging.abstractions\6.0.1\analyzers\dotnet\roslyn4.0\cs\microsoft.extensions.logging.generators.dll
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\.nuget\packages\microsoft.extensions.logging.abstractions\6.0.1\analyzers\dotnet\roslyn4.0\cs\microsoft.extensions.logging.generators.dll
+++System.Text.Json.SourceGeneration
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\.nuget\packages\system.text.json\6.0.7\analyzers\dotnet\roslyn4.0\cs\system.text.json.sourcegeneration.dll
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\.nuget\packages\system.text.json\6.0.7\analyzers\dotnet\roslyn4.0\cs\system.text.json.sourcegeneration.dll
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\.nuget\packages\system.text.json\6.0.7\analyzers\dotnet\roslyn4.0\cs\system.text.json.sourcegeneration.dll
+++DevExpress.DataAccess.v21.2
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\devexpress.dataaccess.v21.2
+++Microsoft.NETCore.App
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\microsoft.netcore.app
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\microsoft.netcore.app
+++AutomatMediciones.Libs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\automatmediciones.libs.csproj
+i:{00000000-0000-0000-0000-000000000000}:AutomatMediciones.Libs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\automatmediciones.libs.csproj
+++ArbolCarpeta.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\arbolcarpeta.cs
+++Celda.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\celda.cs
+++CeldaInstrumento.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\celdainstrumento.cs
+++Certificado.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\certificado.cs
+++ClasificacionInstrumento.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\clasificacioninstrumento.cs
+++ConfiguracionNotificacion.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\configuracionnotificacion.cs
+++Contacto.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\contacto.cs
+++CorreoElectronico.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\correoelectronico.cs
+++Empresa.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\empresa.cs
+++Estado.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\estado.cs
+++EstadoCelda.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\estadocelda.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\enums\estadocelda.cs
+++Ingreso.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\ingreso.cs
+++IngresoInstrumento.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\ingresoinstrumento.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\diagnosticos\dtos\ingresoinstrumento.cs
+++Instrumento.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\instrumento.cs
+++Marca.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\marca.cs
+++Menu.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\menu.cs
+++Modelo.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\modelo.cs
+++Moneda.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\moneda.cs
+++MonedaCotizacion.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\monedacotizacion.cs
+++Patron.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\patron.cs
+++Presupuesto.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\presupuesto.cs
+++PresupuestoControl.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\presupuestocontrol.cs
+++PresupuestoItem.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\presupuestoitem.cs
+++PresupuestoItemControl.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\presupuestoitemcontrol.cs
+++Producto.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\producto.cs
+++ProductoIngreso.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\productoingreso.cs
+++ProductoPrecio.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\productoprecio.cs
+++TipoCelda.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\tipocelda.cs
+++TipoCeldaModelo.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\tipoceldamodelo.cs
+++TipoInstrumento.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\tipoinstrumento.cs
+++TipoInstrumentoVariable.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\tipoinstrumentovariable.cs
+++TipoTrabajo.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\tipotrabajo.cs
+++UnidadMedida.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\unidadmedida.cs
+++Usuario.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\usuario.cs
+++VariableCertificado.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\variablecertificado.cs
+++VariableDeMedicion.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\variabledemedicion.cs
+++VariableInstrumento.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\variableinstrumento.cs
+++VariablePatron.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\entidades\variablepatron.cs
+++Estados.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\enums\estados.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\enums\estados.cs
+++TipoIngreso.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\caracteristicas\enums\tipoingreso.cs
+++ConfigMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\common\configmap.cs
+++Maps
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\
+++AutomatMedicionesDbContext.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\automatmedicionesdbcontext.cs
+++TacticaDbContext.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\tacticadbcontext.cs
+++ArbolCarpetaMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\arbolcarpetamap.cs
+++CeldaInstrumentoMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\celdainstrumentomap.cs
+++CeldaMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\celdamap.cs
+++CertificadoMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\certificadomap.cs
+++ClasificacionInstrumentoMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\clasificacioninstrumentomap.cs
+++ConfiguracionNotificacionMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\configuracionnotificacionmap.cs
+++ContactoMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\contactomap.cs
+++CorreoElectronicoMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\correoelectronicomap.cs
+++EmpresaMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\empresamap.cs
+++EstadoCeldaMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\estadoceldamap.cs
+++EstadoMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\estadomap.cs
+++IngresoInstrumentoMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\ingresoinstrumentomap.cs
+++IngresoMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\ingresomap.cs
+++InstrumentoMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\instrumentomap.cs
+++MarcaMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\marcamap.cs
+++MenuMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\menumap.cs
+++ModeloMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\modelomap.cs
+++MonedaCotizacionMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\monedacotizacionmap.cs
+++MonedaMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\monedamap.cs
+++PatronMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\patronmap.cs
+++PresupuestoControlMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\presupuestocontrolmap.cs
+++PresupuestoItemControlMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\presupuestoitemcontrolmap.cs
+++PresupuestoItemMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\presupuestoitemmap.cs
+++PresupuestoMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\presupuestomap.cs
+++ProductoIngresoMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\productoingresomap.cs
+++ProductoMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\productomap.cs
+++ProductoPrecioMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\productopreciomap.cs
+++TipoCeldaMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\tipoceldamap.cs
+++TipoCeldaModeloMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\tipoceldamodelomap.cs
+++TipoInstrumentoMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\tipoinstrumentomap.cs
+++TipoInstrumentoVariableMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\tipoinstrumentovariablemap.cs
+++TipoTrabajoMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\tipotrabajomap.cs
+++UnidadMedidaMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\unidadmedidamap.cs
+++UsuarioMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\usuariomap.cs
+++VariableCertificadoMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\variablecertificadomap.cs
+++VariableDeMedicionMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\variabledemedicionmap.cs
+++VariableInstrumentoMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\variableinstrumentomap.cs
+++VariablePatronMap.cs
+i:{1ce081c7-479f-4451-ab8c-545b49571069}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.dominio\infraestructura\maps\variablepatronmap.cs
+++Dtos
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\reportes\dtos\
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\certificadosdecalibracion\dtos\
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\clasificaciones\dtos\
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\diagnosticos\dtos\
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\ingresos\dtos\
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\patrones\dtos\
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\presupuestos\dtos\
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\productos\dtos\
+++View
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\view\
+++ArbolCarpetaDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\arbolcarpetadto.cs
+++CeldaDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\celdadto.cs
+++CeldaInstrumentoDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\celdainstrumentodto.cs
+++CertificadoDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\certificadodto.cs
+++ClasificacionInstrumentoDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\clasificacioninstrumentodto.cs
+++ConfiguracionNotificacionDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\configuracionnotificaciondto.cs
+++ContactoDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\contactodto.cs
+++CorreoElectronicoDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\correoelectronicodto.cs
+++EmpresaDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\empresadto.cs
+++EstadoCeldaDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\estadoceldadto.cs
+++EstadoDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\estadodto.cs
+++IngresoDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\ingresodto.cs
+++IngresoInstrumentoDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\ingresoinstrumentodto.cs
+++InstrumentoDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\instrumentodto.cs
+++MarcaDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\marcadto.cs
+++MenuDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\menudto.cs
+++ModeloDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\modelodto.cs
+++MonedaCotizacionDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\monedacotizaciondto.cs
+++MonedaDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\monedadto.cs
+++PatronDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\patrondto.cs
+++PresupuestoDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\presupuestodto.cs
+++PresupuestoItemDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\presupuestoitemdto.cs
+++ProductoDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\productodto.cs
+++ProductoIngresoDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\productoingresodto.cs
+++ProductoPrecioDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\productopreciodto.cs
+++TipoCeldaDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\tipoceldadto.cs
+++TipoCeldaModeloDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\tipoceldamodelodto.cs
+++TipoInstrumentoDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\tipoinstrumentodto.cs
+++TipoInstrumentoVariableDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\tipoinstrumentovariabledto.cs
+++TipoTrabajoDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\tipotrabajodto.cs
+++UnidadMedidaDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\unidadmedidadto.cs
+++UsuarioDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\usuariodto.cs
+++VariableCertificadoDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\variablecertificadodto.cs
+++VariableInstrumentoDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\variableinstrumentodto.cs
+++VariableMedicionDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\variablemediciondto.cs
+++VariablePatronDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\variablepatrondto.cs
+++NETStandard.Library
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\netstandard.library
+++MassTransit (8.0.15-develop.1206)
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:>1687
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:>1675
+++PresupuestoHistorialDto.cs
+i:{1e35902d-39f3-43cf-9b5b-a06cb181c792}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.libs\dtos\view\presupuestohistorialdto.cs
+++AutomatMediciones.DesktopApp
+i:{00000000-0000-0000-0000-000000000000}:AutomatMediciones.DesktopApp
+++Properties
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\properties\
+++Componentes
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\componentes\
+++Helpers
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\helpers\
+++Pantallas
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\
+++Reportes
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\reportes\
+++Resources
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\resources\
+++App.config
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\app.config
+++favicon.ico
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\favicon.ico
+++Program.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\program.cs
+++DataSources
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\properties\datasources\
+++Resources.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\properties\resources.resx
+++Encabezados
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\componentes\encabezados\
+++Menu
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\componentes\menu\
+++Generos.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\enums\generos.cs
+++IndiceMenu.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\enums\indicemenu.cs
+++AplicacionHelper.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\helpers\aplicacionhelper.cs
+++ColorHelper.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\helpers\colorhelper.cs
+++CorreoHelper.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\helpers\correohelper.cs
+++ExceptionsHelper.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\helpers\exceptionshelper.cs
+++FileHelper.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\helpers\filehelper.cs
+++Notificaciones.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\helpers\notificaciones.cs
+++Celdas
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\celdas\
+++CertificadosDeCalibracion
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\certificadosdecalibracion\
+++Clasificaciones
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\clasificaciones\
+++Diagnosticos
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\diagnosticos\
+++Ingresos
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\ingresos\
+++Instrumentos
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\instrumentos\
+++Marcas
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\marcas\
+++Modelos
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\modelos\
+++Patrones
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\patrones\
+++Presupuestos
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\presupuestos\
+++Principales
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\principales\
+++Productos
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\productos\
+++TiposDeCelda
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\tiposdecelda\
+++TiposDeInstrumento
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\tiposdeinstrumento\
+++Usuarios
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\usuarios\
+++VariablesDeMedicion
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\variablesdemedicion\
+++frmEmpresas.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\frmempresas.cs
+++frmLoading.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\frmloading.cs
+++frmLoadingSave.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\frmloadingsave.cs
+++frmVisualizadorImagen.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\frmvisualizadorimagen.cs
+++frmVisualizadorPdf.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\frmvisualizadorpdf.cs
+++rptCertificadoDeCalibracion.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\reportes\rptcertificadodecalibracion.cs
+++rptIngreso.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\reportes\rptingreso.cs
+++rptPresupuesto.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\reportes\rptpresupuesto.cs
+++automatnuevologo.png
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\resources\automatnuevologo.png
+++header-expofuego-automat-web-e1518742210828.jpg
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\resources\header-expofuego-automat-web-e1518742210828.jpg
+++iconEspera.gif
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\resources\iconespera.gif
+++Microsoft.WindowsDesktop.App
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\microsoft.windowsdesktop.app
+++AutoMapper.Extensions.Microsoft.DependencyInjection (8.1.0)
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:>1672
+++DevExpress.Win.Design (21.2.6)
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:>1679
+++FontAwesome.Sharp (5.15.4)
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:>1674
+++Microsoft.Extensions.DependencyInjection (7.0.0)
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:>1677
+++Microsoft.Extensions.DependencyInjection.Abstractions (7.0.0)
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:>1673
+++Nagaira.Core.Extentions (1.0.0.6)
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:>1676
+++Pomelo.EntityFrameworkCore.MySql (5.0.4)
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:>1680
+++AutomatMediciones.Libs.Dtos.PresupuestoDto.datasource
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\properties\datasources\automatmediciones.libs.dtos.presupuestodto.datasource
+++Resources.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\properties\resources.designer.cs
+++ctlEncabezadoPantalla.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\componentes\encabezados\ctlencabezadopantalla.cs
+++cmpItemMenu.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\componentes\menu\cmpitemmenu.cs
+++cmpLogo.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\componentes\menu\cmplogo.cs
+++cmpMenu.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\componentes\menu\cmpmenu.cs
+++frmCeldas.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\celdas\frmceldas.cs
+++frmNuevaCelda.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\celdas\frmnuevacelda.cs
+++frmCertificadosDeCalibracion.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\certificadosdecalibracion\frmcertificadosdecalibracion.cs
+++frmNuevoCertificadoCalibracion.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\certificadosdecalibracion\frmnuevocertificadocalibracion.cs
+++frmClasificaciones.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\clasificaciones\frmclasificaciones.cs
+++frmNuevaClasificacion.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\clasificaciones\frmnuevaclasificacion.cs
+++frmNuevoDiagnostico.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\diagnosticos\frmnuevodiagnostico.cs
+++frmInformacionAdicionalInstrumento.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\ingresos\frminformacionadicionalinstrumento.cs
+++frmIngresos.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\ingresos\frmingresos.cs
+++frmNuevoIngreso.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\ingresos\frmnuevoingreso.cs
+++frmPreIngresos.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\ingresos\frmpreingresos.cs
+++frmExtraccionCelda.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\instrumentos\frmextraccioncelda.cs
+++frmInstrumentos.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\instrumentos\frminstrumentos.cs
+++frmInstrumentoVariable.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\instrumentos\frminstrumentovariable.cs
+++frmNuevoInstrumento.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\instrumentos\frmnuevoinstrumento.cs
+++frmMarcas.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\marcas\frmmarcas.cs
+++frmNuevaMarca.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\marcas\frmnuevamarca.cs
+++frmModelos.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\modelos\frmmodelos.cs
+++frmNuevoModelo.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\modelos\frmnuevomodelo.cs
+++frmNuevoPatron.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\patrones\frmnuevopatron.cs
+++frmPatrones.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\patrones\frmpatrones.cs
+++frmCrearPresupuesto.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\presupuestos\frmcrearpresupuesto.cs
+++frmEditarPresupuesto.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\presupuestos\frmeditarpresupuesto.cs
+++frmHistorialPresupuesto.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\presupuestos\frmhistorialpresupuesto.cs
+++frmPresupuestos.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\presupuestos\frmpresupuestos.cs
+++frmPrincipal.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\principales\frmprincipal.cs
+++frmProductos.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\productos\frmproductos.cs
+++frmNuevoTIpoCelda.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\tiposdecelda\frmnuevotipocelda.cs
+++frmTiposDeCelda.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\tiposdecelda\frmtiposdecelda.cs
+++frmNuevoTipoInstrumento.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\tiposdeinstrumento\frmnuevotipoinstrumento.cs
+++frmTiposDeInstrumento.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\tiposdeinstrumento\frmtiposdeinstrumento.cs
+++frmNuevoUsuario.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\usuarios\frmnuevousuario.cs
+++frmUsuarios.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\usuarios\frmusuarios.cs
+++frmNuevaVariableMedicion.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\variablesdemedicion\frmnuevavariablemedicion.cs
+++frmVariablesDeMedicion.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\variablesdemedicion\frmvariablesdemedicion.cs
+++frmEmpresas.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\frmempresas.designer.cs
+++frmEmpresas.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\frmempresas.resx
+++frmLoading.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\frmloading.designer.cs
+++frmLoading.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\frmloading.resx
+++frmLoadingSave.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\frmloadingsave.designer.cs
+++frmLoadingSave.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\frmloadingsave.resx
+++frmVisualizadorImagen.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\frmvisualizadorimagen.designer.cs
+++frmVisualizadorImagen.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\frmvisualizadorimagen.resx
+++frmVisualizadorPdf.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\frmvisualizadorpdf.designer.cs
+++frmVisualizadorPdf.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\frmvisualizadorpdf.resx
+++RptCertificadoDto.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\reportes\dtos\rptcertificadodto.cs
+++rptCertificadoDeCalibracion.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\reportes\rptcertificadodecalibracion.designer.cs
+++rptCertificadoDeCalibracion.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\reportes\rptcertificadodecalibracion.resx
+++rptIngreso.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\reportes\rptingreso.designer.cs
+++rptIngreso.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\reportes\rptingreso.resx
+++rptPresupuesto.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\reportes\rptpresupuesto.designer.cs
+++rptPresupuesto.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\reportes\rptpresupuesto.resx
+++ctlEncabezadoPantalla.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\componentes\encabezados\ctlencabezadopantalla.designer.cs
+++ctlEncabezadoPantalla.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\componentes\encabezados\ctlencabezadopantalla.resx
+++cmpItemMenu.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\componentes\menu\cmpitemmenu.designer.cs
+++cmpItemMenu.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\componentes\menu\cmpitemmenu.resx
+++cmpLogo.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\componentes\menu\cmplogo.designer.cs
+++cmpLogo.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\componentes\menu\cmplogo.resx
+++cmpMenu.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\componentes\menu\cmpmenu.designer.cs
+++cmpMenu.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\componentes\menu\cmpmenu.resx
+++frmCeldas.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\celdas\frmceldas.designer.cs
+++frmCeldas.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\celdas\frmceldas.resx
+++frmNuevaCelda.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\celdas\frmnuevacelda.designer.cs
+++frmNuevaCelda.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\celdas\frmnuevacelda.resx
+++CertificadoView.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\certificadosdecalibracion\dtos\certificadoview.cs
+++frmCertificadosDeCalibracion.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\certificadosdecalibracion\frmcertificadosdecalibracion.designer.cs
+++frmCertificadosDeCalibracion.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\certificadosdecalibracion\frmcertificadosdecalibracion.resx
+++frmNuevoCertificadoCalibracion.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\certificadosdecalibracion\frmnuevocertificadocalibracion.designer.cs
+++frmNuevoCertificadoCalibracion.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\certificadosdecalibracion\frmnuevocertificadocalibracion.resx
+++ClasificacionDto.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\clasificaciones\dtos\clasificaciondto.cs
+++frmClasificaciones.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\clasificaciones\frmclasificaciones.designer.cs
+++frmClasificaciones.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\clasificaciones\frmclasificaciones.resx
+++frmNuevaClasificacion.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\clasificaciones\frmnuevaclasificacion.designer.cs
+++frmNuevaClasificacion.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\clasificaciones\frmnuevaclasificacion.resx
+++frmNuevoDiagnostico.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\diagnosticos\frmnuevodiagnostico.designer.cs
+++frmNuevoDiagnostico.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\diagnosticos\frmnuevodiagnostico.resx
+++ContactoLista.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\ingresos\dtos\contactolista.cs
+++CorreoNotificacionDto.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\ingresos\dtos\correonotificaciondto.cs
+++InstrumentoLista.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\ingresos\dtos\instrumentolista.cs
+++UsuarioLista.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\ingresos\dtos\usuariolista.cs
+++TiposIngreso.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\ingresos\enums\tiposingreso.cs
+++frmInformacionAdicionalInstrumento.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\ingresos\frminformacionadicionalinstrumento.designer.cs
+++frmInformacionAdicionalInstrumento.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\ingresos\frminformacionadicionalinstrumento.resx
+++frmIngresos.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\ingresos\frmingresos.designer.cs
+++frmIngresos.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\ingresos\frmingresos.resx
+++frmNuevoIngreso.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\ingresos\frmnuevoingreso.designer.cs
+++frmNuevoIngreso.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\ingresos\frmnuevoingreso.resx
+++frmPreIngresos.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\ingresos\frmpreingresos.designer.cs
+++frmPreIngresos.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\ingresos\frmpreingresos.resx
+++frmExtraccionCelda.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\instrumentos\frmextraccioncelda.designer.cs
+++frmExtraccionCelda.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\instrumentos\frmextraccioncelda.resx
+++frmInstrumentos.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\instrumentos\frminstrumentos.designer.cs
+++frmInstrumentos.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\instrumentos\frminstrumentos.resx
+++frmInstrumentoVariable.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\instrumentos\frminstrumentovariable.designer.cs
+++frmInstrumentoVariable.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\instrumentos\frminstrumentovariable.resx
+++frmNuevoInstrumento.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\instrumentos\frmnuevoinstrumento.designer.cs
+++frmNuevoInstrumento.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\instrumentos\frmnuevoinstrumento.resx
+++frmMarcas.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\marcas\frmmarcas.designer.cs
+++frmMarcas.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\marcas\frmmarcas.resx
+++frmNuevaMarca.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\marcas\frmnuevamarca.designer.cs
+++frmNuevaMarca.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\marcas\frmnuevamarca.resx
+++frmModelos.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\modelos\frmmodelos.designer.cs
+++frmModelos.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\modelos\frmmodelos.resx
+++frmNuevoModelo.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\modelos\frmnuevomodelo.designer.cs
+++frmNuevoModelo.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\modelos\frmnuevomodelo.resx
+++VariablePatronLista.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\patrones\dtos\variablepatronlista.cs
+++frmNuevoPatron.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\patrones\frmnuevopatron.designer.cs
+++frmNuevoPatron.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\patrones\frmnuevopatron.resx
+++frmPatrones.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\patrones\frmpatrones.designer.cs
+++frmPatrones.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\patrones\frmpatrones.resx
+++PresupuestoViewDto.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\presupuestos\dtos\presupuestoviewdto.cs
+++ProductoIngresoVista.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\presupuestos\dtos\productoingresovista.cs
+++frmCrearPresupuesto.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\presupuestos\frmcrearpresupuesto.designer.cs
+++frmCrearPresupuesto.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\presupuestos\frmcrearpresupuesto.resx
+++frmEditarPresupuesto.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\presupuestos\frmeditarpresupuesto.designer.cs
+++frmEditarPresupuesto.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\presupuestos\frmeditarpresupuesto.resx
+++frmHistorialPresupuesto.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\presupuestos\frmhistorialpresupuesto.designer.cs
+++frmHistorialPresupuesto.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\presupuestos\frmhistorialpresupuesto.resx
+++frmPresupuestos.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\presupuestos\frmpresupuestos.designer.cs
+++frmPresupuestos.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\presupuestos\frmpresupuestos.resx
+++frmPrincipal.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\principales\frmprincipal.designer.cs
+++frmPrincipal.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\principales\frmprincipal.resx
+++ProductoListaDto.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\productos\dtos\productolistadto.cs
+++frmProductos.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\productos\frmproductos.designer.cs
+++frmProductos.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\productos\frmproductos.resx
+++frmNuevoTIpoCelda.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\tiposdecelda\frmnuevotipocelda.designer.cs
+++frmNuevoTIpoCelda.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\tiposdecelda\frmnuevotipocelda.resx
+++frmTiposDeCelda.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\tiposdecelda\frmtiposdecelda.designer.cs
+++frmTiposDeCelda.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\tiposdecelda\frmtiposdecelda.resx
+++frmNuevoTipoInstrumento.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\tiposdeinstrumento\frmnuevotipoinstrumento.designer.cs
+++frmNuevoTipoInstrumento.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\tiposdeinstrumento\frmnuevotipoinstrumento.resx
+++frmTiposDeInstrumento.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\tiposdeinstrumento\frmtiposdeinstrumento.designer.cs
+++frmTiposDeInstrumento.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\tiposdeinstrumento\frmtiposdeinstrumento.resx
+++frmNuevoUsuario.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\usuarios\frmnuevousuario.designer.cs
+++frmNuevoUsuario.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\usuarios\frmnuevousuario.resx
+++frmUsuarios.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\usuarios\frmusuarios.designer.cs
+++frmUsuarios.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\usuarios\frmusuarios.resx
+++frmNuevaVariableMedicion.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\variablesdemedicion\frmnuevavariablemedicion.designer.cs
+++frmNuevaVariableMedicion.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\variablesdemedicion\frmnuevavariablemedicion.resx
+++frmVariablesDeMedicion.Designer.cs
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\variablesdemedicion\frmvariablesdemedicion.designer.cs
+++frmVariablesDeMedicion.resx
+i:{465ff90b-88ac-451d-9eb1-a104bfc2b1ab}:c:\users\yordan gamboa laina\desktop\proyecto\automatmediciones.desktopapp\pantallas\variablesdemedicion\frmvariablesdemedicion.resx

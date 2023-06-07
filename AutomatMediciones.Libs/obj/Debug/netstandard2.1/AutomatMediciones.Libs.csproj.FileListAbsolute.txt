@@ -1,0 +1,10 @@
+C:\Users\Yordan Gamboa Laina\Desktop\Proyecto\AutomatMediciones.Libs\bin\Debug\netstandard2.1\AutomatMediciones.Libs.deps.json
+C:\Users\Yordan Gamboa Laina\Desktop\Proyecto\AutomatMediciones.Libs\bin\Debug\netstandard2.1\AutomatMediciones.Libs.dll
+C:\Users\Yordan Gamboa Laina\Desktop\Proyecto\AutomatMediciones.Libs\bin\Debug\netstandard2.1\AutomatMediciones.Libs.pdb
+C:\Users\Yordan Gamboa Laina\Desktop\Proyecto\AutomatMediciones.Libs\obj\Debug\netstandard2.1\AutomatMediciones.Libs.csproj.AssemblyReference.cache
+C:\Users\Yordan Gamboa Laina\Desktop\Proyecto\AutomatMediciones.Libs\obj\Debug\netstandard2.1\AutomatMediciones.Libs.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Yordan Gamboa Laina\Desktop\Proyecto\AutomatMediciones.Libs\obj\Debug\netstandard2.1\AutomatMediciones.Libs.AssemblyInfoInputs.cache
+C:\Users\Yordan Gamboa Laina\Desktop\Proyecto\AutomatMediciones.Libs\obj\Debug\netstandard2.1\AutomatMediciones.Libs.AssemblyInfo.cs
+C:\Users\Yordan Gamboa Laina\Desktop\Proyecto\AutomatMediciones.Libs\obj\Debug\netstandard2.1\AutomatMediciones.Libs.csproj.CoreCompileInputs.cache
+C:\Users\Yordan Gamboa Laina\Desktop\Proyecto\AutomatMediciones.Libs\obj\Debug\netstandard2.1\AutomatMediciones.Libs.dll
+C:\Users\Yordan Gamboa Laina\Desktop\Proyecto\AutomatMediciones.Libs\obj\Debug\netstandard2.1\AutomatMediciones.Libs.pdb
